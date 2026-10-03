@@ -159,4 +159,14 @@
                (:file "gtk-functions-10")
                (:file "gtk-functions-11")))
 
+(defsystem "gtk4/adw"
+  :depends-on ("gtk4/gio" "gtk4/gtk")
+  :pathname "src/generated/"
+  :serial t
+  :components ((:file "adw")
+               (:file "adw-functions-1")
+               (:file "adw-functions-2")
+               (:file "adw-functions-3")
+               (:file "adw-functions-4")))
+
 ;;; END GENERATED SYSTEMS

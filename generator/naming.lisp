@@ -10,6 +10,11 @@
     ("Adw" . "ADW"))
   "GIR namespace -> Lisp package name.")
 
+(defparameter *namespace-libraries*
+  '(("Adw" . "ADWAITA"))
+  "Namespaces whose library the runtime does not load by default -> the
+runtime's name for it. Their generated code loads it.")
+
 (defun namespace-package-name (namespace)
   (or (cdr (assoc namespace *namespace-packages* :test #'string=))
       (string-upcase namespace)))
@@ -74,7 +79,8 @@ operators (t, pi, function) get a suffix: they cannot be bound, or print as
 (defparameter *lisp-api-exports*
   '(("GObject" "lisp-object" "lisp-object-value" "make-lisp-object")
     ("Gio" "async" "make-list-store" "list-model-items")
-    ("Gtk" "build" "css" "add-css" "make-factory" "make-list-view" "list-item-value"))
+    ("Gtk" "build" "css" "add-css" "make-factory" "make-list-view" "list-item-value")
+    ("Adw" "run-application" "color-scheme" "dark-p" "show-toast"))
   "Names the hand-written Lisp API (src/gtk4/) defines in each namespace's
 package. They are claimed before generated names, so nothing generated can
 take them, and exported from the generated package definitions.")

@@ -264,6 +264,13 @@ function that writes the chunk."
          (*package* (find-package (namespace-package-name nsname))))
     (write-header stream (gir-namespace-source ns))
     (format stream "~%(in-package #:~(~a~))~%" (package-name *package*))
+    (let ((library (cdr (assoc nsname *namespace-libraries* :test #'string=))))
+      (when library
+        (format stream "~%;;; Not one of the libraries the runtime loads by default.~%")
+        (write-form `(eval-when (:compile-toplevel :load-toplevel :execute)
+                       (gtk4.runtime:load-libraries
+                        :libraries '(,(intern library "GTK4.RUNTIME"))))
+                    stream)))
     ;; Enums and flags
     (format stream "~%;;; Enums and flags~%")
     (dolist (e (gir-namespace-enums ns))

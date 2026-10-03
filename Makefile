@@ -36,7 +36,7 @@ hello:
 
 # Run any example: make example NAME=drawing [QUIT_AFTER=3]
 example:
-	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \
+	$(LISP) --eval '(ql:quickload (list :gtk4 :gtk4-adwaita) :silent t)' \
 	        --load examples/$(NAME).lisp \
 	        --eval '(gtk4-examples.$(NAME):main :quit-after $(QUIT_AFTER))'
 

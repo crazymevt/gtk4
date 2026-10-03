@@ -28,8 +28,9 @@ and the usual system locations.")
   '(("GLib" "2.0") ("GObject" "2.0") ("GModule" "2.0") ("Gio" "2.0")
     ("cairo" "1.0") ("HarfBuzz" "0.0") ("Pango" "1.0") ("PangoCairo" "1.0")
     ("Graphene" "1.0") ("GdkPixbuf" "2.0")
-    ("Gdk" "4.0") ("Gsk" "4.0") ("Gtk" "4.0"))
-  "Namespaces the gtk4 system binds. libadwaita (\"Adw\" \"1\") is a separate target.")
+    ("Gdk" "4.0") ("Gsk" "4.0") ("Gtk" "4.0") ("Adw" "1"))
+  "Namespaces to generate. All but libadwaita make up the gtk4 system;
+libadwaita (Adw) is the optional gtk4-adwaita system.")
 
 (defun find-gir-file (name version)
   (let ((file (format nil "~a-~a.gir" name version)))

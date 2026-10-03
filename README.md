@@ -41,13 +41,14 @@ Design document: <https://claude.ai/code/artifact/893d30d2-ba38-4d3e-a255-35532f
 
 - SBCL 2.4 or newer, with Quicklisp
 - GTK 4.14 or newer
+- Optionally, libadwaita 1.5 or newer, for the `gtk4-adwaita` system
 - For the generator only: the `.gir` files for GTK and its dependencies
   (`cairo-1.0.gir` and `freetype2-2.0.gir` come from the `gobject-introspection` package)
 
 macOS:
 
 ```sh
-brew install sbcl gtk4 gobject-introspection
+brew install sbcl gtk4 libadwaita gobject-introspection
 ```
 
 ## Layout
@@ -77,6 +78,9 @@ make hello              # open the hello-world window
 make hello QUIT_AFTER=3 # same, quitting after 3 seconds
 make example NAME=clock     # run examples/clock.lisp (a custom widget and a template)
 make example NAME=todo      # run examples/todo.lisp (the Lisp layer)
+make example NAME=adwaita   # run examples/adwaita.lisp (libadwaita)
+make executable NAME=clock  # build/clock, a standalone executable
+make app NAME=clock APP=Clock   # build/Clock.app, carrying its own GTK (macOS)
 make demo               # the demo browser: 25 demos to read and run
 ```
 
