@@ -4,7 +4,7 @@
   :description "Test suite for gtk4 and gtk4-generator."
   :author "Jessie Hughart"
   :license "MIT"
-  :depends-on ("gtk4" "gtk4-generator" "parachute")
+  :depends-on ("gtk4" "gtk4-generator" "gtk4-demo" "parachute")
   :pathname "tests/"
   :serial t
   :components ((:file "package")
@@ -18,7 +18,8 @@
                (:file "gtk")
                (:file "structs")
                (:file "cairo")
-               (:file "documentation"))
+               (:file "documentation")
+               (:file "demos"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
 
 (defsystem "gtk4-tests/stress"

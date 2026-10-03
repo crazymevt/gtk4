@@ -9639,6 +9639,7 @@
    #:clipboard-read-value-finish
    #:clipboard-set
    #:clipboard-set-content
+   #:clipboard-set-text
    #:clipboard-store-async
    #:clipboard-store-finish
    #:color-channel

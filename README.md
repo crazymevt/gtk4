@@ -30,6 +30,7 @@ brew install sbcl gtk4 gobject-introspection
 | `generator/` | GIR parser, marshalling planner and code emitter; maintainers only |
 | `scripts/` | Maintenance scripts |
 | `examples/` | Runnable examples |
+| `demos/` | The demo collection and its browser (`gtk4-demo` system) |
 | `tests/` | Parachute test suite |
 
 ## Common tasks
@@ -44,6 +45,7 @@ make summary            # parse every target .gir file and print what it contain
 make hello              # open the hello-world window
 make hello QUIT_AFTER=3 # same, quitting after 3 seconds
 make example NAME=drawing   # run examples/drawing.lisp (cairo in a GtkDrawingArea)
+make demo               # the demo browser: 21 demos to read and run
 ```
 
 ## License
