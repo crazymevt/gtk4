@@ -190,3 +190,15 @@
           do (rt:iterate-main-context) (sleep 0.01))
     (sb-thread:join-thread worker)
     (true (typep failure 'simple-error))))
+
+(define-test self-referencing-handler-is-collected :parent objects
+  ;; A handler closing over its own object must not keep it alive forever.
+  (setf *finalized* 0)
+  (in-fresh-thread
+   (lambda ()
+     (dotimes (i 20)
+       (let ((action (make-instance 'simple-action :name "cycle")))
+         (watch-finalization action)
+         (rt:connect action "notify" (lambda (o p) (declare (ignore o p)) action))))))
+  (true (collect-until (lambda () (= *finalized* 20)))
+        "~d of 20 finalized" *finalized*))

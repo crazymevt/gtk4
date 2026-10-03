@@ -16,3 +16,9 @@
                (:file "arrays")
                (:file "containers"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
+
+(defsystem "gtk4-tests/stress"
+  :description "Stress suite: the M1 no-leak gate. Run with `make stress`."
+  :depends-on ("gtk4-tests")
+  :pathname "tests/"
+  :components ((:file "stress")))

@@ -18,8 +18,9 @@
   "Words rewritten before splitting CamelCase, so DBusProxy is dbus-proxy.")
 
 (defun camel-to-kebab (name)
-  "\"ListStore\" => \"list-store\", \"IOChannel\" => \"io-channel\", \"RGBA\" => \"rgba\"."
-  (let ((s name))
+  "\"ListStore\" => \"list-store\", \"IOChannel\" => \"io-channel\", \"RGBA\" => \"rgba\".
+snake_case names (HarfBuzz's \"buffer_t\") become \"buffer-t\"."
+  (let ((s (substitute #\- #\_ name)))
     (loop for (from . to) in *acronyms*
           do (loop for pos = (search from s)
                    while pos

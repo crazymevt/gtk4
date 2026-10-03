@@ -57,7 +57,8 @@ also register GValue conversion for its GType."
              (unless (gethash value (enum-info-by-value info))
                (setf (gethash value (enum-info-by-value info)) key)))
     (setf (get name 'enum-info) info)
-    (when get-type
+    ;; A missing _get_type (an older library) only loses GValue conversion.
+    (when (and get-type (cffi:foreign-symbol-pointer get-type))
       (let ((gtype (gtype-from-name gtype-name get-type)))
         (when gtype
           (register-enum-converter gtype

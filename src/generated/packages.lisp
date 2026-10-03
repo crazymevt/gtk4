@@ -1872,6 +1872,7 @@
    #:+value-collect-format-max-length+
    #:+value-interned-string+
    #:+value-nocopy-contents+
+   #:-value--data--union
    #:array
    #:base-finalize-func
    #:base-init-func
@@ -2318,8 +2319,7 @@
    #:variant-get-gtype
    #:variant-type
    #:weak-notify
-   #:weak-ref
-   #:_value__data__union))
+   #:weak-ref))
 
 (defpackage #:gmodule
   (:use #:cl)

@@ -1,9 +1,18 @@
 ;;;; object.lisp — GObject proxies, ownership and properties
 ;;;;
 ;;;; Every GObject seen by Lisp has exactly one proxy, found through a
-;;;; weak-value table keyed by address. A proxy owns one GObject reference;
-;;;; when the proxy is collected its finalizer queues that reference to be
-;;;; dropped on the GUI thread (never from the finalizer thread itself).
+;;;; weak-value table keyed by address.
+;;;;
+;;;; Lisp holds each wrapped object through one GObject *toggle reference*.
+;;;; GObject tells us when that becomes the only reference left:
+;;;;   - other references exist (say, a widget inside a window): the proxy is
+;;;;     also kept in a strong table, so it and its Lisp state stay alive;
+;;;;   - only ours is left: the proxy is held weakly, and once Lisp drops it
+;;;;     too it is collected, its finalizer queues the toggle reference to be
+;;;;     removed on the GUI thread, and the C object is freed.
+;;;; Signal handlers belong to their proxy (the global handle table only
+;;;; points at them weakly), so a handler that refers to its own object does
+;;;; not keep the pair alive forever.
 
 (in-package #:gtk4.runtime)
 
@@ -22,7 +31,7 @@
       (loop for (kind address gtype) in items
             for pointer = (cffi:make-pointer address)
             do (ecase kind
-                 (:object (%g-object-unref pointer))
+                 (:toggle (release-toggle-reference address))
                  (:boxed (%g-boxed-free gtype pointer))))))
   0)
 
@@ -95,7 +104,10 @@ otherwise the nearest registered ancestor's."
 ;;; Base classes
 
 (defclass object ()
-  ((pointer :reader %object-pointer))
+  ((pointer :reader %object-pointer)
+   (handlers :initform nil :accessor object-handlers
+             :documentation "Signal handlers connected through this proxy, by handle
+address. Keeping them here (not in the handle table) ties their lifetime to the proxy's."))
   (:metaclass gobject-class)
   (:gtype-name "GObject")
   (:get-type "g_object_get_type")
@@ -157,15 +169,62 @@ so the proxy always owns what it points to."
 
 (defun proxy-count () (hash-table-count *proxies*))
 
-(defun take-object-reference (pointer transfer)
-  "Make the proxy own exactly one reference to POINTER."
-  (cond ((%g-object-is-floating pointer) (%g-object-ref-sink pointer))
-        ((eq transfer :none) (%g-object-ref pointer))))
+(cffi:defcfun ("g_object_add_toggle_ref" %g-object-add-toggle-ref) :void
+  (object :pointer) (notify :pointer) (data :pointer))
+(cffi:defcfun ("g_object_remove_toggle_ref" %g-object-remove-toggle-ref) :void
+  (object :pointer) (notify :pointer) (data :pointer))
 
-(defun register-proxy (proxy pointer)
+(defvar *strong-proxies* (make-hash-table :synchronized t)
+  "Address -> proxy, for objects that C code also references.")
+
+(defvar *toggled* (make-hash-table :synchronized t)
+  "Addresses on which Lisp holds its toggle reference. It outlives any one
+proxy: a new proxy for the same object reuses it.")
+
+(defun object-ref-count (pointer)
+  ;; GObject's public layout: GTypeInstance, then guint ref_count.
+  (cffi:mem-ref pointer :uint (cffi:foreign-type-size :pointer)))
+
+(cffi:defcallback toggle-notify :void ((data :pointer) (object :pointer) (is-last-ref :boolean))
+  (declare (ignore data))
+  (let ((address (cffi:pointer-address object)))
+    (if is-last-ref
+        (remhash address *strong-proxies*)
+        (let ((proxy (gethash address *proxies*)))
+          (when proxy (setf (gethash address *strong-proxies*) proxy))))))
+
+(defun acquire-toggle-reference (pointer transfer)
+  "Give Lisp its toggle reference on POINTER, consuming a reference handed
+over with TRANSFER :FULL (or a floating one)."
+  (let ((address (cffi:pointer-address pointer))
+        (owned (cond ((%g-object-is-floating pointer) (%g-object-ref-sink pointer) t)
+                     ((eq transfer :full) t))))
+    (if (gethash address *toggled*)
+        ;; Still held from an earlier proxy whose release is pending.
+        (when owned (%g-object-unref pointer))
+        (progn
+          (setf (gethash address *toggled*) t)
+          (%g-object-add-toggle-ref pointer (cffi:callback toggle-notify) (cffi:null-pointer))
+          (when owned (%g-object-unref pointer))))))
+
+(defun release-toggle-reference (address)
+  "Called on the GUI thread after a proxy was collected. Does nothing if a new
+proxy for the object exists by now, or the reference is already gone."
+  (unless (or (gethash address *proxies*) (not (gethash address *toggled*)))
+    (remhash address *toggled*)
+    (remhash address *strong-proxies*)
+    (%g-object-remove-toggle-ref (cffi:make-pointer address)
+                                 (cffi:callback toggle-notify) (cffi:null-pointer))))
+
+(defun register-proxy (proxy pointer transfer)
+  "Record PROXY for POINTER, take Lisp's reference, and hold the proxy
+strongly if C code holds the object too."
   (let ((address (cffi:pointer-address pointer)))
     (setf (gethash address *proxies*) proxy)
-    (sb-ext:finalize proxy (lambda () (enqueue-release :object address))
+    (acquire-toggle-reference pointer transfer)
+    (when (> (object-ref-count pointer) 1)
+      (setf (gethash address *strong-proxies*) proxy))
+    (sb-ext:finalize proxy (lambda () (enqueue-release :toggle address))
                      :dont-save t)
     proxy))
 
@@ -177,15 +236,14 @@ GIR annotation. NULL gives NIL."
     (let ((existing (gethash (cffi:pointer-address pointer) *proxies*)))
       (cond
         (existing
-         ;; The proxy already owns a reference; drop the one handed to us.
+         ;; The proxy already holds Lisp's reference; drop the one handed to us.
          (when (eq transfer :full) (%g-object-unref pointer))
          existing)
         (t
          (let ((proxy (allocate-instance (lisp-class-for-gtype (instance-gtype pointer)))))
            (setf (slot-value proxy 'pointer) pointer)
            (shared-initialize proxy t)
-           (take-object-reference pointer transfer)
-           (register-proxy proxy pointer)))))))
+           (register-proxy proxy pointer transfer)))))))
 
 ;;; Properties
 
@@ -272,6 +330,5 @@ that are not Lisp slot initargs as GObject properties."
   (multiple-value-bind (slot-args props) (split-initargs (class-of object) initargs)
     (let ((pointer (new-gobject (class-gtype (class-of object)) props)))
       (setf (slot-value object 'pointer) pointer)
-      (take-object-reference pointer :full)
-      (register-proxy object pointer)
+      (register-proxy object pointer :full)
       (apply #'call-next-method object slot-args))))
