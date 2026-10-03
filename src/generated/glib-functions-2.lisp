@@ -6,69 +6,6 @@
 ;;; Functions, constructors, methods and virtual functions (part 2)
 
 
-(rt:define-gfunction (unichar-islower "g_unichar_islower") :args ((c :uint32)) :return :boolean
-                     :url "https://docs.gtk.org/glib/func.unichar_islower.html" :documentation
-                     "Determines whether a character is a lowercase letter.
-Given some UTF-8 text, obtain a character value with
-`glib:utf8-get-char`.
-
-Returns a boolean.
-
-C: g_unichar_islower
-See: https://docs.gtk.org/glib/func.unichar_islower.html")
-
-
-(rt:define-gfunction (unichar-ismark "g_unichar_ismark") :args ((c :uint32)) :return :boolean
-                     :version "2.14" :url "https://docs.gtk.org/glib/func.unichar_ismark.html"
-                     :documentation "Determines whether a character is a mark (non-spacing mark,
-combining mark, or enclosing mark in Unicode speak).
-Given some UTF-8 text, obtain a character value
-with `glib:utf8-get-char`.
-
-Returns a boolean.
-
-C: g_unichar_ismark
-See: https://docs.gtk.org/glib/func.unichar_ismark.html
-Since: 2.14")
-
-
-(rt:define-gfunction (unichar-isprint "g_unichar_isprint") :args ((c :uint32)) :return :boolean
-                     :url "https://docs.gtk.org/glib/func.unichar_isprint.html" :documentation
-                     "Determines whether a character is printable.
-Unlike `glib:unichar-isgraph`, returns T for spaces.
-Given some UTF-8 text, obtain a character value with
-`glib:utf8-get-char`.
-
-Returns a boolean.
-
-C: g_unichar_isprint
-See: https://docs.gtk.org/glib/func.unichar_isprint.html")
-
-
-(rt:define-gfunction (unichar-ispunct "g_unichar_ispunct") :args ((c :uint32)) :return :boolean
-                     :url "https://docs.gtk.org/glib/func.unichar_ispunct.html" :documentation
-                     "Determines whether a character is punctuation or a symbol.
-Given some UTF-8 text, obtain a character value with
-`glib:utf8-get-char`.
-
-Returns a boolean.
-
-C: g_unichar_ispunct
-See: https://docs.gtk.org/glib/func.unichar_ispunct.html")
-
-
-(rt:define-gfunction (unichar-isspace "g_unichar_isspace") :args ((c :uint32)) :return :boolean
-                     :url "https://docs.gtk.org/glib/func.unichar_isspace.html" :documentation
-                     "Determines whether a character is a space, tab, or line separator
-(newline, carriage return, etc.).  Given some UTF-8 text, obtain a
-character value with `glib:utf8-get-char`.
-
-Returns a boolean.
-
-C: g_unichar_isspace
-See: https://docs.gtk.org/glib/func.unichar_isspace.html")
-
-
 (rt:define-gfunction (unichar-istitle "g_unichar_istitle") :args ((c :uint32)) :return :boolean
                      :url "https://docs.gtk.org/glib/func.unichar_istitle.html" :documentation
                      "Determines if a character is titlecase. Some characters in
@@ -206,18 +143,6 @@ Returns an integer.
 
 C: g_unichar_xdigit_value
 See: https://docs.gtk.org/glib/func.unichar_xdigit_value.html")
-
-
-(rt:define-gfunction (unicode-canonical-decomposition "g_unicode_canonical_decomposition") :args
-                     ((ch :uint32) (result-len :size)) :return :uint32 :url
-                     "https://docs.gtk.org/glib/func.unicode_canonical_decomposition.html"
-                     :documentation "Computes the canonical decomposition of a Unicode character.
-
-Returns an integer.
-
-C: g_unicode_canonical_decomposition
-See: https://docs.gtk.org/glib/func.unicode_canonical_decomposition.html
-Deprecated.")
 
 
 (rt:define-gfunction (unicode-canonical-ordering "g_unicode_canonical_ordering") :args
@@ -4165,20 +4090,6 @@ C: g_io_channel_init
 See: https://docs.gtk.org/glib/method.IOChannel.init.html")
 
 
-(rt:define-gfunction (io-channel-read "g_io_channel_read") :args
-                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type")) (buf :string)
-                      (count :size) (bytes-read :size))
-                     :return (:enum io-error) :url
-                     "https://docs.gtk.org/glib/method.IOChannel.read.html" :documentation
-                     "Reads data from a `glib:io-channel`.
-
-Returns a `glib:io-error`.
-
-C: g_io_channel_read
-See: https://docs.gtk.org/glib/method.IOChannel.read.html
-Deprecated.")
-
-
 (rt:define-gfunction (io-channel-read-chars "g_io_channel_read_chars") :args
                      ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
                       (buf (:array :uint8 :length count :caller-allocates t) :direction :out)
@@ -4211,22 +4122,6 @@ Signals `glib:glib-error` on failure.
 
 C: g_io_channel_read_line
 See: https://docs.gtk.org/glib/method.IOChannel.read_line.html")
-
-
-(rt:define-gfunction (io-channel-read-line-string "g_io_channel_read_line_string") :args
-                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
-                      (buffer (:boxed "GString" "g_gstring_get_type" string))
-                      (terminator-pos :size :optional t))
-                     :return (:enum io-status) :throws t :url
-                     "https://docs.gtk.org/glib/method.IOChannel.read_line_string.html"
-                     :documentation
-                     "Reads a line from a `glib:io-channel`, using a `glib:string` as a buffer.
-
-Returns a `glib:io-status`.
-Signals `glib:glib-error` on failure.
-
-C: g_io_channel_read_line_string
-See: https://docs.gtk.org/glib/method.IOChannel.read_line_string.html")
 
 
 (rt:define-gfunction (io-channel-read-to-end "g_io_channel_read_to_end") :args
@@ -4405,20 +4300,6 @@ See: https://docs.gtk.org/glib/method.IOChannel.unix_get_fd.html")
 
 C: g_io_channel_unref
 See: https://docs.gtk.org/glib/method.IOChannel.unref.html")
-
-
-(rt:define-gfunction (io-channel-write "g_io_channel_write") :args
-                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type")) (buf :string)
-                      (count :size) (bytes-written :size))
-                     :return (:enum io-error) :url
-                     "https://docs.gtk.org/glib/method.IOChannel.write.html" :documentation
-                     "Writes data to a `glib:io-channel`.
-
-Returns a `glib:io-error`.
-
-C: g_io_channel_write
-See: https://docs.gtk.org/glib/method.IOChannel.write.html
-Deprecated.")
 
 
 (rt:define-gfunction (io-channel-write-unichar "g_io_channel_write_unichar") :args
@@ -5280,3 +5161,130 @@ FUNCTION-VALUE is a function or a symbol naming one, kept until GTK no longer ne
 C: g_main_context_invoke_full
 See: https://docs.gtk.org/glib/method.MainContext.invoke_full.html
 Since: 2.28")
+
+
+(rt:define-gfunction (main-context-is-owner "g_main_context_is_owner") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return :boolean
+                     :version "2.10" :url
+                     "https://docs.gtk.org/glib/method.MainContext.is_owner.html" :documentation
+                     "Determines whether this thread holds the (recursive)
+ownership of this `glib:main-context`.
+
+Returns a boolean.
+
+C: g_main_context_is_owner
+See: https://docs.gtk.org/glib/method.MainContext.is_owner.html
+Since: 2.10")
+
+
+(rt:define-gfunction (main-context-iteration "g_main_context_iteration") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
+                      (may-block :boolean))
+                     :return :boolean :url
+                     "https://docs.gtk.org/glib/method.MainContext.iteration.html" :documentation
+                     "Runs a single iteration for the given main loop.
+
+Returns a boolean.
+
+C: g_main_context_iteration
+See: https://docs.gtk.org/glib/method.MainContext.iteration.html")
+
+
+(rt:define-gfunction (main-context-pending "g_main_context_pending") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return :boolean
+                     :url "https://docs.gtk.org/glib/method.MainContext.pending.html"
+                     :documentation
+                     "Checks if any sources have pending events for the given context.
+
+Returns a boolean.
+
+C: g_main_context_pending
+See: https://docs.gtk.org/glib/method.MainContext.pending.html")
+
+
+(rt:define-gfunction (main-context-pop-thread-default "g_main_context_pop_thread_default") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :version "2.22"
+                     :url "https://docs.gtk.org/glib/method.MainContext.pop_thread_default.html"
+                     :documentation
+                     "Pops CONTEXT off the thread-default context stack (verifying that
+it was on the top of the stack).
+
+C: g_main_context_pop_thread_default
+See: https://docs.gtk.org/glib/method.MainContext.pop_thread_default.html
+Since: 2.22")
+
+
+(rt:define-gfunction (main-context-prepare "g_main_context_prepare") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
+                      (priority :int :direction :out :transfer :full))
+                     :return :boolean :url
+                     "https://docs.gtk.org/glib/method.MainContext.prepare.html" :documentation
+                     "Prepares to poll sources within a main loop.
+
+Returns a boolean, then PRIORITY (an integer) as multiple values.
+
+C: g_main_context_prepare
+See: https://docs.gtk.org/glib/method.MainContext.prepare.html")
+
+
+(rt:define-gfunction (main-context-push-thread-default "g_main_context_push_thread_default") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :version "2.22"
+                     :url "https://docs.gtk.org/glib/method.MainContext.push_thread_default.html"
+                     :documentation
+                     "Acquires CONTEXT and sets it as the thread-default context for the
+current thread. This will cause certain asynchronous operations
+(such as most [Gio](../gio/index.html)-based I/O) which are
+started in this thread to run under CONTEXT and deliver their
+results to its main loop, rather than running under the global
+default main context in the main thread. Note that calling this function
+changes the context returned by `glib:main-context-get-thread-default`,
+not the one returned by `glib:main-context-default`, so it does not
+affect the context used by functions like `GLib.idle_add`.
+
+C: g_main_context_push_thread_default
+See: https://docs.gtk.org/glib/method.MainContext.push_thread_default.html
+Since: 2.22")
+
+
+(rt:define-gfunction (main-context-pusher-new "g_main_context_pusher_new") :args
+                     ((main-context (:boxed "GMainContext" "g_main_context_get_type")))
+                     :return-transfer :full :version "2.64" :url
+                     "https://docs.gtk.org/glib/method.MainContext.pusher_new.html" :documentation
+                     "Push MAIN-CONTEXT as the new thread-default main context for the current
+thread, using `glib:main-context-push-thread-default`, and return a
+new `glib:main-context-pusher`. Pop with g_main_context_pusher_free().
+Using `glib:main-context-pop-thread-default` on MAIN-CONTEXT while a
+`glib:main-context-pusher` exists for it can lead to undefined behaviour.
+
+C: g_main_context_pusher_new
+See: https://docs.gtk.org/glib/method.MainContext.pusher_new.html
+Since: 2.64")
+
+
+(rt:define-gfunction (main-context-query "g_main_context_query") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
+                      (max-priority :int) (timeout- :int :direction :out :transfer :full)
+                      (fds
+                       (:array (:boxed "GPollFD" "g_pollfd_get_type" poll-fd) :length n-fds
+                        :caller-allocates t)
+                       :direction :out)
+                      (n-fds :int))
+                     :return :int :url "https://docs.gtk.org/glib/method.MainContext.query.html"
+                     :documentation "Determines information necessary to poll this main loop.
+
+Returns an integer, then TIMEOUT- (an integer), then FDS (a list of `glib:poll-fd`) as multiple values.
+
+C: g_main_context_query
+See: https://docs.gtk.org/glib/method.MainContext.query.html")
+
+
+(rt:define-gfunction (main-context-ref "g_main_context_ref") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return
+                     (:boxed "GMainContext" "g_main_context_get_type") :return-transfer :full :url
+                     "https://docs.gtk.org/glib/method.MainContext.ref.html" :documentation
+                     "Increases the reference count on a `glib:main-context` object by one.
+
+Returns a boxed value.
+
+C: g_main_context_ref
+See: https://docs.gtk.org/glib/method.MainContext.ref.html")

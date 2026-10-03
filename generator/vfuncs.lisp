@@ -27,6 +27,9 @@
     :enum :flags :object :boxed :string :strv :record :pointer)
   "Return kinds a Lisp implementation can produce.")
 
+(defvar *vfunc-plans* (make-hash-table :test 'eq)
+  "Virtual function gir-callable -> its VFUNC-PLAN, or the reason it has none.")
+
 (defstruct vfunc-plan
   plan                                  ; the function PLAN (args, return, docs)
   owner                                 ; type symbol of the class or interface
@@ -121,3 +124,9 @@
        ,@(when url `(:url ,url))
        :documentation ,(docstring (plan-doc plan) :url url
                                                   :version (plan-version plan)))))
+
+(defun vfunc-lambda-list (vp)
+  "The argument names a DEFINE-VFUNC for VP takes, as text."
+  (format nil "~{~(~a~)~^ ~}"
+          (loop for (var nil . options) in (plan-args (vfunc-plan-plan vp))
+                unless (eq (getf options :direction) :out) collect var)))

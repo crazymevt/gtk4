@@ -6,133 +6,6 @@
 ;;; Functions, constructors, methods and virtual functions (part 3)
 
 
-(rt:define-gfunction (main-context-is-owner "g_main_context_is_owner") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return :boolean
-                     :version "2.10" :url
-                     "https://docs.gtk.org/glib/method.MainContext.is_owner.html" :documentation
-                     "Determines whether this thread holds the (recursive)
-ownership of this `glib:main-context`.
-
-Returns a boolean.
-
-C: g_main_context_is_owner
-See: https://docs.gtk.org/glib/method.MainContext.is_owner.html
-Since: 2.10")
-
-
-(rt:define-gfunction (main-context-iteration "g_main_context_iteration") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
-                      (may-block :boolean))
-                     :return :boolean :url
-                     "https://docs.gtk.org/glib/method.MainContext.iteration.html" :documentation
-                     "Runs a single iteration for the given main loop.
-
-Returns a boolean.
-
-C: g_main_context_iteration
-See: https://docs.gtk.org/glib/method.MainContext.iteration.html")
-
-
-(rt:define-gfunction (main-context-pending "g_main_context_pending") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return :boolean
-                     :url "https://docs.gtk.org/glib/method.MainContext.pending.html"
-                     :documentation
-                     "Checks if any sources have pending events for the given context.
-
-Returns a boolean.
-
-C: g_main_context_pending
-See: https://docs.gtk.org/glib/method.MainContext.pending.html")
-
-
-(rt:define-gfunction (main-context-pop-thread-default "g_main_context_pop_thread_default") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :version "2.22"
-                     :url "https://docs.gtk.org/glib/method.MainContext.pop_thread_default.html"
-                     :documentation
-                     "Pops CONTEXT off the thread-default context stack (verifying that
-it was on the top of the stack).
-
-C: g_main_context_pop_thread_default
-See: https://docs.gtk.org/glib/method.MainContext.pop_thread_default.html
-Since: 2.22")
-
-
-(rt:define-gfunction (main-context-prepare "g_main_context_prepare") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
-                      (priority :int :direction :out :transfer :full))
-                     :return :boolean :url
-                     "https://docs.gtk.org/glib/method.MainContext.prepare.html" :documentation
-                     "Prepares to poll sources within a main loop.
-
-Returns a boolean, then PRIORITY (an integer) as multiple values.
-
-C: g_main_context_prepare
-See: https://docs.gtk.org/glib/method.MainContext.prepare.html")
-
-
-(rt:define-gfunction (main-context-push-thread-default "g_main_context_push_thread_default") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :version "2.22"
-                     :url "https://docs.gtk.org/glib/method.MainContext.push_thread_default.html"
-                     :documentation
-                     "Acquires CONTEXT and sets it as the thread-default context for the
-current thread. This will cause certain asynchronous operations
-(such as most [Gio](../gio/index.html)-based I/O) which are
-started in this thread to run under CONTEXT and deliver their
-results to its main loop, rather than running under the global
-default main context in the main thread. Note that calling this function
-changes the context returned by `glib:main-context-get-thread-default`,
-not the one returned by `glib:main-context-default`, so it does not
-affect the context used by functions like `GLib.idle_add`.
-
-C: g_main_context_push_thread_default
-See: https://docs.gtk.org/glib/method.MainContext.push_thread_default.html
-Since: 2.22")
-
-
-(rt:define-gfunction (main-context-pusher-new "g_main_context_pusher_new") :args
-                     ((main-context (:boxed "GMainContext" "g_main_context_get_type")))
-                     :return-transfer :full :version "2.64" :url
-                     "https://docs.gtk.org/glib/method.MainContext.pusher_new.html" :documentation
-                     "Push MAIN-CONTEXT as the new thread-default main context for the current
-thread, using `glib:main-context-push-thread-default`, and return a
-new `glib:main-context-pusher`. Pop with g_main_context_pusher_free().
-Using `glib:main-context-pop-thread-default` on MAIN-CONTEXT while a
-`glib:main-context-pusher` exists for it can lead to undefined behaviour.
-
-C: g_main_context_pusher_new
-See: https://docs.gtk.org/glib/method.MainContext.pusher_new.html
-Since: 2.64")
-
-
-(rt:define-gfunction (main-context-query "g_main_context_query") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
-                      (max-priority :int) (timeout- :int :direction :out :transfer :full)
-                      (fds
-                       (:array (:boxed "GPollFD" "g_pollfd_get_type" poll-fd) :length n-fds
-                        :caller-allocates t)
-                       :direction :out)
-                      (n-fds :int))
-                     :return :int :url "https://docs.gtk.org/glib/method.MainContext.query.html"
-                     :documentation "Determines information necessary to poll this main loop.
-
-Returns an integer, then TIMEOUT- (an integer), then FDS (a list of `glib:poll-fd`) as multiple values.
-
-C: g_main_context_query
-See: https://docs.gtk.org/glib/method.MainContext.query.html")
-
-
-(rt:define-gfunction (main-context-ref "g_main_context_ref") :args
-                     ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return
-                     (:boxed "GMainContext" "g_main_context_get_type") :return-transfer :full :url
-                     "https://docs.gtk.org/glib/method.MainContext.ref.html" :documentation
-                     "Increases the reference count on a `glib:main-context` object by one.
-
-Returns a boxed value.
-
-C: g_main_context_ref
-See: https://docs.gtk.org/glib/method.MainContext.ref.html")
-
-
 (rt:define-gfunction (main-context-release "g_main_context_release") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))) :url
                      "https://docs.gtk.org/glib/method.MainContext.release.html" :documentation
@@ -1068,15 +941,6 @@ C: g_node_unlink
 See: https://docs.gtk.org/glib/method.Node.unlink.html")
 
 
-(rt:define-gfunction (once-init-enter-impl "g_once_init_enter_impl") :args ((location :size))
-                     :return :boolean :url
-                     "https://docs.gtk.org/glib/type_func.Once.init_enter_impl.html" :documentation
-                     "Returns a boolean.
-
-C: g_once_init_enter_impl
-See: https://docs.gtk.org/glib/type_func.Once.init_enter_impl.html")
-
-
 (rt:define-gfunction (once-init-enter-pointer "g_once_init_enter_pointer") :args
                      ((location :pointer)) :return :boolean :version "2.80" :url
                      "https://docs.gtk.org/glib/type_func.Once.init_enter_pointer.html"
@@ -1994,19 +1858,6 @@ C: g_rand_new_with_seed
 See: https://docs.gtk.org/glib/ctor.Rand.new_with_seed.html")
 
 
-(rt:define-gfunction (rand-new-with-seed-array "g_rand_new_with_seed_array") :args
-                     ((seed :uint32) (seed-length :uint)) :return
-                     (:boxed "GRand" "g_rand_get_type") :return-transfer :full :version "2.4" :url
-                     "https://docs.gtk.org/glib/ctor.Rand.new_with_seed_array.html" :documentation
-                     "Creates a new random number generator initialized with SEED.
-
-Returns a boxed value.
-
-C: g_rand_new_with_seed_array
-See: https://docs.gtk.org/glib/ctor.Rand.new_with_seed_array.html
-Since: 2.4")
-
-
 (rt:define-gfunction (rand-copy "g_rand_copy") :args ((rand- (:boxed "GRand" "g_rand_get_type")))
                      :return (:boxed "GRand" "g_rand_get_type") :return-transfer :full :version
                      "2.4" :url "https://docs.gtk.org/glib/method.Rand.copy.html" :documentation
@@ -2086,22 +1937,6 @@ See: https://docs.gtk.org/glib/method.Rand.int_range.html")
 
 C: g_rand_set_seed
 See: https://docs.gtk.org/glib/method.Rand.set_seed.html")
-
-
-(rt:define-gfunction (rand-set-seed-array "g_rand_set_seed_array") :args
-                     ((rand- (:boxed "GRand" "g_rand_get_type")) (seed :uint32)
-                      (seed-length :uint))
-                     :version "2.4" :url
-                     "https://docs.gtk.org/glib/method.Rand.set_seed_array.html" :documentation
-                     "Initializes the random number generator by an array of longs.
-Array can be of arbitrary size, though only the first 624 values
-are taken.  This function is useful if you have many low entropy
-seeds, or if you require more then 32 bits of actual entropy for
-your application.
-
-C: g_rand_set_seed_array
-See: https://docs.gtk.org/glib/method.Rand.set_seed_array.html
-Since: 2.4")
 
 
 (rt:define-gfunction (rec-mutex-clear "g_rec_mutex_clear") :args ((rec-mutex (:record rec-mutex)))
@@ -4452,15 +4287,6 @@ C: g_test_log_buffer_free
 See: https://docs.gtk.org/glib/method.TestLogBuffer.free.html")
 
 
-(rt:define-gfunction (test-log-buffer-push "g_test_log_buffer_push") :args
-                     ((tbuffer (:record test-log-buffer)) (n-bytes :uint) (bytes :uint8)) :url
-                     "https://docs.gtk.org/glib/method.TestLogBuffer.push.html" :documentation
-                     "Internal function for gtester to decode test log messages, no ABI guarantees provided.
-
-C: g_test_log_buffer_push
-See: https://docs.gtk.org/glib/method.TestLogBuffer.push.html")
-
-
 (rt:define-gfunction (test-log-msg-free "g_test_log_msg_free") :args
                      ((tmsg (:record test-log-msg))) :url
                      "https://docs.gtk.org/glib/method.TestLogMsg.free.html" :documentation
@@ -5008,8 +4834,10 @@ See: https://docs.gtk.org/glib/method.Timer.destroy.html")
 
 
 (rt:define-gfunction (timer-elapsed "g_timer_elapsed") :args
-                     ((timer (:record timer)) (microseconds :ulong)) :return :double :url
-                     "https://docs.gtk.org/glib/method.Timer.elapsed.html" :documentation
+                     ((timer (:record timer))
+                      (microseconds :ulong :direction :out :transfer :full))
+                     :return :double :url "https://docs.gtk.org/glib/method.Timer.elapsed.html"
+                     :documentation
                      "If TIMER has been started but not stopped, obtains the time since
 the timer was started. If TIMER has been stopped, obtains the
 elapsed time between the time it was started and the time it was
@@ -5017,7 +4845,7 @@ stopped. The return value is the number of seconds elapsed,
 including any fractional part. The MICROSECONDS out parameter is
 essentially useless.
 
-Returns a float.
+Returns a float, then MICROSECONDS (an integer) as multiple values.
 
 C: g_timer_elapsed
 See: https://docs.gtk.org/glib/method.Timer.elapsed.html")
@@ -5075,3 +4903,180 @@ Returns an integer.
 C: g_trash_stack_height
 See: https://docs.gtk.org/glib/type_func.TrashStack.height.html
 Deprecated.")
+
+
+(rt:define-gfunction (trash-stack-peek "g_trash_stack_peek") :args
+                     ((stack-p (:record trash-stack))) :return :pointer :url
+                     "https://docs.gtk.org/glib/type_func.TrashStack.peek.html" :documentation
+                     "Returns the element at the top of a `glib:trash-stack`
+which may be NIL.
+
+Returns a foreign pointer.
+
+C: g_trash_stack_peek
+See: https://docs.gtk.org/glib/type_func.TrashStack.peek.html
+Deprecated.")
+
+
+(rt:define-gfunction (trash-stack-pop "g_trash_stack_pop") :args ((stack-p (:record trash-stack)))
+                     :return :pointer :url
+                     "https://docs.gtk.org/glib/type_func.TrashStack.pop.html" :documentation
+                     "Pops a piece of memory off a `glib:trash-stack`.
+
+Returns a foreign pointer.
+
+C: g_trash_stack_pop
+See: https://docs.gtk.org/glib/type_func.TrashStack.pop.html
+Deprecated.")
+
+
+(rt:define-gfunction (trash-stack-push "g_trash_stack_push") :args
+                     ((stack-p (:record trash-stack)) (data-p :pointer)) :url
+                     "https://docs.gtk.org/glib/type_func.TrashStack.push.html" :documentation
+                     "Pushes a piece of memory onto a `glib:trash-stack`.
+
+C: g_trash_stack_push
+See: https://docs.gtk.org/glib/type_func.TrashStack.push.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-destroy "g_tree_destroy") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))) :url
+                     "https://docs.gtk.org/glib/method.Tree.destroy.html" :documentation
+                     "Removes all keys and values from the `glib:tree` and decreases its
+reference count by one. If keys and/or values are dynamically
+allocated, you should either free them first or create the `glib:tree`
+using `glib:tree-new-full`. In the latter case the destroy functions
+you supplied will be called on all keys and values before destroying
+the `glib:tree`.
+
+C: g_tree_destroy
+See: https://docs.gtk.org/glib/method.Tree.destroy.html")
+
+
+(rt:define-gfunction (tree-foreach "g_tree_foreach") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (func (:callback traverse-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :url "https://docs.gtk.org/glib/method.Tree.foreach.html" :documentation
+                     "Calls the given function for each of the key/value pairs in the `glib:tree`.
+The function is passed the key and value of each pair, and the given
+DATA parameter. The tree is traversed in sorted order.
+
+FUNC is a function or a symbol naming one, called before this function returns.
+
+C: g_tree_foreach
+See: https://docs.gtk.org/glib/method.Tree.foreach.html")
+
+
+(rt:define-gfunction (tree-foreach-node "g_tree_foreach_node") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (func (:callback traverse-node-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.68" :url "https://docs.gtk.org/glib/method.Tree.foreach_node.html"
+                     :documentation
+                     "Calls the given function for each of the nodes in the `glib:tree`.
+The function is passed the pointer to the particular node, and the given
+DATA parameter. The tree traversal happens in-order.
+
+FUNC is a function or a symbol naming one, called before this function returns.
+
+C: g_tree_foreach_node
+See: https://docs.gtk.org/glib/method.Tree.foreach_node.html
+Since: 2.68")
+
+
+(rt:define-gfunction (tree-height "g_tree_height") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))) :return :int :url
+                     "https://docs.gtk.org/glib/method.Tree.height.html" :documentation
+                     "Gets the height of a `glib:tree`.
+
+Returns an integer.
+
+C: g_tree_height
+See: https://docs.gtk.org/glib/method.Tree.height.html")
+
+
+(rt:define-gfunction (tree-insert "g_tree_insert") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)
+                      (value :pointer :optional t))
+                     :url "https://docs.gtk.org/glib/method.Tree.insert.html" :documentation
+                     "Inserts a key/value pair into a `glib:tree`.
+
+C: g_tree_insert
+See: https://docs.gtk.org/glib/method.Tree.insert.html")
+
+
+(rt:define-gfunction (tree-insert-node "g_tree_insert_node") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)
+                      (value :pointer :optional t))
+                     :return (:record tree-node) :version "2.68" :url
+                     "https://docs.gtk.org/glib/method.Tree.insert_node.html" :documentation
+                     "Inserts a key/value pair into a `glib:tree`.
+
+Returns a `glib:tree-node`.
+
+C: g_tree_insert_node
+See: https://docs.gtk.org/glib/method.Tree.insert_node.html
+Since: 2.68")
+
+
+(rt:define-gfunction (tree-lookup "g_tree_lookup") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)) :return
+                     :pointer :url "https://docs.gtk.org/glib/method.Tree.lookup.html"
+                     :documentation
+                     "Gets the value corresponding to the given key. Since a `glib:tree` is
+automatically balanced as key/value pairs are added, key lookup
+is O(log n) (where n is the number of key/value pairs in the tree).
+
+Returns a foreign pointer.
+
+C: g_tree_lookup
+See: https://docs.gtk.org/glib/method.Tree.lookup.html")
+
+
+(rt:define-gfunction (tree-lookup-extended "g_tree_lookup_extended") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (lookup-key :pointer)
+                      (orig-key :pointer :direction :out :transfer :full)
+                      (value :pointer :direction :out :transfer :full))
+                     :return :boolean :url
+                     "https://docs.gtk.org/glib/method.Tree.lookup_extended.html" :documentation
+                     "Looks up a key in the `glib:tree`, returning the original key and the
+associated value. This is useful if you need to free the memory
+allocated for the original key, for example before calling
+`glib:tree-remove`.
+
+Returns a boolean, then ORIG-KEY (a foreign pointer), then VALUE (a foreign pointer) as multiple values.
+
+C: g_tree_lookup_extended
+See: https://docs.gtk.org/glib/method.Tree.lookup_extended.html")
+
+
+(rt:define-gfunction (tree-lookup-node "g_tree_lookup_node") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)) :return
+                     (:record tree-node) :version "2.68" :url
+                     "https://docs.gtk.org/glib/method.Tree.lookup_node.html" :documentation
+                     "Gets the tree node corresponding to the given key. Since a `glib:tree` is
+automatically balanced as key/value pairs are added, key lookup
+is O(log n) (where n is the number of key/value pairs in the tree).
+
+Returns a `glib:tree-node`.
+
+C: g_tree_lookup_node
+See: https://docs.gtk.org/glib/method.Tree.lookup_node.html
+Since: 2.68")
+
+
+(rt:define-gfunction (tree-lower-bound "g_tree_lower_bound") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)) :return
+                     (:record tree-node) :version "2.68" :url
+                     "https://docs.gtk.org/glib/method.Tree.lower_bound.html" :documentation
+                     "Gets the lower bound node corresponding to the given key,
+or NIL if the tree is empty or all the nodes in the tree
+have keys that are strictly lower than the searched key.
+
+Returns a `glib:tree-node`.
+
+C: g_tree_lower_bound
+See: https://docs.gtk.org/glib/method.Tree.lower_bound.html
+Since: 2.68")

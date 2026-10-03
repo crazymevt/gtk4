@@ -3552,20 +3552,6 @@ C: hb_ot_layout_lookup_would_substitute
 Since: 0.9.7")
 
 
-(rt:define-gfunction (ot-layout-script-find-language "hb_ot_layout_script_find_language") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (table-tag :uint32)
-                      (script-index :uint) (language-tag :uint32) (language-index :uint))
-                     :return :int :version "0.6.0" :documentation
-                     "Fetches the index of a given language tag in the specified face's GSUB table
-or GPOS table, underneath the specified script tag.
-
-Returns an integer.
-
-C: hb_ot_layout_script_find_language
-Since: 0.6.0
-Deprecated.")
-
-
 (rt:define-gfunction (ot-layout-script-get-language-tags "hb_ot_layout_script_get_language_tags")
                      :args
                      ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (table-tag :uint32)
@@ -3623,20 +3609,6 @@ Since: 7.0.0")
 Returns an integer, then SCRIPT-INDEX (an integer), then CHOSEN-SCRIPT (an integer) as multiple values.
 
 C: hb_ot_layout_table_choose_script")
-
-
-(rt:define-gfunction
- (ot-layout-table-find-feature-variations "hb_ot_layout_table_find_feature_variations") :args
- ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (table-tag :uint32) (coords :int)
-  (num-coords :uint) (variations-index :uint :direction :out :transfer :full))
- :return :int :version "1.4.0" :documentation
- "Fetches a list of feature variations in the specified face's GSUB table
-or GPOS table, at the specified variation coordinates.
-
-Returns an integer, then VARIATIONS-INDEX (an integer) as multiple values.
-
-C: hb_ot_layout_table_find_feature_variations
-Since: 1.4.0")
 
 
 (rt:define-gfunction (ot-layout-table-find-script "hb_ot_layout_table_find_script") :args
@@ -4064,21 +4036,6 @@ Since: 0.6.0
 Deprecated.")
 
 
-(rt:define-gfunction (ot-var-find-axis "hb_ot_var_find_axis") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (axis-tag :uint32)
-                      (axis-index :uint)
-                      (axis-info (:record ot-var-axis-t) :direction :out :caller-allocates t))
-                     :return :int :version "1.4.2" :documentation
-                     "Fetches the variation-axis information corresponding to the specified axis tag
-in the specified face.
-
-Returns an integer, then AXIS-INFO (a `harfbuzz:ot-var-axis-t`) as multiple values.
-
-C: hb_ot_var_find_axis
-Since: 1.4.2
-Deprecated.")
-
-
 (rt:define-gfunction (ot-var-find-axis-info "hb_ot_var_find_axis_info") :args
                      ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (axis-tag :uint32)
                       (axis-info
@@ -4202,21 +4159,6 @@ Returns an integer.
 
 C: hb_ot_var_named_instance_get_subfamily_name_id
 Since: 2.2.0")
-
-
-(rt:define-gfunction (ot-var-normalize-coords "hb_ot_var_normalize_coords") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (coords-length :uint)
-                      (design-coords :float)
-                      (normalized-coords :int :direction :out :transfer :full))
-                     :version "1.4.2" :documentation
-                     "Normalizes the given design-space coordinates. The minimum and maximum
-values for the axis are mapped to the interval [-1,1], with the default
-axis value mapped to 0.
-
-Returns NORMALIZED-COORDS (an integer).
-
-C: hb_ot_var_normalize_coords
-Since: 1.4.2")
 
 
 (rt:define-gfunction (ot-var-normalize-variations "hb_ot_var_normalize_variations") :args
@@ -4970,3 +4912,41 @@ Returns a boxed value.
 
 C: hb_set_copy
 Since: 2.8.2")
+
+
+(rt:define-gfunction (set-create "hb_set_create") :return
+                     (:boxed "hb_set_t" "hb_gobject_set_get_type") :return-transfer :full :version
+                     "0.9.2" :documentation "Creates a new, initially empty set.
+
+Returns a boxed value.
+
+C: hb_set_create
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-del "hb_set_del") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (codepoint :uint32))
+                     :version "0.9.2" :documentation "Removes CODEPOINT from SET.
+
+C: hb_set_del
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-del-range "hb_set_del_range") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (first :uint32)
+                      (last :uint32))
+                     :version "0.9.7" :documentation "Removes all of the elements from FIRST to LAST
+(inclusive) from SET.
+
+C: hb_set_del_range
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-get-empty "hb_set_get_empty") :return
+                     (:boxed "hb_set_t" "hb_gobject_set_get_type") :return-transfer :full :version
+                     "0.9.2" :documentation "Fetches the singleton empty `harfbuzz:set-t`.
+
+Returns a boxed value.
+
+C: hb_set_get_empty
+Since: 0.9.2")

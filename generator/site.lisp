@@ -278,7 +278,29 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; } td, th { bord
         (section "Properties" (gir-class-properties item)
                  (lambda (p) (property-entry-html p item nsname)))
         (section "Signals" (gir-class-signals item)
-                 (lambda (s) (signal-entry-html s item nsname)))))))
+                 (lambda (s) (signal-entry-html s item nsname)))
+        (section "Virtual functions" (gir-class-virtual-methods item)
+                 (lambda (v) (vfunc-entry-html v item nsname)))))))
+
+(defun vfunc-entry-html (vfunc class nsname)
+  (let ((vp (gethash vfunc *vfunc-plans*))
+        (url (doc-url nsname (format nil "vfunc.~a.~a.html" (gir-item-name class) (gir-item-name vfunc)))))
+    (with-output-to-string (out)
+      (format out "<h3>:~a</h3>~%" (html-escape (snake-to-kebab (gir-item-name vfunc))))
+      (if (vfunc-plan-p vp)
+          (let ((values (plan-values-description (vfunc-plan-plan vp) nsname)))
+            (format out "<div class=\"sig\">(gobject:define-vfunc (my-class :~a) (~a) …)</div>~%"
+                    (html-escape (snake-to-kebab (gir-item-name vfunc)))
+                    (html-escape (vfunc-lambda-list vp)))
+            (when values
+              (format out "<p>The implementation ~a</p>~%"
+                      (inline-markdown (string-downcase values :end 1)))))
+          (format out "<p class=\"meta\">Not overridable from Lisp~@[: ~a~].</p>~%"
+                  (and (stringp vp) (html-escape vp))))
+      (format out "~a" (or (markdown-to-html (convert-doc-text (gir-item-doc vfunc))) ""))
+      (format out "<p class=\"meta\">C: <code>~a.~a</code>~a</p>~%"
+              (html-escape (or (gir-class-type-struct class) (gir-item-name class)))
+              (html-escape (gir-item-name vfunc)) (upstream-link url)))))
 
 (defun enum-page-html (item ns)
   (let* ((nsname (gir-namespace-name ns))

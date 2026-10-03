@@ -648,39 +648,6 @@ See: https://docs.gtk.org/glib/func.atomic_rc_box_release.html
 Since: 2.58")
 
 
-(rt:define-gfunction (atomic-ref-count-compare "g_atomic_ref_count_compare") :args
-                     ((arc :int) (val :int)) :return :boolean :version "2.58" :url
-                     "https://docs.gtk.org/glib/func.atomic_ref_count_compare.html" :documentation
-                     "Atomically compares the current value of ARC with VAL.
-
-Returns a boolean.
-
-C: g_atomic_ref_count_compare
-See: https://docs.gtk.org/glib/func.atomic_ref_count_compare.html
-Since: 2.58")
-
-
-(rt:define-gfunction (atomic-ref-count-dec "g_atomic_ref_count_dec") :args ((arc :int)) :return
-                     :boolean :version "2.58" :url
-                     "https://docs.gtk.org/glib/func.atomic_ref_count_dec.html" :documentation
-                     "Atomically decreases the reference count.
-
-Returns a boolean.
-
-C: g_atomic_ref_count_dec
-See: https://docs.gtk.org/glib/func.atomic_ref_count_dec.html
-Since: 2.58")
-
-
-(rt:define-gfunction (atomic-ref-count-inc "g_atomic_ref_count_inc") :args ((arc :int)) :version
-                     "2.58" :url "https://docs.gtk.org/glib/func.atomic_ref_count_inc.html"
-                     :documentation "Atomically increases the reference count.
-
-C: g_atomic_ref_count_inc
-See: https://docs.gtk.org/glib/func.atomic_ref_count_inc.html
-Since: 2.58")
-
-
 (rt:define-gfunction (atomic-ref-count-init "g_atomic_ref_count_init") :args
                      ((arc :int :direction :out :transfer :full)) :version "2.58" :url
                      "https://docs.gtk.org/glib/func.atomic_ref_count_init.html" :documentation
@@ -3322,18 +3289,6 @@ See: https://docs.gtk.org/glib/func.realloc_n.html
 Since: 2.24")
 
 
-(rt:define-gfunction (ref-count-compare "g_ref_count_compare") :args ((rc :int) (val :int)) :return
-                     :boolean :version "2.58" :url
-                     "https://docs.gtk.org/glib/func.ref_count_compare.html" :documentation
-                     "Compares the current value of RC with VAL.
-
-Returns a boolean.
-
-C: g_ref_count_compare
-See: https://docs.gtk.org/glib/func.ref_count_compare.html
-Since: 2.58")
-
-
 (rt:define-gfunction (ref-count-init "g_ref_count_init") :args
                      ((rc :int :direction :out :transfer :full)) :version "2.58" :url
                      "https://docs.gtk.org/glib/func.ref_count_init.html" :documentation
@@ -3648,15 +3603,6 @@ Since: 2.10")
 
 C: g_slice_get_config
 See: https://docs.gtk.org/glib/func.slice_get_config.html")
-
-
-(rt:define-gfunction (slice-get-config-state "g_slice_get_config_state") :args
-                     ((ckey (:enum slice-config)) (address :int64) (n-values :uint)) :return :int64
-                     :url "https://docs.gtk.org/glib/func.slice_get_config_state.html"
-                     :documentation "Returns an integer.
-
-C: g_slice_get_config_state
-See: https://docs.gtk.org/glib/func.slice_get_config_state.html")
 
 
 (rt:define-gfunction (slice-set-config "g_slice_set_config") :args
@@ -5060,3 +5006,66 @@ Returns a boolean.
 
 C: g_unichar_isgraph
 See: https://docs.gtk.org/glib/func.unichar_isgraph.html")
+
+
+(rt:define-gfunction (unichar-islower "g_unichar_islower") :args ((c :uint32)) :return :boolean
+                     :url "https://docs.gtk.org/glib/func.unichar_islower.html" :documentation
+                     "Determines whether a character is a lowercase letter.
+Given some UTF-8 text, obtain a character value with
+`glib:utf8-get-char`.
+
+Returns a boolean.
+
+C: g_unichar_islower
+See: https://docs.gtk.org/glib/func.unichar_islower.html")
+
+
+(rt:define-gfunction (unichar-ismark "g_unichar_ismark") :args ((c :uint32)) :return :boolean
+                     :version "2.14" :url "https://docs.gtk.org/glib/func.unichar_ismark.html"
+                     :documentation "Determines whether a character is a mark (non-spacing mark,
+combining mark, or enclosing mark in Unicode speak).
+Given some UTF-8 text, obtain a character value
+with `glib:utf8-get-char`.
+
+Returns a boolean.
+
+C: g_unichar_ismark
+See: https://docs.gtk.org/glib/func.unichar_ismark.html
+Since: 2.14")
+
+
+(rt:define-gfunction (unichar-isprint "g_unichar_isprint") :args ((c :uint32)) :return :boolean
+                     :url "https://docs.gtk.org/glib/func.unichar_isprint.html" :documentation
+                     "Determines whether a character is printable.
+Unlike `glib:unichar-isgraph`, returns T for spaces.
+Given some UTF-8 text, obtain a character value with
+`glib:utf8-get-char`.
+
+Returns a boolean.
+
+C: g_unichar_isprint
+See: https://docs.gtk.org/glib/func.unichar_isprint.html")
+
+
+(rt:define-gfunction (unichar-ispunct "g_unichar_ispunct") :args ((c :uint32)) :return :boolean
+                     :url "https://docs.gtk.org/glib/func.unichar_ispunct.html" :documentation
+                     "Determines whether a character is punctuation or a symbol.
+Given some UTF-8 text, obtain a character value with
+`glib:utf8-get-char`.
+
+Returns a boolean.
+
+C: g_unichar_ispunct
+See: https://docs.gtk.org/glib/func.unichar_ispunct.html")
+
+
+(rt:define-gfunction (unichar-isspace "g_unichar_isspace") :args ((c :uint32)) :return :boolean
+                     :url "https://docs.gtk.org/glib/func.unichar_isspace.html" :documentation
+                     "Determines whether a character is a space, tab, or line separator
+(newline, carriage return, etc.).  Given some UTF-8 text, obtain a
+character value with `glib:utf8-get-char`.
+
+Returns a boolean.
+
+C: g_unichar_isspace
+See: https://docs.gtk.org/glib/func.unichar_isspace.html")

@@ -6,44 +6,6 @@
 ;;; Functions, constructors, methods and virtual functions (part 2)
 
 
-(rt:define-gfunction (set-create "hb_set_create") :return
-                     (:boxed "hb_set_t" "hb_gobject_set_get_type") :return-transfer :full :version
-                     "0.9.2" :documentation "Creates a new, initially empty set.
-
-Returns a boxed value.
-
-C: hb_set_create
-Since: 0.9.2")
-
-
-(rt:define-gfunction (set-del "hb_set_del") :args
-                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (codepoint :uint32))
-                     :version "0.9.2" :documentation "Removes CODEPOINT from SET.
-
-C: hb_set_del
-Since: 0.9.2")
-
-
-(rt:define-gfunction (set-del-range "hb_set_del_range") :args
-                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (first :uint32)
-                      (last :uint32))
-                     :version "0.9.7" :documentation "Removes all of the elements from FIRST to LAST
-(inclusive) from SET.
-
-C: hb_set_del_range
-Since: 0.9.7")
-
-
-(rt:define-gfunction (set-get-empty "hb_set_get_empty") :return
-                     (:boxed "hb_set_t" "hb_gobject_set_get_type") :return-transfer :full :version
-                     "0.9.2" :documentation "Fetches the singleton empty `harfbuzz:set-t`.
-
-Returns a boxed value.
-
-C: hb_set_get_empty
-Since: 0.9.2")
-
-
 (rt:define-gfunction (set-get-max "hb_set_get_max") :args
                      ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :uint32 :version
                      "0.9.7" :documentation "Finds the largest element in the set.

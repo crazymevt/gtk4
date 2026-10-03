@@ -415,6 +415,7 @@ function that writes the chunk."
       (let ((vplans '()))
         (loop for (vfunc . owner) in (namespace-vfuncs ctx ns)
               do (multiple-value-bind (vp reason) (plan-vfunc ctx ns vfunc owner)
+                   (setf (gethash vfunc *vfunc-plans*) (or vp reason))
                    (if vp
                        (push vp vplans)
                        (push (cons (format nil "~a.~a" (gir-item-name owner) (gir-item-name vfunc))

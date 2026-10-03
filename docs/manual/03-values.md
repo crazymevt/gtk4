@@ -63,3 +63,5 @@ Functions that report a `GError` signal a `glib:glib-error` condition instead:
     (format t "~a (~a ~a)" (glib:glib-error-message e)
             (glib:glib-error-domain e) (glib:glib-error-code e))))
 ```
+
+Each error domain and code also has its own condition class, such as `gio:io-error` and `gio:io-error-not-found`; see "The Lisp layer".
