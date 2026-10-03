@@ -1,0 +1,75 @@
+;;;; main-loop.lisp — running work on the GUI thread
+
+(in-package #:gtk4.runtime)
+
+(defvar *callback-error-handler*
+  (lambda (condition where)
+    (format *error-output* "~&;; gtk4: error in ~a: ~a~%" where condition)
+    (finish-output *error-output*))
+  "Called with (CONDITION WHERE) when a Lisp callback invoked from C signals an
+error. Errors never unwind through C frames. Set it to a function that calls
+INVOKE-DEBUGGER to debug in place during development.")
+
+(defmacro with-callback-protection ((where &optional default) &body body)
+  "Run BODY for a callback entered from C: floats traps masked, and any error
+handed to *CALLBACK-ERROR-HANDLER* instead of unwinding into C. Returns
+DEFAULT when BODY fails."
+  `(with-gtk-float-traps
+     (handler-case (progn ,@body)
+       (error (e)
+         (funcall *callback-error-handler* e ,where)
+         ,default))))
+
+;;; Invoking a thunk on the main context
+
+(cffi:defcallback invoke-thunk :int ((data :pointer))
+  (with-callback-protection ("in-main-thread" 0)
+    (funcall (handle-value data))
+    0))                                 ; G_SOURCE_REMOVE
+
+(defvar *gui-thread* (sb-thread:main-thread)
+  "The thread that runs the GLib main loop and makes every GTK call. On macOS
+it must be the initial thread; on Linux it may be set to another thread.")
+
+(defun gui-thread-p ()
+  (eq sb-thread:*current-thread* *gui-thread*))
+
+(defun call-in-main-thread (thunk &key wait)
+  "Run THUNK on the GUI thread. Called on that thread, THUNK runs at once;
+from any other thread it is queued as an idle callback, run when the main
+loop next iterates. With WAIT, block until it has run and return its values,
+re-signalling any error in the caller."
+  (cond
+    ((gui-thread-p)
+     (funcall thunk))
+    ((not wait)
+     (%g-idle-add-full 0 (cffi:callback invoke-thunk) (make-handle thunk)
+                       (cffi:callback free-handle-notify))
+     (values))
+    (t
+      (let ((done (sb-thread:make-semaphore))
+            (results nil)
+            (failure nil))
+        (call-in-main-thread
+         (lambda ()
+           (unwind-protect
+                (handler-case (setf results (multiple-value-list (funcall thunk)))
+                  (error (e) (setf failure e)))
+             (sb-thread:signal-semaphore done))))
+        (sb-thread:wait-on-semaphore done)
+        (if failure
+            (error failure)
+            (values-list results))))))
+
+(defmacro in-main-thread ((&key wait) &body body)
+  "Run BODY on the GUI thread; see CALL-IN-MAIN-THREAD."
+  `(call-in-main-thread (lambda () ,@body) :wait ,wait))
+
+(defun iterate-main-context (&key (max 1000))
+  "Dispatch pending events on the default main context without blocking.
+Returns the number of iterations run. Used by tests and REPL helpers."
+  (with-gtk-float-traps
+    (loop for i from 0 below max
+          while (%g-main-context-pending (cffi:null-pointer))
+          do (%g-main-context-iteration (cffi:null-pointer) nil)
+          finally (return i))))

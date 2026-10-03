@@ -14,4 +14,12 @@
   :serial t
   :components ((:file "package")
                (:file "libraries")
-               (:file "threads")))
+               (:file "threads")
+               (:file "ffi")
+               (:file "handles")
+               (:file "gtype")
+               (:file "main-loop")
+               (:file "gerror")
+               (:file "gvalue")
+               (:file "object")
+               (:file "signals")))

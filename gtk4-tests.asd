@@ -9,5 +9,6 @@
   :serial t
   :components ((:file "package")
                (:file "generator")
-               (:file "runtime"))
+               (:file "runtime")
+               (:file "objects"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
