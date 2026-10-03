@@ -1392,15 +1392,6 @@ See: https://docs.gtk.org/gdk-pixbuf/type_func.PixbufError.quark.html")
 See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_iter.html")
 
 
-(rt:define-gvfunc (pixbuf-animation :get-size) (pixbuf-animation-class :get-size) :args
-                  ((animation (:object pixbuf-animation)) (width :int) (height :int)) :url
-                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_size.html"
-                  :documentation "fills WIDTH and HEIGHT with the frame size of the animation.
-
-
-See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_size.html")
-
-
 (rt:define-gvfunc (pixbuf-animation :get-static-image) (pixbuf-animation-class :get-static-image)
                   :args ((animation (:object pixbuf-animation))) :return (:object pixbuf) :url
                   "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_static_image.html"

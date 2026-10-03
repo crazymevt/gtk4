@@ -103,3 +103,28 @@ functions GIR flags only because they are convenience wrappers."
         (append (gir-namespace-classes ns)
                 (list (make-gir-class :kind :record :name name :c-type c-type
                                       :fields (spec-fields fields) :doc doc)))))
+
+(defun find-callable (ns name)
+  "The callable NAME in NS: a C identifier, or \"Class.vfunc\" for a virtual function."
+  (let ((dot (position #\. name)))
+    (or (if dot
+            (let ((class (find (subseq name 0 dot) (gir-namespace-classes ns)
+                               :key #'gir-item-name :test #'string=)))
+              (and class (find (subseq name (1+ dot)) (gir-class-virtual-methods class)
+                               :key #'gir-item-name :test #'string=)))
+            (or (find name (gir-namespace-functions ns) :key #'gir-callable-c-identifier :test #'equal)
+                (loop for c in (gir-namespace-classes ns)
+                      thereis (find name (append (gir-class-constructors c) (gir-class-functions c)
+                                                 (gir-class-methods c))
+                                    :key #'gir-callable-c-identifier :test #'equal))))
+        (error "override: no callable ~a in ~a" name (gir-namespace-name ns)))))
+
+(defun mark-out-parameters (ns name &rest parameters)
+  "Mark PARAMETERS of callable NAME (see FIND-CALLABLE) as out arguments:
+pointers C fills in that GIR leaves unannotated."
+  (let ((callable (find-callable ns name)))
+    (dolist (pname parameters)
+      (let ((p (or (find pname (gir-callable-parameters callable) :key #'gir-parameter-name :test #'equal)
+                   (error "override: ~a has no parameter ~a" name pname))))
+        (setf (gir-parameter-direction p) :out
+              (gir-parameter-transfer p) :full)))))

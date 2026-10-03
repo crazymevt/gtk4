@@ -25,18 +25,6 @@ C: g_boxed_free
 See: https://docs.gtk.org/gobject/func.boxed_free.html")
 
 
-(rt:define-gfunction (clear-signal-handler "g_clear_signal_handler") :args
-                     ((handler-id-ptr :ulong) (instance (:object object))) :version "2.62" :url
-                     "https://docs.gtk.org/gobject/func.clear_signal_handler.html" :documentation
-                     "Disconnects a handler from INSTANCE so it will not be called during
-any future or currently ongoing emissions of the signal it has been
-connected to. The HANDLER-ID-PTR is then set to zero, which is never a valid handler ID value (see g_signal_connect()).
-
-C: g_clear_signal_handler
-See: https://docs.gtk.org/gobject/func.clear_signal_handler.html
-Since: 2.62")
-
-
 (rt:define-gfunction (enum-complete-type-info "g_enum_complete_type_info") :args
                      ((g-enum-type :gtype)
                       (info (:record type-info) :direction :out :transfer :full)
@@ -2814,13 +2802,6 @@ that type.)
 
 C: g_source_set_dummy_callback
 See: https://docs.gtk.org/gobject/type_func.Source.set_dummy_callback.html")
-
-
-(rt:define-gfunction (type-class-adjust-private-offset "g_type_class_adjust_private_offset") :args
-                     ((g-class :pointer) (private-size-or-offset :int)) :url
-                     "https://docs.gtk.org/gobject/type_func.TypeClass.adjust_private_offset.html"
-                     :documentation "C: g_type_class_adjust_private_offset
-See: https://docs.gtk.org/gobject/type_func.TypeClass.adjust_private_offset.html")
 
 
 (rt:define-gfunction (type-class-get "g_type_class_get") :args ((type :gtype)) :return

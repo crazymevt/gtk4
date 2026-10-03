@@ -547,6 +547,16 @@ parameters after the instance parameter."
                            args))))
                 (t
                  (when (eq direction :inout) (fail "inout parameter"))
+                 ;; gboolean *p with no direction: GIR says "in", C means a pointer.
+                 (let ((type (gir-parameter-type p)))
+                   (when (and (eq direction :in) (gir-type-p type)
+                              (assoc (gir-type-name type) *basic-types* :test #'equal)
+                              (not (member (gir-type-name type)
+                                           '("gpointer" "gconstpointer" "utf8" "filename")
+                                           :test #'equal))
+                              (gir-type-c-type type)
+                              (find #\* (gir-type-c-type type)))
+                     (fail "pointer to a scalar without an out annotation")))
                  (when (and (eq direction :out) (gir-parameter-caller-allocates p)
                             (not (gir-array-p (gir-parameter-type p)))
                             (not (caller-allocatable-p ctx (gir-parameter-type p) nsname)))

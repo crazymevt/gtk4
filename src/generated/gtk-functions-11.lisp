@@ -28,8 +28,9 @@ See: https://docs.gtk.org/gtk4/vfunc.TreeView.unselect_all.html")
 
 
 (rt:define-gvfunc (widget :compute-expand) (widget-class :compute-expand) :args
-                  ((widget (:object widget)) (hexpand-p :boolean) (vexpand-p :boolean)) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html" :documentation
+                  ((widget (:object widget)) (hexpand-p :boolean :direction :out :transfer :full)
+                   (vexpand-p :boolean :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html" :documentation
                   "Computes whether a container should give this
   widget extra space when possible.
 
