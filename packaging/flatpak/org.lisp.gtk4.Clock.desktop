@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Clock
+Comment=A clock drawn by a widget written in Common Lisp
+Exec=clock
+Icon=org.gtk.Demo4
+Categories=Utility;GTK;

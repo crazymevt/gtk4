@@ -1,0 +1,78 @@
+# Flatpak manifest for examples/clock.lisp, as a model for packaging a
+# gtk4 program. Build with:
+#
+#   flatpak-builder --user --install-deps-from=flathub --force-clean build-dir \
+#       packaging/flatpak/org.lisp.gtk4.Clock.yml
+#
+# The GNOME runtime provides GTK 4 and libadwaita. SBCL and the Lisp
+# libraries are only needed to build: the app ships the executable that
+# gtk4:save-executable writes, and the cleanup below drops the rest.
+# Flatpak builds have no network access, so every source is pinned here.
+app-id: org.lisp.gtk4.Clock
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+command: clock
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+cleanup:
+  - /sbcl
+  - /lisp
+modules:
+  - name: sbcl
+    buildsystem: simple
+    build-commands:
+      - INSTALL_ROOT=/app/sbcl sh install.sh
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/sbcl/sbcl/2.4.10/sbcl-2.4.10-x86-64-linux-binary.tar.bz2
+        sha256: 99cc019120172bb4317f3c79cfc3afffe51e314091e07e8c0ba1d94759767777
+
+  # The runtime's dependencies, at the versions in Quicklisp 2026-01-01.
+  - name: lisp-libraries
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/lisp && cp -r alexandria babel cffi trivial-features /app/lisp/
+    sources:
+      - type: archive
+        url: http://beta.quicklisp.org/archive/alexandria/2024-10-12/alexandria-20241012-git.tgz
+        sha256: dcdfc5bac229a952358dfe661f0860e8a02480e406d0d95dee4300cdc3d45b31
+        dest: alexandria
+      - type: archive
+        url: http://beta.quicklisp.org/archive/babel/2026-01-01/babel-20260101-git.tgz
+        sha256: e30d399fdcdf6f540ba28185fb6d9e3ebb4219c1df314d861ef3ed26be38d08d
+        dest: babel
+      - type: archive
+        url: http://beta.quicklisp.org/archive/cffi/2026-01-01/cffi-20260101-git.tgz
+        sha256: c4935fbb8ed96a062e9f2315f6566b53d3ec90a1d00c001cac908d242a8d84e6
+        dest: cffi
+      - type: archive
+        url: http://beta.quicklisp.org/archive/trivial-features/2025-06-22/trivial-features-20250622-git.tgz
+        sha256: d8c9686e0425ea6f2cc8e18139a80bb082c44a23ac68fd455e5c74848b42257a
+        dest: trivial-features
+
+  - name: clock
+    buildsystem: simple
+    build-options:
+      env:
+        SBCL_HOME: /app/sbcl/lib/sbcl
+    build-commands:
+      - >-
+        /app/sbcl/bin/sbcl --non-interactive --no-userinit
+        --eval '(require :asdf)'
+        --eval '(dolist (d (directory "/app/lisp/*/")) (push d asdf:*central-registry*))'
+        --eval '(push (truename ".") asdf:*central-registry*)'
+        --eval '(asdf:load-system :gtk4)'
+        --load examples/clock.lisp
+        --eval '(gtk4:save-executable "/app/bin/clock" (lambda () (gtk4-examples.clock:main)))'
+      - install -Dm644 packaging/flatpak/org.lisp.gtk4.Clock.desktop /app/share/applications/org.lisp.gtk4.Clock.desktop
+    sources:
+      - type: dir
+        path: ../..
+        skip:
+          - build
+          - build-dir
+          - .flatpak-builder
