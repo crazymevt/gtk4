@@ -537,6 +537,10 @@ parameters after the instance parameter."
                                   (eq direction :in)))))
                  (let* ((target (gethash p lengths))
                         (target-direction (if (eq target :return) :out (gir-parameter-direction target))))
+                   ;; A caller-allocated buffer needs its size before the call.
+                   (when (and (gir-parameter-p target) (gir-parameter-caller-allocates target)
+                              (not (eq direction :in)))
+                     (fail "caller-allocated array whose length is an out argument"))
                    (unless (eq direction target-direction)
                      (fail "array length direction mismatch"))
                    (multiple-value-bind (spec why) (classify-type ctx (gir-parameter-type p) nsname)

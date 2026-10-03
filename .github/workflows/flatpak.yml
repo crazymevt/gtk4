@@ -10,6 +10,10 @@ on:
       - packaging/flatpak/**
       - .github/workflows/flatpak.yml
 
+concurrency:
+  group: flatpak-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   flatpak:
     runs-on: ubuntu-24.04

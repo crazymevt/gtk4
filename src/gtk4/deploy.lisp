@@ -19,6 +19,8 @@ SB-EXT:SAVE-LISP-AND-DIE (when this SBCL supports it)."
     (error "gtk4:save-executable: other threads are running (~{~a~^, ~}); ~
             save from a script run with --non-interactive"
            (mapcar #'sb-thread:thread-name (rest (sb-thread:list-all-threads)))))
+  ;; A failed save rolls the image back mid-way; avoid the common cause.
+  (ensure-directories-exist path)
   (apply #'sb-ext:save-lisp-and-die path
          :executable t
          :save-runtime-options nil
