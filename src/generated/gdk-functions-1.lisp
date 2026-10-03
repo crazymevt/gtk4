@@ -3,7 +3,7 @@
 
 (in-package #:gdk)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (cairo-draw-from-gl "gdk_cairo_draw_from_gl") :args

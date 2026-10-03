@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 4)
+;;; Functions, constructors, methods and virtual functions (part 4)
 
 
 (rt:define-gfunction (font-button-get-title "gtk_font_button_get_title") :args

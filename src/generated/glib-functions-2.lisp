@@ -3,7 +3,7 @@
 
 (in-package #:glib)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction (unichar-islower "g_unichar_islower") :args ((c :uint32)) :return :boolean

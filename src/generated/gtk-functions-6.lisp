@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 6)
+;;; Functions, constructors, methods and virtual functions (part 6)
 
 
 (rt:define-gfunction (paned-set-resize-end-child "gtk_paned_set_resize_end_child") :args

@@ -3,7 +3,7 @@
 
 (in-package #:gio)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (bus-get "g_bus_get") :args

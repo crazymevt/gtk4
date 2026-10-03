@@ -44,9 +44,15 @@
         v
         (progn
           (setf (gethash qualified (context-layouts ctx)) "recursive layout")
-          (setf (gethash qualified (context-layouts ctx))
-                (let ((item (lookup ctx qualified)))
-                  (plan-layout ctx item qualified (type-symbol qualified))))))))
+          (let ((layout (plan-layout ctx (lookup ctx qualified) qualified (type-symbol qualified))))
+            ;; Register at once: a struct planned later may embed this one, and
+            ;; its accessors need to know the layout exists.
+            (when (layout-p layout)
+              (labels ((register (l)
+                         (setf (gethash (layout-symbol l) (context-struct-symbols ctx)) l)
+                         (mapc #'register (layout-extras l))))
+                (register layout)))
+            (setf (gethash qualified (context-layouts ctx)) layout))))))
 
 (defun layout-symbol-p (ctx symbol)
   "True when SYMBOL names a struct with a known layout."
@@ -55,8 +61,12 @@
 (defun record-layout-candidate-p (item)
   (and (gir-class-p item)
        (member (gir-class-kind item) '(:record :union))
-       (gir-class-fields item)
-       (not (gir-class-is-gtype-struct-for item))))
+       (gir-class-fields item)))
+
+(defun class-struct-p (item)
+  "True for a class or interface struct (GtkWidgetClass, GListModelInterface).
+Their layouts locate virtual function slots; they get no field accessors."
+  (and (gir-class-p item) (gir-class-is-gtype-struct-for item) t))
 
 (defun field-layout-type (ctx type nsname anon-name extras depends)
   "The CFFI type for a field of GIR TYPE, as (VALUES type count), or
@@ -115,8 +125,7 @@ cons whose car collects layouts; DEPENDS likewise collects struct symbols."
 union, then SYMBOL is its generated name), or a reason string."
   (cond
     ((not (and (gir-class-p item)
-               (member (gir-class-kind item) '(:record :union))
-               (not (gir-class-is-gtype-struct-for item))))
+               (member (gir-class-kind item) '(:record :union))))
      "not a record")
     ((null (gir-class-fields item)) "no fields (opaque)")
     ((null symbol) "no Lisp name")
@@ -140,8 +149,9 @@ union, then SYMBOL is its generated name), or a reason string."
                                 unit-bits 0)
                           (incf unit-count)
                           (push (list unit :uint) fields))
-                        (accessor-for ctx f slot (list (gir-field-bits f) unit-bits) unit nsname
-                                      (lambda (a) (push a accessors)))
+                        (unless (class-struct-p item)
+                          (accessor-for ctx f slot (list (gir-field-bits f) unit-bits) unit nsname
+                                        (lambda (a) (push a accessors))))
                         (incf unit-bits (gir-field-bits f)))
                       (progn
                         (setf unit nil)
@@ -154,7 +164,7 @@ union, then SYMBOL is its generated name), or a reason string."
                                                extras depends)
                           (unless ctype (return-from plan count))
                           (push (if count (list slot ctype :count count) (list slot ctype)) fields)
-                          (unless count
+                          (unless (or count (class-struct-p item))
                             (accessor-for ctx f slot nil slot nsname
                                           (lambda (a) (push a accessors))
                                           (and (consp ctype) (member (first ctype) '(:struct :union)))))))))
@@ -210,10 +220,6 @@ accessor and constructor names in PACKAGE."
       (when (record-layout-candidate-p item)
         (let ((layout (layout-of ctx (qualify (gir-item-name item) nsname))))
           (unless (stringp layout)
-            (labels ((register (l)
-                       (setf (gethash (layout-symbol l) (context-struct-symbols ctx)) l)
-                       (mapc #'register (layout-extras l))))
-              (register layout))
             (let ((kebab (camel-to-kebab (gir-item-name item))))
               (dolist (a (layout-accessors layout))
                 (setf (getf a :name)

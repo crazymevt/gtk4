@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 7)
+;;; Functions, constructors, methods and virtual functions (part 7)
 
 
 (rt:define-gfunction (revealer-set-child "gtk_revealer_set_child") :args

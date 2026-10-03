@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 10)
+;;; Functions, constructors, methods and virtual functions (part 10)
 
 
 (rt:define-gfunction (widget-size-allocate "gtk_widget_size_allocate") :args
@@ -1278,3 +1278,2822 @@ Since: 4.22")
 
 C: gtk_svg_error_quark
 See: https://docs.gtk.org/gtk4/type_func.SvgError.quark.html")
+
+
+(rt:define-gvfunc (accessible :get-accessible-id) (accessible-interface :get-accessible-id) :args
+                  ((self (:object accessible))) :return :string :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.Accessible.get_accessible_id.html"
+                  :documentation "Retrieves the accessible identifier for the accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_accessible_id.html
+Since: 4.22")
+
+
+(rt:define-gvfunc (accessible :get-accessible-parent) (accessible-interface :get-accessible-parent)
+                  :args ((self (:object accessible))) :return (:object accessible) :return-transfer
+                  :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.Accessible.get_accessible_parent.html"
+                  :documentation "Retrieves the accessible parent for an accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_accessible_parent.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible :get-at-context) (accessible-interface :get-at-context) :args
+                  ((self (:object accessible))) :return (:object at-context) :return-transfer :full
+                  :url "https://docs.gtk.org/gtk4/vfunc.Accessible.get_at_context.html"
+                  :documentation "Retrieves the implementation for the given accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_at_context.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible :get-bounds) (accessible-interface :get-bounds) :args
+                  ((self (:object accessible)) (x :int :direction :out :transfer :full)
+                   (y :int :direction :out :transfer :full)
+                   (width :int :direction :out :transfer :full)
+                   (height :int :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Accessible.get_bounds.html" :documentation
+                  "Queries the coordinates and dimensions of this accessible
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_bounds.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible :get-first-accessible-child)
+                  (accessible-interface :get-first-accessible-child) :args
+                  ((self (:object accessible))) :return (:object accessible) :return-transfer :full
+                  :url "https://docs.gtk.org/gtk4/vfunc.Accessible.get_first_accessible_child.html"
+                  :documentation "Retrieves the first accessible child of an accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_first_accessible_child.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible :get-next-accessible-sibling)
+                  (accessible-interface :get-next-accessible-sibling) :args
+                  ((self (:object accessible))) :return (:object accessible) :return-transfer :full
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.Accessible.get_next_accessible_sibling.html"
+                  :documentation "Retrieves the next accessible sibling of an accessible object
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_next_accessible_sibling.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible :get-platform-state) (accessible-interface :get-platform-state) :args
+                  ((self (:object accessible)) (state (:enum accessible-platform-state))) :return
+                  :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Accessible.get_platform_state.html"
+                  :documentation "Queries a platform state, such as focus.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Accessible.get_platform_state.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible-hypertext :get-link) (accessible-hypertext-interface :get-link) :args
+                  ((self (:object accessible-hypertext)) (index :uint)) :return
+                  (:object accessible-hyperlink) :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_link.html"
+                  :documentation "Retrieve the n-th link in the accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_link.html
+Since: 4.22")
+
+
+(rt:define-gvfunc (accessible-hypertext :get-link-at) (accessible-hypertext-interface :get-link-at)
+                  :args ((self (:object accessible-hypertext)) (offset :uint)) :return :uint :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_link_at.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_link_at.html")
+
+
+(rt:define-gvfunc (accessible-hypertext :get-n-links) (accessible-hypertext-interface :get-n-links)
+                  :args ((self (:object accessible-hypertext))) :return :uint :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_n_links.html"
+                  :documentation "Retrieve the number of links in the accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleHypertext.get_n_links.html
+Since: 4.22")
+
+
+(rt:define-gvfunc (accessible-range :set-current-value)
+                  (accessible-range-interface :set-current-value) :args
+                  ((self (:object accessible-range)) (value :double)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleRange.set_current_value.html"
+                  :documentation "Sets the current value of the accessible range.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleRange.set_current_value.html
+Since: 4.10")
+
+
+(rt:define-gvfunc (accessible-text :get-caret-position)
+                  (accessible-text-interface :get-caret-position) :args
+                  ((self (:object accessible-text))) :return :uint :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_caret_position.html"
+                  :documentation "Retrieves the position of the caret inside the accessible object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_caret_position.html
+Since: 4.14")
+
+
+(rt:define-gvfunc (accessible-text :get-contents) (accessible-text-interface :get-contents) :args
+                  ((self (:object accessible-text)) (start :uint) (end :uint)) :return
+                  (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_contents.html" :documentation
+                  "Retrieve the current contents of the accessible object within
+the given range.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_contents.html
+Since: 4.14")
+
+
+(rt:define-gvfunc (accessible-text :get-contents-at) (accessible-text-interface :get-contents-at)
+                  :args
+                  ((self (:object accessible-text)) (offset :uint)
+                   (granularity (:enum accessible-text-granularity))
+                   (start :uint :direction :out :transfer :full)
+                   (end :uint :direction :out :transfer :full))
+                  :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_contents_at.html"
+                  :documentation "Retrieve the current contents of the accessible object starting
+from the given offset, and using the given granularity.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_contents_at.html
+Since: 4.14")
+
+
+(rt:define-gvfunc (accessible-text :get-extents) (accessible-text-interface :get-extents) :args
+                  ((self (:object accessible-text)) (start :uint) (end :uint)
+                   (extents (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_extents.html" :documentation
+                  "Obtains the extents of a range of text, in widget coordinates.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_extents.html
+Since: 4.16")
+
+
+(rt:define-gvfunc (accessible-text :get-offset) (accessible-text-interface :get-offset) :args
+                  ((self (:object accessible-text))
+                   (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                   (offset :uint :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_offset.html" :documentation
+                  "Gets the text offset at a given point.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.get_offset.html
+Since: 4.16")
+
+
+(rt:define-gvfunc (accessible-text :set-caret-position)
+                  (accessible-text-interface :set-caret-position) :args
+                  ((self (:object accessible-text)) (offset :uint)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.set_caret_position.html"
+                  :documentation "Sets the caret position.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.set_caret_position.html
+Since: 4.22")
+
+
+(rt:define-gvfunc (accessible-text :set-selection) (accessible-text-interface :set-selection) :args
+                  ((self (:object accessible-text)) (i :size)
+                   (range (:record accessible-text-range)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.AccessibleText.set_selection.html"
+                  :documentation "Sets the caret position.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.AccessibleText.set_selection.html
+Since: 4.22")
+
+
+(rt:define-gvfunc (actionable :get-action-target-value)
+                  (actionable-interface :get-action-target-value) :args
+                  ((actionable (:object actionable))) :return :pointer :url
+                  "https://docs.gtk.org/gtk4/vfunc.Actionable.get_action_target_value.html"
+                  :documentation "Gets the current target value of ACTIONABLE.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Actionable.get_action_target_value.html")
+
+
+(rt:define-gvfunc (actionable :set-action-name) (actionable-interface :set-action-name) :args
+                  ((actionable (:object actionable)) (action-name :string)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Actionable.set_action_name.html" :documentation
+                  "Specifies the name of the action with which this widget should be
+associated.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Actionable.set_action_name.html")
+
+
+(rt:define-gvfunc (actionable :set-action-target-value)
+                  (actionable-interface :set-action-target-value) :args
+                  ((actionable (:object actionable)) (target-value :pointer)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Actionable.set_action_target_value.html"
+                  :documentation "Sets the target value of an actionable widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Actionable.set_action_target_value.html")
+
+
+(rt:define-gvfunc (adjustment :changed) (adjustment-class :changed) :args
+                  ((adjustment (:object adjustment))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Adjustment.changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Adjustment.changed.html")
+
+
+(rt:define-gvfunc (adjustment :value-changed) (adjustment-class :value-changed) :args
+                  ((adjustment (:object adjustment))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Adjustment.value_changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Adjustment.value_changed.html")
+
+
+(rt:define-gvfunc (application :window-added) (application-class :window-added) :args
+                  ((application (:object application)) (window (:object window))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Application.window_added.html" :documentation
+                  "Signal emitted when a `gtk:window` is added to
+   application through `gtk:application-add-window`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Application.window_added.html")
+
+
+(rt:define-gvfunc (application :window-removed) (application-class :window-removed) :args
+                  ((application (:object application)) (window (:object window))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Application.window_removed.html" :documentation
+                  "Signal emitted when a `gtk:window` is removed from
+   application, either as a side-effect of being destroyed or
+   explicitly through `gtk:application-remove-window`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Application.window_removed.html")
+
+
+(rt:define-gvfunc (buildable :add-child) (buildable-iface :add-child) :args
+                  ((buildable (:object buildable)) (builder (:object builder))
+                   (child (:object rt:object)) (type :string))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Buildable.add_child.html" :documentation
+                  "Adds a child to BUILDABLE. TYPE is an optional string
+describing how the child should be added.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.add_child.html")
+
+
+(rt:define-gvfunc (buildable :custom-finished) (buildable-iface :custom-finished) :args
+                  ((buildable (:object buildable)) (builder (:object builder))
+                   (child (:object rt:object)) (tagname :string) (data :pointer))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Buildable.custom_finished.html"
+                  :documentation "Similar to gtk_buildable_parser_finished() but is
+called once for each custom tag handled by the BUILDABLE.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.custom_finished.html")
+
+
+(rt:define-gvfunc (buildable :custom-tag-end) (buildable-iface :custom-tag-end) :args
+                  ((buildable (:object buildable)) (builder (:object builder))
+                   (child (:object rt:object)) (tagname :string) (data :pointer))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Buildable.custom_tag_end.html"
+                  :documentation "Called at the end of each custom element handled by
+the buildable.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.custom_tag_end.html")
+
+
+(rt:define-gvfunc (buildable :get-internal-child) (buildable-iface :get-internal-child) :args
+                  ((buildable (:object buildable)) (builder (:object builder)) (childname :string))
+                  :return (:object rt:object) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Buildable.get_internal_child.html"
+                  :documentation
+                  "Retrieves the internal child called CHILDNAME of the BUILDABLE object.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.get_internal_child.html")
+
+
+(rt:define-gvfunc (buildable :parser-finished) (buildable-iface :parser-finished) :args
+                  ((buildable (:object buildable)) (builder (:object builder))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Buildable.parser_finished.html" :documentation
+                  "Called when a builder finishes the parsing
+ of a UI definition. It is normally not necessary to implement this,
+ unless you need to perform special cleanup actions. `gtk:window` sets
+ the `GtkWidget:visible` property here.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.parser_finished.html")
+
+
+(rt:define-gvfunc (buildable :set-buildable-property) (buildable-iface :set-buildable-property)
+                  :args
+                  ((buildable (:object buildable)) (builder (:object builder)) (name :string)
+                   (value (:boxed "GValue" "g_value_get_type" gobject:value)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Buildable.set_buildable_property.html"
+                  :documentation "Sets a property of a buildable object.
+ It is normally not necessary to implement this, `gobject:object-set-property`
+ is used by default. `gtk:window` implements this to delay showing itself
+ (i.e. setting the `gtk:widget-visible` property) until the whole
+ interface is created.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.set_buildable_property.html")
+
+
+(rt:define-gvfunc (buildable :set-id) (buildable-iface :set-id) :args
+                  ((buildable (:object buildable)) (id :string)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Buildable.set_id.html" :documentation
+                  "Stores the id attribute given in the `gtk:builder` UI definition.
+  `gtk:widget` stores the name as object data. Implement this method if your
+  object has some notion of “ID” and it makes sense to map the XML id
+  attribute to it.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Buildable.set_id.html")
+
+
+(rt:define-gvfunc (builder-scope :create-closure) (builder-scope-interface :create-closure) :args
+                  ((self (:object builder-scope)) (builder (:object builder))
+                   (function-name :string) (flags (:flags builder-closure-flags))
+                   (object (:object rt:object)))
+                  :return (:boxed "GClosure" "g_closure_get_type" gobject:closure) :return-transfer
+                  :full :throws t :url
+                  "https://docs.gtk.org/gtk4/vfunc.BuilderScope.create_closure.html" :documentation
+                  "Create a closure with the given arguments. See `gtk:builder-create-closure`
+  for more details on those.
+  The C implementation will try to use dlsym() to locate the function name and then
+  g_cclosure_new() to create a closure for the symbol.
+  The default implementation just fails and returns NIL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.BuilderScope.create_closure.html")
+
+
+(rt:define-gvfunc (builder-scope :get-type-from-function)
+                  (builder-scope-interface :get-type-from-function) :args
+                  ((self (:object builder-scope)) (builder (:object builder))
+                   (function-name :string))
+                  :return :gtype :url
+                  "https://docs.gtk.org/gtk4/vfunc.BuilderScope.get_type_from_function.html"
+                  :documentation
+                  "Try to lookup a `gobject:type` via the given function name, specified
+  explicitly in a GtkBuilder file, like via the \"type-func\" attribute in the `<object>` tag.
+  This function is very rarely used.
+  The C implementation will use dlsym() and call the resulting function as a `GTypeFunc`.
+  The default implementation will fail and just return G_TYPE_INVALID.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.BuilderScope.get_type_from_function.html")
+
+
+(rt:define-gvfunc (builder-scope :get-type-from-name) (builder-scope-interface :get-type-from-name)
+                  :args
+                  ((self (:object builder-scope)) (builder (:object builder)) (type-name :string))
+                  :return :gtype :url
+                  "https://docs.gtk.org/gtk4/vfunc.BuilderScope.get_type_from_name.html"
+                  :documentation "Try to lookup a `gobject:type` via the its name. See
+  `gtk:builder-get-type-from-name` for more details.
+  The C implementation will use `gobject:type-from-name` and if that fails try to guess the
+  correct function name for registering the type and then use dlsym() to load it.
+  The default implementation just tries `gobject:type-from-name` and otherwise fails.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.BuilderScope.get_type_from_name.html")
+
+
+(rt:define-gvfunc (button :activate) (button-class :activate) :args ((button (:object button)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Button.activate.html" :documentation
+                  "Signal that causes the button to animate press then
+   release. Applications should never connect to this signal, but use
+   the CLICKED signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Button.activate.html")
+
+
+(rt:define-gvfunc (button :clicked) (button-class :clicked) :args ((button (:object button))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Button.clicked.html" :documentation
+                  "Signal emitted when the button has been activated (pressed and released).
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Button.clicked.html")
+
+
+(rt:define-gvfunc (cell-area :activate) (cell-area-class :activate) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget))
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)) (edit-only :boolean))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.CellArea.activate.html"
+                  :documentation "Activates AREA, usually by activating the currently focused
+cell, however some subclasses which embed widgets in the area
+can also activate a widget if it currently has the focus.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.activate.html")
+
+
+(rt:define-gvfunc (cell-area :add) (cell-area-class :add) :args
+                  ((area (:object cell-area)) (renderer (:object cell-renderer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.add.html" :documentation
+                  "Adds RENDERER to AREA with the default child cell properties.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.add.html")
+
+
+(rt:define-gvfunc (cell-area :apply-attributes) (cell-area-class :apply-attributes) :args
+                  ((area (:object cell-area)) (tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (is-expander :boolean) (is-expanded :boolean))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.apply_attributes.html"
+                  :documentation "Applies any connected attributes to the renderers in
+AREA by pulling the values from TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.apply_attributes.html")
+
+
+(rt:define-gvfunc (cell-area :copy-context) (cell-area-class :copy-context) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))) :return
+                  (:object cell-area-context) :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.copy_context.html" :documentation
+                  "This is sometimes needed for cases where rows need to share
+alignments in one orientation but may be separately grouped
+in the opposing orientation.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.copy_context.html")
+
+
+(rt:define-gvfunc (cell-area :create-context) (cell-area-class :create-context) :args
+                  ((area (:object cell-area))) :return (:object cell-area-context) :return-transfer
+                  :full :url "https://docs.gtk.org/gtk4/vfunc.CellArea.create_context.html"
+                  :documentation "Creates a `gtk:cell-area`Context to be used with AREA for
+all purposes. `gtk:cell-area`Context stores geometry information
+for rows for which it was operated on, it is important to use
+the same context for the same row of data at all times (i.e.
+one should render and handle events with the same `gtk:cell-area`Context
+which was used to request the size of those rows of data).
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.create_context.html")
+
+
+(rt:define-gvfunc (cell-area :event) (cell-area-class :event) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (event :pointer)
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)))
+                  :return :int :url "https://docs.gtk.org/gtk4/vfunc.CellArea.event.html"
+                  :documentation "Delegates event handling to a `gtk:cell-area`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.event.html")
+
+
+(rt:define-gvfunc (cell-area :focus) (cell-area-class :focus) :args
+                  ((area (:object cell-area)) (direction (:enum direction-type))) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.focus.html" :documentation
+                  "This should be called by the AREA’s owning layout widget
+when focus is to be passed to AREA, or moved within AREA
+for a given DIRECTION and row data.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.focus.html")
+
+
+(rt:define-gvfunc (cell-area :get-cell-property) (cell-area-class :get-cell-property) :args
+                  ((area (:object cell-area)) (renderer (:object cell-renderer))
+                   (property-id :uint) (value (:boxed "GValue" "g_value_get_type" gobject:value))
+                   (pspec :pointer))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.get_cell_property.html"
+                  :documentation "This should be implemented to report the values of
+  child cell properties for a given child `gtk:cell-renderer`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_cell_property.html")
+
+
+(rt:define-gvfunc (cell-area :get-preferred-height) (cell-area-class :get-preferred-height) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (minimum-height :int :direction :out :transfer :full)
+                   (natural-height :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_height.html"
+                  :documentation "Retrieves a cell area’s initial minimum and natural height.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_height.html")
+
+
+(rt:define-gvfunc (cell-area :get-preferred-height-for-width)
+                  (cell-area-class :get-preferred-height-for-width) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (width :int)
+                   (minimum-height :int :direction :out :transfer :full)
+                   (natural-height :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_height_for_width.html"
+                  :documentation
+                  "Retrieves a cell area’s minimum and natural height if it would be given
+the specified WIDTH.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_height_for_width.html")
+
+
+(rt:define-gvfunc (cell-area :get-preferred-width) (cell-area-class :get-preferred-width) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (minimum-width :int :direction :out :transfer :full)
+                   (natural-width :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_width.html"
+                  :documentation "Retrieves a cell area’s initial minimum and natural width.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_width.html")
+
+
+(rt:define-gvfunc (cell-area :get-preferred-width-for-height)
+                  (cell-area-class :get-preferred-width-for-height) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (height :int)
+                   (minimum-width :int :direction :out :transfer :full)
+                   (natural-width :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_width_for_height.html"
+                  :documentation
+                  "Retrieves a cell area’s minimum and natural width if it would be given
+the specified HEIGHT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_preferred_width_for_height.html")
+
+
+(rt:define-gvfunc (cell-area :get-request-mode) (cell-area-class :get-request-mode) :args
+                  ((area (:object cell-area))) :return (:enum size-request-mode) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.get_request_mode.html" :documentation
+                  "Gets whether the area prefers a height-for-width layout
+or a width-for-height layout.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.get_request_mode.html")
+
+
+(rt:define-gvfunc (cell-area :is-activatable) (cell-area-class :is-activatable) :args
+                  ((area (:object cell-area))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.is_activatable.html" :documentation
+                  "Returns whether the area can do anything when activated,
+after applying new attributes to AREA.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.is_activatable.html")
+
+
+(rt:define-gvfunc (cell-area :remove) (cell-area-class :remove) :args
+                  ((area (:object cell-area)) (renderer (:object cell-renderer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellArea.remove.html" :documentation
+                  "Removes RENDERER from AREA.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.remove.html")
+
+
+(rt:define-gvfunc (cell-area :set-cell-property) (cell-area-class :set-cell-property) :args
+                  ((area (:object cell-area)) (renderer (:object cell-renderer))
+                   (property-id :uint) (value (:boxed "GValue" "g_value_get_type" gobject:value))
+                   (pspec :pointer))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.set_cell_property.html"
+                  :documentation "This should be implemented to handle changes in child
+  cell properties for a given `gtk:cell-renderer` that were previously
+  installed on the `gtk:cell-area-class` with `gtk:cell-area-class-install-cell-property`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.set_cell_property.html")
+
+
+(rt:define-gvfunc (cell-area :snapshot) (cell-area-class :snapshot) :args
+                  ((area (:object cell-area)) (context (:object cell-area-context))
+                   (widget (:object widget)) (snapshot (:object snapshot))
+                   (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)) (paint-focus :boolean))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellArea.snapshot.html" :documentation
+                  "Snapshots AREA’s cells according to AREA’s layout onto at
+the given coordinates.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellArea.snapshot.html")
+
+
+(rt:define-gvfunc (cell-area-context :allocate) (cell-area-context-class :allocate) :args
+                  ((context (:object cell-area-context)) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellAreaContext.allocate.html" :documentation
+                  "Allocates a width and/or a height for all rows which are to be
+rendered with CONTEXT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellAreaContext.allocate.html")
+
+
+(rt:define-gvfunc (cell-area-context :get-preferred-height-for-width)
+                  (cell-area-context-class :get-preferred-height-for-width) :args
+                  ((context (:object cell-area-context)) (width :int)
+                   (minimum-height :int :direction :out :transfer :full)
+                   (natural-height :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellAreaContext.get_preferred_height_for_width.html"
+                  :documentation "Gets the accumulative preferred height for WIDTH for all rows
+which have been requested for the same said WIDTH with this context.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellAreaContext.get_preferred_height_for_width.html")
+
+
+(rt:define-gvfunc (cell-area-context :get-preferred-width-for-height)
+                  (cell-area-context-class :get-preferred-width-for-height) :args
+                  ((context (:object cell-area-context)) (height :int)
+                   (minimum-width :int :direction :out :transfer :full)
+                   (natural-width :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellAreaContext.get_preferred_width_for_height.html"
+                  :documentation
+                  "Gets the accumulative preferred width for HEIGHT for all rows which
+have been requested for the same said HEIGHT with this context.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellAreaContext.get_preferred_width_for_height.html")
+
+
+(rt:define-gvfunc (cell-area-context :reset) (cell-area-context-class :reset) :args
+                  ((context (:object cell-area-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellAreaContext.reset.html" :documentation
+                  "Resets any previously cached request and allocation
+data.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellAreaContext.reset.html")
+
+
+(rt:define-gvfunc (cell-editable :editing-done) (cell-editable-iface :editing-done) :args
+                  ((cell-editable (:object cell-editable))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellEditable.editing_done.html" :documentation
+                  "Emits the `GtkCellEditable::editing-done` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellEditable.editing_done.html")
+
+
+(rt:define-gvfunc (cell-editable :remove-widget) (cell-editable-iface :remove-widget) :args
+                  ((cell-editable (:object cell-editable))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellEditable.remove_widget.html" :documentation
+                  "Emits the `GtkCellEditable::remove-widget` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellEditable.remove_widget.html")
+
+
+(rt:define-gvfunc (cell-editable :start-editing) (cell-editable-iface :start-editing) :args
+                  ((cell-editable (:object cell-editable)) (event :pointer)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellEditable.start_editing.html" :documentation
+                  "Begins editing on a CELL-EDITABLE.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellEditable.start_editing.html")
+
+
+(rt:define-gvfunc (cell-layout :add-attribute) (cell-layout-iface :add-attribute) :args
+                  ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))
+                   (attribute :string) (column :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellLayout.add_attribute.html"
+                  :documentation "Adds an attribute mapping to the list in CELL-LAYOUT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.add_attribute.html")
+
+
+(rt:define-gvfunc (cell-layout :clear) (cell-layout-iface :clear) :args
+                  ((cell-layout (:object cell-layout))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellLayout.clear.html" :documentation
+                  "Unsets all the mappings on all renderers on CELL-LAYOUT and
+removes all renderers from CELL-LAYOUT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.clear.html")
+
+
+(rt:define-gvfunc (cell-layout :clear-attributes) (cell-layout-iface :clear-attributes) :args
+                  ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellLayout.clear_attributes.html" :documentation
+                  "Clears all existing attributes previously set with
+gtk_cell_layout_set_attributes().
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.clear_attributes.html")
+
+
+(rt:define-gvfunc (cell-layout :get-area) (cell-layout-iface :get-area) :args
+                  ((cell-layout (:object cell-layout))) :return (:object cell-area) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellLayout.get_area.html" :documentation
+                  "Returns the underlying `gtk:cell-area` which might be CELL-LAYOUT
+if called on a `gtk:cell-area` or might be NIL if no `gtk:cell-area`
+is used by CELL-LAYOUT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.get_area.html")
+
+
+(rt:define-gvfunc (cell-layout :pack-end) (cell-layout-iface :pack-end) :args
+                  ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))
+                   (expand :boolean))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellLayout.pack_end.html" :documentation
+                  "Adds the CELL to the end of CELL-LAYOUT. If EXPAND is NIL, then the
+CELL is allocated no more space than it needs. Any unused space is
+divided evenly between cells for which EXPAND is T.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.pack_end.html")
+
+
+(rt:define-gvfunc (cell-layout :pack-start) (cell-layout-iface :pack-start) :args
+                  ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))
+                   (expand :boolean))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellLayout.pack_start.html" :documentation
+                  "Packs the CELL into the beginning of CELL-LAYOUT. If EXPAND is NIL,
+then the CELL is allocated no more space than it needs. Any unused space
+is divided evenly between cells for which EXPAND is T.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.pack_start.html")
+
+
+(rt:define-gvfunc (cell-layout :reorder) (cell-layout-iface :reorder) :args
+                  ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))
+                   (position :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellLayout.reorder.html" :documentation
+                  "Re-inserts CELL at POSITION.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellLayout.reorder.html")
+
+
+(rt:define-gvfunc (cell-renderer :activate) (cell-renderer-class :activate) :args
+                  ((cell (:object cell-renderer)) (event :pointer) (widget (:object widget))
+                   (path :string)
+                   (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.activate.html" :documentation
+                  "Passes an activate event to the cell renderer for possible processing.
+Some cell renderers may use events; for example, `gtk:cell-renderer-toggle`
+toggles when it gets a mouse click.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.activate.html")
+
+
+(rt:define-gvfunc (cell-renderer :editing-canceled) (cell-renderer-class :editing-canceled) :args
+                  ((cell (:object cell-renderer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.editing_canceled.html"
+                  :documentation
+                  "Signal gets emitted when the user cancels the process of editing a cell.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.editing_canceled.html")
+
+
+(rt:define-gvfunc (cell-renderer :editing-started) (cell-renderer-class :editing-started) :args
+                  ((cell (:object cell-renderer)) (editable (:object cell-editable))
+                   (path :string))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellRenderer.editing_started.html"
+                  :documentation "Signal gets emitted when a cell starts to be edited.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.editing_started.html")
+
+
+(rt:define-gvfunc (cell-renderer :get-preferred-height) (cell-renderer-class :get-preferred-height)
+                  :args
+                  ((cell (:object cell-renderer)) (widget (:object widget))
+                   (minimum-size :int :direction :out :transfer :full)
+                   (natural-size :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_height.html"
+                  :documentation "Retrieves a renderer’s natural size when rendered to WIDGET.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_height.html")
+
+
+(rt:define-gvfunc (cell-renderer :get-preferred-height-for-width)
+                  (cell-renderer-class :get-preferred-height-for-width) :args
+                  ((cell (:object cell-renderer)) (widget (:object widget)) (width :int)
+                   (minimum-height :int :direction :out :transfer :full)
+                   (natural-height :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_height_for_width.html"
+                  :documentation
+                  "Retrieves a cell renderers’s minimum and natural height if it were rendered to
+WIDGET with the specified WIDTH.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_height_for_width.html")
+
+
+(rt:define-gvfunc (cell-renderer :get-preferred-width) (cell-renderer-class :get-preferred-width)
+                  :args
+                  ((cell (:object cell-renderer)) (widget (:object widget))
+                   (minimum-size :int :direction :out :transfer :full)
+                   (natural-size :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_width.html"
+                  :documentation "Retrieves a renderer’s natural size when rendered to WIDGET.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_width.html")
+
+
+(rt:define-gvfunc (cell-renderer :get-preferred-width-for-height)
+                  (cell-renderer-class :get-preferred-width-for-height) :args
+                  ((cell (:object cell-renderer)) (widget (:object widget)) (height :int)
+                   (minimum-width :int :direction :out :transfer :full)
+                   (natural-width :int :direction :out :transfer :full))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_width_for_height.html"
+                  :documentation
+                  "Retrieves a cell renderers’s minimum and natural width if it were rendered to
+WIDGET with the specified HEIGHT.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_preferred_width_for_height.html")
+
+
+(rt:define-gvfunc (cell-renderer :get-request-mode) (cell-renderer-class :get-request-mode) :args
+                  ((cell (:object cell-renderer))) :return (:enum size-request-mode) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_request_mode.html"
+                  :documentation "Gets whether the cell renderer prefers a height-for-width layout
+or a width-for-height layout.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.get_request_mode.html")
+
+
+(rt:define-gvfunc (cell-renderer :snapshot) (cell-renderer-class :snapshot) :args
+                  ((cell (:object cell-renderer)) (snapshot (:object snapshot))
+                   (widget (:object widget))
+                   (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellRenderer.snapshot.html" :documentation
+                  "Invokes the virtual render function of the `gtk:cell-renderer`. The three
+passed-in rectangles are areas in CR. Most renderers will draw within
+CELL-AREA; the xalign, yalign, xpad, and ypad fields of the `gtk:cell-renderer`
+should be honored with respect to CELL-AREA. BACKGROUND-AREA includes the
+blank space around the cell, and also the area containing the tree expander;
+so the BACKGROUND-AREA rectangles for all cells tile to cover the entire
+WINDOW.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.snapshot.html")
+
+
+(rt:define-gvfunc (cell-renderer :start-editing) (cell-renderer-class :start-editing) :args
+                  ((cell (:object cell-renderer)) (event :pointer) (widget (:object widget))
+                   (path :string)
+                   (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                   (flags (:flags cell-renderer-state)))
+                  :return (:object cell-editable) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CellRenderer.start_editing.html" :documentation
+                  "Starts editing the contents of this CELL, through a new `gtk:cell-editable`
+widget created by the `gtk:cell-renderer`Class.start_editing virtual function.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.CellRenderer.start_editing.html")
+
+
+(rt:define-gvfunc (cell-renderer-text :edited) (cell-renderer-text-class :edited) :args
+                  ((cell-renderer-text (:object cell-renderer-text)) (path :string)
+                   (new-text :string))
+                  :url "https://docs.gtk.org/gtk4/vfunc.CellRendererText.edited.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.CellRendererText.edited.html")
+
+
+(rt:define-gvfunc (check-button :activate) (check-button-class :activate) :args
+                  ((check-button (:object check-button))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CheckButton.activate.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.CheckButton.activate.html")
+
+
+(rt:define-gvfunc (check-button :toggled) (check-button-class :toggled) :args
+                  ((check-button (:object check-button))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.CheckButton.toggled.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.CheckButton.toggled.html")
+
+
+(rt:define-gvfunc (color-chooser :color-activated) (color-chooser-interface :color-activated) :args
+                  ((chooser (:object color-chooser))
+                   (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.ColorChooser.color_activated.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.ColorChooser.color_activated.html")
+
+
+(rt:define-gvfunc (color-chooser :set-rgba) (color-chooser-interface :set-rgba) :args
+                  ((chooser (:object color-chooser))
+                   (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.ColorChooser.set_rgba.html" :documentation
+                  "Sets the color.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ColorChooser.set_rgba.html")
+
+
+(rt:define-gvfunc (combo-box :activate) (combo-box-class :activate) :args
+                  ((combo-box (:object combo-box))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.ComboBox.activate.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.ComboBox.activate.html")
+
+
+(rt:define-gvfunc (combo-box :changed) (combo-box-class :changed) :args
+                  ((combo-box (:object combo-box))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.ComboBox.changed.html" :documentation
+                  "Signal is emitted when the active item is changed.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ComboBox.changed.html")
+
+
+(rt:define-gvfunc (combo-box :format-entry-text) (combo-box-class :format-entry-text) :args
+                  ((combo-box (:object combo-box)) (path :string)) :return :string :return-transfer
+                  :full :url "https://docs.gtk.org/gtk4/vfunc.ComboBox.format_entry_text.html"
+                  :documentation "Signal which allows you to change how the text
+   displayed in a combo box’s entry is displayed.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ComboBox.format_entry_text.html")
+
+
+(rt:define-gvfunc (dialog :close) (dialog-class :close) :args ((dialog (:object dialog))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Dialog.close.html" :documentation
+                  "Signal emitted when the user uses a keybinding to close the dialog.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Dialog.close.html")
+
+
+(rt:define-gvfunc (dialog :response) (dialog-class :response) :args
+                  ((dialog (:object dialog)) (response-id :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Dialog.response.html" :documentation
+                  "Emits the ::response signal with the given response ID.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Dialog.response.html")
+
+
+(rt:define-gvfunc (drawing-area :resize) (drawing-area-class :resize) :args
+                  ((area (:object drawing-area)) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.DrawingArea.resize.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.DrawingArea.resize.html")
+
+
+(rt:define-gvfunc (editable :changed) (editable-interface :changed) :args
+                  ((editable (:object editable))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Editable.changed.html")
+
+
+(rt:define-gvfunc (editable :delete-text) (editable-interface :delete-text) :args
+                  ((editable (:object editable)) (start-pos :int) (end-pos :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.delete_text.html" :documentation
+                  "Deletes a sequence of characters.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.delete_text.html")
+
+
+(rt:define-gvfunc (editable :do-delete-text) (editable-interface :do-delete-text) :args
+                  ((editable (:object editable)) (start-pos :int) (end-pos :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.do_delete_text.html" :documentation
+                  "Deletes a sequence of characters.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.do_delete_text.html")
+
+
+(rt:define-gvfunc (editable :get-complete-text) (editable-interface :get-complete-text) :args
+                  ((editable (:object editable))) :return :string :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.get_complete_text.html" :documentation
+                  "Retrieves the contents of EDITABLE, including *pseudo-content*
+such as the preedit buffer.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.get_complete_text.html
+Since: 4.24")
+
+
+(rt:define-gvfunc (editable :get-delegate) (editable-interface :get-delegate) :args
+                  ((editable (:object editable))) :return (:object editable) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.get_delegate.html" :documentation
+                  "Gets the `gtk:editable` that EDITABLE is delegating its
+implementation to.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.get_delegate.html")
+
+
+(rt:define-gvfunc (editable :get-selection-bounds) (editable-interface :get-selection-bounds) :args
+                  ((editable (:object editable)) (start-pos :int :direction :out :transfer :full)
+                   (end-pos :int :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.get_selection_bounds.html"
+                  :documentation "Retrieves the selection bound of the editable.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.get_selection_bounds.html")
+
+
+(rt:define-gvfunc (editable :set-selection-bounds) (editable-interface :set-selection-bounds) :args
+                  ((editable (:object editable)) (start-pos :int) (end-pos :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Editable.set_selection_bounds.html"
+                  :documentation "Selects a region of text.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Editable.set_selection_bounds.html")
+
+
+(rt:define-gvfunc (entry :activate) (entry-class :activate) :args ((entry (:object entry))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Entry.activate.html" :documentation
+                  "Class handler for the `GtkEntry::activate` signal. The default
+  implementation activates the gtk.activate-default action.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Entry.activate.html")
+
+
+(rt:define-gvfunc (entry-buffer :delete-text) (entry-buffer-class :delete-text) :args
+                  ((buffer (:object entry-buffer)) (position :uint) (n-chars :uint)) :return :uint
+                  :url "https://docs.gtk.org/gtk4/vfunc.EntryBuffer.delete_text.html"
+                  :documentation "Deletes a sequence of characters from the buffer.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.EntryBuffer.delete_text.html")
+
+
+(rt:define-gvfunc (entry-buffer :deleted-text) (entry-buffer-class :deleted-text) :args
+                  ((buffer (:object entry-buffer)) (position :uint) (n-chars :uint)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.EntryBuffer.deleted_text.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.EntryBuffer.deleted_text.html")
+
+
+(rt:define-gvfunc (entry-buffer :get-length) (entry-buffer-class :get-length) :args
+                  ((buffer (:object entry-buffer))) :return :uint :url
+                  "https://docs.gtk.org/gtk4/vfunc.EntryBuffer.get_length.html" :documentation
+                  "Retrieves the length in characters of the buffer.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.EntryBuffer.get_length.html")
+
+
+(rt:define-gvfunc (entry-buffer :insert-text) (entry-buffer-class :insert-text) :args
+                  ((buffer (:object entry-buffer)) (position :uint) (chars :string)
+                   (n-chars :uint))
+                  :return :uint :url "https://docs.gtk.org/gtk4/vfunc.EntryBuffer.insert_text.html"
+                  :documentation "Inserts N-CHARS characters of CHARS into the contents of the
+buffer, at position POSITION.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.EntryBuffer.insert_text.html")
+
+
+(rt:define-gvfunc (entry-buffer :inserted-text) (entry-buffer-class :inserted-text) :args
+                  ((buffer (:object entry-buffer)) (position :uint) (chars :string)
+                   (n-chars :uint))
+                  :url "https://docs.gtk.org/gtk4/vfunc.EntryBuffer.inserted_text.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.EntryBuffer.inserted_text.html")
+
+
+(rt:define-gvfunc (filter :get-strictness) (filter-class :get-strictness) :args
+                  ((self (:object filter))) :return (:enum filter-match) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Filter.get_strictness.html" :documentation
+                  "Gets the known strictness of a filter.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Filter.get_strictness.html")
+
+
+(rt:define-gvfunc (filter :match) (filter-class :match) :args
+                  ((self (:object filter)) (item (:object rt:object))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Filter.match.html" :documentation
+                  "Checks if the given ITEM is matched by the filter or not.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Filter.match.html")
+
+
+(rt:define-gvfunc (flow-box-child :activate) (flow-box-child-class :activate) :args
+                  ((child (:object flow-box-child))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.FlowBoxChild.activate.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.FlowBoxChild.activate.html")
+
+
+(rt:define-gvfunc (font-chooser :font-activated) (font-chooser-iface :font-activated) :args
+                  ((chooser (:object font-chooser)) (fontname :string)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.font_activated.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.font_activated.html")
+
+
+(rt:define-gvfunc (font-chooser :get-font-face) (font-chooser-iface :get-font-face) :args
+                  ((fontchooser (:object font-chooser))) :return (:object pango:font-face) :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_face.html" :documentation
+                  "Gets the `pango:font-face` representing the selected font group
+details (i.e. family, slant, weight, width, etc).
+
+
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_face.html")
+
+
+(rt:define-gvfunc (font-chooser :get-font-family) (font-chooser-iface :get-font-family) :args
+                  ((fontchooser (:object font-chooser))) :return (:object pango:font-family) :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_family.html" :documentation
+                  "Gets the `pango:font-family` representing the selected font family.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_family.html")
+
+
+(rt:define-gvfunc (font-chooser :get-font-map) (font-chooser-iface :get-font-map) :args
+                  ((fontchooser (:object font-chooser))) :return (:object pango:font-map)
+                  :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_map.html" :documentation
+                  "Gets the custom font map of this font chooser widget,
+or NIL if it does not have one.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_map.html")
+
+
+(rt:define-gvfunc (font-chooser :get-font-size) (font-chooser-iface :get-font-size) :args
+                  ((fontchooser (:object font-chooser))) :return :int :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_size.html" :documentation
+                  "The selected font size.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.get_font_size.html")
+
+
+(rt:define-gvfunc (font-chooser :set-font-map) (font-chooser-iface :set-font-map) :args
+                  ((fontchooser (:object font-chooser)) (fontmap (:object pango:font-map))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.FontChooser.set_font_map.html" :documentation
+                  "Sets a custom font map to use for this font chooser widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.FontChooser.set_font_map.html")
+
+
+(rt:define-gvfunc (frame :compute-child-allocation) (frame-class :compute-child-allocation) :args
+                  ((frame (:object frame))
+                   (allocation (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Frame.compute_child_allocation.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Frame.compute_child_allocation.html")
+
+
+(rt:define-gvfunc (gl-area :render) (gl-area-class :render) :args
+                  ((area (:object gl-area)) (context (:object gdk:gl-context))) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.GLArea.render.html" :documentation
+                  "class closure for the `GtkGLArea::render` signal
+
+
+See: https://docs.gtk.org/gtk4/vfunc.GLArea.render.html")
+
+
+(rt:define-gvfunc (gl-area :resize) (gl-area-class :resize) :args
+                  ((area (:object gl-area)) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.GLArea.resize.html" :documentation
+                  "class closeure for the `GtkGLArea::resize` signal
+
+
+See: https://docs.gtk.org/gtk4/vfunc.GLArea.resize.html")
+
+
+(rt:define-gvfunc (im-context :activate-osk) (im-context-class :activate-osk) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.activate_osk.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.activate_osk.html")
+
+
+(rt:define-gvfunc (im-context :activate-osk-with-event) (im-context-class :activate-osk-with-event)
+                  :args ((context (:object im-context)) (event :pointer)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.activate_osk_with_event.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.activate_osk_with_event.html")
+
+
+(rt:define-gvfunc (im-context :commit) (im-context-class :commit) :args
+                  ((context (:object im-context)) (str :string)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.commit.html" :documentation
+                  "Default handler of the :commit signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.commit.html")
+
+
+(rt:define-gvfunc (im-context :delete-surrounding) (im-context-class :delete-surrounding) :args
+                  ((context (:object im-context)) (offset :int) (n-chars :int)) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.IMContext.delete_surrounding.html"
+                  :documentation "Asks the widget that the input context is attached to delete
+characters around the cursor position by emitting the
+`::delete_surrounding` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.delete_surrounding.html")
+
+
+(rt:define-gvfunc (im-context :filter-keypress) (im-context-class :filter-keypress) :args
+                  ((context (:object im-context)) (event :pointer)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.filter_keypress.html" :documentation
+                  "Allow an input method to internally handle key press and release
+events.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.filter_keypress.html")
+
+
+(rt:define-gvfunc (im-context :focus-in) (im-context-class :focus-in) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.focus_in.html" :documentation
+                  "Notify the input method that the widget to which this
+input context corresponds has gained focus.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.focus_in.html")
+
+
+(rt:define-gvfunc (im-context :focus-out) (im-context-class :focus-out) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.focus_out.html" :documentation
+                  "Notify the input method that the widget to which this
+input context corresponds has lost focus.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.focus_out.html")
+
+
+(rt:define-gvfunc (im-context :get-surrounding) (im-context-class :get-surrounding) :args
+                  ((context (:object im-context)) (text :string :direction :out :transfer :full)
+                   (cursor-index :int :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.get_surrounding.html" :documentation
+                  "Retrieves context around the insertion point.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.get_surrounding.html")
+
+
+(rt:define-gvfunc (im-context :get-surrounding-with-selection)
+                  (im-context-class :get-surrounding-with-selection) :args
+                  ((context (:object im-context)) (text :string :direction :out :transfer :full)
+                   (cursor-index :int :direction :out :transfer :full)
+                   (anchor-index :int :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.get_surrounding_with_selection.html"
+                  :documentation "Retrieves context around the insertion point.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.get_surrounding_with_selection.html
+Since: 4.2")
+
+
+(rt:define-gvfunc (im-context :invalid-composition) (im-context-class :invalid-composition) :args
+                  ((context (:object im-context)) (str :string)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.invalid_composition.html"
+                  :documentation "Default handler of the
+  :invalid-composition signal. Since: 4.22
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.invalid_composition.html")
+
+
+(rt:define-gvfunc (im-context :preedit-changed) (im-context-class :preedit-changed) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_changed.html" :documentation
+                  "Default handler of the :preedit-changed
+  signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_changed.html")
+
+
+(rt:define-gvfunc (im-context :preedit-end) (im-context-class :preedit-end) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_end.html" :documentation
+                  "Default handler of the :preedit-end signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_end.html")
+
+
+(rt:define-gvfunc (im-context :preedit-start) (im-context-class :preedit-start) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_start.html" :documentation
+                  "Default handler of the :preedit-start signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.preedit_start.html")
+
+
+(rt:define-gvfunc (im-context :reset) (im-context-class :reset) :args
+                  ((context (:object im-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.reset.html" :documentation
+                  "Notify the input method that a change such as a change in cursor
+position has been made.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.reset.html")
+
+
+(rt:define-gvfunc (im-context :retrieve-surrounding) (im-context-class :retrieve-surrounding) :args
+                  ((context (:object im-context))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.retrieve_surrounding.html"
+                  :documentation "Default handler of the
+  :retrieve-surrounding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.retrieve_surrounding.html")
+
+
+(rt:define-gvfunc (im-context :set-client-widget) (im-context-class :set-client-widget) :args
+                  ((context (:object im-context)) (widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.set_client_widget.html" :documentation
+                  "Set the client widget for the input context.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.set_client_widget.html")
+
+
+(rt:define-gvfunc (im-context :set-cursor-location) (im-context-class :set-cursor-location) :args
+                  ((context (:object im-context))
+                   (area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.IMContext.set_cursor_location.html"
+                  :documentation "Notify the input method that a change in cursor
+position has been made.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.set_cursor_location.html")
+
+
+(rt:define-gvfunc (im-context :set-surrounding) (im-context-class :set-surrounding) :args
+                  ((context (:object im-context)) (text :string) (len :int) (cursor-index :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.IMContext.set_surrounding.html"
+                  :documentation "Sets surrounding context around the insertion point and preedit
+string.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.set_surrounding.html")
+
+
+(rt:define-gvfunc (im-context :set-surrounding-with-selection)
+                  (im-context-class :set-surrounding-with-selection) :args
+                  ((context (:object im-context)) (text :string) (len :int) (cursor-index :int)
+                   (anchor-index :int))
+                  :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.set_surrounding_with_selection.html"
+                  :documentation "Sets surrounding context around the insertion point and preedit
+string. This function is expected to be called in response to the
+`Gtk.IMContext::retrieve_surrounding` signal, and will likely
+have no effect if called at other times.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.set_surrounding_with_selection.html
+Since: 4.2")
+
+
+(rt:define-gvfunc (im-context :set-use-preedit) (im-context-class :set-use-preedit) :args
+                  ((context (:object im-context)) (use-preedit :boolean)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.IMContext.set_use_preedit.html" :documentation
+                  "Sets whether the IM context should use the preedit string
+to display feedback.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.IMContext.set_use_preedit.html")
+
+
+(rt:define-gvfunc (layout-manager :allocate) (layout-manager-class :allocate) :args
+                  ((manager (:object layout-manager)) (widget (:object widget)) (width :int)
+                   (height :int) (baseline :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.LayoutManager.allocate.html" :documentation
+                  "Assigns the given WIDTH, HEIGHT, and BASELINE to
+a WIDGET, and computes the position and sizes of the children of
+the WIDGET using the layout management policy of MANAGER.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.allocate.html")
+
+
+(rt:define-gvfunc (layout-manager :create-layout-child) (layout-manager-class :create-layout-child)
+                  :args
+                  ((manager (:object layout-manager)) (widget (:object widget))
+                   (for-child (:object widget)))
+                  :return (:object layout-child) :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.LayoutManager.create_layout_child.html"
+                  :documentation
+                  "Create a `gtk:layout-child` instance for the given FOR-CHILD widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.create_layout_child.html")
+
+
+(rt:define-gvfunc (layout-manager :get-request-mode) (layout-manager-class :get-request-mode) :args
+                  ((manager (:object layout-manager)) (widget (:object widget))) :return
+                  (:enum size-request-mode) :url
+                  "https://docs.gtk.org/gtk4/vfunc.LayoutManager.get_request_mode.html"
+                  :documentation "a virtual function, used to return the preferred
+  request mode for the layout manager; for instance, \"width for height\"
+  or \"height for width\"; see `gtk:size-request-mode`
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.get_request_mode.html")
+
+
+(rt:define-gvfunc (layout-manager :measure) (layout-manager-class :measure) :args
+                  ((manager (:object layout-manager)) (widget (:object widget))
+                   (orientation (:enum orientation)) (for-size :int)
+                   (minimum :int :direction :out :transfer :full)
+                   (natural :int :direction :out :transfer :full)
+                   (minimum-baseline :int :direction :out :transfer :full)
+                   (natural-baseline :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.LayoutManager.measure.html" :documentation
+                  "Measures the size of the WIDGET using MANAGER, for the
+given ORIENTATION and size.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.measure.html")
+
+
+(rt:define-gvfunc (layout-manager :root) (layout-manager-class :root) :args
+                  ((manager (:object layout-manager))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.LayoutManager.root.html" :documentation
+                  "a virtual function, called when the widget using the layout
+  manager is attached to a `gtk:root`
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.root.html")
+
+
+(rt:define-gvfunc (layout-manager :unroot) (layout-manager-class :unroot) :args
+                  ((manager (:object layout-manager))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.LayoutManager.unroot.html" :documentation
+                  "a virtual function, called when the widget using the layout
+  manager is detached from a `gtk:root`
+
+
+See: https://docs.gtk.org/gtk4/vfunc.LayoutManager.unroot.html")
+
+
+(rt:define-gvfunc (list-box-row :activate) (list-box-row-class :activate) :args
+                  ((row (:object list-box-row))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.ListBoxRow.activate.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.ListBoxRow.activate.html")
+
+
+(rt:define-gvfunc (media-file :close) (media-file-class :close) :args ((self (:object media-file)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.MediaFile.close.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.MediaFile.close.html")
+
+
+(rt:define-gvfunc (media-file :open) (media-file-class :open) :args ((self (:object media-file)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.MediaFile.open.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.MediaFile.open.html")
+
+
+(rt:define-gvfunc (media-stream :pause) (media-stream-class :pause) :args
+                  ((self (:object media-stream))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.pause.html" :documentation
+                  "Pauses playback of the stream.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.pause.html")
+
+
+(rt:define-gvfunc (media-stream :play) (media-stream-class :play) :args
+                  ((self (:object media-stream))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.play.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.play.html")
+
+
+(rt:define-gvfunc (media-stream :realize) (media-stream-class :realize) :args
+                  ((self (:object media-stream)) (surface (:object gdk:surface))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.realize.html" :documentation
+                  "Called by users to attach the media stream to a `gdk:surface` they manage.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.realize.html")
+
+
+(rt:define-gvfunc (media-stream :seek) (media-stream-class :seek) :args
+                  ((self (:object media-stream)) (timestamp :int64)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.seek.html" :documentation
+                  "Start a seek operation on SELF to TIMESTAMP.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.seek.html")
+
+
+(rt:define-gvfunc (media-stream :unrealize) (media-stream-class :unrealize) :args
+                  ((self (:object media-stream)) (surface (:object gdk:surface))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.unrealize.html" :documentation
+                  "Undoes a previous call to `gtk:media-stream-realize`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.unrealize.html")
+
+
+(rt:define-gvfunc (media-stream :update-audio) (media-stream-class :update-audio) :args
+                  ((self (:object media-stream)) (muted :boolean) (volume :double)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.MediaStream.update_audio.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.MediaStream.update_audio.html")
+
+
+(rt:define-gvfunc (native-dialog :hide) (native-dialog-class :hide) :args
+                  ((self (:object native-dialog))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.NativeDialog.hide.html" :documentation
+                  "Hides the dialog if it is visible, aborting any interaction.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.NativeDialog.hide.html")
+
+
+(rt:define-gvfunc (native-dialog :response) (native-dialog-class :response) :args
+                  ((self (:object native-dialog)) (response-id :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.NativeDialog.response.html" :documentation
+                  "class handler for the `GtkNativeDialog::response` signal
+
+
+See: https://docs.gtk.org/gtk4/vfunc.NativeDialog.response.html")
+
+
+(rt:define-gvfunc (native-dialog :show) (native-dialog-class :show) :args
+                  ((self (:object native-dialog))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.NativeDialog.show.html" :documentation
+                  "Shows the dialog on the display.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.NativeDialog.show.html")
+
+
+(rt:define-gvfunc (popover :activate-default) (popover-class :activate-default) :args
+                  ((popover (:object popover))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Popover.activate_default.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Popover.activate_default.html")
+
+
+(rt:define-gvfunc (popover :closed) (popover-class :closed) :args ((popover (:object popover)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Popover.closed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Popover.closed.html")
+
+
+(rt:define-gvfunc (print-operation :begin-print) (print-operation-class :begin-print) :args
+                  ((operation (:object print-operation)) (context (:object print-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperation.begin_print.html" :documentation
+                  "Signal emitted after the user has finished changing
+   print settings in the dialog, before the actual rendering starts.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.begin_print.html")
+
+
+(rt:define-gvfunc (print-operation :custom-widget-apply)
+                  (print-operation-class :custom-widget-apply) :args
+                  ((operation (:object print-operation)) (widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperation.custom_widget_apply.html"
+                  :documentation "Signal emitted right before “begin-print” if
+   you added a custom widget in the “create-custom-widget” handler.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.custom_widget_apply.html")
+
+
+(rt:define-gvfunc (print-operation :done) (print-operation-class :done) :args
+                  ((operation (:object print-operation)) (result (:enum print-operation-result)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperation.done.html" :documentation
+                  "Signal emitted when the print operation run has finished
+   doing everything required for printing.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.done.html")
+
+
+(rt:define-gvfunc (print-operation :draw-page) (print-operation-class :draw-page) :args
+                  ((operation (:object print-operation)) (context (:object print-context))
+                   (page-nr :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperation.draw_page.html"
+                  :documentation "Signal emitted for every page that is printed.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.draw_page.html")
+
+
+(rt:define-gvfunc (print-operation :end-print) (print-operation-class :end-print) :args
+                  ((operation (:object print-operation)) (context (:object print-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperation.end_print.html" :documentation
+                  "Signal emitted after all pages have been rendered.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.end_print.html")
+
+
+(rt:define-gvfunc (print-operation :paginate) (print-operation-class :paginate) :args
+                  ((operation (:object print-operation)) (context (:object print-context))) :return
+                  :boolean :url "https://docs.gtk.org/gtk4/vfunc.PrintOperation.paginate.html"
+                  :documentation "Signal emitted after the “begin-print” signal, but
+   before the actual rendering starts.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.paginate.html")
+
+
+(rt:define-gvfunc (print-operation :preview) (print-operation-class :preview) :args
+                  ((operation (:object print-operation))
+                   (preview (:object print-operation-preview)) (context (:object print-context))
+                   (parent (:object window)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperation.preview.html" :documentation
+                  "Signal emitted when a preview is requested from the
+   native dialog.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.preview.html")
+
+
+(rt:define-gvfunc (print-operation :request-page-setup) (print-operation-class :request-page-setup)
+                  :args
+                  ((operation (:object print-operation)) (context (:object print-context))
+                   (page-nr :int) (setup (:object page-setup)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperation.request_page_setup.html"
+                  :documentation "Emitted once for every page that is printed,
+   to give the application a chance to modify the page setup.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.request_page_setup.html")
+
+
+(rt:define-gvfunc (print-operation :status-changed) (print-operation-class :status-changed) :args
+                  ((operation (:object print-operation))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperation.status_changed.html"
+                  :documentation "Emitted at between the various phases of the print
+   operation.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.status_changed.html")
+
+
+(rt:define-gvfunc (print-operation :update-custom-widget)
+                  (print-operation-class :update-custom-widget) :args
+                  ((operation (:object print-operation)) (widget (:object widget))
+                   (setup (:object page-setup)) (settings (:object print-settings)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperation.update_custom_widget.html"
+                  :documentation "Emitted after change of selected printer.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperation.update_custom_widget.html")
+
+
+(rt:define-gvfunc (print-operation-preview :end-preview)
+                  (print-operation-preview-iface :end-preview) :args
+                  ((preview (:object print-operation-preview))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.end_preview.html"
+                  :documentation "Ends a preview.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.end_preview.html")
+
+
+(rt:define-gvfunc (print-operation-preview :got-page-size)
+                  (print-operation-preview-iface :got-page-size) :args
+                  ((preview (:object print-operation-preview)) (context (:object print-context))
+                   (page-setup (:object page-setup)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.got_page_size.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.got_page_size.html")
+
+
+(rt:define-gvfunc (print-operation-preview :is-selected)
+                  (print-operation-preview-iface :is-selected) :args
+                  ((preview (:object print-operation-preview)) (page-nr :int)) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.is_selected.html"
+                  :documentation
+                  "Returns whether the given page is included in the set of pages that
+have been selected for printing.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.is_selected.html")
+
+
+(rt:define-gvfunc (print-operation-preview :ready) (print-operation-preview-iface :ready) :args
+                  ((preview (:object print-operation-preview)) (context (:object print-context)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.ready.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.ready.html")
+
+
+(rt:define-gvfunc (print-operation-preview :render-page)
+                  (print-operation-preview-iface :render-page) :args
+                  ((preview (:object print-operation-preview)) (page-nr :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.render_page.html"
+                  :documentation "Renders a page to the preview.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.PrintOperationPreview.render_page.html")
+
+
+(rt:define-gvfunc (range :adjust-bounds) (range-class :adjust-bounds) :args
+                  ((range (:object range)) (new-value :double)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Range.adjust_bounds.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Range.adjust_bounds.html")
+
+
+(rt:define-gvfunc (range :change-value) (range-class :change-value) :args
+                  ((range (:object range)) (scroll (:enum scroll-type)) (new-value :double))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.Range.change_value.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Range.change_value.html")
+
+
+(rt:define-gvfunc (range :get-range-border) (range-class :get-range-border) :args
+                  ((range (:object range))
+                   (border- (:boxed "GtkBorder" "gtk_border_get_type" border)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Range.get_range_border.html" :documentation
+                  "
+See: https://docs.gtk.org/gtk4/vfunc.Range.get_range_border.html")
+
+
+(rt:define-gvfunc (range :move-slider) (range-class :move-slider) :args
+                  ((range (:object range)) (scroll (:enum scroll-type))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Range.move_slider.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Range.move_slider.html")
+
+
+(rt:define-gvfunc (range :value-changed) (range-class :value-changed) :args
+                  ((range (:object range))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Range.value_changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.Range.value_changed.html")
+
+
+(rt:define-gvfunc (recent-manager :changed) (recent-manager-class :changed) :args
+                  ((manager (:object recent-manager))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.RecentManager.changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.RecentManager.changed.html")
+
+
+(rt:define-gvfunc (scale :get-layout-offsets) (scale-class :get-layout-offsets) :args
+                  ((scale (:object scale)) (x :int :direction :out :transfer :full)
+                   (y :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Scale.get_layout_offsets.html"
+                  :documentation "Obtains the coordinates where the scale will draw the
+`pango:layout` representing the text in the scale.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Scale.get_layout_offsets.html")
+
+
+(rt:define-gvfunc (scale-button :value-changed) (scale-button-class :value-changed) :args
+                  ((button (:object scale-button)) (value :double)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.ScaleButton.value_changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.ScaleButton.value_changed.html")
+
+
+(rt:define-gvfunc (section-model :get-section) (section-model-interface :get-section) :args
+                  ((self (:object section-model)) (position :uint)
+                   (out-start :uint :direction :out :transfer :full)
+                   (out-end :uint :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.SectionModel.get_section.html"
+                  :documentation "Query the section that covers the given position. The number of
+items in the section can be computed by `out_end - out_start`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SectionModel.get_section.html
+Since: 4.12")
+
+
+(rt:define-gvfunc (selection-model :get-selection-in-range)
+                  (selection-model-interface :get-selection-in-range) :args
+                  ((model (:object selection-model)) (position :uint) (n-items :uint)) :return
+                  (:boxed "GtkBitset" "gtk_bitset_get_type") :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.get_selection_in_range.html"
+                  :documentation "Gets the set of selected items in a range.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.get_selection_in_range.html")
+
+
+(rt:define-gvfunc (selection-model :is-selected) (selection-model-interface :is-selected) :args
+                  ((model (:object selection-model)) (position :uint)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.is_selected.html" :documentation
+                  "Checks if the given item is selected.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.is_selected.html")
+
+
+(rt:define-gvfunc (selection-model :select-all) (selection-model-interface :select-all) :args
+                  ((model (:object selection-model))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_all.html" :documentation
+                  "Requests to select all items in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_all.html")
+
+
+(rt:define-gvfunc (selection-model :select-item) (selection-model-interface :select-item) :args
+                  ((model (:object selection-model)) (position :uint) (unselect-rest :boolean))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_item.html" :documentation
+                  "Requests to select an item in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_item.html")
+
+
+(rt:define-gvfunc (selection-model :select-range) (selection-model-interface :select-range) :args
+                  ((model (:object selection-model)) (position :uint) (n-items :uint)
+                   (unselect-rest :boolean))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_range.html" :documentation
+                  "Requests to select a range of items in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.select_range.html")
+
+
+(rt:define-gvfunc (selection-model :set-selection) (selection-model-interface :set-selection) :args
+                  ((model (:object selection-model))
+                   (selected (:boxed "GtkBitset" "gtk_bitset_get_type"))
+                   (mask (:boxed "GtkBitset" "gtk_bitset_get_type")))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.set_selection.html"
+                  :documentation "Make selection changes.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.set_selection.html")
+
+
+(rt:define-gvfunc (selection-model :unselect-all) (selection-model-interface :unselect-all) :args
+                  ((model (:object selection-model))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_all.html" :documentation
+                  "Requests to unselect all items in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_all.html")
+
+
+(rt:define-gvfunc (selection-model :unselect-item) (selection-model-interface :unselect-item) :args
+                  ((model (:object selection-model)) (position :uint)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_item.html"
+                  :documentation "Requests to unselect an item in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_item.html")
+
+
+(rt:define-gvfunc (selection-model :unselect-range) (selection-model-interface :unselect-range)
+                  :args ((model (:object selection-model)) (position :uint) (n-items :uint))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_range.html"
+                  :documentation "Requests to unselect a range of items in the model.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.SelectionModel.unselect_range.html")
+
+
+(rt:define-gvfunc (shortcut-manager :add-controller) (shortcut-manager-interface :add-controller)
+                  :args
+                  ((self (:object shortcut-manager)) (controller (:object shortcut-controller)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.ShortcutManager.add_controller.html"
+                  :documentation "Add a `gtk:shortcut-controller` to be managed.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ShortcutManager.add_controller.html")
+
+
+(rt:define-gvfunc (shortcut-manager :remove-controller)
+                  (shortcut-manager-interface :remove-controller) :args
+                  ((self (:object shortcut-manager)) (controller (:object shortcut-controller)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.ShortcutManager.remove_controller.html"
+                  :documentation "Remove a `gtk:shortcut-controller` that had previously
+  been added
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ShortcutManager.remove_controller.html")
+
+
+(rt:define-gvfunc (sorter :compare) (sorter-class :compare) :args
+                  ((self (:object sorter)) (item1 (:object rt:object)) (item2 (:object rt:object)))
+                  :return (:enum ordering) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Sorter.compare.html" :documentation
+                  "Compares two given items according to the sort order implemented
+by the sorter.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Sorter.compare.html")
+
+
+(rt:define-gvfunc (sorter :get-order) (sorter-class :get-order) :args ((self (:object sorter)))
+                  :return (:enum sorter-order) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Sorter.get_order.html" :documentation
+                  "Gets the order that SELF conforms to.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Sorter.get_order.html")
+
+
+(rt:define-gvfunc (style-context :changed) (style-context-class :changed) :args
+                  ((context (:object style-context))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.StyleContext.changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.StyleContext.changed.html")
+
+
+(rt:define-gvfunc (text-buffer :apply-tag) (text-buffer-class :apply-tag) :args
+                  ((buffer (:object text-buffer)) (tag (:object text-tag))
+                   (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.apply_tag.html" :documentation
+                  "Emits the “apply-tag” signal on BUFFER.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.apply_tag.html")
+
+
+(rt:define-gvfunc (text-buffer :begin-user-action) (text-buffer-class :begin-user-action) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.begin_user_action.html"
+                  :documentation "Called to indicate that the buffer operations between here and a
+call to `gtk:text-buffer-end-user-action` are part of a single
+user-visible operation.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.begin_user_action.html")
+
+
+(rt:define-gvfunc (text-buffer :changed) (text-buffer-class :changed) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.changed.html" :documentation
+                  "The class handler for the `GtkTextBuffer::changed` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.changed.html")
+
+
+(rt:define-gvfunc (text-buffer :delete-range) (text-buffer-class :delete-range) :args
+                  ((buffer (:object text-buffer))
+                   (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.delete_range.html"
+                  :documentation "The class handler for the `GtkTextBuffer::delete-range` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.delete_range.html")
+
+
+(rt:define-gvfunc (text-buffer :end-user-action) (text-buffer-class :end-user-action) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.end_user_action.html" :documentation
+                  "Ends a user-visible operation.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.end_user_action.html")
+
+
+(rt:define-gvfunc (text-buffer :insert-child-anchor) (text-buffer-class :insert-child-anchor) :args
+                  ((buffer (:object text-buffer))
+                   (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (anchor (:object text-child-anchor)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_child_anchor.html"
+                  :documentation "Inserts a child widget anchor into the text buffer at ITER.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_child_anchor.html")
+
+
+(rt:define-gvfunc (text-buffer :insert-paintable) (text-buffer-class :insert-paintable) :args
+                  ((buffer (:object text-buffer))
+                   (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (paintable (:object gdk:paintable)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_paintable.html"
+                  :documentation "Inserts an image into the text buffer at ITER.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_paintable.html")
+
+
+(rt:define-gvfunc (text-buffer :insert-text) (text-buffer-class :insert-text) :args
+                  ((buffer (:object text-buffer))
+                   (pos (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (new-text :string) (new-text-length :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_text.html" :documentation
+                  "The class handler for the `GtkTextBuffer::insert-text` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.insert_text.html")
+
+
+(rt:define-gvfunc (text-buffer :mark-deleted) (text-buffer-class :mark-deleted) :args
+                  ((buffer (:object text-buffer)) (mark (:object text-mark))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.mark_deleted.html" :documentation
+                  "The class handler for the `GtkTextBuffer::mark-deleted` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.mark_deleted.html")
+
+
+(rt:define-gvfunc (text-buffer :mark-set) (text-buffer-class :mark-set) :args
+                  ((buffer (:object text-buffer))
+                   (location (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (mark (:object text-mark)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.mark_set.html" :documentation
+                  "The class handler for the `GtkTextBuffer::mark-set` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.mark_set.html")
+
+
+(rt:define-gvfunc (text-buffer :modified-changed) (text-buffer-class :modified-changed) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.modified_changed.html" :documentation
+                  "The class handler for the `GtkTextBuffer::modified-changed` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.modified_changed.html")
+
+
+(rt:define-gvfunc (text-buffer :paste-done) (text-buffer-class :paste-done) :args
+                  ((buffer (:object text-buffer)) (clipboard (:object gdk:clipboard))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.paste_done.html" :documentation
+                  "The class handler for the `GtkTextBuffer::paste-done` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.paste_done.html")
+
+
+(rt:define-gvfunc (text-buffer :redo) (text-buffer-class :redo) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.redo.html" :documentation
+                  "Redoes the next redoable action on the buffer, if there is one.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.redo.html")
+
+
+(rt:define-gvfunc (text-buffer :remove-tag) (text-buffer-class :remove-tag) :args
+                  ((buffer (:object text-buffer)) (tag (:object text-tag))
+                   (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextBuffer.remove_tag.html" :documentation
+                  "Emits the “remove-tag” signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.remove_tag.html")
+
+
+(rt:define-gvfunc (text-buffer :undo) (text-buffer-class :undo) :args
+                  ((buffer (:object text-buffer))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextBuffer.undo.html" :documentation
+                  "Undoes the last undoable action on the buffer, if there is one.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextBuffer.undo.html")
+
+
+(rt:define-gvfunc (text-view :backspace) (text-view-class :backspace) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.backspace.html" :documentation
+                  "The class handler for the `GtkTextView::backspace`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.backspace.html")
+
+
+(rt:define-gvfunc (text-view :copy-clipboard) (text-view-class :copy-clipboard) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.copy_clipboard.html" :documentation
+                  "The class handler for the `GtkTextView::copy-clipboard`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.copy_clipboard.html")
+
+
+(rt:define-gvfunc (text-view :cut-clipboard) (text-view-class :cut-clipboard) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.cut_clipboard.html" :documentation
+                  "The class handler for the `GtkTextView::cut-clipboard`
+  keybinding signal
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.cut_clipboard.html")
+
+
+(rt:define-gvfunc (text-view :delete-from-cursor) (text-view-class :delete-from-cursor) :args
+                  ((text-view (:object text-view)) (type (:enum delete-type)) (count :int)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.delete_from_cursor.html" :documentation
+                  "The class handler for the `GtkTextView::delete-from-cursor`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.delete_from_cursor.html")
+
+
+(rt:define-gvfunc (text-view :extend-selection) (text-view-class :extend-selection) :args
+                  ((text-view (:object text-view)) (granularity (:enum text-extend-selection))
+                   (location (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                   (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.extend_selection.html" :documentation
+                  "The class handler for the `GtkTextView::extend-selection` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.extend_selection.html")
+
+
+(rt:define-gvfunc (text-view :insert-at-cursor) (text-view-class :insert-at-cursor) :args
+                  ((text-view (:object text-view)) (str :string)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.insert_at_cursor.html" :documentation
+                  "The class handler for the `GtkTextView::insert-at-cursor`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.insert_at_cursor.html")
+
+
+(rt:define-gvfunc (text-view :insert-emoji) (text-view-class :insert-emoji) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.insert_emoji.html" :documentation
+                  "The class handler for the `GtkTextView::insert-emoji` signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.insert_emoji.html")
+
+
+(rt:define-gvfunc (text-view :move-cursor) (text-view-class :move-cursor) :args
+                  ((text-view (:object text-view)) (step (:enum movement-step)) (count :int)
+                   (extend-selection :boolean))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextView.move_cursor.html" :documentation
+                  "The class handler for the `GtkTextView::move-cursor`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.move_cursor.html")
+
+
+(rt:define-gvfunc (text-view :paste-clipboard) (text-view-class :paste-clipboard) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.paste_clipboard.html" :documentation
+                  "The class handler for the `GtkTextView::paste-clipboard`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.paste_clipboard.html")
+
+
+(rt:define-gvfunc (text-view :set-anchor) (text-view-class :set-anchor) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.set_anchor.html" :documentation
+                  "The class handler for the `GtkTextView::set-anchor`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.set_anchor.html")
+
+
+(rt:define-gvfunc (text-view :snapshot-layer) (text-view-class :snapshot-layer) :args
+                  ((text-view (:object text-view)) (layer (:enum text-view-layer))
+                   (snapshot (:object snapshot)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TextView.snapshot_layer.html"
+                  :documentation "The snapshot_layer vfunc is called before and after the text
+  view is drawing its own text. Applications can override this vfunc
+  in a subclass to draw customized content underneath or above the
+  text. In the :below-text and :above-text
+  layers the drawing is done in the buffer coordinate space.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.snapshot_layer.html")
+
+
+(rt:define-gvfunc (text-view :toggle-overwrite) (text-view-class :toggle-overwrite) :args
+                  ((text-view (:object text-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TextView.toggle_overwrite.html" :documentation
+                  "The class handler for the `GtkTextView::toggle-overwrite`
+  keybinding signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TextView.toggle_overwrite.html")
+
+
+(rt:define-gvfunc (toggle-button :toggled) (toggle-button-class :toggled) :args
+                  ((toggle-button (:object toggle-button))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.ToggleButton.toggled.html" :documentation
+                  "Emits the ::toggled signal on the `gtk:toggle-button`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.ToggleButton.toggled.html")
+
+
+(rt:define-gvfunc (tree-drag-dest :drag-data-received) (tree-drag-dest-iface :drag-data-received)
+                  :args
+                  ((drag-dest (:object tree-drag-dest))
+                   (dest (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (value (:boxed "GValue" "g_value_get_type" gobject:value)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeDragDest.drag_data_received.html"
+                  :documentation
+                  "Asks the `gtk:tree-drag-dest` to insert a row before the path DEST,
+deriving the contents of the row from VALUE. If DEST is
+outside the tree so that inserting before it is impossible, NIL
+will be returned. Also, NIL may be returned if the new row is
+not created for some model-specific reason.  Should robustly handle
+a DEST no longer found in the model!
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeDragDest.drag_data_received.html")
+
+
+(rt:define-gvfunc (tree-drag-dest :row-drop-possible) (tree-drag-dest-iface :row-drop-possible)
+                  :args
+                  ((drag-dest (:object tree-drag-dest))
+                   (dest-path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (value (:boxed "GValue" "g_value_get_type" gobject:value)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeDragDest.row_drop_possible.html"
+                  :documentation "Determines whether a drop is possible before the given DEST-PATH,
+at the same depth as DEST-PATH. i.e., can we drop the data in
+VALUE at that location. DEST-PATH does not have to
+exist; the return value will almost certainly be NIL if the
+parent of DEST-PATH doesn’t exist, though.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeDragDest.row_drop_possible.html")
+
+
+(rt:define-gvfunc (tree-drag-source :drag-data-delete) (tree-drag-source-iface :drag-data-delete)
+                  :args
+                  ((drag-source (:object tree-drag-source))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeDragSource.drag_data_delete.html"
+                  :documentation "Asks the `gtk:tree-drag-source` to delete the row at PATH, because
+it was moved somewhere else via drag-and-drop. Returns NIL
+if the deletion fails because PATH no longer exists, or for
+some model-specific reason. Should robustly handle a PATH no
+longer found in the model!
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeDragSource.drag_data_delete.html")
+
+
+(rt:define-gvfunc (tree-drag-source :drag-data-get) (tree-drag-source-iface :drag-data-get) :args
+                  ((drag-source (:object tree-drag-source))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :return (:object gdk:content-provider) :return-transfer :full :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeDragSource.drag_data_get.html"
+                  :documentation
+                  "Asks the `gtk:tree-drag-source` to return a `gdk:content-provider` representing
+the row at PATH. Should robustly handle a PATH no
+longer found in the model!
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeDragSource.drag_data_get.html")
+
+
+(rt:define-gvfunc (tree-drag-source :row-draggable) (tree-drag-source-iface :row-draggable) :args
+                  ((drag-source (:object tree-drag-source))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeDragSource.row_draggable.html"
+                  :documentation
+                  "Asks the `gtk:tree-drag-source` whether a particular row can be used as
+the source of a DND operation. If the source doesn’t implement
+this interface, the row is assumed draggable.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeDragSource.row_draggable.html")
+
+
+(rt:define-gvfunc (tree-model :get-column-type) (tree-model-iface :get-column-type) :args
+                  ((tree-model (:object tree-model)) (index- :int)) :return :gtype :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.get_column_type.html" :documentation
+                  "Returns the type of the column.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.get_column_type.html")
+
+
+(rt:define-gvfunc (tree-model :get-flags) (tree-model-iface :get-flags) :args
+                  ((tree-model (:object tree-model))) :return (:flags tree-model-flags) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.get_flags.html" :documentation
+                  "Returns a set of flags supported by this interface.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.get_flags.html")
+
+
+(rt:define-gvfunc (tree-model :get-n-columns) (tree-model-iface :get-n-columns) :args
+                  ((tree-model (:object tree-model))) :return :int :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.get_n_columns.html" :documentation
+                  "Returns the number of columns supported by TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.get_n_columns.html")
+
+
+(rt:define-gvfunc (tree-model :get-path) (tree-model-iface :get-path) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return (:boxed "GtkTreePath" "gtk_tree_path_get_type") :return-transfer :full
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.get_path.html" :documentation
+                  "Returns a newly-created `gtk:tree-path` referenced by ITER.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.get_path.html")
+
+
+(rt:define-gvfunc (tree-model :iter-has-child) (tree-model-iface :iter-has-child) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_has_child.html" :documentation
+                  "Returns T if ITER has children, NIL otherwise.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_has_child.html")
+
+
+(rt:define-gvfunc (tree-model :iter-n-children) (tree-model-iface :iter-n-children) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return :int :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_n_children.html" :documentation
+                  "Returns the number of children that ITER has.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_n_children.html")
+
+
+(rt:define-gvfunc (tree-model :iter-next) (tree-model-iface :iter-next) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_next.html"
+                  :documentation "Sets ITER to point to the node following it at the current level.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_next.html")
+
+
+(rt:define-gvfunc (tree-model :iter-previous) (tree-model-iface :iter-previous) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_previous.html" :documentation
+                  "Sets ITER to point to the previous node at the current level.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.iter_previous.html")
+
+
+(rt:define-gvfunc (tree-model :ref-node) (tree-model-iface :ref-node) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.ref_node.html" :documentation
+                  "Lets the tree ref the node.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.ref_node.html")
+
+
+(rt:define-gvfunc (tree-model :row-changed) (tree-model-iface :row-changed) :args
+                  ((tree-model (:object tree-model))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.row_changed.html" :documentation
+                  "Emits the ::row-changed signal on TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.row_changed.html")
+
+
+(rt:define-gvfunc (tree-model :row-deleted) (tree-model-iface :row-deleted) :args
+                  ((tree-model (:object tree-model))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.row_deleted.html" :documentation
+                  "Emits the ::row-deleted signal on TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.row_deleted.html")
+
+
+(rt:define-gvfunc (tree-model :row-has-child-toggled) (tree-model-iface :row-has-child-toggled)
+                  :args
+                  ((tree-model (:object tree-model))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.row_has_child_toggled.html"
+                  :documentation "Emits the ::row-has-child-toggled signal on TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.row_has_child_toggled.html")
+
+
+(rt:define-gvfunc (tree-model :row-inserted) (tree-model-iface :row-inserted) :args
+                  ((tree-model (:object tree-model))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.row_inserted.html" :documentation
+                  "Emits the ::row-inserted signal on TREE-MODEL.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.row_inserted.html")
+
+
+(rt:define-gvfunc (tree-model :unref-node) (tree-model-iface :unref-node) :args
+                  ((tree-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModel.unref_node.html" :documentation
+                  "Lets the tree unref the node.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeModel.unref_node.html")
+
+
+(rt:define-gvfunc (tree-model-filter :modify) (tree-model-filter-class :modify) :args
+                  ((self (:object tree-model-filter)) (child-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (value (:boxed "GValue" "g_value_get_type" gobject:value)) (column :int))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeModelFilter.modify.html" :documentation
+                  "
+See: https://docs.gtk.org/gtk4/vfunc.TreeModelFilter.modify.html")
+
+
+(rt:define-gvfunc (tree-model-filter :visible) (tree-model-filter-class :visible) :args
+                  ((self (:object tree-model-filter)) (child-model (:object tree-model))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeModelFilter.visible.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeModelFilter.visible.html")
+
+
+(rt:define-gvfunc (tree-sortable :get-sort-column-id) (tree-sortable-iface :get-sort-column-id)
+                  :args
+                  ((sortable (:object tree-sortable))
+                   (sort-column-id :int :direction :out :transfer :full)
+                   (order (:enum sort-type) :direction :out :transfer :full))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeSortable.get_sort_column_id.html"
+                  :documentation
+                  "Fills in SORT-COLUMN-ID and ORDER with the current sort column and the
+order. It returns T unless the SORT-COLUMN-ID is
+`gtk:+tree-sortable-default-sort-column-id+` or
+`gtk:+tree-sortable-unsorted-sort-column-id+`.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeSortable.get_sort_column_id.html")
+
+
+(rt:define-gvfunc (tree-sortable :has-default-sort-func)
+                  (tree-sortable-iface :has-default-sort-func) :args
+                  ((sortable (:object tree-sortable))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeSortable.has_default_sort_func.html"
+                  :documentation "Returns T if the model has a default sort function. This is used
+primarily by GtkTreeViewColumns in order to determine if a model can
+go back to the default state, or not.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeSortable.has_default_sort_func.html")
+
+
+(rt:define-gvfunc (tree-sortable :set-sort-column-id) (tree-sortable-iface :set-sort-column-id)
+                  :args
+                  ((sortable (:object tree-sortable)) (sort-column-id :int)
+                   (order (:enum sort-type)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeSortable.set_sort_column_id.html"
+                  :documentation
+                  "Sets the current sort column to be SORT-COLUMN-ID. The SORTABLE will
+resort itself to reflect this change, after emitting a
+`GtkTreeSortable::sort-column-changed` signal. SORT-COLUMN-ID may either be
+a regular column id, or one of the following special values:
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeSortable.set_sort_column_id.html")
+
+
+(rt:define-gvfunc (tree-sortable :sort-column-changed) (tree-sortable-iface :sort-column-changed)
+                  :args ((sortable (:object tree-sortable))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeSortable.sort_column_changed.html"
+                  :documentation "Emits a `GtkTreeSortable::sort-column-changed` signal on SORTABLE.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeSortable.sort_column_changed.html")
+
+
+(rt:define-gvfunc (tree-view :columns-changed) (tree-view-class :columns-changed) :args
+                  ((tree-view (:object tree-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.columns_changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.columns_changed.html")
+
+
+(rt:define-gvfunc (tree-view :cursor-changed) (tree-view-class :cursor-changed) :args
+                  ((tree-view (:object tree-view))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.cursor_changed.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.cursor_changed.html")
+
+
+(rt:define-gvfunc (tree-view :expand-collapse-cursor-row)
+                  (tree-view-class :expand-collapse-cursor-row) :args
+                  ((tree-view (:object tree-view)) (logical :boolean) (expand :boolean)
+                   (open-all :boolean))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.expand_collapse_cursor_row.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.expand_collapse_cursor_row.html")
+
+
+(rt:define-gvfunc (tree-view :move-cursor) (tree-view-class :move-cursor) :args
+                  ((tree-view (:object tree-view)) (step (:enum movement-step)) (count :int)
+                   (extend :boolean) (modify :boolean))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.TreeView.move_cursor.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.move_cursor.html")
+
+
+(rt:define-gvfunc (tree-view :row-activated) (tree-view-class :row-activated) :args
+                  ((tree-view (:object tree-view))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                   (column (:object tree-view-column)))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeView.row_activated.html" :documentation
+                  "Activates the cell determined by PATH and COLUMN.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.row_activated.html")
+
+
+(rt:define-gvfunc (tree-view :row-collapsed) (tree-view-class :row-collapsed) :args
+                  ((tree-view (:object tree-view))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeView.row_collapsed.html" :documentation
+                  "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.row_collapsed.html")
+
+
+(rt:define-gvfunc (tree-view :row-expanded) (tree-view-class :row-expanded) :args
+                  ((tree-view (:object tree-view))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :url "https://docs.gtk.org/gtk4/vfunc.TreeView.row_expanded.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.row_expanded.html")
+
+
+(rt:define-gvfunc (tree-view :select-all) (tree-view-class :select-all) :args
+                  ((tree-view (:object tree-view))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.select_all.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.select_all.html")
+
+
+(rt:define-gvfunc (tree-view :select-cursor-parent) (tree-view-class :select-cursor-parent) :args
+                  ((tree-view (:object tree-view))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.select_cursor_parent.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.select_cursor_parent.html")
+
+
+(rt:define-gvfunc (tree-view :select-cursor-row) (tree-view-class :select-cursor-row) :args
+                  ((tree-view (:object tree-view)) (start-editing :boolean)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.select_cursor_row.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.select_cursor_row.html")
+
+
+(rt:define-gvfunc (tree-view :start-interactive-search) (tree-view-class :start-interactive-search)
+                  :args ((tree-view (:object tree-view))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.start_interactive_search.html"
+                  :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.start_interactive_search.html")
+
+
+(rt:define-gvfunc (tree-view :test-collapse-row) (tree-view-class :test-collapse-row) :args
+                  ((tree-view (:object tree-view))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.test_collapse_row.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.test_collapse_row.html")
+
+
+(rt:define-gvfunc (tree-view :test-expand-row) (tree-view-class :test-expand-row) :args
+                  ((tree-view (:object tree-view))
+                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.test_expand_row.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.test_expand_row.html")
+
+
+(rt:define-gvfunc (tree-view :toggle-cursor-row) (tree-view-class :toggle-cursor-row) :args
+                  ((tree-view (:object tree-view))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.toggle_cursor_row.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.toggle_cursor_row.html")
+
+
+(rt:define-gvfunc (tree-view :unselect-all) (tree-view-class :unselect-all) :args
+                  ((tree-view (:object tree-view))) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.TreeView.unselect_all.html" :documentation "
+See: https://docs.gtk.org/gtk4/vfunc.TreeView.unselect_all.html")
+
+
+(rt:define-gvfunc (widget :compute-expand) (widget-class :compute-expand) :args
+                  ((widget (:object widget)) (hexpand-p :boolean) (vexpand-p :boolean)) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html" :documentation
+                  "Computes whether a container should give this
+  widget extra space when possible.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html")
+
+
+(rt:define-gvfunc (widget :contains) (widget-class :contains) :args
+                  ((widget (:object widget)) (x :double) (y :double)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.contains.html" :documentation
+                  "Tests if a given point is contained in the widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.contains.html")
+
+
+(rt:define-gvfunc (widget :css-changed) (widget-class :css-changed) :args
+                  ((widget (:object widget)) (change (:record css-style-change))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.css_changed.html" :documentation
+                  "Vfunc called when the CSS used by widget was changed. Widgets
+  should then discard their caches that depend on CSS and queue resizes or
+  redraws accordingly. The default implementation will take care of this for
+  all the default CSS properties, so implementations must chain up.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.css_changed.html")
+
+
+(rt:define-gvfunc (widget :direction-changed) (widget-class :direction-changed) :args
+                  ((widget (:object widget)) (previous-direction (:enum text-direction))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.direction_changed.html" :documentation
+                  "Signal emitted when the text direction of a
+  widget changes.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.direction_changed.html")
+
+
+(rt:define-gvfunc (widget :focus) (widget-class :focus) :args
+                  ((widget (:object widget)) (direction (:enum direction-type))) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.focus.html" :documentation
+                  "Vfunc for `gtk:widget-child-focus`
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.focus.html")
+
+
+(rt:define-gvfunc (widget :get-request-mode) (widget-class :get-request-mode) :args
+                  ((widget (:object widget))) :return (:enum size-request-mode) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.get_request_mode.html" :documentation
+                  "Gets whether the widget prefers a height-for-width layout
+or a width-for-height layout.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.get_request_mode.html")
+
+
+(rt:define-gvfunc (widget :grab-focus) (widget-class :grab-focus) :args ((widget (:object widget)))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.Widget.grab_focus.html"
+                  :documentation "Causes WIDGET to have the keyboard focus for the window
+that it belongs to.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.grab_focus.html")
+
+
+(rt:define-gvfunc (widget :hide) (widget-class :hide) :args ((widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.hide.html" :documentation
+                  "Reverses the effects of [method.Gtk.Widget.show].
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.hide.html")
+
+
+(rt:define-gvfunc (widget :keynav-failed) (widget-class :keynav-failed) :args
+                  ((widget (:object widget)) (direction (:enum direction-type))) :return :boolean
+                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.keynav_failed.html" :documentation
+                  "Emits the :keynav-failed signal on the widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.keynav_failed.html")
+
+
+(rt:define-gvfunc (widget :map) (widget-class :map) :args ((widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.map.html" :documentation
+                  "Causes a widget to be mapped if it isn’t already.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.map.html")
+
+
+(rt:define-gvfunc (widget :measure) (widget-class :measure) :args
+                  ((widget (:object widget)) (orientation (:enum orientation)) (for-size :int)
+                   (minimum :int :direction :out :transfer :full)
+                   (natural :int :direction :out :transfer :full)
+                   (minimum-baseline :int :direction :out :transfer :full)
+                   (natural-baseline :int :direction :out :transfer :full))
+                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.measure.html" :documentation
+                  "Measures WIDGET in the orientation ORIENTATION and for the given FOR-SIZE.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.measure.html")
+
+
+(rt:define-gvfunc (widget :mnemonic-activate) (widget-class :mnemonic-activate) :args
+                  ((widget (:object widget)) (group-cycling :boolean)) :return :boolean :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.mnemonic_activate.html" :documentation
+                  "Emits the :mnemonic-activate signal.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.mnemonic_activate.html")
+
+
+(rt:define-gvfunc (widget :move-focus) (widget-class :move-focus) :args
+                  ((widget (:object widget)) (direction (:enum direction-type))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.move_focus.html" :documentation
+                  "Signal emitted when a change of focus is requested
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.move_focus.html")
+
+
+(rt:define-gvfunc (widget :query-tooltip) (widget-class :query-tooltip) :args
+                  ((widget (:object widget)) (x :int) (y :int) (keyboard-tooltip :boolean)
+                   (tooltip (:object tooltip)))
+                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.Widget.query_tooltip.html"
+                  :documentation "Signal emitted when “has-tooltip” is T and the
+  hover timeout has expired with the cursor hovering “above”
+  widget; or emitted when widget got focus in keyboard mode.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.query_tooltip.html")
+
+
+(rt:define-gvfunc (widget :realize) (widget-class :realize) :args ((widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.realize.html" :documentation
+                  "Creates the GDK resources associated with a widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.realize.html")
+
+
+(rt:define-gvfunc (widget :root) (widget-class :root) :args ((widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.root.html" :documentation
+                  "Called when the widget gets added to a `gtk:root` widget. Must
+  chain up
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.root.html")
+
+
+(rt:define-gvfunc (widget :set-focus-child) (widget-class :set-focus-child) :args
+                  ((widget (:object widget)) (child (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.set_focus_child.html" :documentation
+                  "Set the focus child of the widget.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.set_focus_child.html")
+
+
+(rt:define-gvfunc (widget :show) (widget-class :show) :args ((widget (:object widget))) :url
+                  "https://docs.gtk.org/gtk4/vfunc.Widget.show.html" :documentation
+                  "Flags a widget to be displayed.
+
+
+See: https://docs.gtk.org/gtk4/vfunc.Widget.show.html")

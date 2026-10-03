@@ -3,7 +3,7 @@
 
 (in-package #:gobject)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (boxed-copy "g_boxed_copy") :args ((boxed-type :gtype) (src-boxed :pointer))
@@ -4007,3 +4007,104 @@ COMPARE-FUNC is a function or a symbol naming one, called before this function r
 C: g_value_array_sort_with_data
 See: https://docs.gtk.org/gobject/method.ValueArray.sort_with_data.html
 Deprecated.")
+
+
+(rt:define-gvfunc (object :constructed) (object-class :constructed) :args
+                  ((object (:object object))) :url
+                  "https://docs.gtk.org/gobject/vfunc.Object.constructed.html" :documentation
+                  "the CONSTRUCTED function is called by g_object_new() as the
+ final step of the object creation process.  At the point of the call, all
+ construction properties have been set on the object.  The purpose of this
+ call is to allow for object initialisation steps that can only be performed
+ after construction properties have been set.  CONSTRUCTED implementors
+ should chain up to the CONSTRUCTED call of their parent class to allow it
+ to complete its initialisation.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.constructed.html")
+
+
+(rt:define-gvfunc (object :dispatch-properties-changed) (object-class :dispatch-properties-changed)
+                  :args ((object (:object object)) (rt::n-pspecs :uint) (rt::pspecs :pointer)) :url
+                  "https://docs.gtk.org/gobject/vfunc.Object.dispatch_properties_changed.html"
+                  :documentation "emits property change notification for a bunch
+ of properties. Overriding DISPATCH-PROPERTIES-CHANGED should be rarely
+ needed.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.dispatch_properties_changed.html")
+
+
+(rt:define-gvfunc (object :dispose) (object-class :dispose) :args ((object (:object object))) :url
+                  "https://docs.gtk.org/gobject/vfunc.Object.dispose.html" :documentation
+                  "the DISPOSE function is supposed to drop all references to other
+ objects, but keep the instance otherwise intact, so that client method
+ invocations still work. It may be run multiple times (due to reference
+ loops). Before returning, DISPOSE should chain up to the DISPOSE method
+ of the parent class.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.dispose.html")
+
+
+(rt:define-gvfunc (object :finalize) (object-class :finalize) :args ((object (:object object)))
+                  :url "https://docs.gtk.org/gobject/vfunc.Object.finalize.html" :documentation
+                  "instance finalization function, should finish the finalization of
+ the instance begun in DISPOSE and chain up to the FINALIZE method of the
+ parent class.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.finalize.html")
+
+
+(rt:define-gvfunc (object :get-property) (object-class :get-property) :args
+                  ((object (:object object)) (rt::property-id :uint)
+                   (rt::value (:boxed "GValue" "g_value_get_type" value)) (rt::pspec :pointer))
+                  :url "https://docs.gtk.org/gobject/vfunc.Object.get_property.html" :documentation
+                  "the generic getter for all properties of this type. Should be
+ overridden for every type with properties.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.get_property.html")
+
+
+(rt:define-gvfunc (object :notify) (object-class :notify) :args
+                  ((object (:object object)) (rt::pspec :pointer)) :url
+                  "https://docs.gtk.org/gobject/vfunc.Object.notify.html" :documentation
+                  "Emits a \"notify\" signal for the property PROPERTY-NAME on OBJECT.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.notify.html")
+
+
+(rt:define-gvfunc (object :set-property) (object-class :set-property) :args
+                  ((object (:object object)) (rt::property-id :uint)
+                   (rt::value (:boxed "GValue" "g_value_get_type" value)) (rt::pspec :pointer))
+                  :url "https://docs.gtk.org/gobject/vfunc.Object.set_property.html" :documentation
+                  "the generic setter for all properties of this type. Should be
+ overridden for every type with properties. If implementations of
+ SET-PROPERTY don't emit property change notification explicitly, this will
+ be done implicitly by the type system. However, if the notify signal is
+ emitted explicitly, the type system will not emit it a second time.
+
+
+See: https://docs.gtk.org/gobject/vfunc.Object.set_property.html")
+
+
+(rt:define-gvfunc (type-module :load) (type-module-class :load) :args
+                  ((module (:object type-module))) :return :boolean :url
+                  "https://docs.gtk.org/gobject/vfunc.TypeModule.load.html" :documentation
+                  "loads the module and registers one or more types using
+ `gobject:type-module-register-type`.
+
+
+See: https://docs.gtk.org/gobject/vfunc.TypeModule.load.html")
+
+
+(rt:define-gvfunc (type-module :unload) (type-module-class :unload) :args
+                  ((module (:object type-module))) :url
+                  "https://docs.gtk.org/gobject/vfunc.TypeModule.unload.html" :documentation
+                  "unloads the module
+
+
+See: https://docs.gtk.org/gobject/vfunc.TypeModule.unload.html")

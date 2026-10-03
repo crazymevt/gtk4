@@ -3,7 +3,7 @@
 
 (in-package #:glib)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (access "g_access") :args ((filename :string) (mode :int)) :return :int

@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 5)
+;;; Functions, constructors, methods and virtual functions (part 5)
 
 
 (rt:define-gfunction (label-get-selection-bounds "gtk_label_get_selection_bounds") :args

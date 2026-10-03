@@ -92,7 +92,7 @@ identifiers (\"gtk_widget_show\", \"GtkWidget\", \"GTK_ALIGN_CENTER\").")
   (let ((r (gethash key *doc-index*)))
     (cond ((null r) fallback)
           ((char= (char r 0) #\:) r)              ; a keyword, or a :signal
-          ((eql (search "%vfunc " r) 0) (format nil "`~a`" (subseq r 7)))
+          ((eql (search "%vfunc " r) 0) (format nil "`:~a`" (subseq r 7)))
           (t (format nil "`~a`" r)))))
 
 (defun convert-doc-text (text)

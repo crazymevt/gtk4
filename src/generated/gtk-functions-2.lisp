@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction (calendar-select-day "gtk_calendar_select_day") :args

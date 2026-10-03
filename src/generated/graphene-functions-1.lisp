@@ -3,7 +3,7 @@
 
 (in-package #:graphene)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (box-alloc "graphene_box_alloc") :return

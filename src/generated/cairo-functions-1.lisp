@@ -3,7 +3,7 @@
 
 (in-package #:cairo)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (create "cairo_create") :args

@@ -3261,6 +3261,13 @@ See: https://docs.gtk.org/glib/struct.Scanner.html")
 See: https://docs.gtk.org/glib/struct.Scanner.html")
 
 
+(rt:define-gfield scanner-value scanner :value (:record token-value) :writable t :inline t
+                  :documentation "value of the last token from `glib:scanner-get-next-token`
+
+
+See: https://docs.gtk.org/glib/struct.Scanner.html")
+
+
 (rt:define-gfield scanner-line scanner :line :uint :writable t :documentation
                   "line number of the last token from `glib:scanner-get-next-token`
 
@@ -3277,6 +3284,13 @@ See: https://docs.gtk.org/glib/struct.Scanner.html")
 
 (rt:define-gfield scanner-next-token scanner :next-token (:enum token-type) :writable t
                   :documentation "token parsed by the last `glib:scanner-peek-next-token`
+
+
+See: https://docs.gtk.org/glib/struct.Scanner.html")
+
+
+(rt:define-gfield scanner-next-value scanner :next-value (:record token-value) :writable t :inline
+                  t :documentation "value of the last token from `glib:scanner-peek-next-token`
 
 
 See: https://docs.gtk.org/glib/struct.Scanner.html")
@@ -3299,9 +3313,11 @@ See: https://docs.gtk.org/glib/struct.Scanner.html")
 (rt:define-gstruct-constructor make-scanner (:record scanner)
                                ((max-parse-errors :max-parse-errors :uint)
                                 (parse-errors :parse-errors :uint)
-                                (token :token (:enum token-type)) (line :line :uint)
+                                (token :token (:enum token-type))
+                                (value :value (:record token-value) :inline t) (line :line :uint)
                                 (position :position :uint)
                                 (next-token :next-token (:enum token-type))
+                                (next-value :next-value (:record token-value) :inline t)
                                 (next-line :next-line :uint) (next-position :next-position :uint))
                                :documentation
                                "A new Scanner with the given fields; others are zero.")

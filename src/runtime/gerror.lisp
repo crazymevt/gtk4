@@ -37,3 +37,21 @@ GLIB-ERROR if BODY's C call set it. Returns BODY's values otherwise."
            (unless (cffi:null-pointer-p err)
              (signal-gerror err)))
          (values-list ,result)))))
+
+(defun set-gerror-from-condition (error-location condition)
+  "Store CONDITION in the GError** ERROR-LOCATION (when not NULL), for a Lisp
+implementation of a C function that reports errors. A GLIB-ERROR keeps its
+domain and code; any other error becomes gtk4-lisp-error-quark code 0."
+  (unless (cffi:null-pointer-p error-location)
+    (multiple-value-bind (domain code)
+        (if (typep condition 'glib-error)
+            (values (glib-error-domain condition) (glib-error-code condition))
+            (values "gtk4-lisp-error-quark" 0))
+      (cffi:foreign-funcall "g_set_error_literal"
+                            :pointer error-location
+                            :uint32 (cffi:foreign-funcall "g_quark_from_string" :string domain :uint32)
+                            :int code
+                            :string (if (typep condition 'glib-error)
+                                        (glib-error-message condition)
+                                        (princ-to-string condition))
+                            :void))))

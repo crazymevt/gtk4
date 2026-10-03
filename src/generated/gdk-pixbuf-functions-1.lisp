@@ -3,7 +3,7 @@
 
 (in-package #:gdk-pixbuf)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (pixbuf-new "gdk_pixbuf_new") :args
@@ -1360,3 +1360,109 @@ Deprecated.")
 
 C: gdk_pixbuf_error_quark
 See: https://docs.gtk.org/gdk-pixbuf/type_func.PixbufError.quark.html")
+
+
+(rt:define-gvfunc (pixbuf-animation :get-iter) (pixbuf-animation-class :get-iter) :args
+                  ((animation (:object pixbuf-animation)) (start-time (:record glib:time-val)))
+                  :return (:object pixbuf-animation-iter) :return-transfer :full :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_iter.html"
+                  :documentation "Get an iterator for displaying an animation.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_iter.html")
+
+
+(rt:define-gvfunc (pixbuf-animation :get-size) (pixbuf-animation-class :get-size) :args
+                  ((animation (:object pixbuf-animation)) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_size.html"
+                  :documentation "fills WIDTH and HEIGHT with the frame size of the animation.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_size.html")
+
+
+(rt:define-gvfunc (pixbuf-animation :get-static-image) (pixbuf-animation-class :get-static-image)
+                  :args ((animation (:object pixbuf-animation))) :return (:object pixbuf) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_static_image.html"
+                  :documentation "Retrieves a static image for the animation.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.get_static_image.html")
+
+
+(rt:define-gvfunc (pixbuf-animation :is-static-image) (pixbuf-animation-class :is-static-image)
+                  :args ((animation (:object pixbuf-animation))) :return :boolean :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.is_static_image.html"
+                  :documentation "Checks whether the animation is a static image.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimation.is_static_image.html")
+
+
+(rt:define-gvfunc (pixbuf-animation-iter :advance) (pixbuf-animation-iter-class :advance) :args
+                  ((iter (:object pixbuf-animation-iter)) (current-time (:record glib:time-val)))
+                  :return :boolean :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.advance.html"
+                  :documentation "Possibly advances an animation to a new frame.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.advance.html")
+
+
+(rt:define-gvfunc (pixbuf-animation-iter :get-delay-time)
+                  (pixbuf-animation-iter-class :get-delay-time) :args
+                  ((iter (:object pixbuf-animation-iter))) :return :int :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.get_delay_time.html"
+                  :documentation
+                  "Gets the number of milliseconds the current pixbuf should be displayed,
+or -1 if the current pixbuf should be displayed forever.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.get_delay_time.html")
+
+
+(rt:define-gvfunc (pixbuf-animation-iter :get-pixbuf) (pixbuf-animation-iter-class :get-pixbuf)
+                  :args ((iter (:object pixbuf-animation-iter))) :return (:object pixbuf) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.get_pixbuf.html"
+                  :documentation "Gets the current pixbuf which should be displayed.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.get_pixbuf.html")
+
+
+(rt:define-gvfunc (pixbuf-animation-iter :on-currently-loading-frame)
+                  (pixbuf-animation-iter-class :on-currently-loading-frame) :args
+                  ((iter (:object pixbuf-animation-iter))) :return :boolean :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.on_currently_loading_frame.html"
+                  :documentation "Used to determine how to respond to the area_updated signal on
+`gdk-pixbuf:pixbuf-loader` when loading an animation.
+
+
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufAnimationIter.on_currently_loading_frame.html")
+
+
+(rt:define-gvfunc (pixbuf-loader :area-prepared) (pixbuf-loader-class :area-prepared) :args
+                  ((loader (:object pixbuf-loader))) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.area_prepared.html"
+                  :documentation "
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.area_prepared.html")
+
+
+(rt:define-gvfunc (pixbuf-loader :area-updated) (pixbuf-loader-class :area-updated) :args
+                  ((loader (:object pixbuf-loader)) (x :int) (y :int) (width :int) (height :int))
+                  :url "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.area_updated.html"
+                  :documentation "
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.area_updated.html")
+
+
+(rt:define-gvfunc (pixbuf-loader :closed) (pixbuf-loader-class :closed) :args
+                  ((loader (:object pixbuf-loader))) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.closed.html" :documentation "
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.closed.html")
+
+
+(rt:define-gvfunc (pixbuf-loader :size-prepared) (pixbuf-loader-class :size-prepared) :args
+                  ((loader (:object pixbuf-loader)) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.size_prepared.html"
+                  :documentation "
+See: https://docs.gtk.org/gdk-pixbuf/vfunc.PixbufLoader.size_prepared.html")

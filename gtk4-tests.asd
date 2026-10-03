@@ -19,6 +19,7 @@
                (:file "structs")
                (:file "cairo")
                (:file "documentation")
+               (:file "subclass")
                (:file "demos"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
 

@@ -3,7 +3,7 @@
 
 (in-package #:gdk)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction (paintable-get-intrinsic-height "gdk_paintable_get_intrinsic_height") :args
@@ -1780,3 +1780,122 @@ Returns an integer.
 
 C: gdk_vulkan_error_quark
 See: https://docs.gtk.org/gdk4/type_func.VulkanError.quark.html")
+
+
+(rt:define-gvfunc (content-provider :attach-clipboard) (content-provider-class :attach-clipboard)
+                  :args ((provider (:object content-provider)) (clipboard (:object clipboard)))
+                  :url "https://docs.gtk.org/gdk4/vfunc.ContentProvider.attach_clipboard.html"
+                  :documentation "
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.attach_clipboard.html")
+
+
+(rt:define-gvfunc (content-provider :content-changed) (content-provider-class :content-changed)
+                  :args ((provider (:object content-provider))) :url
+                  "https://docs.gtk.org/gdk4/vfunc.ContentProvider.content_changed.html"
+                  :documentation "Emits the ::content-changed signal.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.content_changed.html")
+
+
+(rt:define-gvfunc (content-provider :detach-clipboard) (content-provider-class :detach-clipboard)
+                  :args ((provider (:object content-provider)) (clipboard (:object clipboard)))
+                  :url "https://docs.gtk.org/gdk4/vfunc.ContentProvider.detach_clipboard.html"
+                  :documentation "
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.detach_clipboard.html")
+
+
+(rt:define-gvfunc (content-provider :ref-formats) (content-provider-class :ref-formats) :args
+                  ((provider (:object content-provider))) :return
+                  (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer
+                  :full :url "https://docs.gtk.org/gdk4/vfunc.ContentProvider.ref_formats.html"
+                  :documentation
+                  "Gets the formats that the provider can provide its current contents in.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.ref_formats.html")
+
+
+(rt:define-gvfunc (content-provider :ref-storable-formats)
+                  (content-provider-class :ref-storable-formats) :args
+                  ((provider (:object content-provider))) :return
+                  (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer
+                  :full :url
+                  "https://docs.gtk.org/gdk4/vfunc.ContentProvider.ref_storable_formats.html"
+                  :documentation
+                  "Gets the formats that the provider suggests other applications to store
+the data in.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.ref_storable_formats.html")
+
+
+(rt:define-gvfunc (content-provider :write-mime-type-finish)
+                  (content-provider-class :write-mime-type-finish) :args
+                  ((provider (:object content-provider)) (result (:object gio:async-result)))
+                  :return :boolean :throws t :url
+                  "https://docs.gtk.org/gdk4/vfunc.ContentProvider.write_mime_type_finish.html"
+                  :documentation "Finishes an asynchronous write operation.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.ContentProvider.write_mime_type_finish.html")
+
+
+(rt:define-gvfunc (paintable :get-current-image) (paintable-interface :get-current-image) :args
+                  ((paintable (:object paintable))) :return (:object paintable) :return-transfer
+                  :full :url "https://docs.gtk.org/gdk4/vfunc.Paintable.get_current_image.html"
+                  :documentation
+                  "Gets an immutable paintable for the current contents displayed by PAINTABLE.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.get_current_image.html")
+
+
+(rt:define-gvfunc (paintable :get-flags) (paintable-interface :get-flags) :args
+                  ((paintable (:object paintable))) :return (:flags paintable-flags) :url
+                  "https://docs.gtk.org/gdk4/vfunc.Paintable.get_flags.html" :documentation
+                  "Get flags for the paintable.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.get_flags.html")
+
+
+(rt:define-gvfunc (paintable :get-intrinsic-aspect-ratio)
+                  (paintable-interface :get-intrinsic-aspect-ratio) :args
+                  ((paintable (:object paintable))) :return :double :url
+                  "https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_aspect_ratio.html"
+                  :documentation
+                  "Gets the preferred aspect ratio the PAINTABLE would like to be displayed at.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_aspect_ratio.html")
+
+
+(rt:define-gvfunc (paintable :get-intrinsic-height) (paintable-interface :get-intrinsic-height)
+                  :args ((paintable (:object paintable))) :return :int :url
+                  "https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_height.html"
+                  :documentation
+                  "Gets the preferred height the PAINTABLE would like to be displayed at.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_height.html")
+
+
+(rt:define-gvfunc (paintable :get-intrinsic-width) (paintable-interface :get-intrinsic-width) :args
+                  ((paintable (:object paintable))) :return :int :url
+                  "https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_width.html"
+                  :documentation
+                  "Gets the preferred width the PAINTABLE would like to be displayed at.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.get_intrinsic_width.html")
+
+
+(rt:define-gvfunc (paintable :snapshot) (paintable-interface :snapshot) :args
+                  ((paintable (:object paintable)) (snapshot (:object snapshot)) (width :double)
+                   (height :double))
+                  :url "https://docs.gtk.org/gdk4/vfunc.Paintable.snapshot.html" :documentation
+                  "Snapshots the given paintable with the given WIDTH and HEIGHT.
+
+
+See: https://docs.gtk.org/gdk4/vfunc.Paintable.snapshot.html")

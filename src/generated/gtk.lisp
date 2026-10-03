@@ -1884,7 +1884,7 @@ See: https://docs.gtk.org/gtk4/enum.SymbolicColor.html")
 (rt:define-genum system-setting
     (:kind :enum :gtype-name "GtkSystemSetting" :get-type "gtk_system_setting_get_type" :c-name
      "GtkSystemSetting" :url "https://docs.gtk.org/gtk4/enum.SystemSetting.html" :documentation
-     "Values that can be passed to the `system-setting-changed`
+     "Values that can be passed to the `:system-setting-changed`
 vfunc.
 
 C: GtkSystemSetting
@@ -5717,6 +5717,52 @@ See: https://docs.gtk.org/gtk4/struct.TreeRowReference.html"))
 ;;; Struct layouts
 
 
+(rt:define-gstruct accessible-hyperlink-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct accessible-hypertext-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-n-links :pointer)
+  (:get-link :pointer)
+  (:get-link-at :pointer))
+
+
+(rt:define-gstruct accessible-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-at-context :pointer)
+  (:get-platform-state :pointer)
+  (:get-accessible-parent :pointer)
+  (:get-first-accessible-child :pointer)
+  (:get-next-accessible-sibling :pointer)
+  (:get-bounds :pointer)
+  (:get-accessible-id :pointer))
+
+
+(rt:define-gstruct accessible-range-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:set-current-value :pointer))
+
+
+(rt:define-gstruct accessible-text-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-contents :pointer)
+  (:get-contents-at :pointer)
+  (:get-caret-position :pointer)
+  (:get-selection :pointer)
+  (:get-attributes :pointer)
+  (:get-default-attributes :pointer)
+  (:get-extents :pointer)
+  (:get-offset :pointer)
+  (:set-caret-position :pointer)
+  (:set-selection :pointer))
+
+
 (rt:define-gstruct accessible-text-range
     nil
   (:start :size)
@@ -5742,9 +5788,135 @@ See: https://docs.gtk.org/gtk4/struct.AccessibleTextRange.html")
                                "A new AccessibleTextRange with the given fields; others are zero.")
 
 
+(rt:define-gstruct actionable-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-action-name :pointer)
+  (:set-action-name :pointer)
+  (:get-action-target-value :pointer)
+  (:set-action-target-value :pointer))
+
+
+(rt:define-gstruct adjustment-class
+    nil
+  (:parent-class (:struct gobject:initially-unowned-class))
+  (:changed :pointer)
+  (:value-changed :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct alert-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct application-class
+    nil
+  (:parent-class (:struct gio:application-class))
+  (:window-added :pointer)
+  (:window-removed :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct widget-class
+    nil
+  (:parent-class (:struct gobject:initially-unowned-class))
+  (:show :pointer)
+  (:hide :pointer)
+  (:map :pointer)
+  (:unmap :pointer)
+  (:realize :pointer)
+  (:unrealize :pointer)
+  (:root :pointer)
+  (:unroot :pointer)
+  (:size-allocate :pointer)
+  (:state-flags-changed :pointer)
+  (:direction-changed :pointer)
+  (:get-request-mode :pointer)
+  (:measure :pointer)
+  (:mnemonic-activate :pointer)
+  (:grab-focus :pointer)
+  (:focus :pointer)
+  (:set-focus-child :pointer)
+  (:move-focus :pointer)
+  (:keynav-failed :pointer)
+  (:query-tooltip :pointer)
+  (:compute-expand :pointer)
+  (:css-changed :pointer)
+  (:system-setting-changed :pointer)
+  (:snapshot :pointer)
+  (:contains :pointer)
+  (:priv :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct window-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:activate-focus :pointer)
+  (:activate-default :pointer)
+  (:keys-changed :pointer)
+  (:enable-debugging :pointer)
+  (:close-request :pointer)
+  (:force-close :pointer)
+  (:padding :pointer :count 7))
+
+
+(rt:define-gstruct application-window-class
+    nil
+  (:parent-class (:struct window-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct layout-manager-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-request-mode :pointer)
+  (:measure :pointer)
+  (:allocate :pointer)
+  (:layout-child-type rt:gtype)
+  (:create-layout-child :pointer)
+  (:root :pointer)
+  (:unroot :pointer)
+  (:-padding :pointer :count 16))
+
+
+(rt:define-gstruct bin-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
 (rt:define-gstruct bitset-iter
     (:gtype-name "GtkBitsetIter")
   (:private-data :pointer :count 10))
+
+
+(rt:define-gstruct bookmark-list-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct filter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:match :pointer)
+  (:get-strictness :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer)
+  (:-gtk-reserved5 :pointer)
+  (:-gtk-reserved6 :pointer)
+  (:-gtk-reserved7 :pointer)
+  (:-gtk-reserved8 :pointer))
+
+
+(rt:define-gstruct bool-filter-class
+    nil
+  (:parent-class (:struct filter-class)))
 
 
 (rt:define-gstruct border
@@ -5790,6 +5962,32 @@ See: https://docs.gtk.org/gtk4/struct.Border.html")
                                "A new Border with the given fields; others are zero.")
 
 
+(rt:define-gstruct box-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct box-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
+(rt:define-gstruct buildable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:set-id :pointer)
+  (:get-id :pointer)
+  (:add-child :pointer)
+  (:set-buildable-property :pointer)
+  (:construct-child :pointer)
+  (:custom-tag-start :pointer)
+  (:custom-tag-end :pointer)
+  (:custom-finished :pointer)
+  (:parser-finished :pointer)
+  (:get-internal-child :pointer))
+
+
 (rt:define-gstruct buildable-parser
     nil
   (:start-element :pointer)
@@ -5797,6 +5995,195 @@ See: https://docs.gtk.org/gtk4/struct.Border.html")
   (:text :pointer)
   (:error :pointer)
   (:padding :pointer :count 4))
+
+
+(rt:define-gstruct builder-c-scope-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct builder-scope-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-type-from-name :pointer)
+  (:get-type-from-function :pointer)
+  (:create-closure :pointer))
+
+
+(rt:define-gstruct button-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:clicked :pointer)
+  (:activate :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct cell-area-class
+    nil
+  (:parent-class (:struct gobject:initially-unowned-class))
+  (:add :pointer)
+  (:remove :pointer)
+  (:foreach :pointer)
+  (:foreach-alloc :pointer)
+  (:event :pointer)
+  (:snapshot :pointer)
+  (:apply-attributes :pointer)
+  (:create-context :pointer)
+  (:copy-context :pointer)
+  (:get-request-mode :pointer)
+  (:get-preferred-width :pointer)
+  (:get-preferred-height-for-width :pointer)
+  (:get-preferred-height :pointer)
+  (:get-preferred-width-for-height :pointer)
+  (:set-cell-property :pointer)
+  (:get-cell-property :pointer)
+  (:focus :pointer)
+  (:is-activatable :pointer)
+  (:activate :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct cell-area-context-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:allocate :pointer)
+  (:reset :pointer)
+  (:get-preferred-height-for-width :pointer)
+  (:get-preferred-width-for-height :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct cell-editable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:editing-done :pointer)
+  (:remove-widget :pointer)
+  (:start-editing :pointer))
+
+
+(rt:define-gstruct cell-layout-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:pack-start :pointer)
+  (:pack-end :pointer)
+  (:clear :pointer)
+  (:add-attribute :pointer)
+  (:set-cell-data-func :pointer)
+  (:clear-attributes :pointer)
+  (:reorder :pointer)
+  (:get-cells :pointer)
+  (:get-area :pointer))
+
+
+(rt:define-gstruct cell-renderer-class
+    nil
+  (:parent-class (:struct gobject:initially-unowned-class))
+  (:get-request-mode :pointer)
+  (:get-preferred-width :pointer)
+  (:get-preferred-height-for-width :pointer)
+  (:get-preferred-height :pointer)
+  (:get-preferred-width-for-height :pointer)
+  (:get-aligned-area :pointer)
+  (:snapshot :pointer)
+  (:activate :pointer)
+  (:start-editing :pointer)
+  (:editing-canceled :pointer)
+  (:editing-started :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct cell-renderer-text-class
+    nil
+  (:parent-class (:struct cell-renderer-class))
+  (:edited :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct center-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
+(rt:define-gstruct check-button-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:toggled :pointer)
+  (:activate :pointer)
+  (:padding :pointer :count 7))
+
+
+(rt:define-gstruct color-chooser-interface
+    nil
+  (:base-interface (:struct gobject:type-interface))
+  (:get-rgba :pointer)
+  (:set-rgba :pointer)
+  (:add-palette :pointer)
+  (:color-activated :pointer)
+  (:padding :pointer :count 12))
+
+
+(rt:define-gstruct color-dialog-button-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct color-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct sorter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:compare :pointer)
+  (:get-order :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer)
+  (:-gtk-reserved5 :pointer)
+  (:-gtk-reserved6 :pointer)
+  (:-gtk-reserved7 :pointer)
+  (:-gtk-reserved8 :pointer))
+
+
+(rt:define-gstruct column-view-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct combo-box-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:changed :pointer)
+  (:format-entry-text :pointer)
+  (:activate :pointer)
+  (:padding :pointer :count 7))
+
+
+(rt:define-gstruct constraint-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct constraint-guide-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct layout-child-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct constraint-layout-child-class
+    nil
+  (:parent-class (:struct layout-child-class)))
+
+
+(rt:define-gstruct constraint-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
 
 
 (rt:define-gstruct css-location
@@ -5835,6 +6222,376 @@ See: https://docs.gtk.org/gtk4/struct.CssLocation.html")
                                 (line-bytes :line-bytes :size) (line-chars :line-chars :size))
                                :documentation
                                "A new CssLocation with the given fields; others are zero.")
+
+
+(rt:define-gstruct custom-filter-class
+    nil
+  (:parent-class (:struct filter-class)))
+
+
+(rt:define-gstruct custom-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
+(rt:define-gstruct custom-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct dialog-class
+    nil
+  (:parent-class (:struct window-class))
+  (:response :pointer)
+  (:close :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct directory-list-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct drag-icon-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct drawing-area-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:resize :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct drop-down-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct editable-interface
+    nil
+  (:base-iface (:struct gobject:type-interface))
+  (:insert-text :pointer)
+  (:delete-text :pointer)
+  (:changed :pointer)
+  (:get-text :pointer)
+  (:do-insert-text :pointer)
+  (:do-delete-text :pointer)
+  (:get-selection-bounds :pointer)
+  (:set-selection-bounds :pointer)
+  (:get-delegate :pointer)
+  (:get-complete-text :pointer))
+
+
+(rt:define-gstruct editable-label-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct entry-buffer-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:inserted-text :pointer)
+  (:deleted-text :pointer)
+  (:get-text :pointer)
+  (:get-length :pointer)
+  (:insert-text :pointer)
+  (:delete-text :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer)
+  (:-gtk-reserved5 :pointer)
+  (:-gtk-reserved6 :pointer)
+  (:-gtk-reserved7 :pointer)
+  (:-gtk-reserved8 :pointer))
+
+
+(rt:define-gstruct entry-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:activate :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct enum-list-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct enum-list-item-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct native-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:response :pointer)
+  (:show :pointer)
+  (:hide :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct file-chooser-native-class
+    nil
+  (:parent-class (:struct native-dialog-class)))
+
+
+(rt:define-gstruct file-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct file-launcher-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct filter-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct fixed-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct fixed-layout-child-class
+    nil
+  (:parent-class (:struct layout-child-class)))
+
+
+(rt:define-gstruct fixed-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
+(rt:define-gstruct flatten-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct flow-box-child-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:activate :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct font-chooser-iface
+    nil
+  (:base-iface (:struct gobject:type-interface))
+  (:get-font-family :pointer)
+  (:get-font-face :pointer)
+  (:get-font-size :pointer)
+  (:set-filter-func :pointer)
+  (:font-activated :pointer)
+  (:set-font-map :pointer)
+  (:get-font-map :pointer)
+  (:padding :pointer :count 10))
+
+
+(rt:define-gstruct font-dialog-button-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct font-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct frame-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:compute-child-allocation :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct gl-area-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:render :pointer)
+  (:resize :pointer)
+  (:create-context :pointer)
+  (:-padding :pointer :count 8))
+
+
+(rt:define-gstruct graphics-offload-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct grid-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct grid-layout-child-class
+    nil
+  (:parent-class (:struct layout-child-class)))
+
+
+(rt:define-gstruct grid-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
+
+
+(rt:define-gstruct im-context-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:preedit-start :pointer)
+  (:preedit-end :pointer)
+  (:preedit-changed :pointer)
+  (:commit :pointer)
+  (:retrieve-surrounding :pointer)
+  (:delete-surrounding :pointer)
+  (:set-client-widget :pointer)
+  (:get-preedit-string :pointer)
+  (:filter-keypress :pointer)
+  (:focus-in :pointer)
+  (:focus-out :pointer)
+  (:reset :pointer)
+  (:set-cursor-location :pointer)
+  (:set-use-preedit :pointer)
+  (:set-surrounding :pointer)
+  (:get-surrounding :pointer)
+  (:set-surrounding-with-selection :pointer)
+  (:get-surrounding-with-selection :pointer)
+  (:activate-osk :pointer)
+  (:activate-osk-with-event :pointer)
+  (:invalid-composition :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct im-context-simple-class
+    nil
+  (:parent-class (:struct im-context-class)))
+
+
+(rt:define-gstruct im-multicontext-class
+    nil
+  (:parent-class (:struct im-context-class))
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct icon-paintable-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct inscription-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct list-box-row-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:activate :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct list-store-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct map-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct media-controls-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct media-stream-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:play :pointer)
+  (:pause :pointer)
+  (:seek :pointer)
+  (:update-audio :pointer)
+  (:realize :pointer)
+  (:unrealize :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer)
+  (:-gtk-reserved5 :pointer)
+  (:-gtk-reserved6 :pointer)
+  (:-gtk-reserved7 :pointer)
+  (:-gtk-reserved8 :pointer))
+
+
+(rt:define-gstruct media-file-class
+    nil
+  (:parent-class (:struct media-stream-class))
+  (:open :pointer)
+  (:close :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct mount-operation-class
+    nil
+  (:parent-class (:struct gio:mount-operation-class))
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct multi-selection-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct multi-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct no-selection-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct numeric-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct orientable-iface
+    nil
+  (:base-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct overlay-layout-child-class
+    nil
+  (:parent-class (:struct layout-child-class)))
+
+
+(rt:define-gstruct overlay-layout-class
+    nil
+  (:parent-class (:struct layout-manager-class)))
 
 
 (rt:define-gstruct pad-action-entry
@@ -5914,6 +6671,80 @@ See: https://docs.gtk.org/gtk4/struct.PageRange.html")
                                "A new PageRange with the given fields; others are zero.")
 
 
+(rt:define-gstruct password-entry-buffer-class
+    nil
+  (:parent-class (:struct entry-buffer-class)))
+
+
+(rt:define-gstruct picture-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct popover-bin-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct popover-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:closed :pointer)
+  (:activate-default :pointer)
+  (:reserved :pointer :count 8))
+
+
+(rt:define-gstruct print-dialog-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct print-operation-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:done :pointer)
+  (:begin-print :pointer)
+  (:paginate :pointer)
+  (:request-page-setup :pointer)
+  (:draw-page :pointer)
+  (:end-print :pointer)
+  (:status-changed :pointer)
+  (:create-custom-widget :pointer)
+  (:custom-widget-apply :pointer)
+  (:preview :pointer)
+  (:update-custom-widget :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct print-operation-preview-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:ready :pointer)
+  (:got-page-size :pointer)
+  (:render-page :pointer)
+  (:is-selected :pointer)
+  (:end-preview :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer)
+  (:-gtk-reserved5 :pointer)
+  (:-gtk-reserved6 :pointer)
+  (:-gtk-reserved7 :pointer)
+  (:-gtk-reserved8 :pointer))
+
+
+(rt:define-gstruct range-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:value-changed :pointer)
+  (:adjust-bounds :pointer)
+  (:move-slider :pointer)
+  (:get-range-border :pointer)
+  (:change-value :pointer)
+  (:padding :pointer :count 8))
+
+
 (rt:define-gstruct recent-data
     nil
   (:display-name :pointer)
@@ -5979,6 +6810,16 @@ See: https://docs.gtk.org/gtk4/struct.RecentData.html")
                                "A new RecentData with the given fields; others are zero.")
 
 
+(rt:define-gstruct recent-manager-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:changed :pointer)
+  (:-gtk-recent1 :pointer)
+  (:-gtk-recent2 :pointer)
+  (:-gtk-recent3 :pointer)
+  (:-gtk-recent4 :pointer))
+
+
 (rt:define-gstruct requested-size
     nil
   (:data :pointer)
@@ -6033,6 +6874,113 @@ See: https://docs.gtk.org/gtk4/struct.Requisition.html")
                                "A new Requisition with the given fields; others are zero.")
 
 
+(rt:define-gstruct scale-button-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:value-changed :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct scale-class
+    nil
+  (:parent-class (:struct range-class))
+  (:get-layout-offsets :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct scrollable-interface
+    nil
+  (:base-iface (:struct gobject:type-interface))
+  (:get-border :pointer))
+
+
+(rt:define-gstruct section-model-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-section :pointer))
+
+
+(rt:define-gstruct selection-filter-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct selection-model-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:is-selected :pointer)
+  (:get-selection-in-range :pointer)
+  (:select-item :pointer)
+  (:unselect-item :pointer)
+  (:select-range :pointer)
+  (:unselect-range :pointer)
+  (:select-all :pointer)
+  (:unselect-all :pointer)
+  (:set-selection :pointer))
+
+
+(rt:define-gstruct shortcut-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct shortcut-manager-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:add-controller :pointer)
+  (:remove-controller :pointer))
+
+
+(rt:define-gstruct single-selection-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct slice-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct sort-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct string-filter-class
+    nil
+  (:parent-class (:struct filter-class)))
+
+
+(rt:define-gstruct string-list-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct string-object-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct string-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct style-context-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:changed :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct svg-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
 (rt:define-gstruct svg-location
     nil
   (:bytes :size)
@@ -6070,6 +7018,51 @@ See: https://docs.gtk.org/gtk4/struct.SvgLocation.html")
                                "A new SvgLocation with the given fields; others are zero.")
 
 
+(rt:define-gstruct svg-widget-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct symbolic-paintable-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:snapshot-symbolic :pointer)
+  (:snapshot-with-weight :pointer))
+
+
+(rt:define-gstruct text-buffer-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:insert-text :pointer)
+  (:insert-paintable :pointer)
+  (:insert-child-anchor :pointer)
+  (:delete-range :pointer)
+  (:changed :pointer)
+  (:modified-changed :pointer)
+  (:mark-set :pointer)
+  (:mark-deleted :pointer)
+  (:apply-tag :pointer)
+  (:remove-tag :pointer)
+  (:begin-user-action :pointer)
+  (:end-user-action :pointer)
+  (:paste-done :pointer)
+  (:undo :pointer)
+  (:redo :pointer)
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct text-child-anchor-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
 (rt:define-gstruct text-iter
     (:gtype-name "GtkTextIter")
   (:dummy1 :pointer)
@@ -6086,6 +7079,64 @@ See: https://docs.gtk.org/gtk4/struct.SvgLocation.html")
   (:dummy12 :int)
   (:dummy13 :int)
   (:dummy14 :pointer))
+
+
+(rt:define-gstruct text-mark-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct text-tag-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct text-view-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:move-cursor :pointer)
+  (:set-anchor :pointer)
+  (:insert-at-cursor :pointer)
+  (:delete-from-cursor :pointer)
+  (:backspace :pointer)
+  (:cut-clipboard :pointer)
+  (:copy-clipboard :pointer)
+  (:paste-clipboard :pointer)
+  (:toggle-overwrite :pointer)
+  (:create-buffer :pointer)
+  (:snapshot-layer :pointer)
+  (:extend-selection :pointer)
+  (:insert-emoji :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct toggle-button-class
+    nil
+  (:parent-class (:struct button-class))
+  (:toggled :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tree-drag-dest-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:drag-data-received :pointer)
+  (:row-drop-possible :pointer))
+
+
+(rt:define-gstruct tree-drag-source-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:row-draggable :pointer)
+  (:drag-data-get :pointer)
+  (:drag-data-delete :pointer))
+
+
+(rt:define-gstruct tree-expander-class
+    nil
+  (:parent-class (:struct widget-class)))
 
 
 (rt:define-gstruct tree-iter
@@ -6107,6 +7158,132 @@ See: https://docs.gtk.org/gtk4/struct.TreeIter.html")
                                (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)
                                ((stamp :stamp :int)) :documentation
                                "A new TreeIter with the given fields; others are zero.")
+
+
+(rt:define-gstruct tree-list-model-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct tree-list-row-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct tree-list-row-sorter-class
+    nil
+  (:parent-class (:struct sorter-class)))
+
+
+(rt:define-gstruct tree-model-filter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:visible :pointer)
+  (:modify :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tree-model-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:row-changed :pointer)
+  (:row-inserted :pointer)
+  (:row-has-child-toggled :pointer)
+  (:row-deleted :pointer)
+  (:rows-reordered :pointer)
+  (:get-flags :pointer)
+  (:get-n-columns :pointer)
+  (:get-column-type :pointer)
+  (:get-iter :pointer)
+  (:get-path :pointer)
+  (:get-value :pointer)
+  (:iter-next :pointer)
+  (:iter-previous :pointer)
+  (:iter-children :pointer)
+  (:iter-has-child :pointer)
+  (:iter-n-children :pointer)
+  (:iter-nth-child :pointer)
+  (:iter-parent :pointer)
+  (:ref-node :pointer)
+  (:unref-node :pointer))
+
+
+(rt:define-gstruct tree-model-sort-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tree-sortable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:sort-column-changed :pointer)
+  (:get-sort-column-id :pointer)
+  (:set-sort-column-id :pointer)
+  (:set-sort-func :pointer)
+  (:set-default-sort-func :pointer)
+  (:has-default-sort-func :pointer))
+
+
+(rt:define-gstruct tree-store-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tree-view-class
+    nil
+  (:parent-class (:struct widget-class))
+  (:row-activated :pointer)
+  (:test-expand-row :pointer)
+  (:test-collapse-row :pointer)
+  (:row-expanded :pointer)
+  (:row-collapsed :pointer)
+  (:columns-changed :pointer)
+  (:cursor-changed :pointer)
+  (:move-cursor :pointer)
+  (:select-all :pointer)
+  (:unselect-all :pointer)
+  (:select-cursor-row :pointer)
+  (:toggle-cursor-row :pointer)
+  (:expand-collapse-cursor-row :pointer)
+  (:select-cursor-parent :pointer)
+  (:start-interactive-search :pointer)
+  (:-reserved :pointer :count 16))
+
+
+(rt:define-gstruct uri-launcher-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct video-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct widget-paintable-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct window-controls-class
+    nil
+  (:parent-class (:struct widget-class)))
+
+
+(rt:define-gstruct window-group-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:-gtk-reserved1 :pointer)
+  (:-gtk-reserved2 :pointer)
+  (:-gtk-reserved3 :pointer)
+  (:-gtk-reserved4 :pointer))
+
+
+(rt:define-gstruct window-handle-class
+    nil
+  (:parent-class (:struct widget-class)))
 
 ;;; Properties
 

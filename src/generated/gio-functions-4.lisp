@@ -3,7 +3,7 @@
 
 (in-package #:gio)
 
-;;; Functions, constructors and methods (part 4)
+;;; Functions, constructors, methods and virtual functions (part 4)
 
 
 (rt:define-gfunction (seekable-truncate "g_seekable_truncate") :args
