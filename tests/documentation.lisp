@@ -6,10 +6,10 @@
 
 (defparameter *documented-packages*
   '(:glib :gobject :gmodule :gio :cairo :pango :pango-cairo :gdk-pixbuf :gdk :gsk :gtk
-    :graphene :harfbuzz))
+    :graphene :harfbuzz :adw))
 
 (defparameter *linked-packages*
-  '(:glib :gobject :gmodule :gio :cairo :pango :pango-cairo :gdk-pixbuf :gdk :gsk :gtk)
+  '(:glib :gobject :gmodule :gio :cairo :pango :pango-cairo :gdk-pixbuf :gdk :gsk :gtk :adw)
   "Packages whose upstream docs have a page per function. Graphene and
 HarfBuzz use other documentation layouts, so their bindings carry no link yet.")
 
