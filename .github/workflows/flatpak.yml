@@ -35,12 +35,13 @@ jobs:
           set +e
           timeout 8 dbus-run-session -- xvfb-run -a \
             flatpak-builder --run build-dir packaging/flatpak/org.lisp.gtk4.Clock.yml clock \
-            2> stderr.txt
+            > output.txt 2>&1
           status=$?
-          cat stderr.txt
+          cat output.txt
           # 124: still running when timeout stopped it, which is what we want.
           if [ $status -ne 124 ] && [ $status -ne 0 ]; then exit $status; fi
-          if grep -qi 'error' stderr.txt; then exit 1; fi
+          # Lisp errors in callbacks, or the image failing to start.
+          if grep -qE 'gtk4: error|Unhandled|fatal error|debugger invoked' output.txt; then exit 1; fi
       - name: Bundle
         run: flatpak build-bundle repo clock.flatpak org.lisp.gtk4.Clock
       - uses: actions/upload-artifact@v4
