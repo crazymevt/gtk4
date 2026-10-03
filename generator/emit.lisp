@@ -1,0 +1,408 @@
+;;;; emit.lisp — writing the generated Lisp sources
+
+(in-package #:gtk4.generator)
+
+(defparameter *m1-targets*
+  '(("GLib" "2.0") ("GObject" "2.0") ("GModule" "2.0") ("Gio" "2.0"))
+  "Namespaces generated in milestone M1.")
+
+;;; Documentation
+
+(defparameter *doc-bases*
+  '(("GLib" . "https://docs.gtk.org/glib/") ("GObject" . "https://docs.gtk.org/gobject/")
+    ("GModule" . "https://docs.gtk.org/gmodule/") ("Gio" . "https://docs.gtk.org/gio/")
+    ("Pango" . "https://docs.gtk.org/Pango/") ("PangoCairo" . "https://docs.gtk.org/PangoCairo/")
+    ("GdkPixbuf" . "https://docs.gtk.org/gdk-pixbuf/") ("Gdk" . "https://docs.gtk.org/gdk4/")
+    ("Gsk" . "https://docs.gtk.org/gsk4/") ("Gtk" . "https://docs.gtk.org/gtk4/")
+    ("Adw" . "https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1-latest/"))
+  "Where each namespace's gi-docgen reference lives.")
+
+(defun doc-url (nsname fragment)
+  (let ((base (cdr (assoc nsname *doc-bases* :test #'string=))))
+    (and base fragment (concatenate 'string base fragment))))
+
+(defun clean-doc (text)
+  "First paragraph of a GIR doc string with gi-docgen markup simplified:
+[method@Gtk.Widget.show] => Gtk.Widget.show, %TRUE => true, @param => PARAM."
+  (when text
+    (let* ((end (search (format nil "~%~%") text))
+           (para (string-trim '(#\Space #\Newline) (subseq text 0 end))))
+      (with-output-to-string (out)
+        (loop with i = 0
+              while (< i (length para))
+              do (let ((c (char para i)))
+                   (cond
+                     ;; [kind@Target] -> Target
+                     ((and (char= c #\[) (let ((at (position #\@ para :start i))
+                                               (close (position #\] para :start i)))
+                                           (and at close (< at close)
+                                                (not (find #\Space para :start i :end close)))))
+                      (let ((at (position #\@ para :start i))
+                            (close (position #\] para :start i)))
+                        (write-string (subseq para (1+ at) close) out)
+                        (setf i (1+ close))))
+                     ;; %TRUE %FALSE %NULL
+                     ((and (char= c #\%) (< (1+ i) (length para)) (upper-case-p (char para (1+ i))))
+                      (let ((end (or (position-if-not (lambda (ch) (or (alphanumericp ch) (char= ch #\_)))
+                                                      para :start (1+ i))
+                                     (length para))))
+                        (write-string (let ((w (subseq para (1+ i) end)))
+                                        (cond ((string= w "TRUE") "true")
+                                              ((string= w "FALSE") "false")
+                                              ((string= w "NULL") "NIL")
+                                              (t w)))
+                                      out)
+                        (setf i end)))
+                     ;; @param -> PARAM
+                     ((and (char= c #\@) (< (1+ i) (length para)) (alpha-char-p (char para (1+ i))))
+                      (let ((end (or (position-if-not (lambda (ch) (or (alphanumericp ch) (char= ch #\_)))
+                                                      para :start (1+ i))
+                                     (length para))))
+                        (write-string (string-upcase (snake-to-kebab (subseq para (1+ i) end))) out)
+                        (setf i end)))
+                     (t (write-char c out) (incf i)))))))))
+
+(defun docstring (doc &key c-name url version deprecated)
+  (with-output-to-string (out)
+    (let ((text (clean-doc doc)))
+      (when text (write-string text out) (terpri out)))
+    (when c-name (format out "~%C: ~a" c-name))
+    (when url (format out "~%See: ~a" url))
+    (when version (format out "~%Since: ~a" version))
+    (when deprecated (format out "~%Deprecated."))))
+
+(defun callable-fragment (plan)
+  (let ((owner (plan-owner plan))
+        (name (gir-item-name (plan-source plan))))
+    (if owner
+        (format nil "~a.~a.~a.html"
+                (ecase (plan-kind plan)
+                  (:method "method") (:constructor "ctor") (:function "type_func"))
+                (gir-item-name owner) name)
+        (format nil "func.~a.html" name))))
+
+(defun type-fragment (item)
+  (format nil "~a.~a.html"
+          (etypecase item
+            (gir-enum (if (eq (gir-enum-kind item) :bitfield) "flags" "enum"))
+            (gir-class (ecase (gir-class-kind item)
+                         (:class "class") (:interface "iface")
+                         ((:record :boxed) "struct") (:union "union"))))
+          (gir-item-name item)))
+
+;;; Printing
+
+(defun write-form (form stream)
+  (let ((*print-case* :downcase)
+        (*print-pretty* t)
+        (*print-right-margin* 100)
+        (*print-readably* nil)
+        (*print-circle* nil))
+    (terpri stream)
+    (pprint form stream)
+    (terpri stream)))
+
+(defun write-header (stream source)
+  (format stream ";;;; Generated by gtk4-generator from ~a.~%;;;; Do not edit: change the generator or its overrides and regenerate.~%"
+          (file-namestring source)))
+
+;;; Constants
+
+(defun constant-value (c)
+  (let ((v (gir-constant-value c))
+        (type (and (gir-type-p (gir-constant-type c)) (gir-type-name (gir-constant-type c)))))
+    (cond ((null v) nil)
+          ((member type '("gint" "guint" "gint8" "guint8" "gint16" "guint16" "gint32" "guint32"
+                          "gint64" "guint64" "glong" "gulong" "gsize" "gssize" "gshort" "gushort")
+                   :test #'equal)
+           (or (parse-integer v :junk-allowed t) v))
+          ((member type '("gdouble" "gfloat") :test #'equal)
+           (let ((*read-default-float-format* 'double-float))
+             (handler-case (coerce (read-from-string v) 'double-float)
+               (error () v))))
+          ((equal type "gboolean") (and (string-equal v "true") t))
+          (t v))))
+
+;;; Class ordering and superclasses
+
+(defun interface-ancestors (ctx qualified &optional (seen (make-hash-table :test 'equal)))
+  "All interfaces QUALIFIED (an interface) requires, transitively."
+  (let ((item (lookup ctx qualified)))
+    (when (gir-class-p item)
+      (loop for p in (gir-class-prerequisites item)
+            for q = (qualify p (namespace-of qualified))
+            for pi* = (lookup ctx q)
+            when (and (gir-class-p pi*) (eq (gir-class-kind pi*) :interface)
+                      (not (gethash q seen)))
+              do (setf (gethash q seen) t)
+                 (interface-ancestors ctx q seen)))
+    (alexandria:hash-table-keys seen)))
+
+(defun class-implemented (ctx qualified)
+  "Every interface QUALIFIED (a class) implements, including through ancestors."
+  (let ((result '()))
+    (loop for name = qualified then (let ((p (gir-class-parent item)))
+                                      (and p (qualify p (namespace-of name))))
+          for item = (and name (lookup ctx name))
+          while (gir-class-p item)
+          do (dolist (i (gir-class-implements item))
+               (let ((q (qualify i (namespace-of name))))
+                 (pushnew q result :test #'string=)
+                 (dolist (a (interface-ancestors ctx q)) (pushnew a result :test #'string=)))))
+    result))
+
+(defun minimal-interfaces (ctx candidates exclude)
+  "CANDIDATES (qualified interface names) without those in EXCLUDE and without
+any required by another candidate, so class precedence lists stay consistent."
+  (let ((cands (remove-if (lambda (q) (or (member q exclude :test #'string=)
+                                          (not (type-symbol q))
+                                          (not (gir-class-p (lookup ctx q)))
+                                          (not (eq (gir-class-kind (lookup ctx q)) :interface))))
+                          (remove-duplicates candidates :test #'string=))))
+    (remove-if (lambda (q)
+                 (some (lambda (other)
+                         (and (not (string= q other))
+                              (member q (interface-ancestors ctx other) :test #'string=)))
+                       cands))
+               cands)))
+
+(defun superclasses (ctx item nsname)
+  (let ((qualified (qualify (gir-item-name item) nsname)))
+    (ecase (gir-class-kind item)
+      (:interface
+       (mapcar #'type-symbol
+               (minimal-interfaces ctx
+                                   (mapcar (lambda (p) (qualify p nsname)) (gir-class-prerequisites item))
+                                   '())))
+      (:class
+       (let* ((parent (and (gir-class-parent item) (qualify (gir-class-parent item) nsname)))
+              (parent-sym (or (and parent (gobject-type-p ctx parent) (type-symbol parent))
+                              (find-symbol "OBJECT" "GTK4.RUNTIME")))
+              (inherited (and parent (class-implemented ctx parent)))
+              (own (mapcar (lambda (i) (qualify i nsname)) (gir-class-implements item))))
+         (declare (ignore qualified))
+         (cons parent-sym (mapcar #'type-symbol (minimal-interfaces ctx own inherited))))))))
+
+(defun ordered-classes (ctx ns)
+  "Classes and interfaces of NS that descend from GObject, each after any
+same-namespace class or interface it inherits from."
+  (let* ((nsname (gir-namespace-name ns))
+         (wanted (remove-if-not (lambda (c)
+                                  (and (member (gir-class-kind c) '(:class :interface))
+                                       (gobject-type-p ctx (qualify (gir-item-name c) nsname))
+                                       (not (assoc (qualify (gir-item-name c) nsname)
+                                                   *runtime-types* :test #'string=))))
+                                (gir-namespace-classes ns)))
+         (order '())
+         (seen (make-hash-table :test 'eq)))
+    (labels ((visit (c)
+               (unless (gethash c seen)
+                 (setf (gethash c seen) t)
+                 (dolist (dep (append (and (gir-class-parent c) (list (gir-class-parent c)))
+                                      (gir-class-implements c)
+                                      (gir-class-prerequisites c)))
+                   (let ((d (lookup ctx (qualify dep nsname))))
+                     (when (member d wanted) (visit d))))
+                 (push c order))))
+      (mapc #'visit wanted))
+    (nreverse order)))
+
+;;; Function forms
+
+(defun plan-form (plan nsname)
+  `(gtk4.runtime:define-gfunction (,(plan-symbol plan) ,(plan-c-name plan))
+     ,@(when (plan-args plan)
+         `(:args ,(loop for (var spec . options) in (plan-args plan)
+                        collect `(,var ,spec
+                                  ,@(when (eq (getf options :direction) :out) '(:direction :out))
+                                  ,@(unless (eq (getf options :transfer) :none)
+                                      `(:transfer ,(getf options :transfer)))
+                                  ,@(when (getf options :optional) '(:optional t))))))
+     ,@(unless (eq (plan-return plan) :void) `(:return ,(plan-return plan)))
+     ,@(unless (eq (plan-return-transfer plan) :none)
+         `(:return-transfer ,(plan-return-transfer plan)))
+     ,@(when (plan-throws plan) '(:throws t))
+     ,@(when (plan-version plan) `(:version ,(plan-version plan)))
+     :documentation ,(docstring (plan-doc plan)
+                                :c-name (plan-c-name plan)
+                                :url (doc-url nsname (callable-fragment plan))
+                                :version (plan-version plan)
+                                :deprecated (plan-deprecated plan))))
+
+(defun namespace-callables (ns)
+  "(CALLABLE . OWNER) for every function, constructor and method in NS."
+  (append (mapcar (lambda (f) (cons f nil)) (gir-namespace-functions ns))
+          (loop for c in (gir-namespace-classes ns)
+                append (loop for f in (append (gir-class-constructors c)
+                                              (gir-class-functions c)
+                                              (gir-class-methods c))
+                             collect (cons f c)))
+          (loop for e in (gir-namespace-enums ns)
+                append (mapcar (lambda (f) (cons f e)) (gir-enum-functions e)))))
+
+;;; Writing one namespace
+
+(defun emit-namespace (ctx ns stream)
+  (let* ((nsname (gir-namespace-name ns))
+         (*package* (find-package (namespace-package-name nsname))))
+    (write-header stream (gir-namespace-source ns))
+    (format stream "~%(in-package #:~(~a~))~%" (package-name *package*))
+    ;; Enums and flags
+    (format stream "~%;;; Enums and flags~%")
+    (dolist (e (gir-namespace-enums ns))
+      (write-form
+       `(gtk4.runtime:define-genum ,(type-symbol (qualify (gir-item-name e) nsname))
+            (:kind ,(if (eq (gir-enum-kind e) :bitfield) :flags :enum)
+             ,@(when (gir-enum-get-type e)
+                 `(:gtype-name ,(gir-enum-glib-type-name e) :get-type ,(gir-enum-get-type e)))
+             :documentation ,(docstring (gir-item-doc e) :c-name (gir-enum-c-type e)
+                                                         :url (doc-url nsname (type-fragment e))))
+          ,@(loop for m in (gir-enum-members e)
+                  collect (cons (intern (string-upcase (snake-to-kebab (gir-member-name m))) :keyword)
+                                (gir-member-value m))))
+       stream))
+    ;; Constants
+    (format stream "~%;;; Constants~%")
+    (dolist (c (gir-namespace-constants ns))
+      (let ((sym (item-symbol c)))
+        (when sym
+          (write-form `(gtk4.runtime:define-gconstant ,sym ,(constant-value c)
+                         ,(docstring (gir-item-doc c) :c-name (gir-constant-c-type c)
+                                                      :url (doc-url nsname (format nil "const.~a.html"
+                                                                                   (gir-item-name c)))))
+                      stream))))
+    ;; Classes and interfaces
+    (format stream "~%;;; Classes and interfaces~%")
+    (dolist (c (ordered-classes ctx ns))
+      (write-form
+       `(gtk4.runtime:define-gclass ,(type-symbol (qualify (gir-item-name c) nsname))
+            ,(superclasses ctx c nsname)
+          (:gtype-name ,(gir-class-glib-type-name c)
+           :get-type ,(gir-class-get-type c)
+           :documentation ,(docstring (gir-item-doc c) :c-name (gir-class-c-type c)
+                                                       :url (doc-url nsname (type-fragment c)))))
+       stream))
+    ;; Boxed records
+    (format stream "~%;;; Boxed types~%")
+    (dolist (c (gir-namespace-classes ns))
+      (let ((q (qualify (gir-item-name c) nsname)))
+        (when (and (member (gir-class-kind c) '(:record :union :boxed))
+                   (gir-class-get-type c)
+                   (not (gir-class-is-gtype-struct-for c))
+                   (not (member q *pointer-records* :test #'string=)))
+          (write-form
+           `(gtk4.runtime:define-grecord ,(type-symbol q)
+                (:gtype-name ,(gir-class-glib-type-name c)
+                 :documentation ,(docstring (gir-item-doc c) :c-name (gir-class-c-type c)
+                                                             :url (doc-url nsname (type-fragment c)))))
+           stream))))
+    ;; Properties
+    (format stream "~%;;; Properties~%")
+    (dolist (c (ordered-classes ctx ns))
+      (dolist (p (gir-class-properties c))
+        (let ((sym (item-symbol p)))
+          (when sym
+            (write-form
+             `(gtk4.runtime:define-gproperty ,sym ,(gir-item-name p)
+                  (:readable ,(gir-property-readable p)
+                   :writable ,(and (gir-property-writable p) (not (gir-property-construct-only p)))
+                   :documentation ,(docstring (gir-item-doc p)
+                                              :url (doc-url nsname (format nil "property.~a.~a.html"
+                                                                           (gir-item-name c)
+                                                                           (gir-item-name p))))))
+             stream)))))
+    ;; Functions
+    (format stream "~%;;; Functions, constructors and methods~%")
+    (let ((bound 0))
+      (loop for (callable . owner) in (namespace-callables ns)
+            do (multiple-value-bind (plan reason) (plan-callable ctx ns callable owner)
+                 (if plan
+                     (progn (incf bound) (write-form (plan-form plan nsname) stream))
+                     (note-skip ctx ns (or (gir-callable-c-identifier callable)
+                                           (gir-item-name callable))
+                                reason))))
+      (setf (gethash nsname (context-bound ctx)) bound))))
+
+;;; The packages file
+
+(defun emit-packages (ctx stream)
+  (format stream ";;;; Generated by gtk4-generator. Do not edit.~%")
+  (format stream ";;;; One package per GIR namespace; every binding symbol is exported.~%")
+  (dolist (ns (context-targets ctx))
+    (let* ((package (find-package (namespace-package-name (gir-namespace-name ns))))
+           (runtime (find-package "GTK4.RUNTIME"))
+           (externals (sort (loop for s being the external-symbols of package collect s)
+                            #'string< :key #'symbol-name))
+           (imported (remove-if-not (lambda (s) (eq (symbol-package s) runtime)) externals))
+           (shadows (sort (mapcar #'symbol-name (package-shadowing-symbols package)) #'string<)))
+      (format stream "~%(defpackage #:~(~a~)~%  (:use #:cl)~%  (:local-nicknames (#:rt #:gtk4.runtime))"
+              (package-name package))
+      (when shadows
+        (format stream "~%  (:shadow~{ #:~(~a~)~})" shadows))
+      (when imported
+        (format stream "~%  (:import-from #:gtk4.runtime~{ #:~(~a~)~})" (mapcar #'symbol-name imported)))
+      (format stream "~%  (:export~{~%   #:~(~a~)~}))~%" (mapcar #'symbol-name externals)))))
+
+;;; Coverage
+
+(defun callable-total (ns)
+  (length (namespace-callables ns)))
+
+(defparameter *never-bindable*
+  '("not introspectable" "moved elsewhere (alias)" "shadowed by another function")
+  "Skip reasons that mean GIR itself says a callable should not be bound.")
+
+(defun emit-coverage (ctx stream)
+  (format stream "# Binding coverage~%~%Generated by gtk4-generator. Callables are functions, constructors and methods. ")
+  (format stream "Bindable excludes those GIR marks as not introspectable, aliases, and shadowed functions.~%~%")
+  (format stream "| Namespace | Callables | Bindable | Bound | Coverage of bindable |~%| --- | ---: | ---: | ---: | ---: |~%")
+  (let ((total 0) (bindable-total 0) (bound 0))
+    (dolist (ns (context-targets ctx))
+      (let* ((name (gir-namespace-name ns))
+             (n (callable-total ns))
+             (never (count-if (lambda (skip) (member (cdr skip) *never-bindable* :test #'string=))
+                              (gethash name (context-skipped ctx))))
+             (bindable (- n never))
+             (b (gethash name (context-bound ctx) 0)))
+        (incf total n) (incf bindable-total bindable) (incf bound b)
+        (format stream "| ~a | ~d | ~d | ~d | ~,1f% |~%" name n bindable b
+                (if (zerop bindable) 100 (* 100.0 (/ b bindable))))))
+    (format stream "| **Total** | ~d | ~d | ~d | ~,1f% |~%" total bindable-total bound
+            (if (zerop bindable-total) 100 (* 100.0 (/ bound bindable-total)))))
+  (format stream "~%## Why callables are skipped~%~%| Reason | Count |~%| --- | ---: |~%")
+  (let ((reasons (make-hash-table :test 'equal)))
+    (loop for skips being the hash-values of (context-skipped ctx)
+          do (loop for (nil . reason) in skips
+                   do (incf (gethash (reason-category reason) reasons 0))))
+    (loop for (reason . count) in (sort (alexandria:hash-table-alist reasons) #'> :key #'cdr)
+          do (format stream "| ~a | ~d |~%" reason count))))
+
+(defun reason-category (reason)
+  "Group reasons that differ only in a type name."
+  (let ((p (search "unresolved type" reason)))
+    (if p (subseq reason 0 (+ p (length "unresolved type"))) reason)))
+
+;;; Entry point
+
+(defun generate (&key (targets *m1-targets*)
+                      (output-directory (asdf:system-relative-pathname "gtk4" "src/generated/")))
+  "Generate binding sources for TARGETS into OUTPUT-DIRECTORY: packages.lisp,
+one file per namespace, and COVERAGE.md. Run in a fresh image."
+  (let* ((repository (load-targets :targets targets))
+         (ctx (make-context repository targets)))
+    (name-namespaces ctx)
+    (ensure-directories-exist output-directory)
+    (dolist (ns (context-targets ctx))
+      (with-open-file (out (merge-pathnames (format nil "~(~a~).lisp"
+                                                    (namespace-package-name (gir-namespace-name ns)))
+                                            output-directory)
+                           :direction :output :if-exists :supersede)
+        (emit-namespace ctx ns out)))
+    (with-open-file (out (merge-pathnames "packages.lisp" output-directory)
+                         :direction :output :if-exists :supersede)
+      (emit-packages ctx out))
+    (with-open-file (out (merge-pathnames "COVERAGE.md" output-directory)
+                         :direction :output :if-exists :supersede)
+      (emit-coverage ctx out))
+    (emit-coverage ctx *standard-output*)
+    ctx))

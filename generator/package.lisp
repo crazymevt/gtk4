@@ -12,6 +12,9 @@
    #:load-targets
    #:parse-gir-file
    #:parse-gir-string
+   ;; generation
+   #:*m1-targets*
+   #:generate
    ;; report
    #:namespace-summary
    #:print-summary))

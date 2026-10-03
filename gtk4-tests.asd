@@ -10,5 +10,6 @@
   :components ((:file "package")
                (:file "generator")
                (:file "runtime")
-               (:file "objects"))
+               (:file "objects")
+               (:file "generated"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))

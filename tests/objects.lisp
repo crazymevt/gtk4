@@ -76,10 +76,11 @@
     (is eq a again)))
 
 (define-test unregistered-gtype-uses-ancestor-class :parent objects
-  (let ((group (rt:wrap-object (cffi:foreign-funcall "g_simple_action_group_new" :pointer)
-                               :transfer :full)))
-    (is eq (find-class 'rt:object) (class-of group))
-    (is string= "GSimpleActionGroup" (rt:gtype-name (rt:instance-gtype (rt:object-pointer group))))))
+  ;; GLocalFile is private to GIO, so no Lisp class exists for it.
+  (let ((file (rt:wrap-object (cffi:foreign-funcall "g_file_new_for_path" :string "/tmp" :pointer)
+                              :transfer :full)))
+    (is eq (find-class 'rt:object) (class-of file))
+    (is string= "GLocalFile" (rt:gtype-name (rt:instance-gtype (rt:object-pointer file))))))
 
 (define-test notify-signal :parent objects
   (let* ((a (make-instance 'simple-action :name "paste" :enabled t))

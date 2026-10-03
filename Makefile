@@ -2,7 +2,7 @@ SBCL ?= sbcl
 LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test summary hello
+.PHONY: test summary generate hello
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -11,6 +11,10 @@ test:
 summary:
 	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
 	        --eval '(gtk4.generator:print-summary (gtk4.generator:load-targets))'
+
+generate:
+	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
+	        --eval '(gtk4.generator:generate)'
 
 hello:
 	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \

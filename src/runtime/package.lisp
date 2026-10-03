@@ -65,4 +65,14 @@
    #:disconnect
    #:block-handler
    #:unblock-handler
-   #:handler-connected-p))
+   #:handler-connected-p
+   ;; definitions used by generated code
+   #:define-gfunction
+   #:define-genum
+   #:define-gconstant
+   #:define-gclass
+   #:define-grecord
+   #:define-gproperty
+   #:unavailable-function
+   #:enum-value
+   #:enum-keyword))
