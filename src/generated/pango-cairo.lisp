@@ -5,6 +5,8 @@
 
 ;;; Enums and flags
 
+;;; Error domains
+
 ;;; Constants
 
 ;;; Classes and interfaces

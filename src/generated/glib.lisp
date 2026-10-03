@@ -1304,6 +1304,245 @@ See: https://docs.gtk.org/glib/enum.VariantParseError.html")
   (:value-expected . 17)
   (:recursion . 18))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain bookmark-file-error
+    ("g-bookmark-file-error-quark" bookmark-file-error)
+  (:invalid-uri bookmark-file-error-invalid-uri)
+  (:invalid-value bookmark-file-error-invalid-value)
+  (:app-not-registered bookmark-file-error-app-not-registered)
+  (:uri-not-found bookmark-file-error-uri-not-found)
+  (:read bookmark-file-error-read)
+  (:unknown-encoding bookmark-file-error-unknown-encoding)
+  (:write bookmark-file-error-write)
+  (:file-not-found bookmark-file-error-file-not-found))
+
+
+(rt:define-gerror-domain convert-error
+    ("g_convert_error" convert-error)
+  (:no-conversion convert-error-no-conversion)
+  (:illegal-sequence convert-error-illegal-sequence)
+  (:failed convert-error-failed)
+  (:partial-input convert-error-partial-input)
+  (:bad-uri convert-error-bad-uri)
+  (:not-absolute-path convert-error-not-absolute-path)
+  (:no-memory convert-error-no-memory)
+  (:embedded-nul convert-error-embedded-nul))
+
+
+(rt:define-gerror-domain file-error
+    ("g-file-error-quark" file-error)
+  (:exist file-error-exist)
+  (:isdir file-error-isdir)
+  (:acces file-error-acces)
+  (:nametoolong file-error-nametoolong)
+  (:noent file-error-noent)
+  (:notdir file-error-notdir)
+  (:nxio file-error-nxio)
+  (:nodev file-error-nodev)
+  (:rofs file-error-rofs)
+  (:txtbsy file-error-txtbsy)
+  (:fault file-error-fault)
+  (:loop file-error-loop)
+  (:nospc file-error-nospc)
+  (:nomem file-error-nomem)
+  (:mfile file-error-mfile)
+  (:nfile file-error-nfile)
+  (:badf file-error-badf)
+  (:inval file-error-inval)
+  (:pipe file-error-pipe)
+  (:again file-error-again)
+  (:intr file-error-intr)
+  (:io file-error-io)
+  (:perm file-error-perm)
+  (:nosys file-error-nosys)
+  (:failed file-error-failed))
+
+
+(rt:define-gerror-domain io-channel-error
+    ("g-io-channel-error-quark" io-channel-error)
+  (:fbig io-channel-error-fbig)
+  (:inval io-channel-error-inval)
+  (:io io-channel-error-io)
+  (:isdir io-channel-error-isdir)
+  (:nospc io-channel-error-nospc)
+  (:nxio io-channel-error-nxio)
+  (:overflow io-channel-error-overflow)
+  (:pipe io-channel-error-pipe)
+  (:failed io-channel-error-failed))
+
+
+(rt:define-gerror-domain key-file-error
+    ("g-key-file-error-quark" key-file-error)
+  (:unknown-encoding key-file-error-unknown-encoding)
+  (:parse key-file-error-parse)
+  (:not-found key-file-error-not-found)
+  (:key-not-found key-file-error-key-not-found)
+  (:group-not-found key-file-error-group-not-found)
+  (:invalid-value key-file-error-invalid-value))
+
+
+(rt:define-gerror-domain markup-error
+    ("g-markup-error-quark" markup-error)
+  (:bad-utf8 markup-error-bad-utf8)
+  (:empty markup-error-empty)
+  (:parse markup-error-parse)
+  (:unknown-element markup-error-unknown-element)
+  (:unknown-attribute markup-error-unknown-attribute)
+  (:invalid-content markup-error-invalid-content)
+  (:missing-attribute markup-error-missing-attribute))
+
+
+(rt:define-gerror-domain number-parser-error
+    ("g-number-parser-error-quark" number-parser-error)
+  (:invalid number-parser-error-invalid)
+  (:out-of-bounds number-parser-error-out-of-bounds))
+
+
+(rt:define-gerror-domain option-error
+    ("g-option-context-error-quark" option-error)
+  (:unknown-option option-error-unknown-option)
+  (:bad-value option-error-bad-value)
+  (:failed option-error-failed))
+
+
+(rt:define-gerror-domain regex-error
+    ("g-regex-error-quark" regex-error)
+  (:compile regex-error-compile)
+  (:optimize regex-error-optimize)
+  (:replace regex-error-replace)
+  (:match regex-error-match)
+  (:internal regex-error-internal)
+  (:stray-backslash regex-error-stray-backslash)
+  (:missing-control-char regex-error-missing-control-char)
+  (:unrecognized-escape regex-error-unrecognized-escape)
+  (:quantifiers-out-of-order regex-error-quantifiers-out-of-order)
+  (:quantifier-too-big regex-error-quantifier-too-big)
+  (:unterminated-character-class regex-error-unterminated-character-class)
+  (:invalid-escape-in-character-class regex-error-invalid-escape-in-character-class)
+  (:range-out-of-order regex-error-range-out-of-order)
+  (:nothing-to-repeat regex-error-nothing-to-repeat)
+  (:unrecognized-character regex-error-unrecognized-character)
+  (:posix-named-class-outside-class regex-error-posix-named-class-outside-class)
+  (:unmatched-parenthesis regex-error-unmatched-parenthesis)
+  (:inexistent-subpattern-reference regex-error-inexistent-subpattern-reference)
+  (:unterminated-comment regex-error-unterminated-comment)
+  (:expression-too-large regex-error-expression-too-large)
+  (:memory-error regex-error-memory-error)
+  (:variable-length-lookbehind regex-error-variable-length-lookbehind)
+  (:malformed-condition regex-error-malformed-condition)
+  (:too-many-conditional-branches regex-error-too-many-conditional-branches)
+  (:assertion-expected regex-error-assertion-expected)
+  (:unknown-posix-class-name regex-error-unknown-posix-class-name)
+  (:posix-collating-elements-not-supported regex-error-posix-collating-elements-not-supported)
+  (:hex-code-too-large regex-error-hex-code-too-large)
+  (:invalid-condition regex-error-invalid-condition)
+  (:single-byte-match-in-lookbehind regex-error-single-byte-match-in-lookbehind)
+  (:infinite-loop regex-error-infinite-loop)
+  (:missing-subpattern-name-terminator regex-error-missing-subpattern-name-terminator)
+  (:duplicate-subpattern-name regex-error-duplicate-subpattern-name)
+  (:malformed-property regex-error-malformed-property)
+  (:unknown-property regex-error-unknown-property)
+  (:subpattern-name-too-long regex-error-subpattern-name-too-long)
+  (:too-many-subpatterns regex-error-too-many-subpatterns)
+  (:invalid-octal-value regex-error-invalid-octal-value)
+  (:too-many-branches-in-define regex-error-too-many-branches-in-define)
+  (:define-repetion regex-error-define-repetion)
+  (:inconsistent-newline-options regex-error-inconsistent-newline-options)
+  (:missing-back-reference regex-error-missing-back-reference)
+  (:invalid-relative-reference regex-error-invalid-relative-reference)
+  (:backtracking-control-verb-argument-forbidden
+   regex-error-backtracking-control-verb-argument-forbidden)
+  (:unknown-backtracking-control-verb regex-error-unknown-backtracking-control-verb)
+  (:number-too-big regex-error-number-too-big)
+  (:missing-subpattern-name regex-error-missing-subpattern-name)
+  (:missing-digit regex-error-missing-digit)
+  (:invalid-data-character regex-error-invalid-data-character)
+  (:extra-subpattern-name regex-error-extra-subpattern-name)
+  (:backtracking-control-verb-argument-required
+   regex-error-backtracking-control-verb-argument-required)
+  (:invalid-control-char regex-error-invalid-control-char)
+  (:missing-name regex-error-missing-name)
+  (:not-supported-in-class regex-error-not-supported-in-class)
+  (:too-many-forward-references regex-error-too-many-forward-references)
+  (:name-too-long regex-error-name-too-long)
+  (:character-value-too-large regex-error-character-value-too-large))
+
+
+(rt:define-gerror-domain shell-error
+    ("g-shell-error-quark" shell-error)
+  (:bad-quoting shell-error-bad-quoting)
+  (:empty-string shell-error-empty-string)
+  (:failed shell-error-failed))
+
+
+(rt:define-gerror-domain spawn-error
+    ("g-exec-error-quark" spawn-error)
+  (:fork spawn-error-fork)
+  (:read spawn-error-read)
+  (:chdir spawn-error-chdir)
+  (:acces spawn-error-acces)
+  (:perm spawn-error-perm)
+  (:too-big spawn-error-too-big)
+  (:2big spawn-error-2big)
+  (:noexec spawn-error-noexec)
+  (:nametoolong spawn-error-nametoolong)
+  (:noent spawn-error-noent)
+  (:nomem spawn-error-nomem)
+  (:notdir spawn-error-notdir)
+  (:loop spawn-error-loop)
+  (:txtbusy spawn-error-txtbusy)
+  (:io spawn-error-io)
+  (:nfile spawn-error-nfile)
+  (:mfile spawn-error-mfile)
+  (:inval spawn-error-inval)
+  (:isdir spawn-error-isdir)
+  (:libbad spawn-error-libbad)
+  (:failed spawn-error-failed))
+
+
+(rt:define-gerror-domain thread-error
+    ("g_thread_error" thread-error)
+  (:thread-error-again thread-error-thread-error-again))
+
+
+(rt:define-gerror-domain uri-error
+    ("g-uri-quark" uri-error)
+  (:failed uri-error-failed)
+  (:bad-scheme uri-error-bad-scheme)
+  (:bad-user uri-error-bad-user)
+  (:bad-password uri-error-bad-password)
+  (:bad-auth-params uri-error-bad-auth-params)
+  (:bad-host uri-error-bad-host)
+  (:bad-port uri-error-bad-port)
+  (:bad-path uri-error-bad-path)
+  (:bad-query uri-error-bad-query)
+  (:bad-fragment uri-error-bad-fragment))
+
+
+(rt:define-gerror-domain variant-parse-error
+    ("g-variant-parse-error-quark" variant-parse-error)
+  (:failed variant-parse-error-failed)
+  (:basic-type-expected variant-parse-error-basic-type-expected)
+  (:cannot-infer-type variant-parse-error-cannot-infer-type)
+  (:definite-type-expected variant-parse-error-definite-type-expected)
+  (:input-not-at-end variant-parse-error-input-not-at-end)
+  (:invalid-character variant-parse-error-invalid-character)
+  (:invalid-format-string variant-parse-error-invalid-format-string)
+  (:invalid-object-path variant-parse-error-invalid-object-path)
+  (:invalid-signature variant-parse-error-invalid-signature)
+  (:invalid-type-string variant-parse-error-invalid-type-string)
+  (:no-common-type variant-parse-error-no-common-type)
+  (:number-out-of-range variant-parse-error-number-out-of-range)
+  (:number-too-big variant-parse-error-number-too-big)
+  (:type-error variant-parse-error-type-error)
+  (:unexpected-token variant-parse-error-unexpected-token)
+  (:unknown-keyword variant-parse-error-unknown-keyword)
+  (:unterminated-string-constant variant-parse-error-unterminated-string-constant)
+  (:value-expected variant-parse-error-value-expected)
+  (:recursion variant-parse-error-recursion))
+
 ;;; Constants
 
 

@@ -1054,6 +1054,8 @@ C: hb_unicode_general_category_t")
   (:paragraph-separator . 28)
   (:space-separator . 29))
 
+;;; Error domains
+
 ;;; Constants
 
 

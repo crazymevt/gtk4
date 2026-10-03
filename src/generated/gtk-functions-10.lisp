@@ -1280,6 +1280,89 @@ C: gtk_svg_error_quark
 See: https://docs.gtk.org/gtk4/type_func.SvgError.quark.html")
 
 
+(rt:define-async show-uri-full show-uri-full-finish :callback-position 4 :finish-takes-source nil)
+
+
+(rt:define-async alert-dialog-choose alert-dialog-choose-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async color-dialog-choose-rgba color-dialog-choose-rgba-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-open file-dialog-open-finish :callback-position 3 :finish-takes-source
+                 t)
+
+
+(rt:define-async file-dialog-open-multiple file-dialog-open-multiple-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-open-multiple-text-files file-dialog-open-multiple-text-files-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-open-text-file file-dialog-open-text-file-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-save file-dialog-save-finish :callback-position 3 :finish-takes-source
+                 t)
+
+
+(rt:define-async file-dialog-save-text-file file-dialog-save-text-file-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-select-folder file-dialog-select-folder-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-dialog-select-multiple-folders file-dialog-select-multiple-folders-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-launcher-launch file-launcher-launch-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-launcher-open-containing-folder file-launcher-open-containing-folder-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async font-dialog-choose-face font-dialog-choose-face-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async font-dialog-choose-family font-dialog-choose-family-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async font-dialog-choose-font font-dialog-choose-font-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async font-dialog-choose-font-and-features font-dialog-choose-font-and-features-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async print-dialog-print print-dialog-print-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async print-dialog-print-file print-dialog-print-file-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async print-dialog-setup print-dialog-setup-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async uri-launcher-launch uri-launcher-launch-finish :callback-position 3
+                 :finish-takes-source t)
+
+
 (rt:define-gvfunc (accessible :get-accessible-id) (accessible-interface :get-accessible-id) :args
                   ((self (:object accessible))) :return :string :return-transfer :full :url
                   "https://docs.gtk.org/gtk4/vfunc.Accessible.get_accessible_id.html"
@@ -3905,195 +3988,3 @@ See: https://docs.gtk.org/gtk4/vfunc.TreeView.start_interactive_search.html")
                   :return :boolean :url
                   "https://docs.gtk.org/gtk4/vfunc.TreeView.test_collapse_row.html" :documentation "
 See: https://docs.gtk.org/gtk4/vfunc.TreeView.test_collapse_row.html")
-
-
-(rt:define-gvfunc (tree-view :test-expand-row) (tree-view-class :test-expand-row) :args
-                  ((tree-view (:object tree-view))
-                   (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
-                   (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
-                  :return :boolean :url
-                  "https://docs.gtk.org/gtk4/vfunc.TreeView.test_expand_row.html" :documentation "
-See: https://docs.gtk.org/gtk4/vfunc.TreeView.test_expand_row.html")
-
-
-(rt:define-gvfunc (tree-view :toggle-cursor-row) (tree-view-class :toggle-cursor-row) :args
-                  ((tree-view (:object tree-view))) :return :boolean :url
-                  "https://docs.gtk.org/gtk4/vfunc.TreeView.toggle_cursor_row.html" :documentation "
-See: https://docs.gtk.org/gtk4/vfunc.TreeView.toggle_cursor_row.html")
-
-
-(rt:define-gvfunc (tree-view :unselect-all) (tree-view-class :unselect-all) :args
-                  ((tree-view (:object tree-view))) :return :boolean :url
-                  "https://docs.gtk.org/gtk4/vfunc.TreeView.unselect_all.html" :documentation "
-See: https://docs.gtk.org/gtk4/vfunc.TreeView.unselect_all.html")
-
-
-(rt:define-gvfunc (widget :compute-expand) (widget-class :compute-expand) :args
-                  ((widget (:object widget)) (hexpand-p :boolean) (vexpand-p :boolean)) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html" :documentation
-                  "Computes whether a container should give this
-  widget extra space when possible.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.compute_expand.html")
-
-
-(rt:define-gvfunc (widget :contains) (widget-class :contains) :args
-                  ((widget (:object widget)) (x :double) (y :double)) :return :boolean :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.contains.html" :documentation
-                  "Tests if a given point is contained in the widget.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.contains.html")
-
-
-(rt:define-gvfunc (widget :css-changed) (widget-class :css-changed) :args
-                  ((widget (:object widget)) (change (:record css-style-change))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.css_changed.html" :documentation
-                  "Vfunc called when the CSS used by widget was changed. Widgets
-  should then discard their caches that depend on CSS and queue resizes or
-  redraws accordingly. The default implementation will take care of this for
-  all the default CSS properties, so implementations must chain up.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.css_changed.html")
-
-
-(rt:define-gvfunc (widget :direction-changed) (widget-class :direction-changed) :args
-                  ((widget (:object widget)) (previous-direction (:enum text-direction))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.direction_changed.html" :documentation
-                  "Signal emitted when the text direction of a
-  widget changes.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.direction_changed.html")
-
-
-(rt:define-gvfunc (widget :focus) (widget-class :focus) :args
-                  ((widget (:object widget)) (direction (:enum direction-type))) :return :boolean
-                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.focus.html" :documentation
-                  "Vfunc for `gtk:widget-child-focus`
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.focus.html")
-
-
-(rt:define-gvfunc (widget :get-request-mode) (widget-class :get-request-mode) :args
-                  ((widget (:object widget))) :return (:enum size-request-mode) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.get_request_mode.html" :documentation
-                  "Gets whether the widget prefers a height-for-width layout
-or a width-for-height layout.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.get_request_mode.html")
-
-
-(rt:define-gvfunc (widget :grab-focus) (widget-class :grab-focus) :args ((widget (:object widget)))
-                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.Widget.grab_focus.html"
-                  :documentation "Causes WIDGET to have the keyboard focus for the window
-that it belongs to.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.grab_focus.html")
-
-
-(rt:define-gvfunc (widget :hide) (widget-class :hide) :args ((widget (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.hide.html" :documentation
-                  "Reverses the effects of [method.Gtk.Widget.show].
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.hide.html")
-
-
-(rt:define-gvfunc (widget :keynav-failed) (widget-class :keynav-failed) :args
-                  ((widget (:object widget)) (direction (:enum direction-type))) :return :boolean
-                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.keynav_failed.html" :documentation
-                  "Emits the :keynav-failed signal on the widget.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.keynav_failed.html")
-
-
-(rt:define-gvfunc (widget :map) (widget-class :map) :args ((widget (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.map.html" :documentation
-                  "Causes a widget to be mapped if it isn’t already.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.map.html")
-
-
-(rt:define-gvfunc (widget :measure) (widget-class :measure) :args
-                  ((widget (:object widget)) (orientation (:enum orientation)) (for-size :int)
-                   (minimum :int :direction :out :transfer :full)
-                   (natural :int :direction :out :transfer :full)
-                   (minimum-baseline :int :direction :out :transfer :full)
-                   (natural-baseline :int :direction :out :transfer :full))
-                  :url "https://docs.gtk.org/gtk4/vfunc.Widget.measure.html" :documentation
-                  "Measures WIDGET in the orientation ORIENTATION and for the given FOR-SIZE.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.measure.html")
-
-
-(rt:define-gvfunc (widget :mnemonic-activate) (widget-class :mnemonic-activate) :args
-                  ((widget (:object widget)) (group-cycling :boolean)) :return :boolean :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.mnemonic_activate.html" :documentation
-                  "Emits the :mnemonic-activate signal.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.mnemonic_activate.html")
-
-
-(rt:define-gvfunc (widget :move-focus) (widget-class :move-focus) :args
-                  ((widget (:object widget)) (direction (:enum direction-type))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.move_focus.html" :documentation
-                  "Signal emitted when a change of focus is requested
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.move_focus.html")
-
-
-(rt:define-gvfunc (widget :query-tooltip) (widget-class :query-tooltip) :args
-                  ((widget (:object widget)) (x :int) (y :int) (keyboard-tooltip :boolean)
-                   (tooltip (:object tooltip)))
-                  :return :boolean :url "https://docs.gtk.org/gtk4/vfunc.Widget.query_tooltip.html"
-                  :documentation "Signal emitted when “has-tooltip” is T and the
-  hover timeout has expired with the cursor hovering “above”
-  widget; or emitted when widget got focus in keyboard mode.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.query_tooltip.html")
-
-
-(rt:define-gvfunc (widget :realize) (widget-class :realize) :args ((widget (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.realize.html" :documentation
-                  "Creates the GDK resources associated with a widget.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.realize.html")
-
-
-(rt:define-gvfunc (widget :root) (widget-class :root) :args ((widget (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.root.html" :documentation
-                  "Called when the widget gets added to a `gtk:root` widget. Must
-  chain up
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.root.html")
-
-
-(rt:define-gvfunc (widget :set-focus-child) (widget-class :set-focus-child) :args
-                  ((widget (:object widget)) (child (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.set_focus_child.html" :documentation
-                  "Set the focus child of the widget.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.set_focus_child.html")
-
-
-(rt:define-gvfunc (widget :show) (widget-class :show) :args ((widget (:object widget))) :url
-                  "https://docs.gtk.org/gtk4/vfunc.Widget.show.html" :documentation
-                  "Flags a widget to be displayed.
-
-
-See: https://docs.gtk.org/gtk4/vfunc.Widget.show.html")

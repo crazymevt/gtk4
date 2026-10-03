@@ -1362,6 +1362,26 @@ C: gdk_pixbuf_error_quark
 See: https://docs.gtk.org/gdk-pixbuf/type_func.PixbufError.quark.html")
 
 
+(rt:define-async pixbuf-get-file-info-async pixbuf-get-file-info-finish :callback-position 2
+                 :finish-takes-source nil)
+
+
+(rt:define-async pixbuf-new-from-stream-async pixbuf-new-from-stream-finish :callback-position 2
+                 :finish-takes-source nil)
+
+
+(rt:define-async pixbuf-new-from-stream-at-scale-async pixbuf-new-from-stream-finish
+                 :callback-position 5 :finish-takes-source nil)
+
+
+(rt:define-async pixbuf-save-to-streamv-async pixbuf-save-to-stream-finish :callback-position 6
+                 :finish-takes-source nil)
+
+
+(rt:define-async pixbuf-animation-new-from-stream-async pixbuf-animation-new-from-stream-finish
+                 :callback-position 2 :finish-takes-source nil)
+
+
 (rt:define-gvfunc (pixbuf-animation :get-iter) (pixbuf-animation-class :get-iter) :args
                   ((animation (:object pixbuf-animation)) (start-time (:record glib:time-val)))
                   :return (:object pixbuf-animation-iter) :return-transfer :full :url

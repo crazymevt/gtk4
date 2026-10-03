@@ -31,7 +31,7 @@ LENGTH is the index of the parameter holding the length."
 (defstruct (gir-callable (:include gir-item) (:copier nil))
   "KIND is one of :function :method :constructor :virtual-method :callback :signal."
   kind c-identifier parameters return-type return-transfer return-nullable
-  throws shadows shadowed-by moved-to invoker
+  throws shadows shadowed-by moved-to invoker finish-func
   ;; signal-only
   when detailed action no-recurse no-hooks)
 

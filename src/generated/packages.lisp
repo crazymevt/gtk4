@@ -5,7 +5,7 @@
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
   (:shadow #:array #:close #:cond #:error #:file-error #:hash-table #:hash-table-size #:list #:make-array #:make-string #:open #:remove #:sequence #:string #:string-equal #:time)
-  (:import-from #:gtk4.runtime #:call-in-main-thread #:glib-error #:glib-error-code #:glib-error-domain #:glib-error-message #:in-main-thread #:main-thread-p #:with-gtk-float-traps)
+  (:import-from #:gtk4.runtime #:call-in-main-thread #:glib-error #:glib-error-code #:glib-error-domain #:glib-error-keyword #:glib-error-message #:in-main-thread #:main-thread-p #:with-gtk-float-traps)
   (:export
    #:+alloc-and-free+
    #:+alloc-only+
@@ -261,7 +261,15 @@
    #:bookmark-file-add-group
    #:bookmark-file-copy
    #:bookmark-file-error
+   #:bookmark-file-error-app-not-registered
+   #:bookmark-file-error-file-not-found
+   #:bookmark-file-error-invalid-uri
+   #:bookmark-file-error-invalid-value
    #:bookmark-file-error-quark
+   #:bookmark-file-error-read
+   #:bookmark-file-error-unknown-encoding
+   #:bookmark-file-error-uri-not-found
+   #:bookmark-file-error-write
    #:bookmark-file-free
    #:bookmark-file-get-added
    #:bookmark-file-get-added-date-time
@@ -395,6 +403,14 @@
    #:cond-wait-until
    #:convert
    #:convert-error
+   #:convert-error-bad-uri
+   #:convert-error-embedded-nul
+   #:convert-error-failed
+   #:convert-error-illegal-sequence
+   #:convert-error-no-conversion
+   #:convert-error-no-memory
+   #:convert-error-not-absolute-path
+   #:convert-error-partial-input
    #:convert-error-quark
    #:convert-with-fallback
    #:copy-func
@@ -568,8 +584,33 @@
    #:error-new-literal
    #:error-type
    #:file-error
+   #:file-error-acces
+   #:file-error-again
+   #:file-error-badf
+   #:file-error-exist
+   #:file-error-failed
+   #:file-error-fault
    #:file-error-from-errno
+   #:file-error-intr
+   #:file-error-inval
+   #:file-error-io
+   #:file-error-isdir
+   #:file-error-loop
+   #:file-error-mfile
+   #:file-error-nametoolong
+   #:file-error-nfile
+   #:file-error-nodev
+   #:file-error-noent
+   #:file-error-nomem
+   #:file-error-nospc
+   #:file-error-nosys
+   #:file-error-notdir
+   #:file-error-nxio
+   #:file-error-perm
+   #:file-error-pipe
    #:file-error-quark
+   #:file-error-rofs
+   #:file-error-txtbsy
    #:file-get-contents
    #:file-open-tmp
    #:file-read-link
@@ -631,6 +672,7 @@
    #:glib-error
    #:glib-error-code
    #:glib-error-domain
+   #:glib-error-keyword
    #:glib-error-message
    #:h-func
    #:hash-func
@@ -721,7 +763,16 @@
    #:io-channel
    #:io-channel-close
    #:io-channel-error
+   #:io-channel-error-failed
+   #:io-channel-error-fbig
    #:io-channel-error-from-errno
+   #:io-channel-error-inval
+   #:io-channel-error-io
+   #:io-channel-error-isdir
+   #:io-channel-error-nospc
+   #:io-channel-error-nxio
+   #:io-channel-error-overflow
+   #:io-channel-error-pipe
    #:io-channel-error-quark
    #:io-channel-flush
    #:io-channel-get-buffer-condition
@@ -764,7 +815,13 @@
    #:io-status
    #:key-file
    #:key-file-error
+   #:key-file-error-group-not-found
+   #:key-file-error-invalid-value
+   #:key-file-error-key-not-found
+   #:key-file-error-not-found
+   #:key-file-error-parse
    #:key-file-error-quark
+   #:key-file-error-unknown-encoding
    #:key-file-flags
    #:key-file-get-boolean
    #:key-file-get-boolean-list
@@ -928,7 +985,14 @@
    #:mapped-file-unref
    #:markup-collect-type
    #:markup-error
+   #:markup-error-bad-utf8
+   #:markup-error-empty
+   #:markup-error-invalid-content
+   #:markup-error-missing-attribute
+   #:markup-error-parse
    #:markup-error-quark
+   #:markup-error-unknown-attribute
+   #:markup-error-unknown-element
    #:markup-escape-text
    #:markup-parse-context
    #:markup-parse-context-end-parse
@@ -1008,6 +1072,8 @@
    #:normalize-mode
    #:nullify-pointer
    #:number-parser-error
+   #:number-parser-error-invalid
+   #:number-parser-error-out-of-bounds
    #:number-parser-error-quark
    #:on-error-query
    #:on-error-stack-trace
@@ -1050,8 +1116,11 @@
    #:option-entry-long-name
    #:option-entry-short-name
    #:option-error
+   #:option-error-bad-value
+   #:option-error-failed
    #:option-error-func
    #:option-error-quark
+   #:option-error-unknown-option
    #:option-flags
    #:option-group
    #:option-group-add-entries
@@ -1190,7 +1259,64 @@
    #:regex-check-replacement
    #:regex-compile-flags
    #:regex-error
+   #:regex-error-assertion-expected
+   #:regex-error-backtracking-control-verb-argument-forbidden
+   #:regex-error-backtracking-control-verb-argument-required
+   #:regex-error-character-value-too-large
+   #:regex-error-compile
+   #:regex-error-define-repetion
+   #:regex-error-duplicate-subpattern-name
+   #:regex-error-expression-too-large
+   #:regex-error-extra-subpattern-name
+   #:regex-error-hex-code-too-large
+   #:regex-error-inconsistent-newline-options
+   #:regex-error-inexistent-subpattern-reference
+   #:regex-error-infinite-loop
+   #:regex-error-internal
+   #:regex-error-invalid-condition
+   #:regex-error-invalid-control-char
+   #:regex-error-invalid-data-character
+   #:regex-error-invalid-escape-in-character-class
+   #:regex-error-invalid-octal-value
+   #:regex-error-invalid-relative-reference
+   #:regex-error-malformed-condition
+   #:regex-error-malformed-property
+   #:regex-error-match
+   #:regex-error-memory-error
+   #:regex-error-missing-back-reference
+   #:regex-error-missing-control-char
+   #:regex-error-missing-digit
+   #:regex-error-missing-name
+   #:regex-error-missing-subpattern-name
+   #:regex-error-missing-subpattern-name-terminator
+   #:regex-error-name-too-long
+   #:regex-error-not-supported-in-class
+   #:regex-error-nothing-to-repeat
+   #:regex-error-number-too-big
+   #:regex-error-optimize
+   #:regex-error-posix-collating-elements-not-supported
+   #:regex-error-posix-named-class-outside-class
+   #:regex-error-quantifier-too-big
+   #:regex-error-quantifiers-out-of-order
    #:regex-error-quark
+   #:regex-error-range-out-of-order
+   #:regex-error-replace
+   #:regex-error-single-byte-match-in-lookbehind
+   #:regex-error-stray-backslash
+   #:regex-error-subpattern-name-too-long
+   #:regex-error-too-many-branches-in-define
+   #:regex-error-too-many-conditional-branches
+   #:regex-error-too-many-forward-references
+   #:regex-error-too-many-subpatterns
+   #:regex-error-unknown-backtracking-control-verb
+   #:regex-error-unknown-posix-class-name
+   #:regex-error-unknown-property
+   #:regex-error-unmatched-parenthesis
+   #:regex-error-unrecognized-character
+   #:regex-error-unrecognized-escape
+   #:regex-error-unterminated-character-class
+   #:regex-error-unterminated-comment
+   #:regex-error-variable-length-lookbehind
    #:regex-escape-nul
    #:regex-escape-string
    #:regex-eval-callback
@@ -1343,6 +1469,9 @@
    #:set-prgname
    #:setenv
    #:shell-error
+   #:shell-error-bad-quoting
+   #:shell-error-empty-string
+   #:shell-error-failed
    #:shell-error-quark
    #:shell-parse-argv
    #:shell-quote
@@ -1419,7 +1548,28 @@
    #:spawn-command-line-async
    #:spawn-command-line-sync
    #:spawn-error
+   #:spawn-error-2big
+   #:spawn-error-acces
+   #:spawn-error-chdir
+   #:spawn-error-failed
+   #:spawn-error-fork
+   #:spawn-error-inval
+   #:spawn-error-io
+   #:spawn-error-isdir
+   #:spawn-error-libbad
+   #:spawn-error-loop
+   #:spawn-error-mfile
+   #:spawn-error-nametoolong
+   #:spawn-error-nfile
+   #:spawn-error-noent
+   #:spawn-error-noexec
+   #:spawn-error-nomem
+   #:spawn-error-notdir
+   #:spawn-error-perm
    #:spawn-error-quark
+   #:spawn-error-read
+   #:spawn-error-too-big
+   #:spawn-error-txtbusy
    #:spawn-exit-error-quark
    #:spawn-flags
    #:spawn-sync
@@ -1597,6 +1747,7 @@
    #:thread
    #:thread-error
    #:thread-error-quark
+   #:thread-error-thread-error-again
    #:thread-exit
    #:thread-func
    #:thread-functions
@@ -1771,6 +1922,16 @@
    #:uri-build
    #:uri-build-with-user
    #:uri-error
+   #:uri-error-bad-auth-params
+   #:uri-error-bad-fragment
+   #:uri-error-bad-host
+   #:uri-error-bad-password
+   #:uri-error-bad-path
+   #:uri-error-bad-port
+   #:uri-error-bad-query
+   #:uri-error-bad-scheme
+   #:uri-error-bad-user
+   #:uri-error-failed
    #:uri-error-quark
    #:uri-escape-bytes
    #:uri-escape-string
@@ -1938,8 +2099,27 @@
    #:variant-new-variant
    #:variant-parse
    #:variant-parse-error
+   #:variant-parse-error-basic-type-expected
+   #:variant-parse-error-cannot-infer-type
+   #:variant-parse-error-definite-type-expected
+   #:variant-parse-error-failed
+   #:variant-parse-error-input-not-at-end
+   #:variant-parse-error-invalid-character
+   #:variant-parse-error-invalid-format-string
+   #:variant-parse-error-invalid-object-path
+   #:variant-parse-error-invalid-signature
+   #:variant-parse-error-invalid-type-string
+   #:variant-parse-error-no-common-type
+   #:variant-parse-error-number-out-of-range
+   #:variant-parse-error-number-too-big
    #:variant-parse-error-print-context
    #:variant-parse-error-quark
+   #:variant-parse-error-recursion
+   #:variant-parse-error-type-error
+   #:variant-parse-error-unexpected-token
+   #:variant-parse-error-unknown-keyword
+   #:variant-parse-error-unterminated-string-constant
+   #:variant-parse-error-value-expected
    #:variant-parser-get-error-quark
    #:variant-print
    #:variant-ref
@@ -1985,7 +2165,7 @@
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
   (:shadow #:array #:error #:hash-table #:string #:type)
-  (:import-from #:gtk4.runtime #:block-handler #:call-next-vfunc #:class-gtype #:connect #:define-vfunc #:disconnect #:emit #:find-vfunc #:gobject-class #:handler-connected-p #:initially-unowned #:object #:object-pointer #:property #:remove-vfunc #:unblock-handler)
+  (:import-from #:gtk4.runtime #:block-handler #:call-next-vfunc #:call-vfunc #:class-gtype #:connect #:define-vfunc #:disconnect #:emit #:find-vfunc #:gobject-class #:handler-connected-p #:initially-unowned #:make-closure #:object #:object-pointer #:property #:remove-vfunc #:unblock-handler)
   (:export
    #:+param-mask+
    #:+param-static-strings+
@@ -2063,6 +2243,7 @@
    #:c-closure-marshal-void--variant
    #:c-closure-marshal-void--void
    #:call-next-vfunc
+   #:call-vfunc
    #:callback
    #:checksum
    #:class-finalize-func
@@ -2135,6 +2316,8 @@
    #:io-channel
    #:io-condition
    #:key-file
+   #:lisp-object
+   #:lisp-object-value
    #:main-context
    #:main-loop
    #:make-c-closure
@@ -2143,6 +2326,7 @@
    #:make-enum-value
    #:make-flags-class
    #:make-flags-value
+   #:make-lisp-object
    #:make-param-spec-type-info
    #:make-parameter
    #:make-signal-invocation-hint
@@ -2548,6 +2732,8 @@
    #:module-check-init
    #:module-close
    #:module-error
+   #:module-error-check-failed
+   #:module-error-failed
    #:module-error-quark
    #:module-flags
    #:module-make-resident
@@ -2862,6 +3048,7 @@
    #:application-version
    #:application-withdraw-notification
    #:ask-password-flags
+   #:async
    #:async-initable
    #:async-initable-iface
    #:async-initable-init-async
@@ -3132,17 +3319,62 @@
    #:dbus-connection-unregister-object
    #:dbus-connection-unregister-subtree
    #:dbus-error
+   #:dbus-error-access-denied
+   #:dbus-error-address-in-use
+   #:dbus-error-adt-audit-data-unknown
+   #:dbus-error-auth-failed
+   #:dbus-error-bad-address
+   #:dbus-error-disconnected
    #:dbus-error-encode-gerror
    #:dbus-error-entry
    #:dbus-error-entry-dbus-error-name
    #:dbus-error-entry-error-code
+   #:dbus-error-failed
+   #:dbus-error-file-exists
+   #:dbus-error-file-not-found
    #:dbus-error-get-remote-error
+   #:dbus-error-invalid-args
+   #:dbus-error-invalid-file-content
+   #:dbus-error-invalid-signature
+   #:dbus-error-io-error
    #:dbus-error-is-remote-error
+   #:dbus-error-limits-exceeded
+   #:dbus-error-match-rule-invalid
+   #:dbus-error-match-rule-not-found
+   #:dbus-error-name-has-no-owner
    #:dbus-error-new-for-dbus-error
+   #:dbus-error-no-memory
+   #:dbus-error-no-network
+   #:dbus-error-no-reply
+   #:dbus-error-no-server
+   #:dbus-error-not-supported
+   #:dbus-error-object-path-in-use
+   #:dbus-error-property-read-only
    #:dbus-error-quark
    #:dbus-error-register-error
    #:dbus-error-register-error-domain
+   #:dbus-error-selinux-security-context-unknown
+   #:dbus-error-service-unknown
+   #:dbus-error-spawn-child-exited
+   #:dbus-error-spawn-child-signaled
+   #:dbus-error-spawn-config-invalid
+   #:dbus-error-spawn-exec-failed
+   #:dbus-error-spawn-failed
+   #:dbus-error-spawn-file-invalid
+   #:dbus-error-spawn-fork-failed
+   #:dbus-error-spawn-no-memory
+   #:dbus-error-spawn-permissions-invalid
+   #:dbus-error-spawn-service-invalid
+   #:dbus-error-spawn-service-not-found
+   #:dbus-error-spawn-setup-failed
    #:dbus-error-strip-remote-error
+   #:dbus-error-timed-out
+   #:dbus-error-timeout
+   #:dbus-error-unix-process-id-unknown
+   #:dbus-error-unknown-interface
+   #:dbus-error-unknown-method
+   #:dbus-error-unknown-object
+   #:dbus-error-unknown-property
    #:dbus-error-unregister-error
    #:dbus-escape-object-path
    #:dbus-escape-object-path-bytestring
@@ -3961,10 +4193,61 @@
    #:input-stream-skip-finish
    #:input-vector
    #:input-vector-size
+   #:io-error
+   #:io-error-address-in-use
+   #:io-error-already-mounted
+   #:io-error-broken-pipe
+   #:io-error-busy
+   #:io-error-cancelled
+   #:io-error-cant-create-backup
+   #:io-error-closed
+   #:io-error-connection-closed
+   #:io-error-connection-refused
+   #:io-error-dbus-error
+   #:io-error-destination-unset
    #:io-error-enum
+   #:io-error-exists
+   #:io-error-failed
+   #:io-error-failed-handled
+   #:io-error-filename-too-long
    #:io-error-from-errno
    #:io-error-from-file-error
+   #:io-error-host-not-found
+   #:io-error-host-unreachable
+   #:io-error-invalid-argument
+   #:io-error-invalid-data
+   #:io-error-invalid-filename
+   #:io-error-is-directory
+   #:io-error-message-too-large
+   #:io-error-network-unreachable
+   #:io-error-no-space
+   #:io-error-no-such-device
+   #:io-error-not-connected
+   #:io-error-not-directory
+   #:io-error-not-empty
+   #:io-error-not-found
+   #:io-error-not-initialized
+   #:io-error-not-mountable-file
+   #:io-error-not-mounted
+   #:io-error-not-regular-file
+   #:io-error-not-supported
+   #:io-error-not-symbolic-link
+   #:io-error-partial-input
+   #:io-error-pending
+   #:io-error-permission-denied
+   #:io-error-proxy-auth-failed
+   #:io-error-proxy-failed
+   #:io-error-proxy-need-auth
+   #:io-error-proxy-not-allowed
    #:io-error-quark
+   #:io-error-read-only
+   #:io-error-timed-out
+   #:io-error-too-many-links
+   #:io-error-too-many-open-files
+   #:io-error-would-block
+   #:io-error-would-merge
+   #:io-error-would-recurse
+   #:io-error-wrong-etag
    #:io-extension
    #:io-extension-get-name
    #:io-extension-get-priority
@@ -4025,6 +4308,7 @@
    #:list-model-get-item-type
    #:list-model-get-n-items
    #:list-model-interface
+   #:list-model-items
    #:list-model-items-changed
    #:list-store
    #:list-store-append
@@ -4058,6 +4342,7 @@
    #:make-file-attribute-info-list
    #:make-input-message
    #:make-input-vector
+   #:make-list-store
    #:make-output-message
    #:make-output-vector
    #:memory-input-stream
@@ -4409,7 +4694,10 @@
    #:resolver
    #:resolver-class
    #:resolver-error
+   #:resolver-error-internal
+   #:resolver-error-not-found
    #:resolver-error-quark
+   #:resolver-error-temporary-failure
    #:resolver-get-default
    #:resolver-get-timeout
    #:resolver-lookup-by-address
@@ -4436,6 +4724,8 @@
    #:resource
    #:resource-enumerate-children
    #:resource-error
+   #:resource-error-internal
+   #:resource-error-not-found
    #:resource-error-quark
    #:resource-flags
    #:resource-get-info
@@ -4984,6 +5274,11 @@
    #:tls-certificate-subject-name
    #:tls-certificate-verify
    #:tls-channel-binding-error
+   #:tls-channel-binding-error-general-error
+   #:tls-channel-binding-error-invalid-state
+   #:tls-channel-binding-error-not-available
+   #:tls-channel-binding-error-not-implemented
+   #:tls-channel-binding-error-not-supported
    #:tls-channel-binding-error-quark
    #:tls-channel-binding-type
    #:tls-client-connection
@@ -5059,7 +5354,16 @@
    #:tls-database-verify-chain-finish
    #:tls-database-verify-flags
    #:tls-error
+   #:tls-error-bad-certificate
+   #:tls-error-bad-certificate-password
+   #:tls-error-certificate-required
+   #:tls-error-eof
+   #:tls-error-handshake
+   #:tls-error-inappropriate-fallback
+   #:tls-error-misc
+   #:tls-error-not-tls
    #:tls-error-quark
+   #:tls-error-unavailable
    #:tls-file-database
    #:tls-file-database-anchors
    #:tls-file-database-interface
@@ -6600,6 +6904,9 @@
    #:layout-copy
    #:layout-deserialize
    #:layout-deserialize-error
+   #:layout-deserialize-error-invalid
+   #:layout-deserialize-error-invalid-value
+   #:layout-deserialize-error-missing-value
    #:layout-deserialize-error-quark
    #:layout-deserialize-flags
    #:layout-get-alignment
@@ -7372,7 +7679,14 @@
    #:pixbuf-copy-options
    #:pixbuf-destroy-notify
    #:pixbuf-error
+   #:pixbuf-error-bad-option
+   #:pixbuf-error-corrupt-image
+   #:pixbuf-error-failed
+   #:pixbuf-error-incomplete-animation
+   #:pixbuf-error-insufficient-memory
    #:pixbuf-error-quark
+   #:pixbuf-error-unknown-type
+   #:pixbuf-error-unsupported-operation
    #:pixbuf-fill
    #:pixbuf-flip
    #:pixbuf-format
@@ -9887,7 +10201,10 @@
    #:display-sync
    #:display-translate-key
    #:dmabuf-error
+   #:dmabuf-error-creation-failed
+   #:dmabuf-error-not-available
    #:dmabuf-error-quark
+   #:dmabuf-error-unsupported-format
    #:dmabuf-formats
    #:dmabuf-formats-contains
    #:dmabuf-formats-equal
@@ -10077,7 +10394,12 @@
    #:gl-context-set-use-es
    #:gl-context-shared-context
    #:gl-error
+   #:gl-error-compilation-failed
+   #:gl-error-link-failed
+   #:gl-error-not-available
    #:gl-error-quark
+   #:gl-error-unsupported-format
+   #:gl-error-unsupported-profile
    #:gl-texture
    #:gl-texture-builder
    #:gl-texture-builder-build
@@ -10368,7 +10690,11 @@
    #:texture-downloader-set-format
    #:texture-downloader-set-texture
    #:texture-error
+   #:texture-error-corrupt-image
    #:texture-error-quark
+   #:texture-error-too-large
+   #:texture-error-unsupported-content
+   #:texture-error-unsupported-format
    #:texture-get-color-state
    #:texture-get-format
    #:texture-get-height
@@ -10455,7 +10781,9 @@
    #:vulkan-context
    #:vulkan-context-class
    #:vulkan-error
-   #:vulkan-error-quark))
+   #:vulkan-error-not-available
+   #:vulkan-error-quark
+   #:vulkan-error-unsupported))
 
 (defpackage #:gsk
   (:use #:cl)
@@ -10807,7 +11135,10 @@
    #:rounded-rect-shrink
    #:scaling-filter
    #:serialization-error
+   #:serialization-error-invalid-data
    #:serialization-error-quark
+   #:serialization-error-unsupported-format
+   #:serialization-error-unsupported-version
    #:shader-args-builder
    #:shader-args-builder-new
    #:shader-args-builder-ref
@@ -11155,6 +11486,7 @@
    #:activate-action
    #:activate-action-class
    #:activate-action-get
+   #:add-css
    #:adjustment
    #:adjustment-clamp-page
    #:adjustment-class
@@ -11468,6 +11800,7 @@
    #:box-set-homogeneous
    #:box-set-spacing
    #:box-spacing
+   #:build
    #:buildable
    #:buildable-get-buildable-id
    #:buildable-iface
@@ -11494,7 +11827,22 @@
    #:builder-create-closure
    #:builder-current-object
    #:builder-error
+   #:builder-error-duplicate-id
+   #:builder-error-invalid-attribute
+   #:builder-error-invalid-function
+   #:builder-error-invalid-id
+   #:builder-error-invalid-property
+   #:builder-error-invalid-signal
+   #:builder-error-invalid-tag
+   #:builder-error-invalid-type-function
+   #:builder-error-invalid-value
+   #:builder-error-missing-attribute
+   #:builder-error-missing-property-value
+   #:builder-error-object-type-refused
    #:builder-error-quark
+   #:builder-error-template-mismatch
+   #:builder-error-unhandled-tag
+   #:builder-error-version-mismatch
    #:builder-expose-object
    #:builder-extend-with-template
    #:builder-get-current-object
@@ -12181,9 +12529,16 @@
    #:constraint-target-attribute
    #:constraint-target-interface
    #:constraint-vfl-parser-error
+   #:constraint-vfl-parser-error-invalid-attribute
+   #:constraint-vfl-parser-error-invalid-metric
+   #:constraint-vfl-parser-error-invalid-priority
+   #:constraint-vfl-parser-error-invalid-relation
+   #:constraint-vfl-parser-error-invalid-symbol
+   #:constraint-vfl-parser-error-invalid-view
    #:constraint-vfl-parser-error-quark
    #:content-fit
    #:corner-type
+   #:css
    #:css-location
    #:css-location-bytes
    #:css-location-chars
@@ -12191,7 +12546,12 @@
    #:css-location-line-chars
    #:css-location-lines
    #:css-parser-error
+   #:css-parser-error-failed
+   #:css-parser-error-import
+   #:css-parser-error-name
    #:css-parser-error-quark
+   #:css-parser-error-syntax
+   #:css-parser-error-unknown-value
    #:css-parser-warning
    #:css-parser-warning-quark
    #:css-provider
@@ -12244,6 +12604,9 @@
    #:dialog-add-button
    #:dialog-class
    #:dialog-error
+   #:dialog-error-cancelled
+   #:dialog-error-dismissed
+   #:dialog-error-failed
    #:dialog-error-quark
    #:dialog-flags
    #:dialog-get-content-area
@@ -12702,6 +13065,10 @@
    #:file-chooser-create-folders
    #:file-chooser-dialog
    #:file-chooser-error
+   #:file-chooser-error-already-exists
+   #:file-chooser-error-bad-filename
+   #:file-chooser-error-incomplete-hostname
+   #:file-chooser-error-nonexistent
    #:file-chooser-error-quark
    #:file-chooser-filter
    #:file-chooser-filters
@@ -13290,6 +13657,8 @@
    #:icon-theme-add-search-path
    #:icon-theme-display
    #:icon-theme-error
+   #:icon-theme-error-failed
+   #:icon-theme-error-not-found
    #:icon-theme-error-quark
    #:icon-theme-get-display
    #:icon-theme-get-for-display
@@ -13751,6 +14120,7 @@
    #:list-item-set-child
    #:list-item-set-focusable
    #:list-item-set-selectable
+   #:list-item-value
    #:list-scroll-flags
    #:list-store
    #:list-store-append
@@ -13811,6 +14181,8 @@
    #:make-accessible-text-range
    #:make-border
    #:make-css-location
+   #:make-factory
+   #:make-list-view
    #:make-pad-action-entry
    #:make-page-range
    #:make-recent-data
@@ -14409,6 +14781,10 @@
    #:print-dialog-title
    #:print-duplex
    #:print-error
+   #:print-error-general
+   #:print-error-internal-error
+   #:print-error-invalid-file
+   #:print-error-nomem
    #:print-error-quark
    #:print-job
    #:print-job-complete-func
@@ -14749,7 +15125,14 @@
    #:recent-manager-add-item
    #:recent-manager-class
    #:recent-manager-error
+   #:recent-manager-error-invalid-encoding
+   #:recent-manager-error-invalid-uri
+   #:recent-manager-error-not-found
+   #:recent-manager-error-not-registered
    #:recent-manager-error-quark
+   #:recent-manager-error-read
+   #:recent-manager-error-unknown
+   #:recent-manager-error-write
    #:recent-manager-filename
    #:recent-manager-get-default
    #:recent-manager-get-items
@@ -15471,11 +15854,22 @@
    #:svg
    #:svg-class
    #:svg-error
+   #:svg-error-failed-rendering
+   #:svg-error-failed-update
+   #:svg-error-feature-disabled
    #:svg-error-get-attribute
    #:svg-error-get-element
    #:svg-error-get-end
    #:svg-error-get-input
    #:svg-error-get-start
+   #:svg-error-ignored-element
+   #:svg-error-invalid-attribute
+   #:svg-error-invalid-element
+   #:svg-error-invalid-reference
+   #:svg-error-invalid-syntax
+   #:svg-error-limits-exceeded
+   #:svg-error-missing-attribute
+   #:svg-error-not-implemented
    #:svg-error-quark
    #:svg-features
    #:svg-get-features

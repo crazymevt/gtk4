@@ -53,6 +53,8 @@ C: graphene_ray_intersection_kind_t")
   (:enter . 1)
   (:leave . 2))
 
+;;; Error domains
+
 ;;; Constants
 
 

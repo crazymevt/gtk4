@@ -83,6 +83,19 @@ See: https://docs.gtk.org/gdk-pixbuf/enum.PixbufRotation.html")
   (:upsidedown . 180)
   (:clockwise . 270))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain pixbuf-error
+    ("gdk-pixbuf-error-quark" pixbuf-error)
+  (:corrupt-image pixbuf-error-corrupt-image)
+  (:insufficient-memory pixbuf-error-insufficient-memory)
+  (:bad-option pixbuf-error-bad-option)
+  (:unknown-type pixbuf-error-unknown-type)
+  (:unsupported-operation pixbuf-error-unsupported-operation)
+  (:failed pixbuf-error-failed)
+  (:incomplete-animation pixbuf-error-incomplete-animation))
+
 ;;; Constants
 
 

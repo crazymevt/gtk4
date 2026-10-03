@@ -293,6 +293,8 @@
   (:out . 1)
   (:part . 2))
 
+;;; Error domains
+
 ;;; Constants
 
 ;;; Classes and interfaces

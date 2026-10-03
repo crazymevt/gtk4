@@ -27,6 +27,14 @@ See: https://docs.gtk.org/gmodule/flags.ModuleFlags.html")
   (:local . 2)
   (:mask . 3))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain module-error
+    ("g-module-error-quark" module-error)
+  (:failed module-error-failed)
+  (:check-failed module-error-check-failed))
+
 ;;; Constants
 
 

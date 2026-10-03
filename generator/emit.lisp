@@ -205,6 +205,51 @@ same-namespace class or interface it inherits from."
           (loop for e in (gir-namespace-enums ns)
                 append (mapcar (lambda (f) (cons f e)) (gir-enum-functions e)))))
 
+;;; Async functions and their _finish functions
+
+(defun async-callback-position (plan)
+  "Where PLAN's GAsyncReadyCallback goes among its visible arguments, or NIL."
+  (let ((visible (remove-if (lambda (a)
+                              (or (eq (getf (cddr a) :direction) :out)
+                                  (getf (cddr a) :user-data-of) (getf (cddr a) :destroy-of)
+                                  (getf (cddr a) :length-of)))
+                            (plan-args plan))))
+    (position-if (lambda (a)
+                   (let ((spec (second a)))
+                     (and (consp spec) (eq (first spec) :callback)
+                          (eq (second spec) (type-symbol "Gio.AsyncReadyCallback")))))
+                 visible)))
+
+(defun async-pairs (plans)
+  "A DEFINE-ASYNC form for each plan taking a GAsyncReadyCallback whose
+_finish function is bound too: the one GIR names, else the name with _async
+replaced by (or followed by) _finish."
+  (let ((by-c-name (make-hash-table :test 'equal)))
+    (dolist (p plans) (setf (gethash (plan-c-name p) by-c-name) p))
+    (loop for p in plans
+          for position = (async-callback-position p)
+          for c-name = (plan-c-name p)
+          for finish = (and position
+                            (let ((ff (gir-callable-finish-func (plan-source p))))
+                              ;; GIR gives the finish function's name without
+                              ;; the C prefix the async function's name carries.
+                              (or (and ff (or (gethash (concatenate
+                                                        'string
+                                                        (subseq c-name 0 (- (length c-name)
+                                                                            (length (gir-item-name (plan-source p)))))
+                                                        ff)
+                                                       by-c-name)
+                                              (gethash ff by-c-name)))
+                                  (let ((n (length c-name)))
+                                    (and (> n 6) (string= "_async" (subseq c-name (- n 6)))
+                                         (gethash (concatenate 'string (subseq c-name 0 (- n 6)) "_finish")
+                                                  by-c-name)))
+                                  (gethash (concatenate 'string c-name "_finish") by-c-name))))
+          when finish
+            collect `(gtk4.runtime:define-async ,(plan-symbol p) ,(plan-symbol finish)
+                       :callback-position ,position
+                       :finish-takes-source ,(and (eq (plan-kind finish) :method) t)))))
+
 ;;; Writing one namespace
 
 (defparameter *functions-per-file* 400
@@ -235,6 +280,16 @@ function that writes the chunk."
                   collect (cons (intern (string-upcase (snake-to-kebab (gir-member-name m))) :keyword)
                                 (gir-member-value m))))
        stream))
+    ;; GError domains
+    (format stream "~%;;; Error domains~%")
+    (dolist (e (gir-namespace-enums ns))
+      (let ((conditions (gethash e *error-conditions*)))
+        (when conditions
+          (write-form
+           `(gtk4.runtime:define-gerror-domain ,(first conditions)
+                (,(gir-enum-error-domain e) ,(type-symbol (qualify (gir-item-name e) nsname)))
+              ,@(rest conditions))
+           stream))))
     ;; Constants
     (format stream "~%;;; Constants~%")
     (dolist (c (gir-namespace-constants ns))
@@ -354,6 +409,8 @@ function that writes the chunk."
                                 reason))))
       (setf plans (nreverse plans))
       (setf (gethash nsname (context-bound ctx)) (length plans))
+      ;; Async functions paired with their _finish functions, for gio:async.
+      (setf plans (append plans (async-pairs plans)))
       ;; Virtual functions follow the functions, in the same chunks.
       (let ((vplans '()))
         (loop for (vfunc . owner) in (namespace-vfuncs ctx ns)
@@ -376,9 +433,9 @@ function that writes the chunk."
                               (format out "~%(in-package #:~(~a~))~%" (package-name *package*))
                               (format out "~%;;; Functions, constructors, methods and virtual functions (part ~d)~%" chunk)
                               (dolist (plan these)
-                                (write-form (if (vfunc-plan-p plan)
-                                                (vfunc-form plan nsname)
-                                                (plan-form plan nsname))
+                                (write-form (cond ((vfunc-plan-p plan) (vfunc-form plan nsname))
+                                                  ((plan-p plan) (plan-form plan nsname))
+                                                  (t plan))
                                             out)))))))
       ns)))
 

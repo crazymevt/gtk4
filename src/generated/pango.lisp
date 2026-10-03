@@ -612,6 +612,15 @@ See: https://docs.gtk.org/Pango/enum.WrapMode.html")
   (:word-char . 2)
   (:none . 3))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain layout-deserialize-error
+    ("pango-layout-deserialize-error-quark" layout-deserialize-error)
+  (:invalid layout-deserialize-error-invalid)
+  (:invalid-value layout-deserialize-error-invalid-value)
+  (:missing-value layout-deserialize-error-missing-value))
+
 ;;; Constants
 
 

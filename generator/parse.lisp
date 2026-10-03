@@ -110,6 +110,7 @@
            :shadowed-by (attr el "shadowed-by")
            :moved-to (attr el "moved-to")
            :invoker (attr el "invoker")
+           :finish-func (attr el "glib:finish-func")
            :when (kattr el "when")
            :detailed (battr el "detailed")
            :action (battr el "action")
