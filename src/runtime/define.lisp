@@ -704,8 +704,14 @@ embeds a struct described by SPEC: reading copies it, writing copies into it."
 
 (defstruct (callback-entry (:constructor make-callback-entry (function once)))
   "FUNCTION is a function or a symbol naming one. ONCE means the handle is
-freed after the first call (GIR scope \"async\")."
-  function once)
+freed after the first call (GIR scope \"async\"). CLEANUPS are functions
+run then too: memory an asynchronous operation reads until it completes."
+  function once (cleanups '()))
+
+(defun finish-callback-entry (entry data)
+  "After an async callback: run ENTRY's cleanups and free its handle DATA."
+  (unwind-protect (mapc #'funcall (callback-entry-cleanups entry))
+    (free-handle data)))
 
 (defmacro define-gcallback (name (&key args (return :void) (return-transfer :none) documentation))
   "Define the trampoline for the callback type NAME. ARGS is a list of
@@ -730,7 +736,7 @@ carries the handle. The Lisp function receives the other arguments in order."
                        `(progn ,call nil)
                        (convert-to-foreign call return return-transfer)))
              (when (and ,entry (callback-entry-once ,entry))
-               (free-handle ,data)))))
+               (finish-callback-entry ,entry ,data)))))
        ',name)))
 
 ;;; Each argument wrapper returns BODY wrapped so that PLACE is bound to the
@@ -810,6 +816,8 @@ carries the handle. The Lisp function receives the other arguments in order."
                                                       (eq (option a :direction :in) :in)))
                                      args))
            (counts (loop for a in in-arrays collect (cons (first a) (gensym "COUNT"))))
+           (async-handle (let ((a (find :async callbacks :key (lambda (a) (third (second a))))))
+                           (and a (cdr (assoc (first a) handles)))))
            (err (gensym "ERR"))
            (result (gensym "RESULT")))
       (labels ((place (var) (cdr (assoc var places)))
@@ -909,12 +917,22 @@ carries the handle. The Lisp function receives the other arguments in order."
                               `(let ((,place (if ,h (cffi:callback ,(second spec)) (cffi:null-pointer))))
                                  ,body)))
                            ((eq (spec-kind spec) :array)
-                            `(let ((,place ,(array-write-form spec var)))
-                               (unwind-protect ,body
-                                 (free-foreign-array ,place ',(spec-foreign-type (second spec))
-                                                     ,(eq (second spec) :string)
-                                                     ,(cdr (assoc var counts))
-                                                     ,(array-option spec :zero-terminated)))))
+                            (let ((free `(free-foreign-array ,place ',(spec-foreign-type (second spec))
+                                                             ,(eq (second spec) :string)
+                                                             ,(cdr (assoc var counts))
+                                                             ,(array-option spec :zero-terminated))))
+                              (if async-handle
+                                  ;; An async operation reads the array until it
+                                  ;; completes (g_file_replace_contents_async), so free
+                                  ;; it after its callback. With no callback there is
+                                  ;; no telling when; the array is not freed.
+                                  `(let ((,place ,(array-write-form spec var)))
+                                     (when ,async-handle
+                                       (push (lambda () ,free)
+                                             (callback-entry-cleanups (handle-value ,async-handle))))
+                                     ,body)
+                                  `(let ((,place ,(array-write-form spec var)))
+                                     (unwind-protect ,body ,free)))))
                            (t (wrap-in-argument var spec (option a :transfer :none) place body)))))
           ;; In-array element counts, computed before any conversion.
           (loop for (var . count) in (reverse counts)

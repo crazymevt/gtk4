@@ -118,3 +118,28 @@
     (let ((provider (gtk:add-css '((".lisp-test" :color :red)))))
       (true (typep provider 'gtk:css-provider))
       (gtk:style-context-remove-provider-for-display (gdk:display-get-default) provider))))
+
+(define-test async-buffers-live-until-done :parent lisp-api
+  ;; g_file_replace_contents_async reads its buffer until the operation
+  ;; completes; the binding must not free it when the call returns.
+  (let* ((path (uiop:merge-pathnames* (format nil "gtk4-async-~d.bin" (random 1000000))
+                                      (uiop:temporary-directory)))
+         (octets (let ((v (make-array 200000 :element-type '(unsigned-byte 8))))
+                   (dotimes (i (length v) v) (setf (aref v i) (mod (* i 7) 251)))))
+         (done nil))
+    (unwind-protect
+         (progn
+           (gio:async (gio:file-replace-contents-async (gio:file-new-for-path (namestring path))
+                                                       octets nil nil '(:none))
+                      (lambda (&rest values) (declare (ignore values)) (setf done :ok))
+                      :error (lambda (e) (setf done e)))
+           ;; Churn memory while the write is in flight.
+           (loop repeat 200 until done
+                 do (make-array 100000 :element-type '(unsigned-byte 8))
+                    (sb-ext:gc)
+                    (rt:iterate-main-context)
+                    (sleep 0.005))
+           (iterate-until (lambda () done) :timeout 10)
+           (is eq :ok done)
+           (is equalp octets (alexandria:read-file-into-byte-vector path)))
+      (when (probe-file path) (delete-file path)))))
