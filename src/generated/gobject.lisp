@@ -555,6 +555,50 @@ See: https://docs.gtk.org/gobject/property.SignalGroup.target.html"))
 
 See: https://docs.gtk.org/gobject/property.SignalGroup.target-type.html"))
 
+;;; Callback types
+
+
+(rt:define-gcallback binding-transform-func
+                     (:args
+                      ((binding (:object binding))
+                       (from-value (:boxed "GValue" "g_value_get_type"))
+                       (to-value (:boxed "GValue" "g_value_get_type"))
+                       (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback boxed-copy-func (:args ((boxed :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback boxed-free-func (:args ((boxed :pointer :user-data t))))
+
+
+(rt:define-gcallback class-finalize-func
+                     (:args ((g-class (:record type-class)) (class-data :pointer :user-data t))))
+
+
+(rt:define-gcallback class-init-func
+                     (:args ((g-class (:record type-class)) (class-data :pointer :user-data t))))
+
+
+(rt:define-gcallback interface-finalize-func
+                     (:args
+                      ((g-iface (:record type-interface)) (iface-data :pointer :user-data t))))
+
+
+(rt:define-gcallback interface-init-func
+                     (:args
+                      ((g-iface (:record type-interface)) (iface-data :pointer :user-data t))))
+
+
+(rt:define-gcallback signal-accumulator
+                     (:args
+                      ((ihint (:record signal-invocation-hint))
+                       (return-accu (:boxed "GValue" "g_value_get_type"))
+                       (handler-return (:boxed "GValue" "g_value_get_type"))
+                       (data :pointer :user-data t))
+                      :return :boolean))
+
 ;;; Functions, constructors and methods
 
 
@@ -3542,4 +3586,17 @@ Deprecated.")
 
 C: g_value_array_remove
 See: https://docs.gtk.org/gobject/method.ValueArray.remove.html
+Deprecated.")
+
+
+(rt:define-gfunction (value-array-sort "g_value_array_sort_with_data") :args
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type"))
+                      (compare-func (:callback glib:compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
+                     "Sort VALUE-ARRAY using COMPARE-FUNC to compare the elements according
+to the semantics of #GCompareDataFunc.
+
+C: g_value_array_sort_with_data
+See: https://docs.gtk.org/gobject/method.ValueArray.sort_with_data.html
 Deprecated.")

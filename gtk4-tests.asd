@@ -11,5 +11,6 @@
                (:file "generator")
                (:file "runtime")
                (:file "objects")
-               (:file "generated"))
+               (:file "generated")
+               (:file "callbacks"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))

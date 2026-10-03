@@ -5779,7 +5779,191 @@ See: https://docs.gtk.org/gio/property.ZlibDecompressor.file-info.html"))
 
 See: https://docs.gtk.org/gio/property.ZlibDecompressor.format.html"))
 
+;;; Callback types
+
+
+(rt:define-gcallback async-ready-callback
+                     (:args
+                      ((source-object (:object rt:object)) (res (:object async-result))
+                       (data :pointer :user-data t))))
+
+
+(rt:define-gcallback bus-acquired-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (name :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback bus-name-acquired-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (name :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback bus-name-appeared-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (name :string) (name-owner :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback bus-name-lost-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (name :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback bus-name-vanished-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (name :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback cancellable-source-func
+                     (:args ((cancellable (:object cancellable)) (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback dbus-interface-get-property-func
+                     (:args
+                      ((connection (:object dbus-connection)) (sender :string)
+                       (object-path :string) (interface-name :string) (property-name :string)
+                       (error (:boxed "GError" "g_error_get_type"))
+                       (user-data :pointer :user-data t))
+                      :return :pointer :return-transfer :full))
+
+
+(rt:define-gcallback dbus-interface-method-call-func
+                     (:args
+                      ((connection (:object dbus-connection)) (sender :string)
+                       (object-path :string) (interface-name :string) (method-name :string)
+                       (parameters :pointer)
+                       (invocation (:object dbus-method-invocation) :transfer :full)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback dbus-interface-set-property-func
+                     (:args
+                      ((connection (:object dbus-connection)) (sender :string)
+                       (object-path :string) (interface-name :string) (property-name :string)
+                       (value :pointer) (error (:boxed "GError" "g_error_get_type"))
+                       (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback dbus-message-filter-function
+                     (:args
+                      ((connection (:object dbus-connection))
+                       (message (:object dbus-message) :transfer :full) (incoming :boolean)
+                       (user-data :pointer :user-data t))
+                      :return (:object dbus-message) :return-transfer :full))
+
+
+(rt:define-gcallback dbus-proxy-type-func
+                     (:args
+                      ((manager (:object dbus-object-manager-client)) (object-path :string)
+                       (interface-name :string) (data :pointer :user-data t))
+                      :return :gtype))
+
+
+(rt:define-gcallback dbus-signal-callback
+                     (:args
+                      ((connection (:object dbus-connection)) (sender-name :string)
+                       (object-path :string) (interface-name :string) (signal-name :string)
+                       (parameters :pointer) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback dbus-subtree-dispatch-func
+                     (:args
+                      ((connection (:object dbus-connection)) (sender :string)
+                       (object-path :string) (interface-name :string) (node :string)
+                       (out-user-data :pointer) (user-data :pointer :user-data t))
+                      :return (:record dbus-interface-v-table)))
+
+
+(rt:define-gcallback dbus-subtree-enumerate-func
+                     (:args
+                      ((connection (:object dbus-connection)) (sender :string)
+                       (object-path :string) (user-data :pointer :user-data t))
+                      :return :strv :return-transfer :full))
+
+
+(rt:define-gcallback datagram-based-source-func
+                     (:args
+                      ((datagram-based (:object datagram-based))
+                       (condition (:flags glib:io-condition)) (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback file-measure-progress-callback
+                     (:args
+                      ((reporting :boolean) (current-size :uint64) (num-dirs :uint64)
+                       (num-files :uint64) (data :pointer :user-data t))))
+
+
+(rt:define-gcallback file-progress-callback
+                     (:args
+                      ((current-num-bytes :int64) (total-num-bytes :int64)
+                       (data :pointer :user-data t))))
+
+
+(rt:define-gcallback file-read-more-callback
+                     (:args
+                      ((file-contents :string) (file-size :int64)
+                       (callback-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback io-scheduler-job-func
+                     (:args
+                      ((job (:record io-scheduler-job)) (cancellable (:object cancellable))
+                       (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback pollable-source-func
+                     (:args ((pollable-stream (:object rt:object)) (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback settings-bind-get-mapping
+                     (:args
+                      ((value (:boxed "GValue" "g_value_get_type")) (variant :pointer)
+                       (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback settings-bind-set-mapping
+                     (:args
+                      ((value (:boxed "GValue" "g_value_get_type")) (expected-type :pointer)
+                       (user-data :pointer :user-data t))
+                      :return :pointer :return-transfer :full))
+
+
+(rt:define-gcallback socket-source-func
+                     (:args
+                      ((socket (:object socket)) (condition (:flags glib:io-condition))
+                       (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback vfs-file-lookup-func
+                     (:args
+                      ((vfs (:object vfs)) (identifier :string) (user-data :pointer :user-data t))
+                      :return (:object file) :return-transfer :full))
+
 ;;; Functions, constructors and methods
+
+
+(rt:define-gfunction (bus-get "g_bus_get") :args
+                     ((bus-type (:enum bus-type)) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously connects to the message bus specified by BUS-TYPE.
+
+C: g_bus_get
+See: https://docs.gtk.org/gio/func.bus_get.html
+Since: 2.26")
 
 
 (rt:define-gfunction (bus-get-finish "g_bus_get_finish") :args ((res (:object async-result)))
@@ -6031,6 +6215,21 @@ See: https://docs.gtk.org/gio/func.dbus_address_get_for_bus_sync.html
 Since: 2.26")
 
 
+(rt:define-gfunction (dbus-address-get-stream "g_dbus_address_get_stream") :args
+                     ((address :string) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously connects to an endpoint specified by ADDRESS and
+sets up the connection so it is in a state to run the client-side
+of the D-Bus authentication conversation. ADDRESS must be in the
+[D-Bus address format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+
+C: g_dbus_address_get_stream
+See: https://docs.gtk.org/gio/func.dbus_address_get_stream.html
+Since: 2.26")
+
+
 (rt:define-gfunction (dbus-address-get-stream-finish "g_dbus_address_get_stream_finish") :args
                      ((res (:object async-result))
                       (out-guid :string :direction :out :transfer :full))
@@ -6213,6 +6412,18 @@ See: https://docs.gtk.org/gio/func.io_scheduler_cancel_all_jobs.html
 Deprecated.")
 
 
+(rt:define-gfunction (io-scheduler-push-job "g_io_scheduler_push_job") :args
+                     ((job-func (:callback io-scheduler-job-func :notified))
+                      (user-data :pointer :user-data-of job-func)
+                      (notify :pointer :destroy-of job-func) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t))
+                     :documentation "Schedules the I/O job to run in another thread.
+
+C: g_io_scheduler_push_job
+See: https://docs.gtk.org/gio/func.io_scheduler_push_job.html
+Deprecated.")
+
+
 (rt:define-gfunction (keyfile-settings-backend-new "g_keyfile_settings_backend_new") :args
                      ((filename :string) (root-path :string) (root-group :string :optional t))
                      :return (:object settings-backend) :return-transfer :full :documentation
@@ -6358,6 +6569,21 @@ Since: 2.32")
 C: g_resources_unregister
 See: https://docs.gtk.org/gio/func.resources_unregister.html
 Since: 2.32")
+
+
+(rt:define-gfunction (simple-async-report-gerror-in-idle "g_simple_async_report_gerror_in_idle")
+                     :args
+                     ((object (:object rt:object))
+                      (callback (:callback async-ready-callback :async))
+                      (user-data :pointer :user-data-of callback)
+                      (error (:boxed "GError" "g_error_get_type")))
+                     :documentation "Reports an error in an idle function. Similar to
+g_simple_async_report_error_in_idle(), but takes a #GError rather
+than building a new one.
+
+C: g_simple_async_report_gerror_in_idle
+See: https://docs.gtk.org/gio/func.simple_async_report_gerror_in_idle.html
+Deprecated.")
 
 
 (rt:define-gfunction (action-name-is-valid "g_action_name_is_valid") :args ((action-name :string))
@@ -6663,6 +6889,21 @@ C: g_app_info_get_default_for_type
 See: https://docs.gtk.org/gio/type_func.AppInfo.get_default_for_type.html")
 
 
+(rt:define-gfunction (app-info-get-default-for-type-async "g_app_info_get_default_for_type_async")
+                     :args
+                     ((content-type :string) (must-support-uris :boolean)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.74" :documentation
+                     "Asynchronously gets the default Gio.AppInfo for a given content
+type.
+
+C: g_app_info_get_default_for_type_async
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_default_for_type_async.html
+Since: 2.74")
+
+
 (rt:define-gfunction
  (app-info-get-default-for-type-finish "g_app_info_get_default_for_type_finish") :args
  ((result (:object async-result))) :return (:object app-info) :return-transfer :full :throws t
@@ -6681,6 +6922,21 @@ Since: 2.74")
 
 C: g_app_info_get_default_for_uri_scheme
 See: https://docs.gtk.org/gio/type_func.AppInfo.get_default_for_uri_scheme.html")
+
+
+(rt:define-gfunction
+ (app-info-get-default-for-uri-scheme-async "g_app_info_get_default_for_uri_scheme_async") :args
+ ((uri-scheme :string) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.74" :documentation "Asynchronously gets the default application for handling URIs with
+the given URI scheme. A URI scheme is the initial part
+of the URI, up to but not including the `:`, e.g. `http`,
+`ftp` or `sip`.
+
+C: g_app_info_get_default_for_uri_scheme_async
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_default_for_uri_scheme_async.html
+Since: 2.74")
 
 
 (rt:define-gfunction
@@ -6703,6 +6959,19 @@ the file if required.
 
 C: g_app_info_launch_default_for_uri
 See: https://docs.gtk.org/gio/type_func.AppInfo.launch_default_for_uri.html")
+
+
+(rt:define-gfunction
+ (app-info-launch-default-for-uri-async "g_app_info_launch_default_for_uri_async") :args
+ ((uri :string) (context (:object app-launch-context) :optional t)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.50" :documentation "Async version of Gio.AppInfo.launch_default_for_uri.
+
+C: g_app_info_launch_default_for_uri_async
+See: https://docs.gtk.org/gio/type_func.AppInfo.launch_default_for_uri_async.html
+Since: 2.50")
 
 
 (rt:define-gfunction
@@ -7484,6 +7753,38 @@ See: https://docs.gtk.org/gio/method.ApplicationCommandLine.set_exit_status.html
 Since: 2.28")
 
 
+(rt:define-gfunction (async-initable-newv-async "g_async_initable_newv_async") :args
+                     ((object-type :gtype) (n-parameters :uint)
+                      (parameters (:record gobject:parameter)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Helper function for constructing #GAsyncInitable object. This is
+similar to g_object_newv() but also initializes the object asynchronously.
+
+C: g_async_initable_newv_async
+See: https://docs.gtk.org/gio/type_func.AsyncInitable.newv_async.html
+Since: 2.22
+Deprecated.")
+
+
+(rt:define-gfunction (async-initable-init-async "g_async_initable_init_async") :args
+                     ((initable (:object async-initable)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Starts asynchronous initialization of the object implementing the
+interface. This must be done before any real use of the object after
+initial construction. If the object also implements #GInitable you can
+optionally call g_initable_init() instead.
+
+C: g_async_initable_init_async
+See: https://docs.gtk.org/gio/method.AsyncInitable.init_async.html
+Since: 2.22")
+
+
 (rt:define-gfunction (async-initable-init-finish "g_async_initable_init_finish") :args
                      ((initable (:object async-initable)) (res (:object async-result))) :return
                      :boolean :throws t :version "2.22" :documentation
@@ -7574,6 +7875,20 @@ Will block during this read.
 
 C: g_buffered_input_stream_fill
 See: https://docs.gtk.org/gio/method.BufferedInputStream.fill.html")
+
+
+(rt:define-gfunction (buffered-input-stream-fill-async "g_buffered_input_stream_fill_async") :args
+                     ((stream (:object buffered-input-stream)) (count :ssize) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Reads data into STREAM's buffer asynchronously, up to COUNT size.
+IO-PRIORITY can be used to prioritize reads. For the synchronous
+version of this function, see Gio.BufferedInputStream.fill.
+
+C: g_buffered_input_stream_fill_async
+See: https://docs.gtk.org/gio/method.BufferedInputStream.fill_async.html")
 
 
 (rt:define-gfunction (buffered-input-stream-fill-finish "g_buffered_input_stream_fill_finish")
@@ -8149,6 +8464,75 @@ See: https://docs.gtk.org/gio/ctor.DBusConnection.new_sync.html
 Since: 2.26")
 
 
+(rt:define-gfunction (dbus-connection-new "g_dbus_connection_new") :args
+                     ((stream (:object io-stream)) (guid :string)
+                      (flags (:flags dbus-connection-flags))
+                      (observer (:object dbus-auth-observer) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
+with the end represented by STREAM.
+
+C: g_dbus_connection_new
+See: https://docs.gtk.org/gio/type_func.DBusConnection.new.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-connection-new-for-address "g_dbus_connection_new_for_address") :args
+                     ((address :string) (flags (:flags dbus-connection-flags))
+                      (observer (:object dbus-auth-observer) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously connects and sets up a D-Bus client connection for
+exchanging D-Bus messages with an endpoint specified by ADDRESS
+which must be in the
+[D-Bus address format](https://dbus.freedesktop.org/doc/dbus-specification.html#addresses).
+
+C: g_dbus_connection_new_for_address
+See: https://docs.gtk.org/gio/type_func.DBusConnection.new_for_address.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-connection-add-filter "g_dbus_connection_add_filter") :args
+                     ((connection (:object dbus-connection))
+                      (filter-function (:callback dbus-message-filter-function :notified))
+                      (user-data :pointer :user-data-of filter-function)
+                      (user-data-free-func :pointer :destroy-of filter-function))
+                     :return :uint :version "2.26" :documentation
+                     "Adds a message filter. Filters are handlers that are run on all
+incoming and outgoing messages, prior to standard dispatch. Filters
+are run in the order that they were added.  The same handler can be
+added as a filter more than once, in which case it will be run more
+than once.  Filters added during a filter callback won't be run on
+the message being processed. Filter functions are allowed to modify
+and even drop messages.
+
+C: g_dbus_connection_add_filter
+See: https://docs.gtk.org/gio/method.DBusConnection.add_filter.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-connection-call "g_dbus_connection_call") :args
+                     ((connection (:object dbus-connection)) (bus-name :string)
+                      (object-path :string) (interface-name :string) (method-name :string)
+                      (parameters :pointer) (reply-type :pointer) (flags (:flags dbus-call-flags))
+                      (timeout-msec :int) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously invokes the METHOD-NAME method on the
+INTERFACE-NAME D-Bus interface on the remote object at
+OBJECT-PATH owned by BUS-NAME.
+
+C: g_dbus_connection_call
+See: https://docs.gtk.org/gio/method.DBusConnection.call.html
+Since: 2.26")
+
+
 (rt:define-gfunction (dbus-connection-call-finish "g_dbus_connection_call_finish") :args
                      ((connection (:object dbus-connection)) (res (:object async-result))) :return
                      :pointer :return-transfer :full :throws t :version "2.26" :documentation
@@ -8172,6 +8556,21 @@ OBJECT-PATH owned by BUS-NAME.
 C: g_dbus_connection_call_sync
 See: https://docs.gtk.org/gio/method.DBusConnection.call_sync.html
 Since: 2.26")
+
+
+(rt:define-gfunction
+ (dbus-connection-call-with-unix-fd-list "g_dbus_connection_call_with_unix_fd_list") :args
+ ((connection (:object dbus-connection)) (bus-name :string) (object-path :string)
+  (interface-name :string) (method-name :string) (parameters :pointer) (reply-type :pointer)
+  (flags (:flags dbus-call-flags)) (timeout-msec :int) (fd-list (:object unix-fd-list) :optional t)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.30" :documentation "Like g_dbus_connection_call() but also takes a #GUnixFDList object.
+
+C: g_dbus_connection_call_with_unix_fd_list
+See: https://docs.gtk.org/gio/method.DBusConnection.call_with_unix_fd_list.html
+Since: 2.30")
 
 
 (rt:define-gfunction
@@ -8204,6 +8603,21 @@ g_dbus_connection_call_with_unix_fd_list_finish() for more details.
 C: g_dbus_connection_call_with_unix_fd_list_sync
 See: https://docs.gtk.org/gio/method.DBusConnection.call_with_unix_fd_list_sync.html
 Since: 2.30")
+
+
+(rt:define-gfunction (dbus-connection-close "g_dbus_connection_close") :args
+                     ((connection (:object dbus-connection))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Closes CONNECTION. Note that this never causes the process to
+exit (this might only happen if the other end of a shared message
+bus connection disconnects, see #GDBusConnection:exit-on-close).
+
+C: g_dbus_connection_close
+See: https://docs.gtk.org/gio/method.DBusConnection.close.html
+Since: 2.26")
 
 
 (rt:define-gfunction (dbus-connection-close-finish "g_dbus_connection_close_finish") :args
@@ -8263,6 +8677,24 @@ Since: 2.32")
 C: g_dbus_connection_export_menu_model
 See: https://docs.gtk.org/gio/method.DBusConnection.export_menu_model.html
 Since: 2.32")
+
+
+(rt:define-gfunction (dbus-connection-flush "g_dbus_connection_flush") :args
+                     ((connection (:object dbus-connection))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously flushes CONNECTION, that is, writes all queued
+outgoing messages to the transport and then flushes the transport
+(using g_output_stream_flush_async()). This is useful in programs
+that want to emit a D-Bus signal and then exit immediately. Without
+flushing the connection, there is no guarantee that the message has
+been sent to the networking buffers in the OS kernel.
+
+C: g_dbus_connection_flush
+See: https://docs.gtk.org/gio/method.DBusConnection.flush.html
+Since: 2.26")
 
 
 (rt:define-gfunction (dbus-connection-flush-finish "g_dbus_connection_flush_finish") :args
@@ -8444,6 +8876,21 @@ Since: 2.26")
 
 
 (rt:define-gfunction
+ (dbus-connection-send-message-with-reply "g_dbus_connection_send_message_with_reply") :args
+ ((connection (:object dbus-connection)) (message (:object dbus-message))
+  (flags (:flags dbus-send-message-flags)) (timeout-msec :int)
+  (out-serial :uint32 :direction :out :transfer :full)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.26" :documentation "Asynchronously sends MESSAGE to the peer represented by CONNECTION.
+
+C: g_dbus_connection_send_message_with_reply
+See: https://docs.gtk.org/gio/method.DBusConnection.send_message_with_reply.html
+Since: 2.26")
+
+
+(rt:define-gfunction
  (dbus-connection-send-message-with-reply-finish
   "g_dbus_connection_send_message_with_reply_finish")
  :args ((connection (:object dbus-connection)) (res (:object async-result))) :return
@@ -8482,6 +8929,24 @@ more details.
 
 C: g_dbus_connection_set_exit_on_close
 See: https://docs.gtk.org/gio/method.DBusConnection.set_exit_on_close.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-connection-signal-subscribe "g_dbus_connection_signal_subscribe") :args
+                     ((connection (:object dbus-connection)) (sender :string)
+                      (interface-name :string) (member :string) (object-path :string)
+                      (arg0 :string) (flags (:flags dbus-signal-flags))
+                      (callback (:callback dbus-signal-callback :notified))
+                      (user-data :pointer :user-data-of callback)
+                      (user-data-free-func :pointer :destroy-of callback))
+                     :return :uint :version "2.26" :documentation
+                     "Subscribes to signals on CONNECTION and invokes CALLBACK whenever
+the signal is received. Note that CALLBACK will be invoked in the
+thread-default main context (see GLib.MainContext.push_thread_default)
+of the thread you are calling this method from.
+
+C: g_dbus_connection_signal_subscribe
+See: https://docs.gtk.org/gio/method.DBusConnection.signal_subscribe.html
 Since: 2.26")
 
 
@@ -9572,6 +10037,78 @@ Since: 2.30")
 
 
 (rt:define-gfunction
+ (dbus-object-manager-client-new-for-bus-sync "g_dbus_object_manager_client_new_for_bus_sync")
+ :args
+ ((bus-type (:enum bus-type)) (flags (:flags dbus-object-manager-client-flags)) (name :string)
+  (object-path :string)
+  (get-proxy-type-func (:callback dbus-proxy-type-func :notified) :optional t)
+  (get-proxy-type-user-data :pointer :user-data-of get-proxy-type-func)
+  (get-proxy-type-destroy-notify :pointer :destroy-of get-proxy-type-func)
+  (cancellable (:object cancellable) :optional t))
+ :return (:object dbus-object-manager-client) :return-transfer :full :throws t :version "2.30"
+ :documentation "Like g_dbus_object_manager_client_new_sync() but takes a #GBusType instead
+of a #GDBusConnection.
+
+C: g_dbus_object_manager_client_new_for_bus_sync
+See: https://docs.gtk.org/gio/ctor.DBusObjectManagerClient.new_for_bus_sync.html
+Since: 2.30")
+
+
+(rt:define-gfunction (dbus-object-manager-client-new-sync "g_dbus_object_manager_client_new_sync")
+                     :args
+                     ((connection (:object dbus-connection))
+                      (flags (:flags dbus-object-manager-client-flags)) (name :string)
+                      (object-path :string)
+                      (get-proxy-type-func (:callback dbus-proxy-type-func :notified) :optional t)
+                      (get-proxy-type-user-data :pointer :user-data-of get-proxy-type-func)
+                      (get-proxy-type-destroy-notify :pointer :destroy-of get-proxy-type-func)
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:object dbus-object-manager-client) :return-transfer :full :throws t
+                     :version "2.30" :documentation "Creates a new #GDBusObjectManagerClient object.
+
+C: g_dbus_object_manager_client_new_sync
+See: https://docs.gtk.org/gio/ctor.DBusObjectManagerClient.new_sync.html
+Since: 2.30")
+
+
+(rt:define-gfunction (dbus-object-manager-client-new "g_dbus_object_manager_client_new") :args
+                     ((connection (:object dbus-connection))
+                      (flags (:flags dbus-object-manager-client-flags)) (name :string)
+                      (object-path :string)
+                      (get-proxy-type-func (:callback dbus-proxy-type-func :notified) :optional t)
+                      (get-proxy-type-user-data :pointer :user-data-of get-proxy-type-func)
+                      (get-proxy-type-destroy-notify :pointer :destroy-of get-proxy-type-func)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.30" :documentation
+                     "Asynchronously creates a new #GDBusObjectManagerClient object.
+
+C: g_dbus_object_manager_client_new
+See: https://docs.gtk.org/gio/type_func.DBusObjectManagerClient.new.html
+Since: 2.30")
+
+
+(rt:define-gfunction
+ (dbus-object-manager-client-new-for-bus "g_dbus_object_manager_client_new_for_bus") :args
+ ((bus-type (:enum bus-type)) (flags (:flags dbus-object-manager-client-flags)) (name :string)
+  (object-path :string)
+  (get-proxy-type-func (:callback dbus-proxy-type-func :notified) :optional t)
+  (get-proxy-type-user-data :pointer :user-data-of get-proxy-type-func)
+  (get-proxy-type-destroy-notify :pointer :destroy-of get-proxy-type-func)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.30" :documentation
+ "Like g_dbus_object_manager_client_new() but takes a #GBusType instead of a
+#GDBusConnection.
+
+C: g_dbus_object_manager_client_new_for_bus
+See: https://docs.gtk.org/gio/type_func.DBusObjectManagerClient.new_for_bus.html
+Since: 2.30")
+
+
+(rt:define-gfunction
  (dbus-object-manager-client-get-connection "g_dbus_object_manager_client_get_connection") :args
  ((manager (:object dbus-object-manager-client))) :return (:object dbus-connection) :version "2.30"
  :documentation "Gets the #GDBusConnection used by MANAGER.
@@ -9848,6 +10385,55 @@ See: https://docs.gtk.org/gio/ctor.DBusProxy.new_sync.html
 Since: 2.26")
 
 
+(rt:define-gfunction (dbus-proxy-new "g_dbus_proxy_new") :args
+                     ((connection (:object dbus-connection)) (flags (:flags dbus-proxy-flags))
+                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (name :string) (object-path :string) (interface-name :string)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Creates a proxy for accessing INTERFACE-NAME on the remote object
+at OBJECT-PATH owned by NAME at CONNECTION and asynchronously
+loads D-Bus properties unless the
+G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES flag is used. Connect to
+the #GDBusProxy::g-properties-changed signal to get notified about
+property changes.
+
+C: g_dbus_proxy_new
+See: https://docs.gtk.org/gio/type_func.DBusProxy.new.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-proxy-new-for-bus "g_dbus_proxy_new_for_bus") :args
+                     ((bus-type (:enum bus-type)) (flags (:flags dbus-proxy-flags))
+                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (name :string) (object-path :string) (interface-name :string)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Like g_dbus_proxy_new() but takes a #GBusType instead of a #GDBusConnection.
+
+C: g_dbus_proxy_new_for_bus
+See: https://docs.gtk.org/gio/type_func.DBusProxy.new_for_bus.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-proxy-call "g_dbus_proxy_call") :args
+                     ((proxy (:object dbus-proxy)) (method-name :string) (parameters :pointer)
+                      (flags (:flags dbus-call-flags)) (timeout-msec :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronously invokes the METHOD-NAME method on PROXY.
+
+C: g_dbus_proxy_call
+See: https://docs.gtk.org/gio/method.DBusProxy.call.html
+Since: 2.26")
+
+
 (rt:define-gfunction (dbus-proxy-call-finish "g_dbus_proxy_call_finish") :args
                      ((proxy (:object dbus-proxy)) (res (:object async-result))) :return :pointer
                      :return-transfer :full :throws t :version "2.26" :documentation
@@ -9868,6 +10454,22 @@ Since: 2.26")
 C: g_dbus_proxy_call_sync
 See: https://docs.gtk.org/gio/method.DBusProxy.call_sync.html
 Since: 2.26")
+
+
+(rt:define-gfunction (dbus-proxy-call-with-unix-fd-list "g_dbus_proxy_call_with_unix_fd_list")
+                     :args
+                     ((proxy (:object dbus-proxy)) (method-name :string) (parameters :pointer)
+                      (flags (:flags dbus-call-flags)) (timeout-msec :int)
+                      (fd-list (:object unix-fd-list) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.30" :documentation
+                     "Like g_dbus_proxy_call() but also takes a #GUnixFDList object.
+
+C: g_dbus_proxy_call_with_unix_fd_list
+See: https://docs.gtk.org/gio/method.DBusProxy.call_with_unix_fd_list.html
+Since: 2.30")
 
 
 (rt:define-gfunction
@@ -10194,6 +10796,21 @@ C: g_data_input_stream_read_int64
 See: https://docs.gtk.org/gio/method.DataInputStream.read_int64.html")
 
 
+(rt:define-gfunction (data-input-stream-read-line-async "g_data_input_stream_read_line_async")
+                     :args
+                     ((stream (:object data-input-stream)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.20" :documentation
+                     "The asynchronous version of g_data_input_stream_read_line().  It is
+an error to have two outstanding calls to this function.
+
+C: g_data_input_stream_read_line_async
+See: https://docs.gtk.org/gio/method.DataInputStream.read_line_async.html
+Since: 2.20")
+
+
 (rt:define-gfunction
  (data-input-stream-read-line-finish-utf8 "g_data_input_stream_read_line_finish_utf8") :args
  ((stream (:object data-input-stream)) (result (:object async-result))
@@ -10262,6 +10879,22 @@ See: https://docs.gtk.org/gio/method.DataInputStream.read_until.html
 Deprecated.")
 
 
+(rt:define-gfunction (data-input-stream-read-until-async "g_data_input_stream_read_until_async")
+                     :args
+                     ((stream (:object data-input-stream)) (stop-chars :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.20" :documentation
+                     "The asynchronous version of g_data_input_stream_read_until().
+It is an error to have two outstanding calls to this function.
+
+C: g_data_input_stream_read_until_async
+See: https://docs.gtk.org/gio/method.DataInputStream.read_until_async.html
+Since: 2.20
+Deprecated.")
+
+
 (rt:define-gfunction (data-input-stream-read-until-finish "g_data_input_stream_read_until_finish")
                      :args
                      ((stream (:object data-input-stream)) (result (:object async-result))
@@ -10286,6 +10919,22 @@ occurrence of any of the stop characters.
 
 C: g_data_input_stream_read_upto
 See: https://docs.gtk.org/gio/method.DataInputStream.read_upto.html
+Since: 2.26")
+
+
+(rt:define-gfunction (data-input-stream-read-upto-async "g_data_input_stream_read_upto_async")
+                     :args
+                     ((stream (:object data-input-stream)) (stop-chars :string)
+                      (stop-chars-len :ssize) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "The asynchronous version of g_data_input_stream_read_upto().
+It is an error to have two outstanding calls to this function.
+
+C: g_data_input_stream_read_upto_async
+See: https://docs.gtk.org/gio/method.DataInputStream.read_upto_async.html
 Since: 2.26")
 
 
@@ -10547,6 +11196,18 @@ See: https://docs.gtk.org/gio/method.Drive.can_stop.html
 Since: 2.22")
 
 
+(rt:define-gfunction (drive-eject "g_drive_eject") :args
+                     ((drive (:object drive)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously ejects a drive.
+
+C: g_drive_eject
+See: https://docs.gtk.org/gio/method.Drive.eject.html
+Deprecated.")
+
+
 (rt:define-gfunction (drive-eject-finish "g_drive_eject_finish") :args
                      ((drive (:object drive)) (result (:object async-result))) :return :boolean
                      :throws t :documentation "Finishes ejecting a drive.
@@ -10554,6 +11215,22 @@ Since: 2.22")
 C: g_drive_eject_finish
 See: https://docs.gtk.org/gio/method.Drive.eject_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction (drive-eject-with-operation "g_drive_eject_with_operation") :args
+                     ((drive (:object drive)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Ejects a drive. This is an asynchronous operation, and is
+finished by calling g_drive_eject_with_operation_finish() with the DRIVE
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_drive_eject_with_operation
+See: https://docs.gtk.org/gio/method.Drive.eject_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction (drive-eject-with-operation-finish "g_drive_eject_with_operation_finish")
@@ -10671,6 +11348,17 @@ See: https://docs.gtk.org/gio/method.Drive.is_removable.html
 Since: 2.50")
 
 
+(rt:define-gfunction (drive-poll-for-media "g_drive_poll_for_media") :args
+                     ((drive (:object drive)) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Asynchronously polls DRIVE to see if media has been inserted or removed.
+
+C: g_drive_poll_for_media
+See: https://docs.gtk.org/gio/method.Drive.poll_for_media.html")
+
+
 (rt:define-gfunction (drive-poll-for-media-finish "g_drive_poll_for_media_finish") :args
                      ((drive (:object drive)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -10680,12 +11368,38 @@ C: g_drive_poll_for_media_finish
 See: https://docs.gtk.org/gio/method.Drive.poll_for_media_finish.html")
 
 
+(rt:define-gfunction (drive-start "g_drive_start") :args
+                     ((drive (:object drive)) (flags (:flags drive-start-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Asynchronously starts a drive.
+
+C: g_drive_start
+See: https://docs.gtk.org/gio/method.Drive.start.html
+Since: 2.22")
+
+
 (rt:define-gfunction (drive-start-finish "g_drive_start_finish") :args
                      ((drive (:object drive)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.22" :documentation "Finishes starting a drive.
 
 C: g_drive_start_finish
 See: https://docs.gtk.org/gio/method.Drive.start_finish.html
+Since: 2.22")
+
+
+(rt:define-gfunction (drive-stop "g_drive_stop") :args
+                     ((drive (:object drive)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Asynchronously stops a drive.
+
+C: g_drive_stop
+See: https://docs.gtk.org/gio/method.Drive.stop.html
 Since: 2.22")
 
 
@@ -10767,6 +11481,20 @@ g_dtls_connection_shutdown() to shut down both sides of the connection.
 
 C: g_dtls_connection_close
 See: https://docs.gtk.org/gio/method.DtlsConnection.close.html
+Since: 2.48")
+
+
+(rt:define-gfunction (dtls-connection-close-async "g_dtls_connection_close_async") :args
+                     ((conn (:object dtls-connection)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.48" :documentation
+                     "Asynchronously close the DTLS connection. See g_dtls_connection_close() for
+more information.
+
+C: g_dtls_connection_close_async
+See: https://docs.gtk.org/gio/method.DtlsConnection.close_async.html
 Since: 2.48")
 
 
@@ -10926,6 +11654,20 @@ See: https://docs.gtk.org/gio/method.DtlsConnection.handshake.html
 Since: 2.48")
 
 
+(rt:define-gfunction (dtls-connection-handshake-async "g_dtls_connection_handshake_async") :args
+                     ((conn (:object dtls-connection)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.48" :documentation
+                     "Asynchronously performs a TLS handshake on CONN. See
+g_dtls_connection_handshake() for more information.
+
+C: g_dtls_connection_handshake_async
+See: https://docs.gtk.org/gio/method.DtlsConnection.handshake_async.html
+Since: 2.48")
+
+
 (rt:define-gfunction (dtls-connection-handshake-finish "g_dtls_connection_handshake_finish") :args
                      ((conn (:object dtls-connection)) (result (:object async-result))) :return
                      :boolean :throws t :version "2.48" :documentation
@@ -11034,6 +11776,21 @@ Since: 2.48")
 
 C: g_dtls_connection_shutdown
 See: https://docs.gtk.org/gio/method.DtlsConnection.shutdown.html
+Since: 2.48")
+
+
+(rt:define-gfunction (dtls-connection-shutdown-async "g_dtls_connection_shutdown_async") :args
+                     ((conn (:object dtls-connection)) (shutdown-read :boolean)
+                      (shutdown-write :boolean) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.48" :documentation
+                     "Asynchronously shut down part or all of the DTLS connection. See
+g_dtls_connection_shutdown() for more information.
+
+C: g_dtls_connection_shutdown_async
+See: https://docs.gtk.org/gio/method.DtlsConnection.shutdown_async.html
 Since: 2.48")
 
 
@@ -11200,6 +11957,34 @@ See: https://docs.gtk.org/gio/type_func.File.new_tmp.html
 Since: 2.32")
 
 
+(rt:define-gfunction (file-new-tmp-async "g_file_new_tmp_async") :args
+                     ((tmpl :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.74" :documentation
+                     "Asynchronously opens a file in the preferred directory for temporary files
+ (as returned by g_get_tmp_dir()) as g_file_new_tmp().
+
+C: g_file_new_tmp_async
+See: https://docs.gtk.org/gio/type_func.File.new_tmp_async.html
+Since: 2.74")
+
+
+(rt:define-gfunction (file-new-tmp-dir-async "g_file_new_tmp_dir_async") :args
+                     ((tmpl :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.74" :documentation
+                     "Asynchronously creates a directory in the preferred directory for
+temporary files (as returned by g_get_tmp_dir()) as g_dir_make_tmp().
+
+C: g_file_new_tmp_dir_async
+See: https://docs.gtk.org/gio/type_func.File.new_tmp_dir_async.html
+Since: 2.74")
+
+
 (rt:define-gfunction (file-new-tmp-dir-finish "g_file_new_tmp_dir_finish") :args
                      ((result (:object async-result))) :return (:object file) :return-transfer
                      :full :throws t :version "2.74" :documentation
@@ -11245,6 +12030,17 @@ C: g_file_append_to
 See: https://docs.gtk.org/gio/method.File.append_to.html")
 
 
+(rt:define-gfunction (file-append-to-async "g_file_append_to_async") :args
+                     ((file (:object file)) (flags (:flags file-create-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously opens FILE for appending.
+
+C: g_file_append_to_async
+See: https://docs.gtk.org/gio/method.File.append_to_async.html")
+
+
 (rt:define-gfunction (file-append-to-finish "g_file_append_to_finish") :args
                      ((file (:object file)) (res (:object async-result))) :return
                      (:object file-output-stream) :return-transfer :full :throws t :documentation
@@ -11265,6 +12061,20 @@ See: https://docs.gtk.org/gio/method.File.append_to_finish.html")
 C: g_file_build_attribute_list_for_copy
 See: https://docs.gtk.org/gio/method.File.build_attribute_list_for_copy.html
 Since: 2.68")
+
+
+(rt:define-gfunction (file-copy "g_file_copy") :args
+                     ((source (:object file)) (destination (:object file))
+                      (flags (:flags file-copy-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (progress-callback (:callback file-progress-callback :call) :optional t)
+                      (progress-callback-data :pointer :user-data-of progress-callback))
+                     :return :boolean :throws t :documentation
+                     "Copies the file SOURCE to the location specified by DESTINATION.
+Can not handle recursive copies of directories.
+
+C: g_file_copy
+See: https://docs.gtk.org/gio/method.File.copy.html")
 
 
 (rt:define-gfunction (file-copy-async "g_file_copy_async_with_closures") :args
@@ -11313,6 +12123,18 @@ C: g_file_create
 See: https://docs.gtk.org/gio/method.File.create.html")
 
 
+(rt:define-gfunction (file-create-async "g_file_create_async") :args
+                     ((file (:object file)) (flags (:flags file-create-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously creates a new file and returns an output stream
+for writing to it. The file must not already exist.
+
+C: g_file_create_async
+See: https://docs.gtk.org/gio/method.File.create_async.html")
+
+
 (rt:define-gfunction (file-create-finish "g_file_create_finish") :args
                      ((file (:object file)) (res (:object async-result))) :return
                      (:object file-output-stream) :return-transfer :full :throws t :documentation
@@ -11332,6 +12154,20 @@ writing to it. The file must not already exist.
 
 C: g_file_create_readwrite
 See: https://docs.gtk.org/gio/method.File.create_readwrite.html
+Since: 2.22")
+
+
+(rt:define-gfunction (file-create-readwrite-async "g_file_create_readwrite_async") :args
+                     ((file (:object file)) (flags (:flags file-create-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Asynchronously creates a new file and returns a stream
+for reading and writing to it. The file must not already exist.
+
+C: g_file_create_readwrite_async
+See: https://docs.gtk.org/gio/method.File.create_readwrite_async.html
 Since: 2.22")
 
 
@@ -11356,6 +12192,21 @@ C: g_file_delete
 See: https://docs.gtk.org/gio/method.File.delete.html")
 
 
+(rt:define-gfunction (file-delete-async "g_file_delete_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.34" :documentation
+                     "Asynchronously delete a file. If the FILE is a directory, it will
+only be deleted if it is empty.  This has the same semantics as
+g_unlink().
+
+C: g_file_delete_async
+See: https://docs.gtk.org/gio/method.File.delete_async.html
+Since: 2.34")
+
+
 (rt:define-gfunction (file-delete-finish "g_file_delete_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.34" :documentation
@@ -11376,6 +12227,21 @@ C: g_file_dup
 See: https://docs.gtk.org/gio/method.File.dup.html")
 
 
+(rt:define-gfunction (file-eject-mountable "g_file_eject_mountable") :args
+                     ((file (:object file)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Starts an asynchronous eject on a mountable.
+When this operation has completed, CALLBACK will be called with
+USER-USER data, and the operation can be finalized with
+g_file_eject_mountable_finish().
+
+C: g_file_eject_mountable
+See: https://docs.gtk.org/gio/method.File.eject_mountable.html
+Deprecated.")
+
+
 (rt:define-gfunction (file-eject-mountable-finish "g_file_eject_mountable_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :documentation "Finishes an asynchronous eject operation started by
@@ -11384,6 +12250,23 @@ g_file_eject_mountable().
 C: g_file_eject_mountable_finish
 See: https://docs.gtk.org/gio/method.File.eject_mountable_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction (file-eject-mountable-with-operation "g_file_eject_mountable_with_operation")
+                     :args
+                     ((file (:object file)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Starts an asynchronous eject on a mountable.
+When this operation has completed, CALLBACK will be called with
+USER-USER data, and the operation can be finalized with
+g_file_eject_mountable_with_operation_finish().
+
+C: g_file_eject_mountable_with_operation
+See: https://docs.gtk.org/gio/method.File.eject_mountable_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction
@@ -11408,6 +12291,20 @@ FileInfo objects for all the files in the directory.
 
 C: g_file_enumerate_children
 See: https://docs.gtk.org/gio/method.File.enumerate_children.html")
+
+
+(rt:define-gfunction (file-enumerate-children-async "g_file_enumerate_children_async") :args
+                     ((file (:object file)) (attributes :string)
+                      (flags (:flags file-query-info-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously gets the requested information about the files
+in a directory. The result is a #GFileEnumerator object that will
+give out #GFileInfo objects for all the files in the directory.
+
+C: g_file_enumerate_children_async
+See: https://docs.gtk.org/gio/method.File.enumerate_children_async.html")
 
 
 (rt:define-gfunction (file-enumerate-children-finish "g_file_enumerate_children_finish") :args
@@ -11435,6 +12332,17 @@ See: https://docs.gtk.org/gio/method.File.equal.html")
 
 C: g_file_find_enclosing_mount
 See: https://docs.gtk.org/gio/method.File.find_enclosing_mount.html")
+
+
+(rt:define-gfunction (file-find-enclosing-mount-async "g_file_find_enclosing_mount_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously gets the mount for the file.
+
+C: g_file_find_enclosing_mount_async
+See: https://docs.gtk.org/gio/method.File.find_enclosing_mount_async.html")
 
 
 (rt:define-gfunction (file-find-enclosing-mount-finish "g_file_find_enclosing_mount_finish") :args
@@ -11588,6 +12496,18 @@ See: https://docs.gtk.org/gio/method.File.load_bytes.html
 Since: 2.56")
 
 
+(rt:define-gfunction (file-load-bytes-async "g_file_load_bytes_async") :args
+                     ((file (:object file)) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.56" :documentation
+                     "Asynchronously loads the contents of FILE as #GBytes.
+
+C: g_file_load_bytes_async
+See: https://docs.gtk.org/gio/method.File.load_bytes_async.html
+Since: 2.56")
+
+
 (rt:define-gfunction (file-load-bytes-finish "g_file_load_bytes_finish") :args
                      ((file (:object file)) (result (:object async-result))
                       (etag-out :string :direction :out :transfer :full))
@@ -11600,12 +12520,34 @@ See: https://docs.gtk.org/gio/method.File.load_bytes_finish.html
 Since: 2.56")
 
 
+(rt:define-gfunction (file-load-contents-async "g_file_load_contents_async") :args
+                     ((file (:object file)) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Starts an asynchronous load of the FILE's contents.
+
+C: g_file_load_contents_async
+See: https://docs.gtk.org/gio/method.File.load_contents_async.html")
+
+
 (rt:define-gfunction (file-make-directory "g_file_make_directory") :args
                      ((file (:object file)) (cancellable (:object cancellable) :optional t))
                      :return :boolean :throws t :documentation "Creates a directory.
 
 C: g_file_make_directory
 See: https://docs.gtk.org/gio/method.File.make_directory.html")
+
+
+(rt:define-gfunction (file-make-directory-async "g_file_make_directory_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.38" :documentation "Asynchronously creates a directory.
+
+C: g_file_make_directory_async
+See: https://docs.gtk.org/gio/method.File.make_directory_async.html
+Since: 2.38")
 
 
 (rt:define-gfunction (file-make-directory-finish "g_file_make_directory_finish") :args
@@ -11645,6 +12587,20 @@ C: g_file_make_symbolic_link
 See: https://docs.gtk.org/gio/method.File.make_symbolic_link.html")
 
 
+(rt:define-gfunction (file-make-symbolic-link-async "g_file_make_symbolic_link_async") :args
+                     ((file (:object file)) (symlink-value :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.74" :documentation
+                     "Asynchronously creates a symbolic link named FILE which contains the
+string SYMLINK-VALUE.
+
+C: g_file_make_symbolic_link_async
+See: https://docs.gtk.org/gio/method.File.make_symbolic_link_async.html
+Since: 2.74")
+
+
 (rt:define-gfunction (file-make-symbolic-link-finish "g_file_make_symbolic_link_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.74" :documentation
@@ -11654,6 +12610,22 @@ g_file_make_symbolic_link_async().
 C: g_file_make_symbolic_link_finish
 See: https://docs.gtk.org/gio/method.File.make_symbolic_link_finish.html
 Since: 2.74")
+
+
+(rt:define-gfunction (file-measure-disk-usage "g_file_measure_disk_usage") :args
+                     ((file (:object file)) (flags (:flags file-measure-flags))
+                      (cancellable (:object cancellable))
+                      (progress-callback (:callback file-measure-progress-callback :call))
+                      (progress-data :pointer :user-data-of progress-callback)
+                      (disk-usage :uint64 :direction :out :transfer :full)
+                      (num-dirs :uint64 :direction :out :transfer :full)
+                      (num-files :uint64 :direction :out :transfer :full))
+                     :return :boolean :throws t :version "2.38" :documentation
+                     "Recursively measures the disk usage of FILE.
+
+C: g_file_measure_disk_usage
+See: https://docs.gtk.org/gio/method.File.measure_disk_usage.html
+Since: 2.38")
 
 
 (rt:define-gfunction (file-measure-disk-usage-finish "g_file_measure_disk_usage_finish") :args
@@ -11705,6 +12677,19 @@ C: g_file_monitor_file
 See: https://docs.gtk.org/gio/method.File.monitor_file.html")
 
 
+(rt:define-gfunction (file-mount-enclosing-volume "g_file_mount_enclosing_volume") :args
+                     ((location (:object file)) (flags (:flags mount-mount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Starts a MOUNT-OPERATION, mounting the volume that contains
+the file LOCATION.
+
+C: g_file_mount_enclosing_volume
+See: https://docs.gtk.org/gio/method.File.mount_enclosing_volume.html")
+
+
 (rt:define-gfunction (file-mount-enclosing-volume-finish "g_file_mount_enclosing_volume_finish")
                      :args ((location (:object file)) (result (:object async-result))) :return
                      :boolean :throws t :documentation
@@ -11714,6 +12699,20 @@ C: g_file_mount_enclosing_volume_finish
 See: https://docs.gtk.org/gio/method.File.mount_enclosing_volume_finish.html")
 
 
+(rt:define-gfunction (file-mount-mountable "g_file_mount_mountable") :args
+                     ((file (:object file)) (flags (:flags mount-mount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Mounts a file of type G_FILE_TYPE_MOUNTABLE.
+Using MOUNT-OPERATION, you can request callbacks when, for instance,
+passwords are needed during authentication.
+
+C: g_file_mount_mountable
+See: https://docs.gtk.org/gio/method.File.mount_mountable.html")
+
+
 (rt:define-gfunction (file-mount-mountable-finish "g_file_mount_mountable_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return (:object file)
                      :return-transfer :full :throws t :documentation
@@ -11721,6 +12720,23 @@ See: https://docs.gtk.org/gio/method.File.mount_enclosing_volume_finish.html")
 
 C: g_file_mount_mountable_finish
 See: https://docs.gtk.org/gio/method.File.mount_mountable_finish.html")
+
+
+(rt:define-gfunction (file-move "g_file_move") :args
+                     ((source (:object file)) (destination (:object file))
+                      (flags (:flags file-copy-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (progress-callback (:callback file-progress-callback :call) :optional t)
+                      (progress-callback-data :pointer :user-data-of progress-callback))
+                     :return :boolean :throws t :documentation
+                     "Tries to move the file or directory SOURCE to the location specified
+by DESTINATION. If native move operations are supported then this is
+used, otherwise a copy + delete fallback is used. The native
+implementation may support moving directories (for instance on moves
+inside the same filesystem), but the fallback code does not.
+
+C: g_file_move
+See: https://docs.gtk.org/gio/method.File.move.html")
 
 
 (rt:define-gfunction (file-move-async "g_file_move_async_with_closures") :args
@@ -11762,6 +12778,19 @@ See: https://docs.gtk.org/gio/method.File.open_readwrite.html
 Since: 2.22")
 
 
+(rt:define-gfunction (file-open-readwrite-async "g_file_open_readwrite_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Asynchronously opens FILE for reading and writing.
+
+C: g_file_open_readwrite_async
+See: https://docs.gtk.org/gio/method.File.open_readwrite_async.html
+Since: 2.22")
+
+
 (rt:define-gfunction (file-open-readwrite-finish "g_file_open_readwrite_finish") :args
                      ((file (:object file)) (res (:object async-result))) :return
                      (:object file-io-stream) :return-transfer :full :throws t :version "2.22"
@@ -11786,6 +12815,17 @@ See: https://docs.gtk.org/gio/method.File.peek_path.html
 Since: 2.56")
 
 
+(rt:define-gfunction (file-poll-mountable "g_file_poll_mountable") :args
+                     ((file (:object file)) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Polls a file of type G_FILE_TYPE_MOUNTABLE.
+
+C: g_file_poll_mountable
+See: https://docs.gtk.org/gio/method.File.poll_mountable.html
+Since: 2.22")
+
+
 (rt:define-gfunction (file-poll-mountable-finish "g_file_poll_mountable_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.22" :documentation
@@ -11804,6 +12844,19 @@ application to handle the file specified by FILE.
 
 C: g_file_query_default_handler
 See: https://docs.gtk.org/gio/method.File.query_default_handler.html")
+
+
+(rt:define-gfunction (file-query-default-handler-async "g_file_query_default_handler_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.60" :documentation
+                     "Async version of g_file_query_default_handler().
+
+C: g_file_query_default_handler_async
+See: https://docs.gtk.org/gio/method.File.query_default_handler_async.html
+Since: 2.60")
 
 
 (rt:define-gfunction (file-query-default-handler-finish "g_file_query_default_handler_finish")
@@ -11850,6 +12903,21 @@ C: g_file_query_filesystem_info
 See: https://docs.gtk.org/gio/method.File.query_filesystem_info.html")
 
 
+(rt:define-gfunction (file-query-filesystem-info-async "g_file_query_filesystem_info_async") :args
+                     ((file (:object file)) (attributes :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Asynchronously gets the requested information about the filesystem
+that the specified FILE is on. The result is a #GFileInfo object
+that contains key-value attributes (such as type or size for the
+file).
+
+C: g_file_query_filesystem_info_async
+See: https://docs.gtk.org/gio/method.File.query_filesystem_info_async.html")
+
+
 (rt:define-gfunction (file-query-filesystem-info-finish "g_file_query_filesystem_info_finish")
                      :args ((file (:object file)) (res (:object async-result))) :return
                      (:object file-info) :return-transfer :full :throws t :documentation
@@ -11869,6 +12937,21 @@ See: https://docs.gtk.org/gio/method.File.query_filesystem_info_finish.html")
 
 C: g_file_query_info
 See: https://docs.gtk.org/gio/method.File.query_info.html")
+
+
+(rt:define-gfunction (file-query-info-async "g_file_query_info_async") :args
+                     ((file (:object file)) (attributes :string)
+                      (flags (:flags file-query-info-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Asynchronously gets the requested information about specified FILE.
+The result is a #GFileInfo object that contains key-value attributes
+(such as type or size for the file).
+
+C: g_file_query_info_async
+See: https://docs.gtk.org/gio/method.File.query_info_async.html")
 
 
 (rt:define-gfunction (file-query-info-finish "g_file_query_info_finish") :args
@@ -11916,6 +12999,17 @@ C: g_file_read
 See: https://docs.gtk.org/gio/method.File.read.html")
 
 
+(rt:define-gfunction (file-read-async "g_file_read_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously opens FILE for reading.
+
+C: g_file_read_async
+See: https://docs.gtk.org/gio/method.File.read_async.html")
+
+
 (rt:define-gfunction (file-read-finish "g_file_read_finish") :args
                      ((file (:object file)) (res (:object async-result))) :return
                      (:object file-input-stream) :return-transfer :full :throws t :documentation
@@ -11937,6 +13031,37 @@ it will be created.
 
 C: g_file_replace
 See: https://docs.gtk.org/gio/method.File.replace.html")
+
+
+(rt:define-gfunction (file-replace-async "g_file_replace_async") :args
+                     ((file (:object file)) (etag :string) (make-backup :boolean)
+                      (flags (:flags file-create-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously overwrites the file, replacing the contents,
+possibly creating a backup copy of the file first.
+
+C: g_file_replace_async
+See: https://docs.gtk.org/gio/method.File.replace_async.html")
+
+
+(rt:define-gfunction (file-replace-contents-bytes-async "g_file_replace_contents_bytes_async")
+                     :args
+                     ((file (:object file)) (contents (:boxed "GBytes" "g_bytes_get_type"))
+                      (etag :string) (make-backup :boolean) (flags (:flags file-create-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.40" :documentation
+                     "Same as g_file_replace_contents_async() but takes a #GBytes input instead.
+This function will keep a ref on CONTENTS until the operation is done.
+Unlike g_file_replace_contents_async() this allows forgetting about the
+content without waiting for the callback.
+
+C: g_file_replace_contents_bytes_async
+See: https://docs.gtk.org/gio/method.File.replace_contents_bytes_async.html
+Since: 2.40")
 
 
 (rt:define-gfunction (file-replace-contents-finish "g_file_replace_contents_finish") :args
@@ -11973,6 +13098,22 @@ exist, it will be created.
 
 C: g_file_replace_readwrite
 See: https://docs.gtk.org/gio/method.File.replace_readwrite.html
+Since: 2.22")
+
+
+(rt:define-gfunction (file-replace-readwrite-async "g_file_replace_readwrite_async") :args
+                     ((file (:object file)) (etag :string) (make-backup :boolean)
+                      (flags (:flags file-create-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Asynchronously overwrites the file in read-write mode,
+replacing the contents, possibly creating a backup copy
+of the file first.
+
+C: g_file_replace_readwrite_async
+See: https://docs.gtk.org/gio/method.File.replace_readwrite_async.html
 Since: 2.22")
 
 
@@ -12080,6 +13221,18 @@ C: g_file_set_attribute_uint64
 See: https://docs.gtk.org/gio/method.File.set_attribute_uint64.html")
 
 
+(rt:define-gfunction (file-set-attributes-async "g_file_set_attributes_async") :args
+                     ((file (:object file)) (info (:object file-info))
+                      (flags (:flags file-query-info-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously sets the attributes of FILE with INFO.
+
+C: g_file_set_attributes_async
+See: https://docs.gtk.org/gio/method.File.set_attributes_async.html")
+
+
 (rt:define-gfunction (file-set-attributes-finish "g_file_set_attributes_finish") :args
                      ((file (:object file)) (result (:object async-result))
                       (info (:object file-info) :direction :out :transfer :full))
@@ -12112,6 +13265,17 @@ C: g_file_set_display_name
 See: https://docs.gtk.org/gio/method.File.set_display_name.html")
 
 
+(rt:define-gfunction (file-set-display-name-async "g_file_set_display_name_async") :args
+                     ((file (:object file)) (display-name :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously sets the display name for a given #GFile.
+
+C: g_file_set_display_name_async
+See: https://docs.gtk.org/gio/method.File.set_display_name_async.html")
+
+
 (rt:define-gfunction (file-set-display-name-finish "g_file_set_display_name_finish") :args
                      ((file (:object file)) (res (:object async-result))) :return (:object file)
                      :return-transfer :full :throws t :documentation
@@ -12122,6 +13286,21 @@ C: g_file_set_display_name_finish
 See: https://docs.gtk.org/gio/method.File.set_display_name_finish.html")
 
 
+(rt:define-gfunction (file-start-mountable "g_file_start_mountable") :args
+                     ((file (:object file)) (flags (:flags drive-start-flags))
+                      (start-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Starts a file of type G_FILE_TYPE_MOUNTABLE.
+Using START-OPERATION, you can request callbacks when, for instance,
+passwords are needed during authentication.
+
+C: g_file_start_mountable
+See: https://docs.gtk.org/gio/method.File.start_mountable.html
+Since: 2.22")
+
+
 (rt:define-gfunction (file-start-mountable-finish "g_file_start_mountable_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.22" :documentation
@@ -12129,6 +13308,19 @@ See: https://docs.gtk.org/gio/method.File.set_display_name_finish.html")
 
 C: g_file_start_mountable_finish
 See: https://docs.gtk.org/gio/method.File.start_mountable_finish.html
+Since: 2.22")
+
+
+(rt:define-gfunction (file-stop-mountable "g_file_stop_mountable") :args
+                     ((file (:object file)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation "Stops a file of type G_FILE_TYPE_MOUNTABLE.
+
+C: g_file_stop_mountable
+See: https://docs.gtk.org/gio/method.File.stop_mountable.html
 Since: 2.22")
 
 
@@ -12171,6 +13363,19 @@ C: g_file_trash
 See: https://docs.gtk.org/gio/method.File.trash.html")
 
 
+(rt:define-gfunction (file-trash-async "g_file_trash_async") :args
+                     ((file (:object file)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.38" :documentation
+                     "Asynchronously sends FILE to the Trash location, if possible.
+
+C: g_file_trash_async
+See: https://docs.gtk.org/gio/method.File.trash_async.html
+Since: 2.38")
+
+
 (rt:define-gfunction (file-trash-finish "g_file_trash_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :version "2.38" :documentation
@@ -12182,6 +13387,18 @@ See: https://docs.gtk.org/gio/method.File.trash_finish.html
 Since: 2.38")
 
 
+(rt:define-gfunction (file-unmount-mountable "g_file_unmount_mountable") :args
+                     ((file (:object file)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
+
+C: g_file_unmount_mountable
+See: https://docs.gtk.org/gio/method.File.unmount_mountable.html
+Deprecated.")
+
+
 (rt:define-gfunction (file-unmount-mountable-finish "g_file_unmount_mountable_finish") :args
                      ((file (:object file)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -12190,6 +13407,20 @@ Since: 2.38")
 C: g_file_unmount_mountable_finish
 See: https://docs.gtk.org/gio/method.File.unmount_mountable_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction
+ (file-unmount-mountable-with-operation "g_file_unmount_mountable_with_operation") :args
+ ((file (:object file)) (flags (:flags mount-unmount-flags))
+  (mount-operation (:object mount-operation) :optional t)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.22" :documentation "Unmounts a file of type G_FILE_TYPE_MOUNTABLE.
+
+C: g_file_unmount_mountable_with_operation
+See: https://docs.gtk.org/gio/method.File.unmount_mountable_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction
@@ -12389,6 +13620,17 @@ C: g_file_enumerator_close
 See: https://docs.gtk.org/gio/method.FileEnumerator.close.html")
 
 
+(rt:define-gfunction (file-enumerator-close-async "g_file_enumerator_close_async") :args
+                     ((enumerator (:object file-enumerator)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously closes the file enumerator.
+
+C: g_file_enumerator_close_async
+See: https://docs.gtk.org/gio/method.FileEnumerator.close_async.html")
+
+
 (rt:define-gfunction (file-enumerator-close-finish "g_file_enumerator_close_finish") :args
                      ((enumerator (:object file-enumerator)) (result (:object async-result)))
                      :return :boolean :throws t :documentation
@@ -12464,6 +13706,20 @@ C: g_file_enumerator_next_file
 See: https://docs.gtk.org/gio/method.FileEnumerator.next_file.html")
 
 
+(rt:define-gfunction (file-enumerator-next-files-async "g_file_enumerator_next_files_async") :args
+                     ((enumerator (:object file-enumerator)) (num-files :int) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Request information for a number of files from the enumerator asynchronously.
+When all I/O for the operation is finished the CALLBACK will be called with
+the requested information.
+
+C: g_file_enumerator_next_files_async
+See: https://docs.gtk.org/gio/method.FileEnumerator.next_files_async.html")
+
+
 (rt:define-gfunction (file-enumerator-set-pending "g_file_enumerator_set_pending") :args
                      ((enumerator (:object file-enumerator)) (pending :boolean)) :documentation
                      "Sets the file enumerator as having pending operations.
@@ -12497,6 +13753,21 @@ G_IO_ERROR_PENDING.
 
 C: g_file_io_stream_query_info
 See: https://docs.gtk.org/gio/method.FileIOStream.query_info.html
+Since: 2.22")
+
+
+(rt:define-gfunction (file-io-stream-query-info-async "g_file_io_stream_query_info_async") :args
+                     ((stream (:object file-io-stream)) (attributes :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Asynchronously queries the STREAM for a #GFileInfo. When completed,
+CALLBACK will be called with a #GAsyncResult which can be used to
+finish the operation with g_file_io_stream_query_info_finish().
+
+C: g_file_io_stream_query_info_async
+See: https://docs.gtk.org/gio/method.FileIOStream.query_info_async.html
 Since: 2.22")
 
 
@@ -13206,6 +14477,21 @@ C: g_file_input_stream_query_info
 See: https://docs.gtk.org/gio/method.FileInputStream.query_info.html")
 
 
+(rt:define-gfunction (file-input-stream-query-info-async "g_file_input_stream_query_info_async")
+                     :args
+                     ((stream (:object file-input-stream)) (attributes :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Queries the stream information asynchronously.
+When the operation is finished CALLBACK will be called.
+You can then call g_file_input_stream_query_info_finish()
+to get the result of the operation.
+
+C: g_file_input_stream_query_info_async
+See: https://docs.gtk.org/gio/method.FileInputStream.query_info_async.html")
+
+
 (rt:define-gfunction (file-input-stream-query-info-finish "g_file_input_stream_query_info_finish")
                      :args ((stream (:object file-input-stream)) (result (:object async-result)))
                      :return (:object file-info) :return-transfer :full :throws t :documentation
@@ -13274,6 +14560,21 @@ G_IO_ERROR_PENDING.
 
 C: g_file_output_stream_query_info
 See: https://docs.gtk.org/gio/method.FileOutputStream.query_info.html")
+
+
+(rt:define-gfunction (file-output-stream-query-info-async "g_file_output_stream_query_info_async")
+                     :args
+                     ((stream (:object file-output-stream)) (attributes :string) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Asynchronously queries the STREAM for a #GFileInfo. When completed,
+CALLBACK will be called with a #GAsyncResult which can be used to
+finish the operation with g_file_output_stream_query_info_finish().
+
+C: g_file_output_stream_query_info_async
+See: https://docs.gtk.org/gio/method.FileOutputStream.query_info_async.html")
 
 
 (rt:define-gfunction
@@ -13493,6 +14794,35 @@ See: https://docs.gtk.org/gio/method.IOModuleScope.free.html
 Since: 2.30")
 
 
+(rt:define-gfunction (io-scheduler-job-send-to-mainloop "g_io_scheduler_job_send_to_mainloop")
+                     :args
+                     ((job (:record io-scheduler-job))
+                      (func (:callback glib:source-func :notified))
+                      (user-data :pointer :user-data-of func) (notify :pointer :destroy-of func))
+                     :return :boolean :documentation
+                     "Used from an I/O job to send a callback to be run in the thread
+that the job was started from, waiting for the result (and thus
+blocking the I/O job).
+
+C: g_io_scheduler_job_send_to_mainloop
+See: https://docs.gtk.org/gio/method.IOSchedulerJob.send_to_mainloop.html
+Deprecated.")
+
+
+(rt:define-gfunction
+ (io-scheduler-job-send-to-mainloop-async "g_io_scheduler_job_send_to_mainloop_async") :args
+ ((job (:record io-scheduler-job)) (func (:callback glib:source-func :notified))
+  (user-data :pointer :user-data-of func) (notify :pointer :destroy-of func))
+ :documentation "Used from an I/O job to send a callback to be run asynchronously in
+the thread that the job was started from. The callback will be run
+when the main loop is available, but at that time the I/O job might
+have finished. The return value from the callback is ignored.
+
+C: g_io_scheduler_job_send_to_mainloop_async
+See: https://docs.gtk.org/gio/method.IOSchedulerJob.send_to_mainloop_async.html
+Deprecated.")
+
+
 (rt:define-gfunction (io-stream-splice-finish "g_io_stream_splice_finish") :args
                      ((result (:object async-result))) :return :boolean :throws t :version "2.28"
                      :documentation "Finishes an asynchronous io stream splice operation.
@@ -13520,6 +14850,22 @@ closed.
 
 C: g_io_stream_close
 See: https://docs.gtk.org/gio/method.IOStream.close.html
+Since: 2.22")
+
+
+(rt:define-gfunction (io-stream-close-async "g_io_stream_close_async") :args
+                     ((stream (:object io-stream)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Requests an asynchronous close of the stream, releasing resources
+related to it. When the operation is finished CALLBACK will be
+called. You can then call g_io_stream_close_finish() to get
+the result of the operation.
+
+C: g_io_stream_close_async
+See: https://docs.gtk.org/gio/method.IOStream.close_async.html
 Since: 2.22")
 
 
@@ -13579,6 +14925,22 @@ ERROR.
 C: g_io_stream_set_pending
 See: https://docs.gtk.org/gio/method.IOStream.set_pending.html
 Since: 2.22")
+
+
+(rt:define-gfunction (io-stream-splice-async "g_io_stream_splice_async") :args
+                     ((stream1 (:object io-stream)) (stream2 (:object io-stream))
+                      (flags (:flags io-stream-splice-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.28" :documentation
+                     "Asynchronously splice the output stream of STREAM1 to the input stream of
+STREAM2, and splice the output stream of STREAM2 to the input stream of
+STREAM1.
+
+C: g_io_stream_splice_async
+See: https://docs.gtk.org/gio/method.IOStream.splice_async.html
+Since: 2.28")
 
 
 (rt:define-gfunction (ip-tos-message-new "g_ip_tos_message_new") :args
@@ -14053,6 +15415,21 @@ C: g_input_stream_close
 See: https://docs.gtk.org/gio/method.InputStream.close.html")
 
 
+(rt:define-gfunction (input-stream-close-async "g_input_stream_close_async") :args
+                     ((stream (:object input-stream)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Requests an asynchronous closes of the stream, releasing resources related to it.
+When the operation is finished CALLBACK will be called.
+You can then call g_input_stream_close_finish() to get the result of the
+operation.
+
+C: g_input_stream_close_async
+See: https://docs.gtk.org/gio/method.InputStream.close_async.html")
+
+
 (rt:define-gfunction (input-stream-close-finish "g_input_stream_close_finish") :args
                      ((stream (:object input-stream)) (result (:object async-result))) :return
                      :boolean :throws t :documentation
@@ -14106,6 +15483,22 @@ See: https://docs.gtk.org/gio/method.InputStream.read_bytes.html
 Since: 2.34")
 
 
+(rt:define-gfunction (input-stream-read-bytes-async "g_input_stream_read_bytes_async") :args
+                     ((stream (:object input-stream)) (count :size) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.34" :documentation
+                     "Request an asynchronous read of COUNT bytes from the stream into a
+new #GBytes. When the operation is finished CALLBACK will be
+called. You can then call g_input_stream_read_bytes_finish() to get the
+result of the operation.
+
+C: g_input_stream_read_bytes_async
+See: https://docs.gtk.org/gio/method.InputStream.read_bytes_async.html
+Since: 2.34")
+
+
 (rt:define-gfunction (input-stream-read-bytes-finish "g_input_stream_read_bytes_finish") :args
                      ((stream (:object input-stream)) (result (:object async-result))) :return
                      (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :throws t :version
@@ -14144,6 +15537,20 @@ See: https://docs.gtk.org/gio/method.InputStream.set_pending.html")
 
 C: g_input_stream_skip
 See: https://docs.gtk.org/gio/method.InputStream.skip.html")
+
+
+(rt:define-gfunction (input-stream-skip-async "g_input_stream_skip_async") :args
+                     ((stream (:object input-stream)) (count :size) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Request an asynchronous skip of COUNT bytes from the stream.
+When the operation is finished CALLBACK will be called.
+You can then call g_input_stream_skip_finish() to get the result
+of the operation.
+
+C: g_input_stream_skip_async
+See: https://docs.gtk.org/gio/method.InputStream.skip_async.html")
 
 
 (rt:define-gfunction (input-stream-skip-finish "g_input_stream_skip_finish") :args
@@ -14225,6 +15632,20 @@ See: https://docs.gtk.org/gio/method.ListStore.find.html
 Since: 2.64")
 
 
+(rt:define-gfunction
+ (list-store-find-with-equal-func-full "g_list_store_find_with_equal_func_full") :args
+ ((store (:object list-store)) (item (:object rt:object))
+  (equal-func (:callback glib:equal-func-full :call)) (user-data :pointer :user-data-of equal-func)
+  (position :uint :direction :out :transfer :full))
+ :return :boolean :version "2.74" :documentation
+ "Like g_list_store_find_with_equal_func() but with an additional USER-DATA
+that is passed to EQUAL-FUNC.
+
+C: g_list_store_find_with_equal_func_full
+See: https://docs.gtk.org/gio/method.ListStore.find_with_equal_func_full.html
+Since: 2.74")
+
+
 (rt:define-gfunction (list-store-insert "g_list_store_insert") :args
                      ((store (:object list-store)) (position :uint) (item (:object rt:object)))
                      :version "2.44" :documentation
@@ -14234,6 +15655,19 @@ than the length of the list, or equal to it to append.
 
 C: g_list_store_insert
 See: https://docs.gtk.org/gio/method.ListStore.insert.html
+Since: 2.44")
+
+
+(rt:define-gfunction (list-store-insert-sorted "g_list_store_insert_sorted") :args
+                     ((store (:object list-store)) (item (:object rt:object))
+                      (compare-func (:callback glib:compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :return :uint :version "2.44" :documentation
+                     "Inserts ITEM into STORE at a position to be determined by the
+COMPARE-FUNC.
+
+C: g_list_store_insert_sorted
+See: https://docs.gtk.org/gio/method.ListStore.insert_sorted.html
 Since: 2.44")
 
 
@@ -14256,6 +15690,18 @@ See: https://docs.gtk.org/gio/method.ListStore.remove_all.html
 Since: 2.44")
 
 
+(rt:define-gfunction (list-store-sort "g_list_store_sort") :args
+                     ((store (:object list-store))
+                      (compare-func (:callback glib:compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :version "2.46" :documentation
+                     "Sort the items in STORE according to COMPARE-FUNC.
+
+C: g_list_store_sort
+See: https://docs.gtk.org/gio/method.ListStore.sort.html
+Since: 2.46")
+
+
 (rt:define-gfunction (loadable-icon-load "g_loadable_icon_load") :args
                      ((icon (:object loadable-icon)) (size :int)
                       (type :string :direction :out :transfer :full)
@@ -14266,6 +15712,19 @@ see g_loadable_icon_load_async().
 
 C: g_loadable_icon_load
 See: https://docs.gtk.org/gio/method.LoadableIcon.load.html")
+
+
+(rt:define-gfunction (loadable-icon-load-async "g_loadable_icon_load_async") :args
+                     ((icon (:object loadable-icon)) (size :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Loads an icon asynchronously. To finish this function, see
+g_loadable_icon_load_finish(). For the synchronous, blocking
+version of this function, see g_loadable_icon_load().
+
+C: g_loadable_icon_load_async
+See: https://docs.gtk.org/gio/method.LoadableIcon.load_async.html")
 
 
 (rt:define-gfunction (loadable-icon-load-finish "g_loadable_icon_load_finish") :args
@@ -14865,6 +16324,20 @@ C: g_mount_can_unmount
 See: https://docs.gtk.org/gio/method.Mount.can_unmount.html")
 
 
+(rt:define-gfunction (mount-eject "g_mount_eject") :args
+                     ((mount (:object mount)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Ejects a mount. This is an asynchronous operation, and is
+finished by calling g_mount_eject_finish() with the MOUNT
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_mount_eject
+See: https://docs.gtk.org/gio/method.Mount.eject.html
+Deprecated.")
+
+
 (rt:define-gfunction (mount-eject-finish "g_mount_eject_finish") :args
                      ((mount (:object mount)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -14874,6 +16347,22 @@ ERROR will be set to contain the errors and false will be returned.
 C: g_mount_eject_finish
 See: https://docs.gtk.org/gio/method.Mount.eject_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction (mount-eject-with-operation "g_mount_eject_with_operation") :args
+                     ((mount (:object mount)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Ejects a mount. This is an asynchronous operation, and is
+finished by calling g_mount_eject_with_operation_finish() with the MOUNT
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_mount_eject_with_operation
+See: https://docs.gtk.org/gio/method.Mount.eject_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction (mount-eject-with-operation-finish "g_mount_eject_with_operation_finish")
@@ -14965,6 +16454,24 @@ C: g_mount_get_volume
 See: https://docs.gtk.org/gio/method.Mount.get_volume.html")
 
 
+(rt:define-gfunction (mount-guess-content-type "g_mount_guess_content_type") :args
+                     ((mount (:object mount)) (force-rescan :boolean)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.18" :documentation
+                     "Tries to guess the type of content stored on MOUNT. Returns one or
+more textual identifiers of well-known content types (typically
+prefixed with \"x-content/\"), e.g. x-content/image-dcf for camera
+memory cards. See the
+[shared-mime-info](http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec)
+specification for more on x-content types.
+
+C: g_mount_guess_content_type
+See: https://docs.gtk.org/gio/method.Mount.guess_content_type.html
+Since: 2.18")
+
+
 (rt:define-gfunction (mount-guess-content-type-finish "g_mount_guess_content_type_finish") :args
                      ((mount (:object mount)) (result (:object async-result))) :return :strv
                      :return-transfer :full :throws t :version "2.18" :documentation
@@ -15005,6 +16512,20 @@ See: https://docs.gtk.org/gio/method.Mount.is_shadowed.html
 Since: 2.20")
 
 
+(rt:define-gfunction (mount-remount "g_mount_remount") :args
+                     ((mount (:object mount)) (flags (:flags mount-mount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Remounts a mount. This is an asynchronous operation, and is
+finished by calling g_mount_remount_finish() with the MOUNT
+and #GAsyncResults data returned in the CALLBACK.
+
+C: g_mount_remount
+See: https://docs.gtk.org/gio/method.Mount.remount.html")
+
+
 (rt:define-gfunction (mount-remount-finish "g_mount_remount_finish") :args
                      ((mount (:object mount)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -15026,6 +16547,20 @@ See: https://docs.gtk.org/gio/method.Mount.shadow.html
 Since: 2.20")
 
 
+(rt:define-gfunction (mount-unmount "g_mount_unmount") :args
+                     ((mount (:object mount)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Unmounts a mount. This is an asynchronous operation, and is
+finished by calling g_mount_unmount_finish() with the MOUNT
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_mount_unmount
+See: https://docs.gtk.org/gio/method.Mount.unmount.html
+Deprecated.")
+
+
 (rt:define-gfunction (mount-unmount-finish "g_mount_unmount_finish") :args
                      ((mount (:object mount)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -15035,6 +16570,22 @@ ERROR will be set to contain the errors and false will be returned.
 C: g_mount_unmount_finish
 See: https://docs.gtk.org/gio/method.Mount.unmount_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction (mount-unmount-with-operation "g_mount_unmount_with_operation") :args
+                     ((mount (:object mount)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Unmounts a mount. This is an asynchronous operation, and is
+finished by calling g_mount_unmount_with_operation_finish() with the MOUNT
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_mount_unmount_with_operation
+See: https://docs.gtk.org/gio/method.Mount.unmount_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction (mount-unmount-with-operation-finish "g_mount_unmount_with_operation_finish")
@@ -15341,6 +16892,20 @@ See: https://docs.gtk.org/gio/method.NetworkMonitor.can_reach.html
 Since: 2.32")
 
 
+(rt:define-gfunction (network-monitor-can-reach-async "g_network_monitor_can_reach_async") :args
+                     ((monitor (:object network-monitor))
+                      (connectable (:object socket-connectable))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronously attempts to determine whether or not the host
+pointed to by CONNECTABLE can be reached, without actually
+trying to connect to it.
+
+C: g_network_monitor_can_reach_async
+See: https://docs.gtk.org/gio/method.NetworkMonitor.can_reach_async.html")
+
+
 (rt:define-gfunction (network-monitor-can-reach-finish "g_network_monitor_can_reach_finish") :args
                      ((monitor (:object network-monitor)) (result (:object async-result))) :return
                      :boolean :throws t :documentation "Finishes an async network connectivity test.
@@ -15588,6 +17153,21 @@ C: g_output_stream_close
 See: https://docs.gtk.org/gio/method.OutputStream.close.html")
 
 
+(rt:define-gfunction (output-stream-close-async "g_output_stream_close_async") :args
+                     ((stream (:object output-stream)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Requests an asynchronous close of the stream, releasing resources
+related to it. When the operation is finished CALLBACK will be
+called. You can then call g_output_stream_close_finish() to get
+the result of the operation.
+
+C: g_output_stream_close_async
+See: https://docs.gtk.org/gio/method.OutputStream.close_async.html")
+
+
 (rt:define-gfunction (output-stream-close-finish "g_output_stream_close_finish") :args
                      ((stream (:object output-stream)) (result (:object async-result))) :return
                      :boolean :throws t :documentation "Closes an output stream.
@@ -15606,6 +17186,20 @@ implicitly cause a flush.
 
 C: g_output_stream_flush
 See: https://docs.gtk.org/gio/method.OutputStream.flush.html")
+
+
+(rt:define-gfunction (output-stream-flush-async "g_output_stream_flush_async") :args
+                     ((stream (:object output-stream)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Forces an asynchronous write of all user-space buffered data for
+the given STREAM.
+For behaviour details see g_output_stream_flush().
+
+C: g_output_stream_flush_async
+See: https://docs.gtk.org/gio/method.OutputStream.flush_async.html")
 
 
 (rt:define-gfunction (output-stream-flush-finish "g_output_stream_flush_finish") :args
@@ -15665,6 +17259,21 @@ C: g_output_stream_splice
 See: https://docs.gtk.org/gio/method.OutputStream.splice.html")
 
 
+(rt:define-gfunction (output-stream-splice-async "g_output_stream_splice_async") :args
+                     ((stream (:object output-stream)) (source (:object input-stream))
+                      (flags (:flags output-stream-splice-flags)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Splices a stream asynchronously.
+When the operation is finished CALLBACK will be called.
+You can then call g_output_stream_splice_finish() to get the
+result of the operation.
+
+C: g_output_stream_splice_async
+See: https://docs.gtk.org/gio/method.OutputStream.splice_async.html")
+
+
 (rt:define-gfunction (output-stream-splice-finish "g_output_stream_splice_finish") :args
                      ((stream (:object output-stream)) (result (:object async-result))) :return
                      :ssize :throws t :documentation
@@ -15697,6 +17306,19 @@ is helpful over a bare pointer interface.
 
 C: g_output_stream_write_bytes
 See: https://docs.gtk.org/gio/method.OutputStream.write_bytes.html")
+
+
+(rt:define-gfunction (output-stream-write-bytes-async "g_output_stream_write_bytes_async") :args
+                     ((stream (:object output-stream)) (bytes (:boxed "GBytes" "g_bytes_get_type"))
+                      (io-priority :int) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "This function is similar to g_output_stream_write_async(), but
+takes a #GBytes as input.  Due to the refcounted nature of #GBytes,
+this allows the stream to avoid taking a copy of the data.
+
+C: g_output_stream_write_bytes_async
+See: https://docs.gtk.org/gio/method.OutputStream.write_bytes_async.html")
 
 
 (rt:define-gfunction (output-stream-write-bytes-finish "g_output_stream_write_bytes_finish") :args
@@ -15747,6 +17369,19 @@ Since: 2.60")
 
 C: g_permission_acquire
 See: https://docs.gtk.org/gio/method.Permission.acquire.html
+Since: 2.26")
+
+
+(rt:define-gfunction (permission-acquire-async "g_permission_acquire_async") :args
+                     ((permission (:object permission))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Attempts to acquire the permission represented by PERMISSION.
+
+C: g_permission_acquire_async
+See: https://docs.gtk.org/gio/method.Permission.acquire_async.html
 Since: 2.26")
 
 
@@ -15818,6 +17453,19 @@ Since: 2.26")
 
 C: g_permission_release
 See: https://docs.gtk.org/gio/method.Permission.release.html
+Since: 2.26")
+
+
+(rt:define-gfunction (permission-release-async "g_permission_release_async") :args
+                     ((permission (:object permission))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Attempts to release the permission represented by PERMISSION.
+
+C: g_permission_release_async
+See: https://docs.gtk.org/gio/method.Permission.release_async.html
 Since: 2.26")
 
 
@@ -15958,6 +17606,19 @@ required, wraps the #GIOStream to handle proxy payload.
 
 C: g_proxy_connect
 See: https://docs.gtk.org/gio/method.Proxy.connect.html
+Since: 2.26")
+
+
+(rt:define-gfunction (proxy-connect-async "g_proxy_connect_async") :args
+                     ((proxy (:object proxy)) (connection (:object io-stream))
+                      (proxy-address (:object proxy-address))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation "Asynchronous version of g_proxy_connect().
+
+C: g_proxy_connect_async
+See: https://docs.gtk.org/gio/method.Proxy.connect_async.html
 Since: 2.26")
 
 
@@ -16105,6 +17766,20 @@ See: https://docs.gtk.org/gio/method.ProxyResolver.lookup.html
 Since: 2.26")
 
 
+(rt:define-gfunction (proxy-resolver-lookup-async "g_proxy_resolver_lookup_async") :args
+                     ((resolver (:object proxy-resolver)) (uri :string)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "Asynchronous lookup of proxy. See g_proxy_resolver_lookup() for more
+details.
+
+C: g_proxy_resolver_lookup_async
+See: https://docs.gtk.org/gio/method.ProxyResolver.lookup_async.html
+Since: 2.26")
+
+
 (rt:define-gfunction (proxy-resolver-lookup-finish "g_proxy_resolver_lookup_finish") :args
                      ((resolver (:object proxy-resolver)) (result (:object async-result))) :return
                      :strv :return-transfer :full :throws t :version "2.26" :documentation
@@ -16172,6 +17847,21 @@ See: https://docs.gtk.org/gio/method.Resolver.lookup_by_address.html
 Since: 2.22")
 
 
+(rt:define-gfunction (resolver-lookup-by-address-async "g_resolver_lookup_by_address_async") :args
+                     ((resolver (:object resolver)) (address (:object inet-address))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Begins asynchronously reverse-resolving ADDRESS to determine its
+associated hostname, and eventually calls CALLBACK, which must
+call g_resolver_lookup_by_address_finish() to get the final result.
+
+C: g_resolver_lookup_by_address_async
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_address_async.html
+Since: 2.22")
+
+
 (rt:define-gfunction (resolver-lookup-by-address-finish "g_resolver_lookup_by_address_finish")
                      :args ((resolver (:object resolver)) (result (:object async-result))) :return
                      :string :return-transfer :full :throws t :version "2.22" :documentation
@@ -16180,6 +17870,72 @@ g_resolver_lookup_by_address_async().
 
 C: g_resolver_lookup_by_address_finish
 See: https://docs.gtk.org/gio/method.Resolver.lookup_by_address_finish.html
+Since: 2.22")
+
+
+(rt:define-gfunction (resolver-lookup-by-name-async "g_resolver_lookup_by_name_async") :args
+                     ((resolver (:object resolver)) (hostname :string)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Begins asynchronously resolving HOSTNAME to determine its
+associated IP address(es), and eventually calls CALLBACK, which
+must call g_resolver_lookup_by_name_finish() to get the result.
+See g_resolver_lookup_by_name() for more details.
+
+C: g_resolver_lookup_by_name_async
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_async.html
+Since: 2.22")
+
+
+(rt:define-gfunction
+ (resolver-lookup-by-name-with-flags-async "g_resolver_lookup_by_name_with_flags_async") :args
+ ((resolver (:object resolver)) (hostname :string) (flags (:flags resolver-name-lookup-flags))
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.60" :documentation "Begins asynchronously resolving HOSTNAME to determine its
+associated IP address(es), and eventually calls CALLBACK, which
+must call g_resolver_lookup_by_name_with_flags_finish() to get the result.
+See g_resolver_lookup_by_name() for more details.
+
+C: g_resolver_lookup_by_name_with_flags_async
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_with_flags_async.html
+Since: 2.60")
+
+
+(rt:define-gfunction (resolver-lookup-records-async "g_resolver_lookup_records_async") :args
+                     ((resolver (:object resolver)) (rrname :string)
+                      (record-type (:enum resolver-record-type))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.34" :documentation
+                     "Begins asynchronously performing a DNS lookup for the given
+RRNAME, and eventually calls CALLBACK, which must call
+g_resolver_lookup_records_finish() to get the final result. See
+g_resolver_lookup_records() for more details.
+
+C: g_resolver_lookup_records_async
+See: https://docs.gtk.org/gio/method.Resolver.lookup_records_async.html
+Since: 2.34")
+
+
+(rt:define-gfunction (resolver-lookup-service-async "g_resolver_lookup_service_async") :args
+                     ((resolver (:object resolver)) (service :string) (protocol :string)
+                      (domain :string) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Begins asynchronously performing a DNS SRV lookup for the given
+SERVICE and PROTOCOL in the given DOMAIN, and eventually calls
+CALLBACK, which must call g_resolver_lookup_service_finish() to
+get the final result. See g_resolver_lookup_service() for more
+details.
+
+C: g_resolver_lookup_service_async
+See: https://docs.gtk.org/gio/method.Resolver.lookup_service_async.html
 Since: 2.22")
 
 
@@ -17237,6 +18993,33 @@ Since: 2.28
 Deprecated.")
 
 
+(rt:define-gfunction (simple-async-result-new "g_simple_async_result_new") :args
+                     ((source-object (:object rt:object))
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback)
+                      (source-tag :pointer :optional t))
+                     :return (:object simple-async-result) :return-transfer :full :documentation
+                     "Creates a #GSimpleAsyncResult.
+
+C: g_simple_async_result_new
+See: https://docs.gtk.org/gio/ctor.SimpleAsyncResult.new.html
+Deprecated.")
+
+
+(rt:define-gfunction (simple-async-result-new-from-error "g_simple_async_result_new_from_error")
+                     :args
+                     ((source-object (:object rt:object))
+                      (callback (:callback async-ready-callback :async))
+                      (user-data :pointer :user-data-of callback)
+                      (error (:boxed "GError" "g_error_get_type")))
+                     :return (:object simple-async-result) :return-transfer :full :documentation
+                     "Creates a #GSimpleAsyncResult from an error condition.
+
+C: g_simple_async_result_new_from_error
+See: https://docs.gtk.org/gio/ctor.SimpleAsyncResult.new_from_error.html
+Deprecated.")
+
+
 (rt:define-gfunction (simple-async-result-is-valid "g_simple_async_result_is_valid") :args
                      ((result (:object async-result)) (source (:object rt:object) :optional t)
                       (source-tag :pointer :optional t))
@@ -18027,6 +19810,19 @@ See: https://docs.gtk.org/gio/method.SocketAddressEnumerator.next.html")
 
 
 (rt:define-gfunction
+ (socket-address-enumerator-next-async "g_socket_address_enumerator_next_async") :args
+ ((enumerator (:object socket-address-enumerator)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :documentation "Asynchronously retrieves the next #GSocketAddress from ENUMERATOR
+and then calls CALLBACK, which must call
+g_socket_address_enumerator_next_finish() to get the result.
+
+C: g_socket_address_enumerator_next_async
+See: https://docs.gtk.org/gio/method.SocketAddressEnumerator.next_async.html")
+
+
+(rt:define-gfunction
  (socket-address-enumerator-next-finish "g_socket_address_enumerator_next_finish") :args
  ((enumerator (:object socket-address-enumerator)) (result (:object async-result))) :return
  (:object socket-address) :return-transfer :full :throws t :documentation
@@ -18076,6 +19872,19 @@ See: https://docs.gtk.org/gio/method.SocketClient.connect.html
 Since: 2.22")
 
 
+(rt:define-gfunction (socket-client-connect-async "g_socket_client_connect_async") :args
+                     ((client (:object socket-client)) (connectable (:object socket-connectable))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "This is the asynchronous version of g_socket_client_connect().
+
+C: g_socket_client_connect_async
+See: https://docs.gtk.org/gio/method.SocketClient.connect_async.html
+Since: 2.22")
+
+
 (rt:define-gfunction (socket-client-connect-finish "g_socket_client_connect_finish") :args
                      ((client (:object socket-client)) (result (:object async-result))) :return
                      (:object socket-connection) :return-transfer :full :throws t :version "2.22"
@@ -18095,6 +19904,20 @@ Since: 2.22")
 
 C: g_socket_client_connect_to_host
 See: https://docs.gtk.org/gio/method.SocketClient.connect_to_host.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-client-connect-to-host-async "g_socket_client_connect_to_host_async")
+                     :args
+                     ((client (:object socket-client)) (host-and-port :string)
+                      (default-port :uint16) (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "This is the asynchronous version of g_socket_client_connect_to_host().
+
+C: g_socket_client_connect_to_host_async
+See: https://docs.gtk.org/gio/method.SocketClient.connect_to_host_async.html
 Since: 2.22")
 
 
@@ -18120,6 +19943,20 @@ See: https://docs.gtk.org/gio/method.SocketClient.connect_to_service.html")
 
 
 (rt:define-gfunction
+ (socket-client-connect-to-service-async "g_socket_client_connect_to_service_async") :args
+ ((client (:object socket-client)) (domain :string) (service :string)
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.22" :documentation "This is the asynchronous version of
+g_socket_client_connect_to_service().
+
+C: g_socket_client_connect_to_service_async
+See: https://docs.gtk.org/gio/method.SocketClient.connect_to_service_async.html
+Since: 2.22")
+
+
+(rt:define-gfunction
  (socket-client-connect-to-service-finish "g_socket_client_connect_to_service_finish") :args
  ((client (:object socket-client)) (result (:object async-result))) :return
  (:object socket-connection) :return-transfer :full :throws t :version "2.22" :documentation
@@ -18138,6 +19975,20 @@ Since: 2.22")
 
 C: g_socket_client_connect_to_uri
 See: https://docs.gtk.org/gio/method.SocketClient.connect_to_uri.html
+Since: 2.26")
+
+
+(rt:define-gfunction (socket-client-connect-to-uri-async "g_socket_client_connect_to_uri_async")
+                     :args
+                     ((client (:object socket-client)) (uri :string) (default-port :uint16)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.26" :documentation
+                     "This is the asynchronous version of g_socket_client_connect_to_uri().
+
+C: g_socket_client_connect_to_uri_async
+See: https://docs.gtk.org/gio/method.SocketClient.connect_to_uri_async.html
 Since: 2.26")
 
 
@@ -18415,6 +20266,19 @@ See: https://docs.gtk.org/gio/method.SocketConnection.connect.html
 Since: 2.32")
 
 
+(rt:define-gfunction (socket-connection-connect-async "g_socket_connection_connect_async") :args
+                     ((connection (:object socket-connection)) (address (:object socket-address))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.32" :documentation
+                     "Asynchronously connect CONNECTION to the specified remote address.
+
+C: g_socket_connection_connect_async
+See: https://docs.gtk.org/gio/method.SocketConnection.connect_async.html
+Since: 2.32")
+
+
 (rt:define-gfunction (socket-connection-connect-finish "g_socket_connection_connect_finish") :args
                      ((connection (:object socket-connection)) (result (:object async-result)))
                      :return :boolean :throws t :version "2.32" :documentation
@@ -18536,6 +20400,19 @@ See: https://docs.gtk.org/gio/method.SocketListener.accept.html
 Since: 2.22")
 
 
+(rt:define-gfunction (socket-listener-accept-async "g_socket_listener_accept_async") :args
+                     ((listener (:object socket-listener))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "This is the asynchronous version of g_socket_listener_accept().
+
+C: g_socket_listener_accept_async
+See: https://docs.gtk.org/gio/method.SocketListener.accept_async.html
+Since: 2.22")
+
+
 (rt:define-gfunction (socket-listener-accept-finish "g_socket_listener_accept_finish") :args
                      ((listener (:object socket-listener)) (result (:object async-result))
                       (source-object (:object rt:object) :direction :out))
@@ -18559,6 +20436,20 @@ to the listener. Returns the #GSocket that was accepted.
 
 C: g_socket_listener_accept_socket
 See: https://docs.gtk.org/gio/method.SocketListener.accept_socket.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-listener-accept-socket-async "g_socket_listener_accept_socket_async")
+                     :args
+                     ((listener (:object socket-listener))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "This is the asynchronous version of g_socket_listener_accept_socket().
+
+C: g_socket_listener_accept_socket_async
+See: https://docs.gtk.org/gio/method.SocketListener.accept_socket_async.html
 Since: 2.22")
 
 
@@ -18828,6 +20719,19 @@ See: https://docs.gtk.org/gio/method.Subprocess.communicate.html
 Since: 2.40")
 
 
+(rt:define-gfunction (subprocess-communicate-async "g_subprocess_communicate_async") :args
+                     ((subprocess (:object subprocess))
+                      (stdin-buf (:boxed "GBytes" "g_bytes_get_type") :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Asynchronous version of g_subprocess_communicate().  Complete
+invocation with g_subprocess_communicate_finish().
+
+C: g_subprocess_communicate_async
+See: https://docs.gtk.org/gio/method.Subprocess.communicate_async.html")
+
+
 (rt:define-gfunction (subprocess-communicate-finish "g_subprocess_communicate_finish") :args
                      ((subprocess (:object subprocess)) (result (:object async-result))
                       (stdout-buf (:boxed "GBytes" "g_bytes_get_type") :direction :out :transfer
@@ -18852,6 +20756,20 @@ process as UTF-8, and returns it as a regular NUL terminated string.
 
 C: g_subprocess_communicate_utf8
 See: https://docs.gtk.org/gio/method.Subprocess.communicate_utf8.html")
+
+
+(rt:define-gfunction (subprocess-communicate-utf8-async "g_subprocess_communicate_utf8_async")
+                     :args
+                     ((subprocess (:object subprocess)) (stdin-buf :string :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Asynchronous version of g_subprocess_communicate_utf8().  Complete
+invocation with g_subprocess_communicate_utf8_finish().
+
+C: g_subprocess_communicate_utf8_async
+See: https://docs.gtk.org/gio/method.Subprocess.communicate_utf8_async.html")
 
 
 (rt:define-gfunction (subprocess-communicate-utf8-finish "g_subprocess_communicate_utf8_finish")
@@ -19009,6 +20927,18 @@ See: https://docs.gtk.org/gio/method.Subprocess.wait.html
 Since: 2.40")
 
 
+(rt:define-gfunction (subprocess-wait-async "g_subprocess_wait_async") :args
+                     ((subprocess (:object subprocess))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.40" :documentation "Wait for the subprocess to terminate.
+
+C: g_subprocess_wait_async
+See: https://docs.gtk.org/gio/method.Subprocess.wait_async.html
+Since: 2.40")
+
+
 (rt:define-gfunction (subprocess-wait-check "g_subprocess_wait_check") :args
                      ((subprocess (:object subprocess))
                       (cancellable (:object cancellable) :optional t))
@@ -19017,6 +20947,19 @@ Since: 2.40")
 
 C: g_subprocess_wait_check
 See: https://docs.gtk.org/gio/method.Subprocess.wait_check.html
+Since: 2.40")
+
+
+(rt:define-gfunction (subprocess-wait-check-async "g_subprocess_wait_check_async") :args
+                     ((subprocess (:object subprocess))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.40" :documentation
+                     "Combines g_subprocess_wait_async() with g_spawn_check_wait_status().
+
+C: g_subprocess_wait_check_async
+See: https://docs.gtk.org/gio/method.Subprocess.wait_check_async.html
 Since: 2.40")
 
 
@@ -19207,6 +21150,21 @@ See: https://docs.gtk.org/gio/method.SubprocessLauncher.unsetenv.html
 Since: 2.40")
 
 
+(rt:define-gfunction (task-new "g_task_new") :args
+                     ((source-object (:object rt:object))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (callback-data :pointer :user-data-of callback))
+                     :return (:object task) :return-transfer :full :version "2.36" :documentation
+                     "Creates a #GTask acting on SOURCE-OBJECT, which will eventually be
+used to invoke CALLBACK in the current thread-default main context
+(see GLib.MainContext.push_thread_default).
+
+C: g_task_new
+See: https://docs.gtk.org/gio/ctor.Task.new.html
+Since: 2.36")
+
+
 (rt:define-gfunction (task-is-valid "g_task_is_valid") :args
                      ((result (:object async-result))
                       (source-object (:object rt:object) :optional t))
@@ -19217,6 +21175,24 @@ source object). This can be used in g_return_if_fail() checks.
 
 C: g_task_is_valid
 See: https://docs.gtk.org/gio/type_func.Task.is_valid.html
+Since: 2.36")
+
+
+(rt:define-gfunction (task-report-error "g_task_report_error") :args
+                     ((source-object (:object rt:object))
+                      (callback (:callback async-ready-callback :async))
+                      (callback-data :pointer :user-data-of callback) (source-tag :pointer)
+                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                     :version "2.36" :documentation
+                     "Creates a #GTask and then immediately calls g_task_return_error()
+on it. Use this in the wrapper function of an asynchronous method
+when you want to avoid even calling the virtual method. You can
+then use g_async_result_is_tagged() in the finish method wrapper to
+check if the result there is tagged as having been created by the
+wrapper method, and deal with it appropriately if so.
+
+C: g_task_report_error
+See: https://docs.gtk.org/gio/type_func.Task.report_error.html
 Since: 2.36")
 
 
@@ -20160,6 +22136,20 @@ See: https://docs.gtk.org/gio/method.TlsConnection.handshake.html
 Since: 2.28")
 
 
+(rt:define-gfunction (tls-connection-handshake-async "g_tls_connection_handshake_async") :args
+                     ((conn (:object tls-connection)) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.28" :documentation
+                     "Asynchronously performs a TLS handshake on CONN. See
+g_tls_connection_handshake() for more information.
+
+C: g_tls_connection_handshake_async
+See: https://docs.gtk.org/gio/method.TlsConnection.handshake_async.html
+Since: 2.28")
+
+
 (rt:define-gfunction (tls-connection-handshake-finish "g_tls_connection_handshake_finish") :args
                      ((conn (:object tls-connection)) (result (:object async-result))) :return
                      :boolean :throws t :version "2.28" :documentation
@@ -20303,6 +22293,23 @@ Since: 2.30")
 
 
 (rt:define-gfunction
+ (tls-database-lookup-certificate-for-handle-async
+  "g_tls_database_lookup_certificate_for_handle_async")
+ :args
+ ((self (:object tls-database)) (handle :string) (interaction (:object tls-interaction))
+  (flags (:flags tls-database-lookup-flags)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.30" :documentation
+ "Asynchronously look up a certificate by its handle in the database. See
+g_tls_database_lookup_certificate_for_handle() for more information.
+
+C: g_tls_database_lookup_certificate_for_handle_async
+See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificate_for_handle_async.html
+Since: 2.30")
+
+
+(rt:define-gfunction
  (tls-database-lookup-certificate-for-handle-finish
   "g_tls_database_lookup_certificate_for_handle_finish")
  :args ((self (:object tls-database)) (result (:object async-result))) :return
@@ -20331,6 +22338,23 @@ Since: 2.30")
 
 
 (rt:define-gfunction
+ (tls-database-lookup-certificate-issuer-async "g_tls_database_lookup_certificate_issuer_async")
+ :args
+ ((self (:object tls-database)) (certificate (:object tls-certificate))
+  (interaction (:object tls-interaction)) (flags (:flags tls-database-lookup-flags))
+  (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.30" :documentation
+ "Asynchronously look up the issuer of CERTIFICATE in the database. See
+g_tls_database_lookup_certificate_issuer() for more information.
+
+C: g_tls_database_lookup_certificate_issuer_async
+See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificate_issuer_async.html
+Since: 2.30")
+
+
+(rt:define-gfunction
  (tls-database-lookup-certificate-issuer-finish "g_tls_database_lookup_certificate_issuer_finish")
  :args ((self (:object tls-database)) (result (:object async-result))) :return
  (:object tls-certificate) :return-transfer :full :throws t :version "2.30" :documentation
@@ -20355,6 +22379,24 @@ of a TLS session.
 
 C: g_tls_database_verify_chain
 See: https://docs.gtk.org/gio/method.TlsDatabase.verify_chain.html
+Since: 2.30")
+
+
+(rt:define-gfunction (tls-database-verify-chain-async "g_tls_database_verify_chain_async") :args
+                     ((self (:object tls-database)) (chain (:object tls-certificate))
+                      (purpose :string) (identity (:object socket-connectable))
+                      (interaction (:object tls-interaction))
+                      (flags (:flags tls-database-verify-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.30" :documentation
+                     "Asynchronously determines the validity of a certificate chain after
+looking up and adding any missing certificates to the chain. See
+g_tls_database_verify_chain() for more information.
+
+C: g_tls_database_verify_chain_async
+See: https://docs.gtk.org/gio/method.TlsDatabase.verify_chain_async.html
 Since: 2.30")
 
 
@@ -20391,6 +22433,22 @@ function.
 
 C: g_tls_interaction_ask_password
 See: https://docs.gtk.org/gio/method.TlsInteraction.ask_password.html
+Since: 2.30")
+
+
+(rt:define-gfunction (tls-interaction-ask-password-async "g_tls_interaction_ask_password_async")
+                     :args
+                     ((interaction (:object tls-interaction)) (password (:object tls-password))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.30" :documentation
+                     "Run asynchronous interaction to ask the user for a password. In general,
+g_tls_interaction_invoke_ask_password() should be used instead of this
+function.
+
+C: g_tls_interaction_ask_password_async
+See: https://docs.gtk.org/gio/method.TlsInteraction.ask_password_async.html
 Since: 2.30")
 
 
@@ -20454,6 +22512,22 @@ should be used instead of this function.
 
 C: g_tls_interaction_request_certificate
 See: https://docs.gtk.org/gio/method.TlsInteraction.request_certificate.html
+Since: 2.40")
+
+
+(rt:define-gfunction
+ (tls-interaction-request-certificate-async "g_tls_interaction_request_certificate_async") :args
+ ((interaction (:object tls-interaction)) (connection (:object tls-connection))
+  (flags (:flags tls-certificate-request-flags)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.40" :documentation
+ "Run asynchronous interaction to ask the user for a certificate to use with
+the connection. In general, g_tls_interaction_invoke_request_certificate() should
+be used instead of this function.
+
+C: g_tls_interaction_request_certificate_async
+See: https://docs.gtk.org/gio/method.TlsInteraction.request_certificate_async.html
 Since: 2.40")
 
 
@@ -20569,6 +22643,18 @@ Since: 2.26")
 
 
 (rt:define-gfunction
+ (unix-connection-receive-credentials-async "g_unix_connection_receive_credentials_async") :args
+ ((connection (:object unix-connection)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.32" :documentation "Asynchronously receive credentials.
+
+C: g_unix_connection_receive_credentials_async
+See: https://docs.gtk.org/gio/method.UnixConnection.receive_credentials_async.html
+Since: 2.32")
+
+
+(rt:define-gfunction
  (unix-connection-receive-credentials-finish "g_unix_connection_receive_credentials_finish") :args
  ((connection (:object unix-connection)) (result (:object async-result))) :return
  (:object credentials) :return-transfer :full :throws t :version "2.32" :documentation
@@ -20605,6 +22691,18 @@ credentials.
 C: g_unix_connection_send_credentials
 See: https://docs.gtk.org/gio/method.UnixConnection.send_credentials.html
 Since: 2.26")
+
+
+(rt:define-gfunction
+ (unix-connection-send-credentials-async "g_unix_connection_send_credentials_async") :args
+ ((connection (:object unix-connection)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.32" :documentation "Asynchronously send credentials.
+
+C: g_unix_connection_send_credentials_async
+See: https://docs.gtk.org/gio/method.UnixConnection.send_credentials_async.html
+Since: 2.32")
 
 
 (rt:define-gfunction
@@ -20849,6 +22947,25 @@ C: g_vfs_parse_name
 See: https://docs.gtk.org/gio/method.Vfs.parse_name.html")
 
 
+(rt:define-gfunction (vfs-register-uri-scheme "g_vfs_register_uri_scheme") :args
+                     ((vfs (:object vfs)) (scheme :string)
+                      (uri-func (:callback vfs-file-lookup-func :notified) :optional t)
+                      (uri-data :pointer :user-data-of uri-func)
+                      (uri-destroy :pointer :destroy-of uri-func)
+                      (parse-name-func (:callback vfs-file-lookup-func :notified) :optional t)
+                      (parse-name-data :pointer :user-data-of parse-name-func)
+                      (parse-name-destroy :pointer :destroy-of parse-name-func))
+                     :return :boolean :version "2.50" :documentation
+                     "Registers URI-FUNC and PARSE-NAME-FUNC as the #GFile URI and parse name
+lookup functions for URIs with a scheme matching SCHEME.
+Note that SCHEME is registered only within the running application, as
+opposed to desktop-wide as it happens with GVfs backends.
+
+C: g_vfs_register_uri_scheme
+See: https://docs.gtk.org/gio/method.Vfs.register_uri_scheme.html
+Since: 2.50")
+
+
 (rt:define-gfunction (vfs-unregister-uri-scheme "g_vfs_unregister_uri_scheme") :args
                      ((vfs (:object vfs)) (scheme :string)) :return :boolean :version "2.50"
                      :documentation
@@ -20874,6 +22991,20 @@ C: g_volume_can_mount
 See: https://docs.gtk.org/gio/method.Volume.can_mount.html")
 
 
+(rt:define-gfunction (volume-eject "g_volume_eject") :args
+                     ((volume (:object volume)) (flags (:flags mount-unmount-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Ejects a volume. This is an asynchronous operation, and is
+finished by calling g_volume_eject_finish() with the VOLUME
+and #GAsyncResult returned in the CALLBACK.
+
+C: g_volume_eject
+See: https://docs.gtk.org/gio/method.Volume.eject.html
+Deprecated.")
+
+
 (rt:define-gfunction (volume-eject-finish "g_volume_eject_finish") :args
                      ((volume (:object volume)) (result (:object async-result))) :return :boolean
                      :throws t :documentation
@@ -20883,6 +23014,22 @@ ERROR will be set to contain the errors and false will be returned.
 C: g_volume_eject_finish
 See: https://docs.gtk.org/gio/method.Volume.eject_finish.html
 Deprecated.")
+
+
+(rt:define-gfunction (volume-eject-with-operation "g_volume_eject_with_operation") :args
+                     ((volume (:object volume)) (flags (:flags mount-unmount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.22" :documentation
+                     "Ejects a volume. This is an asynchronous operation, and is
+finished by calling g_volume_eject_with_operation_finish() with the VOLUME
+and #GAsyncResult data returned in the CALLBACK.
+
+C: g_volume_eject_with_operation
+See: https://docs.gtk.org/gio/method.Volume.eject_with_operation.html
+Since: 2.22")
 
 
 (rt:define-gfunction (volume-eject-with-operation-finish "g_volume_eject_with_operation_finish")
@@ -20989,6 +23136,20 @@ available.
 
 C: g_volume_get_uuid
 See: https://docs.gtk.org/gio/method.Volume.get_uuid.html")
+
+
+(rt:define-gfunction (volume-mount "g_volume_mount") :args
+                     ((volume (:object volume)) (flags (:flags mount-mount-flags))
+                      (mount-operation (:object mount-operation) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Mounts a volume. This is an asynchronous operation, and is
+finished by calling g_volume_mount_finish() with the VOLUME
+and #GAsyncResult returned in the CALLBACK.
+
+C: g_volume_mount
+See: https://docs.gtk.org/gio/method.Volume.mount.html")
 
 
 (rt:define-gfunction (volume-mount-finish "g_volume_mount_finish") :args

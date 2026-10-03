@@ -214,8 +214,12 @@ same-namespace class or interface it inherits from."
      ,@(when (plan-args plan)
          `(:args ,(loop for (var spec . options) in (plan-args plan)
                         collect `(,var ,spec
+                                  ,@(when (getf options :user-data-of)
+                                      `(:user-data-of ,(getf options :user-data-of)))
+                                  ,@(when (getf options :destroy-of)
+                                      `(:destroy-of ,(getf options :destroy-of)))
                                   ,@(when (eq (getf options :direction) :out) '(:direction :out))
-                                  ,@(unless (eq (getf options :transfer) :none)
+                                  ,@(unless (member (getf options :transfer) '(nil :none))
                                       `(:transfer ,(getf options :transfer)))
                                   ,@(when (getf options :optional) '(:optional t))))))
      ,@(unless (eq (plan-return plan) :void) `(:return ,(plan-return plan)))
@@ -310,6 +314,23 @@ same-namespace class or interface it inherits from."
                                               :url (doc-url nsname (format nil "property.~a.~a.html"
                                                                            (gir-item-name c)
                                                                            (gir-item-name p))))))
+             stream)))))
+    ;; Callback types
+    (format stream "~%;;; Callback types~%")
+    (dolist (cb (gir-namespace-callbacks ns))
+      (let* ((qualified (qualify (gir-item-name cb) nsname))
+             (plan (callback-plan ctx qualified)))
+        (unless (stringp plan)
+          (destructuring-bind (args ret transfer) plan
+            (write-form
+             `(gtk4.runtime:define-gcallback ,(type-symbol qualified)
+                  (:args ,(loop for (var spec . options) in args
+                                collect `(,var ,spec
+                                          ,@(when (getf options :user-data) '(:user-data t))
+                                          ,@(unless (member (getf options :transfer) '(nil :none))
+                                              `(:transfer ,(getf options :transfer)))))
+                   ,@(unless (eq ret :void) `(:return ,ret))
+                   ,@(unless (eq transfer :none) `(:return-transfer ,transfer))))
              stream)))))
     ;; Functions
     (format stream "~%;;; Functions, constructors and methods~%")

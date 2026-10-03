@@ -68,6 +68,7 @@
    #:handler-connected-p
    ;; definitions used by generated code
    #:define-gfunction
+   #:define-gcallback
    #:define-genum
    #:define-gconstant
    #:define-gclass

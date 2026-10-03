@@ -48,10 +48,13 @@
     (eq status :external)))
 
 (defun safe-variable-name (name)
-  "Parameter names that are CL constants or special variables (t, pi) get a suffix."
+  "Parameter names that are CL constants, special variables or special
+operators (t, pi, function) get a suffix: they cannot be bound, or print as
+#'... in generated code."
   (let ((name (snake-to-kebab name)))
     (multiple-value-bind (sym status) (find-symbol (string-upcase name) "COMMON-LISP")
-      (if (and (eq status :external) (or (boundp sym) (constantp sym)))
+      (if (and (eq status :external)
+               (or (boundp sym) (constantp sym) (special-operator-p sym)))
           (concatenate 'string name "-value")
           name))))
 

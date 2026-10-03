@@ -53,6 +53,8 @@ See: https://docs.gtk.org/gmodule/const.MODULE_IMPL_WIN32.html")
 
 ;;; Properties
 
+;;; Callback types
+
 ;;; Functions, constructors and methods
 
 

@@ -137,7 +137,7 @@ whose bits are set. Unknown values are returned as integers."
 (defun spec-foreign-type (spec)
   (case (spec-kind spec)
     (:gtype 'gtype)
-    ((:string :strv :object :boxed :record :pointer) :pointer)
+    ((:string :strv :object :boxed :record :pointer :callback) :pointer)
     (:enum :int)
     (:flags :uint)
     (t spec)))
@@ -149,6 +149,18 @@ whose bits are set. Unknown values are returned as integers."
           do (setf (cffi:mem-aref v :pointer i) (cffi:foreign-string-alloc s)))
     (setf (cffi:mem-aref v :pointer (length list)) (cffi:null-pointer))
     v))
+
+(defun strv-to-gmalloc (list)
+  "A NULL-terminated char** allocated with g_malloc, for C to free with g_strfreev."
+  (if (null list)
+      (cffi:null-pointer)
+      (let ((v (cffi:foreign-funcall "g_malloc0" :size (* (1+ (length list))
+                                                          (cffi:foreign-type-size :pointer))
+                                     :pointer)))
+        (loop for s in list for i from 0
+              do (setf (cffi:mem-aref v :pointer i)
+                       (cffi:foreign-funcall "g_strdup" :string s :pointer)))
+        v)))
 
 (defun free-strv (v)
   (loop for i from 0
@@ -176,7 +188,8 @@ whose bits are set. Unknown values are returned as integers."
   (unless (cffi:null-pointer-p p) p))
 
 (defun convert-from-foreign (form spec transfer)
-  "Code converting the foreign value FORM (a return value or out parameter) to Lisp."
+  "Code converting the foreign value FORM (a return value, out parameter or
+callback argument) to Lisp."
   (ecase (spec-kind spec)
     ((:boolean :int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64
       :short :ushort :int :uint :long :ulong :size :ssize :intptr :uintptr
@@ -190,6 +203,83 @@ whose bits are set. Unknown values are returned as integers."
                            :transfer ,(if (eq transfer :full) :full :none))))
     ((:record :pointer) `(pointer-or-nil ,form))
     ((:enum :flags) `(enum-keyword ',(second spec) ,form))))
+
+(defun convert-to-foreign (form spec transfer)
+  "Code converting the Lisp value FORM to a foreign value that C keeps after
+the call returns (a callback's return value)."
+  (ecase (spec-kind spec)
+    (:boolean `(and ,form t))
+    ((:int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64
+      :short :ushort :int :uint :long :ulong :size :ssize :intptr :uintptr :gtype)
+     `(or ,form 0))
+    (:float `(float (or ,form 0) 1f0))
+    (:double `(float (or ,form 0) 1d0))
+    (:string `(let ((s ,form))
+                (if s (cffi:foreign-funcall "g_strdup" :string s :pointer) (cffi:null-pointer))))
+    (:strv `(strv-to-gmalloc ,form))
+    (:object (if (eq transfer :full)
+                 `(let ((p (object-pointer ,form)))
+                    (unless (cffi:null-pointer-p p) (%g-object-ref p))
+                    p)
+                 `(object-pointer ,form)))
+    (:boxed (destructuring-bind (gtype-name get-type) (rest spec)
+              (if (eq transfer :full)
+                  `(let ((p (object-pointer ,form)))
+                     (if (cffi:null-pointer-p p)
+                         p
+                         (%g-boxed-copy (gtype-cell-gtype
+                                         (load-time-value (make-gtype-cell ,gtype-name ,get-type)))
+                                        p)))
+                  `(object-pointer ,form))))
+    ((:record :pointer) `(object-pointer ,form))
+    ((:enum :flags) `(enum-value ',(second spec) ,form))))
+
+(defun foreign-zero (spec)
+  "The foreign value a callback returns when its Lisp function fails."
+  (case (spec-foreign-type spec)
+    (:void nil)
+    (:boolean nil)
+    (:pointer '(cffi:null-pointer))
+    (:float 0f0)
+    (:double 0d0)
+    (t 0)))
+
+;;; Callbacks
+;;;
+;;; Each GIR callback type gets one static trampoline (a CFFI callback named
+;;; by the type's symbol). The Lisp function travels through the C
+;;; user_data pointer as a handle holding a CALLBACK-ENTRY.
+
+(defstruct (callback-entry (:constructor make-callback-entry (function once)))
+  "FUNCTION is a function or a symbol naming one. ONCE means the handle is
+freed after the first call (GIR scope \"async\")."
+  function once)
+
+(defmacro define-gcallback (name (&key args (return :void) (return-transfer :none) documentation))
+  "Define the trampoline for the callback type NAME. ARGS is a list of
+(VAR SPEC &key transfer user-data); exactly one argument, marked :user-data,
+carries the handle. The Lisp function receives the other arguments in order."
+  (declare (ignore documentation))
+  (let* ((data (or (first (find-if (lambda (a) (getf (cddr a) :user-data)) args))
+                   (error "define-gcallback ~s: no :user-data argument" name)))
+         (entry (gensym "ENTRY"))
+         (call `(funcall (resolve-handler (callback-entry-function ,entry))
+                         ,@(loop for (var spec . options) in args
+                                 unless (getf options :user-data)
+                                   collect (convert-from-foreign var spec
+                                                                 (getf options :transfer :none))))))
+    `(progn
+       (cffi:defcallback ,name ,(spec-foreign-type return)
+           ,(loop for (var spec) in args collect (list var (spec-foreign-type spec)))
+         (let ((,entry (handle-value ,data)))
+           (unwind-protect
+                (with-callback-protection (',name ,(foreign-zero return))
+                  ,(if (eq return :void)
+                       `(progn ,call nil)
+                       (convert-to-foreign call return return-transfer)))
+             (when (and ,entry (callback-entry-once ,entry))
+               (free-handle ,data)))))
+       ',name)))
 
 ;;; Each argument wrapper returns BODY wrapped so that PLACE is bound to the
 ;;; foreign value of the Lisp argument VAR, with any cleanup after BODY.
@@ -229,57 +319,89 @@ whose bits are set. Unknown values are returned as integers."
 (defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
                                                 throws version documentation)
   "Define NAME as a Lisp function calling the C function C-NAME.
-ARGS is a list of (VAR SPEC &key direction transfer optional): :in arguments
-become parameters in order (trailing ones marked :optional become &optional);
-:out arguments become extra return values after the C return value."
-  (let* ((ins (remove :out args :key (lambda (a) (getf (cddr a) :direction :in))))
-         (required (remove-if (lambda (a) (getf (cddr a) :optional)) ins))
-         (optional (remove-if-not (lambda (a) (getf (cddr a) :optional)) ins))
-         (cell (gensym "CELL"))
-         (err (gensym "ERR"))
-         (result (gensym "RESULT"))
-         (places (loop for a in args collect (gensym (string (first a)))))
-         (out-reads
-           (loop for (var spec . options) in args
-                 for place in places
-                 when (eq (getf options :direction :in) :out)
-                   collect (convert-from-foreign
-                            `(cffi:mem-ref ,place ',(spec-foreign-type spec))
-                            spec (getf options :transfer :none))))
-         (foreign-call
-           `(cffi:foreign-funcall-pointer
-             (fcell-address ,cell) ()
-             ,@(loop for (var spec . options) in args
-                     for place in places
-                     append (list (if (eq (getf options :direction :in) :out)
-                                      :pointer
-                                      (spec-foreign-type spec))
-                                  place))
-             ,@(when throws (list :pointer err))
-             ,(spec-foreign-type return)))
-         (body
-           `(let ((,result ,foreign-call))
-              (declare (ignorable ,result))
-              (values ,@(unless (eq return :void)
-                          (list (convert-from-foreign result return return-transfer)))
-                      ,@out-reads))))
-    (when throws
-      (setf body `(with-gerror (,err) ,body)))
-    ;; Wrap from the last argument outwards so conversions run in argument order.
-    (loop for (var spec . options) in (reverse args)
-          for place in (reverse places)
-          for transfer = (getf options :transfer :none)
-          do (setf body
-                   (if (eq (getf options :direction :in) :out)
-                       `(cffi:with-foreign-object (,place ',(spec-foreign-type spec))
-                          (setf (cffi:mem-ref ,place ',(spec-foreign-type spec))
-                                ,(out-initial-value spec))
-                          ,body)
-                       (wrap-in-argument var spec transfer place body))))
-    `(progn
-       (defun ,name (,@(mapcar #'first required)
-                     ,@(when optional (cons '&optional (mapcar #'first optional))))
-         ,@(when documentation (list documentation))
-         (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
-           (with-gtk-float-traps ,body)))
-       ',name)))
+ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of destroy-of):
+- :in arguments become parameters in order (trailing ones marked :optional
+  become &optional); :out arguments become extra return values.
+- A (:callback TYPE SCOPE) argument takes a Lisp function or symbol (or NIL).
+  The arguments marked :user-data-of and :destroy-of that callback are hidden:
+  they carry its handle and the notifier that frees it."
+  (flet ((option (arg key &optional default) (getf (cddr arg) key default)))
+    (let* ((hidden-p (lambda (a) (or (option a :user-data-of) (option a :destroy-of))))
+           (ins (remove-if (lambda (a) (or (eq (option a :direction :in) :out)
+                                           (funcall hidden-p a)))
+                           args))
+           (required (remove-if (lambda (a) (option a :optional)) ins))
+           (optional (remove-if-not (lambda (a) (option a :optional)) ins))
+           (callbacks (remove-if-not (lambda (a) (eq (spec-kind (second a)) :callback)) args))
+           (handles (loop for a in callbacks collect (cons (first a) (gensym "HANDLE"))))
+           (cell (gensym "CELL"))
+           (err (gensym "ERR"))
+           (result (gensym "RESULT"))
+           (places (loop for a in args collect (gensym (string (first a)))))
+           (out-reads
+             (loop for a in args
+                   for place in places
+                   when (eq (option a :direction :in) :out)
+                     collect (convert-from-foreign
+                              `(cffi:mem-ref ,place ',(spec-foreign-type (second a)))
+                              (second a) (option a :transfer :none))))
+           (foreign-call
+             `(cffi:foreign-funcall-pointer
+               (fcell-address ,cell) ()
+               ,@(loop for a in args
+                       for place in places
+                       append (list (if (eq (option a :direction :in) :out)
+                                        :pointer
+                                        (spec-foreign-type (second a)))
+                                    place))
+               ,@(when throws (list :pointer err))
+               ,(spec-foreign-type return)))
+           (body
+             `(let ((,result ,foreign-call))
+                (declare (ignorable ,result))
+                (values ,@(unless (eq return :void)
+                            (list (convert-from-foreign result return return-transfer)))
+                        ,@out-reads))))
+      (when throws
+        (setf body `(with-gerror (,err) ,body)))
+      ;; Wrap from the last argument outwards so conversions run in argument order.
+      (loop for a in (reverse args)
+            for place in (reverse places)
+            for (var spec) = a
+            do (setf body
+                     (cond
+                       ((eq (option a :direction :in) :out)
+                        `(cffi:with-foreign-object (,place ',(spec-foreign-type spec))
+                           (setf (cffi:mem-ref ,place ',(spec-foreign-type spec))
+                                 ,(out-initial-value spec))
+                           ,body))
+                       ((option a :user-data-of)
+                        (let ((h (cdr (assoc (option a :user-data-of) handles))))
+                          `(let ((,place (or ,h (cffi:null-pointer)))) ,body)))
+                       ((option a :destroy-of)
+                        (let ((h (cdr (assoc (option a :destroy-of) handles))))
+                          `(let ((,place (if ,h (cffi:callback free-handle-notify) (cffi:null-pointer))))
+                             ,body)))
+                       ((eq (spec-kind spec) :callback)
+                        (let ((h (cdr (assoc var handles))))
+                          `(let ((,place (if ,h (cffi:callback ,(second spec)) (cffi:null-pointer))))
+                             ,body)))
+                       (t (wrap-in-argument var spec (option a :transfer :none) place body)))))
+      ;; Outermost: create each callback's handle. Scope decides who frees it:
+      ;; call -> after the C call returns; async -> the trampoline, after one
+      ;; call; notified -> GLib, through the destroy notifier; forever -> nobody.
+      (loop for a in (reverse callbacks)
+            for (var (nil nil scope)) = a
+            for h = (cdr (assoc var handles))
+            do (setf body
+                     `(let ((,h (and ,var (make-handle (make-callback-entry ,var ,(eq scope :async))))))
+                        ,(if (eq scope :call)
+                             `(unwind-protect ,body (when ,h (free-handle ,h)))
+                             body))))
+      `(progn
+         (defun ,name (,@(mapcar #'first required)
+                       ,@(when optional (cons '&optional (mapcar #'first optional))))
+           ,@(when documentation (list documentation))
+           (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
+             (with-gtk-float-traps ,body)))
+         ',name))))

@@ -15,7 +15,8 @@
   (index (make-hash-table :test 'equal)) ; "Ns.Name" -> gir item
   (owners (make-hash-table :test 'equal)) ; package/symbol-name -> description, for collisions
   (skipped (make-hash-table :test 'equal)) ; namespace -> list of (what . reason)
-  (bound (make-hash-table :test 'equal)))  ; namespace -> count of callables bound
+  (bound (make-hash-table :test 'equal))   ; namespace -> count of callables bound
+  (callback-plans (make-hash-table :test 'equal))) ; "Ns.Name" -> (args return transfer) or reason string
 
 (defun target-namespaces-in-order (repository targets)
   "TARGETS as gir-namespaces, ordered so every namespace follows its includes."
@@ -216,7 +217,11 @@ raw pointers until they get dedicated wrappers.")
                (list (if (eq (gir-enum-kind item) :bitfield) :flags :enum) sym))
               ((gir-alias-p item)
                (classify-type ctx (gir-alias-type item) (namespace-of qualified)))
-              ((gir-callable-p item) (values nil "callback"))
+              ((gir-callable-p item)
+               (let ((cb (callback-plan ctx qualified)))
+                 (if (stringp cb)
+                     (values nil (format nil "unsupported callback type: ~a" cb))
+                     (list :callback sym))))
               ((member (gir-class-kind item) '(:class :interface))
                (if (gobject-type-p ctx qualified)
                    (list :object sym)
@@ -243,6 +248,101 @@ raw pointers until they get dedicated wrappers.")
 (defstruct plan
   symbol c-name args return return-transfer throws version deprecated doc kind owner source)
 
+(defun param-variable (p package)
+  (intern (string-upcase (safe-variable-name (or (gir-parameter-name p) "arg"))) package))
+
+(defun callback-type-p (ctx type nsname)
+  "True when TYPE names a GIR callback type."
+  (and (gir-type-p type) (gir-type-name type)
+       (gir-callable-p (lookup ctx (qualify (gir-type-name type) nsname)))))
+
+;;; Callback types
+
+(defun callback-user-data-index (params)
+  "Index of a callback type's user_data parameter: the one annotated with
+closure, else a trailing gpointer."
+  (or (position-if #'gir-parameter-closure params)
+      (let ((last (car (last params))))
+        (and last (gir-type-p (gir-parameter-type last))
+             (equal (gir-type-name (gir-parameter-type last)) "gpointer")
+             (1- (length params))))))
+
+(defun plan-callback-type (ctx qualified)
+  "(ARGS RETURN RETURN-TRANSFER) for the callback type QUALIFIED, or a reason string."
+  (let* ((cb (lookup ctx qualified))
+         (nsname (namespace-of qualified))
+         (package (symbol-package (type-symbol qualified)))
+         (params (gir-callable-parameters cb))
+         (data (callback-user-data-index params)))
+    (block plan
+      (unless data (return-from plan "no user_data parameter"))
+      (let ((args
+              (loop for p in params
+                    for i from 0
+                    collect (if (= i data)
+                                (list (param-variable p package) :pointer :user-data t)
+                                (progn
+                                  (unless (eq (gir-parameter-direction p) :in)
+                                    (return-from plan "out or inout argument"))
+                                  (when (callback-type-p ctx (gir-parameter-type p) nsname)
+                                    (return-from plan "callback argument"))
+                                  (multiple-value-bind (spec why)
+                                      (classify-type ctx (gir-parameter-type p) nsname)
+                                    (unless spec (return-from plan why))
+                                    (list (param-variable p package) spec
+                                          :transfer (or (gir-parameter-transfer p) :none)))))))
+            (ret (multiple-value-list
+                  (classify-type ctx (gir-callable-return-type cb) nsname))))
+        (unless (first ret) (return-from plan (format nil "return: ~a" (second ret))))
+        (when (and (eq (spec-kind* (first ret)) :string)
+                   (not (eq (gir-callable-return-transfer cb) :full)))
+          (return-from plan "returns a borrowed string"))
+        (list args (first ret) (or (gir-callable-return-transfer cb) :none))))))
+
+(defun spec-kind* (spec) (if (consp spec) (first spec) spec))
+
+(defun callback-plan (ctx qualified)
+  (multiple-value-bind (plan found) (gethash qualified (context-callback-plans ctx))
+    (if found
+        plan
+        (progn
+          ;; Mark in progress so a callback type mentioning itself cannot loop.
+          (setf (gethash qualified (context-callback-plans ctx)) "recursive callback type")
+          (setf (gethash qualified (context-callback-plans ctx))
+                (plan-callback-type ctx qualified))))))
+
+;;; Functions
+
+(defun hidden-parameters (ctx params nsname)
+  "A hash table: parameter -> (:user-data-of CALLBACK-PARAM) or
+(:destroy-of CALLBACK-PARAM), for the user_data and GDestroyNotify
+parameters that belong to callback parameters. Indexes in GIR count
+parameters after the instance parameter."
+  (let* ((plain (remove-if #'gir-parameter-instance-p params))
+         (hidden (make-hash-table :test 'eq)))
+    (dolist (p plain)
+      (when (gir-parameter-destroy p)
+        (let ((d (nth (gir-parameter-destroy p) plain)))
+          (when d (setf (gethash d hidden) (list :destroy-of p))))))
+    (dolist (p plain)
+      (when (and (not (gethash p hidden))
+                 (callback-type-p ctx (gir-parameter-type p) nsname)
+                 (gir-parameter-closure p))
+        (let ((u (nth (gir-parameter-closure p) plain)))
+          (when (and u (not (eq u p)))
+            (setf (gethash u hidden) (list :user-data-of p))))))
+    ;; Older annotation style: closure on the user_data parameter, pointing
+    ;; at its callback.
+    (dolist (p plain)
+      (when (and (not (gethash p hidden))
+                 (not (callback-type-p ctx (gir-parameter-type p) nsname))
+                 (gir-parameter-closure p))
+        (let ((c (nth (gir-parameter-closure p) plain)))
+          (when (and c (callback-type-p ctx (gir-parameter-type c) nsname)
+                     (not (gir-parameter-closure c)))
+            (setf (gethash p hidden) (list :user-data-of c))))))
+    hidden))
+
 (defun plan-callable (ctx ns callable owner)
   "A PLAN for CALLABLE (whose method owner is OWNER, or NIL), or (VALUES NIL reason)."
   (let ((nsname (gir-namespace-name ns)))
@@ -252,38 +352,57 @@ raw pointers until they get dedicated wrappers.")
           (when reason (fail reason)))
         (unless (item-symbol callable) (fail "name collision"))
         (let* ((params (gir-callable-parameters callable))
+               (package (symbol-package (item-symbol callable)))
+               (hidden (hidden-parameters ctx params nsname))
+               (vars (loop for p in params collect (cons p (param-variable p package))))
+               (callbacks-with-data
+                 (loop for v being the hash-values of hidden
+                       when (eq (first v) :user-data-of) collect (second v)))
                (args '()))
           (dolist (p params)
-            (let ((direction (gir-parameter-direction p)))
-              (when (eq direction :inout) (fail "inout parameter"))
-              (when (and (eq direction :out) (gir-parameter-caller-allocates p))
-                (fail "caller-allocates out parameter"))
-              (when (or (gir-parameter-closure p) (gir-parameter-destroy p)
-                        (gir-parameter-scope p))
-                (fail "callback parameter"))
-              (multiple-value-bind (spec why)
-                  (if (gir-parameter-instance-p p)
-                      (instance-spec ctx owner nsname)
-                      (classify-type ctx (gir-parameter-type p) nsname))
-                (unless spec (fail why))
-                (when (eq spec :void) (fail "void parameter"))
-                (push (list (intern (string-upcase (safe-variable-name (or (gir-parameter-name p) "arg")))
-                                    (symbol-package (item-symbol callable)))
-                            spec
-                            :direction direction
-                            :transfer (or (gir-parameter-transfer p) :none)
-                            :nullable (gir-parameter-nullable p))
-                      args))))
+            (let ((direction (gir-parameter-direction p))
+                  (role (gethash p hidden)))
+              (cond
+                (role
+                 (push (list (cdr (assoc p vars)) :pointer
+                             (first role) (cdr (assoc (second role) vars)))
+                       args))
+                (t
+                 (when (eq direction :inout) (fail "inout parameter"))
+                 (when (and (eq direction :out) (gir-parameter-caller-allocates p))
+                   (fail "caller-allocates out parameter"))
+                 (multiple-value-bind (spec why)
+                     (if (gir-parameter-instance-p p)
+                         (instance-spec ctx owner nsname)
+                         (classify-type ctx (gir-parameter-type p) nsname))
+                   (unless spec (fail why))
+                   (when (eq spec :void) (fail "void parameter"))
+                   (when (eq (spec-kind* spec) :callback)
+                     (unless (member p callbacks-with-data)
+                       (fail "callback without user_data"))
+                     (setf spec (list :callback (second spec)
+                                      (or (gir-parameter-scope p) :call))))
+                   (when (and (gir-parameter-scope p) (not (eq (spec-kind* spec) :callback)))
+                     (fail "scope on a non-callback parameter"))
+                   (push (list (cdr (assoc p vars))
+                               spec
+                               :direction direction
+                               :transfer (or (gir-parameter-transfer p) :none)
+                               :nullable (gir-parameter-nullable p))
+                         args))))))
           (setf args (nreverse args))
-          ;; Trailing nullable :in arguments become &optional.
+          ;; Trailing nullable :in arguments become &optional (hidden ones are skipped).
           (loop for a in (reverse args)
-                while (and (eq (getf (cddr a) :direction) :in)
-                           (getf (cddr a) :nullable)
-                           (not (eq a (first args))))
-                do (setf (getf (cddr a) :optional) t))
+                do (cond ((or (getf (cddr a) :user-data-of) (getf (cddr a) :destroy-of)))
+                         ((and (eq (getf (cddr a) :direction) :in)
+                               (getf (cddr a) :nullable)
+                               (not (eq a (first args))))
+                          (setf (getf (cddr a) :optional) t))
+                         (t (return))))
           (multiple-value-bind (ret why)
               (classify-type ctx (gir-callable-return-type callable) nsname)
             (unless ret (fail (format nil "return: ~a" why)))
+            (when (eq (spec-kind* ret) :callback) (fail "returns a callback"))
             (make-plan :symbol (item-symbol callable)
                        :c-name (gir-callable-c-identifier callable)
                        :args args

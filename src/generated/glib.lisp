@@ -2458,6 +2458,191 @@ See: https://docs.gtk.org/glib/struct.VariantDict.html"))
 
 ;;; Properties
 
+;;; Callback types
+
+
+(rt:define-gcallback cache-destroy-func (:args ((value :pointer :user-data t))))
+
+
+(rt:define-gcallback cache-dup-func (:args ((value :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback cache-new-func (:args ((key :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback child-watch-func
+                     (:args ((pid :int) (wait-status :int) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback compare-data-func
+                     (:args ((a :pointer) (b :pointer) (user-data :pointer :user-data t)) :return
+                      :int))
+
+
+(rt:define-gcallback compare-func (:args ((a :pointer) (b :pointer :user-data t)) :return :int))
+
+
+(rt:define-gcallback completion-func
+                     (:args ((item :pointer :user-data t)) :return :string :return-transfer :full))
+
+
+(rt:define-gcallback copy-func
+                     (:args ((src :pointer) (data :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback data-foreach-func
+                     (:args ((key-id :uint32) (data :pointer) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback destroy-notify (:args ((data :pointer :user-data t))))
+
+
+(rt:define-gcallback duplicate-func
+                     (:args ((data :pointer) (user-data :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback equal-func (:args ((a :pointer) (b :pointer :user-data t)) :return :boolean))
+
+
+(rt:define-gcallback equal-func-full
+                     (:args ((a :pointer) (b :pointer) (user-data :pointer :user-data t)) :return
+                      :boolean))
+
+
+(rt:define-gcallback free-func (:args ((data :pointer :user-data t))))
+
+
+(rt:define-gcallback func (:args ((data :pointer) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback h-func
+                     (:args ((key :pointer) (value :pointer) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback hr-func
+                     (:args ((key :pointer) (value :pointer) (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback hash-func (:args ((key :pointer :user-data t)) :return :uint))
+
+
+(rt:define-gcallback hook-check-func (:args ((data :pointer :user-data t)) :return :boolean))
+
+
+(rt:define-gcallback hook-check-marshaller
+                     (:args ((hook (:record hook)) (marshal-data :pointer :user-data t)) :return
+                      :boolean))
+
+
+(rt:define-gcallback hook-find-func
+                     (:args ((hook (:record hook)) (data :pointer :user-data t)) :return :boolean))
+
+
+(rt:define-gcallback hook-func (:args ((data :pointer :user-data t))))
+
+
+(rt:define-gcallback hook-marshaller
+                     (:args ((hook (:record hook)) (marshal-data :pointer :user-data t))))
+
+
+(rt:define-gcallback io-func
+                     (:args
+                      ((source (:boxed "GIOChannel" "g_io_channel_get_type"))
+                       (condition (:flags io-condition)) (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback log-func
+                     (:args
+                      ((log-domain :string) (log-level (:flags log-level-flags)) (message :string)
+                       (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback node-foreach-func (:args ((node (:record node)) (data :pointer :user-data t))))
+
+
+(rt:define-gcallback node-traverse-func
+                     (:args ((node (:record node)) (data :pointer :user-data t)) :return :boolean))
+
+
+(rt:define-gcallback option-arg-func
+                     (:args ((option-name :string) (value :string) (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback option-error-func
+                     (:args
+                      ((context (:record option-context))
+                       (group (:boxed "GOptionGroup" "g_option_group_get_type"))
+                       (data :pointer :user-data t))))
+
+
+(rt:define-gcallback option-parse-func
+                     (:args
+                      ((context (:record option-context))
+                       (group (:boxed "GOptionGroup" "g_option_group_get_type"))
+                       (data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback regex-eval-callback
+                     (:args
+                      ((match-info (:boxed "GMatchInfo" "g_match_info_get_type"))
+                       (result (:boxed "GString" "g_gstring_get_type"))
+                       (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback sequence-iter-compare-func
+                     (:args
+                      ((a (:record sequence-iter)) (b (:record sequence-iter))
+                       (data :pointer :user-data t))
+                      :return :int))
+
+
+(rt:define-gcallback source-func (:args ((user-data :pointer :user-data t)) :return :boolean))
+
+
+(rt:define-gcallback source-funcs-dispatch-func
+                     (:args
+                      ((source (:boxed "GSource" "g_source_get_type"))
+                       (callback :pointer :user-data t) (user-data :pointer))
+                      :return :boolean))
+
+
+(rt:define-gcallback source-once-func (:args ((user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback spawn-child-setup-func (:args ((data :pointer :user-data t))))
+
+
+(rt:define-gcallback test-data-func (:args ((user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback test-fixture-func
+                     (:args ((fixture :pointer) (user-data :pointer :user-data t))))
+
+
+(rt:define-gcallback test-log-fatal-func
+                     (:args
+                      ((log-domain :string) (log-level (:flags log-level-flags)) (message :string)
+                       (user-data :pointer :user-data t))
+                      :return :boolean))
+
+
+(rt:define-gcallback thread-func (:args ((data :pointer :user-data t)) :return :pointer))
+
+
+(rt:define-gcallback traverse-func
+                     (:args ((key :pointer) (value :pointer) (data :pointer :user-data t)) :return
+                      :boolean))
+
+
+(rt:define-gcallback traverse-node-func
+                     (:args ((node (:record tree-node)) (data :pointer :user-data t)) :return
+                      :boolean))
+
 ;;; Functions, constructors and methods
 
 
@@ -3163,6 +3348,20 @@ See: https://docs.gtk.org/glib/func.check_version.html
 Since: 2.6")
 
 
+(rt:define-gfunction (child-watch-add "g_child_watch_add_full") :args
+                     ((priority :int) (pid :int)
+                      (function-value (:callback child-watch-func :notified))
+                      (data :pointer :user-data-of function-value)
+                      (notify :pointer :destroy-of function-value))
+                     :return :uint :version "2.4" :documentation
+                     "Sets a function to be called when the child indicated by PID
+exits, at the priority PRIORITY.
+
+C: g_child_watch_add_full
+See: https://docs.gtk.org/glib/func.child_watch_add_full.html
+Since: 2.4")
+
+
 (rt:define-gfunction (child-watch-source-new "g_child_watch_source_new") :args ((pid :int)) :return
                      (:boxed "GSource" "g_source_get_type") :return-transfer :full :version "2.4"
                      :documentation "Creates a new child watch source.
@@ -3253,6 +3452,21 @@ See: https://docs.gtk.org/glib/func.creat.html
 Since: 2.8")
 
 
+(rt:define-gfunction (datalist-foreach "g_datalist_foreach") :args
+                     ((datalist (:record data)) (func (:callback data-foreach-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation
+                     "Calls the given function for each data element of the datalist. The
+function is called with each data element's #GQuark id and data,
+together with the given USER-DATA parameter. Note that this
+function is NOT thread-safe. So unless DATALIST can be protected
+from any modifications during invocation of this function, it should
+not be called.
+
+C: g_datalist_foreach
+See: https://docs.gtk.org/glib/func.datalist_foreach.html")
+
+
 (rt:define-gfunction (datalist-get-data "g_datalist_get_data") :args
                      ((datalist (:record data)) (key :string)) :return :pointer :documentation
                      "Gets a data element, using its string identifier. This is slower than
@@ -3310,6 +3524,19 @@ destroy functions set for data elements.
 
 C: g_dataset_destroy
 See: https://docs.gtk.org/glib/func.dataset_destroy.html")
+
+
+(rt:define-gfunction (dataset-foreach "g_dataset_foreach") :args
+                     ((dataset-location :pointer) (func (:callback data-foreach-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation
+                     "Calls the given function for each data element which is associated
+with the given location. Note that this function is NOT thread-safe.
+So unless DATASET-LOCATION can be protected from any modifications
+during invocation of this function, it should not be called.
+
+C: g_dataset_foreach
+See: https://docs.gtk.org/glib/func.dataset_foreach.html")
 
 
 (rt:define-gfunction (dataset-id-get-data "g_dataset_id_get_data") :args
@@ -4039,6 +4266,18 @@ See: https://docs.gtk.org/glib/func.hostname_to_unicode.html
 Since: 2.22")
 
 
+(rt:define-gfunction (idle-add "g_idle_add_full") :args
+                     ((priority :int) (function-value (:callback source-func :notified))
+                      (data :pointer :user-data-of function-value)
+                      (notify :pointer :destroy-of function-value))
+                     :return :uint :documentation
+                     "Adds a function to be called whenever there are no higher priority
+events pending.
+
+C: g_idle_add_full
+See: https://docs.gtk.org/glib/func.idle_add_full.html")
+
+
 (rt:define-gfunction (idle-remove-by-data "g_idle_remove_by_data") :args ((data :pointer)) :return
                      :boolean :documentation "Removes the idle function with the given data.
 
@@ -4116,6 +4355,18 @@ using strcmp().
 C: g_intern_string
 See: https://docs.gtk.org/glib/func.intern_string.html
 Since: 2.10")
+
+
+(rt:define-gfunction (io-add-watch "g_io_add_watch_full") :args
+                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type")) (priority :int)
+                      (condition (:flags io-condition)) (func (:callback io-func :notified))
+                      (user-data :pointer :user-data-of func) (notify :pointer :destroy-of func))
+                     :return :uint :documentation
+                     "Adds the #GIOChannel into the default main loop context
+with the given priority.
+
+C: g_io_add_watch_full
+See: https://docs.gtk.org/glib/func.io_add_watch_full.html")
 
 
 (rt:define-gfunction (io-create-watch "g_io_create_watch") :args
@@ -4201,6 +4452,19 @@ Since: 2.72")
 
 C: g_log_set_fatal_mask
 See: https://docs.gtk.org/glib/func.log_set_fatal_mask.html")
+
+
+(rt:define-gfunction (log-set-handler "g_log_set_handler_full") :args
+                     ((log-domain :string) (log-levels (:flags log-level-flags))
+                      (log-func (:callback log-func :notified))
+                      (user-data :pointer :user-data-of log-func)
+                      (destroy :pointer :destroy-of log-func))
+                     :return :uint :version "2.46" :documentation
+                     "Like GLib.log_set_handler, but takes a destroy notify for the USER-DATA.
+
+C: g_log_set_handler_full
+See: https://docs.gtk.org/glib/func.log_set_handler_full.html
+Since: 2.46")
 
 
 (rt:define-gfunction (log-variant "g_log_variant") :args
@@ -4606,6 +4870,20 @@ The error variable DEST points to must be NIL.
 
 C: g_propagate_error
 See: https://docs.gtk.org/glib/func.propagate_error.html")
+
+
+(rt:define-gfunction (qsort-with-data "g_qsort_with_data") :args
+                     ((pbase :pointer) (total-elems :int) (size :size)
+                      (compare-func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :documentation
+                     "This is just like the standard C [`qsort()`](man:qsort(3)) function, but
+the comparison routine accepts a user data argument
+(like [`qsort_r()`](man:qsort_r(3))).
+
+C: g_qsort_with_data
+See: https://docs.gtk.org/glib/func.qsort_with_data.html
+Deprecated.")
 
 
 (rt:define-gfunction (quark-from-static-string "g_quark_from_static_string") :args
@@ -5034,6 +5312,51 @@ size of a #GHashTable.
 
 C: g_spaced_primes_closest
 See: https://docs.gtk.org/glib/func.spaced_primes_closest.html")
+
+
+(rt:define-gfunction (spawn-async "g_spawn_async") :args
+                     ((working-directory :string) (argv :strv) (envp :strv)
+                      (flags (:flags spawn-flags))
+                      (child-setup (:callback spawn-child-setup-func :async))
+                      (user-data :pointer :user-data-of child-setup)
+                      (child-pid :int :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Executes a child program asynchronously.
+
+C: g_spawn_async
+See: https://docs.gtk.org/glib/func.spawn_async.html")
+
+
+(rt:define-gfunction (spawn-async-with-fds "g_spawn_async_with_fds") :args
+                     ((working-directory :string) (argv :strv) (envp :strv)
+                      (flags (:flags spawn-flags))
+                      (child-setup (:callback spawn-child-setup-func :async))
+                      (user-data :pointer :user-data-of child-setup)
+                      (child-pid :int :direction :out :transfer :full) (stdin-fd :int)
+                      (stdout-fd :int) (stderr-fd :int))
+                     :return :boolean :throws t :version "2.58" :documentation
+                     "Executes a child program asynchronously.
+
+C: g_spawn_async_with_fds
+See: https://docs.gtk.org/glib/func.spawn_async_with_fds.html
+Since: 2.58")
+
+
+(rt:define-gfunction (spawn-async-with-pipes "g_spawn_async_with_pipes") :args
+                     ((working-directory :string) (argv :strv) (envp :strv)
+                      (flags (:flags spawn-flags))
+                      (child-setup (:callback spawn-child-setup-func :async))
+                      (user-data :pointer :user-data-of child-setup)
+                      (child-pid :int :direction :out :transfer :full)
+                      (standard-input :int :direction :out :transfer :full)
+                      (standard-output :int :direction :out :transfer :full)
+                      (standard-error :int :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Identical to g_spawn_async_with_pipes_and_fds() but with `n_fds` set to zero,
+so no FD assignments are used.
+
+C: g_spawn_async_with_pipes
+See: https://docs.gtk.org/glib/func.spawn_async_with_pipes.html")
 
 
 (rt:define-gfunction (spawn-check-exit-status "g_spawn_check_exit_status") :args
@@ -5759,6 +6082,32 @@ a given environment.
 C: g_test_trap_subprocess_with_envp
 See: https://docs.gtk.org/glib/func.test_trap_subprocess_with_envp.html
 Since: 2.80")
+
+
+(rt:define-gfunction (timeout-add "g_timeout_add_full") :args
+                     ((priority :int) (interval :uint)
+                      (function-value (:callback source-func :notified))
+                      (data :pointer :user-data-of function-value)
+                      (notify :pointer :destroy-of function-value))
+                     :return :uint :documentation
+                     "Sets a function to be called at regular intervals, with the given
+priority.
+
+C: g_timeout_add_full
+See: https://docs.gtk.org/glib/func.timeout_add_full.html")
+
+
+(rt:define-gfunction (timeout-add-seconds "g_timeout_add_seconds_full") :args
+                     ((priority :int) (interval :uint)
+                      (function-value (:callback source-func :notified))
+                      (data :pointer :user-data-of function-value)
+                      (notify :pointer :destroy-of function-value))
+                     :return :uint :version "2.14" :documentation
+                     "Sets a function to be called at regular intervals, with PRIORITY.
+
+C: g_timeout_add_seconds_full
+See: https://docs.gtk.org/glib/func.timeout_add_seconds_full.html
+Since: 2.14")
 
 
 (rt:define-gfunction (timeout-source-new "g_timeout_source_new") :args ((interval :uint)) :return
@@ -6546,6 +6895,32 @@ See: https://docs.gtk.org/glib/method.AsyncQueue.push_front_unlocked.html
 Since: 2.46")
 
 
+(rt:define-gfunction (async-queue-push-sorted "g_async_queue_push_sorted") :args
+                     ((queue (:record async-queue)) (data :pointer :transfer :full)
+                      (func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.10" :documentation
+                     "Inserts DATA into QUEUE using FUNC to determine the new
+position.
+
+C: g_async_queue_push_sorted
+See: https://docs.gtk.org/glib/method.AsyncQueue.push_sorted.html
+Since: 2.10")
+
+
+(rt:define-gfunction (async-queue-push-sorted-unlocked "g_async_queue_push_sorted_unlocked") :args
+                     ((queue (:record async-queue)) (data :pointer :transfer :full)
+                      (func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.10" :documentation
+                     "Inserts DATA into QUEUE using FUNC to determine the new
+position.
+
+C: g_async_queue_push_sorted_unlocked
+See: https://docs.gtk.org/glib/method.AsyncQueue.push_sorted_unlocked.html
+Since: 2.10")
+
+
 (rt:define-gfunction (async-queue-push-unlocked "g_async_queue_push_unlocked") :args
                      ((queue (:record async-queue)) (data :pointer :transfer :full)) :documentation
                      "Pushes the DATA into the QUEUE.
@@ -6588,6 +6963,26 @@ Since: 2.46")
 C: g_async_queue_remove_unlocked
 See: https://docs.gtk.org/glib/method.AsyncQueue.remove_unlocked.html
 Since: 2.46")
+
+
+(rt:define-gfunction (async-queue-sort "g_async_queue_sort") :args
+                     ((queue (:record async-queue)) (func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.10" :documentation "Sorts QUEUE using FUNC.
+
+C: g_async_queue_sort
+See: https://docs.gtk.org/glib/method.AsyncQueue.sort.html
+Since: 2.10")
+
+
+(rt:define-gfunction (async-queue-sort-unlocked "g_async_queue_sort_unlocked") :args
+                     ((queue (:record async-queue)) (func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.10" :documentation "Sorts QUEUE using FUNC.
+
+C: g_async_queue_sort_unlocked
+See: https://docs.gtk.org/glib/method.AsyncQueue.sort_unlocked.html
+Since: 2.10")
 
 
 (rt:define-gfunction (async-queue-timed-pop "g_async_queue_timed_pop") :args
@@ -7282,6 +7677,16 @@ See: https://docs.gtk.org/glib/method.Cache.insert.html
 Deprecated.")
 
 
+(rt:define-gfunction (cache-key-foreach "g_cache_key_foreach") :args
+                     ((cache (:record cache)) (func (:callback h-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation "Calls the given function for each of the keys in the #GCache.
+
+C: g_cache_key_foreach
+See: https://docs.gtk.org/glib/method.Cache.key_foreach.html
+Deprecated.")
+
+
 (rt:define-gfunction (cache-remove "g_cache_remove") :args
                      ((cache (:record cache)) (value :pointer :optional t)) :documentation
                      "Decreases the reference count of the given value. If it drops to 0
@@ -7290,6 +7695,16 @@ VALUE-DESTROY-FUNC and KEY-DESTROY-FUNC passed to g_cache_new().
 
 C: g_cache_remove
 See: https://docs.gtk.org/glib/method.Cache.remove.html
+Deprecated.")
+
+
+(rt:define-gfunction (cache-value-foreach "g_cache_value_foreach") :args
+                     ((cache (:record cache)) (func (:callback h-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation "Calls the given function for each of the values in the #GCache.
+
+C: g_cache_value_foreach
+See: https://docs.gtk.org/glib/method.Cache.value_foreach.html
 Deprecated.")
 
 
@@ -8841,6 +9256,27 @@ C: g_hook_list_invoke_check
 See: https://docs.gtk.org/glib/method.HookList.invoke_check.html")
 
 
+(rt:define-gfunction (hook-list-marshal "g_hook_list_marshal") :args
+                     ((hook-list (:record hook-list)) (may-recurse :boolean)
+                      (marshaller (:callback hook-marshaller :call))
+                      (marshal-data :pointer :user-data-of marshaller))
+                     :documentation "Calls a function on each valid #GHook.
+
+C: g_hook_list_marshal
+See: https://docs.gtk.org/glib/method.HookList.marshal.html")
+
+
+(rt:define-gfunction (hook-list-marshal-check "g_hook_list_marshal_check") :args
+                     ((hook-list (:record hook-list)) (may-recurse :boolean)
+                      (marshaller (:callback hook-check-marshaller :call))
+                      (marshal-data :pointer :user-data-of marshaller))
+                     :documentation "Calls a function on each valid #GHook and destroys it if the
+function returns false.
+
+C: g_hook_list_marshal_check
+See: https://docs.gtk.org/glib/method.HookList.marshal_check.html")
+
+
 (rt:define-gfunction (io-channel-new-file "g_io_channel_new_file") :args
                      ((filename :string) (mode :string)) :return
                      (:boxed "GIOChannel" "g_io_channel_get_type") :return-transfer :full :throws t
@@ -9702,6 +10138,20 @@ C: g_main_context_find_source_by_user_data
 See: https://docs.gtk.org/glib/method.MainContext.find_source_by_user_data.html")
 
 
+(rt:define-gfunction (main-context-invoke-full "g_main_context_invoke_full") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type")) (priority :int)
+                      (function-value (:callback source-func :notified))
+                      (data :pointer :user-data-of function-value)
+                      (notify :pointer :destroy-of function-value))
+                     :version "2.28" :documentation
+                     "Invokes a function in such a way that CONTEXT is owned during the
+invocation of FUNCTION.
+
+C: g_main_context_invoke_full
+See: https://docs.gtk.org/glib/method.MainContext.invoke_full.html
+Since: 2.28")
+
+
 (rt:define-gfunction (main-context-is-owner "g_main_context_is_owner") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return :boolean
                      :version "2.10" :documentation
@@ -10451,6 +10901,19 @@ C: g_node_child_position
 See: https://docs.gtk.org/glib/method.Node.child_position.html")
 
 
+(rt:define-gfunction (node-children-foreach "g_node_children_foreach") :args
+                     ((node (:record node)) (flags (:flags traverse-flags))
+                      (func (:callback node-foreach-func :call))
+                      (data :pointer :user-data-of func))
+                     :documentation
+                     "Calls a function for each of the children of a #GNode. Note that it
+doesn't descend beneath the child nodes. FUNC must not do anything
+that would modify the structure of the tree.
+
+C: g_node_children_foreach
+See: https://docs.gtk.org/glib/method.Node.children_foreach.html")
+
+
 (rt:define-gfunction (node-depth "g_node_depth") :args ((node (:record node))) :return :uint
                      :documentation "Gets the depth of a #GNode.
 
@@ -10506,6 +10969,20 @@ See: https://docs.gtk.org/glib/method.Node.n_nodes.html")
 
 C: g_node_reverse_children
 See: https://docs.gtk.org/glib/method.Node.reverse_children.html")
+
+
+(rt:define-gfunction (node-traverse "g_node_traverse") :args
+                     ((root (:record node)) (order (:enum traverse-type))
+                      (flags (:flags traverse-flags)) (max-depth :int)
+                      (func (:callback node-traverse-func :call))
+                      (data :pointer :user-data-of func))
+                     :documentation "Traverses a tree starting at the given root #GNode.
+It calls the given function for each node visited.
+The traversal can be halted at any point by returning true from FUNC.
+FUNC must not do anything that would modify the structure of the tree.
+
+C: g_node_traverse
+See: https://docs.gtk.org/glib/method.Node.traverse.html")
 
 
 (rt:define-gfunction (node-unlink "g_node_unlink") :args ((node (:record node))) :documentation
@@ -10975,6 +11452,18 @@ See: https://docs.gtk.org/glib/method.Queue.clear.html
 Since: 2.14")
 
 
+(rt:define-gfunction (queue-foreach "g_queue_foreach") :args
+                     ((queue (:record queue)) (func (:callback func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.4" :documentation
+                     "Calls FUNC for each element in the queue passing USER-DATA to the
+function.
+
+C: g_queue_foreach
+See: https://docs.gtk.org/glib/method.Queue.foreach.html
+Since: 2.4")
+
+
 (rt:define-gfunction (queue-free "g_queue_free") :args ((queue (:record queue))) :documentation
                      "Frees the memory allocated for the #GQueue. Only call this function
 if QUEUE was created with g_queue_new(). If queue elements contain
@@ -11013,6 +11502,18 @@ g_queue_new().
 C: g_queue_init
 See: https://docs.gtk.org/glib/method.Queue.init.html
 Since: 2.14")
+
+
+(rt:define-gfunction (queue-insert-sorted "g_queue_insert_sorted") :args
+                     ((queue (:record queue)) (data :pointer)
+                      (func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.4" :documentation
+                     "Inserts DATA into QUEUE using FUNC to determine the new position.
+
+C: g_queue_insert_sorted
+See: https://docs.gtk.org/glib/method.Queue.insert_sorted.html
+Since: 2.4")
 
 
 (rt:define-gfunction (queue-is-empty "g_queue_is_empty") :args ((queue (:record queue))) :return
@@ -11119,6 +11620,16 @@ Since: 2.4")
 
 C: g_queue_reverse
 See: https://docs.gtk.org/glib/method.Queue.reverse.html
+Since: 2.4")
+
+
+(rt:define-gfunction (queue-sort "g_queue_sort") :args
+                     ((queue (:record queue)) (compare-func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :version "2.4" :documentation "Sorts QUEUE using COMPARE-FUNC.
+
+C: g_queue_sort
+See: https://docs.gtk.org/glib/method.Queue.sort.html
 Since: 2.4")
 
 
@@ -11626,6 +12137,21 @@ See: https://docs.gtk.org/glib/method.Regex.replace.html
 Since: 2.14")
 
 
+(rt:define-gfunction (regex-replace-eval "g_regex_replace_eval") :args
+                     ((regex (:boxed "GRegex" "g_regex_get_type")) (string :string)
+                      (string-len :ssize) (start-position :int)
+                      (match-options (:flags regex-match-flags))
+                      (eval (:callback regex-eval-callback :call))
+                      (user-data :pointer :user-data-of eval))
+                     :return :string :return-transfer :full :throws t :version "2.14"
+                     :documentation "Replaces occurrences of the pattern in regex with the output of
+EVAL for that occurrence.
+
+C: g_regex_replace_eval
+See: https://docs.gtk.org/glib/method.Regex.replace_eval.html
+Since: 2.14")
+
+
 (rt:define-gfunction (regex-replace-literal "g_regex_replace_literal") :args
                      ((regex (:boxed "GRegex" "g_regex_get_type")) (string :string)
                       (string-len :ssize) (start-position :int) (replacement :string)
@@ -11837,6 +12363,18 @@ C: g_scanner_scope_add_symbol
 See: https://docs.gtk.org/glib/method.Scanner.scope_add_symbol.html")
 
 
+(rt:define-gfunction (scanner-scope-foreach-symbol "g_scanner_scope_foreach_symbol") :args
+                     ((scanner (:record scanner)) (scope-id :uint) (func (:callback h-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation "Calls the given function for each of the symbol/value pairs
+in the given scope of the #GScanner. The function is passed
+the symbol and value of each pair, and the given USER-DATA
+parameter.
+
+C: g_scanner_scope_foreach_symbol
+See: https://docs.gtk.org/glib/method.Scanner.scope_foreach_symbol.html")
+
+
 (rt:define-gfunction (scanner-scope-lookup-symbol "g_scanner_scope_lookup_symbol") :args
                      ((scanner (:record scanner)) (scope-id :uint) (symbol :string)) :return
                      :pointer :documentation
@@ -11888,6 +12426,19 @@ to construct part of the message.
 
 C: g_scanner_unexp_token
 See: https://docs.gtk.org/glib/method.Scanner.unexp_token.html")
+
+
+(rt:define-gfunction (sequence-foreach-range "g_sequence_foreach_range") :args
+                     ((begin (:record sequence-iter)) (end (:record sequence-iter))
+                      (func (:callback func :call)) (user-data :pointer :user-data-of func))
+                     :version "2.14" :documentation
+                     "Calls FUNC for each item in the range (BEGIN, END) passing
+USER-DATA to the function. FUNC must not modify the sequence
+itself.
+
+C: g_sequence_foreach_range
+See: https://docs.gtk.org/glib/type_func.Sequence.foreach_range.html
+Since: 2.14")
 
 
 (rt:define-gfunction (sequence-get "g_sequence_get") :args ((iter (:record sequence-iter))) :return
@@ -11977,6 +12528,34 @@ See: https://docs.gtk.org/glib/type_func.Sequence.set.html
 Since: 2.14")
 
 
+(rt:define-gfunction (sequence-sort-changed "g_sequence_sort_changed") :args
+                     ((iter (:record sequence-iter)) (cmp-func (:callback compare-data-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :version "2.14" :documentation
+                     "Moves the data pointed to by ITER to a new position as indicated by
+CMP-FUNC. This
+function should be called for items in a sequence already sorted according
+to CMP-FUNC whenever some aspect of an item changes so that CMP-FUNC
+may return different values for that item.
+
+C: g_sequence_sort_changed
+See: https://docs.gtk.org/glib/type_func.Sequence.sort_changed.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-sort-changed-iter "g_sequence_sort_changed_iter") :args
+                     ((iter (:record sequence-iter))
+                      (iter-cmp (:callback sequence-iter-compare-func :call))
+                      (cmp-data :pointer :user-data-of iter-cmp))
+                     :version "2.14" :documentation "Like g_sequence_sort_changed(), but uses
+a #GSequenceIterCompareFunc instead of a #GCompareDataFunc as
+the compare function.
+
+C: g_sequence_sort_changed_iter
+See: https://docs.gtk.org/glib/type_func.Sequence.sort_changed_iter.html
+Since: 2.14")
+
+
 (rt:define-gfunction (sequence-swap "g_sequence_swap") :args
                      ((a (:record sequence-iter)) (b (:record sequence-iter))) :version "2.14"
                      :documentation
@@ -11995,6 +12574,18 @@ Since: 2.14")
 
 C: g_sequence_append
 See: https://docs.gtk.org/glib/method.Sequence.append.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-foreach "g_sequence_foreach") :args
+                     ((seq (:record sequence)) (func (:callback func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.14" :documentation
+                     "Calls FUNC for each item in the sequence passing USER-DATA
+to the function. FUNC must not modify the sequence itself.
+
+C: g_sequence_foreach
+See: https://docs.gtk.org/glib/method.Sequence.foreach.html
 Since: 2.14")
 
 
@@ -12049,6 +12640,34 @@ See: https://docs.gtk.org/glib/method.Sequence.get_length.html
 Since: 2.14")
 
 
+(rt:define-gfunction (sequence-insert-sorted "g_sequence_insert_sorted") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (cmp-func (:callback compare-data-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :return (:record sequence-iter) :version "2.14" :documentation
+                     "Inserts DATA into SEQ using CMP-FUNC to determine the new
+position. The sequence must already be sorted according to CMP-FUNC;
+otherwise the new position of DATA is undefined.
+
+C: g_sequence_insert_sorted
+See: https://docs.gtk.org/glib/method.Sequence.insert_sorted.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-insert-sorted-iter "g_sequence_insert_sorted_iter") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (iter-cmp (:callback sequence-iter-compare-func :call))
+                      (cmp-data :pointer :user-data-of iter-cmp))
+                     :return (:record sequence-iter) :version "2.14" :documentation
+                     "Like g_sequence_insert_sorted(), but uses
+a #GSequenceIterCompareFunc instead of a #GCompareDataFunc as
+the compare function.
+
+C: g_sequence_insert_sorted_iter
+See: https://docs.gtk.org/glib/method.Sequence.insert_sorted_iter.html
+Since: 2.14")
+
+
 (rt:define-gfunction (sequence-is-empty "g_sequence_is_empty") :args ((seq (:record sequence)))
                      :return :boolean :version "2.48" :documentation
                      "Returns true if the sequence contains zero items.
@@ -12058,6 +12677,35 @@ See: https://docs.gtk.org/glib/method.Sequence.is_empty.html
 Since: 2.48")
 
 
+(rt:define-gfunction (sequence-lookup "g_sequence_lookup") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (cmp-func (:callback compare-data-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :return (:record sequence-iter) :version "2.28" :documentation
+                     "Returns an iterator pointing to the position of the first item found
+equal to DATA according to CMP-FUNC and CMP-DATA. If more than one
+item is equal, it is not guaranteed that it is the first which is
+returned. In that case, you can use g_sequence_iter_next() and
+g_sequence_iter_prev() to get others.
+
+C: g_sequence_lookup
+See: https://docs.gtk.org/glib/method.Sequence.lookup.html
+Since: 2.28")
+
+
+(rt:define-gfunction (sequence-lookup-iter "g_sequence_lookup_iter") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (iter-cmp (:callback sequence-iter-compare-func :call))
+                      (cmp-data :pointer :user-data-of iter-cmp))
+                     :return (:record sequence-iter) :version "2.28" :documentation
+                     "Like g_sequence_lookup(), but uses a #GSequenceIterCompareFunc
+instead of a #GCompareDataFunc as the compare function.
+
+C: g_sequence_lookup_iter
+See: https://docs.gtk.org/glib/method.Sequence.lookup_iter.html
+Since: 2.28")
+
+
 (rt:define-gfunction (sequence-prepend "g_sequence_prepend") :args
                      ((seq (:record sequence)) (data :pointer :optional t)) :return
                      (:record sequence-iter) :version "2.14" :documentation
@@ -12065,6 +12713,55 @@ Since: 2.48")
 
 C: g_sequence_prepend
 See: https://docs.gtk.org/glib/method.Sequence.prepend.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-search "g_sequence_search") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (cmp-func (:callback compare-data-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :return (:record sequence-iter) :version "2.14" :documentation
+                     "Returns an iterator pointing to the position where DATA would
+be inserted according to CMP-FUNC and CMP-DATA.
+
+C: g_sequence_search
+See: https://docs.gtk.org/glib/method.Sequence.search.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-search-iter "g_sequence_search_iter") :args
+                     ((seq (:record sequence)) (data :pointer)
+                      (iter-cmp (:callback sequence-iter-compare-func :call))
+                      (cmp-data :pointer :user-data-of iter-cmp))
+                     :return (:record sequence-iter) :version "2.14" :documentation
+                     "Like g_sequence_search(), but uses a #GSequenceIterCompareFunc
+instead of a #GCompareDataFunc as the compare function.
+
+C: g_sequence_search_iter
+See: https://docs.gtk.org/glib/method.Sequence.search_iter.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-sort "g_sequence_sort") :args
+                     ((seq (:record sequence)) (cmp-func (:callback compare-data-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :version "2.14" :documentation "Sorts SEQ using CMP-FUNC.
+
+C: g_sequence_sort
+See: https://docs.gtk.org/glib/method.Sequence.sort.html
+Since: 2.14")
+
+
+(rt:define-gfunction (sequence-sort-iter "g_sequence_sort_iter") :args
+                     ((seq (:record sequence))
+                      (cmp-func (:callback sequence-iter-compare-func :call))
+                      (cmp-data :pointer :user-data-of cmp-func))
+                     :version "2.14" :documentation
+                     "Like g_sequence_sort(), but uses a #GSequenceIterCompareFunc instead
+of a #GCompareDataFunc as the compare function
+
+C: g_sequence_sort_iter
+See: https://docs.gtk.org/glib/method.Sequence.sort_iter.html
 Since: 2.14")
 
 
@@ -12419,6 +13116,18 @@ See: https://docs.gtk.org/glib/method.Source.remove_poll.html")
 C: g_source_remove_unix_fd
 See: https://docs.gtk.org/glib/method.Source.remove_unix_fd.html
 Since: 2.36")
+
+
+(rt:define-gfunction (source-set-callback "g_source_set_callback") :args
+                     ((source (:boxed "GSource" "g_source_get_type"))
+                      (func (:callback source-func :notified)) (data :pointer :user-data-of func)
+                      (notify :pointer :destroy-of func))
+                     :documentation
+                     "Sets the callback function for a source. The callback for a source is
+called from the source’s dispatch function.
+
+C: g_source_set_callback
+See: https://docs.gtk.org/glib/method.Source.set_callback.html")
 
 
 (rt:define-gfunction (source-set-callback-indirect "g_source_set_callback_indirect") :args
@@ -13074,6 +13783,35 @@ See: https://docs.gtk.org/glib/method.TestSuite.free.html
 Since: 2.70")
 
 
+(rt:define-gfunction (thread-new "g_thread_new") :args
+                     ((name :string) (func (:callback thread-func :async))
+                      (data :pointer :user-data-of func))
+                     :return (:boxed "GThread" "g_thread_get_type") :return-transfer :full :version
+                     "2.32" :documentation
+                     "This function creates a new thread. The new thread starts by invoking
+FUNC with the argument data. The thread will run until FUNC returns
+or until g_thread_exit() is called from the new thread. The return value
+of FUNC becomes the return value of the thread, which can be obtained
+with g_thread_join().
+
+C: g_thread_new
+See: https://docs.gtk.org/glib/ctor.Thread.new.html
+Since: 2.32")
+
+
+(rt:define-gfunction (thread-try-new "g_thread_try_new") :args
+                     ((name :string) (func (:callback thread-func :async))
+                      (data :pointer :user-data-of func))
+                     :return (:boxed "GThread" "g_thread_get_type") :return-transfer :full :throws
+                     t :version "2.32" :documentation
+                     "This function is the same as g_thread_new() except that
+it allows for the possibility of failure.
+
+C: g_thread_try_new
+See: https://docs.gtk.org/glib/ctor.Thread.try_new.html
+Since: 2.32")
+
+
 (rt:define-gfunction (thread-error-quark "g_thread_error_quark") :return :uint32 :documentation "
 C: g_thread_error_quark
 See: https://docs.gtk.org/glib/type_func.Thread.error_quark.html")
@@ -13536,6 +14274,33 @@ C: g_tree_destroy
 See: https://docs.gtk.org/glib/method.Tree.destroy.html")
 
 
+(rt:define-gfunction (tree-foreach "g_tree_foreach") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (func (:callback traverse-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :documentation
+                     "Calls the given function for each of the key/value pairs in the #GTree.
+The function is passed the key and value of each pair, and the given
+DATA parameter. The tree is traversed in sorted order.
+
+C: g_tree_foreach
+See: https://docs.gtk.org/glib/method.Tree.foreach.html")
+
+
+(rt:define-gfunction (tree-foreach-node "g_tree_foreach_node") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (func (:callback traverse-node-func :call))
+                      (user-data :pointer :user-data-of func))
+                     :version "2.68" :documentation
+                     "Calls the given function for each of the nodes in the #GTree.
+The function is passed the pointer to the particular node, and the given
+DATA parameter. The tree traversal happens in-order.
+
+C: g_tree_foreach_node
+See: https://docs.gtk.org/glib/method.Tree.foreach_node.html
+Since: 2.68")
+
+
 (rt:define-gfunction (tree-height "g_tree_height") :args
                      ((tree (:boxed "GTree" "g_tree_get_type"))) :return :int :documentation
                      "Gets the height of a #GTree.
@@ -13697,6 +14462,28 @@ See: https://docs.gtk.org/glib/method.Tree.replace_node.html
 Since: 2.68")
 
 
+(rt:define-gfunction (tree-search "g_tree_search") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (search-func (:callback compare-func :call))
+                      (user-data :pointer :user-data-of search-func))
+                     :return :pointer :documentation "Searches a #GTree using SEARCH-FUNC.
+
+C: g_tree_search
+See: https://docs.gtk.org/glib/method.Tree.search.html")
+
+
+(rt:define-gfunction (tree-search-node "g_tree_search_node") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (search-func (:callback compare-func :call))
+                      (user-data :pointer :user-data-of search-func))
+                     :return (:record tree-node) :version "2.68" :documentation
+                     "Searches a #GTree using SEARCH-FUNC.
+
+C: g_tree_search_node
+See: https://docs.gtk.org/glib/method.Tree.search_node.html
+Since: 2.68")
+
+
 (rt:define-gfunction (tree-steal "g_tree_steal") :args
                      ((tree (:boxed "GTree" "g_tree_get_type")) (key :pointer :optional t)) :return
                      :boolean :documentation
@@ -13705,6 +14492,18 @@ the key and value destroy functions.
 
 C: g_tree_steal
 See: https://docs.gtk.org/glib/method.Tree.steal.html")
+
+
+(rt:define-gfunction (tree-traverse "g_tree_traverse") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (traverse-func (:callback traverse-func :call))
+                      (traverse-type (:enum traverse-type))
+                      (user-data :pointer :user-data-of traverse-func))
+                     :documentation "Calls the given function for each node in the #GTree.
+
+C: g_tree_traverse
+See: https://docs.gtk.org/glib/method.Tree.traverse.html
+Deprecated.")
 
 
 (rt:define-gfunction (tree-unref "g_tree_unref") :args ((tree (:boxed "GTree" "g_tree_get_type")))
