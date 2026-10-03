@@ -3,7 +3,7 @@
 
 (in-package #:gsk)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (rect-snap-get-direction "gsk_rect_snap_get_direction") :args

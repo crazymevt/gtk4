@@ -3,7 +3,7 @@
 
 (in-package #:pango-cairo)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (context-get-font-options "pango_cairo_context_get_font_options") :args

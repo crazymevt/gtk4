@@ -193,6 +193,24 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 ;;; Struct layouts
 
 
+(rt:define-gstruct pixbuf-animation-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:is-static-image :pointer)
+  (:get-static-image :pointer)
+  (:get-size :pointer)
+  (:get-iter :pointer))
+
+
+(rt:define-gstruct pixbuf-animation-iter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-delay-time :pointer)
+  (:get-pixbuf :pointer)
+  (:on-currently-loading-frame :pointer)
+  (:advance :pointer))
+
+
 (rt:define-gstruct pixbuf-format
     (:gtype-name "GdkPixbufFormat")
   (:name :pointer)
@@ -255,6 +273,15 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
                                ((flags :flags :uint32) (disabled :disabled :boolean))
                                :documentation
                                "A new PixbufFormat with the given fields; others are zero.")
+
+
+(rt:define-gstruct pixbuf-loader-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:size-prepared :pointer)
+  (:area-prepared :pointer)
+  (:area-updated :pointer)
+  (:closed :pointer))
 
 
 (rt:define-gstruct pixbuf-module

@@ -7,7 +7,9 @@
   :version "0.0.1"
   :depends-on ("gtk4/gtk")
   :pathname "src/gtk4/"
-  :components ((:file "package")))
+  :serial t
+  :components ((:file "package")
+               (:file "templates")))
 
 (defsystem "gtk4/runtime"
   :description "Hand-written core: library loading, float traps, main thread, GObject runtime."
@@ -25,7 +27,9 @@
                (:file "gvalue")
                (:file "object")
                (:file "signals")
-               (:file "define")))
+               (:file "define")
+               (:file "subclass")
+               (:file "properties")))
 
 ;;; Generated bindings: one system per GIR namespace, each split into files
 ;;; of a few hundred functions to bound compile-time memory.
@@ -70,7 +74,8 @@
                (:file "gio-functions-2")
                (:file "gio-functions-3")
                (:file "gio-functions-4")
-               (:file "gio-functions-5")))
+               (:file "gio-functions-5")
+               (:file "gio-functions-6")))
 
 (defsystem "gtk4/cairo"
   :depends-on ("gtk4/gobject")
@@ -145,6 +150,7 @@
                (:file "gtk-functions-7")
                (:file "gtk-functions-8")
                (:file "gtk-functions-9")
-               (:file "gtk-functions-10")))
+               (:file "gtk-functions-10")
+               (:file "gtk-functions-11")))
 
 ;;; END GENERATED SYSTEMS

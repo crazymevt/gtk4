@@ -40,12 +40,42 @@ effect in a running program."
                     (cffi:foreign-slot-value closure '(:struct gclosure) 'data))))
       ;; NIL only while an object is being freed after its proxy was collected.
       (when handler
-        (let* ((args (loop for i below n-params
-                           collect (gvalue-get (cffi:inc-pointer params (* i +gvalue-size+)))))
-               (result (apply (resolve-handler handler) args)))
-          (when (and (not (cffi:null-pointer-p return-value))
-                     (/= 0 (gvalue-type return-value)))
-            (set-gvalue return-value result)))))))
+        (run-closure-function handler return-value n-params params)))))
+
+(defun run-closure-function (function return-value n-params params)
+  "Call FUNCTION (or the function a symbol names) with a closure's PARAMS as
+Lisp values, storing its value in RETURN-VALUE when the closure has one."
+  (let* ((args (loop for i below n-params
+                     collect (gvalue-get (cffi:inc-pointer params (* i +gvalue-size+)))))
+         (result (apply (resolve-handler function) args)))
+    (when (and (not (cffi:null-pointer-p return-value))
+               (/= 0 (gvalue-type return-value)))
+      (set-gvalue return-value result))))
+
+;;; Closures owned by C (GtkBuilder connects these, for instance)
+
+(cffi:defcallback marshal-lisp-function-closure :void
+    ((closure :pointer) (return-value :pointer) (n-params :uint) (params :pointer)
+     (hint :pointer) (marshal-data :pointer))
+  (declare (ignore hint marshal-data))
+  (with-callback-protection ("closure")
+    (let ((function (handle-value (cffi:foreign-slot-value closure '(:struct gclosure) 'data))))
+      (when function
+        (run-closure-function function return-value n-params params)))))
+
+(defun make-closure (function &key watch)
+  "A new GClosure, as a boxed proxy, that calls FUNCTION (a function or a
+symbol naming one) with the emission's arguments. Unlike CONNECT's handlers,
+the closure holds FUNCTION strongly until C frees the closure; with WATCH (an
+object), the closure is invalidated when WATCH is finalized."
+  (let* ((data (make-handle function))
+         (closure (%g-closure-new-simple (cffi:foreign-type-size '(:struct gclosure)) data)))
+    (%g-closure-set-marshal closure (cffi:callback marshal-lisp-function-closure))
+    (%g-closure-add-finalize-notifier closure data (cffi:callback free-handle-closure-notify))
+    (when watch
+      (cffi:foreign-funcall "g_object_watch_closure" :pointer (object-pointer watch)
+                                                     :pointer closure :void))
+    (wrap-boxed closure (cffi:foreign-funcall "g_closure_get_type" gtype) :transfer :full)))
 
 (defun signal-name (signal)
   (etypecase signal

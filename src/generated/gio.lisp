@@ -4089,6 +4089,263 @@ See: https://docs.gtk.org/gio/struct.ActionEntry.html")
 See: https://docs.gtk.org/gio/struct.ActionEntry.html")
 
 
+(rt:define-gstruct action-group-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:has-action :pointer)
+  (:list-actions :pointer)
+  (:get-action-enabled :pointer)
+  (:get-action-parameter-type :pointer)
+  (:get-action-state-type :pointer)
+  (:get-action-state-hint :pointer)
+  (:get-action-state :pointer)
+  (:change-action-state :pointer)
+  (:activate-action :pointer)
+  (:action-added :pointer)
+  (:action-removed :pointer)
+  (:action-enabled-changed :pointer)
+  (:action-state-changed :pointer)
+  (:query-action :pointer))
+
+
+(rt:define-gstruct action-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-name :pointer)
+  (:get-parameter-type :pointer)
+  (:get-state-type :pointer)
+  (:get-state-hint :pointer)
+  (:get-enabled :pointer)
+  (:get-state :pointer)
+  (:change-state :pointer)
+  (:activate :pointer))
+
+
+(rt:define-gstruct action-map-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:lookup-action :pointer)
+  (:add-action :pointer)
+  (:remove-action :pointer))
+
+
+(rt:define-gstruct app-info-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:dup :pointer)
+  (:equal :pointer)
+  (:get-id :pointer)
+  (:get-name :pointer)
+  (:get-description :pointer)
+  (:get-executable :pointer)
+  (:get-icon :pointer)
+  (:launch :pointer)
+  (:supports-uris :pointer)
+  (:supports-files :pointer)
+  (:launch-uris :pointer)
+  (:should-show :pointer)
+  (:set-as-default-for-type :pointer)
+  (:set-as-default-for-extension :pointer)
+  (:add-supports-type :pointer)
+  (:can-remove-supports-type :pointer)
+  (:remove-supports-type :pointer)
+  (:can-delete :pointer)
+  (:do-delete :pointer)
+  (:get-commandline :pointer)
+  (:get-display-name :pointer)
+  (:set-as-last-used-for-type :pointer)
+  (:get-supported-types :pointer)
+  (:launch-uris-async :pointer)
+  (:launch-uris-finish :pointer))
+
+
+(rt:define-gstruct app-launch-context-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-display :pointer)
+  (:get-startup-notify-id :pointer)
+  (:launch-failed :pointer)
+  (:launched :pointer)
+  (:launch-started :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer))
+
+
+(rt:define-gstruct application-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:startup :pointer)
+  (:activate :pointer)
+  (:open :pointer)
+  (:command-line :pointer)
+  (:local-command-line :pointer)
+  (:before-emit :pointer)
+  (:after-emit :pointer)
+  (:add-platform-data :pointer)
+  (:quit-mainloop :pointer)
+  (:run-mainloop :pointer)
+  (:shutdown :pointer)
+  (:dbus-register :pointer)
+  (:dbus-unregister :pointer)
+  (:handle-local-options :pointer)
+  (:name-lost :pointer)
+  (:padding :pointer :count 7))
+
+
+(rt:define-gstruct application-command-line-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:print-literal :pointer)
+  (:printerr-literal :pointer)
+  (:get-stdin :pointer)
+  (:done :pointer)
+  (:padding :pointer :count 10))
+
+
+(rt:define-gstruct async-initable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:init-async :pointer)
+  (:init-finish :pointer))
+
+
+(rt:define-gstruct async-result-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-user-data :pointer)
+  (:get-source-object :pointer)
+  (:is-tagged :pointer))
+
+
+(rt:define-gstruct input-stream-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:read-fn :pointer)
+  (:skip :pointer)
+  (:close-fn :pointer)
+  (:read-async :pointer)
+  (:read-finish :pointer)
+  (:skip-async :pointer)
+  (:skip-finish :pointer)
+  (:close-async :pointer)
+  (:close-finish :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct filter-input-stream-class
+    nil
+  (:parent-class (:struct input-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer))
+
+
+(rt:define-gstruct buffered-input-stream-class
+    nil
+  (:parent-class (:struct filter-input-stream-class))
+  (:fill :pointer)
+  (:fill-async :pointer)
+  (:fill-finish :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct output-stream-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:write-fn :pointer)
+  (:splice :pointer)
+  (:flush :pointer)
+  (:close-fn :pointer)
+  (:write-async :pointer)
+  (:write-finish :pointer)
+  (:splice-async :pointer)
+  (:splice-finish :pointer)
+  (:flush-async :pointer)
+  (:flush-finish :pointer)
+  (:close-async :pointer)
+  (:close-finish :pointer)
+  (:writev-fn :pointer)
+  (:writev-async :pointer)
+  (:writev-finish :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer)
+  (:-g-reserved8 :pointer))
+
+
+(rt:define-gstruct filter-output-stream-class
+    nil
+  (:parent-class (:struct output-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer))
+
+
+(rt:define-gstruct buffered-output-stream-class
+    nil
+  (:parent-class (:struct filter-output-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer))
+
+
+(rt:define-gstruct cancellable-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:cancelled :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct charset-converter-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct converter-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:convert :pointer)
+  (:reset :pointer))
+
+
+(rt:define-gstruct converter-input-stream-class
+    nil
+  (:parent-class (:struct filter-input-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct converter-output-stream-class
+    nil
+  (:parent-class (:struct filter-output-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct dbus-action-group-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
 (rt:define-gstruct dbus-annotation-info
     (:gtype-name "GDBusAnnotationInfo")
   (:ref-count :int)
@@ -4185,6 +4442,15 @@ See: https://docs.gtk.org/gio/struct.DBusErrorEntry.html")
                                "A new DBusErrorEntry with the given fields; others are zero.")
 
 
+(rt:define-gstruct dbus-interface-iface
+    nil
+  (:parent-iface (:struct gobject:type-interface))
+  (:get-info :pointer)
+  (:get-object :pointer)
+  (:set-object :pointer)
+  (:dup-object :pointer))
+
+
 (rt:define-gstruct dbus-interface-info
     (:gtype-name "GDBusInterfaceInfo")
   (:ref-count :int)
@@ -4214,6 +4480,19 @@ See: https://docs.gtk.org/gio/struct.DBusInterfaceInfo.html")
                                 dbus-interface-info)
                                ((ref-count :ref-count :int)) :documentation
                                "A new DBusInterfaceInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-interface-skeleton-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-info :pointer)
+  (:get-vtable :pointer)
+  (:get-properties :pointer)
+  (:flush :pointer)
+  (:method-dispatch :pointer)
+  (:vfunc-padding :pointer :count 7)
+  (:g-authorize-method :pointer)
+  (:signal-padding :pointer :count 8))
 
 
 (rt:define-gstruct dbus-interface-v-table
@@ -4283,6 +4562,56 @@ See: https://docs.gtk.org/gio/struct.DBusNodeInfo.html")
                                "A new DBusNodeInfo with the given fields; others are zero.")
 
 
+(rt:define-gstruct dbus-object-iface
+    nil
+  (:parent-iface (:struct gobject:type-interface))
+  (:get-object-path :pointer)
+  (:get-interfaces :pointer)
+  (:get-interface :pointer)
+  (:interface-added :pointer)
+  (:interface-removed :pointer))
+
+
+(rt:define-gstruct dbus-object-manager-client-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:interface-proxy-signal :pointer)
+  (:interface-proxy-properties-changed :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct dbus-object-manager-iface
+    nil
+  (:parent-iface (:struct gobject:type-interface))
+  (:get-object-path :pointer)
+  (:get-objects :pointer)
+  (:get-object :pointer)
+  (:get-interface :pointer)
+  (:object-added :pointer)
+  (:object-removed :pointer)
+  (:interface-added :pointer)
+  (:interface-removed :pointer))
+
+
+(rt:define-gstruct dbus-object-manager-server-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct dbus-object-proxy-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct dbus-object-skeleton-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:authorize-method :pointer)
+  (:padding :pointer :count 8))
+
+
 (rt:define-gstruct dbus-property-info
     (:gtype-name "GDBusPropertyInfo")
   (:ref-count :int)
@@ -4330,6 +4659,14 @@ See: https://docs.gtk.org/gio/struct.DBusPropertyInfo.html")
                                "A new DBusPropertyInfo with the given fields; others are zero.")
 
 
+(rt:define-gstruct dbus-proxy-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:g-properties-changed :pointer)
+  (:g-signal :pointer)
+  (:padding :pointer :count 32))
+
+
 (rt:define-gstruct dbus-signal-info
     (:gtype-name "GDBusSignalInfo")
   (:ref-count :int)
@@ -4365,6 +4702,120 @@ See: https://docs.gtk.org/gio/struct.DBusSignalInfo.html")
   (:introspect :pointer)
   (:dispatch :pointer)
   (:padding :pointer :count 8))
+
+
+(rt:define-gstruct data-input-stream-class
+    nil
+  (:parent-class (:struct buffered-input-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct data-output-stream-class
+    nil
+  (:parent-class (:struct filter-output-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct datagram-based-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:receive-messages :pointer)
+  (:send-messages :pointer)
+  (:create-source :pointer)
+  (:condition-check :pointer)
+  (:condition-wait :pointer))
+
+
+(rt:define-gstruct debug-controller-dbus-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:authorize :pointer)
+  (:padding :pointer :count 12))
+
+
+(rt:define-gstruct debug-controller-interface
+    nil
+  (:g-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct drive-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:changed :pointer)
+  (:disconnected :pointer)
+  (:eject-button :pointer)
+  (:get-name :pointer)
+  (:get-icon :pointer)
+  (:has-volumes :pointer)
+  (:get-volumes :pointer)
+  (:is-media-removable :pointer)
+  (:has-media :pointer)
+  (:is-media-check-automatic :pointer)
+  (:can-eject :pointer)
+  (:can-poll-for-media :pointer)
+  (:eject :pointer)
+  (:eject-finish :pointer)
+  (:poll-for-media :pointer)
+  (:poll-for-media-finish :pointer)
+  (:get-identifier :pointer)
+  (:enumerate-identifiers :pointer)
+  (:get-start-stop-type :pointer)
+  (:can-start :pointer)
+  (:can-start-degraded :pointer)
+  (:start :pointer)
+  (:start-finish :pointer)
+  (:can-stop :pointer)
+  (:stop :pointer)
+  (:stop-finish :pointer)
+  (:stop-button :pointer)
+  (:eject-with-operation :pointer)
+  (:eject-with-operation-finish :pointer)
+  (:get-sort-key :pointer)
+  (:get-symbolic-icon :pointer)
+  (:is-removable :pointer))
+
+
+(rt:define-gstruct dtls-client-connection-interface
+    nil
+  (:g-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct dtls-connection-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:accept-certificate :pointer)
+  (:handshake :pointer)
+  (:handshake-async :pointer)
+  (:handshake-finish :pointer)
+  (:shutdown :pointer)
+  (:shutdown-async :pointer)
+  (:shutdown-finish :pointer)
+  (:set-advertised-protocols :pointer)
+  (:get-negotiated-protocol :pointer)
+  (:get-binding-data :pointer))
+
+
+(rt:define-gstruct dtls-server-connection-interface
+    nil
+  (:g-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct emblem-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct emblemed-icon-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
 
 
 (rt:define-gstruct file-attribute-info
@@ -4421,6 +4872,294 @@ See: https://docs.gtk.org/gio/struct.FileAttributeInfoList.html")
                                 "g_file_attribute_info_list_get_type" file-attribute-info-list)
                                ((n-infos :n-infos :int)) :documentation
                                "A new FileAttributeInfoList with the given fields; others are zero.")
+
+
+(rt:define-gstruct file-enumerator-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:next-file :pointer)
+  (:close-fn :pointer)
+  (:next-files-async :pointer)
+  (:next-files-finish :pointer)
+  (:close-async :pointer)
+  (:close-finish :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer))
+
+
+(rt:define-gstruct io-stream-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-input-stream :pointer)
+  (:get-output-stream :pointer)
+  (:close-fn :pointer)
+  (:close-async :pointer)
+  (:close-finish :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer)
+  (:-g-reserved8 :pointer)
+  (:-g-reserved9 :pointer)
+  (:-g-reserved10 :pointer))
+
+
+(rt:define-gstruct file-io-stream-class
+    nil
+  (:parent-class (:struct io-stream-class))
+  (:tell :pointer)
+  (:can-seek :pointer)
+  (:seek :pointer)
+  (:can-truncate :pointer)
+  (:truncate-fn :pointer)
+  (:query-info :pointer)
+  (:query-info-async :pointer)
+  (:query-info-finish :pointer)
+  (:get-etag :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct file-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:dup :pointer)
+  (:hash :pointer)
+  (:equal :pointer)
+  (:is-native :pointer)
+  (:has-uri-scheme :pointer)
+  (:get-uri-scheme :pointer)
+  (:get-basename :pointer)
+  (:get-path :pointer)
+  (:get-uri :pointer)
+  (:get-parse-name :pointer)
+  (:get-parent :pointer)
+  (:prefix-matches :pointer)
+  (:get-relative-path :pointer)
+  (:resolve-relative-path :pointer)
+  (:get-child-for-display-name :pointer)
+  (:enumerate-children :pointer)
+  (:enumerate-children-async :pointer)
+  (:enumerate-children-finish :pointer)
+  (:query-info :pointer)
+  (:query-info-async :pointer)
+  (:query-info-finish :pointer)
+  (:query-filesystem-info :pointer)
+  (:query-filesystem-info-async :pointer)
+  (:query-filesystem-info-finish :pointer)
+  (:find-enclosing-mount :pointer)
+  (:find-enclosing-mount-async :pointer)
+  (:find-enclosing-mount-finish :pointer)
+  (:set-display-name :pointer)
+  (:set-display-name-async :pointer)
+  (:set-display-name-finish :pointer)
+  (:query-settable-attributes :pointer)
+  (:-query-settable-attributes-async :pointer)
+  (:-query-settable-attributes-finish :pointer)
+  (:query-writable-namespaces :pointer)
+  (:-query-writable-namespaces-async :pointer)
+  (:-query-writable-namespaces-finish :pointer)
+  (:set-attribute :pointer)
+  (:set-attributes-from-info :pointer)
+  (:set-attributes-async :pointer)
+  (:set-attributes-finish :pointer)
+  (:read-fn :pointer)
+  (:read-async :pointer)
+  (:read-finish :pointer)
+  (:append-to :pointer)
+  (:append-to-async :pointer)
+  (:append-to-finish :pointer)
+  (:create :pointer)
+  (:create-async :pointer)
+  (:create-finish :pointer)
+  (:replace :pointer)
+  (:replace-async :pointer)
+  (:replace-finish :pointer)
+  (:delete-file :pointer)
+  (:delete-file-async :pointer)
+  (:delete-file-finish :pointer)
+  (:trash :pointer)
+  (:trash-async :pointer)
+  (:trash-finish :pointer)
+  (:make-directory :pointer)
+  (:make-directory-async :pointer)
+  (:make-directory-finish :pointer)
+  (:make-symbolic-link :pointer)
+  (:make-symbolic-link-async :pointer)
+  (:make-symbolic-link-finish :pointer)
+  (:copy :pointer)
+  (:copy-async :pointer)
+  (:copy-finish :pointer)
+  (:move :pointer)
+  (:move-async :pointer)
+  (:move-finish :pointer)
+  (:mount-mountable :pointer)
+  (:mount-mountable-finish :pointer)
+  (:unmount-mountable :pointer)
+  (:unmount-mountable-finish :pointer)
+  (:eject-mountable :pointer)
+  (:eject-mountable-finish :pointer)
+  (:mount-enclosing-volume :pointer)
+  (:mount-enclosing-volume-finish :pointer)
+  (:monitor-dir :pointer)
+  (:monitor-file :pointer)
+  (:open-readwrite :pointer)
+  (:open-readwrite-async :pointer)
+  (:open-readwrite-finish :pointer)
+  (:create-readwrite :pointer)
+  (:create-readwrite-async :pointer)
+  (:create-readwrite-finish :pointer)
+  (:replace-readwrite :pointer)
+  (:replace-readwrite-async :pointer)
+  (:replace-readwrite-finish :pointer)
+  (:start-mountable :pointer)
+  (:start-mountable-finish :pointer)
+  (:stop-mountable :pointer)
+  (:stop-mountable-finish :pointer)
+  (:supports-thread-contexts :boolean)
+  (:unmount-mountable-with-operation :pointer)
+  (:unmount-mountable-with-operation-finish :pointer)
+  (:eject-mountable-with-operation :pointer)
+  (:eject-mountable-with-operation-finish :pointer)
+  (:poll-mountable :pointer)
+  (:poll-mountable-finish :pointer)
+  (:measure-disk-usage :pointer)
+  (:measure-disk-usage-async :pointer)
+  (:measure-disk-usage-finish :pointer)
+  (:query-exists :pointer))
+
+
+(rt:define-gstruct file-input-stream-class
+    nil
+  (:parent-class (:struct input-stream-class))
+  (:tell :pointer)
+  (:can-seek :pointer)
+  (:seek :pointer)
+  (:query-info :pointer)
+  (:query-info-async :pointer)
+  (:query-info-finish :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct file-monitor-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:changed :pointer)
+  (:cancel :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct file-output-stream-class
+    nil
+  (:parent-class (:struct output-stream-class))
+  (:tell :pointer)
+  (:can-seek :pointer)
+  (:seek :pointer)
+  (:can-truncate :pointer)
+  (:truncate-fn :pointer)
+  (:query-info :pointer)
+  (:query-info-async :pointer)
+  (:query-info-finish :pointer)
+  (:get-etag :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct filename-completer-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:got-completion-data :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer))
+
+
+(rt:define-gstruct socket-control-message-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-size :pointer)
+  (:get-level :pointer)
+  (:get-type :pointer)
+  (:serialize :pointer)
+  (:deserialize :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct ip-tos-message-class
+    nil
+  (:parent-class (:struct socket-control-message-class)))
+
+
+(rt:define-gstruct i-pv6-tclass-message-class
+    nil
+  (:parent-class (:struct socket-control-message-class)))
+
+
+(rt:define-gstruct icon-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:hash :pointer)
+  (:equal :pointer)
+  (:to-tokens :pointer)
+  (:from-tokens :pointer)
+  (:serialize :pointer))
+
+
+(rt:define-gstruct inet-address-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:to-string :pointer)
+  (:to-bytes :pointer))
+
+
+(rt:define-gstruct inet-address-mask-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct socket-address-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-family :pointer)
+  (:get-native-size :pointer)
+  (:to-native :pointer))
+
+
+(rt:define-gstruct inet-socket-address-class
+    nil
+  (:parent-class (:struct socket-address-class)))
+
+
+(rt:define-gstruct initable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:init :pointer))
 
 
 (rt:define-gstruct input-message
@@ -4499,6 +5238,195 @@ See: https://docs.gtk.org/gio/struct.InputVector.html")
                                "A new InputVector with the given fields; others are zero.")
 
 
+(rt:define-gstruct list-model-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:get-item-type :pointer)
+  (:get-n-items :pointer)
+  (:get-item :pointer))
+
+
+(rt:define-gstruct list-store-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct loadable-icon-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:load :pointer)
+  (:load-async :pointer)
+  (:load-finish :pointer))
+
+
+(rt:define-gstruct memory-input-stream-class
+    nil
+  (:parent-class (:struct input-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct memory-monitor-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:low-memory-warning :pointer))
+
+
+(rt:define-gstruct memory-output-stream-class
+    nil
+  (:parent-class (:struct output-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct menu-attribute-iter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-next :pointer))
+
+
+(rt:define-gstruct menu-link-iter-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-next :pointer))
+
+
+(rt:define-gstruct menu-model-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:is-mutable :pointer)
+  (:get-n-items :pointer)
+  (:get-item-attributes :pointer)
+  (:iterate-item-attributes :pointer)
+  (:get-item-attribute-value :pointer)
+  (:get-item-links :pointer)
+  (:iterate-item-links :pointer)
+  (:get-item-link :pointer))
+
+
+(rt:define-gstruct mount-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:changed :pointer)
+  (:unmounted :pointer)
+  (:get-root :pointer)
+  (:get-name :pointer)
+  (:get-icon :pointer)
+  (:get-uuid :pointer)
+  (:get-volume :pointer)
+  (:get-drive :pointer)
+  (:can-unmount :pointer)
+  (:can-eject :pointer)
+  (:unmount :pointer)
+  (:unmount-finish :pointer)
+  (:eject :pointer)
+  (:eject-finish :pointer)
+  (:remount :pointer)
+  (:remount-finish :pointer)
+  (:guess-content-type :pointer)
+  (:guess-content-type-finish :pointer)
+  (:guess-content-type-sync :pointer)
+  (:pre-unmount :pointer)
+  (:unmount-with-operation :pointer)
+  (:unmount-with-operation-finish :pointer)
+  (:eject-with-operation :pointer)
+  (:eject-with-operation-finish :pointer)
+  (:get-default-location :pointer)
+  (:get-sort-key :pointer)
+  (:get-symbolic-icon :pointer))
+
+
+(rt:define-gstruct mount-operation-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:ask-password :pointer)
+  (:ask-question :pointer)
+  (:reply :pointer)
+  (:aborted :pointer)
+  (:show-processes :pointer)
+  (:show-unmount-progress :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer)
+  (:-g-reserved8 :pointer)
+  (:-g-reserved9 :pointer))
+
+
+(rt:define-gstruct native-socket-address-class
+    nil
+  (:parent-class (:struct socket-address-class)))
+
+
+(rt:define-gstruct volume-monitor-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:volume-added :pointer)
+  (:volume-removed :pointer)
+  (:volume-changed :pointer)
+  (:mount-added :pointer)
+  (:mount-removed :pointer)
+  (:mount-pre-unmount :pointer)
+  (:mount-changed :pointer)
+  (:drive-connected :pointer)
+  (:drive-disconnected :pointer)
+  (:drive-changed :pointer)
+  (:is-supported :pointer)
+  (:get-connected-drives :pointer)
+  (:get-volumes :pointer)
+  (:get-mounts :pointer)
+  (:get-volume-for-uuid :pointer)
+  (:get-mount-for-uuid :pointer)
+  (:adopt-orphan-mount :pointer)
+  (:drive-eject-button :pointer)
+  (:drive-stop-button :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer))
+
+
+(rt:define-gstruct native-volume-monitor-class
+    nil
+  (:parent-class (:struct volume-monitor-class))
+  (:get-mount-for-mount-path :pointer))
+
+
+(rt:define-gstruct network-address-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct network-monitor-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:network-changed :pointer)
+  (:can-reach :pointer)
+  (:can-reach-async :pointer)
+  (:can-reach-finish :pointer))
+
+
+(rt:define-gstruct network-service-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct osx-app-info-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
 (rt:define-gstruct output-message
     nil
   (:address :pointer)
@@ -4563,6 +5491,233 @@ See: https://docs.gtk.org/gio/struct.OutputVector.html")
                                "A new OutputVector with the given fields; others are zero.")
 
 
+(rt:define-gstruct permission-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:acquire :pointer)
+  (:acquire-async :pointer)
+  (:acquire-finish :pointer)
+  (:release :pointer)
+  (:release-async :pointer)
+  (:release-finish :pointer)
+  (:reserved :pointer :count 16))
+
+
+(rt:define-gstruct pollable-input-stream-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:can-poll :pointer)
+  (:is-readable :pointer)
+  (:create-source :pointer)
+  (:read-nonblocking :pointer))
+
+
+(rt:define-gstruct pollable-output-stream-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:can-poll :pointer)
+  (:is-writable :pointer)
+  (:create-source :pointer)
+  (:write-nonblocking :pointer)
+  (:writev-nonblocking :pointer))
+
+
+(rt:define-gstruct power-profile-monitor-interface
+    nil
+  (:g-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct proxy-address-class
+    nil
+  (:parent-class (:struct inet-socket-address-class)))
+
+
+(rt:define-gstruct socket-address-enumerator-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:next :pointer)
+  (:next-async :pointer)
+  (:next-finish :pointer))
+
+
+(rt:define-gstruct proxy-address-enumerator-class
+    nil
+  (:parent-class (:struct socket-address-enumerator-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer))
+
+
+(rt:define-gstruct proxy-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:connect :pointer)
+  (:connect-async :pointer)
+  (:connect-finish :pointer)
+  (:supports-hostname :pointer))
+
+
+(rt:define-gstruct proxy-resolver-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:is-supported :pointer)
+  (:lookup :pointer)
+  (:lookup-async :pointer)
+  (:lookup-finish :pointer))
+
+
+(rt:define-gstruct remote-action-group-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:activate-action-full :pointer)
+  (:change-action-state-full :pointer))
+
+
+(rt:define-gstruct resolver-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:reload :pointer)
+  (:lookup-by-name :pointer)
+  (:lookup-by-name-async :pointer)
+  (:lookup-by-name-finish :pointer)
+  (:lookup-by-address :pointer)
+  (:lookup-by-address-async :pointer)
+  (:lookup-by-address-finish :pointer)
+  (:lookup-service :pointer)
+  (:lookup-service-async :pointer)
+  (:lookup-service-finish :pointer)
+  (:lookup-records :pointer)
+  (:lookup-records-async :pointer)
+  (:lookup-records-finish :pointer)
+  (:lookup-by-name-with-flags-async :pointer)
+  (:lookup-by-name-with-flags-finish :pointer)
+  (:lookup-by-name-with-flags :pointer))
+
+
+(rt:define-gstruct seekable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:tell :pointer)
+  (:can-seek :pointer)
+  (:seek :pointer)
+  (:can-truncate :pointer)
+  (:truncate-fn :pointer))
+
+
+(rt:define-gstruct settings-backend-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:read :pointer)
+  (:get-writable :pointer)
+  (:write :pointer)
+  (:write-tree :pointer)
+  (:reset :pointer)
+  (:subscribe :pointer)
+  (:unsubscribe :pointer)
+  (:sync :pointer)
+  (:get-permission :pointer)
+  (:read-user-value :pointer)
+  (:padding :pointer :count 23))
+
+
+(rt:define-gstruct settings-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:writable-changed :pointer)
+  (:changed :pointer)
+  (:writable-change-event :pointer)
+  (:change-event :pointer)
+  (:padding :pointer :count 20))
+
+
+(rt:define-gstruct simple-action-group-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:padding :pointer :count 12))
+
+
+(rt:define-gstruct simple-proxy-resolver-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct socket-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer)
+  (:-g-reserved7 :pointer)
+  (:-g-reserved8 :pointer)
+  (:-g-reserved9 :pointer)
+  (:-g-reserved10 :pointer))
+
+
+(rt:define-gstruct socket-client-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:event :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer))
+
+
+(rt:define-gstruct socket-connectable-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:enumerate :pointer)
+  (:proxy-enumerate :pointer)
+  (:to-string :pointer))
+
+
+(rt:define-gstruct socket-connection-class
+    nil
+  (:parent-class (:struct io-stream-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer))
+
+
+(rt:define-gstruct socket-listener-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:changed :pointer)
+  (:event :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer))
+
+
+(rt:define-gstruct socket-service-class
+    nil
+  (:parent-class (:struct socket-listener-class))
+  (:incoming :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer))
+
+
 (rt:define-gstruct static-resource
     nil
   (:data :uint8)
@@ -4570,6 +5725,207 @@ See: https://docs.gtk.org/gio/struct.OutputVector.html")
   (:resource :pointer)
   (:next :pointer)
   (:padding :pointer))
+
+
+(rt:define-gstruct tcp-connection-class
+    nil
+  (:parent-class (:struct socket-connection-class)))
+
+
+(rt:define-gstruct tcp-wrapper-connection-class
+    nil
+  (:parent-class (:struct tcp-connection-class)))
+
+
+(rt:define-gstruct threaded-resolver-class
+    nil
+  (:parent-class (:struct resolver-class)))
+
+
+(rt:define-gstruct threaded-socket-service-class
+    nil
+  (:parent-class (:struct socket-service-class))
+  (:run :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct tls-backend-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:supports-tls :pointer)
+  (:get-certificate-type :pointer)
+  (:get-client-connection-type :pointer)
+  (:get-server-connection-type :pointer)
+  (:get-file-database-type :pointer)
+  (:get-default-database :pointer)
+  (:supports-dtls :pointer)
+  (:get-dtls-client-connection-type :pointer)
+  (:get-dtls-server-connection-type :pointer))
+
+
+(rt:define-gstruct tls-certificate-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:verify :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tls-client-connection-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:copy-session-state :pointer))
+
+
+(rt:define-gstruct tls-connection-class
+    nil
+  (:parent-class (:struct io-stream-class))
+  (:accept-certificate :pointer)
+  (:handshake :pointer)
+  (:handshake-async :pointer)
+  (:handshake-finish :pointer)
+  (:get-binding-data :pointer)
+  (:get-negotiated-protocol :pointer)
+  (:padding :pointer :count 6))
+
+
+(rt:define-gstruct tls-database-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:verify-chain :pointer)
+  (:verify-chain-async :pointer)
+  (:verify-chain-finish :pointer)
+  (:create-certificate-handle :pointer)
+  (:lookup-certificate-for-handle :pointer)
+  (:lookup-certificate-for-handle-async :pointer)
+  (:lookup-certificate-for-handle-finish :pointer)
+  (:lookup-certificate-issuer :pointer)
+  (:lookup-certificate-issuer-async :pointer)
+  (:lookup-certificate-issuer-finish :pointer)
+  (:lookup-certificates-issued-by :pointer)
+  (:lookup-certificates-issued-by-async :pointer)
+  (:lookup-certificates-issued-by-finish :pointer)
+  (:padding :pointer :count 16))
+
+
+(rt:define-gstruct tls-file-database-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct tls-interaction-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:ask-password :pointer)
+  (:ask-password-async :pointer)
+  (:ask-password-finish :pointer)
+  (:request-certificate :pointer)
+  (:request-certificate-async :pointer)
+  (:request-certificate-finish :pointer)
+  (:padding :pointer :count 21))
+
+
+(rt:define-gstruct tls-password-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-value :pointer)
+  (:set-value :pointer)
+  (:get-default-warning :pointer)
+  (:padding :pointer :count 4))
+
+
+(rt:define-gstruct tls-server-connection-interface
+    nil
+  (:g-iface (:struct gobject:type-interface)))
+
+
+(rt:define-gstruct unix-connection-class
+    nil
+  (:parent-class (:struct socket-connection-class)))
+
+
+(rt:define-gstruct unix-credentials-message-class
+    nil
+  (:parent-class (:struct socket-control-message-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer))
+
+
+(rt:define-gstruct unix-fd-list-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer))
+
+
+(rt:define-gstruct unix-socket-address-class
+    nil
+  (:parent-class (:struct socket-address-class)))
+
+
+(rt:define-gstruct vfs-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:is-active :pointer)
+  (:get-file-for-path :pointer)
+  (:get-file-for-uri :pointer)
+  (:get-supported-uri-schemes :pointer)
+  (:parse-name :pointer)
+  (:local-file-add-info :pointer)
+  (:add-writable-namespaces :pointer)
+  (:local-file-set-attributes :pointer)
+  (:local-file-removed :pointer)
+  (:local-file-moved :pointer)
+  (:deserialize-icon :pointer)
+  (:-g-reserved1 :pointer)
+  (:-g-reserved2 :pointer)
+  (:-g-reserved3 :pointer)
+  (:-g-reserved4 :pointer)
+  (:-g-reserved5 :pointer)
+  (:-g-reserved6 :pointer))
+
+
+(rt:define-gstruct volume-iface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:changed :pointer)
+  (:removed :pointer)
+  (:get-name :pointer)
+  (:get-icon :pointer)
+  (:get-uuid :pointer)
+  (:get-drive :pointer)
+  (:get-mount :pointer)
+  (:can-mount :pointer)
+  (:can-eject :pointer)
+  (:mount-fn :pointer)
+  (:mount-finish :pointer)
+  (:eject :pointer)
+  (:eject-finish :pointer)
+  (:get-identifier :pointer)
+  (:enumerate-identifiers :pointer)
+  (:should-automount :pointer)
+  (:get-activation-root :pointer)
+  (:eject-with-operation :pointer)
+  (:eject-with-operation-finish :pointer)
+  (:get-sort-key :pointer)
+  (:get-symbolic-icon :pointer))
+
+
+(rt:define-gstruct zlib-compressor-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct zlib-decompressor-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
 
 ;;; Properties
 

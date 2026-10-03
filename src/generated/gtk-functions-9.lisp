@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 9)
+;;; Functions, constructors, methods and virtual functions (part 9)
 
 
 (rt:define-gfunction (tree-model-sort-clear-cache "gtk_tree_model_sort_clear_cache") :args

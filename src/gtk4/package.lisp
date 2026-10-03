@@ -10,4 +10,8 @@
    #:c-name
    #:lisp-name
    #:documentation-url
-   #:browse))
+   #:browse
+   ;; GtkBuilder with Lisp signal handlers
+   #:lisp-builder-scope
+   #:builder-scope-package
+   #:make-builder))

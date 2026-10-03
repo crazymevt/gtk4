@@ -1115,10 +1115,44 @@ See: https://docs.gtk.org/Pango/struct.Attribute.html")
   (:color (:struct color)))
 
 
+(rt:define-gfield attr-color-attr attr-color :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrColor.html")
+
+
+(rt:define-gfield attr-color-color attr-color :color
+                  (:boxed "PangoColor" "pango_color_get_type" color) :writable t :inline t
+                  :documentation "the `pango:color` which is the value of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrColor.html")
+
+
+(rt:define-gstruct-constructor make-attr-color (:record attr-color)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t)
+                                (color :color (:boxed "PangoColor" "pango_color_get_type" color)
+                                 :inline t))
+                               :documentation
+                               "A new AttrColor with the given fields; others are zero.")
+
+
 (rt:define-gstruct attr-float
     nil
   (:attr (:struct attribute))
   (:value :double))
+
+
+(rt:define-gfield attr-float-attr attr-float :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrFloat.html")
 
 
 (rt:define-gfield attr-float-value attr-float :value :double :writable t :documentation
@@ -1128,7 +1162,11 @@ See: https://docs.gtk.org/Pango/struct.Attribute.html")
 See: https://docs.gtk.org/Pango/struct.AttrFloat.html")
 
 
-(rt:define-gstruct-constructor make-attr-float (:record attr-float) ((value :value :double))
+(rt:define-gstruct-constructor make-attr-float (:record attr-float)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t)
+                                (value :value :double))
                                :documentation
                                "A new AttrFloat with the given fields; others are zero.")
 
@@ -1139,10 +1177,34 @@ See: https://docs.gtk.org/Pango/struct.AttrFloat.html")
   (:desc :pointer))
 
 
+(rt:define-gfield attr-font-desc-attr attr-font-desc :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrFontDesc.html")
+
+
+(rt:define-gstruct-constructor make-attr-font-desc (:record attr-font-desc)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t))
+                               :documentation
+                               "A new AttrFontDesc with the given fields; others are zero.")
+
+
 (rt:define-gstruct attr-font-features
     nil
   (:attr (:struct attribute))
   (:features :pointer))
+
+
+(rt:define-gfield attr-font-features-attr attr-font-features :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrFontFeatures.html")
 
 
 (rt:define-gfield attr-font-features-features attr-font-features :features :string :documentation
@@ -1152,10 +1214,26 @@ See: https://docs.gtk.org/Pango/struct.AttrFloat.html")
 See: https://docs.gtk.org/Pango/struct.AttrFontFeatures.html")
 
 
+(rt:define-gstruct-constructor make-attr-font-features (:record attr-font-features)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t))
+                               :documentation
+                               "A new AttrFontFeatures with the given fields; others are zero.")
+
+
 (rt:define-gstruct attr-int
     nil
   (:attr (:struct attribute))
   (:value :int))
+
+
+(rt:define-gfield attr-int-attr attr-int :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrInt.html")
 
 
 (rt:define-gfield attr-int-value attr-int :value :int :writable t :documentation
@@ -1165,7 +1243,11 @@ See: https://docs.gtk.org/Pango/struct.AttrFontFeatures.html")
 See: https://docs.gtk.org/Pango/struct.AttrInt.html")
 
 
-(rt:define-gstruct-constructor make-attr-int (:record attr-int) ((value :value :int))
+(rt:define-gstruct-constructor make-attr-int (:record attr-int)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t)
+                                (value :value :int))
                                :documentation
                                "A new AttrInt with the given fields; others are zero.")
 
@@ -1174,6 +1256,22 @@ See: https://docs.gtk.org/Pango/struct.AttrInt.html")
     nil
   (:attr (:struct attribute))
   (:value :pointer))
+
+
+(rt:define-gfield attr-language-attr attr-language :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrLanguage.html")
+
+
+(rt:define-gstruct-constructor make-attr-language (:record attr-language)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t))
+                               :documentation
+                               "A new AttrLanguage with the given fields; others are zero.")
 
 
 (rt:define-gstruct rectangle
@@ -1228,11 +1326,51 @@ See: https://docs.gtk.org/Pango/struct.Rectangle.html")
   (:destroy-func :pointer))
 
 
+(rt:define-gfield attr-shape-attr attr-shape :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrShape.html")
+
+
+(rt:define-gfield attr-shape-ink-rect attr-shape :ink-rect (:record rectangle) :writable t :inline
+                  t :documentation "the ink rectangle to restrict to
+
+
+See: https://docs.gtk.org/Pango/struct.AttrShape.html")
+
+
+(rt:define-gfield attr-shape-logical-rect attr-shape :logical-rect (:record rectangle) :writable t
+                  :inline t :documentation "the logical rectangle to restrict to
+
+
+See: https://docs.gtk.org/Pango/struct.AttrShape.html")
+
+
+(rt:define-gstruct-constructor make-attr-shape (:record attr-shape)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t)
+                                (ink-rect :ink-rect (:record rectangle) :inline t)
+                                (logical-rect :logical-rect (:record rectangle) :inline t))
+                               :documentation
+                               "A new AttrShape with the given fields; others are zero.")
+
+
 (rt:define-gstruct attr-size
     nil
   (:attr (:struct attribute))
   (:size :int)
   (:bits-0 :uint))
+
+
+(rt:define-gfield attr-size-attr attr-size :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrSize.html")
 
 
 (rt:define-gfield attr-size-size attr-size :size :int :writable t :documentation
@@ -1254,7 +1392,10 @@ See: https://docs.gtk.org/Pango/struct.AttrSize.html")
 
 
 (rt:define-gstruct-constructor make-attr-size (:record attr-size)
-                               ((size :size :int) (absolute :bits-0 :uint :bits (1 0)))
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t)
+                                (size :size :int) (absolute :bits-0 :uint :bits (1 0)))
                                :documentation
                                "A new AttrSize with the given fields; others are zero.")
 
@@ -1265,11 +1406,76 @@ See: https://docs.gtk.org/Pango/struct.AttrSize.html")
   (:value :pointer))
 
 
+(rt:define-gfield attr-string-attr attr-string :attr
+                  (:boxed "PangoAttribute" "pango_attribute_get_type" attribute) :writable t
+                  :inline t :documentation "the common portion of the attribute
+
+
+See: https://docs.gtk.org/Pango/struct.AttrString.html")
+
+
 (rt:define-gfield attr-string-value attr-string :value :string :documentation
                   "the string which is the value of the attribute
 
 
 See: https://docs.gtk.org/Pango/struct.AttrString.html")
+
+
+(rt:define-gstruct-constructor make-attr-string (:record attr-string)
+                               ((attr :attr
+                                 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
+                                 :inline t))
+                               :documentation
+                               "A new AttrString with the given fields; others are zero.")
+
+
+(rt:define-gstruct font-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:describe :pointer)
+  (:get-coverage :pointer)
+  (:get-glyph-extents :pointer)
+  (:get-metrics :pointer)
+  (:get-font-map :pointer)
+  (:describe-absolute :pointer)
+  (:get-features :pointer)
+  (:create-hb-font :pointer))
+
+
+(rt:define-gstruct font-face-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-face-name :pointer)
+  (:describe :pointer)
+  (:list-sizes :pointer)
+  (:is-synthesized :pointer)
+  (:get-family :pointer)
+  (:-pango-reserved3 :pointer)
+  (:-pango-reserved4 :pointer))
+
+
+(rt:define-gstruct font-family-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:list-faces :pointer)
+  (:get-name :pointer)
+  (:is-monospace :pointer)
+  (:is-variable :pointer)
+  (:get-face :pointer)
+  (:-pango-reserved2 :pointer))
+
+
+(rt:define-gstruct font-map-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:load-font :pointer)
+  (:list-families :pointer)
+  (:load-fontset :pointer)
+  (:shape-engine-type :pointer)
+  (:get-serial :pointer)
+  (:changed :pointer)
+  (:get-family :pointer)
+  (:get-face :pointer))
 
 
 (rt:define-gstruct font-metrics
@@ -1284,6 +1490,19 @@ See: https://docs.gtk.org/Pango/struct.AttrString.html")
   (:underline-thickness :int)
   (:strikethrough-position :int)
   (:strikethrough-thickness :int))
+
+
+(rt:define-gstruct fontset-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:get-font :pointer)
+  (:get-metrics :pointer)
+  (:get-language :pointer)
+  (:foreach :pointer)
+  (:-pango-reserved1 :pointer)
+  (:-pango-reserved2 :pointer)
+  (:-pango-reserved3 :pointer)
+  (:-pango-reserved4 :pointer))
 
 
 (rt:define-gstruct glyph-geometry
@@ -1368,9 +1587,17 @@ See: https://docs.gtk.org/Pango/struct.GlyphInfo.html")
 See: https://docs.gtk.org/Pango/struct.GlyphInfo.html")
 
 
+(rt:define-gfield glyph-info-attr glyph-info :attr (:record glyph-vis-attr) :writable t :inline t
+                  :documentation "the visual attributes of the glyph.
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphInfo.html")
+
+
 (rt:define-gstruct-constructor make-glyph-info (:record glyph-info)
                                ((glyph :glyph :uint32)
-                                (geometry :geometry (:record glyph-geometry) :inline t))
+                                (geometry :geometry (:record glyph-geometry) :inline t)
+                                (attr :attr (:record glyph-vis-attr) :inline t))
                                :documentation
                                "A new GlyphInfo with the given fields; others are zero.")
 
@@ -1811,6 +2038,25 @@ See: https://docs.gtk.org/Pango/struct.Matrix.html")
                                 (x0 :x0 :double) (y0 :y0 :double))
                                :documentation
                                "A new Matrix with the given fields; others are zero.")
+
+
+(rt:define-gstruct renderer-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:draw-glyphs :pointer)
+  (:draw-rectangle :pointer)
+  (:draw-error-underline :pointer)
+  (:draw-shape :pointer)
+  (:draw-trapezoid :pointer)
+  (:draw-glyph :pointer)
+  (:part-changed :pointer)
+  (:begin :pointer)
+  (:end :pointer)
+  (:prepare-run :pointer)
+  (:draw-glyph-item :pointer)
+  (:-pango-reserved2 :pointer)
+  (:-pango-reserved3 :pointer)
+  (:-pango-reserved4 :pointer))
 
 ;;; Properties
 

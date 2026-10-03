@@ -3,7 +3,7 @@
 
 (in-package #:harfbuzz)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (aat-layout-feature-type-get-name-id "hb_aat_layout_feature_type_get_name_id")

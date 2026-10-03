@@ -81,7 +81,7 @@
 
 ;;; Enums and flags
 
-(defstruct enum-info kind (by-keyword (make-hash-table)) (by-value (make-hash-table)) members)
+(defstruct enum-info kind (by-keyword (make-hash-table)) (by-value (make-hash-table)) members gtype)
 
 (defun register-genum (name kind members &key gtype-name get-type)
   "Record NAME's MEMBERS, an alist of (KEYWORD . VALUE). With GTYPE-NAME,
@@ -96,6 +96,7 @@ also register GValue conversion for its GType."
     (when (and get-type (cffi:foreign-symbol-pointer get-type))
       (let ((gtype (gtype-from-name gtype-name get-type)))
         (when gtype
+          (setf (enum-info-gtype info) gtype)
           (register-enum-converter gtype
                                    (lambda (v) (enum-keyword name v))
                                    (lambda (v) (enum-value name v))))))
@@ -763,17 +764,9 @@ carries the handle. The Lisp function receives the other arguments in order."
     (:boolean nil)
     (t 0)))
 
-(defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
-                                                throws version url documentation)
-  "Define NAME as a Lisp function calling the C function C-NAME.
-ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of
-destroy-of length-of):
-- :in arguments become parameters in order (trailing ones marked :optional
-  become &optional); :out arguments become extra return values.
-- A (:callback TYPE SCOPE) argument takes a Lisp function or symbol (or NIL);
-  the arguments marked :user-data-of and :destroy-of it are hidden.
-- An (:array ...) argument takes or returns a sequence; the argument marked
-  :length-of it is hidden. :length-of :return measures the return value."
+(defun gfunction-parts (args return return-transfer throws address-form)
+  "The pieces of a function calling the C function at ADDRESS-FORM with ARGS
+(see DEFINE-GFUNCTION): (VALUES required-vars optional-vars body)."
   (flet ((option (arg key &optional default) (getf (cddr arg) key default))
          (array-option (spec key) (getf (cddr spec) key)))
     (let* ((places (loop for a in args collect (cons (first a) (gensym (string (first a))))))
@@ -790,7 +783,6 @@ destroy-of length-of):
                                                       (eq (option a :direction :in) :in)))
                                      args))
            (counts (loop for a in in-arrays collect (cons (first a) (gensym "COUNT"))))
-           (cell (gensym "CELL"))
            (err (gensym "ERR"))
            (result (gensym "RESULT")))
       (labels ((place (var) (cdr (assoc var places)))
@@ -826,7 +818,7 @@ destroy-of length-of):
                                        spec (option a :transfer :none))))))
                (foreign-call
                  `(cffi:foreign-funcall-pointer
-                   (fcell-address ,cell) ()
+                   ,address-form ()
                    ,@(loop for a in args
                            append (list (if (eq (option a :direction :in) :out)
                                             :pointer
@@ -911,11 +903,26 @@ destroy-of length-of):
                             ,(if (eq scope :call)
                                  `(unwind-protect ,body (when ,h (free-handle ,h)))
                                  body))))
-          `(progn
-             (register-documentation ',name ,c-name ,url)
-             (defun ,name (,@(mapcar #'first required)
-                           ,@(when optional (cons '&optional (mapcar #'first optional))))
-               ,@(when documentation (list documentation))
-               (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
-                 (with-gtk-float-traps ,body)))
-             ',name))))))
+          (values (mapcar #'first required) (mapcar #'first optional) body))))))
+
+(defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
+                                                throws version url documentation)
+  "Define NAME as a Lisp function calling the C function C-NAME.
+ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of
+destroy-of length-of):
+- :in arguments become parameters in order (trailing ones marked :optional
+  become &optional); :out arguments become extra return values.
+- A (:callback TYPE SCOPE) argument takes a Lisp function or symbol (or NIL);
+  the arguments marked :user-data-of and :destroy-of it are hidden.
+- An (:array ...) argument takes or returns a sequence; the argument marked
+  :length-of it is hidden. :length-of :return measures the return value."
+  (let ((cell (gensym "CELL")))
+    (multiple-value-bind (required optional body)
+        (gfunction-parts args return return-transfer throws `(fcell-address ,cell))
+      `(progn
+         (register-documentation ',name ,c-name ,url)
+         (defun ,name (,@required ,@(when optional (cons '&optional optional)))
+           ,@(when documentation (list documentation))
+           (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
+             (with-gtk-float-traps ,body)))
+         ',name))))

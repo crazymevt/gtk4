@@ -47,6 +47,13 @@ Safe to call from any thread, including SBCL's finalizer thread."
 
 ;;; Metaclass
 
+(defvar *constructing* nil
+  "(PROXY . SLOT-INITARGS) while MAKE-INSTANCE creates PROXY's C instance.")
+
+(defvar *initializing-slots* nil
+  "True while a proxy's slots are first initialized, when writing a property
+slot should not emit notify::.")
+
 (defvar *gtype-name-classes* (make-hash-table :test 'equal)
   "GType name -> the Lisp class registered for it.")
 
@@ -56,15 +63,32 @@ Safe to call from any thread, including SBCL's finalizer thread."
 (defclass gobject-class (standard-class)
   ((gtype-name :initform nil :reader class-gtype-name)
    (get-type :initform nil :reader class-get-type)
-   (gtype :initform nil))
+   (gtype :initform nil)
+   ;; Lisp-defined GTypes
+   (lisp-defined :initform nil :reader class-lisp-defined-p)
+   (abstract :initform nil :reader class-abstract-p)
+   (signal-specs :initform '() :reader class-signal-specs)
+   (template :initform nil :reader class-template)
+   (vfunc-implementations :initform (make-hash-table :test 'eq)
+                          :reader class-vfunc-implementations)
+   (property-slots :initform #() :accessor class-property-slots)
+   (registered-shape :initform nil :accessor class-registered-shape))
   (:documentation "Metaclass linking a Lisp class to a GType. Class options:
   (:gtype-name \"GtkButton\")         the GType's name
-  (:get-type \"gtk_button_get_type\")  its registration function, called on first use"))
+  (:get-type \"gtk_button_get_type\")  its registration function, called on first use
+A class with a :gtype-name but no :get-type is defined in Lisp: its GType is
+registered on first use, deriving from the nearest GObject superclass. Such
+a class may also give
+  (:signals (:name (arg-type...) &key return flags) ...)  new signals
+  (:template \"<interface>...</interface>\")   a composite template (GTK widgets)
+  (:abstract t)                                 an abstract GType
+and slots with :property or :template-child options."))
 
 (defmethod sb-mop:validate-superclass ((class gobject-class) (super standard-class)) t)
 
 (defmethod shared-initialize :after ((class gobject-class) slot-names
-                                     &key gtype-name get-type &allow-other-keys)
+                                     &key gtype-name get-type signals template abstract
+                                     &allow-other-keys)
   (declare (ignore slot-names))
   (when gtype-name
     (setf (slot-value class 'gtype-name) (first gtype-name)
@@ -72,7 +96,11 @@ Safe to call from any thread, including SBCL's finalizer thread."
           (gethash (first gtype-name) *gtype-name-classes*) class)
     (clrhash *gtype-classes*))
   (when get-type
-    (setf (slot-value class 'get-type) (first get-type))))
+    (setf (slot-value class 'get-type) (first get-type)))
+  (setf (slot-value class 'lisp-defined) (and gtype-name (not get-type) t)
+        (slot-value class 'signal-specs) signals
+        (slot-value class 'template) template
+        (slot-value class 'abstract) (first abstract)))
 
 (defun class-gtype (class)
   "The GType for CLASS (a class or class name), registering it if needed."
@@ -80,8 +108,9 @@ Safe to call from any thread, including SBCL's finalizer thread."
     (or (slot-value class 'gtype)
         (setf (slot-value class 'gtype)
               (let ((named (gtype-defining-class class)))
-                (or (gtype-from-name (class-gtype-name named) (class-get-type named))
-                    (error "gtk4: GType ~s is not registered" (class-gtype-name named))))))))
+                (cond ((class-lisp-defined-p named) (ensure-lisp-gtype named))
+                      ((gtype-from-name (class-gtype-name named) (class-get-type named)))
+                      (t (error "gtk4: GType ~s is not registered" (class-gtype-name named)))))))))
 
 (defun gtype-defining-class (class)
   "The nearest class in CLASS's precedence list that names a GType. A Lisp
@@ -263,7 +292,8 @@ GIR annotation. NULL gives NIL."
         (t
          (let ((proxy (allocate-instance (lisp-class-for-gtype (instance-gtype pointer)))))
            (setf (slot-value proxy 'pointer) pointer)
-           (shared-initialize proxy t)
+           (let ((*initializing-slots* t))
+             (shared-initialize proxy t))
            (register-proxy proxy pointer transfer)))))))
 
 ;;; Properties
@@ -349,7 +379,9 @@ property names and Lisp values. Returns the new instance pointer."
   "MAKE-INSTANCE on a GObject class creates the C instance, passing initargs
 that are not Lisp slot initargs as GObject properties."
   (multiple-value-bind (slot-args props) (split-initargs (class-of object) initargs)
-    (let ((pointer (new-gobject (class-gtype (class-of object)) props)))
+    (let ((pointer (let ((*constructing* (cons object slot-args)))
+                     (new-gobject (class-gtype (class-of object)) props))))
       (setf (slot-value object 'pointer) pointer)
       (register-proxy object pointer :full)
-      (apply #'call-next-method object slot-args))))
+      (let ((*initializing-slots* t))
+        (apply #'call-next-method object slot-args)))))

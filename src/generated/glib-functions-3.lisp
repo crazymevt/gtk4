@@ -3,7 +3,7 @@
 
 (in-package #:glib)
 
-;;; Functions, constructors and methods (part 3)
+;;; Functions, constructors, methods and virtual functions (part 3)
 
 
 (rt:define-gfunction (main-context-is-owner "g_main_context_is_owner") :args

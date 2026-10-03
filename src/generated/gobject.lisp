@@ -592,6 +592,21 @@ See: https://docs.gtk.org/gobject/struct.Closure.html")
   (:callback :pointer))
 
 
+(rt:define-gfield c-closure-closure c-closure :closure
+                  (:boxed "GClosure" "g_closure_get_type" closure) :writable t :inline t
+                  :documentation "the `gobject:closure`
+
+
+See: https://docs.gtk.org/gobject/struct.CClosure.html")
+
+
+(rt:define-gstruct-constructor make-c-closure (:record c-closure)
+                               ((closure :closure (:boxed "GClosure" "g_closure_get_type" closure)
+                                 :inline t))
+                               :documentation
+                               "A new CClosure with the given fields; others are zero.")
+
+
 (rt:define-gstruct closure-notify-data
     nil
   (:data :pointer)
@@ -610,6 +625,13 @@ See: https://docs.gtk.org/gobject/struct.Closure.html")
   (:maximum :int)
   (:n-values :uint)
   (:values :pointer))
+
+
+(rt:define-gfield enum-class-g-type-class enum-class :g-type-class (:record type-class) :writable t
+                  :inline t :documentation "the parent class
+
+
+See: https://docs.gtk.org/gobject/struct.EnumClass.html")
 
 
 (rt:define-gfield enum-class-minimum enum-class :minimum :int :writable t :documentation
@@ -634,7 +656,8 @@ See: https://docs.gtk.org/gobject/struct.EnumClass.html")
 
 
 (rt:define-gstruct-constructor make-enum-class (:record enum-class)
-                               ((minimum :minimum :int) (maximum :maximum :int)
+                               ((g-type-class :g-type-class (:record type-class) :inline t)
+                                (minimum :minimum :int) (maximum :maximum :int)
                                 (n-values :n-values :uint))
                                :documentation
                                "A new EnumClass with the given fields; others are zero.")
@@ -680,6 +703,13 @@ See: https://docs.gtk.org/gobject/struct.EnumValue.html")
   (:values :pointer))
 
 
+(rt:define-gfield flags-class-g-type-class flags-class :g-type-class (:record type-class) :writable
+                  t :inline t :documentation "the parent class
+
+
+See: https://docs.gtk.org/gobject/struct.FlagsClass.html")
+
+
 (rt:define-gfield flags-class-mask flags-class :mask :uint :writable t :documentation
                   "a mask covering all possible values.
 
@@ -695,7 +725,9 @@ See: https://docs.gtk.org/gobject/struct.FlagsClass.html")
 
 
 (rt:define-gstruct-constructor make-flags-class (:record flags-class)
-                               ((mask :mask :uint) (n-values :n-values :uint)) :documentation
+                               ((g-type-class :g-type-class (:record type-class) :inline t)
+                                (mask :mask :uint) (n-values :n-values :uint))
+                               :documentation
                                "A new FlagsClass with the given fields; others are zero.")
 
 
@@ -732,6 +764,25 @@ See: https://docs.gtk.org/gobject/struct.FlagsValue.html")
                                "A new FlagsValue with the given fields; others are zero.")
 
 
+(rt:define-gstruct initially-unowned-class
+    nil
+  (:g-type-class (:struct type-class))
+  (:construct-properties :pointer)
+  (:constructor :pointer)
+  (:set-property :pointer)
+  (:get-property :pointer)
+  (:dispose :pointer)
+  (:finalize :pointer)
+  (:dispatch-properties-changed :pointer)
+  (:notify :pointer)
+  (:constructed :pointer)
+  (:flags :size)
+  (:n-construct-properties :size)
+  (:pspecs :pointer)
+  (:n-pspecs :size)
+  (:pdummy :pointer :count 3))
+
+
 (rt:define-gstruct interface-info
     nil
   (:interface-init :pointer)
@@ -739,10 +790,41 @@ See: https://docs.gtk.org/gobject/struct.FlagsValue.html")
   (:interface-data :pointer))
 
 
+(rt:define-gstruct object-class
+    nil
+  (:g-type-class (:struct type-class))
+  (:construct-properties :pointer)
+  (:constructor :pointer)
+  (:set-property :pointer)
+  (:get-property :pointer)
+  (:dispose :pointer)
+  (:finalize :pointer)
+  (:dispatch-properties-changed :pointer)
+  (:notify :pointer)
+  (:constructed :pointer)
+  (:flags :size)
+  (:n-construct-properties :size)
+  (:pspecs :pointer)
+  (:n-pspecs :size)
+  (:pdummy :pointer :count 3))
+
+
 (rt:define-gstruct object-construct-param
     nil
   (:pspec :pointer)
   (:value :pointer))
+
+
+(rt:define-gstruct param-spec-class
+    nil
+  (:g-type-class (:struct type-class))
+  (:value-type rt:gtype)
+  (:finalize :pointer)
+  (:value-set-default :pointer)
+  (:value-validate :pointer)
+  (:values-cmp :pointer)
+  (:value-is-valid :pointer)
+  (:dummy :pointer :count 3))
 
 
 (rt:define-gstruct param-spec-type-info
@@ -864,6 +946,20 @@ See: https://docs.gtk.org/gobject/union._Value__data__union.html")
 
 
 See: https://docs.gtk.org/gobject/struct.Parameter.html")
+
+
+(rt:define-gfield parameter-value parameter :value (:boxed "GValue" "g_value_get_type" value)
+                  :writable t :inline t :documentation "the parameter value
+
+
+See: https://docs.gtk.org/gobject/struct.Parameter.html")
+
+
+(rt:define-gstruct-constructor make-parameter (:record parameter)
+                               ((value :value (:boxed "GValue" "g_value_get_type" value) :inline
+                                 t))
+                               :documentation
+                               "A new Parameter with the given fields; others are zero.")
 
 
 (rt:define-gstruct signal-invocation-hint
@@ -1084,6 +1180,17 @@ See: https://docs.gtk.org/gobject/struct.TypeInfo.html")
     nil
   (:g-type rt:gtype)
   (:g-instance-type rt:gtype))
+
+
+(rt:define-gstruct type-module-class
+    nil
+  (:parent-class (:struct object-class))
+  (:load :pointer)
+  (:unload :pointer)
+  (:reserved1 :pointer)
+  (:reserved2 :pointer)
+  (:reserved3 :pointer)
+  (:reserved4 :pointer))
 
 
 (rt:define-gstruct type-plugin-class

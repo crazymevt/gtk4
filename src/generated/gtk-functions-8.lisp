@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 8)
+;;; Functions, constructors, methods and virtual functions (part 8)
 
 
 (rt:define-gfunction (svg-serialize "gtk_svg_serialize") :args ((self (:object svg))) :return

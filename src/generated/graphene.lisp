@@ -339,10 +339,16 @@ C: graphene_vec4_t"))
                   "the coordinates of the origin of the rectangle")
 
 
+(rt:define-gfield rect-size rect :size (:boxed "GrapheneSize" "graphene_size_get_type" size)
+                  :writable t :inline t :documentation "the size of the rectangle")
+
+
 (rt:define-gstruct-constructor make-rect (:boxed "GrapheneRect" "graphene_rect_get_type" rect)
                                ((origin :origin
                                  (:boxed "GraphenePoint" "graphene_point_get_type" point) :inline
-                                 t))
+                                 t)
+                                (size :size (:boxed "GrapheneSize" "graphene_size_get_type" size)
+                                 :inline t))
                                :documentation "A new Rect with the given fields; others are zero.")
 
 

@@ -3,7 +3,7 @@
 
 (in-package #:glib)
 
-;;; Functions, constructors and methods (part 4)
+;;; Functions, constructors, methods and virtual functions (part 4)
 
 
 (rt:define-gfunction (trash-stack-peek "g_trash_stack_peek") :args

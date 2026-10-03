@@ -3,7 +3,7 @@
 
 (in-package #:harfbuzz)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction (set-create "hb_set_create") :return

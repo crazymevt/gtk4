@@ -3,7 +3,7 @@
 
 (in-package #:gmodule)
 
-;;; Functions, constructors and methods (part 1)
+;;; Functions, constructors, methods and virtual functions (part 1)
 
 
 (rt:define-gfunction (module-build-path "g_module_build_path") :args

@@ -3,7 +3,7 @@
 
 (in-package #:gio)
 
-;;; Functions, constructors and methods (part 3)
+;;; Functions, constructors, methods and virtual functions (part 3)
 
 
 (rt:define-gfunction (file-info-remove-attribute "g_file_info_remove_attribute") :args

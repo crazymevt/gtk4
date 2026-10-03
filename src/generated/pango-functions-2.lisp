@@ -3,7 +3,7 @@
 
 (in-package #:pango)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction (tab-array-from-string "pango_tab_array_from_string") :args ((text :string))
@@ -288,3 +288,329 @@ Returns a boxed value.
 C: pango_script_get_sample_language
 See: https://docs.gtk.org/Pango/type_func.Script.get_sample_language.html
 Since: 1.4")
+
+
+(rt:define-gvfunc (font :create-hb-font) (font-class :create-hb-font) :args ((font (:object font)))
+                  :return (:boxed "hb_font_t" "hb_gobject_font_get_type") :return-transfer :full
+                  :url "https://docs.gtk.org/Pango/vfunc.Font.create_hb_font.html" :documentation "
+See: https://docs.gtk.org/Pango/vfunc.Font.create_hb_font.html")
+
+
+(rt:define-gvfunc (font :describe) (font-class :describe) :args ((font (:object font))) :return
+                  (:boxed "PangoFontDescription" "pango_font_description_get_type")
+                  :return-transfer :full :url "https://docs.gtk.org/Pango/vfunc.Font.describe.html"
+                  :documentation "Returns a description of the font, with font size set in points.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Font.describe.html")
+
+
+(rt:define-gvfunc (font :describe-absolute) (font-class :describe-absolute) :args
+                  ((font (:object font))) :return
+                  (:boxed "PangoFontDescription" "pango_font_description_get_type")
+                  :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.Font.describe_absolute.html" :documentation "
+See: https://docs.gtk.org/Pango/vfunc.Font.describe_absolute.html")
+
+
+(rt:define-gvfunc (font :get-coverage) (font-class :get-coverage) :args
+                  ((font (:object font))
+                   (language (:boxed "PangoLanguage" "pango_language_get_type")))
+                  :return (:object coverage) :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.Font.get_coverage.html" :documentation
+                  "Computes the coverage map for a given font and language tag.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Font.get_coverage.html")
+
+
+(rt:define-gvfunc (font :get-font-map) (font-class :get-font-map) :args ((font (:object font)))
+                  :return (:object font-map) :url
+                  "https://docs.gtk.org/Pango/vfunc.Font.get_font_map.html" :documentation
+                  "Gets the font map for which the font was created.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Font.get_font_map.html
+Since: 1.10")
+
+
+(rt:define-gvfunc (font :get-metrics) (font-class :get-metrics) :args
+                  ((font (:object font))
+                   (language (:boxed "PangoLanguage" "pango_language_get_type")))
+                  :return (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
+                  :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.Font.get_metrics.html" :documentation
+                  "Gets overall metric information for a font.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Font.get_metrics.html")
+
+
+(rt:define-gvfunc (font-face :describe) (font-face-class :describe) :args
+                  ((face (:object font-face))) :return
+                  (:boxed "PangoFontDescription" "pango_font_description_get_type")
+                  :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFace.describe.html" :documentation
+                  "Returns a font description that matches the face.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFace.describe.html")
+
+
+(rt:define-gvfunc (font-face :get-family) (font-face-class :get-family) :args
+                  ((face (:object font-face))) :return (:object font-family) :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFace.get_family.html" :documentation
+                  "Gets the `pango:font-family` that FACE belongs to.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFace.get_family.html
+Since: 1.46")
+
+
+(rt:define-gvfunc (font-face :is-synthesized) (font-face-class :is-synthesized) :args
+                  ((face (:object font-face))) :return :boolean :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFace.is_synthesized.html" :documentation
+                  "Returns whether a `pango:font-face` is synthesized.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFace.is_synthesized.html
+Since: 1.18")
+
+
+(rt:define-gvfunc (font-family :get-face) (font-family-class :get-face) :args
+                  ((family (:object font-family)) (name :string)) :return (:object font-face) :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFamily.get_face.html" :documentation
+                  "Gets the `pango:font-face` of FAMILY with the given name.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFamily.get_face.html
+Since: 1.46")
+
+
+(rt:define-gvfunc (font-family :is-monospace) (font-family-class :is-monospace) :args
+                  ((family (:object font-family))) :return :boolean :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFamily.is_monospace.html" :documentation
+                  "A monospace font is a font designed for text display where the the
+characters form a regular grid.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFamily.is_monospace.html
+Since: 1.4")
+
+
+(rt:define-gvfunc (font-family :is-variable) (font-family-class :is-variable) :args
+                  ((family (:object font-family))) :return :boolean :url
+                  "https://docs.gtk.org/Pango/vfunc.FontFamily.is_variable.html" :documentation
+                  "A variable font is a font which has axes that can be modified to
+produce different faces.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontFamily.is_variable.html
+Since: 1.44")
+
+
+(rt:define-gvfunc (font-map :changed) (font-map-class :changed) :args
+                  ((fontmap (:object font-map))) :url
+                  "https://docs.gtk.org/Pango/vfunc.FontMap.changed.html" :documentation
+                  "Forces a change in the fontmap, which will cause any `pango:context`
+using this fontmap to change.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontMap.changed.html
+Since: 1.34")
+
+
+(rt:define-gvfunc (font-map :get-family) (font-map-class :get-family) :args
+                  ((fontmap (:object font-map)) (name :string)) :return (:object font-family) :url
+                  "https://docs.gtk.org/Pango/vfunc.FontMap.get_family.html" :documentation
+                  "Gets a font family by name.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontMap.get_family.html
+Since: 1.46")
+
+
+(rt:define-gvfunc (font-map :get-serial) (font-map-class :get-serial) :args
+                  ((fontmap (:object font-map))) :return :uint :url
+                  "https://docs.gtk.org/Pango/vfunc.FontMap.get_serial.html" :documentation
+                  "Returns the current serial number of FONTMAP.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontMap.get_serial.html
+Since: 1.32.4")
+
+
+(rt:define-gvfunc (font-map :load-font) (font-map-class :load-font) :args
+                  ((fontmap (:object font-map)) (context (:object context))
+                   (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
+                  :return (:object font) :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.FontMap.load_font.html" :documentation
+                  "Load the font in the fontmap that is the closest match for DESC.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontMap.load_font.html")
+
+
+(rt:define-gvfunc (font-map :load-fontset) (font-map-class :load-fontset) :args
+                  ((fontmap (:object font-map)) (context (:object context))
+                   (desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
+                   (language (:boxed "PangoLanguage" "pango_language_get_type")))
+                  :return (:object fontset) :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.FontMap.load_fontset.html" :documentation
+                  "Load a set of fonts in the fontmap that can be used to render
+a font matching DESC.
+
+
+See: https://docs.gtk.org/Pango/vfunc.FontMap.load_fontset.html")
+
+
+(rt:define-gvfunc (fontset :get-font) (fontset-class :get-font) :args
+                  ((fontset (:object fontset)) (wc :uint)) :return (:object font) :return-transfer
+                  :full :url "https://docs.gtk.org/Pango/vfunc.Fontset.get_font.html"
+                  :documentation "Returns the font in the fontset that contains the best
+glyph for a Unicode character.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Fontset.get_font.html")
+
+
+(rt:define-gvfunc (fontset :get-language) (fontset-class :get-language) :args
+                  ((fontset (:object fontset))) :return
+                  (:boxed "PangoLanguage" "pango_language_get_type") :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.Fontset.get_language.html" :documentation
+                  "a function to get the language of the fontset.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Fontset.get_language.html")
+
+
+(rt:define-gvfunc (fontset :get-metrics) (fontset-class :get-metrics) :args
+                  ((fontset (:object fontset))) :return
+                  (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
+                  :return-transfer :full :url
+                  "https://docs.gtk.org/Pango/vfunc.Fontset.get_metrics.html" :documentation
+                  "Get overall metric information for the fonts in the fontset.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Fontset.get_metrics.html")
+
+
+(rt:define-gvfunc (renderer :begin) (renderer-class :begin) :args ((renderer (:object renderer)))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.begin.html" :documentation
+                  "Do renderer-specific initialization before drawing
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.begin.html")
+
+
+(rt:define-gvfunc (renderer :draw-error-underline) (renderer-class :draw-error-underline) :args
+                  ((renderer (:object renderer)) (x :int) (y :int) (width :int) (height :int)) :url
+                  "https://docs.gtk.org/Pango/vfunc.Renderer.draw_error_underline.html"
+                  :documentation "Draw a squiggly line that approximately covers the given rectangle
+in the style of an underline used to indicate a spelling error.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_error_underline.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :draw-glyph) (renderer-class :draw-glyph) :args
+                  ((renderer (:object renderer)) (font (:object font)) (glyph :uint32) (x :double)
+                   (y :double))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyph.html" :documentation
+                  "Draws a single glyph with coordinates in device space.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyph.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :draw-glyph-item) (renderer-class :draw-glyph-item) :args
+                  ((renderer (:object renderer)) (text :string)
+                   (glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
+                   (x :int) (y :int))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyph_item.html"
+                  :documentation
+                  "Draws the glyphs in GLYPH-ITEM with the specified `pango:renderer`,
+embedding the text associated with the glyphs in the output if the
+output format supports it.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyph_item.html
+Since: 1.22")
+
+
+(rt:define-gvfunc (renderer :draw-glyphs) (renderer-class :draw-glyphs) :args
+                  ((renderer (:object renderer)) (font (:object font))
+                   (glyphs (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
+                   (x :int) (y :int))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyphs.html" :documentation
+                  "Draws the glyphs in GLYPHS with the specified `pango:renderer`.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_glyphs.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :draw-rectangle) (renderer-class :draw-rectangle) :args
+                  ((renderer (:object renderer)) (part (:enum render-part)) (x :int) (y :int)
+                   (width :int) (height :int))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_rectangle.html"
+                  :documentation "Draws an axis-aligned rectangle in user space coordinates with the
+specified `pango:renderer`.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_rectangle.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :draw-shape) (renderer-class :draw-shape) :args
+                  ((renderer (:object renderer)) (attr (:record attr-shape)) (x :int) (y :int))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_shape.html" :documentation
+                  "draw content for a glyph shaped with `pango:attr-shape`
+  X, Y are the coordinates of the left edge of the baseline,
+  in user coordinates.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_shape.html")
+
+
+(rt:define-gvfunc (renderer :draw-trapezoid) (renderer-class :draw-trapezoid) :args
+                  ((renderer (:object renderer)) (part (:enum render-part)) (y1- :double)
+                   (x11 :double) (x21 :double) (y2 :double) (x12 :double) (x22 :double))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.draw_trapezoid.html"
+                  :documentation "Draws a trapezoid with the parallel sides aligned with the X axis
+using the given `pango:renderer`; coordinates are in device space.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.draw_trapezoid.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :end) (renderer-class :end) :args ((renderer (:object renderer))) :url
+                  "https://docs.gtk.org/Pango/vfunc.Renderer.end.html" :documentation
+                  "Do renderer-specific cleanup after drawing
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.end.html")
+
+
+(rt:define-gvfunc (renderer :part-changed) (renderer-class :part-changed) :args
+                  ((renderer (:object renderer)) (part (:enum render-part))) :url
+                  "https://docs.gtk.org/Pango/vfunc.Renderer.part_changed.html" :documentation
+                  "Informs Pango that the way that the rendering is done
+for PART has changed.
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.part_changed.html
+Since: 1.8")
+
+
+(rt:define-gvfunc (renderer :prepare-run) (renderer-class :prepare-run) :args
+                  ((renderer (:object renderer))
+                   (run (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)))
+                  :url "https://docs.gtk.org/Pango/vfunc.Renderer.prepare_run.html" :documentation
+                  "updates the renderer for a new run
+
+
+See: https://docs.gtk.org/Pango/vfunc.Renderer.prepare_run.html")

@@ -1284,6 +1284,7 @@
    #:scanner-next-line
    #:scanner-next-position
    #:scanner-next-token
+   #:scanner-next-value
    #:scanner-parse-errors
    #:scanner-peek-next-token
    #:scanner-position
@@ -1295,6 +1296,7 @@
    #:scanner-sync-file-offset
    #:scanner-token
    #:scanner-unexp-token
+   #:scanner-value
    #:seek-type
    #:sequence
    #:sequence-append
@@ -1983,7 +1985,7 @@
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
   (:shadow #:array #:error #:hash-table #:string #:type)
-  (:import-from #:gtk4.runtime #:block-handler #:class-gtype #:connect #:disconnect #:emit #:gobject-class #:handler-connected-p #:initially-unowned #:object #:object-pointer #:property #:unblock-handler)
+  (:import-from #:gtk4.runtime #:block-handler #:call-next-vfunc #:class-gtype #:connect #:define-vfunc #:disconnect #:emit #:find-vfunc #:gobject-class #:handler-connected-p #:initially-unowned #:object #:object-pointer #:property #:remove-vfunc #:unblock-handler)
   (:export
    #:+param-mask+
    #:+param-static-strings+
@@ -2036,6 +2038,7 @@
    #:byte-array
    #:bytes
    #:c-closure
+   #:c-closure-closure
    #:c-closure-marshal-boolean--boxed-boxed
    #:c-closure-marshal-boolean--flags
    #:c-closure-marshal-generic
@@ -2059,6 +2062,7 @@
    #:c-closure-marshal-void--ulong
    #:c-closure-marshal-void--variant
    #:c-closure-marshal-void--void
+   #:call-next-vfunc
    #:callback
    #:checksum
    #:class-finalize-func
@@ -2082,10 +2086,12 @@
    #:connect-flags
    #:date
    #:date-time
+   #:define-vfunc
    #:dir
    #:disconnect
    #:emit
    #:enum-class
+   #:enum-class-g-type-class
    #:enum-class-maximum
    #:enum-class-minimum
    #:enum-class-n-values
@@ -2100,7 +2106,9 @@
    #:enum-value-value-name
    #:enum-value-value-nick
    #:error
+   #:find-vfunc
    #:flags-class
+   #:flags-class-g-type-class
    #:flags-class-mask
    #:flags-class-n-values
    #:flags-complete-type-info
@@ -2129,12 +2137,14 @@
    #:key-file
    #:main-context
    #:main-loop
+   #:make-c-closure
    #:make-closure
    #:make-enum-class
    #:make-enum-value
    #:make-flags-class
    #:make-flags-value
    #:make-param-spec-type-info
+   #:make-parameter
    #:make-signal-invocation-hint
    #:make-signal-query
    #:make-type-c-value
@@ -2247,6 +2257,7 @@
    #:param-values-cmp
    #:parameter
    #:parameter-name
+   #:parameter-value
    #:pattern-spec
    #:pointer-type-register-static
    #:poll-fd
@@ -2254,6 +2265,7 @@
    #:ptr-array
    #:rand
    #:regex
+   #:remove-vfunc
    #:signal-accumulator
    #:signal-accumulator-first-wins
    #:signal-accumulator-true-handled
@@ -6225,15 +6237,20 @@
    #:attr-class
    #:attr-class-type
    #:attr-color
+   #:attr-color-attr
+   #:attr-color-color
    #:attr-data-copy-func
    #:attr-fallback-new
    #:attr-family-new
    #:attr-filter-func
    #:attr-float
+   #:attr-float-attr
    #:attr-float-value
    #:attr-font-desc
+   #:attr-font-desc-attr
    #:attr-font-desc-new
    #:attr-font-features
+   #:attr-font-features-attr
    #:attr-font-features-features
    #:attr-font-features-new
    #:attr-font-scale-new
@@ -6243,6 +6260,7 @@
    #:attr-gravity-new
    #:attr-insert-hyphens-new
    #:attr-int
+   #:attr-int-attr
    #:attr-int-value
    #:attr-iterator
    #:attr-iterator-copy
@@ -6253,6 +6271,7 @@
    #:attr-iterator-next
    #:attr-iterator-range
    #:attr-language
+   #:attr-language-attr
    #:attr-language-new
    #:attr-letter-spacing-new
    #:attr-line-height-new
@@ -6279,11 +6298,15 @@
    #:attr-scale-new
    #:attr-sentence-new
    #:attr-shape
+   #:attr-shape-attr
+   #:attr-shape-ink-rect
+   #:attr-shape-logical-rect
    #:attr-shape-new
    #:attr-shape-new-with-data
    #:attr-show-new
    #:attr-size
    #:attr-size-absolute
+   #:attr-size-attr
    #:attr-size-new
    #:attr-size-new-absolute
    #:attr-size-size
@@ -6291,6 +6314,7 @@
    #:attr-strikethrough-color-new
    #:attr-strikethrough-new
    #:attr-string
+   #:attr-string-attr
    #:attr-string-value
    #:attr-style-new
    #:attr-text-transform-new
@@ -6496,6 +6520,7 @@
    #:glyph-geometry-x-offset
    #:glyph-geometry-y-offset
    #:glyph-info
+   #:glyph-info-attr
    #:glyph-info-geometry
    #:glyph-info-glyph
    #:glyph-item
@@ -6701,9 +6726,15 @@
    #:log2vis-get-embedding-levels
    #:make-analysis
    #:make-attr-class
+   #:make-attr-color
    #:make-attr-float
+   #:make-attr-font-desc
+   #:make-attr-font-features
    #:make-attr-int
+   #:make-attr-language
+   #:make-attr-shape
    #:make-attr-size
+   #:make-attr-string
    #:make-attribute
    #:make-color
    #:make-glyph-geometry
@@ -7151,6 +7182,7 @@
    #:rect-round-extents
    #:rect-round-to-pixel
    #:rect-scale
+   #:rect-size
    #:rect-union
    #:rect-zero
    #:simd4-f

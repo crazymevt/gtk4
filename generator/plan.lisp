@@ -18,7 +18,9 @@
   (bound (make-hash-table :test 'equal))   ; namespace -> count of callables bound
   (callback-plans (make-hash-table :test 'equal)) ; "Ns.Name" -> (args return transfer) or reason string
   (layouts (make-hash-table :test 'equal))        ; "Ns.Name" -> LAYOUT or reason string
-  (struct-symbols (make-hash-table :test 'eq)))   ; struct symbol -> LAYOUT
+  (struct-symbols (make-hash-table :test 'eq))    ; struct symbol -> LAYOUT
+  (vfuncs-bound (make-hash-table :test 'equal))   ; namespace -> count of overridable vfuncs
+  (vfuncs-skipped (make-hash-table :test 'equal))) ; namespace -> list of (what . reason)
 
 (defun target-namespaces-in-order (repository targets)
   "TARGETS as gir-namespaces, ordered so every namespace follows its includes."

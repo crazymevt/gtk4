@@ -9594,6 +9594,35 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 ;;; Struct layouts
 
 
+(rt:define-gstruct content-deserializer-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct content-provider-class
+    nil
+  (:parent-class (:struct gobject:object-class))
+  (:content-changed :pointer)
+  (:attach-clipboard :pointer)
+  (:detach-clipboard :pointer)
+  (:ref-formats :pointer)
+  (:ref-storable-formats :pointer)
+  (:write-mime-type-async :pointer)
+  (:write-mime-type-finish :pointer)
+  (:get-value :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct content-serializer-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
+(rt:define-gstruct cursor-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
 (rt:define-gstruct keymap-key
     nil
   (:keycode :uint)
@@ -9635,6 +9664,17 @@ See: https://docs.gtk.org/gdk4/struct.KeymapKey.html")
                                ((keycode :keycode :uint) (group :group :int) (level :level :int))
                                :documentation
                                "A new KeymapKey with the given fields; others are zero.")
+
+
+(rt:define-gstruct paintable-interface
+    nil
+  (:g-iface (:struct gobject:type-interface))
+  (:snapshot :pointer)
+  (:get-current-image :pointer)
+  (:get-flags :pointer)
+  (:get-intrinsic-width :pointer)
+  (:get-intrinsic-height :pointer)
+  (:get-intrinsic-aspect-ratio :pointer))
 
 
 (rt:define-gstruct rgba

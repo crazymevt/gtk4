@@ -528,6 +528,11 @@ See: https://docs.gtk.org/gsk4/struct.ColorStop.html")
                                "A new ColorStop with the given fields; others are zero.")
 
 
+(rt:define-gstruct gl-shader-class
+    nil
+  (:parent-class (:struct gobject:object-class)))
+
+
 (rt:define-gstruct parse-location
     nil
   (:bytes :size)

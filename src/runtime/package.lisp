@@ -60,6 +60,15 @@
    #:wrap-boxed
    #:proxy-count
    #:property
+   ;; Lisp-defined GTypes
+   #:define-vfunc
+   #:call-next-vfunc
+   #:remove-vfunc
+   #:find-vfunc
+   #:template-child
+   #:designator-gtype
+   #:*class-init-hooks*
+   #:*instance-init-hooks*
    ;; signals
    #:connect
    #:disconnect
@@ -67,8 +76,10 @@
    #:unblock-handler
    #:handler-connected-p
    #:emit
+   #:make-closure
    ;; definitions used by generated code
    #:define-gfunction
+   #:define-gvfunc
    #:define-gcallback
    #:define-genum
    #:define-gconstant

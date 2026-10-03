@@ -3,7 +3,7 @@
 
 (in-package #:gio)
 
-;;; Functions, constructors and methods (part 2)
+;;; Functions, constructors, methods and virtual functions (part 2)
 
 
 (rt:define-gfunction
@@ -3005,7 +3005,8 @@ See: https://docs.gtk.org/gio/method.File.copy.html")
                        (:boxed "GClosure" "g_closure_get_type" gobject:closure)))
                      :version "2.82" :url
                      "https://docs.gtk.org/gio/method.File.copy_async_with_closures.html"
-                     :documentation "Version of `copy-async` using closures instead of callbacks for
+                     :documentation
+                     "Version of `:copy-async` using closures instead of callbacks for
 easier binding in other languages.
 
 C: g_file_copy_async_with_closures
@@ -3942,7 +3943,8 @@ See: https://docs.gtk.org/gio/method.File.move.html")
                        (:boxed "GClosure" "g_closure_get_type" gobject:closure)))
                      :version "2.82" :url
                      "https://docs.gtk.org/gio/method.File.move_async_with_closures.html"
-                     :documentation "Version of `move-async` using closures instead of callbacks for
+                     :documentation
+                     "Version of `:move-async` using closures instead of callbacks for
 easier binding in other languages.
 
 C: g_file_move_async_with_closures

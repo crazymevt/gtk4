@@ -3,7 +3,7 @@
 
 (in-package #:gtk)
 
-;;; Functions, constructors and methods (part 3)
+;;; Functions, constructors, methods and virtual functions (part 3)
 
 
 (rt:define-gfunction (drawing-area-new "gtk_drawing_area_new") :return (:object widget) :url

@@ -18,6 +18,7 @@
                (:file "plan")
                (:file "layout")
                (:file "docs")
+               (:file "vfuncs")
                (:file "emit")
                (:file "site")
                (:file "report")))

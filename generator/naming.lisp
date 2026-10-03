@@ -73,7 +73,8 @@ operators (t, pi, function) get a suffix: they cannot be bound, or print as
 
 (defparameter *runtime-exports*
   '(("GObject" "CONNECT" "DISCONNECT" "EMIT" "BLOCK-HANDLER" "UNBLOCK-HANDLER"
-     "HANDLER-CONNECTED-P" "PROPERTY" "OBJECT-POINTER" "GOBJECT-CLASS" "CLASS-GTYPE")
+     "HANDLER-CONNECTED-P" "PROPERTY" "OBJECT-POINTER" "GOBJECT-CLASS" "CLASS-GTYPE"
+     "DEFINE-VFUNC" "CALL-NEXT-VFUNC" "REMOVE-VFUNC" "FIND-VFUNC")
     ("GLib" "GLIB-ERROR" "GLIB-ERROR-DOMAIN" "GLIB-ERROR-CODE" "GLIB-ERROR-MESSAGE"
      "IN-MAIN-THREAD" "CALL-IN-MAIN-THREAD" "MAIN-THREAD-P" "WITH-GTK-FLOAT-TRAPS"))
   "Runtime symbols each namespace's package re-exports, so users write
