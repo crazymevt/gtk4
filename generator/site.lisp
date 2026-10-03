@@ -364,6 +364,9 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; } td, th { bord
 (defun generate-site (ctx directory)
   "Write the reference site and manual into DIRECTORY."
   (ensure-directories-exist directory)
+  ;; Pages from earlier runs may no longer exist (a renamed manual chapter).
+  (dolist (old (directory (merge-pathnames "**/*.html" directory)))
+    (delete-file old))
   (with-open-file (out (merge-pathnames "style.css" directory) :direction :output :if-exists :supersede)
     (write-string *site-css* out))
   ;; Front page
