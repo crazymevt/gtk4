@@ -174,6 +174,15 @@
 
 ;;; GTK widgets (need a display)
 
+(defmacro without-callback-errors (&body body)
+  "Run BODY, then fail if any callback reported an error meanwhile (errors
+in callbacks are logged rather than signalled)."
+  (let ((errors (gensym "ERRORS")))
+    `(let ((,errors '()))
+       (let ((rt:*callback-error-handler* (lambda (e where) (push (list where (princ-to-string e)) ,errors))))
+         ,@body)
+       (is equal '() ,errors))))
+
 (defvar *builder-clicks* 0)
 
 (defun note-builder-click (button)
@@ -199,6 +208,7 @@
 
 (define-test widget-vfuncs :parent subclass
   (with-gtk
+   (without-callback-errors
     (let ((sw (make-instance 'swatch)))
       (is equal '(120 200 -1 -1) (multiple-value-list (gtk:widget-measure sw :horizontal -1)))
       (is equal '(40 60 -1 -1) (multiple-value-list (gtk:widget-measure sw :vertical -1)))
@@ -208,7 +218,7 @@
         (iterate-until (lambda () (plusp (swatch-snapshots sw))) :timeout 5)
         (true (plusp (swatch-snapshots sw)))
         (is = 200 (gtk:widget-get-width sw))
-        (gtk:window-destroy window)))))
+        (gtk:window-destroy window))))))
 
 (defclass greeter (gtk:box)
   ((entry :template-child t :reader greeter-entry)
@@ -301,3 +311,50 @@
             (:gtype-name "TestLispRedefinable")))
     (of-type warning (handler-case (progn (make-instance 'redefinable) nil)
                        (warning (w) w)))))
+
+;;; The M3 gate: redefine a running widget from another thread, as an
+;;; editor's REPL thread would, while the main loop runs on the main thread.
+
+(defclass live-widget (gtk:widget)
+  ((drawn-by :initform nil :accessor drawn-by))
+  (:metaclass gobject:gobject-class)
+  (:gtype-name "TestLispLiveWidget"))
+
+(gobject:define-vfunc (live-widget :snapshot) (widget snapshot)
+  (declare (ignore snapshot))
+  (setf (drawn-by widget) :original))
+
+(define-test live-redefinition :parent subclass
+  (with-gtk
+   (without-callback-errors
+    (let ((app (gtk:application-new "org.lisp.gtk4.TestLive" '(:non-unique)))
+          (widget nil)
+          (seen '()))
+      (gobject:connect app :activate
+                       (lambda (app)
+                         (let ((window (gtk:application-window-new app)))
+                           (setf widget (make-instance 'live-widget :width-request 50 :height-request 50))
+                           (gtk:widget-add-tick-callback
+                            widget (lambda (w clock)
+                                     (declare (ignore clock))
+                                     (pushnew (drawn-by w) seen)
+                                     (gtk:widget-queue-draw w)
+                                     t))
+                           (gtk:window-set-child window widget)
+                           (gtk:window-present window))))
+      ;; The "REPL": a second thread that redefines the vfunc, then quits.
+      (sb-thread:make-thread
+       (lambda ()
+         (sleep 1)
+         (eval '(gobject:define-vfunc (live-widget :snapshot) (widget snapshot)
+                 (declare (ignore snapshot))
+                 (setf (drawn-by widget) :redefined)))
+         (sleep 1)
+         (glib:in-main-thread () (gio:application-quit app))))
+      (glib:with-gtk-float-traps (gio:application-run app nil))
+      (true (member :original seen))
+      (true (member :redefined seen))
+      ;; Leave the original definition for other tests.
+      (gobject:define-vfunc (live-widget :snapshot) (widget snapshot)
+        (declare (ignore snapshot))
+        (setf (drawn-by widget) :original))))))
