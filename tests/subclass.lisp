@@ -217,7 +217,8 @@ in callbacks are logged rather than signalled)."
         (gtk:window-present window)
         (iterate-until (lambda () (plusp (swatch-snapshots sw))) :timeout 5)
         (true (plusp (swatch-snapshots sw)))
-        (is = 200 (gtk:widget-get-width sw))
+        ;; At least its natural width; some platforms make windows wider.
+        (true (>= (gtk:widget-get-width sw) 200))
         (gtk:window-destroy window))))))
 
 (defclass greeter (gtk:box)

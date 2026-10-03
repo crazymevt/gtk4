@@ -25,7 +25,7 @@
   ;; g_file_read_async: scope "async". The trampoline frees the handle after
   ;; its one call.
   (let ((before (rt:handle-count))
-        (file (gio:file-new-for-path "/etc/hosts"))
+        (file (gio:file-new-for-path (namestring (asdf:system-relative-pathname "gtk4" "LICENSE"))))
         (stream nil))
     (gio:file-read-async file glib:+priority-default+ nil
                          (lambda (source result)
