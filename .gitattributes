@@ -1,0 +1,3 @@
+# Lisp source must keep LF line endings on every platform: a FORMAT
+# directive ending in ~ before a newline breaks when the newline is CRLF.
+* text=auto eol=lf
