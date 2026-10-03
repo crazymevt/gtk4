@@ -12,19 +12,24 @@ tested: 98% of bindable functions, and 750 virtual functions Lisp classes can ov
 ```lisp
 ;; A widget class defined in Lisp: its own GType, a property, a virtual function.
 (defclass swatch (gtk:widget)
-  ((color :initform "rebeccapurple" :accessor swatch-color :property :string))
+  ((red :initform 0.4d0 :accessor swatch-red :property (:double :min 0 :max 1)))
   (:metaclass gobject:gobject-class)
   (:gtype-name "MySwatch"))
 
 (gobject:define-vfunc (swatch :snapshot) (widget snapshot)
-  (gtk:snapshot-append-color snapshot (color-of widget) (bounds-of widget)))
+  (gtk:snapshot-append-color
+   snapshot
+   (gdk:make-rgba :red (swatch-red widget) :green 0.2 :blue 0.6 :alpha 1.0)
+   (graphene:make-rect :size (graphene:make-size
+                              :width (float (gtk:widget-get-width widget))
+                              :height (float (gtk:widget-get-height widget))))))
 
 ;; A window from one s-expression.
 (gtk:build
   (gtk:window :title "Hello"
     (gtk:box :orientation :vertical :spacing 6
       (make-instance 'swatch :vexpand t)
-      (gtk:button :label "Greet" :on-clicked 'greet))))
+      (gtk:button :label "Redder" :on-clicked 'redder))))   ; REDDER: any function of one argument
 ```
 
 Every C function is also available under its own name (`gtk:widget-set-visible`
