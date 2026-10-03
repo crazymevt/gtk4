@@ -15,6 +15,7 @@ run and closed by the test suite (`tests/demos.lisp`).
 | Category | Demo | Shows |
 | --- | --- | --- |
 | Basics | Hello world | A window, a button, a signal handler |
+| Basics | Declarative UI | A window from one `gtk:build` form, styled with `gtk:add-css` |
 | Basics | Buttons | Push, toggle, check and radio buttons, switches |
 | Layout | Grid layout | GtkGrid with spanning cells |
 | Layout | Stack and sidebar | GtkStack, GtkStackSidebar, transitions |
@@ -35,6 +36,6 @@ run and closed by the test suite (`tests/demos.lisp`).
 | Feedback | Progress and spinners | GtkProgressBar, GtkSpinner, GLib timeouts |
 | Animation | Revealer | GtkRevealer transitions, GtkDropDown |
 | Data exchange | Clipboard | GdkClipboard, async reads |
-
-Demos that need widgets defined in Lisp (custom widgets, composite templates,
-list item widgets as subclasses) come with M3, which adds GObject subclassing.
+| Custom widgets | Drawing widget | A Lisp widget class: snapshot, measure, a property bound to a scale, a signal |
+| Custom widgets | Composite template | A widget built from a template, with Lisp signal handlers |
+| Custom widgets | List model in Lisp | GListModel implemented in Lisp: a million rows computed on demand |

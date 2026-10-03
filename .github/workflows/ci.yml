@@ -6,6 +6,11 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  # A GLib critical (a misused reference, say) aborts the run instead of
+  # scrolling past in the log.
+  G_DEBUG: fatal-criticals
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true

@@ -46,6 +46,12 @@
 (defun foreign-string-or-nil (pointer)
   (if (cffi:null-pointer-p pointer) nil (cffi:foreign-string-to-lisp pointer)))
 
+(defvar *strv-gtype* nil)
+
+(defun strv-gtype ()
+  "G_TYPE_STRV: NULL-terminated string arrays, which Lisp sees as lists of strings."
+  (or *strv-gtype* (setf *strv-gtype* (cffi:foreign-funcall "g_strv_get_type" gtype))))
+
 (defun gvalue-get (gvalue)
   "The Lisp value held in GVALUE. Objects are wrapped (sharing ownership),
 boxed values are copied into a BOXED proxy, strings are copied."
@@ -54,6 +60,7 @@ boxed values are copied into a BOXED proxy, strings are copied."
       ((= type (g-type-gtype)) (%g-value-get-gtype gvalue))
       ((gtype-is-a type +g-type-object+)
        (wrap-object (%g-value-get-object gvalue) :transfer :none))
+      ((= type (strv-gtype)) (strv-from-foreign (%g-value-get-boxed gvalue) :none))
       (t
        (let ((fundamental (gtype-fundamental type)))
          (cond
@@ -88,6 +95,11 @@ its type. Objects and boxed values may be proxies or raw foreign pointers."
     (cond
       ((= type (g-type-gtype)) (%g-value-set-gtype gvalue value))
       ((gtype-is-a type +g-type-object+) (%g-value-set-object gvalue (object-pointer value)))
+      ((and (= type (strv-gtype)) (listp value))
+       ;; g_value_set_boxed copies the array.
+       (let ((strv (if value (strv-to-foreign value) (cffi:null-pointer))))
+         (unwind-protect (%g-value-set-boxed gvalue strv)
+           (unless (cffi:null-pointer-p strv) (free-strv strv)))))
       (t
        (let ((fundamental (gtype-fundamental type)))
          (cond
