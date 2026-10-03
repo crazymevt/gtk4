@@ -2,7 +2,7 @@ SBCL ?= sbcl
 LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test stress summary generate docs full-stack hello example demo executable
+.PHONY: test stress summary generate docs full-stack hello example demo executable app
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -51,3 +51,16 @@ executable:
 	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \
 	        --load examples/$(NAME).lisp \
 	        --eval '(gtk4:save-executable "build/$(NAME)" (lambda () (gtk4-examples.$(NAME):main :quit-after $(QUIT_AFTER))))'
+
+# A macOS application bundle carrying its own GTK: make app NAME=clock APP=Clock
+APP ?= $(NAME)
+app:
+	scripts/macos-runtime.sh build/app-runtime
+	mkdir -p build
+	SBCL_HOME="$$(dirname "$$(cat build/app-runtime/core-path)")" \
+	build/app-runtime/MacOS/sbcl --core "$$(cat build/app-runtime/core-path)" --non-interactive \
+	        --eval '(push (truename ".") asdf:*central-registry*)' \
+	        --eval '(ql:quickload :gtk4 :silent t)' \
+	        --load examples/$(NAME).lisp \
+	        --eval '(gtk4:save-executable "build/$(NAME)" (lambda () (gtk4-examples.$(NAME):main :quit-after $(QUIT_AFTER))))'
+	scripts/macos-app.sh build/$(NAME) $(APP) org.lisp.gtk4.$(APP) --bundle-gtk
