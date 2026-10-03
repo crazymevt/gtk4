@@ -1,5 +1,7 @@
 SBCL ?= sbcl
-LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
+# Compiling all the bindings needs more than the 1 GB heap some SBCL builds default to.
+HEAP ?= 4096
+LISP = $(SBCL) --dynamic-space-size $(HEAP) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
 .PHONY: test stress summary generate docs full-stack hello example demo executable app
