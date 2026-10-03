@@ -1,0 +1,45 @@
+name: Flatpak
+
+# Builds packaging/flatpak/org.lisp.gtk4.Clock.yml and runs the result
+# briefly. It downloads the GNOME SDK, so it runs only when the packaging
+# changes, or when started by hand from the Actions tab.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - packaging/flatpak/**
+      - .github/workflows/flatpak.yml
+
+jobs:
+  flatpak:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install flatpak-builder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends flatpak flatpak-builder xvfb xauth dbus
+          flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          flatpak remote-ls --user flathub --runtime --columns=ref | grep 'org.gnome.Platform/x86_64' | sort | tail -4
+      - name: Build
+        run: >-
+          flatpak-builder --user --install-deps-from=flathub --force-clean --repo=repo
+          build-dir packaging/flatpak/org.lisp.gtk4.Clock.yml
+      - name: Run for a few seconds
+        run: |
+          set +e
+          timeout 8 dbus-run-session -- xvfb-run -a \
+            flatpak-builder --run build-dir packaging/flatpak/org.lisp.gtk4.Clock.yml clock \
+            2> stderr.txt
+          status=$?
+          cat stderr.txt
+          # 124: still running when timeout stopped it, which is what we want.
+          if [ $status -ne 124 ] && [ $status -ne 0 ]; then exit $status; fi
+          if grep -qi 'error' stderr.txt; then exit 1; fi
+      - name: Bundle
+        run: flatpak build-bundle repo clock.flatpak org.lisp.gtk4.Clock
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clock-flatpak
+          path: clock.flatpak
