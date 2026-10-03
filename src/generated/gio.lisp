@@ -6142,6 +6142,19 @@ See: https://docs.gtk.org/gio/func.content_type_get_symbolic_icon.html
 Since: 2.34")
 
 
+(rt:define-gfunction (content-type-guess "g_content_type_guess") :args
+                     ((filename :string) (data (:array :uint8)) (data-size :size :length-of data)
+                      (result-uncertain :boolean :direction :out :transfer :full))
+                     :return :string :return-transfer :full :documentation
+                     "Guesses the content type based on example data. If the function is
+uncertain, RESULT-UNCERTAIN will be set to true. Either FILENAME
+or DATA may be NIL, in which case the guess will be based solely
+on the other argument.
+
+C: g_content_type_guess
+See: https://docs.gtk.org/gio/func.content_type_guess.html")
+
+
 (rt:define-gfunction (content-type-guess-for-tree "g_content_type_guess_for_tree") :args
                      ((root (:object file))) :return :strv :return-transfer :full :version "2.18"
                      :documentation "Tries to guess the type of the tree with root ROOT, by
@@ -6264,6 +6277,18 @@ See: https://docs.gtk.org/gio/func.dbus_escape_object_path.html
 Since: 2.68")
 
 
+(rt:define-gfunction (dbus-escape-object-path-bytestring "g_dbus_escape_object_path_bytestring")
+                     :args ((bytes (:array :uint8 :zero-terminated t))) :return :string
+                     :return-transfer :full :version "2.68" :documentation
+                     "Escapes BYTES for use in a D-Bus object path component.
+BYTES is an array of zero or more nonzero bytes in an
+unspecified encoding, followed by a single zero byte.
+
+C: g_dbus_escape_object_path_bytestring
+See: https://docs.gtk.org/gio/func.dbus_escape_object_path_bytestring.html
+Since: 2.68")
+
+
 (rt:define-gfunction (dbus-generate-guid "g_dbus_generate_guid") :return :string :return-transfer
                      :full :version "2.26" :documentation
                      "Generate a D-Bus GUID that can be used with
@@ -6357,6 +6382,18 @@ Since: 2.26")
 C: g_dbus_is_unique_name
 See: https://docs.gtk.org/gio/func.dbus_is_unique_name.html
 Since: 2.26")
+
+
+(rt:define-gfunction (dbus-unescape-object-path "g_dbus_unescape_object_path") :args ((s :string))
+                     :return (:array :uint8 :zero-terminated t) :version "2.68" :documentation
+                     "Unescapes an string that was previously escaped with
+g_dbus_escape_object_path(). If the string is in a format that could
+not have been returned by g_dbus_escape_object_path(), this function
+returns NIL.
+
+C: g_dbus_unescape_object_path
+See: https://docs.gtk.org/gio/func.dbus_unescape_object_path.html
+Since: 2.68")
 
 
 (rt:define-gfunction (io-error-from-errno "g_io_error_from_errno") :args ((err-no :int)) :return
@@ -6490,6 +6527,51 @@ dummy callback), and CANCELLABLE, if they are non-NIL.
 
 C: g_pollable_source_new_full
 See: https://docs.gtk.org/gio/func.pollable_source_new_full.html
+Since: 2.34")
+
+
+(rt:define-gfunction (pollable-stream-read "g_pollable_stream_read") :args
+                     ((stream (:object input-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer) (blocking :boolean)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.34" :documentation
+                     "Tries to read from STREAM, as with g_input_stream_read() (if
+BLOCKING is true) or g_pollable_input_stream_read_nonblocking()
+(if BLOCKING is false). This can be used to more easily share
+code between blocking and non-blocking implementations of a method.
+
+C: g_pollable_stream_read
+See: https://docs.gtk.org/gio/func.pollable_stream_read.html
+Since: 2.34")
+
+
+(rt:define-gfunction (pollable-stream-write "g_pollable_stream_write") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer) (blocking :boolean)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.34" :documentation
+                     "Tries to write to STREAM, as with g_output_stream_write() (if
+BLOCKING is true) or g_pollable_output_stream_write_nonblocking()
+(if BLOCKING is false). This can be used to more easily share
+code between blocking and non-blocking implementations of a method.
+
+C: g_pollable_stream_write
+See: https://docs.gtk.org/gio/func.pollable_stream_write.html
+Since: 2.34")
+
+
+(rt:define-gfunction (pollable-stream-write-all "g_pollable_stream_write_all") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer) (blocking :boolean)
+                      (bytes-written :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :version "2.34" :documentation
+                     "Tries to write COUNT bytes to STREAM, as with
+g_output_stream_write_all(), but using g_pollable_stream_write()
+rather than g_output_stream_write().
+
+C: g_pollable_stream_write_all
+See: https://docs.gtk.org/gio/func.pollable_stream_write_all.html
 Since: 2.34")
 
 
@@ -7437,6 +7519,16 @@ See: https://docs.gtk.org/gio/method.Application.mark_busy.html
 Since: 2.38")
 
 
+(rt:define-gfunction (application-open "g_application_open") :args
+                     ((application (:object application)) (files (:array (:object file)))
+                      (n-files :int :length-of files) (hint :string))
+                     :version "2.28" :documentation "Opens the given files.
+
+C: g_application_open
+See: https://docs.gtk.org/gio/method.Application.open.html
+Since: 2.28")
+
+
 (rt:define-gfunction (application-quit "g_application_quit") :args
                      ((application (:object application))) :version "2.32" :documentation
                      "Immediately quits the application.
@@ -7463,6 +7555,16 @@ Since: 2.28")
 
 C: g_application_release
 See: https://docs.gtk.org/gio/method.Application.release.html")
+
+
+(rt:define-gfunction (application-run "g_application_run") :args
+                     ((application (:object application)) (argc :int :length-of argv)
+                      (argv (:array :string) :optional t))
+                     :return :int :version "2.28" :documentation "Runs the application.
+
+C: g_application_run
+See: https://docs.gtk.org/gio/method.Application.run.html
+Since: 2.28")
 
 
 (rt:define-gfunction (application-send-notification "g_application_send_notification") :args
@@ -7633,6 +7735,17 @@ Since: 2.36")
 C: g_application_command_line_done
 See: https://docs.gtk.org/gio/method.ApplicationCommandLine.done.html
 Since: 2.80")
+
+
+(rt:define-gfunction
+ (application-command-line-get-arguments "g_application_command_line_get_arguments") :args
+ ((cmdline (:object application-command-line)) (argc :int :length-of :return :direction :out))
+ :return (:array :string) :return-transfer :full :version "2.28" :documentation
+ "Gets the list of arguments that was passed on the command line.
+
+C: g_application_command_line_get_arguments
+See: https://docs.gtk.org/gio/method.ApplicationCommandLine.get_arguments.html
+Since: 2.28")
 
 
 (rt:define-gfunction (application-command-line-get-cwd "g_application_command_line_get_cwd") :args
@@ -7917,6 +8030,30 @@ C: g_buffered_input_stream_get_buffer_size
 See: https://docs.gtk.org/gio/method.BufferedInputStream.get_buffer_size.html")
 
 
+(rt:define-gfunction (buffered-input-stream-peek "g_buffered_input_stream_peek") :args
+                     ((stream (:object buffered-input-stream)) (buffer (:array :uint8))
+                      (offset :size) (count :size :length-of buffer))
+                     :return :size :documentation
+                     "Peeks in the buffered input, copying COUNT bytes of data from OFFSET bytes
+in the buffered input into BUFFER.
+
+C: g_buffered_input_stream_peek
+See: https://docs.gtk.org/gio/method.BufferedInputStream.peek.html")
+
+
+(rt:define-gfunction (buffered-input-stream-peek-buffer "g_buffered_input_stream_peek_buffer")
+                     :args
+                     ((stream (:object buffered-input-stream))
+                      (count :size :length-of :return :direction :out))
+                     :return (:array :uint8) :documentation
+                     "Returns the buffer with the currently available bytes. The returned
+buffer must not be modified and will become invalid when reading from
+the stream or filling the buffer.
+
+C: g_buffered_input_stream_peek_buffer
+See: https://docs.gtk.org/gio/method.BufferedInputStream.peek_buffer.html")
+
+
 (rt:define-gfunction (buffered-input-stream-read-byte "g_buffered_input_stream_read_byte") :args
                      ((stream (:object buffered-input-stream))
                       (cancellable (:object cancellable) :optional t))
@@ -8183,6 +8320,23 @@ See: https://docs.gtk.org/gio/method.CharsetConverter.set_use_fallback.html
 Since: 2.24")
 
 
+(rt:define-gfunction (converter-convert "g_converter_convert") :args
+                     ((converter (:object converter)) (inbuf (:array :uint8))
+                      (inbuf-size :size :length-of inbuf) (outbuf (:array :uint8))
+                      (outbuf-size :size :length-of outbuf) (flags (:flags converter-flags))
+                      (bytes-read :size :direction :out :transfer :full)
+                      (bytes-written :size :direction :out :transfer :full))
+                     :return (:enum converter-result) :throws t :version "2.24" :documentation
+                     "This is the main operation used when converting data. It is to be called
+multiple times in a loop, and each time it will do some work, i.e.
+producing some output (in OUTBUF) or consuming some input (from INBUF) or
+both. If its not possible to do any work an error is returned.
+
+C: g_converter_convert
+See: https://docs.gtk.org/gio/method.Converter.convert.html
+Since: 2.24")
+
+
 (rt:define-gfunction (converter-convert-bytes "g_converter_convert_bytes") :args
                      ((converter (:object converter)) (bytes (:boxed "GBytes" "g_bytes_get_type")))
                      :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :throws t
@@ -8329,6 +8483,15 @@ the given BUS-NAME and OBJECT-PATH.
 C: g_dbus_action_group_get
 See: https://docs.gtk.org/gio/type_func.DBusActionGroup.get.html
 Since: 2.32")
+
+
+(rt:define-gfunction (dbus-annotation-info-lookup "g_dbus_annotation_info_lookup") :args
+                     ((annotations (:array :pointer :zero-terminated t)) (name :string)) :return
+                     :string :version "2.26" :documentation "Looks up the value of an annotation.
+
+C: g_dbus_annotation_info_lookup
+See: https://docs.gtk.org/gio/type_func.DBusAnnotationInfo.lookup.html
+Since: 2.26")
 
 
 (rt:define-gfunction (dbus-annotation-info-ref "g_dbus_annotation_info_ref") :args
@@ -9287,6 +9450,18 @@ See: https://docs.gtk.org/gio/ctor.DBusMessage.new.html
 Since: 2.26")
 
 
+(rt:define-gfunction (dbus-message-new-from-blob "g_dbus_message_new_from_blob") :args
+                     ((blob (:array :uint8)) (blob-len :size :length-of blob)
+                      (capabilities (:flags dbus-capability-flags)))
+                     :return (:object dbus-message) :return-transfer :full :throws t :version
+                     "2.26" :documentation
+                     "Creates a new D-Bus message from the data stored at BLOB.
+
+C: g_dbus_message_new_from_blob
+See: https://docs.gtk.org/gio/ctor.DBusMessage.new_from_blob.html
+Since: 2.26")
+
+
 (rt:define-gfunction (dbus-message-new-method-call "g_dbus_message_new_method_call") :args
                      ((name :string) (path :string) (interface- :string) (method :string)) :return
                      (:object dbus-message) :return-transfer :full :version "2.26" :documentation
@@ -9304,6 +9479,17 @@ Since: 2.26")
 
 C: g_dbus_message_new_signal
 See: https://docs.gtk.org/gio/ctor.DBusMessage.new_signal.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-message-bytes-needed "g_dbus_message_bytes_needed") :args
+                     ((blob (:array :uint8)) (blob-len :size :length-of blob)) :return :ssize
+                     :throws t :version "2.26" :documentation
+                     "Utility function to calculate how many bytes are needed to
+completely deserialize the D-Bus message stored at BLOB.
+
+C: g_dbus_message_bytes_needed
+See: https://docs.gtk.org/gio/type_func.DBusMessage.bytes_needed.html
 Since: 2.26")
 
 
@@ -9391,6 +9577,16 @@ Since: 2.26")
 
 C: g_dbus_message_get_header
 See: https://docs.gtk.org/gio/method.DBusMessage.get_header.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-message-get-header-fields "g_dbus_message_get_header_fields") :args
+                     ((message (:object dbus-message))) :return (:array :uint8 :zero-terminated t)
+                     :return-transfer :container :version "2.26" :documentation
+                     "Gets an array of all header fields on MESSAGE that are set.
+
+C: g_dbus_message_get_header_fields
+See: https://docs.gtk.org/gio/method.DBusMessage.get_header_fields.html
 Since: 2.26")
 
 
@@ -9711,6 +9907,18 @@ Since: 2.26")
 
 C: g_dbus_message_set_unix_fd_list
 See: https://docs.gtk.org/gio/method.DBusMessage.set_unix_fd_list.html
+Since: 2.26")
+
+
+(rt:define-gfunction (dbus-message-to-blob "g_dbus_message_to_blob") :args
+                     ((message (:object dbus-message))
+                      (out-size :size :length-of :return :direction :out)
+                      (capabilities (:flags dbus-capability-flags)))
+                     :return (:array :uint8) :return-transfer :full :throws t :version "2.26"
+                     :documentation "Serializes MESSAGE to a blob.
+
+C: g_dbus_message_to_blob
+See: https://docs.gtk.org/gio/method.DBusMessage.to_blob.html
 Since: 2.26")
 
 
@@ -10796,6 +11004,19 @@ C: g_data_input_stream_read_int64
 See: https://docs.gtk.org/gio/method.DataInputStream.read_int64.html")
 
 
+(rt:define-gfunction (data-input-stream-read-line "g_data_input_stream_read_line") :args
+                     ((stream (:object data-input-stream))
+                      (length :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:array :uint8 :zero-terminated t) :return-transfer :full :throws t
+                     :documentation "Reads a line from the data input stream.  Note that no encoding
+checks or conversion is performed; the input is not guaranteed to
+be UTF-8, and may in fact have embedded NUL characters.
+
+C: g_data_input_stream_read_line
+See: https://docs.gtk.org/gio/method.DataInputStream.read_line.html")
+
+
 (rt:define-gfunction (data-input-stream-read-line-async "g_data_input_stream_read_line_async")
                      :args
                      ((stream (:object data-input-stream)) (io-priority :int)
@@ -10808,6 +11029,21 @@ an error to have two outstanding calls to this function.
 
 C: g_data_input_stream_read_line_async
 See: https://docs.gtk.org/gio/method.DataInputStream.read_line_async.html
+Since: 2.20")
+
+
+(rt:define-gfunction (data-input-stream-read-line-finish "g_data_input_stream_read_line_finish")
+                     :args
+                     ((stream (:object data-input-stream)) (result (:object async-result))
+                      (length :size :direction :out :transfer :full))
+                     :return (:array :uint8 :zero-terminated t) :return-transfer :full :throws t
+                     :version "2.20" :documentation "Finish an asynchronous call started by
+g_data_input_stream_read_line_async().  Note the warning about
+string encoding in g_data_input_stream_read_line() applies here as
+well.
+
+C: g_data_input_stream_read_line_finish
+See: https://docs.gtk.org/gio/method.DataInputStream.read_line_finish.html
 Since: 2.20")
 
 
@@ -11530,6 +11766,18 @@ g_dtls_connection_set_certificate().
 C: g_dtls_connection_get_certificate
 See: https://docs.gtk.org/gio/method.DtlsConnection.get_certificate.html
 Since: 2.48")
+
+
+(rt:define-gfunction
+ (dtls-connection-get-channel-binding-data "g_dtls_connection_get_channel_binding_data") :args
+ ((conn (:object dtls-connection)) (type (:enum tls-channel-binding-type))
+  (data :byte-array :direction :out))
+ :return :boolean :throws t :version "2.66" :documentation
+ "Query the TLS backend for TLS channel binding data of TYPE for CONN.
+
+C: g_dtls_connection_get_channel_binding_data
+See: https://docs.gtk.org/gio/method.DtlsConnection.get_channel_binding_data.html
+Since: 2.66")
 
 
 (rt:define-gfunction
@@ -12520,6 +12768,21 @@ See: https://docs.gtk.org/gio/method.File.load_bytes_finish.html
 Since: 2.56")
 
 
+(rt:define-gfunction (file-load-contents "g_file_load_contents") :args
+                     ((file (:object file)) (cancellable (:object cancellable))
+                      (contents (:array :uint8) :direction :out :transfer :full)
+                      (length :size :length-of contents :direction :out)
+                      (etag-out :string :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Loads the content of the file into memory. The data is always
+zero-terminated, but this is not included in the resultant LENGTH.
+The returned CONTENTS should be freed with g_free() when no longer
+needed.
+
+C: g_file_load_contents
+See: https://docs.gtk.org/gio/method.File.load_contents.html")
+
+
 (rt:define-gfunction (file-load-contents-async "g_file_load_contents_async") :args
                      ((file (:object file)) (cancellable (:object cancellable) :optional t)
                       (callback (:callback async-ready-callback :async) :optional t)
@@ -12528,6 +12791,39 @@ Since: 2.56")
 
 C: g_file_load_contents_async
 See: https://docs.gtk.org/gio/method.File.load_contents_async.html")
+
+
+(rt:define-gfunction (file-load-contents-finish "g_file_load_contents_finish") :args
+                     ((file (:object file)) (res (:object async-result))
+                      (contents (:array :uint8) :direction :out :transfer :full)
+                      (length :size :length-of contents :direction :out)
+                      (etag-out :string :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Finishes an asynchronous load of the FILE's contents.
+The contents are placed in CONTENTS, and LENGTH is set to the
+size of the CONTENTS string. The CONTENTS should be freed with
+g_free() when no longer needed. If ETAG-OUT is present, it will be
+set to the new entity tag for the FILE.
+
+C: g_file_load_contents_finish
+See: https://docs.gtk.org/gio/method.File.load_contents_finish.html")
+
+
+(rt:define-gfunction (file-load-partial-contents-finish "g_file_load_partial_contents_finish")
+                     :args
+                     ((file (:object file)) (res (:object async-result))
+                      (contents (:array :uint8) :direction :out :transfer :full)
+                      (length :size :length-of contents :direction :out)
+                      (etag-out :string :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Finishes an asynchronous partial load operation that was started
+with g_file_load_partial_contents_async(). The data is always
+zero-terminated, but this is not included in the resultant LENGTH.
+The returned CONTENTS should be freed with g_free() when no longer
+needed.
+
+C: g_file_load_partial_contents_finish
+See: https://docs.gtk.org/gio/method.File.load_partial_contents_finish.html")
 
 
 (rt:define-gfunction (file-make-directory "g_file_make_directory") :args
@@ -13044,6 +13340,34 @@ possibly creating a backup copy of the file first.
 
 C: g_file_replace_async
 See: https://docs.gtk.org/gio/method.File.replace_async.html")
+
+
+(rt:define-gfunction (file-replace-contents "g_file_replace_contents") :args
+                     ((file (:object file)) (contents (:array :uint8))
+                      (length :size :length-of contents) (etag :string) (make-backup :boolean)
+                      (flags (:flags file-create-flags))
+                      (new-etag :string :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :documentation
+                     "Replaces the contents of FILE with CONTENTS of LENGTH bytes.
+
+C: g_file_replace_contents
+See: https://docs.gtk.org/gio/method.File.replace_contents.html")
+
+
+(rt:define-gfunction (file-replace-contents-async "g_file_replace_contents_async") :args
+                     ((file (:object file)) (contents (:array :uint8))
+                      (length :size :length-of contents) (etag :string) (make-backup :boolean)
+                      (flags (:flags file-create-flags))
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Starts an asynchronous replacement of FILE with the given
+CONTENTS of LENGTH bytes. ETAG will replace the document's
+current entity tag.
+
+C: g_file_replace_contents_async
+See: https://docs.gtk.org/gio/method.File.replace_contents_async.html")
 
 
 (rt:define-gfunction (file-replace-contents-bytes-async "g_file_replace_contents_bytes_async")
@@ -15455,6 +15779,47 @@ C: g_input_stream_is_closed
 See: https://docs.gtk.org/gio/method.InputStream.is_closed.html")
 
 
+(rt:define-gfunction (input-stream-read "g_input_stream_read") :args
+                     ((stream (:object input-stream))
+                      (buffer (:array :uint8 :length count :caller-allocates t) :direction :out)
+                      (count :size) (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :documentation
+                     "Tries to read COUNT bytes from the stream into the buffer starting at
+BUFFER. Will block during this read.
+
+C: g_input_stream_read
+See: https://docs.gtk.org/gio/method.InputStream.read.html")
+
+
+(rt:define-gfunction (input-stream-read-all "g_input_stream_read_all") :args
+                     ((stream (:object input-stream))
+                      (buffer (:array :uint8 :length count :caller-allocates t) :direction :out)
+                      (count :size) (bytes-read :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :documentation
+                     "Tries to read COUNT bytes from the stream into the buffer starting at
+BUFFER. Will block during this read.
+
+C: g_input_stream_read_all
+See: https://docs.gtk.org/gio/method.InputStream.read_all.html")
+
+
+(rt:define-gfunction (input-stream-read-all-async "g_input_stream_read_all_async") :args
+                     ((stream (:object input-stream))
+                      (buffer (:array :uint8 :length count :caller-allocates t) :direction :out)
+                      (count :size) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.44" :documentation
+                     "Request an asynchronous read of COUNT bytes from the stream into the
+buffer starting at BUFFER.
+
+C: g_input_stream_read_all_async
+See: https://docs.gtk.org/gio/method.InputStream.read_all_async.html
+Since: 2.44")
+
+
 (rt:define-gfunction (input-stream-read-all-finish "g_input_stream_read_all_finish") :args
                      ((stream (:object input-stream)) (result (:object async-result))
                       (bytes-read :size :direction :out :transfer :full))
@@ -15465,6 +15830,23 @@ InputStream.read_all_async.
 C: g_input_stream_read_all_finish
 See: https://docs.gtk.org/gio/method.InputStream.read_all_finish.html
 Since: 2.44")
+
+
+(rt:define-gfunction (input-stream-read-async "g_input_stream_read_async") :args
+                     ((stream (:object input-stream))
+                      (buffer (:array :uint8 :length count :caller-allocates t) :direction :out)
+                      (count :size) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation
+                     "Request an asynchronous read of COUNT bytes from the stream into the buffer
+starting at BUFFER. When the operation is finished CALLBACK will be called.
+You can then call g_input_stream_read_finish() to get the result of the
+operation.
+
+C: g_input_stream_read_async
+See: https://docs.gtk.org/gio/method.InputStream.read_async.html")
 
 
 (rt:define-gfunction (input-stream-read-bytes "g_input_stream_read_bytes") :args
@@ -15700,6 +16082,20 @@ Since: 2.44")
 C: g_list_store_sort
 See: https://docs.gtk.org/gio/method.ListStore.sort.html
 Since: 2.46")
+
+
+(rt:define-gfunction (list-store-splice "g_list_store_splice") :args
+                     ((store (:object list-store)) (position :uint) (n-removals :uint)
+                      (additions (:array (:object rt:object)))
+                      (n-additions :uint :length-of additions))
+                     :version "2.44" :documentation
+                     "Changes STORE by removing N-REMOVALS items and adding N-ADDITIONS
+items to it. ADDITIONS must contain N-ADDITIONS items of type
+#GListStore:item-type.  NIL is not permitted.
+
+C: g_list_store_splice
+See: https://docs.gtk.org/gio/method.ListStore.splice.html
+Since: 2.44")
 
 
 (rt:define-gfunction (loadable-icon-load "g_loadable_icon_load") :args
@@ -17283,6 +17679,48 @@ C: g_output_stream_splice_finish
 See: https://docs.gtk.org/gio/method.OutputStream.splice_finish.html")
 
 
+(rt:define-gfunction (output-stream-write "g_output_stream_write") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :documentation
+                     "Tries to write COUNT bytes from BUFFER into the stream. Will block
+during the operation.
+
+C: g_output_stream_write
+See: https://docs.gtk.org/gio/method.OutputStream.write.html")
+
+
+(rt:define-gfunction (output-stream-write-all "g_output_stream_write_all") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer)
+                      (bytes-written :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :documentation
+                     "Tries to write COUNT bytes from BUFFER into the stream. Will block
+during the operation.
+
+C: g_output_stream_write_all
+See: https://docs.gtk.org/gio/method.OutputStream.write_all.html")
+
+
+(rt:define-gfunction (output-stream-write-all-async "g_output_stream_write_all_async") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.44" :documentation
+                     "Request an asynchronous write of COUNT bytes from BUFFER into
+the stream. When the operation is finished CALLBACK will be called.
+You can then call g_output_stream_write_all_finish() to get the result of the
+operation.
+
+C: g_output_stream_write_all_async
+See: https://docs.gtk.org/gio/method.OutputStream.write_all_async.html
+Since: 2.44")
+
+
 (rt:define-gfunction (output-stream-write-all-finish "g_output_stream_write_all_finish") :args
                      ((stream (:object output-stream)) (result (:object async-result))
                       (bytes-written :size :direction :out :transfer :full))
@@ -17293,6 +17731,21 @@ g_output_stream_write_all_async().
 C: g_output_stream_write_all_finish
 See: https://docs.gtk.org/gio/method.OutputStream.write_all_finish.html
 Since: 2.44")
+
+
+(rt:define-gfunction (output-stream-write-async "g_output_stream_write_async") :args
+                     ((stream (:object output-stream)) (buffer (:array :uint8))
+                      (count :size :length-of buffer) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :documentation "Request an asynchronous write of COUNT bytes from BUFFER into
+the stream. When the operation is finished CALLBACK will be called.
+You can then call g_output_stream_write_finish() to get the result of the
+operation.
+
+C: g_output_stream_write_async
+See: https://docs.gtk.org/gio/method.OutputStream.write_async.html")
 
 
 (rt:define-gfunction (output-stream-write-bytes "g_output_stream_write_bytes") :args
@@ -17517,6 +17970,22 @@ See: https://docs.gtk.org/gio/method.PollableInputStream.is_readable.html
 Since: 2.28")
 
 
+(rt:define-gfunction
+ (pollable-input-stream-read-nonblocking "g_pollable_input_stream_read_nonblocking") :args
+ ((stream (:object pollable-input-stream))
+  (buffer (:array :uint8 :length count :caller-allocates t) :direction :out) (count :size)
+  (cancellable (:object cancellable) :optional t))
+ :return :ssize :throws t :documentation
+ "Attempts to read up to COUNT bytes from STREAM into BUFFER, as
+with g_input_stream_read(). If STREAM is not currently readable,
+this will immediately return G_IO_ERROR_WOULD_BLOCK, and you can
+use g_pollable_input_stream_create_source() to create a #GSource
+that will be triggered when STREAM is readable.
+
+C: g_pollable_input_stream_read_nonblocking
+See: https://docs.gtk.org/gio/method.PollableInputStream.read_nonblocking.html")
+
+
 (rt:define-gfunction (pollable-output-stream-can-poll "g_pollable_output_stream_can_poll") :args
                      ((stream (:object pollable-output-stream))) :return :boolean :version "2.28"
                      :documentation
@@ -17550,6 +18019,21 @@ Since: 2.28")
 C: g_pollable_output_stream_is_writable
 See: https://docs.gtk.org/gio/method.PollableOutputStream.is_writable.html
 Since: 2.28")
+
+
+(rt:define-gfunction
+ (pollable-output-stream-write-nonblocking "g_pollable_output_stream_write_nonblocking") :args
+ ((stream (:object pollable-output-stream)) (buffer (:array :uint8))
+  (count :size :length-of buffer) (cancellable (:object cancellable) :optional t))
+ :return :ssize :throws t :documentation
+ "Attempts to write up to COUNT bytes from BUFFER to STREAM, as
+with g_output_stream_write(). If STREAM is not currently writable,
+this will immediately return G_IO_ERROR_WOULD_BLOCK, and you can
+use g_pollable_output_stream_create_source() to create a #GSource
+that will be triggered when STREAM is writable.
+
+C: g_pollable_output_stream_write_nonblocking
+See: https://docs.gtk.org/gio/method.PollableOutputStream.write_nonblocking.html")
 
 
 (rt:define-gfunction (power-profile-monitor-dup-default "g_power_profile_monitor_dup_default")
@@ -18580,6 +19064,22 @@ See: https://docs.gtk.org/gio/method.Settings.set_value.html
 Since: 2.26")
 
 
+(rt:define-gfunction (settings-backend-flatten-tree "g_settings_backend_flatten_tree") :args
+                     ((tree (:boxed "GTree" "g_tree_get_type"))
+                      (path :string :direction :out :transfer :full)
+                      (keys :strv :direction :out :transfer :container)
+                      (values (:array :pointer :zero-terminated t) :direction :out :transfer
+                              :container))
+                     :version "2.26" :documentation
+                     "Calculate the longest common prefix of all keys in a tree and write
+out an array of the key names relative to that prefix and,
+optionally, the value to store at each of those keys.
+
+C: g_settings_backend_flatten_tree
+See: https://docs.gtk.org/gio/type_func.SettingsBackend.flatten_tree.html
+Since: 2.26")
+
+
 (rt:define-gfunction (settings-backend-get-default "g_settings_backend_get_default") :return
                      (:object settings-backend) :return-transfer :full :version "2.28"
                      :documentation
@@ -19604,6 +20104,20 @@ See: https://docs.gtk.org/gio/method.Socket.listen.html
 Since: 2.22")
 
 
+(rt:define-gfunction (socket-receive "g_socket_receive") :args
+                     ((socket (:object socket))
+                      (buffer (:array :uint8 :length size :caller-allocates t) :direction :out)
+                      (size :size) (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.22" :documentation
+                     "Receive data (up to SIZE bytes) from a socket. This is mainly used by
+connection-oriented sockets; it is identical to g_socket_receive_from()
+with ADDRESS set to NIL.
+
+C: g_socket_receive
+See: https://docs.gtk.org/gio/method.Socket.receive.html
+Since: 2.22")
+
+
 (rt:define-gfunction (socket-receive-bytes "g_socket_receive_bytes") :args
                      ((socket (:object socket)) (size :size) (timeout-us :int64)
                       (cancellable (:object cancellable) :optional t))
@@ -19626,6 +20140,76 @@ Since: 2.80")
 C: g_socket_receive_bytes_from
 See: https://docs.gtk.org/gio/method.Socket.receive_bytes_from.html
 Since: 2.80")
+
+
+(rt:define-gfunction (socket-receive-from "g_socket_receive_from") :args
+                     ((socket (:object socket))
+                      (address (:object socket-address) :direction :out :transfer :full)
+                      (buffer (:array :uint8 :length size :caller-allocates t) :direction :out)
+                      (size :size) (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.22" :documentation
+                     "Receive data (up to SIZE bytes) from a socket.
+
+C: g_socket_receive_from
+See: https://docs.gtk.org/gio/method.Socket.receive_from.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-receive-with-blocking "g_socket_receive_with_blocking") :args
+                     ((socket (:object socket))
+                      (buffer (:array :uint8 :length size :caller-allocates t) :direction :out)
+                      (size :size) (blocking :boolean)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.26" :documentation
+                     "This behaves exactly the same as g_socket_receive(), except that
+the choice of blocking or non-blocking behavior is determined by
+the BLOCKING argument rather than by SOCKET's properties.
+
+C: g_socket_receive_with_blocking
+See: https://docs.gtk.org/gio/method.Socket.receive_with_blocking.html
+Since: 2.26")
+
+
+(rt:define-gfunction (socket-send "g_socket_send") :args
+                     ((socket (:object socket)) (buffer (:array :uint8))
+                      (size :size :length-of buffer)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.22" :documentation
+                     "Tries to send SIZE bytes from BUFFER on the socket. This is
+mainly used by connection-oriented sockets; it is identical to
+g_socket_send_to() with ADDRESS set to NIL.
+
+C: g_socket_send
+See: https://docs.gtk.org/gio/method.Socket.send.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-send-to "g_socket_send_to") :args
+                     ((socket (:object socket)) (address (:object socket-address))
+                      (buffer (:array :uint8)) (size :size :length-of buffer)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.22" :documentation
+                     "Tries to send SIZE bytes from BUFFER to ADDRESS. If ADDRESS is
+NIL then the message is sent to the default receiver (set by
+g_socket_connect()).
+
+C: g_socket_send_to
+See: https://docs.gtk.org/gio/method.Socket.send_to.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-send-with-blocking "g_socket_send_with_blocking") :args
+                     ((socket (:object socket)) (buffer (:array :uint8))
+                      (size :size :length-of buffer) (blocking :boolean)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.26" :documentation
+                     "This behaves exactly the same as g_socket_send(), except that
+the choice of blocking or non-blocking behavior is determined by
+the BLOCKING argument rather than by SOCKET's properties.
+
+C: g_socket_send_with_blocking
+See: https://docs.gtk.org/gio/method.Socket.send_with_blocking.html
+Since: 2.26")
 
 
 (rt:define-gfunction (socket-set-blocking "g_socket_set_blocking") :args
@@ -20329,6 +20913,20 @@ g_socket_is_connected() on CONNECTION's underlying #GSocket.
 C: g_socket_connection_is_connected
 See: https://docs.gtk.org/gio/method.SocketConnection.is_connected.html
 Since: 2.32")
+
+
+(rt:define-gfunction (socket-control-message-deserialize "g_socket_control_message_deserialize")
+                     :args
+                     ((level :int) (type :int) (size :size :length-of data) (data (:array :uint8)))
+                     :return (:object socket-control-message) :return-transfer :full :version
+                     "2.22" :documentation "Tries to deserialize a socket control message of a given
+LEVEL and TYPE. This will ask all known (to GType) subclasses
+of #GSocketControlMessage if they can understand this kind
+of message and if so deserialize it into a #GSocketControlMessage.
+
+C: g_socket_control_message_deserialize
+See: https://docs.gtk.org/gio/type_func.SocketControlMessage.deserialize.html
+Since: 2.22")
 
 
 (rt:define-gfunction (socket-control-message-get-level "g_socket_control_message_get_level") :args
@@ -21582,6 +22180,15 @@ C: g_themed_icon_new
 See: https://docs.gtk.org/gio/ctor.ThemedIcon.new.html")
 
 
+(rt:define-gfunction (themed-icon-new-from-names "g_themed_icon_new_from_names") :args
+                     ((iconnames (:array :string)) (len :int :length-of iconnames)) :return
+                     (:object themed-icon) :return-transfer :full :documentation
+                     "Creates a new themed icon for ICONNAMES.
+
+C: g_themed_icon_new_from_names
+See: https://docs.gtk.org/gio/ctor.ThemedIcon.new_from_names.html")
+
+
 (rt:define-gfunction
  (themed-icon-new-with-default-fallbacks "g_themed_icon_new_with_default_fallbacks") :args
  ((iconname :string)) :return (:object themed-icon) :return-transfer :full :documentation
@@ -21803,6 +22410,19 @@ See: https://docs.gtk.org/gio/ctor.TlsCertificate.new_from_pkcs11_uris.html
 Since: 2.68")
 
 
+(rt:define-gfunction (tls-certificate-new-from-pkcs12 "g_tls_certificate_new_from_pkcs12") :args
+                     ((data (:array :uint8)) (length :size :length-of data)
+                      (password :string :optional t))
+                     :return (:object tls-certificate) :return-transfer :full :throws t :version
+                     "2.72" :documentation
+                     "Creates a #GTlsCertificate from the data in DATA. It must contain
+a certificate and matching private key.
+
+C: g_tls_certificate_new_from_pkcs12
+See: https://docs.gtk.org/gio/ctor.TlsCertificate.new_from_pkcs12.html
+Since: 2.72")
+
+
 (rt:define-gfunction (tls-certificate-get-issuer "g_tls_certificate_get_issuer") :args
                      ((cert (:object tls-certificate))) :return (:object tls-certificate) :version
                      "2.28" :documentation
@@ -22002,6 +22622,18 @@ g_tls_connection_set_certificate().
 C: g_tls_connection_get_certificate
 See: https://docs.gtk.org/gio/method.TlsConnection.get_certificate.html
 Since: 2.28")
+
+
+(rt:define-gfunction
+ (tls-connection-get-channel-binding-data "g_tls_connection_get_channel_binding_data") :args
+ ((conn (:object tls-connection)) (type (:enum tls-channel-binding-type))
+  (data :byte-array :direction :out))
+ :return :boolean :throws t :version "2.66" :documentation
+ "Query the TLS backend for TLS channel binding data of TYPE for CONN.
+
+C: g_tls_connection_get_channel_binding_data
+See: https://docs.gtk.org/gio/method.TlsConnection.get_channel_binding_data.html
+Since: 2.66")
 
 
 (rt:define-gfunction (tls-connection-get-ciphersuite-name "g_tls_connection_get_ciphersuite_name")
@@ -22366,6 +22998,23 @@ See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificate_issuer_finis
 Since: 2.30")
 
 
+(rt:define-gfunction
+ (tls-database-lookup-certificates-issued-by-async
+  "g_tls_database_lookup_certificates_issued_by_async")
+ :args
+ ((self (:object tls-database)) (issuer-raw-dn :byte-array) (interaction (:object tls-interaction))
+  (flags (:flags tls-database-lookup-flags)) (cancellable (:object cancellable) :optional t)
+  (callback (:callback async-ready-callback :async) :optional t)
+  (user-data :pointer :user-data-of callback))
+ :version "2.30" :documentation
+ "Asynchronously look up certificates issued by this issuer in the database. See
+g_tls_database_lookup_certificates_issued_by() for more information.
+
+C: g_tls_database_lookup_certificates_issued_by_async
+See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificates_issued_by_async.html
+Since: 2.30")
+
+
 (rt:define-gfunction (tls-database-verify-chain "g_tls_database_verify_chain") :args
                      ((self (:object tls-database)) (chain (:object tls-certificate))
                       (purpose :string) (identity (:object socket-connectable))
@@ -22571,6 +23220,21 @@ See: https://docs.gtk.org/gio/method.TlsPassword.get_flags.html
 Since: 2.30")
 
 
+(rt:define-gfunction (tls-password-get-value "g_tls_password_get_value") :args
+                     ((password (:object tls-password))
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :uint8) :version "2.30" :documentation
+                     "Get the password value. If LENGTH is not NIL then it will be
+filled in with the length of the password value. (Note that the
+password value is not nul-terminated, so you can only pass NIL
+for LENGTH in contexts where you know the password will have a
+certain fixed length.)
+
+C: g_tls_password_get_value
+See: https://docs.gtk.org/gio/method.TlsPassword.get_value.html
+Since: 2.30")
+
+
 (rt:define-gfunction (tls-password-get-warning "g_tls_password_get_warning") :args
                      ((password (:object tls-password))) :return :string :version "2.30"
                      :documentation
@@ -22599,6 +23263,18 @@ Since: 2.30")
 
 C: g_tls_password_set_flags
 See: https://docs.gtk.org/gio/method.TlsPassword.set_flags.html
+Since: 2.30")
+
+
+(rt:define-gfunction (tls-password-set-value "g_tls_password_set_value") :args
+                     ((password (:object tls-password)) (value (:array :uint8))
+                      (length :ssize :length-of value))
+                     :version "2.30" :documentation
+                     "Set the value for this password. The VALUE will be copied by the password
+object.
+
+C: g_tls_password_set_value
+See: https://docs.gtk.org/gio/method.TlsPassword.set_value.html
 Since: 2.30")
 
 
@@ -22779,6 +23455,18 @@ See: https://docs.gtk.org/gio/ctor.UnixFDList.new.html
 Since: 2.24")
 
 
+(rt:define-gfunction (unix-fd-list-new-from-array "g_unix_fd_list_new_from_array") :args
+                     ((fds (:array :int)) (n-fds :int :length-of fds)) :return
+                     (:object unix-fd-list) :return-transfer :full :version "2.24" :documentation
+                     "Creates a new Gio.UnixFDList containing the file descriptors given
+in FDS. The file descriptors become the property of the new list and may no
+longer be used by the caller. The array itself is owned by the caller.
+
+C: g_unix_fd_list_new_from_array
+See: https://docs.gtk.org/gio/ctor.UnixFDList.new_from_array.html
+Since: 2.24")
+
+
 (rt:define-gfunction (unix-fd-list-append "g_unix_fd_list_append") :args
                      ((list (:object unix-fd-list)) (fd :int)) :return :int :throws t :version
                      "2.24" :documentation "Adds a file descriptor to LIST.
@@ -22834,6 +23522,30 @@ See: https://docs.gtk.org/gio/method.UnixFDList.peek.html
 Since: 2.90")
 
 
+(rt:define-gfunction (unix-fd-list-peek-fds "g_unix_fd_list_peek_fds") :args
+                     ((list (:object unix-fd-list))
+                      (length :int :length-of :return :direction :out))
+                     :return (:array :int) :version "2.24" :documentation
+                     "Returns the array of file descriptors that is contained in this
+object.
+
+C: g_unix_fd_list_peek_fds
+See: https://docs.gtk.org/gio/method.UnixFDList.peek_fds.html
+Since: 2.24")
+
+
+(rt:define-gfunction (unix-fd-list-steal-fds "g_unix_fd_list_steal_fds") :args
+                     ((list (:object unix-fd-list))
+                      (length :int :length-of :return :direction :out))
+                     :return (:array :int) :return-transfer :full :version "2.24" :documentation
+                     "Returns the array of file descriptors that is contained in this
+object.
+
+C: g_unix_fd_list_steal_fds
+See: https://docs.gtk.org/gio/method.UnixFDList.steal_fds.html
+Since: 2.24")
+
+
 (rt:define-gfunction (unix-socket-address-new "g_unix_socket_address_new") :args ((path :string))
                      :return (:object socket-address) :return-transfer :full :version "2.22"
                      :documentation "Creates a new #GUnixSocketAddress for PATH.
@@ -22841,6 +23553,29 @@ Since: 2.90")
 C: g_unix_socket_address_new
 See: https://docs.gtk.org/gio/ctor.UnixSocketAddress.new.html
 Since: 2.22")
+
+
+(rt:define-gfunction (unix-socket-address-new-abstract "g_unix_socket_address_new_abstract") :args
+                     ((path (:array :int8)) (path-len :int :length-of path)) :return
+                     (:object socket-address) :return-transfer :full :documentation
+                     "Creates a new G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED
+#GUnixSocketAddress for PATH.
+
+C: g_unix_socket_address_new_abstract
+See: https://docs.gtk.org/gio/ctor.UnixSocketAddress.new_abstract.html
+Deprecated.")
+
+
+(rt:define-gfunction (unix-socket-address-new-with-type "g_unix_socket_address_new_with_type")
+                     :args
+                     ((path (:array :int8)) (path-len :int :length-of path)
+                      (type (:enum unix-socket-address-type)))
+                     :return (:object socket-address) :return-transfer :full :version "2.26"
+                     :documentation "Creates a new #GUnixSocketAddress of type TYPE with name PATH.
+
+C: g_unix_socket_address_new_with_type
+See: https://docs.gtk.org/gio/ctor.UnixSocketAddress.new_with_type.html
+Since: 2.26")
 
 
 (rt:define-gfunction

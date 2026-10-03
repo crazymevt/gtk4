@@ -1218,6 +1218,17 @@ See: https://docs.gtk.org/gobject/func.signal_is_valid_name.html
 Since: 2.66")
 
 
+(rt:define-gfunction (signal-list-ids "g_signal_list_ids") :args
+                     ((itype :gtype) (n-ids :uint :length-of :return :direction :out)) :return
+                     (:array :uint) :return-transfer :full :documentation
+                     "Lists the signals by id that a certain instance or interface type
+created. Further information about the signals can be acquired through
+g_signal_query().
+
+C: g_signal_list_ids
+See: https://docs.gtk.org/gobject/func.signal_list_ids.html")
+
+
 (rt:define-gfunction (signal-lookup "g_signal_lookup") :args ((name :string) (itype :gtype))
                      :return :uint :documentation
                      "Given the name of the signal and the type of object it connects to, gets
@@ -1398,6 +1409,16 @@ C: g_type_check_value_holds
 See: https://docs.gtk.org/gobject/func.type_check_value_holds.html")
 
 
+(rt:define-gfunction (type-children "g_type_children") :args
+                     ((type :gtype) (n-children :uint :length-of :return :direction :out)) :return
+                     (:array :gtype) :return-transfer :full :documentation
+                     "Return a newly allocated and 0-terminated array of type IDs, listing
+the child types of TYPE.
+
+C: g_type_children
+See: https://docs.gtk.org/gobject/func.type_children.html")
+
+
 (rt:define-gfunction (type-default-interface-get "g_type_default_interface_get") :args
                      ((g-type :gtype)) :return (:record type-interface) :version "2.84"
                      :documentation "Returns the default interface vtable for the given G-TYPE.
@@ -1556,6 +1577,16 @@ and this function does nothing.
 C: g_type_init_with_debug_flags
 See: https://docs.gtk.org/gobject/func.type_init_with_debug_flags.html
 Deprecated.")
+
+
+(rt:define-gfunction (type-interfaces "g_type_interfaces") :args
+                     ((type :gtype) (n-interfaces :uint :length-of :return :direction :out))
+                     :return (:array :gtype) :return-transfer :full :documentation
+                     "Return a newly allocated and 0-terminated array of type IDs, listing
+the interface types that TYPE conforms to.
+
+C: g_type_interfaces
+See: https://docs.gtk.org/gobject/func.type_interfaces.html")
 
 
 (rt:define-gfunction (type-is-a "g_type_is_a") :args ((type :gtype) (is-a-type :gtype)) :return
@@ -2212,6 +2243,20 @@ See: https://docs.gtk.org/gobject/type_func.Object.interface_install_property.ht
 Since: 2.4")
 
 
+(rt:define-gfunction (object-interface-list-properties "g_object_interface_list_properties") :args
+                     ((g-iface (:record type-interface))
+                      (n-properties-p :uint :length-of :return :direction :out))
+                     :return (:array :pointer) :return-transfer :container :version "2.4"
+                     :documentation "Lists the properties of an interface.Generally, the interface
+vtable passed in as G-IFACE will be the default vtable from
+g_type_default_interface_ref(), or, if you know the interface has
+already been loaded, g_type_default_interface_peek().
+
+C: g_object_interface_list_properties
+See: https://docs.gtk.org/gobject/type_func.Object.interface_list_properties.html
+Since: 2.4")
+
+
 (rt:define-gfunction (object-bind-property "g_object_bind_property") :args
                      ((source (:object object)) (source-property :string) (target (:object object))
                       (target-property :string) (flags (:flags binding-flags)))
@@ -2436,12 +2481,33 @@ C: g_object_class_find_property
 See: https://docs.gtk.org/gobject/method.ObjectClass.find_property.html")
 
 
+(rt:define-gfunction (object-class-install-properties "g_object_class_install_properties") :args
+                     ((oclass (:record object-class)) (n-pspecs :uint :length-of pspecs)
+                      (pspecs (:array :pointer)))
+                     :version "2.26" :documentation
+                     "Installs new properties from an array of #GParamSpecs.
+
+C: g_object_class_install_properties
+See: https://docs.gtk.org/gobject/method.ObjectClass.install_properties.html
+Since: 2.26")
+
+
 (rt:define-gfunction (object-class-install-property "g_object_class_install_property") :args
                      ((oclass (:record object-class)) (property-id :uint) (pspec :pointer))
                      :documentation "Installs a new property.
 
 C: g_object_class_install_property
 See: https://docs.gtk.org/gobject/method.ObjectClass.install_property.html")
+
+
+(rt:define-gfunction (object-class-list-properties "g_object_class_list_properties") :args
+                     ((oclass (:record object-class))
+                      (n-properties :uint :length-of :return :direction :out))
+                     :return (:array :pointer) :return-transfer :container :documentation
+                     "Get an array of #GParamSpec* for all properties of a class.
+
+C: g_object_class_list_properties
+See: https://docs.gtk.org/gobject/method.ObjectClass.list_properties.html")
 
 
 (rt:define-gfunction (object-class-override-property "g_object_class_override_property") :args
@@ -2584,6 +2650,17 @@ Since: 2.80")
 
 C: g_param_spec_pool_insert
 See: https://docs.gtk.org/gobject/method.ParamSpecPool.insert.html")
+
+
+(rt:define-gfunction (param-spec-pool-list "g_param_spec_pool_list") :args
+                     ((pool (:record param-spec-pool)) (owner-type :gtype)
+                      (n-pspecs-p :uint :length-of :return :direction :out))
+                     :return (:array :pointer) :return-transfer :container :documentation
+                     "Gets an array of all #GParamSpecs owned by OWNER-TYPE in
+the pool.
+
+C: g_param_spec_pool_list
+See: https://docs.gtk.org/gobject/method.ParamSpecPool.list.html")
 
 
 (rt:define-gfunction (param-spec-pool-lookup "g_param_spec_pool_lookup") :args
@@ -2816,6 +2893,17 @@ passed in class conforms.
 
 C: g_type_interface_peek
 See: https://docs.gtk.org/gobject/type_func.TypeInterface.peek.html")
+
+
+(rt:define-gfunction (type-interface-prerequisites "g_type_interface_prerequisites") :args
+                     ((interface-type :gtype)
+                      (n-prerequisites :uint :length-of :return :direction :out))
+                     :return (:array :gtype) :return-transfer :full :version "2.2" :documentation
+                     "Returns the prerequisites of an interfaces type.
+
+C: g_type_interface_prerequisites
+See: https://docs.gtk.org/gobject/type_func.TypeInterface.prerequisites.html
+Since: 2.2")
 
 
 (rt:define-gfunction (type-interface-peek-parent "g_type_interface_peek_parent") :args

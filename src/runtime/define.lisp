@@ -137,7 +137,7 @@ whose bits are set. Unknown values are returned as integers."
 (defun spec-foreign-type (spec)
   (case (spec-kind spec)
     (:gtype 'gtype)
-    ((:string :strv :object :boxed :record :pointer :callback) :pointer)
+    ((:string :strv :object :boxed :record :pointer :callback :array :byte-array) :pointer)
     (:enum :int)
     (:flags :uint)
     (t spec)))
@@ -202,6 +202,7 @@ callback argument) to Lisp."
               `(wrap-boxed ,form (gtype-cell-gtype (load-time-value (make-gtype-cell ,gtype-name ,get-type)))
                            :transfer ,(if (eq transfer :full) :full :none))))
     ((:record :pointer) `(pointer-or-nil ,form))
+    (:byte-array `(byte-array-from-foreign ,form ,transfer))
     ((:enum :flags) `(enum-keyword ',(second spec) ,form))))
 
 (defun convert-to-foreign (form spec transfer)
@@ -243,6 +244,108 @@ the call returns (a callback's return value)."
     (:float 0f0)
     (:double 0d0)
     (t 0)))
+
+;;; C arrays
+;;;
+;;; (:array ELEMENT &key length zero-terminated fixed-size caller-allocates)
+;;; LENGTH names the argument holding the element count. guint8 arrays are
+;;; Lisp octet vectors; all others are lists. Input accepts any sequence.
+
+(defun g-malloc0 (bytes)
+  (cffi:foreign-funcall "g_malloc0" :size (max bytes 1) :pointer))
+
+(defun array-to-foreign (sequence ftype converter &key zero-terminated fixed-size)
+  "A g_malloc'd C array holding SEQUENCE's elements, each passed through
+CONVERTER. NIL gives NULL."
+  (if (null sequence)
+      (cffi:null-pointer)
+      (let* ((n (length sequence))
+             (slots (or fixed-size n))
+             (p (g-malloc0 (* (+ slots (if zero-terminated 1 0)) (cffi:foreign-type-size ftype))))
+             (i 0))
+        (map nil (lambda (e)
+                   (when (< i slots)
+                     (setf (cffi:mem-aref p ftype i) (funcall converter e)))
+                   (incf i))
+             sequence)
+        p)))
+
+(defun zero-element-p (p ftype i)
+  (let ((v (cffi:mem-aref p ftype i)))
+    (if (cffi:pointerp v) (cffi:null-pointer-p v) (eql v 0))))
+
+(defun array-from-foreign (p ftype converter &key count zero-terminated octets free-container)
+  "Lisp elements of the C array P: an octet vector when OCTETS, else a list of
+each element passed through CONVERTER. COUNT gives the length; otherwise the
+array is ZERO-TERMINATED. With FREE-CONTAINER the array itself is g_free'd."
+  (if (cffi:null-pointer-p p)
+      (if octets (make-array 0 :element-type '(unsigned-byte 8)) nil)
+      (let* ((n (or count
+                    (and zero-terminated
+                         (loop for i from 0 until (zero-element-p p ftype i) finally (return i)))
+                    (error "gtk4: C array without a length or terminator")))
+             (result (if octets
+                         (let ((v (make-array n :element-type '(unsigned-byte 8))))
+                           (dotimes (i n v) (setf (aref v i) (cffi:mem-aref p :uint8 i))))
+                         (loop for i below n collect (funcall converter (cffi:mem-aref p ftype i))))))
+        (when free-container (%g-free p))
+        result)))
+
+(defun free-foreign-array (p ftype free-elements count zero-terminated)
+  "Free a C array made by ARRAY-TO-FOREIGN, g_free'ing each element first
+when FREE-ELEMENTS (strings duplicated for the call)."
+  (unless (cffi:null-pointer-p p)
+    (when free-elements
+      (loop for i from 0
+            while (if count (< i count) (not (and zero-terminated (zero-element-p p ftype i))))
+            do (%g-free (cffi:mem-aref p :pointer i))))
+    (%g-free p)))
+
+;;; GByteArray
+
+(cffi:defcstruct gbyte-array (data :pointer) (len :uint))
+
+(defun byte-array-to-foreign (octets)
+  (if (null octets)
+      (cffi:null-pointer)
+      (let ((ba (cffi:foreign-funcall "g_byte_array_sized_new" :uint (length octets) :pointer)))
+        (cffi:with-pointer-to-vector-data (data (coerce octets '(simple-array (unsigned-byte 8) (*))))
+          (cffi:foreign-funcall "g_byte_array_append" :pointer ba :pointer data
+                                :uint (length octets) :pointer))
+        ba)))
+
+(defun byte-array-from-foreign (ba transfer)
+  (unless (cffi:null-pointer-p ba)
+    (let* ((n (cffi:foreign-slot-value ba '(:struct gbyte-array) 'len))
+           (data (cffi:foreign-slot-value ba '(:struct gbyte-array) 'data))
+           (v (make-array n :element-type '(unsigned-byte 8))))
+      (dotimes (i n) (setf (aref v i) (cffi:mem-aref data :uint8 i)))
+      (when (eq transfer :full)
+        (cffi:foreign-funcall "g_byte_array_unref" :pointer ba :void))
+      v)))
+
+(defun byte-array-unref (ba)
+  (unless (cffi:null-pointer-p ba)
+    (cffi:foreign-funcall "g_byte_array_unref" :pointer ba :void)))
+
+(defun array-read-form (spec ptr-form transfer count-form)
+  "Code converting the C array PTR-FORM described by SPEC to Lisp."
+  (destructuring-bind (element &key zero-terminated &allow-other-keys) (rest spec)
+    (let ((e (gensym "E")))
+      `(array-from-foreign ,ptr-form ',(spec-foreign-type element)
+                           (lambda (,e) ,(convert-from-foreign e element (if (eq transfer :full) :full :none)))
+                           :count ,count-form
+                           :zero-terminated ,zero-terminated
+                           :octets ,(eq element :uint8)
+                           :free-container ,(and (member transfer '(:full :container)) t)))))
+
+(defun array-write-form (spec var)
+  "Code making a C array from the Lisp sequence VAR."
+  (destructuring-bind (element &key zero-terminated fixed-size &allow-other-keys) (rest spec)
+    (let ((e (gensym "E")))
+      `(array-to-foreign ,var ',(spec-foreign-type element)
+                         (lambda (,e) ,(convert-to-foreign e element :none))
+                         :zero-terminated ,zero-terminated :fixed-size ,fixed-size))))
 
 ;;; Callbacks
 ;;;
@@ -311,6 +414,8 @@ carries the handle. The Lisp function receives the other arguments in order."
             ,body)
          `(let ((,place (object-pointer ,var))) ,body)))
     ((:boxed :record :pointer) `(let ((,place (object-pointer ,var))) ,body))
+    (:byte-array `(let ((,place (byte-array-to-foreign ,var)))
+                    (unwind-protect ,body (byte-array-unref ,place))))
     ((:enum :flags) `(let ((,place (enum-value ',(second spec) ,var))) ,body))))
 
 (defun out-initial-value (spec)
@@ -319,14 +424,19 @@ carries the handle. The Lisp function receives the other arguments in order."
 (defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
                                                 throws version documentation)
   "Define NAME as a Lisp function calling the C function C-NAME.
-ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of destroy-of):
+ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of
+destroy-of length-of):
 - :in arguments become parameters in order (trailing ones marked :optional
   become &optional); :out arguments become extra return values.
-- A (:callback TYPE SCOPE) argument takes a Lisp function or symbol (or NIL).
-  The arguments marked :user-data-of and :destroy-of that callback are hidden:
-  they carry its handle and the notifier that frees it."
-  (flet ((option (arg key &optional default) (getf (cddr arg) key default)))
-    (let* ((hidden-p (lambda (a) (or (option a :user-data-of) (option a :destroy-of))))
+- A (:callback TYPE SCOPE) argument takes a Lisp function or symbol (or NIL);
+  the arguments marked :user-data-of and :destroy-of it are hidden.
+- An (:array ...) argument takes or returns a sequence; the argument marked
+  :length-of it is hidden. :length-of :return measures the return value."
+  (flet ((option (arg key &optional default) (getf (cddr arg) key default))
+         (array-option (spec key) (getf (cddr spec) key)))
+    (let* ((places (loop for a in args collect (cons (first a) (gensym (string (first a))))))
+           (hidden-p (lambda (a) (or (option a :user-data-of) (option a :destroy-of)
+                                     (option a :length-of))))
            (ins (remove-if (lambda (a) (or (eq (option a :direction :in) :out)
                                            (funcall hidden-p a)))
                            args))
@@ -334,74 +444,120 @@ ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of destro
            (optional (remove-if-not (lambda (a) (option a :optional)) ins))
            (callbacks (remove-if-not (lambda (a) (eq (spec-kind (second a)) :callback)) args))
            (handles (loop for a in callbacks collect (cons (first a) (gensym "HANDLE"))))
+           (in-arrays (remove-if-not (lambda (a) (and (eq (spec-kind (second a)) :array)
+                                                      (eq (option a :direction :in) :in)))
+                                     args))
+           (counts (loop for a in in-arrays collect (cons (first a) (gensym "COUNT"))))
            (cell (gensym "CELL"))
            (err (gensym "ERR"))
-           (result (gensym "RESULT"))
-           (places (loop for a in args collect (gensym (string (first a)))))
-           (out-reads
-             (loop for a in args
-                   for place in places
-                   when (eq (option a :direction :in) :out)
-                     collect (convert-from-foreign
-                              `(cffi:mem-ref ,place ',(spec-foreign-type (second a)))
-                              (second a) (option a :transfer :none))))
-           (foreign-call
-             `(cffi:foreign-funcall-pointer
-               (fcell-address ,cell) ()
-               ,@(loop for a in args
-                       for place in places
-                       append (list (if (eq (option a :direction :in) :out)
-                                        :pointer
-                                        (spec-foreign-type (second a)))
-                                    place))
-               ,@(when throws (list :pointer err))
-               ,(spec-foreign-type return)))
-           (body
-             `(let ((,result ,foreign-call))
-                (declare (ignorable ,result))
-                (values ,@(unless (eq return :void)
-                            (list (convert-from-foreign result return return-transfer)))
-                        ,@out-reads))))
-      (when throws
-        (setf body `(with-gerror (,err) ,body)))
-      ;; Wrap from the last argument outwards so conversions run in argument order.
-      (loop for a in (reverse args)
-            for place in (reverse places)
-            for (var spec) = a
-            do (setf body
-                     (cond
-                       ((eq (option a :direction :in) :out)
-                        `(cffi:with-foreign-object (,place ',(spec-foreign-type spec))
-                           (setf (cffi:mem-ref ,place ',(spec-foreign-type spec))
-                                 ,(out-initial-value spec))
-                           ,body))
-                       ((option a :user-data-of)
-                        (let ((h (cdr (assoc (option a :user-data-of) handles))))
-                          `(let ((,place (or ,h (cffi:null-pointer)))) ,body)))
-                       ((option a :destroy-of)
-                        (let ((h (cdr (assoc (option a :destroy-of) handles))))
-                          `(let ((,place (if ,h (cffi:callback free-handle-notify) (cffi:null-pointer))))
-                             ,body)))
-                       ((eq (spec-kind spec) :callback)
-                        (let ((h (cdr (assoc var handles))))
-                          `(let ((,place (if ,h (cffi:callback ,(second spec)) (cffi:null-pointer))))
-                             ,body)))
-                       (t (wrap-in-argument var spec (option a :transfer :none) place body)))))
-      ;; Outermost: create each callback's handle. Scope decides who frees it:
-      ;; call -> after the C call returns; async -> the trampoline, after one
-      ;; call; notified -> GLib, through the destroy notifier; forever -> nobody.
-      (loop for a in (reverse callbacks)
-            for (var (nil nil scope)) = a
-            for h = (cdr (assoc var handles))
-            do (setf body
-                     `(let ((,h (and ,var (make-handle (make-callback-entry ,var ,(eq scope :async))))))
-                        ,(if (eq scope :call)
-                             `(unwind-protect ,body (when ,h (free-handle ,h)))
-                             body))))
-      `(progn
-         (defun ,name (,@(mapcar #'first required)
-                       ,@(when optional (cons '&optional (mapcar #'first optional))))
-           ,@(when documentation (list documentation))
-           (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
-             (with-gtk-float-traps ,body)))
-         ',name))))
+           (result (gensym "RESULT")))
+      (labels ((place (var) (cdr (assoc var places)))
+               (arg (var) (find var args :key #'first))
+               (length-arg-for (array-var)
+                 (find-if (lambda (a) (eq (option a :length-of) array-var)) args))
+               (count-form (array-var spec)
+                 ;; The element count of an out or return array.
+                 (let ((len (array-option spec :length)))
+                   (cond ((array-option spec :fixed-size))
+                         ((and len (option (arg len) :length-of))
+                          `(cffi:mem-ref ,(place len) ',(spec-foreign-type (second (arg len)))))
+                         (len len)  ; a visible :in argument: its Lisp value
+                         (t (let ((l (length-arg-for array-var)))
+                              (and l `(cffi:mem-ref ,(place (first l))
+                                                    ',(spec-foreign-type (second l))))))))))
+        (let* ((out-reads
+                 (loop for a in args
+                       for (var spec) = a
+                       when (and (eq (option a :direction :in) :out) (not (option a :length-of)))
+                         collect (cond
+                                   ((and (eq (spec-kind spec) :array) (array-option spec :caller-allocates))
+                                    (array-read-form spec (place var) :none (count-form var spec)))
+                                   ((eq (spec-kind spec) :array)
+                                    (array-read-form spec `(cffi:mem-ref ,(place var) :pointer)
+                                                     (option a :transfer :none) (count-form var spec)))
+                                   (t (convert-from-foreign
+                                       `(cffi:mem-ref ,(place var) ',(spec-foreign-type spec))
+                                       spec (option a :transfer :none))))))
+               (foreign-call
+                 `(cffi:foreign-funcall-pointer
+                   (fcell-address ,cell) ()
+                   ,@(loop for a in args
+                           append (list (if (eq (option a :direction :in) :out)
+                                            :pointer
+                                            (spec-foreign-type (second a)))
+                                        (place (first a))))
+                   ,@(when throws (list :pointer err))
+                   ,(spec-foreign-type return)))
+               (return-form
+                 (cond ((eq return :void) nil)
+                       ((eq (spec-kind return) :array)
+                        (list (array-read-form return result return-transfer
+                                               (count-form :return return))))
+                       (t (list (convert-from-foreign result return return-transfer)))))
+               (body
+                 `(let ((,result ,foreign-call))
+                    (declare (ignorable ,result))
+                    (values ,@return-form ,@out-reads))))
+          (when throws
+            (setf body `(with-gerror (,err) ,body)))
+          ;; Wrap from the last argument outwards so conversions run in argument order.
+          (loop for a in (reverse args)
+                for (var spec) = a
+                for place = (place var)
+                do (setf body
+                         (cond
+                           ;; Caller-allocated out array: we allocate the buffer.
+                           ((and (eq (option a :direction :in) :out)
+                                 (eq (spec-kind spec) :array)
+                                 (array-option spec :caller-allocates))
+                            `(let ((,place (g-malloc0 (* ,(count-form var spec)
+                                                         ,(cffi:foreign-type-size
+                                                           (spec-foreign-type (second spec)))))))
+                               (unwind-protect ,body (%g-free ,place))))
+                           ((eq (option a :direction :in) :out)
+                            `(cffi:with-foreign-object (,place ',(spec-foreign-type spec))
+                               (setf (cffi:mem-ref ,place ',(spec-foreign-type spec))
+                                     ,(out-initial-value spec))
+                               ,body))
+                           ((option a :length-of)
+                            `(let ((,place ,(cdr (assoc (option a :length-of) counts)))) ,body))
+                           ((option a :user-data-of)
+                            (let ((h (cdr (assoc (option a :user-data-of) handles))))
+                              `(let ((,place (or ,h (cffi:null-pointer)))) ,body)))
+                           ((option a :destroy-of)
+                            (let ((h (cdr (assoc (option a :destroy-of) handles))))
+                              `(let ((,place (if ,h (cffi:callback free-handle-notify) (cffi:null-pointer))))
+                                 ,body)))
+                           ((eq (spec-kind spec) :callback)
+                            (let ((h (cdr (assoc var handles))))
+                              `(let ((,place (if ,h (cffi:callback ,(second spec)) (cffi:null-pointer))))
+                                 ,body)))
+                           ((eq (spec-kind spec) :array)
+                            `(let ((,place ,(array-write-form spec var)))
+                               (unwind-protect ,body
+                                 (free-foreign-array ,place ',(spec-foreign-type (second spec))
+                                                     ,(eq (second spec) :string)
+                                                     ,(cdr (assoc var counts))
+                                                     ,(array-option spec :zero-terminated)))))
+                           (t (wrap-in-argument var spec (option a :transfer :none) place body)))))
+          ;; In-array element counts, computed before any conversion.
+          (loop for (var . count) in (reverse counts)
+                do (setf body `(let ((,count (if ,var (length ,var) 0))) ,body)))
+          ;; Outermost: create each callback's handle. Scope decides who frees it:
+          ;; call -> after the C call returns; async -> the trampoline, after one
+          ;; call; notified -> GLib, through the destroy notifier; forever -> nobody.
+          (loop for a in (reverse callbacks)
+                for (var (nil nil scope)) = a
+                for h = (cdr (assoc var handles))
+                do (setf body
+                         `(let ((,h (and ,var (make-handle (make-callback-entry ,var ,(eq scope :async))))))
+                            ,(if (eq scope :call)
+                                 `(unwind-protect ,body (when ,h (free-handle ,h)))
+                                 body))))
+          `(progn
+             (defun ,name (,@(mapcar #'first required)
+                           ,@(when optional (cons '&optional (mapcar #'first optional))))
+               ,@(when documentation (list documentation))
+               (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
+                 (with-gtk-float-traps ,body)))
+             ',name))))))

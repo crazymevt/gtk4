@@ -218,6 +218,8 @@ same-namespace class or interface it inherits from."
                                       `(:user-data-of ,(getf options :user-data-of)))
                                   ,@(when (getf options :destroy-of)
                                       `(:destroy-of ,(getf options :destroy-of)))
+                                  ,@(when (getf options :length-of)
+                                      `(:length-of ,(getf options :length-of)))
                                   ,@(when (eq (getf options :direction) :out) '(:direction :out))
                                   ,@(unless (member (getf options :transfer) '(nil :none))
                                       `(:transfer ,(getf options :transfer)))

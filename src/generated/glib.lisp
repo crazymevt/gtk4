@@ -3197,6 +3197,29 @@ See: https://docs.gtk.org/glib/func.atomic_ref_count_init.html
 Since: 2.58")
 
 
+(rt:define-gfunction (base64-decode "g_base64_decode") :args
+                     ((text :string) (out-len :size :length-of :return :direction :out)) :return
+                     (:array :uint8) :return-transfer :full :version "2.12" :documentation
+                     "Decode a sequence of Base-64 encoded text into binary data.  Note
+that the returned binary data is not necessarily zero-terminated,
+so it should not be used as a character string.
+
+C: g_base64_decode
+See: https://docs.gtk.org/glib/func.base64_decode.html
+Since: 2.12")
+
+
+(rt:define-gfunction (base64-encode "g_base64_encode") :args
+                     ((data (:array :uint8)) (len :size :length-of data)) :return :string
+                     :return-transfer :full :version "2.12" :documentation
+                     "Encode a sequence of binary data into its Base-64 stringified
+representation.
+
+C: g_base64_encode
+See: https://docs.gtk.org/glib/func.base64_encode.html
+Since: 2.12")
+
+
 (rt:define-gfunction (basename "g_basename") :args ((file-name :string)) :return :string
                      :documentation "Gets the name of the file without any leading directory
 components. It returns a pointer into the given file name
@@ -3412,6 +3435,19 @@ See: https://docs.gtk.org/glib/func.compute_checksum_for_bytes.html
 Since: 2.34")
 
 
+(rt:define-gfunction (compute-checksum-for-data "g_compute_checksum_for_data") :args
+                     ((checksum-type (:enum checksum-type)) (data (:array :uint8))
+                      (length :size :length-of data))
+                     :return :string :return-transfer :full :version "2.16" :documentation
+                     "Computes the checksum for a binary DATA of LENGTH. This is a
+convenience wrapper for g_checksum_new(), g_checksum_get_string()
+and g_checksum_free().
+
+C: g_compute_checksum_for_data
+See: https://docs.gtk.org/glib/func.compute_checksum_for_data.html
+Since: 2.16")
+
+
 (rt:define-gfunction (compute-checksum-for-string "g_compute_checksum_for_string") :args
                      ((checksum-type (:enum checksum-type)) (str :string) (length :ssize)) :return
                      :string :return-transfer :full :version "2.16" :documentation
@@ -3436,9 +3472,63 @@ See: https://docs.gtk.org/glib/func.compute_hmac_for_bytes.html
 Since: 2.50")
 
 
+(rt:define-gfunction (compute-hmac-for-data "g_compute_hmac_for_data") :args
+                     ((digest-type (:enum checksum-type)) (key (:array :uint8))
+                      (key-len :size :length-of key) (data (:array :uint8))
+                      (length :size :length-of data))
+                     :return :string :return-transfer :full :version "2.30" :documentation
+                     "Computes the HMAC for a binary DATA of LENGTH. This is a
+convenience wrapper for g_hmac_new(), g_hmac_get_string()
+and g_hmac_unref().
+
+C: g_compute_hmac_for_data
+See: https://docs.gtk.org/glib/func.compute_hmac_for_data.html
+Since: 2.30")
+
+
+(rt:define-gfunction (compute-hmac-for-string "g_compute_hmac_for_string") :args
+                     ((digest-type (:enum checksum-type)) (key (:array :uint8))
+                      (key-len :size :length-of key) (str :string) (length :ssize))
+                     :return :string :return-transfer :full :version "2.30" :documentation
+                     "Computes the HMAC for a string.
+
+C: g_compute_hmac_for_string
+See: https://docs.gtk.org/glib/func.compute_hmac_for_string.html
+Since: 2.30")
+
+
+(rt:define-gfunction (convert "g_convert") :args
+                     ((str (:array :uint8)) (len :ssize :length-of str) (to-codeset :string)
+                      (from-codeset :string) (bytes-read :size :direction :out :transfer :full)
+                      (bytes-written :size :length-of :return :direction :out))
+                     :return (:array :uint8) :return-transfer :full :throws t :documentation
+                     "Converts a string from one character set to another.
+
+C: g_convert
+See: https://docs.gtk.org/glib/func.convert.html")
+
+
 (rt:define-gfunction (convert-error-quark "g_convert_error_quark") :return :uint32 :documentation "
 C: g_convert_error_quark
 See: https://docs.gtk.org/glib/func.convert_error_quark.html")
+
+
+(rt:define-gfunction (convert-with-fallback "g_convert_with_fallback") :args
+                     ((str (:array :uint8)) (len :ssize :length-of str) (to-codeset :string)
+                      (from-codeset :string) (fallback :string)
+                      (bytes-read :size :direction :out :transfer :full)
+                      (bytes-written :size :length-of :return :direction :out))
+                     :return (:array :uint8) :return-transfer :full :throws t :documentation
+                     "Converts a string from one character set to another, possibly
+including fallback sequences for characters not representable
+in the output. Note that it is not guaranteed that the specification
+for the fallback sequences in FALLBACK will be honored. Some
+systems may do an approximate conversion from FROM-CODESET
+to TO-CODESET in their iconv() functions,
+in which case GLib will simply return that approximate conversion.
+
+C: g_convert_with_fallback
+See: https://docs.gtk.org/glib/func.convert_with_fallback.html")
 
 
 (rt:define-gfunction (creat "g_creat") :args ((filename :string) (mode :int)) :return :int :version
@@ -3492,6 +3582,16 @@ Since: 2.8")
 
 C: g_datalist_id_get_data
 See: https://docs.gtk.org/glib/func.datalist_id_get_data.html")
+
+
+(rt:define-gfunction (datalist-id-remove-multiple "g_datalist_id_remove_multiple") :args
+                     ((datalist (:record data)) (keys (:array :uint32))
+                      (n-keys :size :length-of keys))
+                     :version "2.74" :documentation "Removes multiple keys from a datalist.
+
+C: g_datalist_id_remove_multiple
+See: https://docs.gtk.org/glib/func.datalist_id_remove_multiple.html
+Since: 2.74")
 
 
 (rt:define-gfunction (datalist-set-flags "g_datalist_set_flags") :args
@@ -3703,6 +3803,17 @@ C: g_file_error_quark
 See: https://docs.gtk.org/glib/func.file_error_quark.html")
 
 
+(rt:define-gfunction (file-get-contents "g_file_get_contents") :args
+                     ((filename :string) (contents (:array :uint8) :direction :out :transfer :full)
+                      (length :size :length-of contents :direction :out))
+                     :return :boolean :throws t :documentation
+                     "Reads an entire file into allocated memory, with good error
+checking.
+
+C: g_file_get_contents
+See: https://docs.gtk.org/glib/func.file_get_contents.html")
+
+
 (rt:define-gfunction (file-open-tmp "g_file_open_tmp") :args
                      ((tmpl :string) (name-used :string :direction :out :transfer :full)) :return
                      :int :throws t :documentation
@@ -3721,6 +3832,33 @@ See: https://docs.gtk.org/glib/func.file_open_tmp.html")
 C: g_file_read_link
 See: https://docs.gtk.org/glib/func.file_read_link.html
 Since: 2.4")
+
+
+(rt:define-gfunction (file-set-contents "g_file_set_contents") :args
+                     ((filename :string) (contents (:array :uint8))
+                      (length :ssize :length-of contents))
+                     :return :boolean :throws t :version "2.8" :documentation
+                     "Writes all of CONTENTS to a file named FILENAME. This is a convenience
+wrapper around calling g_file_set_contents_full() with `flags` set to
+`G_FILE_SET_CONTENTS_CONSISTENT | G_FILE_SET_CONTENTS_ONLY_EXISTING` and
+`mode` set to `0666`.
+
+C: g_file_set_contents
+See: https://docs.gtk.org/glib/func.file_set_contents.html
+Since: 2.8")
+
+
+(rt:define-gfunction (file-set-contents-full "g_file_set_contents_full") :args
+                     ((filename :string) (contents (:array :uint8))
+                      (length :ssize :length-of contents) (flags (:flags file-set-contents-flags))
+                      (mode :int))
+                     :return :boolean :throws t :version "2.66" :documentation
+                     "Writes all of CONTENTS to a file named FILENAME, with good error checking.
+If a file called FILENAME already exists it will be overwritten.
+
+C: g_file_set_contents_full
+See: https://docs.gtk.org/glib/func.file_set_contents_full.html
+Since: 2.66")
 
 
 (rt:define-gfunction (file-test "g_file_test") :args ((filename :string) (test (:flags file-test)))
@@ -4388,6 +4526,33 @@ See: https://docs.gtk.org/glib/func.io_create_watch.html")
 C: g_listenv
 See: https://docs.gtk.org/glib/func.listenv.html
 Since: 2.8")
+
+
+(rt:define-gfunction (locale-from-utf8 "g_locale_from_utf8") :args
+                     ((utf8string :string) (len :ssize)
+                      (bytes-read :size :direction :out :transfer :full)
+                      (bytes-written :size :length-of :return :direction :out))
+                     :return (:array :uint8) :return-transfer :full :throws t :documentation
+                     "Converts a string from UTF-8 to the encoding used for strings by
+the C runtime (usually the same as that used by the operating
+system) in the [current locale](running.html#locale).
+On Windows this means the system codepage.
+
+C: g_locale_from_utf8
+See: https://docs.gtk.org/glib/func.locale_from_utf8.html")
+
+
+(rt:define-gfunction (locale-to-utf8 "g_locale_to_utf8") :args
+                     ((opsysstring (:array :uint8)) (len :ssize :length-of opsysstring)
+                      (bytes-read :size :direction :out :transfer :full)
+                      (bytes-written :size :direction :out :transfer :full))
+                     :return :string :return-transfer :full :throws t :documentation
+                     "Converts a string which is in the encoding used for strings by
+the C runtime (usually the same as that used by the operating
+system) in the [current locale](running.html#locale) into a UTF-8 string.
+
+C: g_locale_to_utf8
+See: https://docs.gtk.org/glib/func.locale_to_utf8.html")
 
 
 (rt:define-gfunction (log-default-handler "g_log_default_handler") :args
@@ -5220,6 +5385,19 @@ C: g_shell_error_quark
 See: https://docs.gtk.org/glib/func.shell_error_quark.html")
 
 
+(rt:define-gfunction (shell-parse-argv "g_shell_parse_argv") :args
+                     ((command-line :string) (argcp :int :length-of argvp :direction :out)
+                      (argvp (:array :string :zero-terminated t) :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Parses a command line into an argument vector, in much the same way
+the shell would, but without many of the expansions the shell would
+perform (variable expansion, globs, operators, filename expansion,
+etc. are not supported).
+
+C: g_shell_parse_argv
+See: https://docs.gtk.org/glib/func.shell_parse_argv.html")
+
+
 (rt:define-gfunction (shell-quote "g_shell_quote") :args ((unquoted-string :string)) :return
                      :string :return-transfer :full :documentation
                      "Quotes a string so that the shell (/bin/sh) will interpret the
@@ -5399,6 +5577,21 @@ C: g_spawn_command_line_async
 See: https://docs.gtk.org/glib/func.spawn_command_line_async.html")
 
 
+(rt:define-gfunction (spawn-command-line-sync "g_spawn_command_line_sync") :args
+                     ((command-line :string)
+                      (standard-output (:array :uint8 :zero-terminated t) :direction :out :transfer
+                       :full)
+                      (standard-error (:array :uint8 :zero-terminated t) :direction :out :transfer
+                       :full)
+                      (wait-status :int :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "A simple version of g_spawn_sync() with little-used parameters
+removed, taking a command line instead of an argument vector.
+
+C: g_spawn_command_line_sync
+See: https://docs.gtk.org/glib/func.spawn_command_line_sync.html")
+
+
 (rt:define-gfunction (spawn-error-quark "g_spawn_error_quark") :return :uint32 :documentation "
 C: g_spawn_error_quark
 See: https://docs.gtk.org/glib/func.spawn_error_quark.html")
@@ -5408,6 +5601,23 @@ See: https://docs.gtk.org/glib/func.spawn_error_quark.html")
                      :documentation "
 C: g_spawn_exit_error_quark
 See: https://docs.gtk.org/glib/func.spawn_exit_error_quark.html")
+
+
+(rt:define-gfunction (spawn-sync "g_spawn_sync") :args
+                     ((working-directory :string) (argv :strv) (envp :strv)
+                      (flags (:flags spawn-flags))
+                      (child-setup (:callback spawn-child-setup-func :call))
+                      (user-data :pointer :user-data-of child-setup)
+                      (standard-output (:array :uint8 :zero-terminated t) :direction :out :transfer
+                       :full)
+                      (standard-error (:array :uint8 :zero-terminated t) :direction :out :transfer
+                       :full)
+                      (wait-status :int :direction :out :transfer :full))
+                     :return :boolean :throws t :documentation
+                     "Executes a child synchronously (waits for the child to exit before returning).
+
+C: g_spawn_sync
+See: https://docs.gtk.org/glib/func.spawn_sync.html")
 
 
 (rt:define-gfunction (stat "g_stat") :args ((filename :string) (buf (:record stat-buf))) :return
@@ -5739,6 +5949,18 @@ appended to the last token.
 
 C: g_strsplit
 See: https://docs.gtk.org/glib/func.strsplit.html")
+
+
+(rt:define-gfunction (strsplit-set "g_strsplit_set") :args
+                     ((string :string) (delimiters (:array :uint8 :zero-terminated t))
+                      (max-tokens :int))
+                     :return :strv :return-transfer :full :version "2.4" :documentation
+                     "Splits STRING into a number of tokens not containing any of the
+bytes in DELIMITERS.
+
+C: g_strsplit_set
+See: https://docs.gtk.org/glib/func.strsplit_set.html
+Since: 2.4")
 
 
 (rt:define-gfunction (strstr-len "g_strstr_len") :args
@@ -6197,6 +6419,29 @@ See: https://docs.gtk.org/glib/func.try_realloc_n.html
 Since: 2.24")
 
 
+(rt:define-gfunction (ucs4-to-utf16 "g_ucs4_to_utf16") :args
+                     ((str (:array :uint32)) (len :long :length-of str)
+                      (items-read :long :direction :out :transfer :full)
+                      (items-written :long :direction :out :transfer :full))
+                     :return :uint16 :return-transfer :full :throws t :documentation
+                     "Convert a string from UCS-4 to UTF-16.
+
+C: g_ucs4_to_utf16
+See: https://docs.gtk.org/glib/func.ucs4_to_utf16.html")
+
+
+(rt:define-gfunction (ucs4-to-utf8 "g_ucs4_to_utf8") :args
+                     ((str (:array :uint32)) (len :long :length-of str)
+                      (items-read :long :direction :out :transfer :full)
+                      (items-written :long :direction :out :transfer :full))
+                     :return :string :return-transfer :full :throws t :documentation
+                     "Convert a string from a 32-bit fixed width representation as UCS-4.
+to UTF-8.
+
+C: g_ucs4_to_utf8
+See: https://docs.gtk.org/glib/func.ucs4_to_utf8.html")
+
+
 (rt:define-gfunction (unichar-break-type "g_unichar_break_type") :args ((c :uint32)) :return
                      (:enum unicode-break-type) :documentation
                      "Determines the break type of C. C should be a Unicode character
@@ -6494,6 +6739,17 @@ See: https://docs.gtk.org/glib/func.unicode_canonical_decomposition.html
 Deprecated.")
 
 
+(rt:define-gfunction (unicode-canonical-ordering "g_unicode_canonical_ordering") :args
+                     ((string (:array :uint32)) (len :size :length-of string)) :documentation
+                     "Computes the canonical ordering of a string in-place.
+This rearranges decomposed characters in the string
+according to their combining classes.  See the Unicode
+manual for more information.
+
+C: g_unicode_canonical_ordering
+See: https://docs.gtk.org/glib/func.unicode_canonical_ordering.html")
+
+
 (rt:define-gfunction (unlink "g_unlink") :args ((filename :string)) :return :int :version "2.6"
                      :documentation
                      "A wrapper for the POSIX unlink() function. The unlink() function
@@ -6519,6 +6775,28 @@ Since: 2.4")
 
 C: g_usleep
 See: https://docs.gtk.org/glib/func.usleep.html")
+
+
+(rt:define-gfunction (utf16-to-ucs4 "g_utf16_to_ucs4") :args
+                     ((str (:array :uint16)) (len :long :length-of str)
+                      (items-read :long :direction :out :transfer :full)
+                      (items-written :long :direction :out :transfer :full))
+                     :return :uint32 :return-transfer :full :throws t :documentation
+                     "Convert a string from UTF-16 to UCS-4.
+
+C: g_utf16_to_ucs4
+See: https://docs.gtk.org/glib/func.utf16_to_ucs4.html")
+
+
+(rt:define-gfunction (utf16-to-utf8 "g_utf16_to_utf8") :args
+                     ((str (:array :uint16)) (len :long :length-of str)
+                      (items-read :long :direction :out :transfer :full)
+                      (items-written :long :direction :out :transfer :full))
+                     :return :string :return-transfer :full :throws t :documentation
+                     "Convert a string from UTF-16 to UTF-8.
+
+C: g_utf16_to_utf8
+See: https://docs.gtk.org/glib/func.utf16_to_utf8.html")
 
 
 (rt:define-gfunction (utf8-casefold "g_utf8_casefold") :args ((str :string) (len :ssize)) :return
@@ -6769,6 +7047,25 @@ characters at the beginning and half at the end.
 C: g_utf8_truncate_middle
 See: https://docs.gtk.org/glib/func.utf8_truncate_middle.html
 Since: 2.78")
+
+
+(rt:define-gfunction (utf8-validate "g_utf8_validate") :args
+                     ((str (:array :uint8)) (max-len :ssize :length-of str)
+                      (end (:array :uint8 :zero-terminated t) :direction :out))
+                     :return :boolean :documentation "Validates UTF-8 encoded text.
+
+C: g_utf8_validate
+See: https://docs.gtk.org/glib/func.utf8_validate.html")
+
+
+(rt:define-gfunction (utf8-validate-len "g_utf8_validate_len") :args
+                     ((str (:array :uint8)) (max-len :size :length-of str)
+                      (end (:array :uint8 :zero-terminated t) :direction :out))
+                     :return :boolean :version "2.60" :documentation "Validates UTF-8 encoded text.
+
+C: g_utf8_validate_len
+See: https://docs.gtk.org/glib/func.utf8_validate_len.html
+Since: 2.60")
 
 
 (rt:define-gfunction (utime "g_utime") :args ((filename :string) (utb :pointer :optional t))
@@ -7186,6 +7483,19 @@ See: https://docs.gtk.org/glib/method.BookmarkFile.get_application_info.html
 Since: 2.66")
 
 
+(rt:define-gfunction (bookmark-file-get-applications "g_bookmark_file_get_applications") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string)
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :string) :return-transfer :full :throws t :version "2.12"
+                     :documentation
+                     "Retrieves the names of the applications that have registered the
+bookmark for URI.
+
+C: g_bookmark_file_get_applications
+See: https://docs.gtk.org/glib/method.BookmarkFile.get_applications.html
+Since: 2.12")
+
+
 (rt:define-gfunction (bookmark-file-get-description "g_bookmark_file_get_description") :args
                      ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string))
                      :return :string :return-transfer :full :throws t :version "2.12"
@@ -7193,6 +7503,17 @@ Since: 2.66")
 
 C: g_bookmark_file_get_description
 See: https://docs.gtk.org/glib/method.BookmarkFile.get_description.html
+Since: 2.12")
+
+
+(rt:define-gfunction (bookmark-file-get-groups "g_bookmark_file_get_groups") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string)
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :string) :return-transfer :full :throws t :version "2.12"
+                     :documentation "Retrieves the list of group names of the bookmark for URI.
+
+C: g_bookmark_file_get_groups
+See: https://docs.gtk.org/glib/method.BookmarkFile.get_groups.html
 Since: 2.12")
 
 
@@ -7270,6 +7591,19 @@ See: https://docs.gtk.org/glib/method.BookmarkFile.get_title.html
 Since: 2.12")
 
 
+(rt:define-gfunction (bookmark-file-get-uris "g_bookmark_file_get_uris") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type"))
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :string) :return-transfer :full :version "2.12" :documentation
+                     "Returns all URIs of the bookmarks in the bookmark file BOOKMARK.
+The array of returned URIs will be NIL-terminated, so LENGTH may
+optionally be NIL.
+
+C: g_bookmark_file_get_uris
+See: https://docs.gtk.org/glib/method.BookmarkFile.get_uris.html
+Since: 2.12")
+
+
 (rt:define-gfunction (bookmark-file-get-visited "g_bookmark_file_get_visited") :args
                      ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string))
                      :return :long :throws t :version "2.12" :documentation
@@ -7323,6 +7657,19 @@ Since: 2.12")
 
 C: g_bookmark_file_has_item
 See: https://docs.gtk.org/glib/method.BookmarkFile.has_item.html
+Since: 2.12")
+
+
+(rt:define-gfunction (bookmark-file-load-from-data "g_bookmark_file_load_from_data") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type"))
+                      (data (:array :uint8)) (length :size :length-of data))
+                     :return :boolean :throws t :version "2.12" :documentation
+                     "Loads a bookmark file from memory into an empty #GBookmarkFile
+structure.  If the object cannot be created then ERROR is set to a
+#GBookmarkFileError.
+
+C: g_bookmark_file_load_from_data
+See: https://docs.gtk.org/glib/method.BookmarkFile.load_from_data.html
 Since: 2.12")
 
 
@@ -7466,6 +7813,18 @@ See: https://docs.gtk.org/glib/method.BookmarkFile.set_description.html
 Since: 2.12")
 
 
+(rt:define-gfunction (bookmark-file-set-groups "g_bookmark_file_set_groups") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string)
+                      (groups (:array :string)) (length :size :length-of groups))
+                     :version "2.12" :documentation
+                     "Sets a list of group names for the item with URI URI.  Each previously
+set group name list is removed.
+
+C: g_bookmark_file_set_groups
+See: https://docs.gtk.org/glib/method.BookmarkFile.set_groups.html
+Since: 2.12")
+
+
 (rt:define-gfunction (bookmark-file-set-icon "g_bookmark_file_set_icon") :args
                      ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type")) (uri :string)
                       (href :string) (mime-type :string))
@@ -7559,6 +7918,17 @@ See: https://docs.gtk.org/glib/method.BookmarkFile.set_visited_date_time.html
 Since: 2.66")
 
 
+(rt:define-gfunction (bookmark-file-to-data "g_bookmark_file_to_data") :args
+                     ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type"))
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :uint8) :return-transfer :full :throws t :version "2.12"
+                     :documentation "This function outputs BOOKMARK as a string.
+
+C: g_bookmark_file_to_data
+See: https://docs.gtk.org/glib/method.BookmarkFile.to_data.html
+Since: 2.12")
+
+
 (rt:define-gfunction (bookmark-file-to-file "g_bookmark_file_to_file") :args
                      ((bookmark (:boxed "GBookmarkFile" "g_bookmark_file_get_type"))
                       (filename :string))
@@ -7569,6 +7939,149 @@ guaranteed to be atomic by using g_file_set_contents() internally.
 C: g_bookmark_file_to_file
 See: https://docs.gtk.org/glib/method.BookmarkFile.to_file.html
 Since: 2.12")
+
+
+(rt:define-gfunction (byte-array-append "g_byte_array_append") :args
+                     ((array :byte-array) (data (:array :uint8)) (len :uint :length-of data))
+                     :return :byte-array :documentation
+                     "Adds the given bytes to the end of the `GByteArray`.
+The array will grow in size automatically if necessary.
+
+C: g_byte_array_append
+See: https://docs.gtk.org/glib/type_func.ByteArray.append.html")
+
+
+(rt:define-gfunction (byte-array-free-to-bytes "g_byte_array_free_to_bytes") :args
+                     ((array :byte-array :transfer :full)) :return
+                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "2.32"
+                     :documentation "Transfers the data from the `GByteArray` into a new immutable
+GLib.Bytes.
+
+C: g_byte_array_free_to_bytes
+See: https://docs.gtk.org/glib/type_func.ByteArray.free_to_bytes.html
+Since: 2.32")
+
+
+(rt:define-gfunction (byte-array-new "g_byte_array_new") :return :byte-array :return-transfer :full
+                     :documentation "Creates a new `GByteArray` with a reference count of 1.
+
+C: g_byte_array_new
+See: https://docs.gtk.org/glib/type_func.ByteArray.new.html")
+
+
+(rt:define-gfunction (byte-array-prepend "g_byte_array_prepend") :args
+                     ((array :byte-array) (data (:array :uint8)) (len :uint :length-of data))
+                     :return :byte-array :documentation
+                     "Adds the given data to the start of the `GByteArray`.
+The array will grow in size automatically if necessary.
+
+C: g_byte_array_prepend
+See: https://docs.gtk.org/glib/type_func.ByteArray.prepend.html")
+
+
+(rt:define-gfunction (byte-array-ref "g_byte_array_ref") :args ((array :byte-array)) :return
+                     :byte-array :return-transfer :full :version "2.22" :documentation
+                     "Atomically increments the reference count of ARRAY by one.
+This function is thread-safe and may be called from any thread.
+
+C: g_byte_array_ref
+See: https://docs.gtk.org/glib/type_func.ByteArray.ref.html
+Since: 2.22")
+
+
+(rt:define-gfunction (byte-array-remove-index "g_byte_array_remove_index") :args
+                     ((array :byte-array) (index- :uint)) :return :byte-array :documentation
+                     "Removes the byte at the given index from a `GByteArray`.
+The following bytes are moved down one place.
+
+C: g_byte_array_remove_index
+See: https://docs.gtk.org/glib/type_func.ByteArray.remove_index.html")
+
+
+(rt:define-gfunction (byte-array-remove-index-fast "g_byte_array_remove_index_fast") :args
+                     ((array :byte-array) (index- :uint)) :return :byte-array :documentation
+                     "Removes the byte at the given index from a `GByteArray`. The last
+element in the array is used to fill in the space, so this function
+does not preserve the order of the `GByteArray`. But it is faster
+than GLib.ByteArray.remove_index.
+
+C: g_byte_array_remove_index_fast
+See: https://docs.gtk.org/glib/type_func.ByteArray.remove_index_fast.html")
+
+
+(rt:define-gfunction (byte-array-remove-range "g_byte_array_remove_range") :args
+                     ((array :byte-array) (index- :uint) (length :uint)) :return :byte-array
+                     :version "2.4" :documentation
+                     "Removes the given number of bytes starting at the given index from a
+`GByteArray`. The following elements are moved to close the gap.
+
+C: g_byte_array_remove_range
+See: https://docs.gtk.org/glib/type_func.ByteArray.remove_range.html
+Since: 2.4")
+
+
+(rt:define-gfunction (byte-array-set-size "g_byte_array_set_size") :args
+                     ((array :byte-array) (length :uint)) :return :byte-array :documentation
+                     "Sets the size of the `GByteArray`, expanding it if necessary.
+
+C: g_byte_array_set_size
+See: https://docs.gtk.org/glib/type_func.ByteArray.set_size.html")
+
+
+(rt:define-gfunction (byte-array-sized-new "g_byte_array_sized_new") :args ((reserved-size :uint))
+                     :return :byte-array :return-transfer :full :documentation
+                     "Creates a new `GByteArray` with RESERVED-SIZE bytes preallocated.
+This avoids frequent reallocation, if you are going to add many
+bytes to the array. Note however that the size of the array is still
+0.
+
+C: g_byte_array_sized_new
+See: https://docs.gtk.org/glib/type_func.ByteArray.sized_new.html")
+
+
+(rt:define-gfunction (byte-array-sort-with-data "g_byte_array_sort_with_data") :args
+                     ((array :byte-array) (compare-func (:callback compare-data-func :call))
+                      (user-data :pointer :user-data-of compare-func))
+                     :documentation
+                     "Like GLib.ByteArray.sort, but the comparison function takes an extra
+user data argument.
+
+C: g_byte_array_sort_with_data
+See: https://docs.gtk.org/glib/type_func.ByteArray.sort_with_data.html")
+
+
+(rt:define-gfunction (byte-array-steal "g_byte_array_steal") :args
+                     ((array :byte-array) (len :size :length-of :return :direction :out)) :return
+                     (:array :uint8) :return-transfer :full :version "2.64" :documentation
+                     "Frees the data in the array and resets the size to zero, while
+the underlying array is preserved for use elsewhere and returned
+to the caller.
+
+C: g_byte_array_steal
+See: https://docs.gtk.org/glib/type_func.ByteArray.steal.html
+Since: 2.64")
+
+
+(rt:define-gfunction (byte-array-unref "g_byte_array_unref") :args
+                     ((array :byte-array :transfer :full)) :version "2.22" :documentation
+                     "Atomically decrements the reference count of ARRAY by one. If the
+reference count drops to 0, all memory allocated by the array is
+released. This function is thread-safe and may be called from any
+thread.
+
+C: g_byte_array_unref
+See: https://docs.gtk.org/glib/type_func.ByteArray.unref.html
+Since: 2.22")
+
+
+(rt:define-gfunction (bytes-new "g_bytes_new") :args
+                     ((data (:array :uint8)) (size :size :length-of data)) :return
+                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "2.32"
+                     :documentation "Creates a new GLib.Bytes from DATA.
+
+C: g_bytes_new
+See: https://docs.gtk.org/glib/ctor.Bytes.new.html
+Since: 2.32")
 
 
 (rt:define-gfunction (bytes-new-from-bytes "g_bytes_new_from_bytes") :args
@@ -7602,6 +8115,17 @@ Since: 2.32")
 
 C: g_bytes_equal
 See: https://docs.gtk.org/glib/method.Bytes.equal.html
+Since: 2.32")
+
+
+(rt:define-gfunction (bytes-get-data "g_bytes_get_data") :args
+                     ((bytes (:boxed "GBytes" "g_bytes_get_type"))
+                      (size :size :length-of :return :direction :out))
+                     :return (:array :uint8) :version "2.32" :documentation
+                     "Get the byte data in the GLib.Bytes.
+
+C: g_bytes_get_data
+See: https://docs.gtk.org/glib/method.Bytes.get_data.html
 Since: 2.32")
 
 
@@ -7650,6 +8174,29 @@ Since: 2.32")
 
 C: g_bytes_unref
 See: https://docs.gtk.org/glib/method.Bytes.unref.html
+Since: 2.32")
+
+
+(rt:define-gfunction (bytes-unref-to-array "g_bytes_unref_to_array") :args
+                     ((bytes (:boxed "GBytes" "g_bytes_get_type") :transfer :full)) :return
+                     :byte-array :return-transfer :full :version "2.32" :documentation
+                     "Unreferences the bytes, and returns a new mutable GLib.ByteArray
+containing the same byte data.
+
+C: g_bytes_unref_to_array
+See: https://docs.gtk.org/glib/method.Bytes.unref_to_array.html
+Since: 2.32")
+
+
+(rt:define-gfunction (bytes-unref-to-data "g_bytes_unref_to_data") :args
+                     ((bytes (:boxed "GBytes" "g_bytes_get_type") :transfer :full)
+                      (size :size :length-of :return :direction :out))
+                     :return (:array :uint8) :return-transfer :full :version "2.32" :documentation
+                     "Unreferences the bytes, and returns a pointer the same byte data
+contents.
+
+C: g_bytes_unref_to_data
+See: https://docs.gtk.org/glib/method.Bytes.unref_to_data.html
 Since: 2.32")
 
 
@@ -7768,6 +8315,19 @@ Since: 2.16")
 C: g_checksum_reset
 See: https://docs.gtk.org/glib/method.Checksum.reset.html
 Since: 2.18")
+
+
+(rt:define-gfunction (checksum-update "g_checksum_update") :args
+                     ((checksum (:boxed "GChecksum" "g_checksum_get_type")) (data (:array :uint8))
+                      (length :ssize :length-of data))
+                     :version "2.16" :documentation
+                     "Feeds DATA into an existing #GChecksum. The checksum must still be
+open, that is g_checksum_get_string() or g_checksum_get_digest() must
+not have been called on CHECKSUM.
+
+C: g_checksum_update
+See: https://docs.gtk.org/glib/method.Checksum.update.html
+Since: 2.16")
 
 
 (rt:define-gfunction (completion-clear-items "g_completion_clear_items") :args
@@ -9121,6 +9681,21 @@ See: https://docs.gtk.org/glib/method.HashTableIter.steal.html
 Since: 2.16")
 
 
+(rt:define-gfunction (hmac-new "g_hmac_new") :args
+                     ((digest-type (:enum checksum-type)) (key (:array :uint8))
+                      (key-len :size :length-of key))
+                     :return (:boxed "GHmac" "g_hmac_get_type") :return-transfer :full :version
+                     "2.30" :documentation
+                     "Creates a new #GHmac, using the digest algorithm DIGEST-TYPE.
+If the DIGEST-TYPE is not known, NIL is returned.
+A #GHmac can be used to compute the HMAC of a key and an
+arbitrary binary blob, using different hashing algorithms.
+
+C: g_hmac_new
+See: https://docs.gtk.org/glib/ctor.Hmac.new.html
+Since: 2.30")
+
+
 (rt:define-gfunction (hmac-copy "g_hmac_copy") :args ((hmac (:boxed "GHmac" "g_hmac_get_type")))
                      :return (:boxed "GHmac" "g_hmac_get_type") :return-transfer :full :version
                      "2.30" :documentation "Copies a #GHmac. If HMAC has been closed, by calling
@@ -9157,6 +9732,16 @@ Since: 2.30")
 
 C: g_hmac_unref
 See: https://docs.gtk.org/glib/method.Hmac.unref.html
+Since: 2.30")
+
+
+(rt:define-gfunction (hmac-update "g_hmac_update") :args
+                     ((hmac (:boxed "GHmac" "g_hmac_get_type")) (data (:array :uint8))
+                      (length :ssize :length-of data))
+                     :version "2.30" :documentation "Feeds DATA into an existing #GHmac.
+
+C: g_hmac_update
+See: https://docs.gtk.org/glib/method.Hmac.update.html
 Since: 2.30")
 
 
@@ -9424,6 +10009,17 @@ See: https://docs.gtk.org/glib/method.IOChannel.read.html
 Deprecated.")
 
 
+(rt:define-gfunction (io-channel-read-chars "g_io_channel_read_chars") :args
+                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
+                      (buf (:array :uint8 :length count :caller-allocates t) :direction :out)
+                      (count :size) (bytes-read :size :direction :out :transfer :full))
+                     :return (:enum io-status) :throws t :documentation
+                     "Replacement for g_io_channel_read() with the new API.
+
+C: g_io_channel_read_chars
+See: https://docs.gtk.org/glib/method.IOChannel.read_chars.html")
+
+
 (rt:define-gfunction (io-channel-read-line "g_io_channel_read_line") :args
                      ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
                       (str-return :string :direction :out :transfer :full)
@@ -9448,6 +10044,17 @@ See: https://docs.gtk.org/glib/method.IOChannel.read_line.html")
 
 C: g_io_channel_read_line_string
 See: https://docs.gtk.org/glib/method.IOChannel.read_line_string.html")
+
+
+(rt:define-gfunction (io-channel-read-to-end "g_io_channel_read_to_end") :args
+                     ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
+                      (str-return (:array :uint8) :direction :out :transfer :full)
+                      (length :size :length-of str-return :direction :out))
+                     :return (:enum io-status) :throws t :documentation
+                     "Reads all the remaining data from the file.
+
+C: g_io_channel_read_to_end
+See: https://docs.gtk.org/glib/method.IOChannel.read_to_end.html")
 
 
 (rt:define-gfunction (io-channel-read-unichar "g_io_channel_read_unichar") :args
@@ -9626,6 +10233,18 @@ See: https://docs.gtk.org/glib/method.KeyFile.get_boolean.html
 Since: 2.6")
 
 
+(rt:define-gfunction (key-file-get-boolean-list "g_key_file_get_boolean_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (length :size :length-of :return :direction :out))
+                     :return (:array :boolean) :return-transfer :container :throws t :version "2.6"
+                     :documentation "Returns the values associated with KEY under GROUP-NAME as
+booleans.
+
+C: g_key_file_get_boolean_list
+See: https://docs.gtk.org/glib/method.KeyFile.get_boolean_list.html
+Since: 2.6")
+
+
 (rt:define-gfunction (key-file-get-comment "g_key_file_get_comment") :args
                      ((key-file (:boxed "GKeyFile" "g_key_file_get_type"))
                       (group-name :string :optional t) (key :string :optional t))
@@ -9645,6 +10264,18 @@ Since: 2.6")
 
 C: g_key_file_get_double
 See: https://docs.gtk.org/glib/method.KeyFile.get_double.html
+Since: 2.12")
+
+
+(rt:define-gfunction (key-file-get-double-list "g_key_file_get_double_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (length :size :length-of :return :direction :out))
+                     :return (:array :double) :return-transfer :container :throws t :version "2.12"
+                     :documentation "Returns the values associated with KEY under GROUP-NAME as
+doubles.
+
+C: g_key_file_get_double_list
+See: https://docs.gtk.org/glib/method.KeyFile.get_double_list.html
 Since: 2.12")
 
 
@@ -9680,6 +10311,18 @@ integer.
 
 C: g_key_file_get_integer
 See: https://docs.gtk.org/glib/method.KeyFile.get_integer.html
+Since: 2.6")
+
+
+(rt:define-gfunction (key-file-get-integer-list "g_key_file_get_integer_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (length :size :length-of :return :direction :out))
+                     :return (:array :int) :return-transfer :container :throws t :version "2.6"
+                     :documentation "Returns the values associated with KEY under GROUP-NAME as
+integers.
+
+C: g_key_file_get_integer_list
+See: https://docs.gtk.org/glib/method.KeyFile.get_integer_list.html
 Since: 2.6")
 
 
@@ -9719,6 +10362,20 @@ See: https://docs.gtk.org/glib/method.KeyFile.get_locale_string.html
 Since: 2.6")
 
 
+(rt:define-gfunction (key-file-get-locale-string-list "g_key_file_get_locale_string_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (locale :string)
+                      (length :size :length-of :return :direction :out))
+                     :return (:array :string :zero-terminated t) :return-transfer :full :throws t
+                     :version "2.6" :documentation
+                     "Returns the values associated with KEY under GROUP-NAME
+translated in the given LOCALE if available.
+
+C: g_key_file_get_locale_string_list
+See: https://docs.gtk.org/glib/method.KeyFile.get_locale_string_list.html
+Since: 2.6")
+
+
 (rt:define-gfunction (key-file-get-start-group "g_key_file_get_start_group") :args
                      ((key-file (:boxed "GKeyFile" "g_key_file_get_type"))) :return :string
                      :return-transfer :full :version "2.6" :documentation
@@ -9737,6 +10394,18 @@ Since: 2.6")
 
 C: g_key_file_get_string
 See: https://docs.gtk.org/glib/method.KeyFile.get_string.html
+Since: 2.6")
+
+
+(rt:define-gfunction (key-file-get-string-list "g_key_file_get_string_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (length :size :length-of :return :direction :out))
+                     :return (:array :string :zero-terminated t) :return-transfer :full :throws t
+                     :version "2.6" :documentation
+                     "Returns the values associated with KEY under GROUP-NAME.
+
+C: g_key_file_get_string_list
+See: https://docs.gtk.org/glib/method.KeyFile.get_string_list.html
 Since: 2.6")
 
 
@@ -9902,6 +10571,17 @@ See: https://docs.gtk.org/glib/method.KeyFile.set_boolean.html
 Since: 2.6")
 
 
+(rt:define-gfunction (key-file-set-boolean-list "g_key_file_set_boolean_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (list (:array :boolean)) (length :size :length-of list))
+                     :version "2.6" :documentation
+                     "Associates a list of boolean values with KEY under GROUP-NAME.
+
+C: g_key_file_set_boolean_list
+See: https://docs.gtk.org/glib/method.KeyFile.set_boolean_list.html
+Since: 2.6")
+
+
 (rt:define-gfunction (key-file-set-comment "g_key_file_set_comment") :args
                      ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
                       (key :string) (comment :string))
@@ -9921,6 +10601,17 @@ Since: 2.6")
 
 C: g_key_file_set_double
 See: https://docs.gtk.org/glib/method.KeyFile.set_double.html
+Since: 2.12")
+
+
+(rt:define-gfunction (key-file-set-double-list "g_key_file_set_double_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (list (:array :double)) (length :size :length-of list))
+                     :version "2.12" :documentation
+                     "Associates a list of double values with KEY under GROUP-NAME.
+
+C: g_key_file_set_double_list
+See: https://docs.gtk.org/glib/method.KeyFile.set_double_list.html
 Since: 2.12")
 
 
@@ -9946,6 +10637,17 @@ See: https://docs.gtk.org/glib/method.KeyFile.set_integer.html
 Since: 2.6")
 
 
+(rt:define-gfunction (key-file-set-integer-list "g_key_file_set_integer_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (list (:array :int)) (length :size :length-of list))
+                     :version "2.6" :documentation
+                     "Associates a list of integer values with KEY under GROUP-NAME.
+
+C: g_key_file_set_integer_list
+See: https://docs.gtk.org/glib/method.KeyFile.set_integer_list.html
+Since: 2.6")
+
+
 (rt:define-gfunction (key-file-set-list-separator "g_key_file_set_list_separator") :args
                      ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (separator :int8))
                      :version "2.6" :documentation
@@ -9967,6 +10669,19 @@ See: https://docs.gtk.org/glib/method.KeyFile.set_locale_string.html
 Since: 2.6")
 
 
+(rt:define-gfunction (key-file-set-locale-string-list "g_key_file_set_locale_string_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (locale :string) (list (:array :string :zero-terminated t))
+                      (length :size :length-of list))
+                     :version "2.6" :documentation
+                     "Associates a list of string values for KEY and LOCALE under
+GROUP-NAME.
+
+C: g_key_file_set_locale_string_list
+See: https://docs.gtk.org/glib/method.KeyFile.set_locale_string_list.html
+Since: 2.6")
+
+
 (rt:define-gfunction (key-file-set-string "g_key_file_set_string") :args
                      ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
                       (key :string) (string :string))
@@ -9975,6 +10690,18 @@ Since: 2.6")
 
 C: g_key_file_set_string
 See: https://docs.gtk.org/glib/method.KeyFile.set_string.html
+Since: 2.6")
+
+
+(rt:define-gfunction (key-file-set-string-list "g_key_file_set_string_list") :args
+                     ((key-file (:boxed "GKeyFile" "g_key_file_get_type")) (group-name :string)
+                      (key :string) (list (:array :string :zero-terminated t))
+                      (length :size :length-of list))
+                     :version "2.6" :documentation
+                     "Associates a list of string values for KEY under GROUP-NAME.
+
+C: g_key_file_set_string_list
+See: https://docs.gtk.org/glib/method.KeyFile.set_string_list.html
 Since: 2.6")
 
 
@@ -14625,6 +15352,17 @@ C: g_uri_error_quark
 See: https://docs.gtk.org/glib/type_func.Uri.error_quark.html")
 
 
+(rt:define-gfunction (uri-escape-bytes "g_uri_escape_bytes") :args
+                     ((unescaped (:array :uint8)) (length :size :length-of unescaped)
+                      (reserved-chars-allowed :string :optional t))
+                     :return :string :return-transfer :full :version "2.66" :documentation
+                     "Escapes arbitrary data for use in a URI.
+
+C: g_uri_escape_bytes
+See: https://docs.gtk.org/glib/type_func.Uri.escape_bytes.html
+Since: 2.66")
+
+
 (rt:define-gfunction (uri-escape-string "g_uri_escape_string") :args
                      ((unescaped :string) (reserved-chars-allowed :string) (allow-utf8 :boolean))
                      :return :string :return-transfer :full :version "2.16" :documentation
@@ -15015,6 +15753,17 @@ See: https://docs.gtk.org/glib/method.UriParamsIter.next.html
 Since: 2.66")
 
 
+(rt:define-gfunction (variant-new-array "g_variant_new_array") :args
+                     ((child-type :pointer) (children (:array :pointer))
+                      (n-children :size :length-of children))
+                     :return :pointer :version "2.24" :documentation
+                     "Creates a new #GVariant array from CHILDREN.
+
+C: g_variant_new_array
+See: https://docs.gtk.org/glib/ctor.Variant.new_array.html
+Since: 2.24")
+
+
 (rt:define-gfunction (variant-new-boolean "g_variant_new_boolean") :args ((value :boolean)) :return
                      :pointer :version "2.24" :documentation
                      "Creates a new boolean #GVariant instance -- either true or false.
@@ -15030,6 +15779,29 @@ Since: 2.24")
 C: g_variant_new_byte
 See: https://docs.gtk.org/glib/ctor.Variant.new_byte.html
 Since: 2.24")
+
+
+(rt:define-gfunction (variant-new-bytestring "g_variant_new_bytestring") :args
+                     ((string (:array :uint8 :zero-terminated t))) :return :pointer :version "2.26"
+                     :documentation
+                     "Creates an array-of-bytes #GVariant with the contents of STRING.
+This function is just like g_variant_new_string() except that the
+string need not be valid UTF-8.
+
+C: g_variant_new_bytestring
+See: https://docs.gtk.org/glib/ctor.Variant.new_bytestring.html
+Since: 2.26")
+
+
+(rt:define-gfunction (variant-new-bytestring-array "g_variant_new_bytestring_array") :args
+                     ((strv (:array :string)) (length :ssize :length-of strv)) :return :pointer
+                     :version "2.26" :documentation
+                     "Constructs an array of bytestring #GVariant from the given array of
+strings.
+
+C: g_variant_new_bytestring_array
+See: https://docs.gtk.org/glib/ctor.Variant.new_bytestring_array.html
+Since: 2.26")
 
 
 (rt:define-gfunction (variant-new-dict-entry "g_variant_new_dict_entry") :args
@@ -15134,6 +15906,17 @@ See: https://docs.gtk.org/glib/ctor.Variant.new_object_path.html
 Since: 2.24")
 
 
+(rt:define-gfunction (variant-new-objv "g_variant_new_objv") :args
+                     ((strv (:array :string)) (length :ssize :length-of strv)) :return :pointer
+                     :version "2.30" :documentation
+                     "Constructs an array of object paths #GVariant from the given array of
+strings.
+
+C: g_variant_new_objv
+See: https://docs.gtk.org/glib/ctor.Variant.new_objv.html
+Since: 2.30")
+
+
 (rt:define-gfunction (variant-new-signature "g_variant_new_signature") :args ((signature :string))
                      :return :pointer :version "2.24" :documentation
                      "Creates a D-Bus type signature #GVariant with the contents of
@@ -15151,6 +15934,29 @@ Since: 2.24")
 
 C: g_variant_new_string
 See: https://docs.gtk.org/glib/ctor.Variant.new_string.html
+Since: 2.24")
+
+
+(rt:define-gfunction (variant-new-strv "g_variant_new_strv") :args
+                     ((strv (:array :string)) (length :ssize :length-of strv)) :return :pointer
+                     :version "2.24" :documentation
+                     "Constructs an array of strings #GVariant from the given array of
+strings.
+
+C: g_variant_new_strv
+See: https://docs.gtk.org/glib/ctor.Variant.new_strv.html
+Since: 2.24")
+
+
+(rt:define-gfunction (variant-new-tuple "g_variant_new_tuple") :args
+                     ((children (:array :pointer)) (n-children :size :length-of children)) :return
+                     :pointer :version "2.24" :documentation
+                     "Creates a new tuple #GVariant out of the items in CHILDREN.  The
+type is determined from the types of CHILDREN.  No entry in the
+CHILDREN array may be NIL.
+
+C: g_variant_new_tuple
+See: https://docs.gtk.org/glib/ctor.Variant.new_tuple.html
 Since: 2.24")
 
 
@@ -15290,6 +16096,42 @@ See: https://docs.gtk.org/glib/method.Variant.compare.html
 Since: 2.26")
 
 
+(rt:define-gfunction (variant-dup-bytestring "g_variant_dup_bytestring") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :uint8 :zero-terminated t) :return-transfer :full :version "2.26"
+                     :documentation "Similar to g_variant_get_bytestring() except that instead of
+returning a constant string, the string is duplicated.
+
+C: g_variant_dup_bytestring
+See: https://docs.gtk.org/glib/method.Variant.dup_bytestring.html
+Since: 2.26")
+
+
+(rt:define-gfunction (variant-dup-bytestring-array "g_variant_dup_bytestring_array") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string) :return-transfer :full :version "2.26" :documentation
+                     "Gets the contents of an array of array of bytes #GVariant.  This call
+makes a deep copy; the return result should be released with
+g_strfreev().
+
+C: g_variant_dup_bytestring_array
+See: https://docs.gtk.org/glib/method.Variant.dup_bytestring_array.html
+Since: 2.26")
+
+
+(rt:define-gfunction (variant-dup-objv "g_variant_dup_objv") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string :zero-terminated t) :return-transfer :full :version "2.30"
+                     :documentation
+                     "Gets the contents of an array of object paths #GVariant.  This call
+makes a deep copy; the return result should be released with
+g_strfreev().
+
+C: g_variant_dup_objv
+See: https://docs.gtk.org/glib/method.Variant.dup_objv.html
+Since: 2.30")
+
+
 (rt:define-gfunction (variant-dup-string "g_variant_dup_string") :args
                      ((value :pointer) (length :size :direction :out :transfer :full)) :return
                      :string :return-transfer :full :version "2.24" :documentation
@@ -15298,6 +16140,18 @@ a constant string, the string is duplicated.
 
 C: g_variant_dup_string
 See: https://docs.gtk.org/glib/method.Variant.dup_string.html
+Since: 2.24")
+
+
+(rt:define-gfunction (variant-dup-strv "g_variant_dup_strv") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string :zero-terminated t) :return-transfer :full :version "2.24"
+                     :documentation "Gets the contents of an array of strings #GVariant.  This call
+makes a deep copy; the return result should be released with
+g_strfreev().
+
+C: g_variant_dup_strv
+See: https://docs.gtk.org/glib/method.Variant.dup_strv.html
 Since: 2.24")
 
 
@@ -15324,6 +16178,28 @@ Since: 2.24")
 C: g_variant_get_byte
 See: https://docs.gtk.org/glib/method.Variant.get_byte.html
 Since: 2.24")
+
+
+(rt:define-gfunction (variant-get-bytestring "g_variant_get_bytestring") :args ((value :pointer))
+                     :return (:array :uint8 :zero-terminated t) :version "2.26" :documentation
+                     "Returns the string value of a #GVariant instance with an
+array-of-bytes type.  The string has no particular encoding.
+
+C: g_variant_get_bytestring
+See: https://docs.gtk.org/glib/method.Variant.get_bytestring.html
+Since: 2.26")
+
+
+(rt:define-gfunction (variant-get-bytestring-array "g_variant_get_bytestring_array") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string) :return-transfer :container :version "2.26" :documentation
+                     "Gets the contents of an array of array of bytes #GVariant.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be modified.
+
+C: g_variant_get_bytestring_array
+See: https://docs.gtk.org/glib/method.Variant.get_bytestring_array.html
+Since: 2.26")
 
 
 (rt:define-gfunction (variant-get-child-value "g_variant_get_child_value") :args
@@ -15429,6 +16305,19 @@ See: https://docs.gtk.org/glib/method.Variant.get_normal_form.html
 Since: 2.24")
 
 
+(rt:define-gfunction (variant-get-objv "g_variant_get_objv") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string :zero-terminated t) :return-transfer :container :version
+                     "2.30" :documentation
+                     "Gets the contents of an array of object paths #GVariant.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be modified.
+
+C: g_variant_get_objv
+See: https://docs.gtk.org/glib/method.Variant.get_objv.html
+Since: 2.30")
+
+
 (rt:define-gfunction (variant-get-size "g_variant_get_size") :args ((value :pointer)) :return :size
                      :version "2.24" :documentation
                      "Determines the number of bytes that would be required to store VALUE
@@ -15448,6 +16337,19 @@ G_VARIANT_TYPE_OBJECT_PATH and G_VARIANT_TYPE_SIGNATURE.
 
 C: g_variant_get_string
 See: https://docs.gtk.org/glib/method.Variant.get_string.html
+Since: 2.24")
+
+
+(rt:define-gfunction (variant-get-strv "g_variant_get_strv") :args
+                     ((value :pointer) (length :size :length-of :return :direction :out)) :return
+                     (:array :string :zero-terminated t) :return-transfer :container :version
+                     "2.24" :documentation
+                     "Gets the contents of an array of strings #GVariant.  This call
+makes a shallow copy; the return result should be released with
+g_free(), but the individual strings must not be modified.
+
+C: g_variant_get_strv
+See: https://docs.gtk.org/glib/method.Variant.get_strv.html
 Since: 2.24")
 
 
@@ -15866,6 +16768,14 @@ type TYPE or `Nothing`.
 
 C: g_variant_type_new_maybe
 See: https://docs.gtk.org/glib/ctor.VariantType.new_maybe.html")
+
+
+(rt:define-gfunction (variant-type-new-tuple "g_variant_type_new_tuple") :args
+                     ((items (:array :pointer)) (length :int :length-of items)) :return :pointer
+                     :return-transfer :full :documentation "Constructs a new tuple type, from ITEMS.
+
+C: g_variant_type_new_tuple
+See: https://docs.gtk.org/glib/ctor.VariantType.new_tuple.html")
 
 
 (rt:define-gfunction (variant-type-checked- "g_variant_type_checked_") :args
