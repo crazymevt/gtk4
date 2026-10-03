@@ -60,8 +60,16 @@
              (format s "~a is not in the loaded libraries~@[; it needs version ~a~]."
                      (unavailable-function-name c) (unavailable-function-version c)))))
 
-(defstruct (fcell (:constructor make-fcell (name &optional version)))
+(defstruct (fcell (:constructor %make-fcell (name version)))
   name version (pointer nil))
+
+(defvar *fcells* '()
+  "Every function cell, so a saved image can forget their addresses.")
+
+(defun make-fcell (name &optional version)
+  (let ((cell (%make-fcell name version)))
+    (push cell *fcells*)
+    cell))
 
 (declaim (inline fcell-address))
 (defun fcell-address (cell)
@@ -71,8 +79,16 @@
                 (error 'unavailable-function :name (fcell-name cell)
                                              :version (fcell-version cell))))))
 
-(defstruct (gtype-cell (:constructor make-gtype-cell (name get-type)))
+(defstruct (gtype-cell (:constructor %make-gtype-cell (name get-type)))
   name get-type (value nil))
+
+(defvar *gtype-cells* '()
+  "Every GType cell: GType ids are assigned anew in each process.")
+
+(defun make-gtype-cell (name get-type)
+  (let ((cell (%make-gtype-cell name get-type)))
+    (push cell *gtype-cells*)
+    cell))
 
 (defun gtype-cell-gtype (cell)
   (or (gtype-cell-value cell)
@@ -92,15 +108,26 @@ also register GValue conversion for its GType."
              (unless (gethash value (enum-info-by-value info))
                (setf (gethash value (enum-info-by-value info)) key)))
     (setf (get name 'enum-info) info)
-    ;; A missing _get_type (an older library) only loses GValue conversion.
-    (when (and get-type (cffi:foreign-symbol-pointer get-type))
-      (let ((gtype (gtype-from-name gtype-name get-type)))
-        (when gtype
-          (setf (enum-info-gtype info) gtype)
-          (register-enum-converter gtype
-                                   (lambda (v) (enum-keyword name v))
-                                   (lambda (v) (enum-value name v))))))
+    (when get-type
+      (push (list name gtype-name get-type) *enum-gtypes*)
+      (register-enum-gtype name gtype-name get-type))
     name))
+
+(defvar *enum-gtypes* '()
+  "(NAME GTYPE-NAME GET-TYPE) for each enum with a GType, so a saved image
+can register them again in the new process.")
+
+(defun register-enum-gtype (name gtype-name get-type)
+  "Look up enum NAME's GType and register GValue conversion for it. A
+missing _get_type (an older library) only loses the conversion."
+  (when (cffi:foreign-symbol-pointer get-type)
+    (let ((gtype (gtype-from-name gtype-name get-type))
+          (info (enum-info name)))
+      (when gtype
+        (setf (enum-info-gtype info) gtype)
+        (register-enum-converter gtype
+                                 (lambda (v) (enum-keyword name v))
+                                 (lambda (v) (enum-value name v)))))))
 
 (defun enum-info (name)
   (or (get name 'enum-info) (error "gtk4: ~s is not an enum or flags type" name)))

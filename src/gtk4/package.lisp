@@ -14,4 +14,6 @@
    ;; GtkBuilder with Lisp signal handlers
    #:lisp-builder-scope
    #:builder-scope-package
-   #:make-builder))
+   #:make-builder
+   ;; Deployment
+   #:save-executable))
