@@ -382,6 +382,13 @@ that are not Lisp slot initargs as GObject properties."
     (let ((pointer (let ((*constructing* (cons object slot-args)))
                      (new-gobject (class-gtype (class-of object)) props))))
       (setf (slot-value object 'pointer) pointer)
-      (register-proxy object pointer :full)
+      ;; g_object_new's reference is ours, except for an initially-unowned
+      ;; object that is no longer floating: something already took it.
+      ;; GtkWindow does this, keeping the reference in its list of toplevels.
+      (register-proxy object pointer
+                      (if (and (not (%g-object-is-floating pointer))
+                               (gtype-is-a (instance-gtype pointer) (class-gtype 'initially-unowned)))
+                          :none
+                          :full))
       (let ((*initializing-slots* t))
         (apply #'call-next-method object slot-args)))))

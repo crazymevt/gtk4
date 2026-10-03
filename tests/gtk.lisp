@@ -69,3 +69,14 @@
       (is string= "Test" (gtk:window-get-title window))
       (is string= "inside" (gtk:label-get-text (gtk:window-get-child window)))
       (gtk:window-destroy window))))
+
+(define-test make-instance-respects-gtk-owned-references :parent gtk
+  ;; GtkWindow sinks its floating reference into GTK's list of toplevels, so
+  ;; make-instance must not take that reference as its own.
+  (with-gtk
+    (let* ((window (make-instance 'gtk:window :title "Owned by GTK"))
+           (pointer (gobject:object-pointer window)))
+      (is = 2 (rt::object-ref-count pointer) "GTK's reference and Lisp's")
+      (gtk:window-destroy window)
+      (rt:iterate-main-context)
+      (is = 1 (rt::object-ref-count pointer) "Lisp's, until the proxy is collected"))))
