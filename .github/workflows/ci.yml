@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ubuntu 24.04 ships GTK 4.14, the oldest release we support.
+          - name: Linux (GTK 4.14)
+            os: ubuntu-24.04
+          # Homebrew tracks the newest GTK release.
+          - name: macOS (Homebrew GTK)
+            os: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SBCL and GTK (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          # The -dev packages carry the GIR files the generator tests read.
+          sudo apt-get install -y --no-install-recommends \
+            sbcl make curl xvfb xauth dbus dbus-x11 \
+            libgtk-4-dev libadwaita-1-dev libgraphene-1.0-dev \
+            libgirepository1.0-dev gir1.2-glib-2.0-dev \
+            adwaita-icon-theme fonts-dejavu-core
+
+      - name: Install SBCL and GTK (macOS)
+        if: runner.os == 'macOS'
+        run: brew install sbcl gtk4 libadwaita gobject-introspection
+
+      - name: Versions
+        run: |
+          sbcl --version
+          pkg-config --modversion gtk4 || true
+
+      - name: Cache Quicklisp
+        uses: actions/cache@v4
+        with:
+          path: ~/quicklisp
+          key: quicklisp-${{ runner.os }}-${{ hashFiles('*.asd') }}
+          restore-keys: quicklisp-${{ runner.os }}-
+
+      - name: Install Quicklisp and dependencies
+        run: scripts/install-quicklisp.sh
+
+      - name: Generator summary
+        run: make summary
+
+      - name: Tests (Linux)
+        if: runner.os == 'Linux'
+        # A virtual X display and a session bus for GtkApplication.
+        run: dbus-run-session -- xvfb-run -a make test
+
+      - name: Stress tests (Linux)
+        if: runner.os == 'Linux'
+        run: dbus-run-session -- xvfb-run -a make stress
+
+      - name: Tests (macOS)
+        if: runner.os == 'macOS'
+        run: make test
+
+      - name: Stress tests (macOS)
+        if: runner.os == 'macOS'
+        run: make stress
+
+  docs:
+    name: Reference site
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install sbcl gtk4 libadwaita gobject-introspection
+      - uses: actions/cache@v4
+        with:
+          path: ~/quicklisp
+          key: quicklisp-${{ runner.os }}-${{ hashFiles('*.asd') }}
+          restore-keys: quicklisp-${{ runner.os }}-
+      - run: scripts/install-quicklisp.sh
+      - run: make docs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reference-site
+          path: build/docs/
