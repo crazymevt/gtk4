@@ -651,6 +651,38 @@ See: https://docs.gtk.org/gdk4/enum.VulkanError.html")
   (:unsupported . 0)
   (:not-available . 1))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain dmabuf-error
+    ("gdk-dmabuf-error-quark" dmabuf-error)
+  (:not-available dmabuf-error-not-available)
+  (:unsupported-format dmabuf-error-unsupported-format)
+  (:creation-failed dmabuf-error-creation-failed))
+
+
+(rt:define-gerror-domain gl-error
+    ("gdk-gl-error-quark" gl-error)
+  (:not-available gl-error-not-available)
+  (:unsupported-format gl-error-unsupported-format)
+  (:unsupported-profile gl-error-unsupported-profile)
+  (:compilation-failed gl-error-compilation-failed)
+  (:link-failed gl-error-link-failed))
+
+
+(rt:define-gerror-domain texture-error
+    ("gdk-texture-error-quark" texture-error)
+  (:too-large texture-error-too-large)
+  (:corrupt-image texture-error-corrupt-image)
+  (:unsupported-content texture-error-unsupported-content)
+  (:unsupported-format texture-error-unsupported-format))
+
+
+(rt:define-gerror-domain vulkan-error
+    ("gdk-vulkan-error-quark" vulkan-error)
+  (:unsupported vulkan-error-unsupported)
+  (:not-available vulkan-error-not-available))
+
 ;;; Constants
 
 

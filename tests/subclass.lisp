@@ -272,3 +272,32 @@
       (gobject:emit button :clicked)
       (is = 1 *builder-clicks*))))
 
+
+;;; Redefinition at the REPL
+
+(defclass redefinable (gobject:object)
+  ((a :initform 1 :accessor redefinable-a))
+  (:metaclass gobject:gobject-class)
+  (:gtype-name "TestLispRedefinable"))
+
+(define-test class-redefinition :parent subclass
+  (let* ((old (make-instance 'redefinable))
+         (gtype (gobject:class-gtype 'redefinable)))
+    ;; New Lisp slots: same GType, and existing instances gain the slot.
+    (eval '(defclass redefinable (gobject:object)
+            ((a :initform 1 :accessor redefinable-a)
+             (b :initform 2 :accessor redefinable-b))
+            (:metaclass gobject:gobject-class)
+            (:gtype-name "TestLispRedefinable")))
+    (let ((new (make-instance 'redefinable)))
+      (is = gtype (gobject:class-gtype 'redefinable))
+      (is = 2 (funcall 'redefinable-b old))
+      (is = 2 (funcall 'redefinable-b new)))
+    ;; A new property cannot be added to a registered GType: say so.
+    (eval '(defclass redefinable (gobject:object)
+            ((a :initform 1 :accessor redefinable-a)
+             (b :initform 2 :accessor redefinable-b :property :int))
+            (:metaclass gobject:gobject-class)
+            (:gtype-name "TestLispRedefinable")))
+    (of-type warning (handler-case (progn (make-instance 'redefinable) nil)
+                       (warning (w) w)))))

@@ -73,3 +73,16 @@ Returns the number of iterations run. Used by tests and REPL helpers."
           while (%g-main-context-pending (cffi:null-pointer))
           do (%g-main-context-iteration (cffi:null-pointer) nil)
           finally (return i))))
+
+;;; Async functions
+
+(defmacro define-async (async finish &key callback-position finish-takes-source)
+  "Record that the GAsyncReadyCallback of ASYNC (a function) is argument
+CALLBACK-POSITION and that FINISH completes it; FINISH-TAKES-SOURCE says
+whether FINISH takes the source object before the GAsyncResult. Used by
+gio:async."
+  `(setf (get ',async 'async-finish) '(,finish ,callback-position ,finish-takes-source)))
+
+(defun async-finish-info (async)
+  "(FINISH CALLBACK-POSITION FINISH-TAKES-SOURCE) for ASYNC, or NIL."
+  (get async 'async-finish))

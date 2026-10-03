@@ -143,6 +143,8 @@ See: https://docs.gtk.org/gobject/flags.TypeFundamentalFlags.html")
   (:derivable . 4)
   (:deep-derivable . 8))
 
+;;; Error domains
+
 ;;; Constants
 
 
@@ -577,13 +579,6 @@ See: https://docs.gtk.org/gobject/struct.Closure.html")
 
 
 See: https://docs.gtk.org/gobject/struct.Closure.html")
-
-
-(rt:define-gstruct-constructor make-closure (:boxed "GClosure" "g_closure_get_type" closure)
-                               ((in-marshal :bits-0 :uint :bits (1 30))
-                                (is-invalid :bits-0 :uint :bits (1 31)))
-                               :documentation
-                               "A new Closure with the given fields; others are zero.")
 
 
 (rt:define-gstruct c-closure

@@ -61,6 +61,9 @@
 
 (defun item-symbol (item) (gethash item *item-symbols*))
 
+(defvar *error-conditions* (make-hash-table :test 'eq)
+  "Error-domain gir-enum -> (CONDITION-SYMBOL (CODE-KEYWORD CODE-CONDITION)...).")
+
 (defun recreate-package (name)
   "A fresh package NAME using CL. Only safe in an image that has not loaded
 the generated bindings, which is why the generator runs in its own process."
@@ -103,6 +106,7 @@ Symbols are stored on the model items under the :LISP-SYMBOL property list
 of the hash table *ITEM-SYMBOLS*."
   (clrhash *type-symbols*)
   (clrhash *item-symbols*)
+  (clrhash *error-conditions*)
   (dolist (ns (context-targets ctx))
     (let* ((nsname (gir-namespace-name ns))
            (package (recreate-package (namespace-package-name nsname))))
@@ -111,9 +115,13 @@ of the hash table *ITEM-SYMBOLS*."
         (let ((s (find-symbol name "GTK4.RUNTIME")))
           (import s package)
           (export s package)
-          (setf (gethash (format nil "~a:~a:function" (package-name package) (string-downcase name))
+          ;; The same key CLAIM-SYMBOL uses, so nothing generated takes the name.
+          (setf (gethash (format nil "~a:~a:~a" (package-name package) (string-downcase name) :function)
                          (context-owners ctx))
                 "runtime")))
+      ;; Names of the hand-written Lisp API.
+      (dolist (name (cdr (assoc nsname *lisp-api-exports* :test #'string=)))
+        (claim-symbol ctx package name "hand-written Lisp API"))
       ;; Types first, so they win name collisions.
       (dolist (item (append (gir-namespace-enums ns) (gir-namespace-classes ns)
                             (gir-namespace-callbacks ns) (gir-namespace-aliases ns)))
@@ -145,6 +153,30 @@ of the hash table *ITEM-SYMBOLS*."
             (name-callables kebab (gir-class-methods c))))
         (dolist (e (gir-namespace-enums ns))
           (name-callables (camel-to-kebab (gir-item-name e)) (gir-enum-functions e))))
+      ;; A condition class per GError domain, and one per error code.
+      (dolist (e (gir-namespace-enums ns))
+        (when (gir-enum-error-domain e)
+          (let* ((enum-symbol (type-symbol (qualify (gir-item-name e) nsname)))
+                 (kebab (camel-to-kebab (gir-item-name e)))
+                 (base (if (and (> (length kebab) 5) (string= "-enum" (subseq kebab (- (length kebab) 5))))
+                           (subseq kebab 0 (- (length kebab) 5))
+                           kebab))
+                 (condition (if (string= base kebab)
+                                enum-symbol
+                                (or (claim-symbol ctx package base (format nil "~a condition" (gir-item-name e)) :type)
+                                    enum-symbol))))
+            (when condition
+              (setf (gethash e *error-conditions*)
+                    (cons condition
+                          (loop for m in (gir-enum-members e)
+                                for code = (claim-symbol ctx package
+                                                         (format nil "~a-~a" (string-downcase (symbol-name condition))
+                                                                 (snake-to-kebab (gir-member-name m)))
+                                                         (format nil "~a.~a condition" (gir-item-name e) (gir-member-name m))
+                                                         :type)
+                                when code
+                                  collect (list (intern (string-upcase (snake-to-kebab (gir-member-name m))) :keyword)
+                                                code))))))))
       ;; Property accessors last; they lose collisions with methods.
       (dolist (c (gir-namespace-classes ns))
         (when (member (gir-class-kind c) '(:class :interface))

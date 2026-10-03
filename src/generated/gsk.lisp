@@ -327,6 +327,15 @@ See: https://docs.gtk.org/gsk4/enum.TransformCategory.html")
   (:2d-translate . 5)
   (:identity . 6))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain serialization-error
+    ("gsk-serialization-error-quark" serialization-error)
+  (:unsupported-format serialization-error-unsupported-format)
+  (:unsupported-version serialization-error-unsupported-version)
+  (:invalid-data serialization-error-invalid-data))
+
 ;;; Constants
 
 

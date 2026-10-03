@@ -42,6 +42,8 @@
    #:glib-error-message
    #:*error-domain-conditions*
    #:with-gerror
+   #:define-gerror-domain
+   #:glib-error-keyword
    ;; GValue
    #:with-gvalue
    #:gvalue-get
@@ -64,6 +66,7 @@
    #:define-vfunc
    #:call-next-vfunc
    #:remove-vfunc
+   #:call-vfunc
    #:find-vfunc
    #:template-child
    #:designator-gtype
@@ -80,6 +83,8 @@
    ;; definitions used by generated code
    #:define-gfunction
    #:define-gvfunc
+   #:define-async
+   #:async-finish-info
    #:define-gcallback
    #:define-genum
    #:define-gconstant

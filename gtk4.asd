@@ -9,7 +9,11 @@
   :pathname "src/gtk4/"
   :serial t
   :components ((:file "package")
-               (:file "templates")))
+               (:file "templates")
+               (:file "models")
+               (:file "async")
+               (:file "build")
+               (:file "css")))
 
 (defsystem "gtk4/runtime"
   :description "Hand-written core: library loading, float traps, main thread, GObject runtime."

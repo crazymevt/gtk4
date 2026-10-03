@@ -71,11 +71,20 @@ operators (t, pi, function) get a suffix: they cannot be bound, or print as
           (concatenate 'string name "-value")
           name))))
 
+(defparameter *lisp-api-exports*
+  '(("GObject" "lisp-object" "lisp-object-value" "make-lisp-object")
+    ("Gio" "async" "make-list-store" "list-model-items")
+    ("Gtk" "build" "css" "add-css" "make-factory" "make-list-view" "list-item-value"))
+  "Names the hand-written Lisp API (src/gtk4/) defines in each namespace's
+package. They are claimed before generated names, so nothing generated can
+take them, and exported from the generated package definitions.")
+
 (defparameter *runtime-exports*
   '(("GObject" "CONNECT" "DISCONNECT" "EMIT" "BLOCK-HANDLER" "UNBLOCK-HANDLER"
      "HANDLER-CONNECTED-P" "PROPERTY" "OBJECT-POINTER" "GOBJECT-CLASS" "CLASS-GTYPE"
-     "DEFINE-VFUNC" "CALL-NEXT-VFUNC" "REMOVE-VFUNC" "FIND-VFUNC")
-    ("GLib" "GLIB-ERROR" "GLIB-ERROR-DOMAIN" "GLIB-ERROR-CODE" "GLIB-ERROR-MESSAGE"
+     "DEFINE-VFUNC" "CALL-NEXT-VFUNC" "REMOVE-VFUNC" "FIND-VFUNC" "CALL-VFUNC"
+     "MAKE-CLOSURE")
+    ("GLib" "GLIB-ERROR" "GLIB-ERROR-DOMAIN" "GLIB-ERROR-CODE" "GLIB-ERROR-MESSAGE" "GLIB-ERROR-KEYWORD"
      "IN-MAIN-THREAD" "CALL-IN-MAIN-THREAD" "MAIN-THREAD-P" "WITH-GTK-FLOAT-TRAPS"))
   "Runtime symbols each namespace's package re-exports, so users write
 gobject:connect and glib:in-main-thread rather than naming the runtime.")

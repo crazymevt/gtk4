@@ -1782,6 +1782,45 @@ C: gdk_vulkan_error_quark
 See: https://docs.gtk.org/gdk4/type_func.VulkanError.quark.html")
 
 
+(rt:define-async content-deserialize-async content-deserialize-finish :callback-position 5
+                 :finish-takes-source nil)
+
+
+(rt:define-async content-serialize-async content-serialize-finish :callback-position 5
+                 :finish-takes-source nil)
+
+
+(rt:define-async clipboard-read-async clipboard-read-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async clipboard-read-text-async clipboard-read-text-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async clipboard-read-texture-async clipboard-read-texture-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async clipboard-read-value-async clipboard-read-value-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async clipboard-store-async clipboard-store-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async content-provider-write-mime-type-async content-provider-write-mime-type-finish
+                 :callback-position 5 :finish-takes-source t)
+
+
+(rt:define-async drop-read-async drop-read-finish :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async drop-read-value-async drop-read-value-finish :callback-position 4
+                 :finish-takes-source t)
+
+
 (rt:define-gvfunc (content-provider :attach-clipboard) (content-provider-class :attach-clipboard)
                   :args ((provider (:object content-provider)) (clipboard (:object clipboard)))
                   :url "https://docs.gtk.org/gdk4/vfunc.ContentProvider.attach_clipboard.html"

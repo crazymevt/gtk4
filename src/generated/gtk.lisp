@@ -2078,6 +2078,101 @@ See: https://docs.gtk.org/gtk4/enum.WrapMode.html")
   (:word . 2)
   (:word-char . 3))
 
+;;; Error domains
+
+
+(rt:define-gerror-domain builder-error
+    ("gtk-builder-error-quark" builder-error)
+  (:invalid-type-function builder-error-invalid-type-function)
+  (:unhandled-tag builder-error-unhandled-tag)
+  (:missing-attribute builder-error-missing-attribute)
+  (:invalid-attribute builder-error-invalid-attribute)
+  (:invalid-tag builder-error-invalid-tag)
+  (:missing-property-value builder-error-missing-property-value)
+  (:invalid-value builder-error-invalid-value)
+  (:version-mismatch builder-error-version-mismatch)
+  (:duplicate-id builder-error-duplicate-id)
+  (:object-type-refused builder-error-object-type-refused)
+  (:template-mismatch builder-error-template-mismatch)
+  (:invalid-property builder-error-invalid-property)
+  (:invalid-signal builder-error-invalid-signal)
+  (:invalid-id builder-error-invalid-id)
+  (:invalid-function builder-error-invalid-function))
+
+
+(rt:define-gerror-domain constraint-vfl-parser-error
+    ("gtk-constraint-vfl-parser-error-quark" constraint-vfl-parser-error)
+  (:invalid-symbol constraint-vfl-parser-error-invalid-symbol)
+  (:invalid-attribute constraint-vfl-parser-error-invalid-attribute)
+  (:invalid-view constraint-vfl-parser-error-invalid-view)
+  (:invalid-metric constraint-vfl-parser-error-invalid-metric)
+  (:invalid-priority constraint-vfl-parser-error-invalid-priority)
+  (:invalid-relation constraint-vfl-parser-error-invalid-relation))
+
+
+(rt:define-gerror-domain css-parser-error
+    ("gtk-css-parser-error-quark" css-parser-error)
+  (:failed css-parser-error-failed)
+  (:syntax css-parser-error-syntax)
+  (:import css-parser-error-import)
+  (:name css-parser-error-name)
+  (:unknown-value css-parser-error-unknown-value))
+
+
+(rt:define-gerror-domain dialog-error
+    ("gtk-dialog-error-quark" dialog-error)
+  (:failed dialog-error-failed)
+  (:cancelled dialog-error-cancelled)
+  (:dismissed dialog-error-dismissed))
+
+
+(rt:define-gerror-domain file-chooser-error
+    ("gtk-file-chooser-error-quark" file-chooser-error)
+  (:nonexistent file-chooser-error-nonexistent)
+  (:bad-filename file-chooser-error-bad-filename)
+  (:already-exists file-chooser-error-already-exists)
+  (:incomplete-hostname file-chooser-error-incomplete-hostname))
+
+
+(rt:define-gerror-domain icon-theme-error
+    ("gtk-icon-theme-error-quark" icon-theme-error)
+  (:not-found icon-theme-error-not-found)
+  (:failed icon-theme-error-failed))
+
+
+(rt:define-gerror-domain print-error
+    ("gtk-print-error-quark" print-error)
+  (:general print-error-general)
+  (:internal-error print-error-internal-error)
+  (:nomem print-error-nomem)
+  (:invalid-file print-error-invalid-file))
+
+
+(rt:define-gerror-domain recent-manager-error
+    ("gtk-recent-manager-error-quark" recent-manager-error)
+  (:not-found recent-manager-error-not-found)
+  (:invalid-uri recent-manager-error-invalid-uri)
+  (:invalid-encoding recent-manager-error-invalid-encoding)
+  (:not-registered recent-manager-error-not-registered)
+  (:read recent-manager-error-read)
+  (:write recent-manager-error-write)
+  (:unknown recent-manager-error-unknown))
+
+
+(rt:define-gerror-domain svg-error
+    ("GtkSvgError" svg-error)
+  (:invalid-syntax svg-error-invalid-syntax)
+  (:invalid-element svg-error-invalid-element)
+  (:invalid-attribute svg-error-invalid-attribute)
+  (:missing-attribute svg-error-missing-attribute)
+  (:invalid-reference svg-error-invalid-reference)
+  (:failed-update svg-error-failed-update)
+  (:failed-rendering svg-error-failed-rendering)
+  (:ignored-element svg-error-ignored-element)
+  (:limits-exceeded svg-error-limits-exceeded)
+  (:not-implemented svg-error-not-implemented)
+  (:feature-disabled svg-error-feature-disabled))
+
 ;;; Constants
 
 

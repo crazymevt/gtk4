@@ -250,6 +250,13 @@ else the C one of the first C class. With neither, return no values."
         (apply (vfunc-info-caller info) fn args)
         (values))))
 
+(defun call-vfunc (object name &rest args)
+  "Call OBJECT's implementation of virtual function NAME (a keyword), Lisp or
+C, with ARGS after the instance; returns its values. This is how GTK itself
+calls it, so it also works for functions C exposes no wrapper for."
+  (let ((info (find-vfunc (class-of object) name)))
+    (call-vfunc-chain (sb-mop:class-precedence-list (class-of object)) info (cons object args))))
+
 (defmacro define-vfunc ((class name &optional owner) lambda-list &body body)
   "Implement virtual function NAME (a keyword such as :snapshot) for CLASS,
 a Lisp-defined GObject class. LAMBDA-LIST names the instance and the

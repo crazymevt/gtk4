@@ -1651,6 +1651,503 @@ See: https://docs.gtk.org/gio/type_func.TlsError.quark.html
 Since: 2.28")
 
 
+(rt:define-async bus-get bus-get-finish :callback-position 2 :finish-takes-source nil)
+
+
+(rt:define-async dbus-address-get-stream dbus-address-get-stream-finish :callback-position 2
+                 :finish-takes-source nil)
+
+
+(rt:define-async app-info-get-default-for-type-async app-info-get-default-for-type-finish
+                 :callback-position 3 :finish-takes-source nil)
+
+
+(rt:define-async app-info-get-default-for-uri-scheme-async
+                 app-info-get-default-for-uri-scheme-finish :callback-position 2
+                 :finish-takes-source nil)
+
+
+(rt:define-async app-info-launch-default-for-uri-async app-info-launch-default-for-uri-finish
+                 :callback-position 3 :finish-takes-source nil)
+
+
+(rt:define-async app-info-launch-uris-async app-info-launch-uris-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async async-initable-init-async async-initable-init-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async buffered-input-stream-fill-async buffered-input-stream-fill-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async dbus-connection-new dbus-connection-new-finish :callback-position 5
+                 :finish-takes-source nil)
+
+
+(rt:define-async dbus-connection-new-for-address dbus-connection-new-for-address-finish
+                 :callback-position 4 :finish-takes-source nil)
+
+
+(rt:define-async dbus-connection-call dbus-connection-call-finish :callback-position 10
+                 :finish-takes-source t)
+
+
+(rt:define-async dbus-connection-call-with-unix-fd-list
+                 dbus-connection-call-with-unix-fd-list-finish :callback-position 11
+                 :finish-takes-source t)
+
+
+(rt:define-async dbus-connection-close dbus-connection-close-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async dbus-connection-flush dbus-connection-flush-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async dbus-connection-send-message-with-reply
+                 dbus-connection-send-message-with-reply-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async dbus-object-manager-client-new dbus-object-manager-client-new-finish
+                 :callback-position 6 :finish-takes-source nil)
+
+
+(rt:define-async dbus-object-manager-client-new-for-bus
+                 dbus-object-manager-client-new-for-bus-finish :callback-position 6
+                 :finish-takes-source nil)
+
+
+(rt:define-async dbus-proxy-new dbus-proxy-new-finish :callback-position 7 :finish-takes-source nil)
+
+
+(rt:define-async dbus-proxy-new-for-bus dbus-proxy-new-for-bus-finish :callback-position 7
+                 :finish-takes-source nil)
+
+
+(rt:define-async dbus-proxy-call dbus-proxy-call-finish :callback-position 6 :finish-takes-source t)
+
+
+(rt:define-async dbus-proxy-call-with-unix-fd-list dbus-proxy-call-with-unix-fd-list-finish
+                 :callback-position 7 :finish-takes-source t)
+
+
+(rt:define-async data-input-stream-read-line-async data-input-stream-read-line-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async data-input-stream-read-until-async data-input-stream-read-until-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async data-input-stream-read-upto-async data-input-stream-read-upto-finish
+                 :callback-position 5 :finish-takes-source t)
+
+
+(rt:define-async drive-eject drive-eject-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async drive-eject-with-operation drive-eject-with-operation-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async drive-poll-for-media drive-poll-for-media-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async drive-start drive-start-finish :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async drive-stop drive-stop-finish :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async dtls-connection-close-async dtls-connection-close-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async dtls-connection-handshake-async dtls-connection-handshake-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async dtls-connection-shutdown-async dtls-connection-shutdown-finish :callback-position
+                 5 :finish-takes-source t)
+
+
+(rt:define-async file-new-tmp-async file-new-tmp-finish :callback-position 3 :finish-takes-source
+                 nil)
+
+
+(rt:define-async file-new-tmp-dir-async file-new-tmp-dir-finish :callback-position 3
+                 :finish-takes-source nil)
+
+
+(rt:define-async file-append-to-async file-append-to-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-create-async file-create-finish :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-create-readwrite-async file-create-readwrite-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-delete-async file-delete-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-eject-mountable file-eject-mountable-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-eject-mountable-with-operation file-eject-mountable-with-operation-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-enumerate-children-async file-enumerate-children-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async file-find-enclosing-mount-async file-find-enclosing-mount-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-load-bytes-async file-load-bytes-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async file-load-contents-async file-load-contents-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async file-make-directory-async file-make-directory-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-make-symbolic-link-async file-make-symbolic-link-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-mount-enclosing-volume file-mount-enclosing-volume-finish :callback-position
+                 4 :finish-takes-source t)
+
+
+(rt:define-async file-mount-mountable file-mount-mountable-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-open-readwrite-async file-open-readwrite-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-poll-mountable file-poll-mountable-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async file-query-default-handler-async file-query-default-handler-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-query-filesystem-info-async file-query-filesystem-info-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-query-info-async file-query-info-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async file-read-async file-read-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-replace-async file-replace-finish :callback-position 6 :finish-takes-source t)
+
+
+(rt:define-async file-replace-contents-async file-replace-contents-finish :callback-position 6
+                 :finish-takes-source t)
+
+
+(rt:define-async file-replace-contents-bytes-async file-replace-contents-finish :callback-position
+                 6 :finish-takes-source t)
+
+
+(rt:define-async file-replace-readwrite-async file-replace-readwrite-finish :callback-position 6
+                 :finish-takes-source t)
+
+
+(rt:define-async file-set-attributes-async file-set-attributes-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async file-set-display-name-async file-set-display-name-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-start-mountable file-start-mountable-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-stop-mountable file-stop-mountable-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async file-trash-async file-trash-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async file-unmount-mountable file-unmount-mountable-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-unmount-mountable-with-operation file-unmount-mountable-with-operation-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-enumerator-close-async file-enumerator-close-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async file-enumerator-next-files-async file-enumerator-next-files-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-io-stream-query-info-async file-io-stream-query-info-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-input-stream-query-info-async file-input-stream-query-info-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async file-output-stream-query-info-async file-output-stream-query-info-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async io-stream-close-async io-stream-close-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async io-stream-splice-async io-stream-splice-finish :callback-position 5
+                 :finish-takes-source nil)
+
+
+(rt:define-async input-stream-close-async input-stream-close-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async input-stream-read-all-async input-stream-read-all-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async input-stream-read-async input-stream-read-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async input-stream-read-bytes-async input-stream-read-bytes-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async input-stream-skip-async input-stream-skip-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async loadable-icon-load-async loadable-icon-load-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async mount-eject mount-eject-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async mount-eject-with-operation mount-eject-with-operation-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async mount-guess-content-type mount-guess-content-type-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async mount-remount mount-remount-finish :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async mount-unmount mount-unmount-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async mount-unmount-with-operation mount-unmount-with-operation-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async network-monitor-can-reach-async network-monitor-can-reach-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async output-stream-close-async output-stream-close-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async output-stream-flush-async output-stream-flush-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async output-stream-splice-async output-stream-splice-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async output-stream-write-all-async output-stream-write-all-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async output-stream-write-async output-stream-write-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async output-stream-write-bytes-async output-stream-write-bytes-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async output-stream-writev-all-async output-stream-writev-all-finish :callback-position
+                 4 :finish-takes-source t)
+
+
+(rt:define-async output-stream-writev-async output-stream-writev-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async permission-acquire-async permission-acquire-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async permission-release-async permission-release-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async proxy-connect-async proxy-connect-finish :callback-position 4 :finish-takes-source
+                 t)
+
+
+(rt:define-async proxy-resolver-lookup-async proxy-resolver-lookup-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async resolver-lookup-by-address-async resolver-lookup-by-address-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async resolver-lookup-by-name-async resolver-lookup-by-name-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async resolver-lookup-by-name-with-flags-async resolver-lookup-by-name-with-flags-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async resolver-lookup-records-async resolver-lookup-records-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async resolver-lookup-service-async resolver-lookup-service-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async socket-address-enumerator-next-async socket-address-enumerator-next-finish
+                 :callback-position 2 :finish-takes-source t)
+
+
+(rt:define-async socket-client-connect-async socket-client-connect-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async socket-client-connect-to-host-async socket-client-connect-to-host-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async socket-client-connect-to-service-async socket-client-connect-to-service-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async socket-client-connect-to-uri-async socket-client-connect-to-uri-finish
+                 :callback-position 4 :finish-takes-source t)
+
+
+(rt:define-async socket-connection-connect-async socket-connection-connect-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async socket-listener-accept-async socket-listener-accept-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async socket-listener-accept-socket-async socket-listener-accept-socket-finish
+                 :callback-position 2 :finish-takes-source t)
+
+
+(rt:define-async subprocess-communicate-async subprocess-communicate-finish :callback-position 3
+                 :finish-takes-source t)
+
+
+(rt:define-async subprocess-communicate-utf8-async subprocess-communicate-utf8-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async subprocess-wait-async subprocess-wait-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async subprocess-wait-check-async subprocess-wait-check-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async tls-connection-handshake-async tls-connection-handshake-finish :callback-position
+                 3 :finish-takes-source t)
+
+
+(rt:define-async tls-database-lookup-certificate-for-handle-async
+                 tls-database-lookup-certificate-for-handle-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async tls-database-lookup-certificate-issuer-async
+                 tls-database-lookup-certificate-issuer-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async tls-database-lookup-certificates-issued-by-async
+                 tls-database-lookup-certificates-issued-by-finish :callback-position 5
+                 :finish-takes-source t)
+
+
+(rt:define-async tls-database-verify-chain-async tls-database-verify-chain-finish
+                 :callback-position 7 :finish-takes-source t)
+
+
+(rt:define-async tls-interaction-ask-password-async tls-interaction-ask-password-finish
+                 :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async tls-interaction-request-certificate-async
+                 tls-interaction-request-certificate-finish :callback-position 4
+                 :finish-takes-source t)
+
+
+(rt:define-async unix-connection-receive-credentials-async
+                 unix-connection-receive-credentials-finish :callback-position 2
+                 :finish-takes-source t)
+
+
+(rt:define-async unix-connection-send-credentials-async unix-connection-send-credentials-finish
+                 :callback-position 2 :finish-takes-source t)
+
+
+(rt:define-async volume-eject volume-eject-finish :callback-position 3 :finish-takes-source t)
+
+
+(rt:define-async volume-eject-with-operation volume-eject-with-operation-finish :callback-position
+                 4 :finish-takes-source t)
+
+
+(rt:define-async volume-mount volume-mount-finish :callback-position 4 :finish-takes-source t)
+
+
 (rt:define-gvfunc (action :activate) (action-interface :activate) :args
                   ((action (:object action)) (parameter :pointer)) :url
                   "https://docs.gtk.org/gio/vfunc.Action.activate.html" :documentation
@@ -3387,1314 +3884,3 @@ This may fail if directory monitoring is not supported.
 
 
 See: https://docs.gtk.org/gio/vfunc.File.monitor_dir.html")
-
-
-(rt:define-gvfunc (file :monitor-file) (file-iface :monitor-file) :args
-                  ((file (:object file)) (flags (:flags file-monitor-flags))
-                   (cancellable (:object cancellable)))
-                  :return (:object file-monitor) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.monitor_file.html" :documentation
-                  "Obtains a file monitor for the given file. If no file notification
-mechanism exists, then regular polling of the file is used.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.monitor_file.html")
-
-
-(rt:define-gvfunc (file :mount-enclosing-volume-finish) (file-iface :mount-enclosing-volume-finish)
-                  :args ((location (:object file)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.mount_enclosing_volume_finish.html"
-                  :documentation
-                  "Finishes a mount operation started by `gio:file-mount-enclosing-volume`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.mount_enclosing_volume_finish.html")
-
-
-(rt:define-gvfunc (file :mount-mountable-finish) (file-iface :mount-mountable-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return (:object file)
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.mount_mountable_finish.html" :documentation
-                  "Finishes a mount operation. See `gio:file-mount-mountable` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.mount_mountable_finish.html")
-
-
-(rt:define-gvfunc (file :move-finish) (file-iface :move-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.move_finish.html" :documentation
-                  "Finishes an asynchronous file movement, started with
-g_file_move_async().
-
-
-See: https://docs.gtk.org/gio/vfunc.File.move_finish.html
-Since: 2.72")
-
-
-(rt:define-gvfunc (file :open-readwrite) (file-iface :open-readwrite) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return
-                  (:object file-io-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.open_readwrite.html" :documentation
-                  "Opens an existing file for reading and writing. The result is
-a `gio:file-io-stream` that can be used to read and write the contents
-of the file.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.open_readwrite.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :open-readwrite-finish) (file-iface :open-readwrite-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return
-                  (:object file-io-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.open_readwrite_finish.html" :documentation
-                  "Finishes an asynchronous file read operation started with
-`gio:file-open-readwrite-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.open_readwrite_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :poll-mountable-finish) (file-iface :poll-mountable-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.poll_mountable_finish.html"
-                  :documentation
-                  "Finishes a poll operation. See `gio:file-poll-mountable` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.poll_mountable_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :prefix-matches) (file-iface :prefix-matches) :args
-                  ((prefix (:object file)) (file (:object file))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.File.prefix_matches.html" :documentation
-                  "Checks whether FILE has the prefix specified by PREFIX.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.prefix_matches.html")
-
-
-(rt:define-gvfunc (file :query-exists) (file-iface :query-exists) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_exists.html" :documentation
-                  "Utility function to check if a particular file exists.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_exists.html")
-
-
-(rt:define-gvfunc (file :query-filesystem-info) (file-iface :query-filesystem-info) :args
-                  ((file (:object file)) (attributes :string) (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_filesystem_info.html" :documentation
-                  "Similar to `gio:file-query-info`, but obtains information
-about the filesystem the FILE is on, rather than the file itself.
-For instance the amount of space available and the type of
-the filesystem.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_filesystem_info.html")
-
-
-(rt:define-gvfunc (file :query-filesystem-info-finish) (file-iface :query-filesystem-info-finish)
-                  :args ((file (:object file)) (res (:object async-result))) :return
-                  (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_filesystem_info_finish.html"
-                  :documentation "Finishes an asynchronous filesystem info query.
-See `gio:file-query-filesystem-info-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_filesystem_info_finish.html")
-
-
-(rt:define-gvfunc (file :query-info) (file-iface :query-info) :args
-                  ((file (:object file)) (attributes :string)
-                   (flags (:flags file-query-info-flags)) (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_info.html" :documentation
-                  "Gets the requested information about specified FILE.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_info.html")
-
-
-(rt:define-gvfunc (file :query-info-finish) (file-iface :query-info-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return (:object file-info)
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_info_finish.html" :documentation
-                  "Finishes an asynchronous file info query.
-See `gio:file-query-info-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_info_finish.html")
-
-
-(rt:define-gvfunc (file :query-settable-attributes) (file-iface :query-settable-attributes) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return
-                  (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
-                   file-attribute-info-list)
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_settable_attributes.html"
-                  :documentation "Obtain the list of settable attributes for the file.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_settable_attributes.html")
-
-
-(rt:define-gvfunc (file :query-writable-namespaces) (file-iface :query-writable-namespaces) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return
-                  (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
-                   file-attribute-info-list)
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.query_writable_namespaces.html"
-                  :documentation "Obtain the list of attribute namespaces where new attributes
-can be created by a user. An example of this is extended
-attributes (in the \"xattr\" namespace).
-
-
-See: https://docs.gtk.org/gio/vfunc.File.query_writable_namespaces.html")
-
-
-(rt:define-gvfunc (file :read-finish) (file-iface :read-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return
-                  (:object file-input-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.read_finish.html" :documentation
-                  "Finishes an asynchronous file read operation started with
-`gio:file-read-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.read_finish.html")
-
-
-(rt:define-gvfunc (file :read-fn) (file-iface :read-fn) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return
-                  (:object file-input-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.read_fn.html" :documentation
-                  "Opens a file for reading. The result is a `gio:file-input-stream` that
-can be used to read the contents of the file.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.read_fn.html")
-
-
-(rt:define-gvfunc (file :replace) (file-iface :replace) :args
-                  ((file (:object file)) (etag :string) (make-backup :boolean)
-                   (flags (:flags file-create-flags)) (cancellable (:object cancellable)))
-                  :return (:object file-output-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.replace.html" :documentation
-                  "Returns an output stream for overwriting the file, possibly
-creating a backup copy of the file first. If the file doesn't exist,
-it will be created.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.replace.html")
-
-
-(rt:define-gvfunc (file :replace-finish) (file-iface :replace-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return
-                  (:object file-output-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.replace_finish.html" :documentation
-                  "Finishes an asynchronous file replace operation started with
-`gio:file-replace-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.replace_finish.html")
-
-
-(rt:define-gvfunc (file :replace-readwrite) (file-iface :replace-readwrite) :args
-                  ((file (:object file)) (etag :string) (make-backup :boolean)
-                   (flags (:flags file-create-flags)) (cancellable (:object cancellable)))
-                  :return (:object file-io-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.replace_readwrite.html" :documentation
-                  "Returns an output stream for overwriting the file in readwrite mode,
-possibly creating a backup copy of the file first. If the file doesn't
-exist, it will be created.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.replace_readwrite.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :replace-readwrite-finish) (file-iface :replace-readwrite-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return
-                  (:object file-io-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.replace_readwrite_finish.html"
-                  :documentation "Finishes an asynchronous file replace operation started with
-`gio:file-replace-readwrite-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.replace_readwrite_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :resolve-relative-path) (file-iface :resolve-relative-path) :args
-                  ((file (:object file)) (relative-path :string)) :return (:object file)
-                  :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.File.resolve_relative_path.html" :documentation
-                  "Resolves a relative path for FILE to an absolute path.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.resolve_relative_path.html")
-
-
-(rt:define-gvfunc (file :set-attribute) (file-iface :set-attribute) :args
-                  ((file (:object file)) (attribute :string) (type (:enum file-attribute-type))
-                   (value-p :pointer) (flags (:flags file-query-info-flags))
-                   (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.set_attribute.html" :documentation
-                  "Sets an attribute in the file with attribute name ATTRIBUTE to VALUE-P.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.set_attribute.html")
-
-
-(rt:define-gvfunc (file :set-attributes-finish) (file-iface :set-attributes-finish) :args
-                  ((file (:object file)) (result (:object async-result))
-                   (info (:object file-info) :direction :out :transfer :full))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.set_attributes_finish.html" :documentation
-                  "Finishes setting an attribute started in `gio:file-set-attributes-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.set_attributes_finish.html")
-
-
-(rt:define-gvfunc (file :set-attributes-from-info) (file-iface :set-attributes-from-info) :args
-                  ((file (:object file)) (info (:object file-info))
-                   (flags (:flags file-query-info-flags)) (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.set_attributes_from_info.html"
-                  :documentation "Tries to set all attributes in the `gio:file-info` on the target
-values, not stopping on the first error.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.set_attributes_from_info.html")
-
-
-(rt:define-gvfunc (file :set-display-name) (file-iface :set-display-name) :args
-                  ((file (:object file)) (display-name :string)
-                   (cancellable (:object cancellable)))
-                  :return (:object file) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.set_display_name.html" :documentation
-                  "Renames FILE to the specified display name.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.set_display_name.html")
-
-
-(rt:define-gvfunc (file :set-display-name-finish) (file-iface :set-display-name-finish) :args
-                  ((file (:object file)) (res (:object async-result))) :return (:object file)
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.File.set_display_name_finish.html" :documentation
-                  "Finishes setting a display name started with
-`gio:file-set-display-name-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.set_display_name_finish.html")
-
-
-(rt:define-gvfunc (file :start-mountable-finish) (file-iface :start-mountable-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.start_mountable_finish.html"
-                  :documentation
-                  "Finishes a start operation. See `gio:file-start-mountable` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.start_mountable_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :stop-mountable-finish) (file-iface :stop-mountable-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.stop_mountable_finish.html"
-                  :documentation
-                  "Finishes a stop operation, see `gio:file-stop-mountable` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.stop_mountable_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file :trash) (file-iface :trash) :args
-                  ((file (:object file)) (cancellable (:object cancellable))) :return :boolean
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.File.trash.html" :documentation
-                  "Sends FILE to the \"Trashcan\", if possible. This is similar to
-deleting it, but the user can recover it before emptying the trashcan.
-Trashing is disabled for system mounts by default (see
-g_unix_mount_entry_is_system_internal()), so this call can return the
-:not-supported error. Since GLib 2.66, the `x-gvfs-notrash` unix
-mount option can be used to disable `gio:file-trash` support for particular
-mounts, the :not-supported error will be returned in that case.
-Since 2.82, the `x-gvfs-trash` unix mount option can be used to enable
-`gio:file-trash` support for particular system mounts.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.trash.html")
-
-
-(rt:define-gvfunc (file :trash-finish) (file-iface :trash-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.trash_finish.html" :documentation
-                  "Finishes an asynchronous file trashing operation, started with
-`gio:file-trash-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.trash_finish.html
-Since: 2.38")
-
-
-(rt:define-gvfunc (file :unmount-mountable-finish) (file-iface :unmount-mountable-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url "https://docs.gtk.org/gio/vfunc.File.unmount_mountable_finish.html"
-                  :documentation
-                  "Finishes an unmount operation, see `gio:file-unmount-mountable` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.unmount_mountable_finish.html")
-
-
-(rt:define-gvfunc (file :unmount-mountable-with-operation-finish)
-                  (file-iface :unmount-mountable-with-operation-finish) :args
-                  ((file (:object file)) (result (:object async-result))) :return :boolean :throws
-                  t :url
-                  "https://docs.gtk.org/gio/vfunc.File.unmount_mountable_with_operation_finish.html"
-                  :documentation "Finishes an unmount operation,
-see `gio:file-unmount-mountable-with-operation` for details.
-
-
-See: https://docs.gtk.org/gio/vfunc.File.unmount_mountable_with_operation_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file-enumerator :close-finish) (file-enumerator-class :close-finish) :args
-                  ((enumerator (:object file-enumerator)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileEnumerator.close_finish.html" :documentation
-                  "Finishes closing a file enumerator, started from `gio:file-enumerator-close-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileEnumerator.close_finish.html")
-
-
-(rt:define-gvfunc (file-enumerator :close-fn) (file-enumerator-class :close-fn) :args
-                  ((enumerator (:object file-enumerator)) (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileEnumerator.close_fn.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileEnumerator.close_fn.html")
-
-
-(rt:define-gvfunc (file-enumerator :next-file) (file-enumerator-class :next-file) :args
-                  ((enumerator (:object file-enumerator)) (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileEnumerator.next_file.html" :documentation
-                  "Returns information for the next file in the enumerated object.
-Will block until the information is available. The `gio:file-info`
-returned from this function will contain attributes that match the
-attribute string that was passed when the `gio:file-enumerator` was created.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileEnumerator.next_file.html")
-
-
-(rt:define-gvfunc (file-io-stream :can-seek) (file-io-stream-class :can-seek) :args
-                  ((stream (:object file-io-stream))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.can_seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.can_seek.html")
-
-
-(rt:define-gvfunc (file-io-stream :can-truncate) (file-io-stream-class :can-truncate) :args
-                  ((stream (:object file-io-stream))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.can_truncate.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.can_truncate.html")
-
-
-(rt:define-gvfunc (file-io-stream :get-etag) (file-io-stream-class :get-etag) :args
-                  ((stream (:object file-io-stream))) :return :string :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.get_etag.html" :documentation
-                  "Gets the entity tag for the file when it has been written.
-This must be called after the stream has been written
-and closed, as the etag can change while writing.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.get_etag.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file-io-stream :query-info) (file-io-stream-class :query-info) :args
-                  ((stream (:object file-io-stream)) (attributes :string)
-                   (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.query_info.html" :documentation
-                  "Queries a file io stream for the given ATTRIBUTES.
-This function blocks while querying the stream. For the asynchronous
-version of this function, see `gio:file-io-stream-query-info-async`.
-While the stream is blocked, the stream will set the pending flag
-internally, and any other operations on the stream will fail with
-:pending.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.query_info.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file-io-stream :query-info-finish) (file-io-stream-class :query-info-finish)
-                  :args ((stream (:object file-io-stream)) (result (:object async-result))) :return
-                  (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.query_info_finish.html"
-                  :documentation "Finalizes the asynchronous query started
-by `gio:file-io-stream-query-info-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.query_info_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (file-io-stream :seek) (file-io-stream-class :seek) :args
-                  ((stream (:object file-io-stream)) (offset :int64) (type (:enum glib:seek-type))
-                   (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.seek.html")
-
-
-(rt:define-gvfunc (file-io-stream :tell) (file-io-stream-class :tell) :args
-                  ((stream (:object file-io-stream))) :return :int64 :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.tell.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.tell.html")
-
-
-(rt:define-gvfunc (file-io-stream :truncate-fn) (file-io-stream-class :truncate-fn) :args
-                  ((stream (:object file-io-stream)) (size :int64)
-                   (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileIOStream.truncate_fn.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileIOStream.truncate_fn.html")
-
-
-(rt:define-gvfunc (file-input-stream :can-seek) (file-input-stream-class :can-seek) :args
-                  ((stream (:object file-input-stream))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileInputStream.can_seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileInputStream.can_seek.html")
-
-
-(rt:define-gvfunc (file-input-stream :query-info) (file-input-stream-class :query-info) :args
-                  ((stream (:object file-input-stream)) (attributes :string)
-                   (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileInputStream.query_info.html" :documentation
-                  "Queries a file input stream the given ATTRIBUTES. This function blocks
-while querying the stream. For the asynchronous (non-blocking) version
-of this function, see `gio:file-input-stream-query-info-async`. While the
-stream is blocked, the stream will set the pending flag internally, and
-any other operations on the stream will fail with :pending.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileInputStream.query_info.html")
-
-
-(rt:define-gvfunc (file-input-stream :query-info-finish)
-                  (file-input-stream-class :query-info-finish) :args
-                  ((stream (:object file-input-stream)) (result (:object async-result))) :return
-                  (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileInputStream.query_info_finish.html"
-                  :documentation "Finishes an asynchronous info query operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileInputStream.query_info_finish.html")
-
-
-(rt:define-gvfunc (file-input-stream :seek) (file-input-stream-class :seek) :args
-                  ((stream (:object file-input-stream)) (offset :int64)
-                   (type (:enum glib:seek-type)) (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileInputStream.seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileInputStream.seek.html")
-
-
-(rt:define-gvfunc (file-input-stream :tell) (file-input-stream-class :tell) :args
-                  ((stream (:object file-input-stream))) :return :int64 :url
-                  "https://docs.gtk.org/gio/vfunc.FileInputStream.tell.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileInputStream.tell.html")
-
-
-(rt:define-gvfunc (file-monitor :cancel) (file-monitor-class :cancel) :args
-                  ((monitor (:object file-monitor))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileMonitor.cancel.html" :documentation
-                  "Cancels a file monitor.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileMonitor.cancel.html")
-
-
-(rt:define-gvfunc (file-monitor :changed) (file-monitor-class :changed) :args
-                  ((monitor (:object file-monitor)) (file (:object file))
-                   (other-file (:object file)) (event-type (:enum file-monitor-event)))
-                  :url "https://docs.gtk.org/gio/vfunc.FileMonitor.changed.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileMonitor.changed.html")
-
-
-(rt:define-gvfunc (file-output-stream :can-seek) (file-output-stream-class :can-seek) :args
-                  ((stream (:object file-output-stream))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.can_seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.can_seek.html")
-
-
-(rt:define-gvfunc (file-output-stream :can-truncate) (file-output-stream-class :can-truncate) :args
-                  ((stream (:object file-output-stream))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.can_truncate.html"
-                  :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.can_truncate.html")
-
-
-(rt:define-gvfunc (file-output-stream :get-etag) (file-output-stream-class :get-etag) :args
-                  ((stream (:object file-output-stream))) :return :string :return-transfer :full
-                  :url "https://docs.gtk.org/gio/vfunc.FileOutputStream.get_etag.html"
-                  :documentation "Gets the entity tag for the file when it has been written.
-This must be called after the stream has been written
-and closed, as the etag can change while writing.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.get_etag.html")
-
-
-(rt:define-gvfunc (file-output-stream :query-info) (file-output-stream-class :query-info) :args
-                  ((stream (:object file-output-stream)) (attributes :string)
-                   (cancellable (:object cancellable)))
-                  :return (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.query_info.html" :documentation
-                  "Queries a file output stream for the given ATTRIBUTES.
-This function blocks while querying the stream. For the asynchronous
-version of this function, see `gio:file-output-stream-query-info-async`.
-While the stream is blocked, the stream will set the pending flag
-internally, and any other operations on the stream will fail with
-:pending.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.query_info.html")
-
-
-(rt:define-gvfunc (file-output-stream :query-info-finish)
-                  (file-output-stream-class :query-info-finish) :args
-                  ((stream (:object file-output-stream)) (result (:object async-result))) :return
-                  (:object file-info) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.query_info_finish.html"
-                  :documentation "Finalizes the asynchronous query started
-by `gio:file-output-stream-query-info-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.query_info_finish.html")
-
-
-(rt:define-gvfunc (file-output-stream :seek) (file-output-stream-class :seek) :args
-                  ((stream (:object file-output-stream)) (offset :int64)
-                   (type (:enum glib:seek-type)) (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.seek.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.seek.html")
-
-
-(rt:define-gvfunc (file-output-stream :tell) (file-output-stream-class :tell) :args
-                  ((stream (:object file-output-stream))) :return :int64 :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.tell.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.tell.html")
-
-
-(rt:define-gvfunc (file-output-stream :truncate-fn) (file-output-stream-class :truncate-fn) :args
-                  ((stream (:object file-output-stream)) (size :int64)
-                   (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.FileOutputStream.truncate_fn.html" :documentation
-                  "
-See: https://docs.gtk.org/gio/vfunc.FileOutputStream.truncate_fn.html")
-
-
-(rt:define-gvfunc (filename-completer :got-completion-data)
-                  (filename-completer-class :got-completion-data) :args
-                  ((filename-completer (:object filename-completer))) :url
-                  "https://docs.gtk.org/gio/vfunc.FilenameCompleter.got_completion_data.html"
-                  :documentation "
-See: https://docs.gtk.org/gio/vfunc.FilenameCompleter.got_completion_data.html")
-
-
-(rt:define-gvfunc (io-stream :close-finish) (io-stream-class :close-finish) :args
-                  ((stream (:object io-stream)) (result (:object async-result))) :return :boolean
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.IOStream.close_finish.html"
-                  :documentation "Closes a stream.
-
-
-See: https://docs.gtk.org/gio/vfunc.IOStream.close_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (io-stream :close-fn) (io-stream-class :close-fn) :args
-                  ((stream (:object io-stream)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url "https://docs.gtk.org/gio/vfunc.IOStream.close_fn.html"
-                  :documentation "
-See: https://docs.gtk.org/gio/vfunc.IOStream.close_fn.html")
-
-
-(rt:define-gvfunc (io-stream :get-input-stream) (io-stream-class :get-input-stream) :args
-                  ((stream (:object io-stream))) :return (:object input-stream) :url
-                  "https://docs.gtk.org/gio/vfunc.IOStream.get_input_stream.html" :documentation
-                  "Gets the input stream for this object. This is used
-for reading.
-
-
-See: https://docs.gtk.org/gio/vfunc.IOStream.get_input_stream.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (io-stream :get-output-stream) (io-stream-class :get-output-stream) :args
-                  ((stream (:object io-stream))) :return (:object output-stream) :url
-                  "https://docs.gtk.org/gio/vfunc.IOStream.get_output_stream.html" :documentation
-                  "Gets the output stream for this object. This is used for
-writing.
-
-
-See: https://docs.gtk.org/gio/vfunc.IOStream.get_output_stream.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (icon :equal) (icon-iface :equal) :args
-                  ((icon1 (:object icon)) (icon2 (:object icon))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.Icon.equal.html" :documentation
-                  "Checks if two icons are equal.
-
-
-See: https://docs.gtk.org/gio/vfunc.Icon.equal.html")
-
-
-(rt:define-gvfunc (icon :hash) (icon-iface :hash) :args ((icon (:object icon))) :return :uint :url
-                  "https://docs.gtk.org/gio/vfunc.Icon.hash.html" :documentation
-                  "Gets a hash for an icon.
-
-
-See: https://docs.gtk.org/gio/vfunc.Icon.hash.html")
-
-
-(rt:define-gvfunc (icon :serialize) (icon-iface :serialize) :args ((icon (:object icon))) :return
-                  :pointer :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Icon.serialize.html" :documentation
-                  "Serializes a `gio:icon` into a `glib:variant`. An equivalent `gio:icon` can be retrieved
-back by calling `gio:icon-deserialize` on the returned value.
-As serialization will avoid using raw icon data when possible, it only
-makes sense to transfer the `glib:variant` between processes on the same machine,
-(as opposed to over the network), and within the same file system namespace.
-
-
-See: https://docs.gtk.org/gio/vfunc.Icon.serialize.html
-Since: 2.38")
-
-
-(rt:define-gvfunc (inet-address :to-string) (inet-address-class :to-string) :args
-                  ((address (:object inet-address))) :return :string :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.InetAddress.to_string.html" :documentation
-                  "Converts ADDRESS to string form.
-
-
-See: https://docs.gtk.org/gio/vfunc.InetAddress.to_string.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (initable :init) (initable-iface :init) :args
-                  ((initable (:object initable)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url "https://docs.gtk.org/gio/vfunc.Initable.init.html"
-                  :documentation "Initializes the object implementing the interface.
-
-
-See: https://docs.gtk.org/gio/vfunc.Initable.init.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (input-stream :close-finish) (input-stream-class :close-finish) :args
-                  ((stream (:object input-stream)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.InputStream.close_finish.html" :documentation
-                  "Finishes closing a stream asynchronously, started from `gio:input-stream-close-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.InputStream.close_finish.html")
-
-
-(rt:define-gvfunc (input-stream :close-fn) (input-stream-class :close-fn) :args
-                  ((stream (:object input-stream)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.InputStream.close_fn.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.InputStream.close_fn.html")
-
-
-(rt:define-gvfunc (input-stream :read-finish) (input-stream-class :read-finish) :args
-                  ((stream (:object input-stream)) (result (:object async-result))) :return :ssize
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.InputStream.read_finish.html"
-                  :documentation "Finishes an asynchronous stream read operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.InputStream.read_finish.html")
-
-
-(rt:define-gvfunc (input-stream :read-fn) (input-stream-class :read-fn) :args
-                  ((stream (:object input-stream)) (buffer :pointer) (count :size)
-                   (cancellable (:object cancellable)))
-                  :return :ssize :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.InputStream.read_fn.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.InputStream.read_fn.html")
-
-
-(rt:define-gvfunc (input-stream :skip) (input-stream-class :skip) :args
-                  ((stream (:object input-stream)) (count :size)
-                   (cancellable (:object cancellable)))
-                  :return :ssize :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.InputStream.skip.html" :documentation
-                  "Tries to skip COUNT bytes from the stream. Will block during the operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.InputStream.skip.html")
-
-
-(rt:define-gvfunc (input-stream :skip-finish) (input-stream-class :skip-finish) :args
-                  ((stream (:object input-stream)) (result (:object async-result))) :return :ssize
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.InputStream.skip_finish.html"
-                  :documentation "Finishes a stream skip operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.InputStream.skip_finish.html")
-
-
-(rt:define-gvfunc (list-model :get-item) (list-model-interface :get-item) :args
-                  ((list (:object list-model)) (position :uint)) :return (:object rt:object)
-                  :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.ListModel.get_item.html" :documentation
-                  "Get the item at POSITION. If POSITION is greater than the number of
-items in LIST, NIL is returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.ListModel.get_item.html
-Since: 2.44")
-
-
-(rt:define-gvfunc (list-model :get-item-type) (list-model-interface :get-item-type) :args
-                  ((list (:object list-model))) :return :gtype :url
-                  "https://docs.gtk.org/gio/vfunc.ListModel.get_item_type.html" :documentation
-                  "Gets the type of the items in LIST.
-
-
-See: https://docs.gtk.org/gio/vfunc.ListModel.get_item_type.html
-Since: 2.44")
-
-
-(rt:define-gvfunc (list-model :get-n-items) (list-model-interface :get-n-items) :args
-                  ((list (:object list-model))) :return :uint :url
-                  "https://docs.gtk.org/gio/vfunc.ListModel.get_n_items.html" :documentation
-                  "Gets the number of items in LIST.
-
-
-See: https://docs.gtk.org/gio/vfunc.ListModel.get_n_items.html
-Since: 2.44")
-
-
-(rt:define-gvfunc (loadable-icon :load) (loadable-icon-iface :load) :args
-                  ((icon (:object loadable-icon)) (size :int)
-                   (type :string :direction :out :transfer :full)
-                   (cancellable (:object cancellable)))
-                  :return (:object input-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.LoadableIcon.load.html" :documentation
-                  "Loads a loadable icon. For the asynchronous version of this function,
-see `gio:loadable-icon-load-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.LoadableIcon.load.html")
-
-
-(rt:define-gvfunc (loadable-icon :load-finish) (loadable-icon-iface :load-finish) :args
-                  ((icon (:object loadable-icon)) (res (:object async-result))
-                   (type :string :direction :out :transfer :full))
-                  :return (:object input-stream) :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.LoadableIcon.load_finish.html" :documentation
-                  "Finishes an asynchronous icon load started in `gio:loadable-icon-load-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.LoadableIcon.load_finish.html")
-
-
-(rt:define-gvfunc (memory-monitor :low-memory-warning)
-                  (memory-monitor-interface :low-memory-warning) :args
-                  ((monitor (:object memory-monitor)) (level (:enum memory-monitor-warning-level)))
-                  :url "https://docs.gtk.org/gio/vfunc.MemoryMonitor.low_memory_warning.html"
-                  :documentation "the virtual function pointer for the
- `gio:memory-monitor`::low-memory-warning signal.
-
-
-See: https://docs.gtk.org/gio/vfunc.MemoryMonitor.low_memory_warning.html")
-
-
-(rt:define-gvfunc (menu-model :get-item-attribute-value)
-                  (menu-model-class :get-item-attribute-value) :args
-                  ((model (:object menu-model)) (item-index :int) (attribute :string)
-                   (expected-type :pointer))
-                  :return :pointer :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.get_item_attribute_value.html"
-                  :documentation "Queries the item at position ITEM-INDEX in MODEL for the attribute
-specified by ATTRIBUTE.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.get_item_attribute_value.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (menu-model :get-item-link) (menu-model-class :get-item-link) :args
-                  ((model (:object menu-model)) (item-index :int) (link :string)) :return
-                  (:object menu-model) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.get_item_link.html" :documentation
-                  "Queries the item at position ITEM-INDEX in MODEL for the link
-specified by LINK.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.get_item_link.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (menu-model :get-n-items) (menu-model-class :get-n-items) :args
-                  ((model (:object menu-model))) :return :int :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.get_n_items.html" :documentation
-                  "Query the number of items in MODEL.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.get_n_items.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (menu-model :is-mutable) (menu-model-class :is-mutable) :args
-                  ((model (:object menu-model))) :return :boolean :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.is_mutable.html" :documentation
-                  "Queries if MODEL is mutable.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.is_mutable.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (menu-model :iterate-item-attributes) (menu-model-class :iterate-item-attributes)
-                  :args ((model (:object menu-model)) (item-index :int)) :return
-                  (:object menu-attribute-iter) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.iterate_item_attributes.html"
-                  :documentation
-                  "Creates a `gio:menu-attribute-iter` to iterate over the attributes of
-the item at position ITEM-INDEX in MODEL.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.iterate_item_attributes.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (menu-model :iterate-item-links) (menu-model-class :iterate-item-links) :args
-                  ((model (:object menu-model)) (item-index :int)) :return (:object menu-link-iter)
-                  :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.MenuModel.iterate_item_links.html" :documentation
-                  "Creates a `gio:menu-link-iter` to iterate over the links of the item at
-position ITEM-INDEX in MODEL.
-
-
-See: https://docs.gtk.org/gio/vfunc.MenuModel.iterate_item_links.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (mount :can-eject) (mount-iface :can-eject) :args ((mount (:object mount)))
-                  :return :boolean :url "https://docs.gtk.org/gio/vfunc.Mount.can_eject.html"
-                  :documentation "Checks if MOUNT can be ejected.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.can_eject.html")
-
-
-(rt:define-gvfunc (mount :can-unmount) (mount-iface :can-unmount) :args ((mount (:object mount)))
-                  :return :boolean :url "https://docs.gtk.org/gio/vfunc.Mount.can_unmount.html"
-                  :documentation "Checks if MOUNT can be unmounted.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.can_unmount.html")
-
-
-(rt:define-gvfunc (mount :changed) (mount-iface :changed) :args ((mount (:object mount))) :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.changed.html" :documentation
-                  "Changed signal that is emitted when the mount's state has changed.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.changed.html")
-
-
-(rt:define-gvfunc (mount :eject-finish) (mount-iface :eject-finish) :args
-                  ((mount (:object mount)) (result (:object async-result))) :return :boolean
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.Mount.eject_finish.html"
-                  :documentation
-                  "Finishes ejecting a mount. If any errors occurred during the operation,
-ERROR will be set to contain the errors and NIL will be returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.eject_finish.html")
-
-
-(rt:define-gvfunc (mount :eject-with-operation-finish) (mount-iface :eject-with-operation-finish)
-                  :args ((mount (:object mount)) (result (:object async-result))) :return :boolean
-                  :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.eject_with_operation_finish.html"
-                  :documentation
-                  "Finishes ejecting a mount. If any errors occurred during the operation,
-ERROR will be set to contain the errors and NIL will be returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.eject_with_operation_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (mount :get-default-location) (mount-iface :get-default-location) :args
-                  ((mount (:object mount))) :return (:object file) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_default_location.html" :documentation
-                  "Gets the default location of MOUNT. The default location of the given
-MOUNT is a path that reflects the main entry point for the user (e.g.
-the home directory, or the root of the volume).
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_default_location.html")
-
-
-(rt:define-gvfunc (mount :get-drive) (mount-iface :get-drive) :args ((mount (:object mount)))
-                  :return (:object drive) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_drive.html" :documentation
-                  "Gets the drive for the MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_drive.html")
-
-
-(rt:define-gvfunc (mount :get-icon) (mount-iface :get-icon) :args ((mount (:object mount))) :return
-                  (:object icon) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_icon.html" :documentation
-                  "Gets the icon for MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_icon.html")
-
-
-(rt:define-gvfunc (mount :get-name) (mount-iface :get-name) :args ((mount (:object mount))) :return
-                  :string :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_name.html" :documentation
-                  "Gets the name of MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_name.html")
-
-
-(rt:define-gvfunc (mount :get-root) (mount-iface :get-root) :args ((mount (:object mount))) :return
-                  (:object file) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_root.html" :documentation
-                  "Gets the root directory on MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_root.html")
-
-
-(rt:define-gvfunc (mount :get-symbolic-icon) (mount-iface :get-symbolic-icon) :args
-                  ((mount (:object mount))) :return (:object icon) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_symbolic_icon.html" :documentation
-                  "Gets the symbolic icon for MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_symbolic_icon.html
-Since: 2.34")
-
-
-(rt:define-gvfunc (mount :get-uuid) (mount-iface :get-uuid) :args ((mount (:object mount))) :return
-                  :string :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_uuid.html" :documentation
-                  "Gets the UUID for the MOUNT. The reference is typically based on
-the file system UUID for the mount in question and should be
-considered an opaque string. Returns NIL if there is no UUID
-available.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_uuid.html")
-
-
-(rt:define-gvfunc (mount :get-volume) (mount-iface :get-volume) :args ((mount (:object mount)))
-                  :return (:object volume) :return-transfer :full :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.get_volume.html" :documentation
-                  "Gets the volume for the MOUNT.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.get_volume.html")
-
-
-(rt:define-gvfunc (mount :guess-content-type-finish) (mount-iface :guess-content-type-finish) :args
-                  ((mount (:object mount)) (result (:object async-result))) :return :strv
-                  :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.guess_content_type_finish.html"
-                  :documentation "Finishes guessing content types of MOUNT. If any errors occurred
-during the operation, ERROR will be set to contain the errors and
-NIL will be returned. In particular, you may get an
-:not-supported if the mount does not support content
-guessing.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.guess_content_type_finish.html
-Since: 2.18")
-
-
-(rt:define-gvfunc (mount :guess-content-type-sync) (mount-iface :guess-content-type-sync) :args
-                  ((mount (:object mount)) (force-rescan :boolean)
-                   (cancellable (:object cancellable)))
-                  :return :strv :return-transfer :full :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.guess_content_type_sync.html"
-                  :documentation "Tries to guess the type of content stored on MOUNT. Returns one or
-more textual identifiers of well-known content types (typically
-prefixed with \"x-content/\"), e.g. x-content/image-dcf for camera
-memory cards. See the
-[shared-mime-info](http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec)
-specification for more on x-content types.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.guess_content_type_sync.html
-Since: 2.18")
-
-
-(rt:define-gvfunc (mount :pre-unmount) (mount-iface :pre-unmount) :args ((mount (:object mount)))
-                  :url "https://docs.gtk.org/gio/vfunc.Mount.pre_unmount.html" :documentation
-                  "The ::pre-unmount signal that is emitted when the `gio:mount` will soon be emitted. If the recipient is somehow holding the mount open by keeping an open file on it it should close the file.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.pre_unmount.html")
-
-
-(rt:define-gvfunc (mount :remount-finish) (mount-iface :remount-finish) :args
-                  ((mount (:object mount)) (result (:object async-result))) :return :boolean
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.Mount.remount_finish.html"
-                  :documentation
-                  "Finishes remounting a mount. If any errors occurred during the operation,
-ERROR will be set to contain the errors and NIL will be returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.remount_finish.html")
-
-
-(rt:define-gvfunc (mount :unmount-finish) (mount-iface :unmount-finish) :args
-                  ((mount (:object mount)) (result (:object async-result))) :return :boolean
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.Mount.unmount_finish.html"
-                  :documentation
-                  "Finishes unmounting a mount. If any errors occurred during the operation,
-ERROR will be set to contain the errors and NIL will be returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.unmount_finish.html")
-
-
-(rt:define-gvfunc (mount :unmount-with-operation-finish)
-                  (mount-iface :unmount-with-operation-finish) :args
-                  ((mount (:object mount)) (result (:object async-result))) :return :boolean
-                  :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.unmount_with_operation_finish.html"
-                  :documentation
-                  "Finishes unmounting a mount. If any errors occurred during the operation,
-ERROR will be set to contain the errors and NIL will be returned.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.unmount_with_operation_finish.html
-Since: 2.22")
-
-
-(rt:define-gvfunc (mount :unmounted) (mount-iface :unmounted) :args ((mount (:object mount))) :url
-                  "https://docs.gtk.org/gio/vfunc.Mount.unmounted.html" :documentation
-                  "The unmounted signal that is emitted when the `gio:mount` have been unmounted. If the recipient is holding references to the object they should release them so the object can be finalized.
-
-
-See: https://docs.gtk.org/gio/vfunc.Mount.unmounted.html")
-
-
-(rt:define-gvfunc (mount-operation :aborted) (mount-operation-class :aborted) :args
-                  ((op (:object mount-operation))) :url
-                  "https://docs.gtk.org/gio/vfunc.MountOperation.aborted.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.MountOperation.aborted.html")
-
-
-(rt:define-gvfunc (mount-operation :ask-password) (mount-operation-class :ask-password) :args
-                  ((op (:object mount-operation)) (message :string) (default-user :string)
-                   (default-domain :string) (flags (:flags ask-password-flags)))
-                  :url "https://docs.gtk.org/gio/vfunc.MountOperation.ask_password.html"
-                  :documentation "
-See: https://docs.gtk.org/gio/vfunc.MountOperation.ask_password.html")
-
-
-(rt:define-gvfunc (mount-operation :ask-question) (mount-operation-class :ask-question) :args
-                  ((op (:object mount-operation)) (message :string) (choices :strv)) :url
-                  "https://docs.gtk.org/gio/vfunc.MountOperation.ask_question.html" :documentation
-                  "Virtual implementation of `gio:mount-operation`::ask-question.
-
-
-See: https://docs.gtk.org/gio/vfunc.MountOperation.ask_question.html")
-
-
-(rt:define-gvfunc (mount-operation :reply) (mount-operation-class :reply) :args
-                  ((op (:object mount-operation)) (result (:enum mount-operation-result))) :url
-                  "https://docs.gtk.org/gio/vfunc.MountOperation.reply.html" :documentation
-                  "Emits the `gio:mount-operation`::reply signal.
-
-
-See: https://docs.gtk.org/gio/vfunc.MountOperation.reply.html")
-
-
-(rt:define-gvfunc (mount-operation :show-unmount-progress)
-                  (mount-operation-class :show-unmount-progress) :args
-                  ((op (:object mount-operation)) (message :string) (time-left :int64)
-                   (bytes-left :int64))
-                  :url "https://docs.gtk.org/gio/vfunc.MountOperation.show_unmount_progress.html"
-                  :documentation "
-See: https://docs.gtk.org/gio/vfunc.MountOperation.show_unmount_progress.html")
-
-
-(rt:define-gvfunc (network-monitor :can-reach) (network-monitor-interface :can-reach) :args
-                  ((monitor (:object network-monitor)) (connectable (:object socket-connectable))
-                   (cancellable (:object cancellable)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.NetworkMonitor.can_reach.html" :documentation
-                  "Attempts to determine whether or not the host pointed to by
-CONNECTABLE can be reached, without actually trying to connect to
-it.
-
-
-See: https://docs.gtk.org/gio/vfunc.NetworkMonitor.can_reach.html
-Since: 2.32")
-
-
-(rt:define-gvfunc (network-monitor :can-reach-finish) (network-monitor-interface :can-reach-finish)
-                  :args ((monitor (:object network-monitor)) (result (:object async-result)))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.NetworkMonitor.can_reach_finish.html"
-                  :documentation "Finishes an async network connectivity test.
-See `gio:network-monitor-can-reach-async`.
-
-
-See: https://docs.gtk.org/gio/vfunc.NetworkMonitor.can_reach_finish.html")
-
-
-(rt:define-gvfunc (network-monitor :network-changed) (network-monitor-interface :network-changed)
-                  :args ((monitor (:object network-monitor)) (network-available :boolean)) :url
-                  "https://docs.gtk.org/gio/vfunc.NetworkMonitor.network_changed.html"
-                  :documentation "the virtual function pointer for the
- GNetworkMonitor::network-changed signal.
-
-
-See: https://docs.gtk.org/gio/vfunc.NetworkMonitor.network_changed.html")
-
-
-(rt:define-gvfunc (output-stream :close-finish) (output-stream-class :close-finish) :args
-                  ((stream (:object output-stream)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.OutputStream.close_finish.html" :documentation
-                  "Closes an output stream.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.close_finish.html")
-
-
-(rt:define-gvfunc (output-stream :close-fn) (output-stream-class :close-fn) :args
-                  ((stream (:object output-stream)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.OutputStream.close_fn.html" :documentation "
-See: https://docs.gtk.org/gio/vfunc.OutputStream.close_fn.html")
-
-
-(rt:define-gvfunc (output-stream :flush) (output-stream-class :flush) :args
-                  ((stream (:object output-stream)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url "https://docs.gtk.org/gio/vfunc.OutputStream.flush.html"
-                  :documentation "Forces a write of all user-space buffered data for the given
-STREAM. Will block during the operation. Closing the stream will
-implicitly cause a flush.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.flush.html")
-
-
-(rt:define-gvfunc (output-stream :flush-finish) (output-stream-class :flush-finish) :args
-                  ((stream (:object output-stream)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.OutputStream.flush_finish.html" :documentation
-                  "Finishes flushing an output stream.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.flush_finish.html")
-
-
-(rt:define-gvfunc (output-stream :splice) (output-stream-class :splice) :args
-                  ((stream (:object output-stream)) (source (:object input-stream))
-                   (flags (:flags output-stream-splice-flags)) (cancellable (:object cancellable)))
-                  :return :ssize :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.OutputStream.splice.html" :documentation
-                  "Splices an input stream into an output stream.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.splice.html")
-
-
-(rt:define-gvfunc (output-stream :splice-finish) (output-stream-class :splice-finish) :args
-                  ((stream (:object output-stream)) (result (:object async-result))) :return :ssize
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.OutputStream.splice_finish.html"
-                  :documentation "Finishes an asynchronous stream splice operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.splice_finish.html")
-
-
-(rt:define-gvfunc (output-stream :write-finish) (output-stream-class :write-finish) :args
-                  ((stream (:object output-stream)) (result (:object async-result))) :return :ssize
-                  :throws t :url "https://docs.gtk.org/gio/vfunc.OutputStream.write_finish.html"
-                  :documentation "Finishes a stream write operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.write_finish.html")
-
-
-(rt:define-gvfunc (output-stream :writev-finish) (output-stream-class :writev-finish) :args
-                  ((stream (:object output-stream)) (result (:object async-result))
-                   (bytes-written :size :direction :out :transfer :full))
-                  :return :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.OutputStream.writev_finish.html" :documentation
-                  "Finishes a stream writev operation.
-
-
-See: https://docs.gtk.org/gio/vfunc.OutputStream.writev_finish.html
-Since: 2.60")
-
-
-(rt:define-gvfunc (permission :acquire) (permission-class :acquire) :args
-                  ((permission (:object permission)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url "https://docs.gtk.org/gio/vfunc.Permission.acquire.html"
-                  :documentation "Attempts to acquire the permission represented by PERMISSION.
-
-
-See: https://docs.gtk.org/gio/vfunc.Permission.acquire.html
-Since: 2.26")
-
-
-(rt:define-gvfunc (permission :acquire-finish) (permission-class :acquire-finish) :args
-                  ((permission (:object permission)) (result (:object async-result))) :return
-                  :boolean :throws t :url
-                  "https://docs.gtk.org/gio/vfunc.Permission.acquire_finish.html" :documentation
-                  "Collects the result of attempting to acquire the permission
-represented by PERMISSION.
-
-
-See: https://docs.gtk.org/gio/vfunc.Permission.acquire_finish.html
-Since: 2.26")
-
-
-(rt:define-gvfunc (permission :release) (permission-class :release) :args
-                  ((permission (:object permission)) (cancellable (:object cancellable))) :return
-                  :boolean :throws t :url "https://docs.gtk.org/gio/vfunc.Permission.release.html"
-                  :documentation "Attempts to release the permission represented by PERMISSION.
-
-
-See: https://docs.gtk.org/gio/vfunc.Permission.release.html
-Since: 2.26")
