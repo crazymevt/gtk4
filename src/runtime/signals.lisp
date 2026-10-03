@@ -84,3 +84,59 @@ its value becomes the signal's return value. Returns the handler id."
 
 (defun handler-connected-p (object handler-id)
   (%g-signal-handler-is-connected (object-pointer object) handler-id))
+
+;;; Emitting
+
+(cffi:defcstruct gsignal-query
+  (signal-id :uint)
+  (signal-name :pointer)
+  (itype gtype)
+  (signal-flags :uint)
+  (return-type gtype)
+  (n-params :uint)
+  (param-types :pointer))
+
+(cffi:defcfun ("g_signal_query" %g-signal-query) :void (signal-id :uint) (query :pointer))
+(cffi:defcfun ("g_signal_emitv" %g-signal-emitv) :void
+  (instance-and-params :pointer) (signal-id :uint) (detail :uint32) (return-value :pointer))
+
+(defun emit (object signal &rest args)
+  "Emit SIGNAL (a keyword or \"name::detail\" string) on OBJECT with ARGS,
+converted to the signal's parameter types. Returns the signal's return value."
+  (let* ((pointer (object-pointer object))
+         (gtype (instance-gtype pointer))
+         (name (signal-name signal)))
+    (cffi:with-foreign-objects ((id :uint) (detail :uint32)
+                                (query '(:struct gsignal-query)))
+      (unless (%g-signal-parse-name name gtype id detail t)
+        (error "gtk4: ~a has no signal ~s" (gtype-name gtype) name))
+      (%g-signal-query (cffi:mem-ref id :uint) query)
+      (let* ((n (cffi:foreign-slot-value query '(:struct gsignal-query) 'n-params))
+             (types (cffi:foreign-slot-value query '(:struct gsignal-query) 'param-types))
+             (return-type (cffi:foreign-slot-value query '(:struct gsignal-query) 'return-type)))
+        (unless (= n (length args))
+          (error "gtk4: signal ~s takes ~d argument~:p, got ~d" name n (length args)))
+        (cffi:with-foreign-objects ((values '(:struct gvalue) (1+ n))
+                                    (ret '(:struct gvalue)))
+          (dotimes (i (* 3 (+ n 2)))
+            (when (< i (* 3 (1+ n))) (setf (cffi:mem-aref values :uint64 i) 0)))
+          (dotimes (i 3) (setf (cffi:mem-aref ret :uint64 i) 0))
+          (flet ((slot (i) (cffi:inc-pointer values (* i +gvalue-size+))))
+            (%g-value-init (slot 0) gtype)
+            (%g-value-set-object (slot 0) pointer)
+            (loop for arg in args
+                  for i from 1
+                  ;; The low bit marks G_SIGNAL_TYPE_STATIC_SCOPE, not part of the type.
+                  for type = (logandc2 (cffi:mem-aref types 'gtype (1- i)) 1)
+                  do (%g-value-init (slot i) type)
+                     (set-gvalue (slot i) arg))
+            (let ((has-return (/= return-type +g-type-none+)))
+              (when has-return (%g-value-init ret (logandc2 return-type 1)))
+              (unwind-protect
+                   (progn
+                     (with-gtk-float-traps
+                       (%g-signal-emitv values (cffi:mem-ref id :uint) (cffi:mem-ref detail :uint32)
+                                        (if has-return ret (cffi:null-pointer))))
+                     (and has-return (gvalue-get ret)))
+                (dotimes (i (1+ n)) (%g-value-unset (slot i)))
+                (when has-return (%g-value-unset ret))))))))))

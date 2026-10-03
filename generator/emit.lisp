@@ -409,7 +409,7 @@ Lisp API replaces it by design.")
 
 ;;; Entry point
 
-(defun generate (&key (targets *m1-targets*)
+(defun generate (&key (targets *target-namespaces*)
                       (output-directory (asdf:system-relative-pathname "gtk4" "src/generated/")))
   "Generate binding sources for TARGETS into OUTPUT-DIRECTORY: packages.lisp,
 one file per namespace, and COVERAGE.md. Run in a fresh image."

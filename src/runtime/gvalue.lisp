@@ -40,6 +40,9 @@
 
 ;;; Reading
 
+(defun null-to-nil (pointer)
+  (unless (cffi:null-pointer-p pointer) pointer))
+
 (defun foreign-string-or-nil (pointer)
   (if (cffi:null-pointer-p pointer) nil (cffi:foreign-string-to-lisp pointer)))
 
@@ -70,9 +73,9 @@ boxed values are copied into a BOXED proxy, strings are copied."
            ((= fundamental +g-type-uchar+) (%g-value-get-uchar gvalue))
            ((= fundamental +g-type-boxed+)
             (wrap-boxed (%g-value-get-boxed gvalue) type :transfer :none))
-           ((= fundamental +g-type-pointer+) (%g-value-get-pointer gvalue))
-           ((= fundamental +g-type-variant+) (%g-value-get-variant gvalue))
-           ((= fundamental +g-type-param+) (%g-value-get-param gvalue))
+           ((= fundamental +g-type-pointer+) (null-to-nil (%g-value-get-pointer gvalue)))
+           ((= fundamental +g-type-variant+) (null-to-nil (%g-value-get-variant gvalue)))
+           ((= fundamental +g-type-param+) (null-to-nil (%g-value-get-param gvalue)))
            ((= fundamental +g-type-none+) nil)
            (t (error "gtk4: cannot convert a GValue of type ~a" (gtype-name type)))))))))
 

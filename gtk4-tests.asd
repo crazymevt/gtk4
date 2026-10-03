@@ -14,7 +14,8 @@
                (:file "generated")
                (:file "callbacks")
                (:file "arrays")
-               (:file "containers"))
+               (:file "containers")
+               (:file "gtk"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
 
 (defsystem "gtk4-tests/stress"
