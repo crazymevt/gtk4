@@ -202,3 +202,12 @@
          (rt:connect action "notify" (lambda (o p) (declare (ignore o p)) action))))))
   (true (collect-until (lambda () (= *finalized* 20)))
         "~d of 20 finalized" *finalized*))
+
+(define-test emit-signals :parent objects
+  ;; GSimpleAction::activate takes a GVariant parameter (NULL here).
+  (let* ((action (make-instance 'simple-action :name "go"))
+         (got :none))
+    (rt:connect action :activate (lambda (a parameter) (declare (ignore a)) (setf got parameter)))
+    (rt:emit action :activate nil)
+    (true (null got) "activate handler ran with a NULL parameter")
+    (fail (rt:emit action :activate) error)))

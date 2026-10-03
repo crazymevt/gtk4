@@ -102,6 +102,14 @@ of the hash table *ITEM-SYMBOLS*."
   (dolist (ns (context-targets ctx))
     (let* ((nsname (gir-namespace-name ns))
            (package (recreate-package (namespace-package-name nsname))))
+      ;; Runtime API re-exported from this package.
+      (dolist (name (cdr (assoc nsname *runtime-exports* :test #'string=)))
+        (let ((s (find-symbol name "GTK4.RUNTIME")))
+          (import s package)
+          (export s package)
+          (setf (gethash (format nil "~a:~a:function" (package-name package) (string-downcase name))
+                         (context-owners ctx))
+                "runtime")))
       ;; Types first, so they win name collisions.
       (dolist (item (append (gir-namespace-enums ns) (gir-namespace-classes ns)
                             (gir-namespace-callbacks ns) (gir-namespace-aliases ns)))

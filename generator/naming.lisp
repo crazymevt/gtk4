@@ -71,6 +71,14 @@ operators (t, pi, function) get a suffix: they cannot be bound, or print as
           (concatenate 'string name "-value")
           name))))
 
+(defparameter *runtime-exports*
+  '(("GObject" "CONNECT" "DISCONNECT" "EMIT" "BLOCK-HANDLER" "UNBLOCK-HANDLER"
+     "HANDLER-CONNECTED-P" "PROPERTY" "OBJECT-POINTER" "GOBJECT-CLASS" "CLASS-GTYPE")
+    ("GLib" "GLIB-ERROR" "GLIB-ERROR-DOMAIN" "GLIB-ERROR-CODE" "GLIB-ERROR-MESSAGE"
+     "IN-MAIN-THREAD" "CALL-IN-MAIN-THREAD" "MAIN-THREAD-P" "WITH-GTK-FLOAT-TRAPS"))
+  "Runtime symbols each namespace's package re-exports, so users write
+gobject:connect and glib:in-main-thread rather than naming the runtime.")
+
 ;;; Type symbols for qualified GIR names ("Gtk.Widget")
 
 (defvar *type-symbols* (make-hash-table :test 'equal)

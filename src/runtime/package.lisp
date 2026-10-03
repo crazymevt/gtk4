@@ -66,6 +66,7 @@
    #:block-handler
    #:unblock-handler
    #:handler-connected-p
+   #:emit
    ;; definitions used by generated code
    #:define-gfunction
    #:define-gcallback
