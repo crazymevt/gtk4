@@ -21,6 +21,7 @@
                (:file "documentation")
                (:file "subclass")
                (:file "lisp-api")
+               (:file "examples")
                (:file "demos"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
 

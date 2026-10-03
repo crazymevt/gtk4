@@ -137,7 +137,8 @@ the caller that chains to a C implementation."
          (result (gensym "RESULT"))
          (out-values (loop for a in outs collect (gensym (string (first a)))))
          (fn (gensym "FN"))
-         (err (gensym "ERROR")))
+         (err (gensym "ERROR"))
+         (extra (gensym "EXTRA")))
     (multiple-value-bind (required optional body)
         (gfunction-parts args return return-transfer throws fn)
       (declare (ignore optional))
@@ -152,7 +153,10 @@ the caller that chains to a C implementation."
                  `(handler-case-gerror (,err (list ',owner ',name) ,(foreign-zero return)))
                  `(with-callback-protection ((list ',owner ',name) ,(foreign-zero return))))
             (multiple-value-call
-                (lambda (&optional ,@(unless (eq return :void) (list result)) ,@out-values)
+                ;; Values beyond the return value and out arguments are ignored.
+                (lambda (&optional ,@(unless (eq return :void) (list result)) ,@out-values
+                         &rest ,extra)
+                  (declare (ignore ,extra))
                   ,@(loop for (var spec . options) in outs
                           for v in out-values
                           collect `(unless (cffi:null-pointer-p ,var)

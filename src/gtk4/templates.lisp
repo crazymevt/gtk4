@@ -64,6 +64,15 @@ underscores for hyphens, possibly package-qualified), or NIL."
                symbol)
            :watch object)))))
 
+(gobject:define-vfunc (lisp-builder-scope :get-type-from-name) (scope builder type-name)
+  (declare (ignore scope builder))
+  ;; A Lisp-defined class registers its GType on first use; a .ui file may
+  ;; name it before that.
+  (let ((class (gethash type-name gtk4.runtime::*gtype-name-classes*)))
+    (if (and class (gtk4.runtime::class-lisp-defined-p class))
+        (gobject:class-gtype class)
+        (call-next-vfunc))))
+
 (defun make-builder (&key string file resource (package *package*))
   "A new gtk:builder whose signal handlers are Lisp functions in PACKAGE,
 loaded from a UI definition STRING, FILE or RESOURCE path (any one)."
