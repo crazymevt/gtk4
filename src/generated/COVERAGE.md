@@ -76,7 +76,7 @@ Virtual functions a Lisp subclass can override with `gobject:define-vfunc`.
 | inout parameter | 37 |
 | callback without user_data | 28 |
 | unsupported callback type: out or inout argument | 23 |
-| property accessor name collision | 20 |
+| property accessor not generated: a method has its name (call the method, or use gobject:property) | 20 |
 | pointer to a scalar without an out annotation | 19 |
 | caller-allocates out parameter without a layout | 19 |
 | unsupported callback type: no user_data parameter | 17 |
@@ -90,3 +90,499 @@ Virtual functions a Lisp subclass can override with `gobject:define-vfunc`.
 | unsupported callback type: returns a borrowed string | 2 |
 | return: array of record without a layout | 1 |
 | array length direction mismatch | 1 |
+
+## Every gap
+
+Callables that are bindable but not bound, by namespace. Most need an override (a GIR annotation is missing or wrong) or a marshalling feature the runtime lacks; the reason says which.
+
+### GLib (51)
+
+| Callable | Reason |
+| --- | --- |
+| `g_async_queue_new_full` | callback without user_data |
+| `g_atexit` | unsupported callback type: no user_data parameter |
+| `g_atomic_rc_box_release_full` | callback without user_data |
+| `g_atomic_ref_count_compare` | pointer to a scalar without an out annotation |
+| `g_atomic_ref_count_dec` | pointer to a scalar without an out annotation |
+| `g_atomic_ref_count_inc` | pointer to a scalar without an out annotation |
+| `g_base64_decode_inplace` | inout parameter |
+| `g_base64_encode_close` | array without length |
+| `g_base64_encode_step` | array without length |
+| `g_bytes_new_take` | array argument with ownership transfer |
+| `g_error_domain_register` | unsupported callback type: no user_data parameter |
+| `g_error_domain_register_static` | unsupported callback type: no user_data parameter |
+| `g_hmac_get_digest` | array length direction mismatch |
+| `g_hook_insert_sorted` | unsupported callback type: no user_data parameter |
+| `g_io_channel_read` | pointer to a scalar without an out annotation |
+| `g_io_channel_read_line_string` | pointer to a scalar without an out annotation |
+| `g_io_channel_write` | pointer to a scalar without an out annotation |
+| `g_io_channel_write_chars` | array without length |
+| `g_log_set_writer_func` | unsupported callback type: array argument |
+| `g_markup_parse_context_new` | callback without user_data |
+| `g_once_init_enter` | inout parameter |
+| `g_once_init_enter_impl` | pointer to a scalar without an out annotation |
+| `g_once_init_leave` | inout parameter |
+| `g_option_context_parse` | inout parameter |
+| `g_option_context_parse_strv` | inout parameter |
+| `g_option_context_set_translate_func` | unsupported callback type: returns a borrowed string |
+| `g_option_group_new` | callback without user_data |
+| `g_option_group_set_translate_func` | unsupported callback type: returns a borrowed string |
+| `g_prefix_error_literal` | inout parameter |
+| `g_queue_clear_full` | callback without user_data |
+| `g_queue_free_full` | callback without user_data |
+| `g_rand_new_with_seed_array` | pointer to a scalar without an out annotation |
+| `g_rand_set_seed_array` | pointer to a scalar without an out annotation |
+| `g_rc_box_release_full` | callback without user_data |
+| `g_ref_count_compare` | pointer to a scalar without an out annotation |
+| `g_ref_count_dec` | inout parameter |
+| `g_ref_count_inc` | inout parameter |
+| `g_slice_get_config_state` | pointer to a scalar without an out annotation |
+| `g_source_get_ready_time_ns` | caller-allocates out parameter without a layout |
+| `g_spawn_async_with_pipes_and_fds` | shared array length parameter |
+| `g_test_add_data_func` | callback without user_data |
+| `g_test_add_data_func_full` | callback without user_data |
+| `g_test_add_func` | unsupported callback type: no user_data parameter |
+| `g_test_log_buffer_push` | pointer to a scalar without an out annotation |
+| `g_test_queue_destroy` | callback without user_data |
+| `g_time_zone_adjust_time` | inout parameter |
+| `g_tree_new_full` | callback without user_data |
+| `g_unichar_fully_decompose` | caller-allocates out parameter without a layout |
+| `g_unichar_to_utf8` | caller-allocates out parameter without a layout |
+| `g_unicode_canonical_decomposition` | pointer to a scalar without an out annotation |
+| `g_variant_new_from_data` | callback without user_data |
+
+### GObject (10)
+
+| Callable | Reason |
+| --- | --- |
+| `g_boxed_type_register_static` | callback without user_data |
+| `g_clear_signal_handler` | pointer to a scalar without an out annotation |
+| `g_object_getv` | shared array length parameter |
+| `g_signal_add_emission_hook` | unsupported callback type: array argument |
+| `g_signal_chain_from_overridden` | array without length |
+| `g_signal_emitv` | array without length |
+| `g_signal_group_connect_data` | unsupported callback type: no user_data parameter |
+| `g_signal_group_connect_swapped` | unsupported callback type: no user_data parameter |
+| `g_signal_override_class_handler` | unsupported callback type: no user_data parameter |
+| `g_type_class_adjust_private_offset` | pointer to a scalar without an out annotation |
+
+### Gio (16)
+
+| Callable | Reason |
+| --- | --- |
+| `g_cancellable_connect` | unsupported callback type: no user_data parameter |
+| `g_dbus_connection_register_subtree` | callback without user_data |
+| `g_dtls_client_connection_get_accepted_cas` | return: container of byte-array |
+| `g_inet_address_new_from_bytes` | array without length |
+| `g_inet_address_new_from_bytes_with_ipv6_info` | array without length |
+| `g_list_store_find_with_equal_func` | callback without user_data |
+| `g_memory_input_stream_add_data` | array argument with ownership transfer |
+| `g_memory_input_stream_new_from_data` | array argument with ownership transfer |
+| `g_settings_get_mapped` | unsupported callback type: out or inout argument |
+| `g_socket_receive_message` | inout parameter |
+| `g_task_return_pointer` | callback without user_data |
+| `g_task_run_in_thread` | unsupported callback type: no user_data parameter |
+| `g_task_run_in_thread_sync` | unsupported callback type: no user_data parameter |
+| `g_task_set_task_data` | callback without user_data |
+| `g_tls_client_connection_get_accepted_cas` | return: container of byte-array |
+| `g_tls_password_set_value_full` | callback without user_data |
+
+### HarfBuzz (61)
+
+| Callable | Reason |
+| --- | --- |
+| `hb_buffer_get_segment_properties` | caller-allocates out parameter without a layout |
+| `hb_face_collect_nominal_glyph_mapping` | caller-allocates out parameter without a layout |
+| `hb_face_collect_unicodes` | caller-allocates out parameter without a layout |
+| `hb_face_collect_variation_selectors` | caller-allocates out parameter without a layout |
+| `hb_face_collect_variation_unicodes` | caller-allocates out parameter without a layout |
+| `hb_face_set_get_table_tags_func` | unsupported callback type: out or inout argument |
+| `hb_font_add_glyph_origin_for_direction` | inout parameter |
+| `hb_font_funcs_set_font_h_extents_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_font_v_extents_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_contour_point_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_extents_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_from_name_func` | unsupported callback type: array argument |
+| `hb_font_funcs_set_glyph_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_h_advance_func` | callback without user_data |
+| `hb_font_funcs_set_glyph_h_advances_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_h_kerning_func` | callback without user_data |
+| `hb_font_funcs_set_glyph_h_origin_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_h_origins_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_name_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_v_advance_func` | callback without user_data |
+| `hb_font_funcs_set_glyph_v_advances_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_v_kerning_func` | callback without user_data |
+| `hb_font_funcs_set_glyph_v_origin_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_glyph_v_origins_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_nominal_glyph_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_nominal_glyphs_func` | unsupported callback type: out or inout argument |
+| `hb_font_funcs_set_variation_glyph_func` | unsupported callback type: out or inout argument |
+| `hb_font_subtract_glyph_origin_for_direction` | inout parameter |
+| `hb_ft_face_create` | unresolved type freetype2.Face |
+| `hb_ft_face_create_cached` | unresolved type freetype2.Face |
+| `hb_ft_face_create_referenced` | unresolved type freetype2.Face |
+| `hb_ft_font_create` | unresolved type freetype2.Face |
+| `hb_ft_font_create_referenced` | unresolved type freetype2.Face |
+| `hb_map_next` | inout parameter |
+| `hb_ot_layout_collect_features` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_collect_features_map` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_collect_lookups` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_get_glyphs_in_class` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_lookup_collect_glyph_alternates` | inout parameter |
+| `hb_ot_layout_lookup_collect_glyphs` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_lookup_substitute_closure` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_lookups_substitute_closure` | caller-allocates out parameter without a layout |
+| `hb_ot_layout_script_find_language` | pointer to a scalar without an out annotation |
+| `hb_ot_layout_table_find_feature_variations` | pointer to a scalar without an out annotation |
+| `hb_ot_name_list_names` | return: array of record without a layout |
+| `hb_ot_shape_glyphs_closure` | caller-allocates out parameter without a layout |
+| `hb_ot_shape_plan_collect_lookups` | caller-allocates out parameter without a layout |
+| `hb_ot_tags_from_script_and_language` | inout parameter |
+| `hb_ot_tags_to_script_and_language` | caller-allocates out parameter without a layout |
+| `hb_ot_var_find_axis` | pointer to a scalar without an out annotation |
+| `hb_ot_var_normalize_coords` | pointer to a scalar without an out annotation |
+| `hb_paint_funcs_set_custom_palette_color_func` | unsupported callback type: out or inout argument |
+| `hb_paint_funcs_set_push_clip_path_start_func` | unsupported callback type: out or inout argument |
+| `hb_paint_normalize_color_line` | inout parameter |
+| `hb_paint_sweep_gradient_tiles` | inout parameter |
+| `hb_set_next` | inout parameter |
+| `hb_set_next_range` | inout parameter |
+| `hb_set_previous` | inout parameter |
+| `hb_set_previous_range` | inout parameter |
+| `hb_unicode_funcs_set_compose_func` | unsupported callback type: out or inout argument |
+| `hb_unicode_funcs_set_decompose_func` | unsupported callback type: out or inout argument |
+
+### Pango (20)
+
+| Callable | Reason |
+| --- | --- |
+| `FontFamily:is-monospace` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `FontFamily:is-variable` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `pango_attr_shape_new_with_data` | callback without user_data |
+| `pango_extents_to_pixels` | inout parameter |
+| `pango_font_descriptions_free` | array argument with ownership transfer |
+| `pango_font_get_features` | inout parameter |
+| `pango_glyph_item_get_logical_widths` | array without length |
+| `pango_glyph_item_letter_space` | array without length |
+| `pango_glyph_string_get_logical_widths` | array without length |
+| `pango_log2vis_get_embedding_levels` | inout parameter |
+| `pango_matrix_transform_distance` | inout parameter |
+| `pango_matrix_transform_pixel_rectangle` | inout parameter |
+| `pango_matrix_transform_point` | inout parameter |
+| `pango_matrix_transform_rectangle` | inout parameter |
+| `pango_quantize_line_geometry` | inout parameter |
+| `pango_scan_int` | inout parameter |
+| `pango_scan_string` | inout parameter |
+| `pango_scan_word` | inout parameter |
+| `pango_skip_space` | inout parameter |
+| `pango_tab_array_get_tabs` | array without length |
+
+### GdkPixbuf (2)
+
+| Callable | Reason |
+| --- | --- |
+| `gdk_pixbuf_new_from_data` | array without length |
+| `gdk_pixbuf_save_to_callbackv` | unsupported callback type: array argument |
+
+### Gdk (14)
+
+| Callable | Reason |
+| --- | --- |
+| `Device:has-bidi-layouts` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `gdk_content_deserializer_set_task_data` | callback without user_data |
+| `gdk_content_provider_new_union` | array argument with ownership transfer |
+| `gdk_content_register_deserializer` | unsupported callback type: no user_data parameter |
+| `gdk_content_register_serializer` | unsupported callback type: no user_data parameter |
+| `gdk_content_serializer_set_task_data` | callback without user_data |
+| `gdk_cursor_new_from_callback` | unsupported callback type: out or inout argument |
+| `gdk_display_map_keycode` | shared array length parameter |
+| `gdk_dmabuf_texture_builder_build` | callback without user_data |
+| `gdk_gl_texture_builder_build` | callback without user_data |
+| `gdk_gl_texture_new` | callback without user_data |
+| `gdk_surface_translate_coordinates` | inout parameter |
+| `gdk_texture_download` | array without length |
+| `gdk_texture_downloader_download_into` | array without length |
+
+### Gsk (3)
+
+| Callable | Reason |
+| --- | --- |
+| `gsk_path_foreach` | unsupported callback type: array argument |
+| `gsk_path_get_next` | inout parameter |
+| `gsk_path_get_previous` | inout parameter |
+
+### Gtk (37)
+
+| Callable | Reason |
+| --- | --- |
+| `DropControllerMotion:contains-pointer` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `DropControllerMotion:is-pointer` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `EventControllerFocus:contains-focus` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `EventControllerFocus:is-focus` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `EventControllerMotion:contains-pointer` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `EventControllerMotion:is-pointer` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `IconPaintable:is-symbolic` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `MapListModel:has-map` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `MediaStream:has-audio` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `MediaStream:has-video` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `MountOperation:is-showing` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Printer:accepts-pdf` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Printer:accepts-ps` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Printer:is-virtual` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Widget:has-default` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Widget:has-focus` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `Window:is-active` | property accessor not generated: a method has its name (call the method, or use gobject:property) |
+| `gtk_accessible_update_property_value` | shared array length parameter |
+| `gtk_accessible_update_relation_value` | shared array length parameter |
+| `gtk_accessible_update_state_value` | shared array length parameter |
+| `gtk_alternative_trigger_newv` | array argument with ownership transfer |
+| `gtk_builder_cscope_add_callback_symbol` | unsupported callback type: no user_data parameter |
+| `gtk_cclosure_expression_new` | unsupported callback type: array argument |
+| `gtk_closure_expression_new` | array argument with ownership transfer |
+| `gtk_custom_layout_new` | unsupported callback type: no user_data parameter |
+| `gtk_editable_insert_text` | inout parameter |
+| `gtk_gesture_stylus_get_axes` | array without length |
+| `gtk_list_store_insert_with_valuesv` | shared array length parameter |
+| `gtk_list_store_set_valuesv` | shared array length parameter |
+| `gtk_print_job_set_page_ranges` | array argument with ownership transfer |
+| `gtk_tree_model_filter_set_modify_func` | unsupported callback type: out or inout argument |
+| `gtk_tree_store_insert_with_valuesv` | shared array length parameter |
+| `gtk_tree_store_set_valuesv` | shared array length parameter |
+| `gtk_try_expression_new` | array argument with ownership transfer |
+| `gtk_widget_class_bind_template_callback_full` | unsupported callback type: no user_data parameter |
+| `gtk_widget_class_install_action` | unsupported callback type: no user_data parameter |
+| `gtk_widget_get_allocation` | caller-allocates out parameter without a layout |
+
+### Adw (1)
+
+| Callable | Reason |
+| --- | --- |
+| `adw_breakpoint_add_settersv` | shared array length parameter |
+
+## Virtual functions that cannot be overridden
+
+### Gio (147)
+
+| Virtual function | Reason |
+| --- | --- |
+| `Action.get_name` | returns a borrowed string |
+| `ActionGroup.query_action` | pointer out argument |
+| `AppInfo.get_commandline` | returns a borrowed string |
+| `AppInfo.get_description` | returns a borrowed string |
+| `AppInfo.get_display_name` | returns a borrowed string |
+| `AppInfo.get_executable` | returns a borrowed string |
+| `AppInfo.get_id` | returns a borrowed string |
+| `AppInfo.get_name` | returns a borrowed string |
+| `AppInfo.get_supported_types` | returns a borrowed strv |
+| `AppInfo.launch_uris_async` | callback argument |
+| `Application.local_command_line` | inout parameter |
+| `Application.open` | array argument |
+| `AsyncInitable.init_async` | callback argument |
+| `BufferedInputStream.fill_async` | callback argument |
+| `Converter.convert` | array argument |
+| `DBusInterface.get_info` | returns a borrowed boxed |
+| `DBusInterface.get_object` | not introspectable |
+| `DBusInterfaceSkeleton.get_info` | returns a borrowed boxed |
+| `DBusInterfaceSkeleton.method_dispatch` | not introspectable |
+| `DBusObject.get_interfaces` | returns glist |
+| `DBusObject.get_object_path` | returns a borrowed string |
+| `DBusObjectManager.get_object_path` | returns a borrowed string |
+| `DBusObjectManager.get_objects` | returns glist |
+| `DatagramBased.receive_messages` | array argument |
+| `DatagramBased.send_messages` | array argument |
+| `Drive.eject` | callback argument |
+| `Drive.eject_with_operation` | callback argument |
+| `Drive.get_sort_key` | returns a borrowed string |
+| `Drive.get_volumes` | returns glist |
+| `Drive.poll_for_media` | callback argument |
+| `Drive.start` | callback argument |
+| `Drive.stop` | callback argument |
+| `DtlsConnection.get_binding_data` | byte-array argument |
+| `DtlsConnection.get_negotiated_protocol` | returns a borrowed string |
+| `DtlsConnection.handshake_async` | callback argument |
+| `DtlsConnection.shutdown_async` | callback argument |
+| `File.append_to_async` | callback argument |
+| `File.copy` | callback argument |
+| `File.copy_async` | callback argument |
+| `File.create_async` | callback argument |
+| `File.create_readwrite_async` | callback argument |
+| `File.delete_file_async` | callback argument |
+| `File.eject_mountable` | callback argument |
+| `File.eject_mountable_with_operation` | callback argument |
+| `File.enumerate_children_async` | callback argument |
+| `File.find_enclosing_mount_async` | callback argument |
+| `File.make_directory_async` | callback argument |
+| `File.make_symbolic_link_async` | callback argument |
+| `File.measure_disk_usage` | callback argument |
+| `File.measure_disk_usage_async` | not introspectable |
+| `File.mount_enclosing_volume` | callback argument |
+| `File.mount_mountable` | callback argument |
+| `File.move` | callback argument |
+| `File.move_async` | callback argument |
+| `File.open_readwrite_async` | callback argument |
+| `File.poll_mountable` | callback argument |
+| `File.query_filesystem_info_async` | callback argument |
+| `File.query_info_async` | callback argument |
+| `File.read_async` | callback argument |
+| `File.replace_async` | callback argument |
+| `File.replace_readwrite_async` | callback argument |
+| `File.set_attributes_async` | callback argument |
+| `File.set_display_name_async` | callback argument |
+| `File.start_mountable` | callback argument |
+| `File.stop_mountable` | callback argument |
+| `File.trash_async` | callback argument |
+| `File.unmount_mountable` | callback argument |
+| `File.unmount_mountable_with_operation` | callback argument |
+| `FileEnumerator.close_async` | callback argument |
+| `FileEnumerator.next_files_async` | callback argument |
+| `FileEnumerator.next_files_finish` | returns glist |
+| `FileIOStream.query_info_async` | callback argument |
+| `FileInputStream.query_info_async` | callback argument |
+| `FileOutputStream.query_info_async` | callback argument |
+| `IOStream.close_async` | callback argument |
+| `Icon.to_tokens` | gptrarray out argument |
+| `InetAddress.to_bytes` | not introspectable |
+| `InputStream.close_async` | callback argument |
+| `InputStream.read_async` | array out argument |
+| `InputStream.skip_async` | callback argument |
+| `LoadableIcon.load_async` | callback argument |
+| `MenuAttributeIter.get_next` | borrowed string out argument |
+| `MenuLinkIter.get_next` | borrowed string out argument |
+| `MenuModel.get_item_attributes` | ghash out argument |
+| `MenuModel.get_item_links` | ghash out argument |
+| `Mount.eject` | callback argument |
+| `Mount.eject_with_operation` | callback argument |
+| `Mount.get_sort_key` | returns a borrowed string |
+| `Mount.guess_content_type` | callback argument |
+| `Mount.remount` | callback argument |
+| `Mount.unmount` | callback argument |
+| `Mount.unmount_with_operation` | callback argument |
+| `MountOperation.show_processes` | container GLib.Array |
+| `NetworkMonitor.can_reach_async` | callback argument |
+| `OutputStream.close_async` | callback argument |
+| `OutputStream.flush_async` | callback argument |
+| `OutputStream.splice_async` | callback argument |
+| `OutputStream.write_async` | array argument |
+| `OutputStream.write_fn` | array argument |
+| `OutputStream.writev_async` | array argument |
+| `OutputStream.writev_fn` | array argument |
+| `Permission.acquire_async` | callback argument |
+| `Permission.release_async` | callback argument |
+| `PollableInputStream.read_nonblocking` | array out argument |
+| `PollableOutputStream.write_nonblocking` | array argument |
+| `PollableOutputStream.writev_nonblocking` | array argument |
+| `Proxy.connect_async` | callback argument |
+| `ProxyResolver.lookup_async` | callback argument |
+| `Resolver.lookup_by_address_async` | callback argument |
+| `Resolver.lookup_by_name` | returns glist |
+| `Resolver.lookup_by_name_async` | callback argument |
+| `Resolver.lookup_by_name_finish` | returns glist |
+| `Resolver.lookup_by_name_with_flags` | returns glist |
+| `Resolver.lookup_by_name_with_flags_async` | callback argument |
+| `Resolver.lookup_by_name_with_flags_finish` | returns glist |
+| `Resolver.lookup_records` | returns glist |
+| `Resolver.lookup_records_async` | callback argument |
+| `Resolver.lookup_records_finish` | returns glist |
+| `Resolver.lookup_service` | not introspectable |
+| `Resolver.lookup_service_async` | callback argument |
+| `Resolver.lookup_service_finish` | returns glist |
+| `SettingsBackend.get_permission` | not introspectable |
+| `SocketAddressEnumerator.next_async` | callback argument |
+| `TlsConnection.get_binding_data` | byte-array argument |
+| `TlsConnection.get_negotiated_protocol` | returns a borrowed string |
+| `TlsConnection.handshake_async` | callback argument |
+| `TlsDatabase.lookup_certificate_for_handle_async` | callback argument |
+| `TlsDatabase.lookup_certificate_issuer_async` | callback argument |
+| `TlsDatabase.lookup_certificates_issued_by` | byte-array argument |
+| `TlsDatabase.lookup_certificates_issued_by_async` | byte-array argument |
+| `TlsDatabase.lookup_certificates_issued_by_finish` | returns glist |
+| `TlsDatabase.verify_chain_async` | callback argument |
+| `TlsInteraction.ask_password_async` | callback argument |
+| `TlsInteraction.request_certificate_async` | callback argument |
+| `TlsPassword.get_default_warning` | returns a borrowed string |
+| `TlsPassword.get_value` | hidden argument (callback data or array length) |
+| `TlsPassword.set_value` | callback without user_data |
+| `Vfs.deserialize_icon` | not introspectable |
+| `Vfs.get_supported_uri_schemes` | returns a borrowed strv |
+| `Vfs.local_file_add_info` | callback without user_data |
+| `Volume.eject` | callback argument |
+| `Volume.eject_with_operation` | callback argument |
+| `Volume.get_sort_key` | returns a borrowed string |
+| `Volume.mount_fn` | callback argument |
+| `VolumeMonitor.get_connected_drives` | returns glist |
+| `VolumeMonitor.get_mounts` | returns glist |
+| `VolumeMonitor.get_volumes` | returns glist |
+
+### Pango (9)
+
+| Virtual function | Reason |
+| --- | --- |
+| `Font.get_features` | inout parameter |
+| `Font.get_glyph_extents` | caller-allocated out argument |
+| `FontFace.get_face_name` | returns a borrowed string |
+| `FontFace.list_sizes` | array out argument |
+| `FontFamily.get_name` | returns a borrowed string |
+| `FontFamily.list_faces` | array out argument |
+| `FontMap.get_face` | not introspectable |
+| `FontMap.list_families` | array out argument |
+| `Fontset.foreach` | callback argument |
+
+### GdkPixbuf (1)
+
+| Virtual function | Reason |
+| --- | --- |
+| `PixbufAnimation.get_size` | pointer to a scalar without an out annotation |
+
+### Gdk (2)
+
+| Virtual function | Reason |
+| --- | --- |
+| `ContentProvider.get_value` | caller-allocated out argument |
+| `ContentProvider.write_mime_type_async` | callback argument |
+
+### Gtk (34)
+
+| Virtual function | Reason |
+| --- | --- |
+| `AccessibleText.get_attributes` | hidden argument (callback data or array length) |
+| `AccessibleText.get_default_attributes` | strv out argument |
+| `AccessibleText.get_selection` | hidden argument (callback data or array length) |
+| `Actionable.get_action_name` | returns a borrowed string |
+| `Buildable.construct_child` | not introspectable |
+| `Buildable.custom_tag_start` | caller-allocated out argument |
+| `Buildable.get_id` | returns a borrowed string |
+| `CellArea.foreach` | callback argument |
+| `CellArea.foreach_alloc` | callback argument |
+| `CellLayout.get_cells` | returns glist |
+| `CellLayout.set_cell_data_func` | callback argument |
+| `CellRenderer.get_aligned_area` | caller-allocated out argument |
+| `ColorChooser.add_palette` | hidden argument (callback data or array length) |
+| `ColorChooser.get_rgba` | caller-allocated out argument |
+| `Editable.do_insert_text` | inout parameter |
+| `Editable.get_text` | returns a borrowed string |
+| `Editable.insert_text` | inout parameter |
+| `EntryBuffer.get_text` | pointer to a scalar without an out annotation |
+| `FontChooser.set_filter_func` | callback argument |
+| `GLArea.create_context` | not introspectable |
+| `IMContext.get_preedit_string` | boxed out argument |
+| `PrintOperation.create_custom_widget` | not introspectable |
+| `Scrollable.get_border` | caller-allocated out argument |
+| `SymbolicPaintable.snapshot_symbolic` | array argument |
+| `SymbolicPaintable.snapshot_with_weight` | array argument |
+| `TextView.create_buffer` | not introspectable |
+| `TreeModel.get_iter` | caller-allocated out argument |
+| `TreeModel.get_value` | caller-allocated out argument |
+| `TreeModel.iter_children` | caller-allocated out argument |
+| `TreeModel.iter_nth_child` | caller-allocated out argument |
+| `TreeModel.iter_parent` | caller-allocated out argument |
+| `TreeModel.rows_reordered` | not introspectable |
+| `TreeSortable.set_default_sort_func` | callback argument |
+| `TreeSortable.set_sort_func` | callback argument |
+
+### Adw (2)
+
+| Virtual function | Reason |
+| --- | --- |
+| `Swipeable.get_snap_points` | hidden argument (callback data or array length) |
+| `Swipeable.get_swipe_area` | caller-allocated out argument |

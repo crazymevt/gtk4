@@ -188,7 +188,7 @@ of the hash table *ITEM-SYMBOLS*."
               (if sym
                   (setf (gethash p *item-symbols*) sym)
                   (note-skip ctx ns (format nil "~a:~a" (gir-item-name c) (gir-item-name p))
-                             "property accessor name collision"))))))
+                             "property accessor not generated: a method has its name (call the method, or use gobject:property)"))))))
       ;; Struct layouts, field accessors and constructors.
       (plan-namespace-layouts ctx ns package))))
 

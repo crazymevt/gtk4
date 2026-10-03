@@ -574,6 +574,29 @@ Lisp API replaces it by design.")
     (loop for (reason . count) in (sort (alexandria:hash-table-alist reasons) #'> :key #'cdr)
           do (format stream "| ~a | ~d |~%" reason count))))
 
+(defun emit-gap-lists (ctx stream)
+  "Every bindable callable that is not bound and every virtual function that
+cannot be overridden, each with its reason."
+  (format stream "~%## Every gap~%~%Callables that are bindable but not bound, by namespace. Most need an override (a GIR annotation is missing or wrong) or a marshalling feature the runtime lacks; the reason says which.~%")
+  (dolist (ns (context-targets ctx))
+    (let ((gaps (sort (remove-if (lambda (skip) (member (cdr skip) *never-bindable* :test #'string=))
+                                 (copy-list (gethash (gir-namespace-name ns) (context-skipped ctx))))
+                      #'string< :key #'car)))
+      (when gaps
+        (format stream "~%### ~a (~d)~%~%| Callable | Reason |~%| --- | --- |~%"
+                (gir-namespace-name ns) (length gaps))
+        (loop for (what . why) in gaps
+              do (format stream "| `~a` | ~a |~%" what why)))))
+  (format stream "~%## Virtual functions that cannot be overridden~%")
+  (dolist (ns (context-targets ctx))
+    (let ((gaps (sort (copy-list (gethash (gir-namespace-name ns) (context-vfuncs-skipped ctx)))
+                      #'string< :key #'car)))
+      (when gaps
+        (format stream "~%### ~a (~d)~%~%| Virtual function | Reason |~%| --- | --- |~%"
+                (gir-namespace-name ns) (length gaps))
+        (loop for (what . why) in gaps
+              do (format stream "| `~a` | ~a |~%" what why))))))
+
 (defun reason-category (reason)
   "Group reasons that differ only in a type name."
   (let ((p (search "unresolved type" reason)))
@@ -603,6 +626,9 @@ one file per namespace, and COVERAGE.md. Run in a fresh image."
     (with-open-file (out (merge-pathnames "COVERAGE.md" output-directory)
                          :direction :output :if-exists :supersede)
       (emit-coverage ctx out))
+    (with-open-file (out (merge-pathnames "COVERAGE.md" output-directory)
+                         :direction :output :if-exists :append)
+      (emit-gap-lists ctx out))
     (emit-coverage ctx *standard-output*)
     (when site-directory
       (generate-site ctx site-directory)
