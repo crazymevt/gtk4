@@ -19,37 +19,6 @@ C: hb_aat_layout_feature_type_get_name_id
 Since: 2.2.0")
 
 
-(rt:define-gfunction
- (aat-layout-feature-type-get-selector-infos "hb_aat_layout_feature_type_get_selector_infos") :args
- ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
-  (feature-type (:enum aat-layout-feature-type-t)) (start-offset :uint)
-  (selector-count :uint :length-of selectors :direction :out)
-  (selectors (:array (:record aat-layout-feature-selector-info-t) :caller-allocates t) :direction
-   :out)
-  (default-index :uint :direction :out :transfer :full))
- :return :uint :version "2.2.0" :documentation
- "Fetches a list of the selectors available for the specified feature in the given face.
-
-Returns an integer, then SELECTORS (a list of `harfbuzz:aat-layout-feature-selector-info-t`), then DEFAULT-INDEX (an integer) as multiple values.
-
-C: hb_aat_layout_feature_type_get_selector_infos
-Since: 2.2.0")
-
-
-(rt:define-gfunction (aat-layout-get-feature-types "hb_aat_layout_get_feature_types") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
-                      (feature-count :uint :length-of features :direction :out)
-                      (features (:array (:enum aat-layout-feature-type-t) :caller-allocates t)
-                       :direction :out))
-                     :return :uint :version "2.2.0" :documentation
-                     "Fetches a list of the AAT feature types included in the specified face.
-
-Returns an integer, then FEATURES (a list of `harfbuzz:aat-layout-feature-type-t`) as multiple values.
-
-C: hb_aat_layout_get_feature_types
-Since: 2.2.0")
-
-
 (rt:define-gfunction (aat-layout-has-positioning "hb_aat_layout_has_positioning") :args
                      ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))) :return :int :version
                      "2.3.0" :documentation
@@ -976,24 +945,6 @@ Returns an integer.
 
 C: hb_color_get_red
 Since: 2.1.0")
-
-
-(rt:define-gfunction (color-line-get-color-stops "hb_color_line_get_color_stops") :args
-                     ((color-line
-                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
-                      (start :uint) (count :uint :length-of color-stops :direction :out)
-                      (color-stops
-                       (:array
-                        (:boxed "hb_color_stop_t" "hb_gobject_color_stop_get_type" color-stop-t)
-                        :caller-allocates t)
-                       :direction :out))
-                     :return :uint :version "7.0.0" :documentation
-                     "Fetches a list of color stops from the given color line object.
-
-Returns an integer, then COLOR-STOPS (a list of `harfbuzz:color-stop-t`) as multiple values.
-
-C: hb_color_line_get_color_stops
-Since: 7.0.0")
 
 
 (rt:define-gfunction (color-line-get-extend "hb_color_line_get_extend") :args
@@ -2964,21 +2915,6 @@ C: hb_ot_color_get_svg_document_glyph_range
 Since: 13.0.0")
 
 
-(rt:define-gfunction (ot-color-glyph-get-layers "hb_ot_color_glyph_get_layers") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (glyph :uint32)
-                      (start-offset :uint) (layer-count :uint :length-of layers :direction :out)
-                      (layers (:array (:record ot-color-layer-t) :caller-allocates t) :direction
-                       :out))
-                     :return :uint :version "2.1.0" :documentation
-                     "Fetches a list of all color layers for the specified glyph index in the specified
-face. The list returned will begin at the offset provided.
-
-Returns an integer, then LAYERS (a list of `harfbuzz:ot-color-layer-t`) as multiple values.
-
-C: hb_ot_color_glyph_get_layers
-Since: 2.1.0")
-
-
 (rt:define-gfunction
  (ot-color-glyph-get-svg-document-index "hb_ot_color_glyph_get_svg_document_index") :args
  ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (glyph :uint32)
@@ -3175,21 +3111,6 @@ for fonts newly created.
 
 C: hb_ot_font_set_funcs
 Since: 0.9.28")
-
-
-(rt:define-gfunction (ot-layout-feature-get-characters "hb_ot_layout_feature_get_characters") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (table-tag :uint32)
-                      (feature-index :uint) (start-offset :uint)
-                      (char-count :uint :length-of characters :direction :out)
-                      (characters (:array :uint32 :caller-allocates t) :direction :out))
-                     :return :uint :version "2.0.0" :documentation
-                     "Fetches a list of the characters defined as having a variant under the specified
-\"Character Variant\" (\"cvXX\") feature tag.
-
-Returns an integer, then CHARACTERS (a list of integer) as multiple values.
-
-C: hb_ot_layout_feature_get_characters
-Since: 2.0.0")
 
 
 (rt:define-gfunction (ot-layout-feature-get-lookups "hb_ot_layout_feature_get_lookups") :args
@@ -3509,21 +3430,6 @@ C: hb_ot_layout_language_get_required_feature_index
 Since: 0.6.0")
 
 
-(rt:define-gfunction
- (ot-layout-lookup-get-glyph-alternates "hb_ot_layout_lookup_get_glyph_alternates") :args
- ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (lookup-index :uint) (glyph :uint32)
-  (start-offset :uint) (alternate-count :uint :length-of alternate-glyphs :direction :out)
-  (alternate-glyphs (:array :uint32 :caller-allocates t) :direction :out))
- :return :uint :version "2.6.8" :documentation
- "Fetches alternates of a glyph from a given GSUB lookup index. Note that for one-to-one GSUB
-glyph substitutions, this function fetches the substituted glyph.
-
-Returns an integer, then ALTERNATE-GLYPHS (a list of integer) as multiple values.
-
-C: hb_ot_layout_lookup_get_glyph_alternates
-Since: 2.6.8")
-
-
 (rt:define-gfunction (ot-layout-lookup-get-optical-bound "hb_ot_layout_lookup_get_optical_bound")
                      :args
                      ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (lookup-index :uint)
@@ -3692,29 +3598,6 @@ C: hb_ot_math_get_constant
 Since: 1.3.3")
 
 
-(rt:define-gfunction (ot-math-get-glyph-assembly "hb_ot_math_get_glyph_assembly") :args
-                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
-                      (direction (:enum direction-t)) (start-offset :uint)
-                      (parts-count :uint :length-of parts :direction :out)
-                      (parts
-                       (:array
-                        (:boxed "hb_ot_math_glyph_part_t" "hb_gobject_ot_math_glyph_part_get_type"
-                         ot-math-glyph-part-t)
-                        :caller-allocates t)
-                       :direction :out)
-                      (italics-correction :int32 :direction :out :transfer :full))
-                     :return :uint :version "1.3.3" :documentation
-                     "Fetches the GlyphAssembly for the specified font, glyph index, and direction.
-Returned are a list of `harfbuzz:ot-math-glyph-part-t` glyph parts that can be
-used to draw the glyph and an italics-correction value (if one is defined
-in the font).
-
-Returns an integer, then PARTS (a list of `harfbuzz:ot-math-glyph-part-t`), then ITALICS-CORRECTION (an integer) as multiple values.
-
-C: hb_ot_math_get_glyph_assembly
-Since: 1.3.3")
-
-
 (rt:define-gfunction
  (ot-math-get-glyph-italics-correction "hb_ot_math_get_glyph_italics_correction") :args
  ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)) :return :int32 :version
@@ -3740,23 +3623,6 @@ C: hb_ot_math_get_glyph_kerning
 Since: 1.3.3")
 
 
-(rt:define-gfunction (ot-math-get-glyph-kernings "hb_ot_math_get_glyph_kernings") :args
-                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
-                      (kern (:enum ot-math-kern-t)) (start-offset :uint)
-                      (entries-count :uint :length-of kern-entries :direction :out)
-                      (kern-entries (:array (:record ot-math-kern-entry-t) :caller-allocates t)
-                       :direction :out))
-                     :return :uint :version "3.4.0" :documentation
-                     "Fetches the raw MathKern (cut-in) data for the specified font, glyph index,
-and KERN. The corresponding list of kern values and correction heights is
-returned as a list of `harfbuzz:ot-math-kern-entry-t` structs.
-
-Returns an integer, then KERN-ENTRIES (a list of `harfbuzz:ot-math-kern-entry-t`) as multiple values.
-
-C: hb_ot_math_get_glyph_kernings
-Since: 3.4.0")
-
-
 (rt:define-gfunction
  (ot-math-get-glyph-top-accent-attachment "hb_ot_math_get_glyph_top_accent_attachment") :args
  ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)) :return :int32 :version
@@ -3766,27 +3632,6 @@ glyph index.
 Returns an integer.
 
 C: hb_ot_math_get_glyph_top_accent_attachment
-Since: 1.3.3")
-
-
-(rt:define-gfunction (ot-math-get-glyph-variants "hb_ot_math_get_glyph_variants") :args
-                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
-                      (direction (:enum direction-t)) (start-offset :uint)
-                      (variants-count :uint :length-of variants :direction :out)
-                      (variants
-                       (:array
-                        (:boxed "hb_ot_math_glyph_variant_t"
-                         "hb_gobject_ot_math_glyph_variant_get_type" ot-math-glyph-variant-t)
-                        :caller-allocates t)
-                       :direction :out))
-                     :return :uint :version "1.3.3" :documentation
-                     "Fetches the MathGlyphConstruction for the specified font, glyph index, and
-direction. The corresponding list of size variants is returned as a list of
-`harfbuzz:ot-math-glyph-variant-t` structs.
-
-Returns an integer, then VARIANTS (a list of `harfbuzz:ot-math-glyph-variant-t`) as multiple values.
-
-C: hb_ot_math_get_glyph_variants
 Since: 1.3.3")
 
 
@@ -3824,19 +3669,6 @@ Returns an integer.
 
 C: hb_ot_math_is_glyph_extended_shape
 Since: 1.3.3")
-
-
-(rt:define-gfunction (ot-meta-get-entry-tags "hb_ot_meta_get_entry_tags") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
-                      (entries-count :uint :length-of entries :direction :out)
-                      (entries (:array (:enum ot-meta-tag-t) :caller-allocates t) :direction :out))
-                     :return :uint :version "2.6.0" :documentation
-                     "Fetches all available feature types.
-
-Returns an integer, then ENTRIES (a list of `harfbuzz:ot-meta-tag-t`) as multiple values.
-
-C: hb_ot_meta_get_entry_tags
-Since: 2.6.0")
 
 
 (rt:define-gfunction (ot-meta-reference-entry "hb_ot_meta_reference_entry") :args
@@ -3915,57 +3747,6 @@ Returns an integer.
 
 C: hb_ot_metrics_get_y_variation
 Since: 2.6.0")
-
-
-(rt:define-gfunction (ot-name-get-utf16 "hb_ot_name_get_utf16") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (name-id :uint)
-                      (language (:record language-t))
-                      (text-size :uint :length-of text :direction :out)
-                      (text (:array :uint16 :caller-allocates t) :direction :out))
-                     :return :uint :version "2.1.0" :documentation
-                     "Fetches a font name from the OpenType 'name' table.
-If LANGUAGE is `harfbuzz:+language-invalid+`, English (\"en\") is assumed.
-Returns string in UTF-16 encoding. A NUL terminator is always written
-for convenience, and isn't included in the output TEXT-SIZE.
-
-Returns an integer, then TEXT (a list of integer) as multiple values.
-
-C: hb_ot_name_get_utf16
-Since: 2.1.0")
-
-
-(rt:define-gfunction (ot-name-get-utf32 "hb_ot_name_get_utf32") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (name-id :uint)
-                      (language (:record language-t))
-                      (text-size :uint :length-of text :direction :out)
-                      (text (:array :uint32 :caller-allocates t) :direction :out))
-                     :return :uint :version "2.1.0" :documentation
-                     "Fetches a font name from the OpenType 'name' table.
-If LANGUAGE is `harfbuzz:+language-invalid+`, English (\"en\") is assumed.
-Returns string in UTF-32 encoding. A NUL terminator is always written
-for convenience, and isn't included in the output TEXT-SIZE.
-
-Returns an integer, then TEXT (a list of integer) as multiple values.
-
-C: hb_ot_name_get_utf32
-Since: 2.1.0")
-
-
-(rt:define-gfunction (ot-name-get-utf8 "hb_ot_name_get_utf8") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (name-id :uint)
-                      (language (:record language-t))
-                      (text-size :uint :length-of text :direction :out)
-                      (text (:array :string :caller-allocates t) :direction :out))
-                     :return :uint :version "2.1.0" :documentation
-                     "Fetches a font name from the OpenType 'name' table.
-If LANGUAGE is `harfbuzz:+language-invalid+`, English (\"en\") is assumed.
-Returns string in UTF-8 encoding. A NUL terminator is always written
-for convenience, and isn't included in the output TEXT-SIZE.
-
-Returns an integer, then TEXT (a list of string) as multiple values.
-
-C: hb_ot_name_get_utf8
-Since: 2.1.0")
 
 
 (rt:define-gfunction (ot-shape-get-buffer-format-serial "hb_ot_shape_get_buffer_format_serial")
@@ -4052,22 +3833,6 @@ C: hb_ot_var_find_axis_info
 Since: 2.2.0")
 
 
-(rt:define-gfunction (ot-var-get-axes "hb_ot_var_get_axes") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
-                      (axes-count :uint :length-of axes-array :direction :out)
-                      (axes-array (:array (:record ot-var-axis-t) :caller-allocates t) :direction
-                       :out))
-                     :return :uint :version "1.4.2" :documentation
-                     "Fetches a list of all variation axes in the specified face. The list returned will begin
-at the offset provided.
-
-Returns an integer, then AXES-ARRAY (a list of `harfbuzz:ot-var-axis-t`) as multiple values.
-
-C: hb_ot_var_get_axes
-Since: 1.4.2
-Deprecated.")
-
-
 (rt:define-gfunction (ot-var-get-axis-count "hb_ot_var_get_axis_count") :args
                      ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))) :return :uint
                      :version "1.4.2" :documentation
@@ -4077,25 +3842,6 @@ Returns an integer.
 
 C: hb_ot_var_get_axis_count
 Since: 1.4.2")
-
-
-(rt:define-gfunction (ot-var-get-axis-infos "hb_ot_var_get_axis_infos") :args
-                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
-                      (axes-count :uint :length-of axes-array :direction :out)
-                      (axes-array
-                       (:array
-                        (:boxed "hb_ot_var_axis_info_t" "hb_gobject_ot_var_axis_info_get_type"
-                         ot-var-axis-info-t)
-                        :caller-allocates t)
-                       :direction :out))
-                     :return :uint :version "2.2.0" :documentation
-                     "Fetches a list of all variation axes in the specified face. The list returned will begin
-at the offset provided.
-
-Returns an integer, then AXES-ARRAY (a list of `harfbuzz:ot-var-axis-info-t`) as multiple values.
-
-C: hb_ot_var_get_axis_infos
-Since: 2.2.0")
 
 
 (rt:define-gfunction (ot-var-get-named-instance-count "hb_ot_var_get_named_instance_count") :args
@@ -4949,4 +4695,162 @@ Since: 0.9.7")
 Returns a boxed value.
 
 C: hb_set_get_empty
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-get-max "hb_set_get_max") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :uint32 :version
+                     "0.9.7" :documentation "Finds the largest element in the set.
+
+Returns an integer.
+
+C: hb_set_get_max
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-get-min "hb_set_get_min") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :uint32 :version
+                     "0.9.7" :documentation "Finds the smallest element in the set.
+
+Returns an integer.
+
+C: hb_set_get_min
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-get-population "hb_set_get_population") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :uint :version
+                     "0.9.7" :documentation "Returns the number of elements in the set.
+
+Returns an integer.
+
+C: hb_set_get_population
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-has "hb_set_has") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (codepoint :uint32))
+                     :return :int :version "0.9.2" :documentation
+                     "Tests whether CODEPOINT belongs to SET.
+
+Returns an integer.
+
+C: hb_set_has
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-hash "hb_set_hash") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :uint :version
+                     "4.4.0" :documentation "Creates a hash representing SET.
+
+Returns an integer.
+
+C: hb_set_hash
+Since: 4.4.0")
+
+
+(rt:define-gfunction (set-intersect "hb_set_intersect") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (other (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :version "0.9.2" :documentation "Makes SET the intersection of SET and OTHER.
+
+C: hb_set_intersect
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-intersects "hb_set_intersects") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (other (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :return :int :version "14.4.0" :documentation
+                     "Tests whether SET and OTHER have any elements in common.
+
+Returns an integer.
+
+C: hb_set_intersects
+Since: 14.4.0")
+
+
+(rt:define-gfunction (set-invert "hb_set_invert") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :version "3.0.0"
+                     :documentation "Inverts the contents of SET.
+
+C: hb_set_invert
+Since: 3.0.0")
+
+
+(rt:define-gfunction (set-is-empty "hb_set_is_empty") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :int :version
+                     "0.9.7" :documentation "Tests whether a set is empty (contains no elements).
+
+Returns an integer.
+
+C: hb_set_is_empty
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-is-equal "hb_set_is_equal") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (other (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :return :int :version "0.9.7" :documentation
+                     "Tests whether SET and OTHER are equal (contain the same
+elements).
+
+Returns an integer.
+
+C: hb_set_is_equal
+Since: 0.9.7")
+
+
+(rt:define-gfunction (set-is-inverted "hb_set_is_inverted") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))) :return :int :version
+                     "7.0.0" :documentation "Returns whether the set is inverted.
+
+Returns an integer.
+
+C: hb_set_is_inverted
+Since: 7.0.0")
+
+
+(rt:define-gfunction (set-is-subset "hb_set_is_subset") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (larger-set (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :return :int :version "1.8.1" :documentation
+                     "Tests whether SET is a subset of LARGER-SET.
+
+Returns an integer.
+
+C: hb_set_is_subset
+Since: 1.8.1")
+
+
+(rt:define-gfunction (set-next-many "hb_set_next_many") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type")) (codepoint :uint32)
+                      (out (:array :uint32)) (size :uint :length-of out))
+                     :return :uint :version "4.2.0" :documentation
+                     "Finds the next element in SET that is greater than CODEPOINT. Writes out
+codepoints to OUT, until either the set runs out of elements, or SIZE
+codepoints are written, whichever comes first.
+
+Returns an integer.
+
+C: hb_set_next_many
+Since: 4.2.0")
+
+
+(rt:define-gfunction (set-set "hb_set_set") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (other (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :version "0.9.2" :documentation
+                     "Makes the contents of SET equal to the contents of OTHER.
+
+C: hb_set_set
+Since: 0.9.2")
+
+
+(rt:define-gfunction (set-subtract "hb_set_subtract") :args
+                     ((set (:boxed "hb_set_t" "hb_gobject_set_get_type"))
+                      (other (:boxed "hb_set_t" "hb_gobject_set_get_type")))
+                     :version "0.9.2" :documentation "Subtracts the contents of OTHER from SET.
+
+C: hb_set_subtract
 Since: 0.9.2")

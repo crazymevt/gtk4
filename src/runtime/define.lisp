@@ -99,6 +99,10 @@
 
 (defstruct enum-info kind (by-keyword (make-hash-table)) (by-value (make-hash-table)) members gtype)
 
+(defvar *enum-gtypes* '()
+  "(NAME GTYPE-NAME GET-TYPE) for each enum with a GType, so a saved image
+can register them again in the new process.")
+
 (defun register-genum (name kind members &key gtype-name get-type)
   "Record NAME's MEMBERS, an alist of (KEYWORD . VALUE). With GTYPE-NAME,
 also register GValue conversion for its GType."
@@ -112,10 +116,6 @@ also register GValue conversion for its GType."
       (push (list name gtype-name get-type) *enum-gtypes*)
       (register-enum-gtype name gtype-name get-type))
     name))
-
-(defvar *enum-gtypes* '()
-  "(NAME GTYPE-NAME GET-TYPE) for each enum with a GType, so a saved image
-can register them again in the new process.")
 
 (defun register-enum-gtype (name gtype-name get-type)
   "Look up enum NAME's GType and register GValue conversion for it. A
