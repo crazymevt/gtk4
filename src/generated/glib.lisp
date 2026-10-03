@@ -7941,139 +7941,6 @@ See: https://docs.gtk.org/glib/method.BookmarkFile.to_file.html
 Since: 2.12")
 
 
-(rt:define-gfunction (byte-array-append "g_byte_array_append") :args
-                     ((array :byte-array) (data (:array :uint8)) (len :uint :length-of data))
-                     :return :byte-array :documentation
-                     "Adds the given bytes to the end of the `GByteArray`.
-The array will grow in size automatically if necessary.
-
-C: g_byte_array_append
-See: https://docs.gtk.org/glib/type_func.ByteArray.append.html")
-
-
-(rt:define-gfunction (byte-array-free-to-bytes "g_byte_array_free_to_bytes") :args
-                     ((array :byte-array :transfer :full)) :return
-                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "2.32"
-                     :documentation "Transfers the data from the `GByteArray` into a new immutable
-GLib.Bytes.
-
-C: g_byte_array_free_to_bytes
-See: https://docs.gtk.org/glib/type_func.ByteArray.free_to_bytes.html
-Since: 2.32")
-
-
-(rt:define-gfunction (byte-array-new "g_byte_array_new") :return :byte-array :return-transfer :full
-                     :documentation "Creates a new `GByteArray` with a reference count of 1.
-
-C: g_byte_array_new
-See: https://docs.gtk.org/glib/type_func.ByteArray.new.html")
-
-
-(rt:define-gfunction (byte-array-prepend "g_byte_array_prepend") :args
-                     ((array :byte-array) (data (:array :uint8)) (len :uint :length-of data))
-                     :return :byte-array :documentation
-                     "Adds the given data to the start of the `GByteArray`.
-The array will grow in size automatically if necessary.
-
-C: g_byte_array_prepend
-See: https://docs.gtk.org/glib/type_func.ByteArray.prepend.html")
-
-
-(rt:define-gfunction (byte-array-ref "g_byte_array_ref") :args ((array :byte-array)) :return
-                     :byte-array :return-transfer :full :version "2.22" :documentation
-                     "Atomically increments the reference count of ARRAY by one.
-This function is thread-safe and may be called from any thread.
-
-C: g_byte_array_ref
-See: https://docs.gtk.org/glib/type_func.ByteArray.ref.html
-Since: 2.22")
-
-
-(rt:define-gfunction (byte-array-remove-index "g_byte_array_remove_index") :args
-                     ((array :byte-array) (index- :uint)) :return :byte-array :documentation
-                     "Removes the byte at the given index from a `GByteArray`.
-The following bytes are moved down one place.
-
-C: g_byte_array_remove_index
-See: https://docs.gtk.org/glib/type_func.ByteArray.remove_index.html")
-
-
-(rt:define-gfunction (byte-array-remove-index-fast "g_byte_array_remove_index_fast") :args
-                     ((array :byte-array) (index- :uint)) :return :byte-array :documentation
-                     "Removes the byte at the given index from a `GByteArray`. The last
-element in the array is used to fill in the space, so this function
-does not preserve the order of the `GByteArray`. But it is faster
-than GLib.ByteArray.remove_index.
-
-C: g_byte_array_remove_index_fast
-See: https://docs.gtk.org/glib/type_func.ByteArray.remove_index_fast.html")
-
-
-(rt:define-gfunction (byte-array-remove-range "g_byte_array_remove_range") :args
-                     ((array :byte-array) (index- :uint) (length :uint)) :return :byte-array
-                     :version "2.4" :documentation
-                     "Removes the given number of bytes starting at the given index from a
-`GByteArray`. The following elements are moved to close the gap.
-
-C: g_byte_array_remove_range
-See: https://docs.gtk.org/glib/type_func.ByteArray.remove_range.html
-Since: 2.4")
-
-
-(rt:define-gfunction (byte-array-set-size "g_byte_array_set_size") :args
-                     ((array :byte-array) (length :uint)) :return :byte-array :documentation
-                     "Sets the size of the `GByteArray`, expanding it if necessary.
-
-C: g_byte_array_set_size
-See: https://docs.gtk.org/glib/type_func.ByteArray.set_size.html")
-
-
-(rt:define-gfunction (byte-array-sized-new "g_byte_array_sized_new") :args ((reserved-size :uint))
-                     :return :byte-array :return-transfer :full :documentation
-                     "Creates a new `GByteArray` with RESERVED-SIZE bytes preallocated.
-This avoids frequent reallocation, if you are going to add many
-bytes to the array. Note however that the size of the array is still
-0.
-
-C: g_byte_array_sized_new
-See: https://docs.gtk.org/glib/type_func.ByteArray.sized_new.html")
-
-
-(rt:define-gfunction (byte-array-sort-with-data "g_byte_array_sort_with_data") :args
-                     ((array :byte-array) (compare-func (:callback compare-data-func :call))
-                      (user-data :pointer :user-data-of compare-func))
-                     :documentation
-                     "Like GLib.ByteArray.sort, but the comparison function takes an extra
-user data argument.
-
-C: g_byte_array_sort_with_data
-See: https://docs.gtk.org/glib/type_func.ByteArray.sort_with_data.html")
-
-
-(rt:define-gfunction (byte-array-steal "g_byte_array_steal") :args
-                     ((array :byte-array) (len :size :length-of :return :direction :out)) :return
-                     (:array :uint8) :return-transfer :full :version "2.64" :documentation
-                     "Frees the data in the array and resets the size to zero, while
-the underlying array is preserved for use elsewhere and returned
-to the caller.
-
-C: g_byte_array_steal
-See: https://docs.gtk.org/glib/type_func.ByteArray.steal.html
-Since: 2.64")
-
-
-(rt:define-gfunction (byte-array-unref "g_byte_array_unref") :args
-                     ((array :byte-array :transfer :full)) :version "2.22" :documentation
-                     "Atomically decrements the reference count of ARRAY by one. If the
-reference count drops to 0, all memory allocated by the array is
-released. This function is thread-safe and may be called from any
-thread.
-
-C: g_byte_array_unref
-See: https://docs.gtk.org/glib/type_func.ByteArray.unref.html
-Since: 2.22")
-
-
 (rt:define-gfunction (bytes-new "g_bytes_new") :args
                      ((data (:array :uint8)) (size :size :length-of data)) :return
                      (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "2.32"
@@ -8338,6 +8205,20 @@ function.
 
 C: g_completion_clear_items
 See: https://docs.gtk.org/glib/method.Completion.clear_items.html
+Deprecated.")
+
+
+(rt:define-gfunction (completion-complete-utf8 "g_completion_complete_utf8") :args
+                     ((cmp (:record completion)) (prefix :string) (new-prefix :string)) :return
+                     (:glist :string) :version "2.4" :documentation
+                     "Attempts to complete the string PREFIX using the #GCompletion target items.
+In contrast to g_completion_complete(), this function returns the largest common
+prefix that is a valid UTF-8 string, omitting a possible common partial
+character.
+
+C: g_completion_complete_utf8
+See: https://docs.gtk.org/glib/method.Completion.complete_utf8.html
+Since: 2.4
 Deprecated.")
 
 
@@ -9631,6 +9512,27 @@ C: g_error_matches
 See: https://docs.gtk.org/glib/method.Error.matches.html")
 
 
+(rt:define-gfunction (hash-table-iter-get-hash-table "g_hash_table_iter_get_hash_table") :args
+                     ((iter (:record hash-table-iter))) :return (:ghash :pointer :pointer) :version
+                     "2.16" :documentation "Returns the #GHashTable associated with ITER.
+
+C: g_hash_table_iter_get_hash_table
+See: https://docs.gtk.org/glib/method.HashTableIter.get_hash_table.html
+Since: 2.16")
+
+
+(rt:define-gfunction (hash-table-iter-init "g_hash_table_iter_init") :args
+                     ((iter (:record hash-table-iter)) (hash-table (:ghash :pointer :pointer)))
+                     :version "2.16" :documentation
+                     "Initializes a key/value pair iterator and associates it with
+HASH-TABLE. Modifying the hash table after calling this function
+invalidates the returned iterator.
+
+C: g_hash_table_iter_init
+See: https://docs.gtk.org/glib/method.HashTableIter.init.html
+Since: 2.16")
+
+
 (rt:define-gfunction (hash-table-iter-next "g_hash_table_iter_next") :args
                      ((iter (:record hash-table-iter))
                       (key :pointer :direction :out :transfer :full)
@@ -10747,19 +10649,6 @@ See: https://docs.gtk.org/glib/method.KeyFile.unref.html
 Since: 2.32")
 
 
-(rt:define-gfunction (list-pop-allocator "g_list_pop_allocator") :documentation "
-C: g_list_pop_allocator
-See: https://docs.gtk.org/glib/type_func.List.pop_allocator.html
-Deprecated.")
-
-
-(rt:define-gfunction (list-push-allocator "g_list_push_allocator") :args
-                     ((allocator (:record allocator))) :documentation "
-C: g_list_push_allocator
-See: https://docs.gtk.org/glib/type_func.List.push_allocator.html
-Deprecated.")
-
-
 (rt:define-gfunction (main-context-new "g_main_context_new") :return
                      (:boxed "GMainContext" "g_main_context_get_type") :return-transfer :full
                      :documentation "Creates a new GLib.MainContext structure.
@@ -11214,6 +11103,17 @@ Since: 2.90")
 C: g_markup_parse_context_get_element
 See: https://docs.gtk.org/glib/method.MarkupParseContext.get_element.html
 Since: 2.2")
+
+
+(rt:define-gfunction
+ (markup-parse-context-get-element-stack "g_markup_parse_context_get_element_stack") :args
+ ((context (:boxed "GMarkupParseContext" "g_markup_parse_context_get_type"))) :return
+ (:gslist :string) :version "2.16" :documentation
+ "Retrieves the element stack from the internal state of the parser.
+
+C: g_markup_parse_context_get_element_stack
+See: https://docs.gtk.org/glib/method.MarkupParseContext.get_element_stack.html
+Since: 2.16")
 
 
 (rt:define-gfunction (markup-parse-context-get-offset "g_markup_parse_context_get_offset") :args
@@ -12974,19 +12874,6 @@ the indexes. It is for debugging.
 
 C: g_relation_print
 See: https://docs.gtk.org/glib/method.Relation.print.html
-Deprecated.")
-
-
-(rt:define-gfunction (s-list-pop-allocator "g_slist_pop_allocator") :documentation "
-C: g_slist_pop_allocator
-See: https://docs.gtk.org/glib/type_func.SList.pop_allocator.html
-Deprecated.")
-
-
-(rt:define-gfunction (s-list-push-allocator "g_slist_push_allocator") :args
-                     ((allocator (:record allocator))) :documentation "
-C: g_slist_push_allocator
-See: https://docs.gtk.org/glib/type_func.SList.push_allocator.html
 Deprecated.")
 
 
@@ -15434,6 +15321,22 @@ error returned.
 
 C: g_uri_parse
 See: https://docs.gtk.org/glib/type_func.Uri.parse.html
+Since: 2.66")
+
+
+(rt:define-gfunction (uri-parse-params "g_uri_parse_params") :args
+                     ((params :string) (length :ssize) (separators :string)
+                      (flags (:flags uri-params-flags)))
+                     :return (:ghash :string :string) :return-transfer :full :throws t :version
+                     "2.66" :documentation
+                     "Many URI schemes include one or more attribute/value pairs as part of the URI
+value. This method can be used to parse them into a hash table. When an
+attribute has multiple occurrences, the last value is the final returned
+value. If you need to handle repeated attributes differently, use
+#GUriParamsIter.
+
+C: g_uri_parse_params
+See: https://docs.gtk.org/glib/type_func.Uri.parse_params.html
 Since: 2.66")
 
 

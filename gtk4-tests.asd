@@ -13,5 +13,6 @@
                (:file "objects")
                (:file "generated")
                (:file "callbacks")
-               (:file "arrays"))
+               (:file "arrays")
+               (:file "containers"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))

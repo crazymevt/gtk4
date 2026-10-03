@@ -2663,6 +2663,16 @@ C: g_param_spec_pool_list
 See: https://docs.gtk.org/gobject/method.ParamSpecPool.list.html")
 
 
+(rt:define-gfunction (param-spec-pool-list-owned "g_param_spec_pool_list_owned") :args
+                     ((pool (:record param-spec-pool)) (owner-type :gtype)) :return
+                     (:glist :pointer) :return-transfer :container :documentation
+                     "Gets an #GList of all #GParamSpecs owned by OWNER-TYPE in
+the pool.
+
+C: g_param_spec_pool_list_owned
+See: https://docs.gtk.org/gobject/method.ParamSpecPool.list_owned.html")
+
+
 (rt:define-gfunction (param-spec-pool-lookup "g_param_spec_pool_lookup") :args
                      ((pool (:record param-spec-pool)) (param-name :string) (owner-type :gtype)
                       (walk-ancestors :boolean))

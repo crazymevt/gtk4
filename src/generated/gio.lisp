@@ -6205,6 +6205,16 @@ See: https://docs.gtk.org/gio/func.content_type_set_mime_dirs.html
 Since: 2.60")
 
 
+(rt:define-gfunction (content-types-get-registered "g_content_types_get_registered") :return
+                     (:glist :string) :return-transfer :full :documentation
+                     "Gets a list of strings containing all the registered content types
+known to the system. The list and its data should be freed using
+`g_list_free_full (list, g_free)`.
+
+C: g_content_types_get_registered
+See: https://docs.gtk.org/gio/func.content_types_get_registered.html")
+
+
 (rt:define-gfunction (dbus-address-escape-value "g_dbus_address_escape_value") :args
                      ((string :string)) :return :string :return-transfer :full :version "2.36"
                      :documentation "Escape STRING so it can appear in a D-Bus address as the value
@@ -6418,6 +6428,25 @@ Since: 2.74")
 
 C: g_io_error_quark
 See: https://docs.gtk.org/gio/func.io_error_quark.html")
+
+
+(rt:define-gfunction (io-modules-load-all-in-directory "g_io_modules_load_all_in_directory") :args
+                     ((dirname :string)) :return (:glist (:object io-module)) :return-transfer
+                     :full :documentation "Loads all the modules in the specified directory.
+
+C: g_io_modules_load_all_in_directory
+See: https://docs.gtk.org/gio/func.io_modules_load_all_in_directory.html")
+
+
+(rt:define-gfunction
+ (io-modules-load-all-in-directory-with-scope "g_io_modules_load_all_in_directory_with_scope")
+ :args ((dirname :string) (scope (:record io-module-scope))) :return (:glist (:object io-module))
+ :return-transfer :full :version "2.30" :documentation
+ "Loads all the modules in the specified directory.
+
+C: g_io_modules_load_all_in_directory_with_scope
+See: https://docs.gtk.org/gio/func.io_modules_load_all_in_directory_with_scope.html
+Since: 2.30")
 
 
 (rt:define-gfunction (io-modules-scan-all-in-directory "g_io_modules_scan_all_in_directory") :args
@@ -6962,6 +6991,26 @@ C: g_app_info_create_from_commandline
 See: https://docs.gtk.org/gio/type_func.AppInfo.create_from_commandline.html")
 
 
+(rt:define-gfunction (app-info-get-all "g_app_info_get_all") :return (:glist (:object app-info))
+                     :return-transfer :full :documentation
+                     "Gets a list of all of the applications currently registered
+on this system.
+
+C: g_app_info_get_all
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_all.html")
+
+
+(rt:define-gfunction (app-info-get-all-for-type "g_app_info_get_all_for_type") :args
+                     ((content-type :string)) :return (:glist (:object app-info)) :return-transfer
+                     :full :documentation "Gets a list of all Gio.AppInfos for a given content type,
+including the recommended and fallback Gio.AppInfos. See
+Gio.AppInfo.get_recommended_for_type and
+Gio.AppInfo.get_fallback_for_type.
+
+C: g_app_info_get_all_for_type
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_all_for_type.html")
+
+
 (rt:define-gfunction (app-info-get-default-for-type "g_app_info_get_default_for_type") :args
                      ((content-type :string) (must-support-uris :boolean)) :return
                      (:object app-info) :return-transfer :full :documentation
@@ -7030,6 +7079,30 @@ Gio.AppInfo.get_default_for_uri_scheme_async.
 C: g_app_info_get_default_for_uri_scheme_finish
 See: https://docs.gtk.org/gio/type_func.AppInfo.get_default_for_uri_scheme_finish.html
 Since: 2.74")
+
+
+(rt:define-gfunction (app-info-get-fallback-for-type "g_app_info_get_fallback_for_type") :args
+                     ((content-type :string)) :return (:glist (:object app-info)) :return-transfer
+                     :full :version "2.28" :documentation
+                     "Gets a list of fallback Gio.AppInfos for a given content type, i.e.
+those applications which claim to support the given content type by MIME
+type subclassing and not directly.
+
+C: g_app_info_get_fallback_for_type
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_fallback_for_type.html
+Since: 2.28")
+
+
+(rt:define-gfunction (app-info-get-recommended-for-type "g_app_info_get_recommended_for_type")
+                     :args ((content-type :string)) :return (:glist (:object app-info))
+                     :return-transfer :full :version "2.28" :documentation
+                     "Gets a list of recommended Gio.AppInfos for a given content type,
+i.e. those applications which claim to support the given content type
+exactly, and not by MIME type subclassing.
+
+C: g_app_info_get_recommended_for_type
+See: https://docs.gtk.org/gio/type_func.AppInfo.get_recommended_for_type.html
+Since: 2.28")
 
 
 (rt:define-gfunction (app-info-launch-default-for-uri "g_app_info_launch_default_for_uri") :args
@@ -7202,6 +7275,47 @@ See: https://docs.gtk.org/gio/method.AppInfo.get_supported_types.html
 Since: 2.34")
 
 
+(rt:define-gfunction (app-info-launch "g_app_info_launch") :args
+                     ((appinfo (:object app-info)) (files (:glist (:object file)) :optional t)
+                      (context (:object app-launch-context) :optional t))
+                     :return :boolean :throws t :documentation
+                     "Launches the application. Passes FILES to the launched application
+as arguments, using the optional CONTEXT to get information
+about the details of the launcher (like what screen it is on).
+On error, ERROR will be set accordingly.
+
+C: g_app_info_launch
+See: https://docs.gtk.org/gio/method.AppInfo.launch.html")
+
+
+(rt:define-gfunction (app-info-launch-uris "g_app_info_launch_uris") :args
+                     ((appinfo (:object app-info)) (uris (:glist :string) :optional t)
+                      (context (:object app-launch-context) :optional t))
+                     :return :boolean :throws t :documentation
+                     "Launches the application. This passes the URIS to the launched application
+as arguments, using the optional CONTEXT to get information
+about the details of the launcher (like what screen it is on).
+On error, ERROR will be set accordingly. If the application only supports
+one URI per invocation as part of their command-line, multiple instances
+of the application will be spawned.
+
+C: g_app_info_launch_uris
+See: https://docs.gtk.org/gio/method.AppInfo.launch_uris.html")
+
+
+(rt:define-gfunction (app-info-launch-uris-async "g_app_info_launch_uris_async") :args
+                     ((appinfo (:object app-info)) (uris (:glist :string) :optional t)
+                      (context (:object app-launch-context) :optional t)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.60" :documentation "Async version of Gio.AppInfo.launch_uris.
+
+C: g_app_info_launch_uris_async
+See: https://docs.gtk.org/gio/method.AppInfo.launch_uris_async.html
+Since: 2.60")
+
+
 (rt:define-gfunction (app-info-launch-uris-finish "g_app_info_launch_uris_finish") :args
                      ((appinfo (:object app-info)) (result (:object async-result))) :return
                      :boolean :throws t :version "2.60" :documentation
@@ -7294,6 +7408,18 @@ C: g_app_launch_context_new
 See: https://docs.gtk.org/gio/ctor.AppLaunchContext.new.html")
 
 
+(rt:define-gfunction (app-launch-context-get-display "g_app_launch_context_get_display") :args
+                     ((context (:object app-launch-context)) (info (:object app-info))
+                      (files (:glist (:object file))))
+                     :return :string :return-transfer :full :documentation
+                     "Gets the display string for the CONTEXT. This is used to ensure new
+applications are started on the same display as the launching
+application, by setting the `DISPLAY` environment variable.
+
+C: g_app_launch_context_get_display
+See: https://docs.gtk.org/gio/method.AppLaunchContext.get_display.html")
+
+
 (rt:define-gfunction (app-launch-context-get-environment "g_app_launch_context_get_environment")
                      :args ((context (:object app-launch-context))) :return :strv :return-transfer
                      :full :version "2.32" :documentation
@@ -7305,6 +7431,19 @@ the form `KEY=VALUE`.
 C: g_app_launch_context_get_environment
 See: https://docs.gtk.org/gio/method.AppLaunchContext.get_environment.html
 Since: 2.32")
+
+
+(rt:define-gfunction
+ (app-launch-context-get-startup-notify-id "g_app_launch_context_get_startup_notify_id") :args
+ ((context (:object app-launch-context)) (info (:object app-info) :optional t)
+  (files (:glist (:object file)) :optional t))
+ :return :string :return-transfer :full :documentation
+ "Initiates startup notification for the application and returns the
+`XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation,
+if supported.
+
+C: g_app_launch_context_get_startup_notify_id
+See: https://docs.gtk.org/gio/method.AppLaunchContext.get_startup_notify_id.html")
 
 
 (rt:define-gfunction (app-launch-context-launch-failed "g_app_launch_context_launch_failed") :args
@@ -9332,6 +9471,17 @@ See: https://docs.gtk.org/gio/method.DBusInterfaceSkeleton.get_connection.html
 Since: 2.30")
 
 
+(rt:define-gfunction
+ (dbus-interface-skeleton-get-connections "g_dbus_interface_skeleton_get_connections") :args
+ ((interface- (:object dbus-interface-skeleton))) :return (:glist (:object dbus-connection))
+ :return-transfer :full :version "2.32" :documentation
+ "Gets a list of the connections that INTERFACE- is exported on.
+
+C: g_dbus_interface_skeleton_get_connections
+See: https://docs.gtk.org/gio/method.DBusInterfaceSkeleton.get_connections.html
+Since: 2.32")
+
+
 (rt:define-gfunction (dbus-interface-skeleton-get-flags "g_dbus_interface_skeleton_get_flags")
                      :args ((interface- (:object dbus-interface-skeleton))) :return
                      (:flags dbus-interface-skeleton-flags) :version "2.30" :documentation
@@ -10181,6 +10331,16 @@ See: https://docs.gtk.org/gio/method.DBusObject.get_interface.html
 Since: 2.30")
 
 
+(rt:define-gfunction (dbus-object-get-interfaces "g_dbus_object_get_interfaces") :args
+                     ((object (:object dbus-object))) :return (:glist (:object dbus-interface))
+                     :return-transfer :full :version "2.30" :documentation
+                     "Gets the D-Bus interfaces associated with OBJECT.
+
+C: g_dbus_object_get_interfaces
+See: https://docs.gtk.org/gio/method.DBusObject.get_interfaces.html
+Since: 2.30")
+
+
 (rt:define-gfunction (dbus-object-get-object-path "g_dbus_object_get_object_path") :args
                      ((object (:object dbus-object))) :return :string :version "2.30"
                      :documentation "Gets the object path for OBJECT.
@@ -10219,6 +10379,16 @@ Since: 2.30")
 
 C: g_dbus_object_manager_get_object_path
 See: https://docs.gtk.org/gio/method.DBusObjectManager.get_object_path.html
+Since: 2.30")
+
+
+(rt:define-gfunction (dbus-object-manager-get-objects "g_dbus_object_manager_get_objects") :args
+                     ((manager (:object dbus-object-manager))) :return
+                     (:glist (:object dbus-object)) :return-transfer :full :version "2.30"
+                     :documentation "Gets all #GDBusObject objects known to MANAGER.
+
+C: g_dbus_object_manager_get_objects
+See: https://docs.gtk.org/gio/method.DBusObjectManager.get_objects.html
 Since: 2.30")
 
 
@@ -11541,6 +11711,14 @@ See: https://docs.gtk.org/gio/method.Drive.get_symbolic_icon.html
 Since: 2.34")
 
 
+(rt:define-gfunction (drive-get-volumes "g_drive_get_volumes") :args ((drive (:object drive)))
+                     :return (:glist (:object volume)) :return-transfer :full :documentation
+                     "Get a list of mountable volumes for DRIVE.
+
+C: g_drive_get_volumes
+See: https://docs.gtk.org/gio/method.Drive.get_volumes.html")
+
+
 (rt:define-gfunction (drive-has-media "g_drive_has_media") :args ((drive (:object drive))) :return
                      :boolean :documentation
                      "Checks if the DRIVE has media. Note that the OS may not be polling
@@ -12128,6 +12306,15 @@ Since: 2.18")
 C: g_emblemed_icon_clear_emblems
 See: https://docs.gtk.org/gio/method.EmblemedIcon.clear_emblems.html
 Since: 2.28")
+
+
+(rt:define-gfunction (emblemed-icon-get-emblems "g_emblemed_icon_get_emblems") :args
+                     ((emblemed (:object emblemed-icon))) :return (:glist (:object emblem))
+                     :version "2.18" :documentation "Gets the list of emblems for the ICON.
+
+C: g_emblemed_icon_get_emblems
+See: https://docs.gtk.org/gio/method.EmblemedIcon.get_emblems.html
+Since: 2.18")
 
 
 (rt:define-gfunction (emblemed-icon-get-icon "g_emblemed_icon_get_icon") :args
@@ -14044,6 +14231,16 @@ C: g_file_enumerator_next_files_async
 See: https://docs.gtk.org/gio/method.FileEnumerator.next_files_async.html")
 
 
+(rt:define-gfunction (file-enumerator-next-files-finish "g_file_enumerator_next_files_finish")
+                     :args ((enumerator (:object file-enumerator)) (result (:object async-result)))
+                     :return (:glist (:object file-info)) :return-transfer :full :throws t
+                     :documentation
+                     "Finishes the asynchronous operation started with g_file_enumerator_next_files_async().
+
+C: g_file_enumerator_next_files_finish
+See: https://docs.gtk.org/gio/method.FileEnumerator.next_files_finish.html")
+
+
 (rt:define-gfunction (file-enumerator-set-pending "g_file_enumerator_set_pending") :args
                      ((enumerator (:object file-enumerator)) (pending :boolean)) :documentation
                      "Sets the file enumerator as having pending operations.
@@ -15060,6 +15257,16 @@ See: https://docs.gtk.org/gio/type_func.IOExtensionPoint.register.html")
 
 C: g_io_extension_point_get_extension_by_name
 See: https://docs.gtk.org/gio/method.IOExtensionPoint.get_extension_by_name.html")
+
+
+(rt:define-gfunction (io-extension-point-get-extensions "g_io_extension_point_get_extensions")
+                     :args ((extension-point (:record io-extension-point))) :return
+                     (:glist (:record io-extension)) :documentation
+                     "Gets a list of all extensions that implement this extension point.
+The list is sorted by priority, beginning with the highest priority.
+
+C: g_io_extension_point_get_extensions
+See: https://docs.gtk.org/gio/method.IOExtensionPoint.get_extensions.html")
 
 
 (rt:define-gfunction
@@ -18357,6 +18564,21 @@ See: https://docs.gtk.org/gio/method.Resolver.lookup_by_address_finish.html
 Since: 2.22")
 
 
+(rt:define-gfunction (resolver-lookup-by-name "g_resolver_lookup_by_name") :args
+                     ((resolver (:object resolver)) (hostname :string)
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:glist (:object inet-address)) :return-transfer :full :throws t
+                     :version "2.22" :documentation
+                     "Synchronously resolves HOSTNAME to determine its associated IP
+address(es). HOSTNAME may be an ASCII-only or UTF-8 hostname, or
+the textual form of an IP address (in which case this just becomes
+a wrapper around g_inet_address_new_from_string()).
+
+C: g_resolver_lookup_by_name
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name.html
+Since: 2.22")
+
+
 (rt:define-gfunction (resolver-lookup-by-name-async "g_resolver_lookup_by_name_async") :args
                      ((resolver (:object resolver)) (hostname :string)
                       (cancellable (:object cancellable) :optional t)
@@ -18373,6 +18595,33 @@ See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_async.html
 Since: 2.22")
 
 
+(rt:define-gfunction (resolver-lookup-by-name-finish "g_resolver_lookup_by_name_finish") :args
+                     ((resolver (:object resolver)) (result (:object async-result))) :return
+                     (:glist (:object inet-address)) :return-transfer :full :throws t :version
+                     "2.22" :documentation "Retrieves the result of a call to
+g_resolver_lookup_by_name_async().
+
+C: g_resolver_lookup_by_name_finish
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_finish.html
+Since: 2.22")
+
+
+(rt:define-gfunction (resolver-lookup-by-name-with-flags "g_resolver_lookup_by_name_with_flags")
+                     :args
+                     ((resolver (:object resolver)) (hostname :string)
+                      (flags (:flags resolver-name-lookup-flags))
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:glist (:object inet-address)) :return-transfer :full :throws t
+                     :version "2.60" :documentation
+                     "This differs from g_resolver_lookup_by_name() in that you can modify
+the lookup behavior with FLAGS. For example this can be used to limit
+results with G_RESOLVER_NAME_LOOKUP_FLAGS_IPV4_ONLY.
+
+C: g_resolver_lookup_by_name_with_flags
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_with_flags.html
+Since: 2.60")
+
+
 (rt:define-gfunction
  (resolver-lookup-by-name-with-flags-async "g_resolver_lookup_by_name_with_flags_async") :args
  ((resolver (:object resolver)) (hostname :string) (flags (:flags resolver-name-lookup-flags))
@@ -18387,6 +18636,33 @@ See g_resolver_lookup_by_name() for more details.
 C: g_resolver_lookup_by_name_with_flags_async
 See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_with_flags_async.html
 Since: 2.60")
+
+
+(rt:define-gfunction
+ (resolver-lookup-by-name-with-flags-finish "g_resolver_lookup_by_name_with_flags_finish") :args
+ ((resolver (:object resolver)) (result (:object async-result))) :return
+ (:glist (:object inet-address)) :return-transfer :full :throws t :version "2.60" :documentation
+ "Retrieves the result of a call to
+g_resolver_lookup_by_name_with_flags_async().
+
+C: g_resolver_lookup_by_name_with_flags_finish
+See: https://docs.gtk.org/gio/method.Resolver.lookup_by_name_with_flags_finish.html
+Since: 2.60")
+
+
+(rt:define-gfunction (resolver-lookup-records "g_resolver_lookup_records") :args
+                     ((resolver (:object resolver)) (rrname :string)
+                      (record-type (:enum resolver-record-type))
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:glist :pointer) :return-transfer :full :throws t :version "2.34"
+                     :documentation
+                     "Synchronously performs a DNS record lookup for the given RRNAME and returns
+a list of records as #GVariant tuples. See #GResolverRecordType for
+information on what the records contain for each RECORD-TYPE.
+
+C: g_resolver_lookup_records
+See: https://docs.gtk.org/gio/method.Resolver.lookup_records.html
+Since: 2.34")
 
 
 (rt:define-gfunction (resolver-lookup-records-async "g_resolver_lookup_records_async") :args
@@ -18406,6 +18682,35 @@ See: https://docs.gtk.org/gio/method.Resolver.lookup_records_async.html
 Since: 2.34")
 
 
+(rt:define-gfunction (resolver-lookup-records-finish "g_resolver_lookup_records_finish") :args
+                     ((resolver (:object resolver)) (result (:object async-result))) :return
+                     (:glist :pointer) :return-transfer :full :throws t :version "2.34"
+                     :documentation "Retrieves the result of a previous call to
+g_resolver_lookup_records_async(). Returns a non-empty list of records as
+#GVariant tuples. See #GResolverRecordType for information on what the
+records contain.
+
+C: g_resolver_lookup_records_finish
+See: https://docs.gtk.org/gio/method.Resolver.lookup_records_finish.html
+Since: 2.34")
+
+
+(rt:define-gfunction (resolver-lookup-service "g_resolver_lookup_service") :args
+                     ((resolver (:object resolver)) (service :string) (protocol :string)
+                      (domain :string) (cancellable (:object cancellable) :optional t))
+                     :return (:glist (:boxed "GSrvTarget" "g_srv_target_get_type"))
+                     :return-transfer :full :throws t :version "2.22" :documentation
+                     "Synchronously performs a DNS SRV lookup for the given SERVICE and
+PROTOCOL in the given DOMAIN and returns an array of #GSrvTarget.
+DOMAIN may be an ASCII-only or UTF-8 hostname. Note also that the
+SERVICE and PROTOCOL arguments do not include the leading underscore
+that appears in the actual DNS entry.
+
+C: g_resolver_lookup_service
+See: https://docs.gtk.org/gio/method.Resolver.lookup_service.html
+Since: 2.22")
+
+
 (rt:define-gfunction (resolver-lookup-service-async "g_resolver_lookup_service_async") :args
                      ((resolver (:object resolver)) (service :string) (protocol :string)
                       (domain :string) (cancellable (:object cancellable) :optional t)
@@ -18420,6 +18725,18 @@ details.
 
 C: g_resolver_lookup_service_async
 See: https://docs.gtk.org/gio/method.Resolver.lookup_service_async.html
+Since: 2.22")
+
+
+(rt:define-gfunction (resolver-lookup-service-finish "g_resolver_lookup_service_finish") :args
+                     ((resolver (:object resolver)) (result (:object async-result))) :return
+                     (:glist (:boxed "GSrvTarget" "g_srv_target_get_type")) :return-transfer :full
+                     :throws t :version "2.22" :documentation
+                     "Retrieves the result of a previous call to
+g_resolver_lookup_service_async().
+
+C: g_resolver_lookup_service_finish
+See: https://docs.gtk.org/gio/method.Resolver.lookup_service_finish.html
 Since: 2.22")
 
 
@@ -22423,6 +22740,40 @@ See: https://docs.gtk.org/gio/ctor.TlsCertificate.new_from_pkcs12.html
 Since: 2.72")
 
 
+(rt:define-gfunction (tls-certificate-list-new-from-file "g_tls_certificate_list_new_from_file")
+                     :args ((file :string)) :return (:glist (:object tls-certificate))
+                     :return-transfer :full :throws t :version "2.28" :documentation
+                     "Creates one or more #GTlsCertificates from the PEM-encoded
+data in FILE. If FILE cannot be read or parsed, the function will
+return NIL and set ERROR. If FILE does not contain any
+PEM-encoded certificates, this will return an empty list and not
+set ERROR.
+
+C: g_tls_certificate_list_new_from_file
+See: https://docs.gtk.org/gio/type_func.TlsCertificate.list_new_from_file.html
+Since: 2.28")
+
+
+(rt:define-gfunction (tls-certificate-get-dns-names "g_tls_certificate_get_dns_names") :args
+                     ((cert (:object tls-certificate))) :return
+                     (:gptrarray (:boxed "GBytes" "g_bytes_get_type")) :return-transfer :container
+                     :version "2.70" :documentation "Gets the value of #GTlsCertificate:dns-names.
+
+C: g_tls_certificate_get_dns_names
+See: https://docs.gtk.org/gio/method.TlsCertificate.get_dns_names.html
+Since: 2.70")
+
+
+(rt:define-gfunction (tls-certificate-get-ip-addresses "g_tls_certificate_get_ip_addresses") :args
+                     ((cert (:object tls-certificate))) :return (:gptrarray (:object inet-address))
+                     :return-transfer :container :version "2.70" :documentation
+                     "Gets the value of #GTlsCertificate:ip-addresses.
+
+C: g_tls_certificate_get_ip_addresses
+See: https://docs.gtk.org/gio/method.TlsCertificate.get_ip_addresses.html
+Since: 2.70")
+
+
 (rt:define-gfunction (tls-certificate-get-issuer "g_tls_certificate_get_issuer") :args
                      ((cert (:object tls-certificate))) :return (:object tls-certificate) :version
                      "2.28" :documentation
@@ -22999,6 +23350,18 @@ Since: 2.30")
 
 
 (rt:define-gfunction
+ (tls-database-lookup-certificates-issued-by "g_tls_database_lookup_certificates_issued_by") :args
+ ((self (:object tls-database)) (issuer-raw-dn :byte-array) (interaction (:object tls-interaction))
+  (flags (:flags tls-database-lookup-flags)) (cancellable (:object cancellable) :optional t))
+ :return (:glist (:object tls-certificate)) :return-transfer :full :throws t :version "2.30"
+ :documentation "Look up certificates issued by this issuer in the database.
+
+C: g_tls_database_lookup_certificates_issued_by
+See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificates_issued_by.html
+Since: 2.30")
+
+
+(rt:define-gfunction
  (tls-database-lookup-certificates-issued-by-async
   "g_tls_database_lookup_certificates_issued_by_async")
  :args
@@ -23012,6 +23375,19 @@ g_tls_database_lookup_certificates_issued_by() for more information.
 
 C: g_tls_database_lookup_certificates_issued_by_async
 See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificates_issued_by_async.html
+Since: 2.30")
+
+
+(rt:define-gfunction
+ (tls-database-lookup-certificates-issued-by-finish
+  "g_tls_database_lookup_certificates_issued_by_finish")
+ :args ((self (:object tls-database)) (result (:object async-result))) :return
+ (:glist (:object tls-certificate)) :return-transfer :full :throws t :version "2.30" :documentation
+ "Finish an asynchronous lookup of certificates. See
+g_tls_database_lookup_certificates_issued_by() for more information.
+
+C: g_tls_database_lookup_certificates_issued_by_finish
+See: https://docs.gtk.org/gio/method.TlsDatabase.lookup_certificates_issued_by_finish.html
 Since: 2.30")
 
 
@@ -23924,6 +24300,15 @@ C: g_volume_monitor_get
 See: https://docs.gtk.org/gio/type_func.VolumeMonitor.get.html")
 
 
+(rt:define-gfunction (volume-monitor-get-connected-drives "g_volume_monitor_get_connected_drives")
+                     :args ((volume-monitor (:object volume-monitor))) :return
+                     (:glist (:object drive)) :return-transfer :full :documentation
+                     "Gets a list of drives connected to the system.
+
+C: g_volume_monitor_get_connected_drives
+See: https://docs.gtk.org/gio/method.VolumeMonitor.get_connected_drives.html")
+
+
 (rt:define-gfunction (volume-monitor-get-mount-for-uuid "g_volume_monitor_get_mount_for_uuid")
                      :args ((volume-monitor (:object volume-monitor)) (uuid :string)) :return
                      (:object mount) :return-transfer :full :documentation
@@ -23933,6 +24318,14 @@ C: g_volume_monitor_get_mount_for_uuid
 See: https://docs.gtk.org/gio/method.VolumeMonitor.get_mount_for_uuid.html")
 
 
+(rt:define-gfunction (volume-monitor-get-mounts "g_volume_monitor_get_mounts") :args
+                     ((volume-monitor (:object volume-monitor))) :return (:glist (:object mount))
+                     :return-transfer :full :documentation "Gets a list of the mounts on the system.
+
+C: g_volume_monitor_get_mounts
+See: https://docs.gtk.org/gio/method.VolumeMonitor.get_mounts.html")
+
+
 (rt:define-gfunction (volume-monitor-get-volume-for-uuid "g_volume_monitor_get_volume_for_uuid")
                      :args ((volume-monitor (:object volume-monitor)) (uuid :string)) :return
                      (:object volume) :return-transfer :full :documentation
@@ -23940,6 +24333,15 @@ See: https://docs.gtk.org/gio/method.VolumeMonitor.get_mount_for_uuid.html")
 
 C: g_volume_monitor_get_volume_for_uuid
 See: https://docs.gtk.org/gio/method.VolumeMonitor.get_volume_for_uuid.html")
+
+
+(rt:define-gfunction (volume-monitor-get-volumes "g_volume_monitor_get_volumes") :args
+                     ((volume-monitor (:object volume-monitor))) :return (:glist (:object volume))
+                     :return-transfer :full :documentation
+                     "Gets a list of the volumes on the system.
+
+C: g_volume_monitor_get_volumes
+See: https://docs.gtk.org/gio/method.VolumeMonitor.get_volumes.html")
 
 
 (rt:define-gfunction (zlib-compressor-new "g_zlib_compressor_new") :args

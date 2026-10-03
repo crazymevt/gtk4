@@ -193,9 +193,9 @@ raw pointers until they get dedicated wrappers.")
        (cond
          (basic basic)
          ((null name) (values nil "untyped"))
-         ((member name '("GLib.List" "GLib.SList" "GLib.HashTable" "GLib.Array"
-                         "GLib.PtrArray" "GLib.ByteArray")
-                  :test #'string=)
+         ((member name '("GLib.List" "GLib.SList" "GLib.HashTable") :test #'string=)
+          (classify-container ctx type nsname))
+         ((member name '("GLib.Array" "GLib.PtrArray" "GLib.ByteArray") :test #'string=)
           (values nil (format nil "container ~a" name)))
          (t
           (let* ((qualified (qualify name nsname))
@@ -223,6 +223,34 @@ raw pointers until they get dedicated wrappers.")
               (t (list :record sym))))))))
     (t (values nil "unknown type form"))))
 
+;;; GLib containers
+
+(defparameter *container-element-kinds*
+  '(:string :object :boxed :record :pointer :enum :flags
+    :boolean :int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64 :short :ushort
+    :int :uint :long :ulong :size :ssize :intptr :uintptr :gtype)
+  "Element specs a GList, GSList, GHashTable or GPtrArray may hold (stored as pointers).")
+
+(defun container-element (ctx type nsname)
+  "The spec for a container's element TYPE; an untyped element is a raw pointer."
+  (if (null type)
+      :pointer
+      (multiple-value-bind (spec why) (classify-type ctx type nsname)
+        (cond ((null spec) (values nil (format nil "container element: ~a" why)))
+              ((member (spec-kind* spec) *container-element-kinds*) spec)
+              (t (values nil (format nil "container of ~(~a~)" (spec-kind* spec))))))))
+
+(defun classify-container (ctx type nsname)
+  (let ((params (gir-type-params type)))
+    (flet ((element (i)
+             (multiple-value-bind (e why) (container-element ctx (nth i params) nsname)
+               (unless e (return-from classify-container (values nil why)))
+               e)))
+      (let ((name (gir-type-name type)))
+        (cond ((string= name "GLib.List") (list :glist (element 0)))
+              ((string= name "GLib.SList") (list :gslist (element 0)))
+              (t (list :ghash (element 0) (element 1))))))))
+
 ;;; Arrays
 
 (defparameter *array-element-kinds*
@@ -244,6 +272,9 @@ raw pointers until they get dedicated wrappers.")
          (element (gir-array-element type)))
     (cond
       ((equal name "GLib.ByteArray") :byte-array)
+      ((equal name "GLib.PtrArray")
+       (multiple-value-bind (e why) (container-element ctx element nsname)
+         (if e (list :gptrarray e) (values nil why))))
       (name (values nil (format nil "container ~a" name)))
       ((not (gir-type-p element)) (values nil "nested array"))
       ((and zt (null length) (null fixed)
@@ -339,8 +370,8 @@ closure, else a trailing gpointer."
             (ret (multiple-value-list
                   (classify-type ctx (gir-callable-return-type cb) nsname))))
         (unless (first ret) (return-from plan (format nil "return: ~a" (second ret))))
-        (when (member (spec-kind* (first ret)) '(:array :byte-array))
-          (return-from plan "returns an array"))
+        (when (member (spec-kind* (first ret)) '(:array :byte-array :ghash :gptrarray))
+          (return-from plan "returns an array or hash table"))
         (when (and (eq (spec-kind* (first ret)) :string)
                    (not (eq (gir-callable-return-transfer cb) :full)))
           (return-from plan "returns a borrowed string"))
@@ -390,6 +421,10 @@ parameters after the instance parameter."
             (setf (gethash p hidden) (list :user-data-of c))))))
     hidden))
 
+(defparameter *lisp-value-containers*
+  '("GLib.HashTable" "GLib.List" "GLib.SList" "GLib.Array" "GLib.PtrArray" "GLib.ByteArray")
+  "GLib containers that become plain Lisp values; their own C API is not bound.")
+
 (defun plan-callable (ctx ns callable owner)
   "A PLAN for CALLABLE (whose method owner is OWNER, or NIL), or (VALUES NIL reason)."
   (let ((nsname (gir-namespace-name ns)))
@@ -397,6 +432,9 @@ parameters after the instance parameter."
       (flet ((fail (reason) (return-from plan (values nil reason))))
         (let ((reason (skip-callable-p callable)))
           (when reason (fail reason)))
+        (when (and owner (member (qualify (gir-item-name owner) nsname) *lisp-value-containers*
+                                 :test #'string=))
+          (fail "GLib container API (containers are Lisp values)"))
         (unless (item-symbol callable) (fail "name collision"))
         (let* ((params (gir-callable-parameters callable))
                (package (symbol-package (item-symbol callable)))
@@ -461,6 +499,14 @@ parameters after the instance parameter."
                                       (or (gir-parameter-scope p) :call))))
                    (when (and (gir-parameter-scope p) (not (eq (spec-kind* spec) :callback)))
                      (fail "scope on a non-callback parameter"))
+                   (when (and (eq direction :in)
+                              (member (spec-kind* spec) '(:glist :gslist))
+                              (eq (gir-parameter-transfer p) :container)
+                              (eq (second spec) :string))
+                     (fail "string list handed over without its elements"))
+                   (when (and (eq direction :in) (eq (spec-kind* spec) :ghash)
+                              (not (member (gir-parameter-transfer p) '(nil :none))))
+                     (fail "hash table argument with ownership transfer"))
                    (when (eq (spec-kind* spec) :array)
                      (when (and (eq direction :in)
                                 (member (gir-parameter-transfer p) '(:full :container)))

@@ -137,7 +137,9 @@ whose bits are set. Unknown values are returned as integers."
 (defun spec-foreign-type (spec)
   (case (spec-kind spec)
     (:gtype 'gtype)
-    ((:string :strv :object :boxed :record :pointer :callback :array :byte-array) :pointer)
+    ((:string :strv :object :boxed :record :pointer :callback :array :byte-array
+      :glist :gslist :ghash :gptrarray)
+     :pointer)
     (:enum :int)
     (:flags :uint)
     (t spec)))
@@ -203,6 +205,17 @@ callback argument) to Lisp."
                            :transfer ,(if (eq transfer :full) :full :none))))
     ((:record :pointer) `(pointer-or-nil ,form))
     (:byte-array `(byte-array-from-foreign ,form ,transfer))
+    ((:glist :gslist)
+     `(glist-from-foreign ,form ,(element-reader (second spec) (if (eq transfer :full) :full :none))
+                          ,(and (member transfer '(:full :container)) t)
+                          ,(eq (spec-kind spec) :gslist)))
+    (:gptrarray
+     `(ptr-array-from-foreign ,form ,(element-reader (second spec) :none)
+                              ,(and (member transfer '(:full :container)) t)))
+    (:ghash
+     `(hash-table-from-foreign ,form ,(element-reader (second spec) :none)
+                               ,(element-reader (third spec) :none)
+                               ,(and (member transfer '(:full :container)) t)))
     ((:enum :flags) `(enum-keyword ',(second spec) ,form))))
 
 (defun convert-to-foreign (form spec transfer)
@@ -233,6 +246,8 @@ the call returns (a callback's return value)."
                                         p)))
                   `(object-pointer ,form))))
     ((:record :pointer) `(object-pointer ,form))
+    ((:glist :gslist)
+     `(glist-to-foreign ,form ,(element-writer (second spec) transfer) ,(eq (spec-kind spec) :gslist)))
     ((:enum :flags) `(enum-value ',(second spec) ,form))))
 
 (defun foreign-zero (spec)
@@ -347,6 +362,128 @@ when FREE-ELEMENTS (strings duplicated for the call)."
                          (lambda (,e) ,(convert-to-foreign e element :none))
                          :zero-terminated ,zero-terminated :fixed-size ,fixed-size))))
 
+;;; GLib containers
+;;;
+;;; (:glist ELEMENT) (:gslist ELEMENT) -> lists; (:gptrarray ELEMENT) -> list;
+;;; (:ghash KEY VALUE) -> EQUAL hash table (input: hash table or alist).
+;;; Elements are stored as pointers: pointer-like values directly, integers
+;;; as GINT_TO_POINTER.
+
+(defparameter *integer-element-kinds*
+  '(:boolean :int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64 :short :ushort
+    :int :uint :long :ulong :size :ssize :intptr :uintptr :gtype))
+
+(defun signed-address (p)
+  (let ((a (cffi:pointer-address p)))
+    (if (>= a (expt 2 63)) (- a (expt 2 64)) a)))
+
+(defun element-from-pointer-form (form element transfer)
+  (case (spec-kind element)
+    (:boolean `(/= 0 (cffi:pointer-address ,form)))
+    ((:enum :flags) `(enum-keyword ',(second element) (signed-address ,form)))
+    (t (if (member (spec-kind element) *integer-element-kinds*)
+           `(signed-address ,form)
+           (convert-from-foreign form element transfer)))))
+
+(defun element-to-pointer-form (form element transfer)
+  (case (spec-kind element)
+    (:boolean `(cffi:make-pointer (if ,form 1 0)))
+    ((:enum :flags) `(cffi:make-pointer (ldb (byte 64 0) (enum-value ',(second element) ,form))))
+    (t (if (member (spec-kind element) *integer-element-kinds*)
+           `(cffi:make-pointer (ldb (byte 64 0) ,form))
+           (convert-to-foreign form element transfer)))))
+
+(defun element-reader (element transfer)
+  (let ((p (gensym "P")))
+    `(lambda (,p) ,(element-from-pointer-form p element transfer))))
+
+(defun element-writer (element transfer)
+  (let ((e (gensym "E")))
+    `(lambda (,e) ,(element-to-pointer-form e element transfer))))
+
+(defun glist-from-foreign (list reader free-list single)
+  "A Lisp list of LIST's elements through READER; g_(s)list_free when FREE-LIST."
+  (prog1 (loop for node = list then (cffi:mem-aref node :pointer 1)
+               until (cffi:null-pointer-p node)
+               collect (funcall reader (cffi:mem-aref node :pointer 0)))
+    (when (and free-list (not (cffi:null-pointer-p list)))
+      (if single
+          (cffi:foreign-funcall "g_slist_free" :pointer list :void)
+          (cffi:foreign-funcall "g_list_free" :pointer list :void)))))
+
+(defun glist-to-foreign (sequence writer single)
+  (let ((list (cffi:null-pointer)))
+    (map nil (lambda (e)
+               (setf list (if single
+                              (cffi:foreign-funcall "g_slist_prepend" :pointer list
+                                                    :pointer (funcall writer e) :pointer)
+                              (cffi:foreign-funcall "g_list_prepend" :pointer list
+                                                    :pointer (funcall writer e) :pointer))))
+         sequence)
+    (if single
+        (cffi:foreign-funcall "g_slist_reverse" :pointer list :pointer)
+        (cffi:foreign-funcall "g_list_reverse" :pointer list :pointer))))
+
+(defun free-glist (list single free-elements)
+  "Free a list made by GLIST-TO-FOREIGN for one call, g_free'ing duplicated
+string elements when FREE-ELEMENTS."
+  (unless (cffi:null-pointer-p list)
+    (when free-elements
+      (loop for node = list then (cffi:mem-aref node :pointer 1)
+            until (cffi:null-pointer-p node)
+            do (%g-free (cffi:mem-aref node :pointer 0))))
+    (if single
+        (cffi:foreign-funcall "g_slist_free" :pointer list :void)
+        (cffi:foreign-funcall "g_list_free" :pointer list :void))))
+
+(cffi:defcstruct gptr-array (pdata :pointer) (len :uint))
+
+(defun ptr-array-from-foreign (array reader unref)
+  (unless (cffi:null-pointer-p array)
+    (let ((data (cffi:foreign-slot-value array '(:struct gptr-array) 'pdata))
+          (n (cffi:foreign-slot-value array '(:struct gptr-array) 'len)))
+      (prog1 (loop for i below n collect (funcall reader (cffi:mem-aref data :pointer i)))
+        (when unref (cffi:foreign-funcall "g_ptr_array_unref" :pointer array :void))))))
+
+(defun hash-table-from-foreign (table key-reader value-reader unref)
+  (unless (cffi:null-pointer-p table)
+    (let ((result (make-hash-table :test 'equal)))
+      (cffi:with-foreign-objects ((iter :uint8 64) (key :pointer) (value :pointer))
+        (cffi:foreign-funcall "g_hash_table_iter_init" :pointer iter :pointer table :void)
+        (loop while (cffi:foreign-funcall "g_hash_table_iter_next" :pointer iter
+                                          :pointer key :pointer value :boolean)
+              do (setf (gethash (funcall key-reader (cffi:mem-ref key :pointer)) result)
+                       (funcall value-reader (cffi:mem-ref value :pointer)))))
+      (when unref (cffi:foreign-funcall "g_hash_table_unref" :pointer table :void))
+      result)))
+
+(defun hash-table-to-foreign (table key-writer value-writer string-keys free-keys free-values)
+  "A new GHashTable holding TABLE (a hash table or alist). Strings keys use
+g_str_hash; duplicated strings are freed with the table."
+  (if (null table)
+      (cffi:null-pointer)
+      (let* ((free (cffi:foreign-symbol-pointer "g_free"))
+             (ht (cffi:foreign-funcall "g_hash_table_new_full"
+                                       :pointer (cffi:foreign-symbol-pointer
+                                                 (if string-keys "g_str_hash" "g_direct_hash"))
+                                       :pointer (cffi:foreign-symbol-pointer
+                                                 (if string-keys "g_str_equal" "g_direct_equal"))
+                                       :pointer (if free-keys free (cffi:null-pointer))
+                                       :pointer (if free-values free (cffi:null-pointer))
+                                       :pointer)))
+        (flet ((add (k v)
+                 (cffi:foreign-funcall "g_hash_table_insert" :pointer ht
+                                       :pointer (funcall key-writer k)
+                                       :pointer (funcall value-writer v) :boolean)))
+          (if (hash-table-p table)
+              (maphash #'add table)
+              (loop for (k . v) in table do (add k v))))
+        ht)))
+
+(defun hash-table-unref (ht)
+  (unless (cffi:null-pointer-p ht)
+    (cffi:foreign-funcall "g_hash_table_unref" :pointer ht :void)))
+
 ;;; Callbacks
 ;;;
 ;;; Each GIR callback type gets one static trampoline (a CFFI callback named
@@ -416,6 +553,21 @@ carries the handle. The Lisp function receives the other arguments in order."
     ((:boxed :record :pointer) `(let ((,place (object-pointer ,var))) ,body))
     (:byte-array `(let ((,place (byte-array-to-foreign ,var)))
                     (unwind-protect ,body (byte-array-unref ,place))))
+    ((:glist :gslist)
+     (let ((single (eq (spec-kind spec) :gslist))
+           (element (second spec)))
+       (if (eq transfer :none)
+           `(let ((,place (glist-to-foreign ,var ,(element-writer element :none) ,single)))
+              (unwind-protect ,body
+                (free-glist ,place ,single ,(eq element :string))))
+           ;; :container or :full: C takes the list (and with :full, the elements).
+           `(let ((,place (glist-to-foreign ,var ,(element-writer element transfer) ,single)))
+              ,body))))
+    (:ghash
+     (destructuring-bind (key value) (rest spec)
+       `(let ((,place (hash-table-to-foreign ,var ,(element-writer key :none) ,(element-writer value :none)
+                                             ,(eq key :string) ,(eq key :string) ,(eq value :string))))
+          (unwind-protect ,body (hash-table-unref ,place)))))
     ((:enum :flags) `(let ((,place (enum-value ',(second spec) ,var))) ,body))))
 
 (defun out-initial-value (spec)
