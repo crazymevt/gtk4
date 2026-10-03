@@ -5197,41 +5197,147 @@
 (defpackage #:cairo
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
-  (:shadow #:format)
+  (:shadow #:fill #:format)
   (:export
    #:antialias
+   #:arc
+   #:arc-negative
+   #:clip
+   #:clip-extents
+   #:clip-preserve
+   #:close-path
    #:content
    #:context
+   #:copy-page
+   #:create
+   #:curve-to
    #:device
    #:device-type
    #:extend
+   #:fill
+   #:fill-extents
+   #:fill-preserve
    #:fill-rule
    #:filter
+   #:font-extents
+   #:font-extents-ascent
+   #:font-extents-descent
+   #:font-extents-height
+   #:font-extents-max-x-advance
+   #:font-extents-max-y-advance
    #:font-face
    #:font-options
+   #:font-options-create
+   #:font-options-get-antialias
+   #:font-options-get-hint-metrics
+   #:font-options-get-hint-style
+   #:font-options-get-subpixel-order
+   #:font-options-set-antialias
+   #:font-options-set-hint-metrics
+   #:font-options-set-hint-style
+   #:font-options-set-subpixel-order
    #:font-slant
    #:font-type
    #:font-weight
    #:format
+   #:format-stride-for-width
+   #:get-antialias
+   #:get-current-point
+   #:get-dash-count
+   #:get-fill-rule
+   #:get-font-face
+   #:get-font-matrix
+   #:get-font-options
+   #:get-group-target
+   #:get-line-cap
+   #:get-line-join
+   #:get-line-width
+   #:get-matrix
+   #:get-miter-limit
+   #:get-operator
+   #:get-scaled-font
+   #:get-source
+   #:get-target
+   #:get-tolerance
    #:glyph
    #:glyph-index
    #:glyph-x
    #:glyph-y
+   #:has-current-point
    #:hint-metrics
    #:hint-style
+   #:identity-matrix
    #:image-surface-create
+   #:image-surface-create-for-data
+   #:image-surface-create-from-png
+   #:image-surface-get-data
+   #:image-surface-get-format
+   #:image-surface-get-height
+   #:image-surface-get-stride
+   #:image-surface-get-width
+   #:in-clip
+   #:in-fill
+   #:in-stroke
    #:line-cap
    #:line-join
+   #:line-to
+   #:make-font-extents
    #:make-glyph
+   #:make-matrix
    #:make-rectangle
    #:make-rectangle-int
    #:make-text-cluster
+   #:make-text-extents
+   #:mask
+   #:mask-surface
    #:matrix
+   #:matrix-init
+   #:matrix-init-identity
+   #:matrix-init-rotate
+   #:matrix-init-scale
+   #:matrix-init-translate
+   #:matrix-invert
+   #:matrix-multiply
+   #:matrix-rotate
+   #:matrix-scale
+   #:matrix-translate
+   #:matrix-x0
+   #:matrix-xx
+   #:matrix-xy
+   #:matrix-y0
+   #:matrix-yx
+   #:matrix-yy
+   #:move-to
+   #:new-path
+   #:new-sub-path
    #:operator
+   #:paint
+   #:paint-with-alpha
    #:path
    #:path-data-type
+   #:path-extents
    #:pattern
+   #:pattern-add-color-stop-rgb
+   #:pattern-add-color-stop-rgba
+   #:pattern-create-for-surface
+   #:pattern-create-linear
+   #:pattern-create-radial
+   #:pattern-create-rgb
+   #:pattern-create-rgba
+   #:pattern-get-color-stop-count
+   #:pattern-get-extend
+   #:pattern-get-filter
+   #:pattern-get-matrix
+   #:pattern-get-type
+   #:pattern-set-extend
+   #:pattern-set-filter
+   #:pattern-set-matrix
+   #:pattern-status
    #:pattern-type
+   #:pop-group
+   #:pop-group-to-source
+   #:push-group
+   #:push-group-with-content
    #:rectangle
    #:rectangle-height
    #:rectangle-int
@@ -5243,16 +5349,86 @@
    #:rectangle-x
    #:rectangle-y
    #:region
+   #:region-contains-point
+   #:region-create
+   #:region-create-rectangle
+   #:region-get-extents
+   #:region-intersect-rectangle
+   #:region-is-empty
+   #:region-num-rectangles
    #:region-overlap
+   #:region-subtract-rectangle
+   #:region-translate
+   #:region-union-rectangle
+   #:rel-curve-to
+   #:rel-line-to
+   #:rel-move-to
+   #:reset-clip
+   #:restore
+   #:rotate
+   #:save
+   #:scale
    #:scaled-font
+   #:select-font-face
+   #:set-antialias
+   #:set-dash
+   #:set-fill-rule
+   #:set-font-face
+   #:set-font-matrix
+   #:set-font-options
+   #:set-font-size
+   #:set-line-cap
+   #:set-line-join
+   #:set-line-width
+   #:set-matrix
+   #:set-miter-limit
+   #:set-operator
+   #:set-scaled-font
+   #:set-source
+   #:set-source-rgb
+   #:set-source-rgba
+   #:set-source-surface
+   #:set-tolerance
+   #:show-page
+   #:show-text
    #:status
+   #:status-to-string
+   #:stroke
+   #:stroke-extents
+   #:stroke-preserve
    #:subpixel-order
    #:surface
+   #:surface-create-similar
+   #:surface-create-similar-image
+   #:surface-finish
+   #:surface-flush
+   #:surface-get-content
+   #:surface-get-device-offset
+   #:surface-get-device-scale
+   #:surface-get-type
+   #:surface-mark-dirty
+   #:surface-mark-dirty-rectangle
+   #:surface-set-device-offset
+   #:surface-set-device-scale
+   #:surface-status
    #:surface-type
+   #:surface-write-to-png
    #:text-cluster
    #:text-cluster-flags
    #:text-cluster-num-bytes
-   #:text-cluster-num-glyphs))
+   #:text-cluster-num-glyphs
+   #:text-extents
+   #:text-extents-height
+   #:text-extents-width
+   #:text-extents-x-advance
+   #:text-extents-x-bearing
+   #:text-extents-y-advance
+   #:text-extents-y-bearing
+   #:text-path
+   #:toy-font-face-create
+   #:transform
+   #:translate
+   #:version-string))
 
 (defpackage #:harfbuzz
   (:use #:cl)

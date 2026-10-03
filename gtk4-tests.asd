@@ -16,7 +16,8 @@
                (:file "arrays")
                (:file "containers")
                (:file "gtk")
-               (:file "structs"))
+               (:file "structs")
+               (:file "cairo"))
   :perform (test-op (op c) (uiop:symbol-call :parachute :test :gtk4-tests)))
 
 (defsystem "gtk4-tests/stress"
