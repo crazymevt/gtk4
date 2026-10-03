@@ -65,4 +65,10 @@ An executable runs anywhere the GTK 4.14 (or newer) runtime libraries are instal
 
 ## Windows
 
-Windows is a tier-2 platform: the bindings know the Windows library names, but are not yet tested there. Install GTK through MSYS2 (`mingw-w64-ucrt-x86_64-gtk4`), and put its `bin` directory in `GTK4_LISP_LIBRARY_PATH` or on `PATH`.
+Windows is a tier-2 platform: the full test suite runs there in CI, but a failure does not block a release. Install GTK (and libadwaita) through [MSYS2](https://www.msys2.org/):
+
+```
+pacman -S mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-libadwaita
+```
+
+Then put MSYS2's `ucrt64\bin` directory in `GTK4_LISP_LIBRARY_PATH` or on `PATH`, and its `ucrt64\share` in `XDG_DATA_DIRS`. Executables saved with `gtk4:save-executable` need the same libraries; ship them in a `lib\` directory beside the executable.
