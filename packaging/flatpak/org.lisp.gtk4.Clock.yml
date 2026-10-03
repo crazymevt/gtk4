@@ -65,7 +65,7 @@ modules:
         SBCL_HOME: /app/sbcl/lib/sbcl
     build-commands:
       - >-
-        /app/sbcl/bin/sbcl --non-interactive --no-userinit
+        /app/sbcl/bin/sbcl --dynamic-space-size 4096 --non-interactive --no-userinit
         --eval '(require :asdf)'
         --eval '(dolist (d (directory "/app/lisp/*/")) (push d asdf:*central-registry*))'
         --eval '(push (truename ".") asdf:*central-registry*)'
