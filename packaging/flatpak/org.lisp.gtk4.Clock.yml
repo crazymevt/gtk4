@@ -18,6 +18,10 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
+# Stripping would cut off the Lisp image saved at the end of the executable.
+build-options:
+  strip: false
+  no-debuginfo: true
 cleanup:
   - /sbcl
   - /lisp
