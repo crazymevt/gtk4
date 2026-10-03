@@ -7,7 +7,8 @@
 
 
 (rt:define-genum anchor-hints
-    (:kind :flags :gtype-name "GdkAnchorHints" :get-type "gdk_anchor_hints_get_type" :documentation
+    (:kind :flags :gtype-name "GdkAnchorHints" :get-type "gdk_anchor_hints_get_type" :c-name
+     "GdkAnchorHints" :url "https://docs.gtk.org/gdk4/flags.AnchorHints.html" :documentation
      "Positioning hints for aligning a surface relative to a rectangle.
 
 C: GdkAnchorHints
@@ -24,7 +25,8 @@ See: https://docs.gtk.org/gdk4/flags.AnchorHints.html")
 
 
 (rt:define-genum axis-flags
-    (:kind :flags :gtype-name "GdkAxisFlags" :get-type "gdk_axis_flags_get_type" :documentation
+    (:kind :flags :gtype-name "GdkAxisFlags" :get-type "gdk_axis_flags_get_type" :c-name
+     "GdkAxisFlags" :url "https://docs.gtk.org/gdk4/flags.AxisFlags.html" :documentation
      "Flags describing the current capabilities of a device/tool.
 
 C: GdkAxisFlags
@@ -43,7 +45,8 @@ See: https://docs.gtk.org/gdk4/flags.AxisFlags.html")
 
 
 (rt:define-genum axis-use
-    (:kind :enum :gtype-name "GdkAxisUse" :get-type "gdk_axis_use_get_type" :documentation
+    (:kind :enum :gtype-name "GdkAxisUse" :get-type "gdk_axis_use_get_type" :c-name "GdkAxisUse"
+     :url "https://docs.gtk.org/gdk4/enum.AxisUse.html" :documentation
      "Defines how device axes are interpreted by GTK.
 
 C: GdkAxisUse
@@ -64,7 +67,8 @@ See: https://docs.gtk.org/gdk4/enum.AxisUse.html")
 
 
 (rt:define-genum cicp-range
-    (:kind :enum :gtype-name "GdkCicpRange" :get-type "gdk_cicp_range_get_type" :documentation
+    (:kind :enum :gtype-name "GdkCicpRange" :get-type "gdk_cicp_range_get_type" :c-name
+     "GdkCicpRange" :url "https://docs.gtk.org/gdk4/enum.CicpRange.html" :documentation
      "The values of this enumeration describe whether image data uses
 the full range of 8-bit values.
 
@@ -75,8 +79,9 @@ See: https://docs.gtk.org/gdk4/enum.CicpRange.html")
 
 
 (rt:define-genum color-channel
-    (:kind :enum :gtype-name "GdkColorChannel" :get-type "gdk_color_channel_get_type"
-     :documentation "Enumerates the color channels of RGBA values as used in
+    (:kind :enum :gtype-name "GdkColorChannel" :get-type "gdk_color_channel_get_type" :c-name
+     "GdkColorChannel" :url "https://docs.gtk.org/gdk4/enum.ColorChannel.html" :documentation
+     "Enumerates the color channels of RGBA values as used in
 `GdkColor` and OpenGL/Vulkan shaders.
 
 C: GdkColorChannel
@@ -88,8 +93,9 @@ See: https://docs.gtk.org/gdk4/enum.ColorChannel.html")
 
 
 (rt:define-genum crossing-mode
-    (:kind :enum :gtype-name "GdkCrossingMode" :get-type "gdk_crossing_mode_get_type"
-     :documentation "Specifies the crossing mode for enter and leave events.
+    (:kind :enum :gtype-name "GdkCrossingMode" :get-type "gdk_crossing_mode_get_type" :c-name
+     "GdkCrossingMode" :url "https://docs.gtk.org/gdk4/enum.CrossingMode.html" :documentation
+     "Specifies the crossing mode for enter and leave events.
 
 C: GdkCrossingMode
 See: https://docs.gtk.org/gdk4/enum.CrossingMode.html")
@@ -106,6 +112,7 @@ See: https://docs.gtk.org/gdk4/enum.CrossingMode.html")
 
 (rt:define-genum device-pad-feature
     (:kind :enum :gtype-name "GdkDevicePadFeature" :get-type "gdk_device_pad_feature_get_type"
+     :c-name "GdkDevicePadFeature" :url "https://docs.gtk.org/gdk4/enum.DevicePadFeature.html"
      :documentation "A pad feature.
 
 C: GdkDevicePadFeature
@@ -116,8 +123,9 @@ See: https://docs.gtk.org/gdk4/enum.DevicePadFeature.html")
 
 
 (rt:define-genum device-tool-type
-    (:kind :enum :gtype-name "GdkDeviceToolType" :get-type "gdk_device_tool_type_get_type"
-     :documentation "Indicates the specific type of tool being used being a tablet. Such as an
+    (:kind :enum :gtype-name "GdkDeviceToolType" :get-type "gdk_device_tool_type_get_type" :c-name
+     "GdkDeviceToolType" :url "https://docs.gtk.org/gdk4/enum.DeviceToolType.html" :documentation
+     "Indicates the specific type of tool being used being a tablet. Such as an
 airbrush, pencil, etc.
 
 C: GdkDeviceToolType
@@ -133,8 +141,9 @@ See: https://docs.gtk.org/gdk4/enum.DeviceToolType.html")
 
 
 (rt:define-genum dmabuf-error
-    (:kind :enum :gtype-name "GdkDmabufError" :get-type "gdk_dmabuf_error_get_type" :documentation
-     "Error enumeration for `GdkDmabufTexture`.
+    (:kind :enum :gtype-name "GdkDmabufError" :get-type "gdk_dmabuf_error_get_type" :c-name
+     "GdkDmabufError" :url "https://docs.gtk.org/gdk4/enum.DmabufError.html" :documentation
+     "Error enumeration for `gdk:dmabuf-texture`.
 
 C: GdkDmabufError
 See: https://docs.gtk.org/gdk4/enum.DmabufError.html")
@@ -144,8 +153,9 @@ See: https://docs.gtk.org/gdk4/enum.DmabufError.html")
 
 
 (rt:define-genum drag-action
-    (:kind :flags :gtype-name "GdkDragAction" :get-type "gdk_drag_action_get_type" :documentation
-     "Used in `GdkDrop` and `GdkDrag` to indicate the actions that the
+    (:kind :flags :gtype-name "GdkDragAction" :get-type "gdk_drag_action_get_type" :c-name
+     "GdkDragAction" :url "https://docs.gtk.org/gdk4/flags.DragAction.html" :documentation
+     "Used in `gdk:drop` and `gdk:drag` to indicate the actions that the
 destination can and should do with the dropped data.
 
 C: GdkDragAction
@@ -159,7 +169,8 @@ See: https://docs.gtk.org/gdk4/flags.DragAction.html")
 
 (rt:define-genum drag-cancel-reason
     (:kind :enum :gtype-name "GdkDragCancelReason" :get-type "gdk_drag_cancel_reason_get_type"
-     :documentation "Used in `GdkDrag` to the reason of a cancelled DND operation.
+     :c-name "GdkDragCancelReason" :url "https://docs.gtk.org/gdk4/enum.DragCancelReason.html"
+     :documentation "Used in `gdk:drag` to the reason of a cancelled DND operation.
 
 C: GdkDragCancelReason
 See: https://docs.gtk.org/gdk4/enum.DragCancelReason.html")
@@ -169,7 +180,8 @@ See: https://docs.gtk.org/gdk4/enum.DragCancelReason.html")
 
 
 (rt:define-genum event-type
-    (:kind :enum :gtype-name "GdkEventType" :get-type "gdk_event_type_get_type" :documentation
+    (:kind :enum :gtype-name "GdkEventType" :get-type "gdk_event_type_get_type" :c-name
+     "GdkEventType" :url "https://docs.gtk.org/gdk4/enum.EventType.html" :documentation
      "Specifies the type of the event.
 
 C: GdkEventType
@@ -209,6 +221,7 @@ See: https://docs.gtk.org/gdk4/enum.EventType.html")
 
 (rt:define-genum frame-clock-phase
     (:kind :flags :gtype-name "GdkFrameClockPhase" :get-type "gdk_frame_clock_phase_get_type"
+     :c-name "GdkFrameClockPhase" :url "https://docs.gtk.org/gdk4/flags.FrameClockPhase.html"
      :documentation "Used to represent the different paint clock phases that can be requested.
 
 C: GdkFrameClockPhase
@@ -224,7 +237,8 @@ See: https://docs.gtk.org/gdk4/flags.FrameClockPhase.html")
 
 
 (rt:define-genum frame-result
-    (:kind :enum :gtype-name "GdkFrameResult" :get-type "gdk_frame_result_get_type" :documentation
+    (:kind :enum :gtype-name "GdkFrameResult" :get-type "gdk_frame_result_get_type" :c-name
+     "GdkFrameResult" :url "https://docs.gtk.org/gdk4/enum.FrameResult.html" :documentation
      "An enumeration describing the process of rendering a frame.
 Rendering a frame starts with the frame clock cycle and then follows
 the rendered frame (if there was one) through the display server
@@ -242,8 +256,9 @@ See: https://docs.gtk.org/gdk4/enum.FrameResult.html")
 
 
 (rt:define-genum fullscreen-mode
-    (:kind :enum :gtype-name "GdkFullscreenMode" :get-type "gdk_fullscreen_mode_get_type"
-     :documentation "Indicates which monitor a surface should span over when in fullscreen mode.
+    (:kind :enum :gtype-name "GdkFullscreenMode" :get-type "gdk_fullscreen_mode_get_type" :c-name
+     "GdkFullscreenMode" :url "https://docs.gtk.org/gdk4/enum.FullscreenMode.html" :documentation
+     "Indicates which monitor a surface should span over when in fullscreen mode.
 
 C: GdkFullscreenMode
 See: https://docs.gtk.org/gdk4/enum.FullscreenMode.html")
@@ -252,7 +267,8 @@ See: https://docs.gtk.org/gdk4/enum.FullscreenMode.html")
 
 
 (rt:define-genum glapi
-    (:kind :flags :gtype-name "GdkGLAPI" :get-type "gdk_gl_api_get_type" :documentation
+    (:kind :flags :gtype-name "GdkGLAPI" :get-type "gdk_gl_api_get_type" :c-name "GdkGLAPI" :url
+     "https://docs.gtk.org/gdk4/flags.GLAPI.html" :documentation
      "The list of the different APIs that GdkGLContext can potentially support.
 
 C: GdkGLAPI
@@ -262,8 +278,9 @@ See: https://docs.gtk.org/gdk4/flags.GLAPI.html")
 
 
 (rt:define-genum gl-error
-    (:kind :enum :gtype-name "GdkGLError" :get-type "gdk_gl_error_get_type" :documentation
-     "Error enumeration for `GdkGLContext`.
+    (:kind :enum :gtype-name "GdkGLError" :get-type "gdk_gl_error_get_type" :c-name "GdkGLError"
+     :url "https://docs.gtk.org/gdk4/enum.GLError.html" :documentation
+     "Error enumeration for `gdk:gl-context`.
 
 C: GdkGLError
 See: https://docs.gtk.org/gdk4/enum.GLError.html")
@@ -275,8 +292,9 @@ See: https://docs.gtk.org/gdk4/enum.GLError.html")
 
 
 (rt:define-genum gravity
-    (:kind :enum :gtype-name "GdkGravity" :get-type "gdk_gravity_get_type" :documentation
-     "Defines the reference point of a surface and is used in `GdkPopupLayout`.
+    (:kind :enum :gtype-name "GdkGravity" :get-type "gdk_gravity_get_type" :c-name "GdkGravity"
+     :url "https://docs.gtk.org/gdk4/enum.Gravity.html" :documentation
+     "Defines the reference point of a surface and is used in `gdk:popup-layout`.
 
 C: GdkGravity
 See: https://docs.gtk.org/gdk4/enum.Gravity.html")
@@ -293,7 +311,8 @@ See: https://docs.gtk.org/gdk4/enum.Gravity.html")
 
 
 (rt:define-genum input-source
-    (:kind :enum :gtype-name "GdkInputSource" :get-type "gdk_input_source_get_type" :documentation
+    (:kind :enum :gtype-name "GdkInputSource" :get-type "gdk_input_source_get_type" :c-name
+     "GdkInputSource" :url "https://docs.gtk.org/gdk4/enum.InputSource.html" :documentation
      "An enumeration describing the type of an input device in general terms.
 
 C: GdkInputSource
@@ -308,7 +327,8 @@ See: https://docs.gtk.org/gdk4/enum.InputSource.html")
 
 
 (rt:define-genum key-match
-    (:kind :enum :gtype-name "GdkKeyMatch" :get-type "gdk_key_match_get_type" :documentation
+    (:kind :enum :gtype-name "GdkKeyMatch" :get-type "gdk_key_match_get_type" :c-name "GdkKeyMatch"
+     :url "https://docs.gtk.org/gdk4/enum.KeyMatch.html" :documentation
      "Describes how well an event matches a given keyval and modifiers.
 
 C: GdkKeyMatch
@@ -319,8 +339,9 @@ See: https://docs.gtk.org/gdk4/enum.KeyMatch.html")
 
 
 (rt:define-genum memory-format
-    (:kind :enum :gtype-name "GdkMemoryFormat" :get-type "gdk_memory_format_get_type"
-     :documentation "Describes formats that image data can have in memory.
+    (:kind :enum :gtype-name "GdkMemoryFormat" :get-type "gdk_memory_format_get_type" :c-name
+     "GdkMemoryFormat" :url "https://docs.gtk.org/gdk4/enum.MemoryFormat.html" :documentation
+     "Describes formats that image data can have in memory.
 
 C: GdkMemoryFormat
 See: https://docs.gtk.org/gdk4/enum.MemoryFormat.html")
@@ -399,8 +420,9 @@ See: https://docs.gtk.org/gdk4/enum.MemoryFormat.html")
 
 
 (rt:define-genum modifier-type
-    (:kind :flags :gtype-name "GdkModifierType" :get-type "gdk_modifier_type_get_type"
-     :documentation "Flags to indicate the state of modifier keys and mouse buttons
+    (:kind :flags :gtype-name "GdkModifierType" :get-type "gdk_modifier_type_get_type" :c-name
+     "GdkModifierType" :url "https://docs.gtk.org/gdk4/flags.ModifierType.html" :documentation
+     "Flags to indicate the state of modifier keys and mouse buttons
 in events.
 
 C: GdkModifierType
@@ -421,7 +443,8 @@ See: https://docs.gtk.org/gdk4/flags.ModifierType.html")
 
 
 (rt:define-genum notify-type
-    (:kind :enum :gtype-name "GdkNotifyType" :get-type "gdk_notify_type_get_type" :documentation
+    (:kind :enum :gtype-name "GdkNotifyType" :get-type "gdk_notify_type_get_type" :c-name
+     "GdkNotifyType" :url "https://docs.gtk.org/gdk4/enum.NotifyType.html" :documentation
      "Specifies the kind of crossing for enter and leave events.
 
 C: GdkNotifyType
@@ -435,8 +458,9 @@ See: https://docs.gtk.org/gdk4/enum.NotifyType.html")
 
 
 (rt:define-genum paintable-flags
-    (:kind :flags :gtype-name "GdkPaintableFlags" :get-type "gdk_paintable_flags_get_type"
-     :documentation "Flags about a paintable object.
+    (:kind :flags :gtype-name "GdkPaintableFlags" :get-type "gdk_paintable_flags_get_type" :c-name
+     "GdkPaintableFlags" :url "https://docs.gtk.org/gdk4/flags.PaintableFlags.html" :documentation
+     "Flags about a paintable object.
 
 C: GdkPaintableFlags
 See: https://docs.gtk.org/gdk4/flags.PaintableFlags.html")
@@ -445,8 +469,9 @@ See: https://docs.gtk.org/gdk4/flags.PaintableFlags.html")
 
 
 (rt:define-genum scroll-direction
-    (:kind :enum :gtype-name "GdkScrollDirection" :get-type "gdk_scroll_direction_get_type"
-     :documentation "Specifies the direction for scroll events.
+    (:kind :enum :gtype-name "GdkScrollDirection" :get-type "gdk_scroll_direction_get_type" :c-name
+     "GdkScrollDirection" :url "https://docs.gtk.org/gdk4/enum.ScrollDirection.html" :documentation
+     "Specifies the direction for scroll events.
 
 C: GdkScrollDirection
 See: https://docs.gtk.org/gdk4/enum.ScrollDirection.html")
@@ -459,7 +484,8 @@ See: https://docs.gtk.org/gdk4/enum.ScrollDirection.html")
 
 (rt:define-genum scroll-relative-direction
     (:kind :enum :gtype-name "GdkScrollRelativeDirection" :get-type
-     "gdk_scroll_relative_direction_get_type" :documentation
+     "gdk_scroll_relative_direction_get_type" :c-name "GdkScrollRelativeDirection" :url
+     "https://docs.gtk.org/gdk4/enum.ScrollRelativeDirection.html" :documentation
      "Used in scroll events, to announce the direction relative
 to physical motion.
 
@@ -471,7 +497,8 @@ See: https://docs.gtk.org/gdk4/enum.ScrollRelativeDirection.html")
 
 
 (rt:define-genum scroll-unit
-    (:kind :enum :gtype-name "GdkScrollUnit" :get-type "gdk_scroll_unit_get_type" :documentation
+    (:kind :enum :gtype-name "GdkScrollUnit" :get-type "gdk_scroll_unit_get_type" :c-name
+     "GdkScrollUnit" :url "https://docs.gtk.org/gdk4/enum.ScrollUnit.html" :documentation
      "Specifies the unit of scroll deltas.
 
 C: GdkScrollUnit
@@ -482,6 +509,7 @@ See: https://docs.gtk.org/gdk4/enum.ScrollUnit.html")
 
 (rt:define-genum seat-capabilities
     (:kind :flags :gtype-name "GdkSeatCapabilities" :get-type "gdk_seat_capabilities_get_type"
+     :c-name "GdkSeatCapabilities" :url "https://docs.gtk.org/gdk4/flags.SeatCapabilities.html"
      :documentation "Flags describing the seat capabilities.
 
 C: GdkSeatCapabilities
@@ -497,8 +525,9 @@ See: https://docs.gtk.org/gdk4/flags.SeatCapabilities.html")
 
 
 (rt:define-genum subpixel-layout
-    (:kind :enum :gtype-name "GdkSubpixelLayout" :get-type "gdk_subpixel_layout_get_type"
-     :documentation "This enumeration describes how the red, green and blue components
+    (:kind :enum :gtype-name "GdkSubpixelLayout" :get-type "gdk_subpixel_layout_get_type" :c-name
+     "GdkSubpixelLayout" :url "https://docs.gtk.org/gdk4/enum.SubpixelLayout.html" :documentation
+     "This enumeration describes how the red, green and blue components
 of physical pixels on an output device are laid out.
 
 C: GdkSubpixelLayout
@@ -512,7 +541,8 @@ See: https://docs.gtk.org/gdk4/enum.SubpixelLayout.html")
 
 
 (rt:define-genum surface-edge
-    (:kind :enum :gtype-name "GdkSurfaceEdge" :get-type "gdk_surface_edge_get_type" :documentation
+    (:kind :enum :gtype-name "GdkSurfaceEdge" :get-type "gdk_surface_edge_get_type" :c-name
+     "GdkSurfaceEdge" :url "https://docs.gtk.org/gdk4/enum.SurfaceEdge.html" :documentation
      "Determines a surface edge or corner.
 
 C: GdkSurfaceEdge
@@ -528,8 +558,9 @@ See: https://docs.gtk.org/gdk4/enum.SurfaceEdge.html")
 
 
 (rt:define-genum texture-error
-    (:kind :enum :gtype-name "GdkTextureError" :get-type "gdk_texture_error_get_type"
-     :documentation "Possible errors that can be returned by `GdkTexture` constructors.
+    (:kind :enum :gtype-name "GdkTextureError" :get-type "gdk_texture_error_get_type" :c-name
+     "GdkTextureError" :url "https://docs.gtk.org/gdk4/enum.TextureError.html" :documentation
+     "Possible errors that can be returned by `gdk:texture` constructors.
 
 C: GdkTextureError
 See: https://docs.gtk.org/gdk4/enum.TextureError.html")
@@ -540,9 +571,10 @@ See: https://docs.gtk.org/gdk4/enum.TextureError.html")
 
 
 (rt:define-genum titlebar-gesture
-    (:kind :enum :gtype-name "GdkTitlebarGesture" :get-type "gdk_titlebar_gesture_get_type"
-     :documentation "The kind of title bar gesture to emit with
-Gdk.Toplevel.titlebar_gesture.
+    (:kind :enum :gtype-name "GdkTitlebarGesture" :get-type "gdk_titlebar_gesture_get_type" :c-name
+     "GdkTitlebarGesture" :url "https://docs.gtk.org/gdk4/enum.TitlebarGesture.html" :documentation
+     "The kind of title bar gesture to emit with
+`gdk:toplevel-titlebar-gesture`.
 
 C: GdkTitlebarGesture
 See: https://docs.gtk.org/gdk4/enum.TitlebarGesture.html")
@@ -553,8 +585,9 @@ See: https://docs.gtk.org/gdk4/enum.TitlebarGesture.html")
 
 (rt:define-genum toplevel-capabilities
     (:kind :flags :gtype-name "GdkToplevelCapabilities" :get-type
-     "gdk_toplevel_capabilities_get_type" :documentation
-     "Reflects what features a `GdkToplevel` supports.
+     "gdk_toplevel_capabilities_get_type" :c-name "GdkToplevelCapabilities" :url
+     "https://docs.gtk.org/gdk4/flags.ToplevelCapabilities.html" :documentation
+     "Reflects what features a `gdk:toplevel` supports.
 
 C: GdkToplevelCapabilities
 See: https://docs.gtk.org/gdk4/flags.ToplevelCapabilities.html")
@@ -569,8 +602,9 @@ See: https://docs.gtk.org/gdk4/flags.ToplevelCapabilities.html")
 
 
 (rt:define-genum toplevel-state
-    (:kind :flags :gtype-name "GdkToplevelState" :get-type "gdk_toplevel_state_get_type"
-     :documentation "Specifies the state of a toplevel surface.
+    (:kind :flags :gtype-name "GdkToplevelState" :get-type "gdk_toplevel_state_get_type" :c-name
+     "GdkToplevelState" :url "https://docs.gtk.org/gdk4/flags.ToplevelState.html" :documentation
+     "Specifies the state of a toplevel surface.
 
 C: GdkToplevelState
 See: https://docs.gtk.org/gdk4/flags.ToplevelState.html")
@@ -595,7 +629,8 @@ See: https://docs.gtk.org/gdk4/flags.ToplevelState.html")
 
 (rt:define-genum touchpad-gesture-phase
     (:kind :enum :gtype-name "GdkTouchpadGesturePhase" :get-type
-     "gdk_touchpad_gesture_phase_get_type" :documentation
+     "gdk_touchpad_gesture_phase_get_type" :c-name "GdkTouchpadGesturePhase" :url
+     "https://docs.gtk.org/gdk4/enum.TouchpadGesturePhase.html" :documentation
      "Specifies the current state of a touchpad gesture.
 
 C: GdkTouchpadGesturePhase
@@ -607,8 +642,9 @@ See: https://docs.gtk.org/gdk4/enum.TouchpadGesturePhase.html")
 
 
 (rt:define-genum vulkan-error
-    (:kind :enum :gtype-name "GdkVulkanError" :get-type "gdk_vulkan_error_get_type" :documentation
-     "Error enumeration for `GdkVulkanContext`.
+    (:kind :enum :gtype-name "GdkVulkanError" :get-type "gdk_vulkan_error_get_type" :c-name
+     "GdkVulkanError" :url "https://docs.gtk.org/gdk4/enum.VulkanError.html" :documentation
+     "Error enumeration for `gdk:vulkan-context`.
 
 C: GdkVulkanError
 See: https://docs.gtk.org/gdk4/enum.VulkanError.html")
@@ -669,10537 +705,8431 @@ C: GDK_EVENT_STOP
 See: https://docs.gtk.org/gdk4/const.EVENT_STOP.html")
 
 
-(rt:define-gconstant +key-0+ 48 "
-C: GDK_KEY_0
+(rt:define-gconstant +key-0+ 48 "C: GDK_KEY_0
 See: https://docs.gtk.org/gdk4/const.KEY_0.html")
 
 
-(rt:define-gconstant +key-1+ 49 "
-C: GDK_KEY_1
+(rt:define-gconstant +key-1+ 49 "C: GDK_KEY_1
 See: https://docs.gtk.org/gdk4/const.KEY_1.html")
 
 
-(rt:define-gconstant +key-10channelsdown+ 268964281 "
-C: GDK_KEY_10ChannelsDown
+(rt:define-gconstant +key-10channelsdown+ 268964281 "C: GDK_KEY_10ChannelsDown
 See: https://docs.gtk.org/gdk4/const.KEY_10ChannelsDown.html")
 
 
-(rt:define-gconstant +key-10channelsup+ 268964280 "
-C: GDK_KEY_10ChannelsUp
+(rt:define-gconstant +key-10channelsup+ 268964280 "C: GDK_KEY_10ChannelsUp
 See: https://docs.gtk.org/gdk4/const.KEY_10ChannelsUp.html")
 
 
-(rt:define-gconstant +key-2+ 50 "
-C: GDK_KEY_2
+(rt:define-gconstant +key-2+ 50 "C: GDK_KEY_2
 See: https://docs.gtk.org/gdk4/const.KEY_2.html")
 
 
-(rt:define-gconstant +key-3+ 51 "
-C: GDK_KEY_3
+(rt:define-gconstant +key-3+ 51 "C: GDK_KEY_3
 See: https://docs.gtk.org/gdk4/const.KEY_3.html")
 
 
-(rt:define-gconstant +key-3270-altcursor+ 64784 "
-C: GDK_KEY_3270_AltCursor
+(rt:define-gconstant +key-3270-altcursor+ 64784 "C: GDK_KEY_3270_AltCursor
 See: https://docs.gtk.org/gdk4/const.KEY_3270_AltCursor.html")
 
 
-(rt:define-gconstant +key-3270-attn+ 64782 "
-C: GDK_KEY_3270_Attn
+(rt:define-gconstant +key-3270-attn+ 64782 "C: GDK_KEY_3270_Attn
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Attn.html")
 
 
-(rt:define-gconstant +key-3270-backtab+ 64773 "
-C: GDK_KEY_3270_BackTab
+(rt:define-gconstant +key-3270-backtab+ 64773 "C: GDK_KEY_3270_BackTab
 See: https://docs.gtk.org/gdk4/const.KEY_3270_BackTab.html")
 
 
-(rt:define-gconstant +key-3270-changescreen+ 64793 "
-C: GDK_KEY_3270_ChangeScreen
+(rt:define-gconstant +key-3270-changescreen+ 64793 "C: GDK_KEY_3270_ChangeScreen
 See: https://docs.gtk.org/gdk4/const.KEY_3270_ChangeScreen.html")
 
 
-(rt:define-gconstant +key-3270-copy+ 64789 "
-C: GDK_KEY_3270_Copy
+(rt:define-gconstant +key-3270-copy+ 64789 "C: GDK_KEY_3270_Copy
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Copy.html")
 
 
-(rt:define-gconstant +key-3270-cursorblink+ 64783 "
-C: GDK_KEY_3270_CursorBlink
+(rt:define-gconstant +key-3270-cursorblink+ 64783 "C: GDK_KEY_3270_CursorBlink
 See: https://docs.gtk.org/gdk4/const.KEY_3270_CursorBlink.html")
 
 
-(rt:define-gconstant +key-3270-cursorselect+ 64796 "
-C: GDK_KEY_3270_CursorSelect
+(rt:define-gconstant +key-3270-cursorselect+ 64796 "C: GDK_KEY_3270_CursorSelect
 See: https://docs.gtk.org/gdk4/const.KEY_3270_CursorSelect.html")
 
 
-(rt:define-gconstant +key-3270-deleteword+ 64794 "
-C: GDK_KEY_3270_DeleteWord
+(rt:define-gconstant +key-3270-deleteword+ 64794 "C: GDK_KEY_3270_DeleteWord
 See: https://docs.gtk.org/gdk4/const.KEY_3270_DeleteWord.html")
 
 
-(rt:define-gconstant +key-3270-duplicate+ 64769 "
-C: GDK_KEY_3270_Duplicate
+(rt:define-gconstant +key-3270-duplicate+ 64769 "C: GDK_KEY_3270_Duplicate
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Duplicate.html")
 
 
-(rt:define-gconstant +key-3270-enter+ 64798 "
-C: GDK_KEY_3270_Enter
+(rt:define-gconstant +key-3270-enter+ 64798 "C: GDK_KEY_3270_Enter
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Enter.html")
 
 
-(rt:define-gconstant +key-3270-eraseeof+ 64774 "
-C: GDK_KEY_3270_EraseEOF
+(rt:define-gconstant +key-3270-eraseeof+ 64774 "C: GDK_KEY_3270_EraseEOF
 See: https://docs.gtk.org/gdk4/const.KEY_3270_EraseEOF.html")
 
 
-(rt:define-gconstant +key-3270-eraseinput+ 64775 "
-C: GDK_KEY_3270_EraseInput
+(rt:define-gconstant +key-3270-eraseinput+ 64775 "C: GDK_KEY_3270_EraseInput
 See: https://docs.gtk.org/gdk4/const.KEY_3270_EraseInput.html")
 
 
-(rt:define-gconstant +key-3270-exselect+ 64795 "
-C: GDK_KEY_3270_ExSelect
+(rt:define-gconstant +key-3270-exselect+ 64795 "C: GDK_KEY_3270_ExSelect
 See: https://docs.gtk.org/gdk4/const.KEY_3270_ExSelect.html")
 
 
-(rt:define-gconstant +key-3270-fieldmark+ 64770 "
-C: GDK_KEY_3270_FieldMark
+(rt:define-gconstant +key-3270-fieldmark+ 64770 "C: GDK_KEY_3270_FieldMark
 See: https://docs.gtk.org/gdk4/const.KEY_3270_FieldMark.html")
 
 
-(rt:define-gconstant +key-3270-ident+ 64787 "
-C: GDK_KEY_3270_Ident
+(rt:define-gconstant +key-3270-ident+ 64787 "C: GDK_KEY_3270_Ident
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Ident.html")
 
 
-(rt:define-gconstant +key-3270-jump+ 64786 "
-C: GDK_KEY_3270_Jump
+(rt:define-gconstant +key-3270-jump+ 64786 "C: GDK_KEY_3270_Jump
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Jump.html")
 
 
-(rt:define-gconstant +key-3270-keyclick+ 64785 "
-C: GDK_KEY_3270_KeyClick
+(rt:define-gconstant +key-3270-keyclick+ 64785 "C: GDK_KEY_3270_KeyClick
 See: https://docs.gtk.org/gdk4/const.KEY_3270_KeyClick.html")
 
 
-(rt:define-gconstant +key-3270-left2+ 64772 "
-C: GDK_KEY_3270_Left2
+(rt:define-gconstant +key-3270-left2+ 64772 "C: GDK_KEY_3270_Left2
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Left2.html")
 
 
-(rt:define-gconstant +key-3270-pa1+ 64778 "
-C: GDK_KEY_3270_PA1
+(rt:define-gconstant +key-3270-pa1+ 64778 "C: GDK_KEY_3270_PA1
 See: https://docs.gtk.org/gdk4/const.KEY_3270_PA1.html")
 
 
-(rt:define-gconstant +key-3270-pa2+ 64779 "
-C: GDK_KEY_3270_PA2
+(rt:define-gconstant +key-3270-pa2+ 64779 "C: GDK_KEY_3270_PA2
 See: https://docs.gtk.org/gdk4/const.KEY_3270_PA2.html")
 
 
-(rt:define-gconstant +key-3270-pa3+ 64780 "
-C: GDK_KEY_3270_PA3
+(rt:define-gconstant +key-3270-pa3+ 64780 "C: GDK_KEY_3270_PA3
 See: https://docs.gtk.org/gdk4/const.KEY_3270_PA3.html")
 
 
-(rt:define-gconstant +key-3270-play+ 64790 "
-C: GDK_KEY_3270_Play
+(rt:define-gconstant +key-3270-play+ 64790 "C: GDK_KEY_3270_Play
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Play.html")
 
 
-(rt:define-gconstant +key-3270-printscreen+ 64797 "
-C: GDK_KEY_3270_PrintScreen
+(rt:define-gconstant +key-3270-printscreen+ 64797 "C: GDK_KEY_3270_PrintScreen
 See: https://docs.gtk.org/gdk4/const.KEY_3270_PrintScreen.html")
 
 
-(rt:define-gconstant +key-3270-quit+ 64777 "
-C: GDK_KEY_3270_Quit
+(rt:define-gconstant +key-3270-quit+ 64777 "C: GDK_KEY_3270_Quit
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Quit.html")
 
 
-(rt:define-gconstant +key-3270-record+ 64792 "
-C: GDK_KEY_3270_Record
+(rt:define-gconstant +key-3270-record+ 64792 "C: GDK_KEY_3270_Record
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Record.html")
 
 
-(rt:define-gconstant +key-3270-reset+ 64776 "
-C: GDK_KEY_3270_Reset
+(rt:define-gconstant +key-3270-reset+ 64776 "C: GDK_KEY_3270_Reset
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Reset.html")
 
 
-(rt:define-gconstant +key-3270-right2+ 64771 "
-C: GDK_KEY_3270_Right2
+(rt:define-gconstant +key-3270-right2+ 64771 "C: GDK_KEY_3270_Right2
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Right2.html")
 
 
-(rt:define-gconstant +key-3270-rule+ 64788 "
-C: GDK_KEY_3270_Rule
+(rt:define-gconstant +key-3270-rule+ 64788 "C: GDK_KEY_3270_Rule
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Rule.html")
 
 
-(rt:define-gconstant +key-3270-setup+ 64791 "
-C: GDK_KEY_3270_Setup
+(rt:define-gconstant +key-3270-setup+ 64791 "C: GDK_KEY_3270_Setup
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Setup.html")
 
 
-(rt:define-gconstant +key-3270-test+ 64781 "
-C: GDK_KEY_3270_Test
+(rt:define-gconstant +key-3270-test+ 64781 "C: GDK_KEY_3270_Test
 See: https://docs.gtk.org/gdk4/const.KEY_3270_Test.html")
 
 
-(rt:define-gconstant +key-3dmode+ 268964463 "
-C: GDK_KEY_3DMode
+(rt:define-gconstant +key-3dmode+ 268964463 "C: GDK_KEY_3DMode
 See: https://docs.gtk.org/gdk4/const.KEY_3DMode.html")
 
 
-(rt:define-gconstant +key-4+ 52 "
-C: GDK_KEY_4
+(rt:define-gconstant +key-4+ 52 "C: GDK_KEY_4
 See: https://docs.gtk.org/gdk4/const.KEY_4.html")
 
 
-(rt:define-gconstant +key-5+ 53 "
-C: GDK_KEY_5
+(rt:define-gconstant +key-5+ 53 "C: GDK_KEY_5
 See: https://docs.gtk.org/gdk4/const.KEY_5.html")
 
 
-(rt:define-gconstant +key-6+ 54 "
-C: GDK_KEY_6
+(rt:define-gconstant +key-6+ 54 "C: GDK_KEY_6
 See: https://docs.gtk.org/gdk4/const.KEY_6.html")
 
 
-(rt:define-gconstant +key-7+ 55 "
-C: GDK_KEY_7
+(rt:define-gconstant +key-7+ 55 "C: GDK_KEY_7
 See: https://docs.gtk.org/gdk4/const.KEY_7.html")
 
 
-(rt:define-gconstant +key-8+ 56 "
-C: GDK_KEY_8
+(rt:define-gconstant +key-8+ 56 "C: GDK_KEY_8
 See: https://docs.gtk.org/gdk4/const.KEY_8.html")
 
 
-(rt:define-gconstant +key-9+ 57 "
-C: GDK_KEY_9
+(rt:define-gconstant +key-9+ 57 "C: GDK_KEY_9
 See: https://docs.gtk.org/gdk4/const.KEY_9.html")
 
 
-(rt:define-gconstant +key-a+ 65 "
-C: GDK_KEY_A
+(rt:define-gconstant +key-a+ 65 "C: GDK_KEY_A
 See: https://docs.gtk.org/gdk4/const.KEY_A.html")
 
 
-(rt:define-gconstant +key-ae+ 198 "
-C: GDK_KEY_AE
+(rt:define-gconstant +key-ae+ 198 "C: GDK_KEY_AE
 See: https://docs.gtk.org/gdk4/const.KEY_AE.html")
 
 
-(rt:define-gconstant +key-alstoggle+ 268964400 "
-C: GDK_KEY_ALSToggle
+(rt:define-gconstant +key-alstoggle+ 268964400 "C: GDK_KEY_ALSToggle
 See: https://docs.gtk.org/gdk4/const.KEY_ALSToggle.html")
 
 
-(rt:define-gconstant +key-aacute+ 193 "
-C: GDK_KEY_Aacute
+(rt:define-gconstant +key-aacute+ 193 "C: GDK_KEY_Aacute
 See: https://docs.gtk.org/gdk4/const.KEY_Aacute.html")
 
 
-(rt:define-gconstant +key-abelowdot+ 16785056 "
-C: GDK_KEY_Abelowdot
+(rt:define-gconstant +key-abelowdot+ 16785056 "C: GDK_KEY_Abelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Abelowdot.html")
 
 
-(rt:define-gconstant +key-abreve+ 451 "
-C: GDK_KEY_Abreve
+(rt:define-gconstant +key-abreve+ 451 "C: GDK_KEY_Abreve
 See: https://docs.gtk.org/gdk4/const.KEY_Abreve.html")
 
 
-(rt:define-gconstant +key-abreveacute+ 16785070 "
-C: GDK_KEY_Abreveacute
+(rt:define-gconstant +key-abreveacute+ 16785070 "C: GDK_KEY_Abreveacute
 See: https://docs.gtk.org/gdk4/const.KEY_Abreveacute.html")
 
 
-(rt:define-gconstant +key-abrevebelowdot+ 16785078 "
-C: GDK_KEY_Abrevebelowdot
+(rt:define-gconstant +key-abrevebelowdot+ 16785078 "C: GDK_KEY_Abrevebelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Abrevebelowdot.html")
 
 
-(rt:define-gconstant +key-abrevegrave+ 16785072 "
-C: GDK_KEY_Abrevegrave
+(rt:define-gconstant +key-abrevegrave+ 16785072 "C: GDK_KEY_Abrevegrave
 See: https://docs.gtk.org/gdk4/const.KEY_Abrevegrave.html")
 
 
-(rt:define-gconstant +key-abrevehook+ 16785074 "
-C: GDK_KEY_Abrevehook
+(rt:define-gconstant +key-abrevehook+ 16785074 "C: GDK_KEY_Abrevehook
 See: https://docs.gtk.org/gdk4/const.KEY_Abrevehook.html")
 
 
-(rt:define-gconstant +key-abrevetilde+ 16785076 "
-C: GDK_KEY_Abrevetilde
+(rt:define-gconstant +key-abrevetilde+ 16785076 "C: GDK_KEY_Abrevetilde
 See: https://docs.gtk.org/gdk4/const.KEY_Abrevetilde.html")
 
 
-(rt:define-gconstant +key-accessx-enable+ 65136 "
-C: GDK_KEY_AccessX_Enable
+(rt:define-gconstant +key-accessx-enable+ 65136 "C: GDK_KEY_AccessX_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_AccessX_Enable.html")
 
 
-(rt:define-gconstant +key-accessx-feedback-enable+ 65137 "
-C: GDK_KEY_AccessX_Feedback_Enable
+(rt:define-gconstant +key-accessx-feedback-enable+ 65137 "C: GDK_KEY_AccessX_Feedback_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_AccessX_Feedback_Enable.html")
 
 
-(rt:define-gconstant +key-accessibility+ 268964430 "
-C: GDK_KEY_Accessibility
+(rt:define-gconstant +key-accessibility+ 268964430 "C: GDK_KEY_Accessibility
 See: https://docs.gtk.org/gdk4/const.KEY_Accessibility.html")
 
 
-(rt:define-gconstant +key-acircumflex+ 194 "
-C: GDK_KEY_Acircumflex
+(rt:define-gconstant +key-acircumflex+ 194 "C: GDK_KEY_Acircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflex.html")
 
 
-(rt:define-gconstant +key-acircumflexacute+ 16785060 "
-C: GDK_KEY_Acircumflexacute
+(rt:define-gconstant +key-acircumflexacute+ 16785060 "C: GDK_KEY_Acircumflexacute
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflexacute.html")
 
 
-(rt:define-gconstant +key-acircumflexbelowdot+ 16785068 "
-C: GDK_KEY_Acircumflexbelowdot
+(rt:define-gconstant +key-acircumflexbelowdot+ 16785068 "C: GDK_KEY_Acircumflexbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflexbelowdot.html")
 
 
-(rt:define-gconstant +key-acircumflexgrave+ 16785062 "
-C: GDK_KEY_Acircumflexgrave
+(rt:define-gconstant +key-acircumflexgrave+ 16785062 "C: GDK_KEY_Acircumflexgrave
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflexgrave.html")
 
 
-(rt:define-gconstant +key-acircumflexhook+ 16785064 "
-C: GDK_KEY_Acircumflexhook
+(rt:define-gconstant +key-acircumflexhook+ 16785064 "C: GDK_KEY_Acircumflexhook
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflexhook.html")
 
 
-(rt:define-gconstant +key-acircumflextilde+ 16785066 "
-C: GDK_KEY_Acircumflextilde
+(rt:define-gconstant +key-acircumflextilde+ 16785066 "C: GDK_KEY_Acircumflextilde
 See: https://docs.gtk.org/gdk4/const.KEY_Acircumflextilde.html")
 
 
-(rt:define-gconstant +key-addfavorite+ 269025081 "
-C: GDK_KEY_AddFavorite
+(rt:define-gconstant +key-addfavorite+ 269025081 "C: GDK_KEY_AddFavorite
 See: https://docs.gtk.org/gdk4/const.KEY_AddFavorite.html")
 
 
-(rt:define-gconstant +key-addressbook+ 268964269 "
-C: GDK_KEY_Addressbook
+(rt:define-gconstant +key-addressbook+ 268964269 "C: GDK_KEY_Addressbook
 See: https://docs.gtk.org/gdk4/const.KEY_Addressbook.html")
 
 
-(rt:define-gconstant +key-adiaeresis+ 196 "
-C: GDK_KEY_Adiaeresis
+(rt:define-gconstant +key-adiaeresis+ 196 "C: GDK_KEY_Adiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Adiaeresis.html")
 
 
-(rt:define-gconstant +key-agrave+ 192 "
-C: GDK_KEY_Agrave
+(rt:define-gconstant +key-agrave+ 192 "C: GDK_KEY_Agrave
 See: https://docs.gtk.org/gdk4/const.KEY_Agrave.html")
 
 
-(rt:define-gconstant +key-ahook+ 16785058 "
-C: GDK_KEY_Ahook
+(rt:define-gconstant +key-ahook+ 16785058 "C: GDK_KEY_Ahook
 See: https://docs.gtk.org/gdk4/const.KEY_Ahook.html")
 
 
-(rt:define-gconstant +key-alt-l+ 65513 "
-C: GDK_KEY_Alt_L
+(rt:define-gconstant +key-alt-l+ 65513 "C: GDK_KEY_Alt_L
 See: https://docs.gtk.org/gdk4/const.KEY_Alt_L.html")
 
 
-(rt:define-gconstant +key-alt-r+ 65514 "
-C: GDK_KEY_Alt_R
+(rt:define-gconstant +key-alt-r+ 65514 "C: GDK_KEY_Alt_R
 See: https://docs.gtk.org/gdk4/const.KEY_Alt_R.html")
 
 
-(rt:define-gconstant +key-amacron+ 960 "
-C: GDK_KEY_Amacron
+(rt:define-gconstant +key-amacron+ 960 "C: GDK_KEY_Amacron
 See: https://docs.gtk.org/gdk4/const.KEY_Amacron.html")
 
 
-(rt:define-gconstant +key-aogonek+ 417 "
-C: GDK_KEY_Aogonek
+(rt:define-gconstant +key-aogonek+ 417 "C: GDK_KEY_Aogonek
 See: https://docs.gtk.org/gdk4/const.KEY_Aogonek.html")
 
 
-(rt:define-gconstant +key-appselect+ 268964420 "
-C: GDK_KEY_AppSelect
+(rt:define-gconstant +key-appselect+ 268964420 "C: GDK_KEY_AppSelect
 See: https://docs.gtk.org/gdk4/const.KEY_AppSelect.html")
 
 
-(rt:define-gconstant +key-applicationleft+ 269025104 "
-C: GDK_KEY_ApplicationLeft
+(rt:define-gconstant +key-applicationleft+ 269025104 "C: GDK_KEY_ApplicationLeft
 See: https://docs.gtk.org/gdk4/const.KEY_ApplicationLeft.html")
 
 
-(rt:define-gconstant +key-applicationright+ 269025105 "
-C: GDK_KEY_ApplicationRight
+(rt:define-gconstant +key-applicationright+ 269025105 "C: GDK_KEY_ApplicationRight
 See: https://docs.gtk.org/gdk4/const.KEY_ApplicationRight.html")
 
 
-(rt:define-gconstant +key-arabic-0+ 16778848 "
-C: GDK_KEY_Arabic_0
+(rt:define-gconstant +key-arabic-0+ 16778848 "C: GDK_KEY_Arabic_0
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_0.html")
 
 
-(rt:define-gconstant +key-arabic-1+ 16778849 "
-C: GDK_KEY_Arabic_1
+(rt:define-gconstant +key-arabic-1+ 16778849 "C: GDK_KEY_Arabic_1
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_1.html")
 
 
-(rt:define-gconstant +key-arabic-2+ 16778850 "
-C: GDK_KEY_Arabic_2
+(rt:define-gconstant +key-arabic-2+ 16778850 "C: GDK_KEY_Arabic_2
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_2.html")
 
 
-(rt:define-gconstant +key-arabic-3+ 16778851 "
-C: GDK_KEY_Arabic_3
+(rt:define-gconstant +key-arabic-3+ 16778851 "C: GDK_KEY_Arabic_3
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_3.html")
 
 
-(rt:define-gconstant +key-arabic-4+ 16778852 "
-C: GDK_KEY_Arabic_4
+(rt:define-gconstant +key-arabic-4+ 16778852 "C: GDK_KEY_Arabic_4
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_4.html")
 
 
-(rt:define-gconstant +key-arabic-5+ 16778853 "
-C: GDK_KEY_Arabic_5
+(rt:define-gconstant +key-arabic-5+ 16778853 "C: GDK_KEY_Arabic_5
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_5.html")
 
 
-(rt:define-gconstant +key-arabic-6+ 16778854 "
-C: GDK_KEY_Arabic_6
+(rt:define-gconstant +key-arabic-6+ 16778854 "C: GDK_KEY_Arabic_6
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_6.html")
 
 
-(rt:define-gconstant +key-arabic-7+ 16778855 "
-C: GDK_KEY_Arabic_7
+(rt:define-gconstant +key-arabic-7+ 16778855 "C: GDK_KEY_Arabic_7
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_7.html")
 
 
-(rt:define-gconstant +key-arabic-8+ 16778856 "
-C: GDK_KEY_Arabic_8
+(rt:define-gconstant +key-arabic-8+ 16778856 "C: GDK_KEY_Arabic_8
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_8.html")
 
 
-(rt:define-gconstant +key-arabic-9+ 16778857 "
-C: GDK_KEY_Arabic_9
+(rt:define-gconstant +key-arabic-9+ 16778857 "C: GDK_KEY_Arabic_9
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_9.html")
 
 
-(rt:define-gconstant +key-arabic-ain+ 1497 "
-C: GDK_KEY_Arabic_ain
+(rt:define-gconstant +key-arabic-ain+ 1497 "C: GDK_KEY_Arabic_ain
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_ain.html")
 
 
-(rt:define-gconstant +key-arabic-alef+ 1479 "
-C: GDK_KEY_Arabic_alef
+(rt:define-gconstant +key-arabic-alef+ 1479 "C: GDK_KEY_Arabic_alef
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_alef.html")
 
 
-(rt:define-gconstant +key-arabic-alefmaksura+ 1513 "
-C: GDK_KEY_Arabic_alefmaksura
+(rt:define-gconstant +key-arabic-alefmaksura+ 1513 "C: GDK_KEY_Arabic_alefmaksura
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_alefmaksura.html")
 
 
-(rt:define-gconstant +key-arabic-beh+ 1480 "
-C: GDK_KEY_Arabic_beh
+(rt:define-gconstant +key-arabic-beh+ 1480 "C: GDK_KEY_Arabic_beh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_beh.html")
 
 
-(rt:define-gconstant +key-arabic-comma+ 1452 "
-C: GDK_KEY_Arabic_comma
+(rt:define-gconstant +key-arabic-comma+ 1452 "C: GDK_KEY_Arabic_comma
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_comma.html")
 
 
-(rt:define-gconstant +key-arabic-dad+ 1494 "
-C: GDK_KEY_Arabic_dad
+(rt:define-gconstant +key-arabic-dad+ 1494 "C: GDK_KEY_Arabic_dad
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_dad.html")
 
 
-(rt:define-gconstant +key-arabic-dal+ 1487 "
-C: GDK_KEY_Arabic_dal
+(rt:define-gconstant +key-arabic-dal+ 1487 "C: GDK_KEY_Arabic_dal
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_dal.html")
 
 
-(rt:define-gconstant +key-arabic-damma+ 1519 "
-C: GDK_KEY_Arabic_damma
+(rt:define-gconstant +key-arabic-damma+ 1519 "C: GDK_KEY_Arabic_damma
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_damma.html")
 
 
-(rt:define-gconstant +key-arabic-dammatan+ 1516 "
-C: GDK_KEY_Arabic_dammatan
+(rt:define-gconstant +key-arabic-dammatan+ 1516 "C: GDK_KEY_Arabic_dammatan
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_dammatan.html")
 
 
-(rt:define-gconstant +key-arabic-ddal+ 16778888 "
-C: GDK_KEY_Arabic_ddal
+(rt:define-gconstant +key-arabic-ddal+ 16778888 "C: GDK_KEY_Arabic_ddal
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_ddal.html")
 
 
-(rt:define-gconstant +key-arabic-farsi-yeh+ 16778956 "
-C: GDK_KEY_Arabic_farsi_yeh
+(rt:define-gconstant +key-arabic-farsi-yeh+ 16778956 "C: GDK_KEY_Arabic_farsi_yeh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_farsi_yeh.html")
 
 
-(rt:define-gconstant +key-arabic-fatha+ 1518 "
-C: GDK_KEY_Arabic_fatha
+(rt:define-gconstant +key-arabic-fatha+ 1518 "C: GDK_KEY_Arabic_fatha
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_fatha.html")
 
 
-(rt:define-gconstant +key-arabic-fathatan+ 1515 "
-C: GDK_KEY_Arabic_fathatan
+(rt:define-gconstant +key-arabic-fathatan+ 1515 "C: GDK_KEY_Arabic_fathatan
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_fathatan.html")
 
 
-(rt:define-gconstant +key-arabic-feh+ 1505 "
-C: GDK_KEY_Arabic_feh
+(rt:define-gconstant +key-arabic-feh+ 1505 "C: GDK_KEY_Arabic_feh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_feh.html")
 
 
-(rt:define-gconstant +key-arabic-fullstop+ 16778964 "
-C: GDK_KEY_Arabic_fullstop
+(rt:define-gconstant +key-arabic-fullstop+ 16778964 "C: GDK_KEY_Arabic_fullstop
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_fullstop.html")
 
 
-(rt:define-gconstant +key-arabic-gaf+ 16778927 "
-C: GDK_KEY_Arabic_gaf
+(rt:define-gconstant +key-arabic-gaf+ 16778927 "C: GDK_KEY_Arabic_gaf
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_gaf.html")
 
 
-(rt:define-gconstant +key-arabic-ghain+ 1498 "
-C: GDK_KEY_Arabic_ghain
+(rt:define-gconstant +key-arabic-ghain+ 1498 "C: GDK_KEY_Arabic_ghain
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_ghain.html")
 
 
-(rt:define-gconstant +key-arabic-ha+ 1511 "
-C: GDK_KEY_Arabic_ha
+(rt:define-gconstant +key-arabic-ha+ 1511 "C: GDK_KEY_Arabic_ha
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_ha.html")
 
 
-(rt:define-gconstant +key-arabic-hah+ 1485 "
-C: GDK_KEY_Arabic_hah
+(rt:define-gconstant +key-arabic-hah+ 1485 "C: GDK_KEY_Arabic_hah
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hah.html")
 
 
-(rt:define-gconstant +key-arabic-hamza+ 1473 "
-C: GDK_KEY_Arabic_hamza
+(rt:define-gconstant +key-arabic-hamza+ 1473 "C: GDK_KEY_Arabic_hamza
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamza.html")
 
 
-(rt:define-gconstant +key-arabic-hamza-above+ 16778836 "
-C: GDK_KEY_Arabic_hamza_above
+(rt:define-gconstant +key-arabic-hamza-above+ 16778836 "C: GDK_KEY_Arabic_hamza_above
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamza_above.html")
 
 
-(rt:define-gconstant +key-arabic-hamza-below+ 16778837 "
-C: GDK_KEY_Arabic_hamza_below
+(rt:define-gconstant +key-arabic-hamza-below+ 16778837 "C: GDK_KEY_Arabic_hamza_below
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamza_below.html")
 
 
-(rt:define-gconstant +key-arabic-hamzaonalef+ 1475 "
-C: GDK_KEY_Arabic_hamzaonalef
+(rt:define-gconstant +key-arabic-hamzaonalef+ 1475 "C: GDK_KEY_Arabic_hamzaonalef
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamzaonalef.html")
 
 
-(rt:define-gconstant +key-arabic-hamzaonwaw+ 1476 "
-C: GDK_KEY_Arabic_hamzaonwaw
+(rt:define-gconstant +key-arabic-hamzaonwaw+ 1476 "C: GDK_KEY_Arabic_hamzaonwaw
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamzaonwaw.html")
 
 
-(rt:define-gconstant +key-arabic-hamzaonyeh+ 1478 "
-C: GDK_KEY_Arabic_hamzaonyeh
+(rt:define-gconstant +key-arabic-hamzaonyeh+ 1478 "C: GDK_KEY_Arabic_hamzaonyeh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamzaonyeh.html")
 
 
-(rt:define-gconstant +key-arabic-hamzaunderalef+ 1477 "
-C: GDK_KEY_Arabic_hamzaunderalef
+(rt:define-gconstant +key-arabic-hamzaunderalef+ 1477 "C: GDK_KEY_Arabic_hamzaunderalef
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_hamzaunderalef.html")
 
 
-(rt:define-gconstant +key-arabic-heh+ 1511 "
-C: GDK_KEY_Arabic_heh
+(rt:define-gconstant +key-arabic-heh+ 1511 "C: GDK_KEY_Arabic_heh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_heh.html")
 
 
-(rt:define-gconstant +key-arabic-heh-doachashmee+ 16778942 "
-C: GDK_KEY_Arabic_heh_doachashmee
+(rt:define-gconstant +key-arabic-heh-doachashmee+ 16778942 "C: GDK_KEY_Arabic_heh_doachashmee
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_heh_doachashmee.html")
 
 
-(rt:define-gconstant +key-arabic-heh-goal+ 16778945 "
-C: GDK_KEY_Arabic_heh_goal
+(rt:define-gconstant +key-arabic-heh-goal+ 16778945 "C: GDK_KEY_Arabic_heh_goal
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_heh_goal.html")
 
 
-(rt:define-gconstant +key-arabic-jeem+ 1484 "
-C: GDK_KEY_Arabic_jeem
+(rt:define-gconstant +key-arabic-jeem+ 1484 "C: GDK_KEY_Arabic_jeem
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_jeem.html")
 
 
-(rt:define-gconstant +key-arabic-jeh+ 16778904 "
-C: GDK_KEY_Arabic_jeh
+(rt:define-gconstant +key-arabic-jeh+ 16778904 "C: GDK_KEY_Arabic_jeh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_jeh.html")
 
 
-(rt:define-gconstant +key-arabic-kaf+ 1507 "
-C: GDK_KEY_Arabic_kaf
+(rt:define-gconstant +key-arabic-kaf+ 1507 "C: GDK_KEY_Arabic_kaf
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_kaf.html")
 
 
-(rt:define-gconstant +key-arabic-kasra+ 1520 "
-C: GDK_KEY_Arabic_kasra
+(rt:define-gconstant +key-arabic-kasra+ 1520 "C: GDK_KEY_Arabic_kasra
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_kasra.html")
 
 
-(rt:define-gconstant +key-arabic-kasratan+ 1517 "
-C: GDK_KEY_Arabic_kasratan
+(rt:define-gconstant +key-arabic-kasratan+ 1517 "C: GDK_KEY_Arabic_kasratan
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_kasratan.html")
 
 
-(rt:define-gconstant +key-arabic-keheh+ 16778921 "
-C: GDK_KEY_Arabic_keheh
+(rt:define-gconstant +key-arabic-keheh+ 16778921 "C: GDK_KEY_Arabic_keheh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_keheh.html")
 
 
-(rt:define-gconstant +key-arabic-khah+ 1486 "
-C: GDK_KEY_Arabic_khah
+(rt:define-gconstant +key-arabic-khah+ 1486 "C: GDK_KEY_Arabic_khah
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_khah.html")
 
 
-(rt:define-gconstant +key-arabic-lam+ 1508 "
-C: GDK_KEY_Arabic_lam
+(rt:define-gconstant +key-arabic-lam+ 1508 "C: GDK_KEY_Arabic_lam
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_lam.html")
 
 
-(rt:define-gconstant +key-arabic-madda-above+ 16778835 "
-C: GDK_KEY_Arabic_madda_above
+(rt:define-gconstant +key-arabic-madda-above+ 16778835 "C: GDK_KEY_Arabic_madda_above
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_madda_above.html")
 
 
-(rt:define-gconstant +key-arabic-maddaonalef+ 1474 "
-C: GDK_KEY_Arabic_maddaonalef
+(rt:define-gconstant +key-arabic-maddaonalef+ 1474 "C: GDK_KEY_Arabic_maddaonalef
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_maddaonalef.html")
 
 
-(rt:define-gconstant +key-arabic-meem+ 1509 "
-C: GDK_KEY_Arabic_meem
+(rt:define-gconstant +key-arabic-meem+ 1509 "C: GDK_KEY_Arabic_meem
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_meem.html")
 
 
-(rt:define-gconstant +key-arabic-noon+ 1510 "
-C: GDK_KEY_Arabic_noon
+(rt:define-gconstant +key-arabic-noon+ 1510 "C: GDK_KEY_Arabic_noon
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_noon.html")
 
 
-(rt:define-gconstant +key-arabic-noon-ghunna+ 16778938 "
-C: GDK_KEY_Arabic_noon_ghunna
+(rt:define-gconstant +key-arabic-noon-ghunna+ 16778938 "C: GDK_KEY_Arabic_noon_ghunna
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_noon_ghunna.html")
 
 
-(rt:define-gconstant +key-arabic-peh+ 16778878 "
-C: GDK_KEY_Arabic_peh
+(rt:define-gconstant +key-arabic-peh+ 16778878 "C: GDK_KEY_Arabic_peh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_peh.html")
 
 
-(rt:define-gconstant +key-arabic-percent+ 16778858 "
-C: GDK_KEY_Arabic_percent
+(rt:define-gconstant +key-arabic-percent+ 16778858 "C: GDK_KEY_Arabic_percent
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_percent.html")
 
 
-(rt:define-gconstant +key-arabic-qaf+ 1506 "
-C: GDK_KEY_Arabic_qaf
+(rt:define-gconstant +key-arabic-qaf+ 1506 "C: GDK_KEY_Arabic_qaf
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_qaf.html")
 
 
-(rt:define-gconstant +key-arabic-question-mark+ 1471 "
-C: GDK_KEY_Arabic_question_mark
+(rt:define-gconstant +key-arabic-question-mark+ 1471 "C: GDK_KEY_Arabic_question_mark
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_question_mark.html")
 
 
-(rt:define-gconstant +key-arabic-ra+ 1489 "
-C: GDK_KEY_Arabic_ra
+(rt:define-gconstant +key-arabic-ra+ 1489 "C: GDK_KEY_Arabic_ra
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_ra.html")
 
 
-(rt:define-gconstant +key-arabic-rreh+ 16778897 "
-C: GDK_KEY_Arabic_rreh
+(rt:define-gconstant +key-arabic-rreh+ 16778897 "C: GDK_KEY_Arabic_rreh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_rreh.html")
 
 
-(rt:define-gconstant +key-arabic-sad+ 1493 "
-C: GDK_KEY_Arabic_sad
+(rt:define-gconstant +key-arabic-sad+ 1493 "C: GDK_KEY_Arabic_sad
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_sad.html")
 
 
-(rt:define-gconstant +key-arabic-seen+ 1491 "
-C: GDK_KEY_Arabic_seen
+(rt:define-gconstant +key-arabic-seen+ 1491 "C: GDK_KEY_Arabic_seen
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_seen.html")
 
 
-(rt:define-gconstant +key-arabic-semicolon+ 1467 "
-C: GDK_KEY_Arabic_semicolon
+(rt:define-gconstant +key-arabic-semicolon+ 1467 "C: GDK_KEY_Arabic_semicolon
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_semicolon.html")
 
 
-(rt:define-gconstant +key-arabic-shadda+ 1521 "
-C: GDK_KEY_Arabic_shadda
+(rt:define-gconstant +key-arabic-shadda+ 1521 "C: GDK_KEY_Arabic_shadda
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_shadda.html")
 
 
-(rt:define-gconstant +key-arabic-sheen+ 1492 "
-C: GDK_KEY_Arabic_sheen
+(rt:define-gconstant +key-arabic-sheen+ 1492 "C: GDK_KEY_Arabic_sheen
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_sheen.html")
 
 
-(rt:define-gconstant +key-arabic-sukun+ 1522 "
-C: GDK_KEY_Arabic_sukun
+(rt:define-gconstant +key-arabic-sukun+ 1522 "C: GDK_KEY_Arabic_sukun
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_sukun.html")
 
 
-(rt:define-gconstant +key-arabic-superscript-alef+ 16778864 "
-C: GDK_KEY_Arabic_superscript_alef
+(rt:define-gconstant +key-arabic-superscript-alef+ 16778864 "C: GDK_KEY_Arabic_superscript_alef
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_superscript_alef.html")
 
 
-(rt:define-gconstant +key-arabic-switch+ 65406 "
-C: GDK_KEY_Arabic_switch
+(rt:define-gconstant +key-arabic-switch+ 65406 "C: GDK_KEY_Arabic_switch
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_switch.html")
 
 
-(rt:define-gconstant +key-arabic-tah+ 1495 "
-C: GDK_KEY_Arabic_tah
+(rt:define-gconstant +key-arabic-tah+ 1495 "C: GDK_KEY_Arabic_tah
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_tah.html")
 
 
-(rt:define-gconstant +key-arabic-tatweel+ 1504 "
-C: GDK_KEY_Arabic_tatweel
+(rt:define-gconstant +key-arabic-tatweel+ 1504 "C: GDK_KEY_Arabic_tatweel
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_tatweel.html")
 
 
-(rt:define-gconstant +key-arabic-tcheh+ 16778886 "
-C: GDK_KEY_Arabic_tcheh
+(rt:define-gconstant +key-arabic-tcheh+ 16778886 "C: GDK_KEY_Arabic_tcheh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_tcheh.html")
 
 
-(rt:define-gconstant +key-arabic-teh+ 1482 "
-C: GDK_KEY_Arabic_teh
+(rt:define-gconstant +key-arabic-teh+ 1482 "C: GDK_KEY_Arabic_teh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_teh.html")
 
 
-(rt:define-gconstant +key-arabic-tehmarbuta+ 1481 "
-C: GDK_KEY_Arabic_tehmarbuta
+(rt:define-gconstant +key-arabic-tehmarbuta+ 1481 "C: GDK_KEY_Arabic_tehmarbuta
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_tehmarbuta.html")
 
 
-(rt:define-gconstant +key-arabic-thal+ 1488 "
-C: GDK_KEY_Arabic_thal
+(rt:define-gconstant +key-arabic-thal+ 1488 "C: GDK_KEY_Arabic_thal
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_thal.html")
 
 
-(rt:define-gconstant +key-arabic-theh+ 1483 "
-C: GDK_KEY_Arabic_theh
+(rt:define-gconstant +key-arabic-theh+ 1483 "C: GDK_KEY_Arabic_theh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_theh.html")
 
 
-(rt:define-gconstant +key-arabic-tteh+ 16778873 "
-C: GDK_KEY_Arabic_tteh
+(rt:define-gconstant +key-arabic-tteh+ 16778873 "C: GDK_KEY_Arabic_tteh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_tteh.html")
 
 
-(rt:define-gconstant +key-arabic-veh+ 16778916 "
-C: GDK_KEY_Arabic_veh
+(rt:define-gconstant +key-arabic-veh+ 16778916 "C: GDK_KEY_Arabic_veh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_veh.html")
 
 
-(rt:define-gconstant +key-arabic-waw+ 1512 "
-C: GDK_KEY_Arabic_waw
+(rt:define-gconstant +key-arabic-waw+ 1512 "C: GDK_KEY_Arabic_waw
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_waw.html")
 
 
-(rt:define-gconstant +key-arabic-yeh+ 1514 "
-C: GDK_KEY_Arabic_yeh
+(rt:define-gconstant +key-arabic-yeh+ 1514 "C: GDK_KEY_Arabic_yeh
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_yeh.html")
 
 
-(rt:define-gconstant +key-arabic-yeh-baree+ 16778962 "
-C: GDK_KEY_Arabic_yeh_baree
+(rt:define-gconstant +key-arabic-yeh-baree+ 16778962 "C: GDK_KEY_Arabic_yeh_baree
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_yeh_baree.html")
 
 
-(rt:define-gconstant +key-arabic-zah+ 1496 "
-C: GDK_KEY_Arabic_zah
+(rt:define-gconstant +key-arabic-zah+ 1496 "C: GDK_KEY_Arabic_zah
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_zah.html")
 
 
-(rt:define-gconstant +key-arabic-zain+ 1490 "
-C: GDK_KEY_Arabic_zain
+(rt:define-gconstant +key-arabic-zain+ 1490 "C: GDK_KEY_Arabic_zain
 See: https://docs.gtk.org/gdk4/const.KEY_Arabic_zain.html")
 
 
-(rt:define-gconstant +key-aring+ 197 "
-C: GDK_KEY_Aring
+(rt:define-gconstant +key-aring+ 197 "C: GDK_KEY_Aring
 See: https://docs.gtk.org/gdk4/const.KEY_Aring.html")
 
 
-(rt:define-gconstant +key-armenian-at+ 16778552 "
-C: GDK_KEY_Armenian_AT
+(rt:define-gconstant +key-armenian-at+ 16778552 "C: GDK_KEY_Armenian_AT
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_AT.html")
 
 
-(rt:define-gconstant +key-armenian-ayb+ 16778545 "
-C: GDK_KEY_Armenian_AYB
+(rt:define-gconstant +key-armenian-ayb+ 16778545 "C: GDK_KEY_Armenian_AYB
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_AYB.html")
 
 
-(rt:define-gconstant +key-armenian-ben+ 16778546 "
-C: GDK_KEY_Armenian_BEN
+(rt:define-gconstant +key-armenian-ben+ 16778546 "C: GDK_KEY_Armenian_BEN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_BEN.html")
 
 
-(rt:define-gconstant +key-armenian-cha+ 16778569 "
-C: GDK_KEY_Armenian_CHA
+(rt:define-gconstant +key-armenian-cha+ 16778569 "C: GDK_KEY_Armenian_CHA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_CHA.html")
 
 
-(rt:define-gconstant +key-armenian-da+ 16778548 "
-C: GDK_KEY_Armenian_DA
+(rt:define-gconstant +key-armenian-da+ 16778548 "C: GDK_KEY_Armenian_DA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_DA.html")
 
 
-(rt:define-gconstant +key-armenian-dza+ 16778561 "
-C: GDK_KEY_Armenian_DZA
+(rt:define-gconstant +key-armenian-dza+ 16778561 "C: GDK_KEY_Armenian_DZA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_DZA.html")
 
 
-(rt:define-gconstant +key-armenian-e+ 16778551 "
-C: GDK_KEY_Armenian_E
+(rt:define-gconstant +key-armenian-e+ 16778551 "C: GDK_KEY_Armenian_E
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_E.html")
 
 
-(rt:define-gconstant +key-armenian-fe+ 16778582 "
-C: GDK_KEY_Armenian_FE
+(rt:define-gconstant +key-armenian-fe+ 16778582 "C: GDK_KEY_Armenian_FE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_FE.html")
 
 
-(rt:define-gconstant +key-armenian-ghat+ 16778562 "
-C: GDK_KEY_Armenian_GHAT
+(rt:define-gconstant +key-armenian-ghat+ 16778562 "C: GDK_KEY_Armenian_GHAT
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_GHAT.html")
 
 
-(rt:define-gconstant +key-armenian-gim+ 16778547 "
-C: GDK_KEY_Armenian_GIM
+(rt:define-gconstant +key-armenian-gim+ 16778547 "C: GDK_KEY_Armenian_GIM
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_GIM.html")
 
 
-(rt:define-gconstant +key-armenian-hi+ 16778565 "
-C: GDK_KEY_Armenian_HI
+(rt:define-gconstant +key-armenian-hi+ 16778565 "C: GDK_KEY_Armenian_HI
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_HI.html")
 
 
-(rt:define-gconstant +key-armenian-ho+ 16778560 "
-C: GDK_KEY_Armenian_HO
+(rt:define-gconstant +key-armenian-ho+ 16778560 "C: GDK_KEY_Armenian_HO
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_HO.html")
 
 
-(rt:define-gconstant +key-armenian-ini+ 16778555 "
-C: GDK_KEY_Armenian_INI
+(rt:define-gconstant +key-armenian-ini+ 16778555 "C: GDK_KEY_Armenian_INI
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_INI.html")
 
 
-(rt:define-gconstant +key-armenian-je+ 16778571 "
-C: GDK_KEY_Armenian_JE
+(rt:define-gconstant +key-armenian-je+ 16778571 "C: GDK_KEY_Armenian_JE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_JE.html")
 
 
-(rt:define-gconstant +key-armenian-ke+ 16778580 "
-C: GDK_KEY_Armenian_KE
+(rt:define-gconstant +key-armenian-ke+ 16778580 "C: GDK_KEY_Armenian_KE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_KE.html")
 
 
-(rt:define-gconstant +key-armenian-ken+ 16778559 "
-C: GDK_KEY_Armenian_KEN
+(rt:define-gconstant +key-armenian-ken+ 16778559 "C: GDK_KEY_Armenian_KEN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_KEN.html")
 
 
-(rt:define-gconstant +key-armenian-khe+ 16778557 "
-C: GDK_KEY_Armenian_KHE
+(rt:define-gconstant +key-armenian-khe+ 16778557 "C: GDK_KEY_Armenian_KHE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_KHE.html")
 
 
-(rt:define-gconstant +key-armenian-lyun+ 16778556 "
-C: GDK_KEY_Armenian_LYUN
+(rt:define-gconstant +key-armenian-lyun+ 16778556 "C: GDK_KEY_Armenian_LYUN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_LYUN.html")
 
 
-(rt:define-gconstant +key-armenian-men+ 16778564 "
-C: GDK_KEY_Armenian_MEN
+(rt:define-gconstant +key-armenian-men+ 16778564 "C: GDK_KEY_Armenian_MEN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_MEN.html")
 
 
-(rt:define-gconstant +key-armenian-nu+ 16778566 "
-C: GDK_KEY_Armenian_NU
+(rt:define-gconstant +key-armenian-nu+ 16778566 "C: GDK_KEY_Armenian_NU
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_NU.html")
 
 
-(rt:define-gconstant +key-armenian-o+ 16778581 "
-C: GDK_KEY_Armenian_O
+(rt:define-gconstant +key-armenian-o+ 16778581 "C: GDK_KEY_Armenian_O
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_O.html")
 
 
-(rt:define-gconstant +key-armenian-pe+ 16778570 "
-C: GDK_KEY_Armenian_PE
+(rt:define-gconstant +key-armenian-pe+ 16778570 "C: GDK_KEY_Armenian_PE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_PE.html")
 
 
-(rt:define-gconstant +key-armenian-pyur+ 16778579 "
-C: GDK_KEY_Armenian_PYUR
+(rt:define-gconstant +key-armenian-pyur+ 16778579 "C: GDK_KEY_Armenian_PYUR
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_PYUR.html")
 
 
-(rt:define-gconstant +key-armenian-ra+ 16778572 "
-C: GDK_KEY_Armenian_RA
+(rt:define-gconstant +key-armenian-ra+ 16778572 "C: GDK_KEY_Armenian_RA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_RA.html")
 
 
-(rt:define-gconstant +key-armenian-re+ 16778576 "
-C: GDK_KEY_Armenian_RE
+(rt:define-gconstant +key-armenian-re+ 16778576 "C: GDK_KEY_Armenian_RE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_RE.html")
 
 
-(rt:define-gconstant +key-armenian-se+ 16778573 "
-C: GDK_KEY_Armenian_SE
+(rt:define-gconstant +key-armenian-se+ 16778573 "C: GDK_KEY_Armenian_SE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_SE.html")
 
 
-(rt:define-gconstant +key-armenian-sha+ 16778567 "
-C: GDK_KEY_Armenian_SHA
+(rt:define-gconstant +key-armenian-sha+ 16778567 "C: GDK_KEY_Armenian_SHA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_SHA.html")
 
 
-(rt:define-gconstant +key-armenian-tche+ 16778563 "
-C: GDK_KEY_Armenian_TCHE
+(rt:define-gconstant +key-armenian-tche+ 16778563 "C: GDK_KEY_Armenian_TCHE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_TCHE.html")
 
 
-(rt:define-gconstant +key-armenian-to+ 16778553 "
-C: GDK_KEY_Armenian_TO
+(rt:define-gconstant +key-armenian-to+ 16778553 "C: GDK_KEY_Armenian_TO
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_TO.html")
 
 
-(rt:define-gconstant +key-armenian-tsa+ 16778558 "
-C: GDK_KEY_Armenian_TSA
+(rt:define-gconstant +key-armenian-tsa+ 16778558 "C: GDK_KEY_Armenian_TSA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_TSA.html")
 
 
-(rt:define-gconstant +key-armenian-tso+ 16778577 "
-C: GDK_KEY_Armenian_TSO
+(rt:define-gconstant +key-armenian-tso+ 16778577 "C: GDK_KEY_Armenian_TSO
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_TSO.html")
 
 
-(rt:define-gconstant +key-armenian-tyun+ 16778575 "
-C: GDK_KEY_Armenian_TYUN
+(rt:define-gconstant +key-armenian-tyun+ 16778575 "C: GDK_KEY_Armenian_TYUN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_TYUN.html")
 
 
-(rt:define-gconstant +key-armenian-vev+ 16778574 "
-C: GDK_KEY_Armenian_VEV
+(rt:define-gconstant +key-armenian-vev+ 16778574 "C: GDK_KEY_Armenian_VEV
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_VEV.html")
 
 
-(rt:define-gconstant +key-armenian-vo+ 16778568 "
-C: GDK_KEY_Armenian_VO
+(rt:define-gconstant +key-armenian-vo+ 16778568 "C: GDK_KEY_Armenian_VO
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_VO.html")
 
 
-(rt:define-gconstant +key-armenian-vyun+ 16778578 "
-C: GDK_KEY_Armenian_VYUN
+(rt:define-gconstant +key-armenian-vyun+ 16778578 "C: GDK_KEY_Armenian_VYUN
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_VYUN.html")
 
 
-(rt:define-gconstant +key-armenian-yech+ 16778549 "
-C: GDK_KEY_Armenian_YECH
+(rt:define-gconstant +key-armenian-yech+ 16778549 "C: GDK_KEY_Armenian_YECH
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_YECH.html")
 
 
-(rt:define-gconstant +key-armenian-za+ 16778550 "
-C: GDK_KEY_Armenian_ZA
+(rt:define-gconstant +key-armenian-za+ 16778550 "C: GDK_KEY_Armenian_ZA
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_ZA.html")
 
 
-(rt:define-gconstant +key-armenian-zhe+ 16778554 "
-C: GDK_KEY_Armenian_ZHE
+(rt:define-gconstant +key-armenian-zhe+ 16778554 "C: GDK_KEY_Armenian_ZHE
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_ZHE.html")
 
 
-(rt:define-gconstant +key-armenian-accent+ 16778587 "
-C: GDK_KEY_Armenian_accent
+(rt:define-gconstant +key-armenian-accent+ 16778587 "C: GDK_KEY_Armenian_accent
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_accent.html")
 
 
-(rt:define-gconstant +key-armenian-amanak+ 16778588 "
-C: GDK_KEY_Armenian_amanak
+(rt:define-gconstant +key-armenian-amanak+ 16778588 "C: GDK_KEY_Armenian_amanak
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_amanak.html")
 
 
-(rt:define-gconstant +key-armenian-apostrophe+ 16778586 "
-C: GDK_KEY_Armenian_apostrophe
+(rt:define-gconstant +key-armenian-apostrophe+ 16778586 "C: GDK_KEY_Armenian_apostrophe
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_apostrophe.html")
 
 
-(rt:define-gconstant +key-armenian-but+ 16778589 "
-C: GDK_KEY_Armenian_but
+(rt:define-gconstant +key-armenian-but+ 16778589 "C: GDK_KEY_Armenian_but
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_but.html")
 
 
-(rt:define-gconstant +key-armenian-exclam+ 16778588 "
-C: GDK_KEY_Armenian_exclam
+(rt:define-gconstant +key-armenian-exclam+ 16778588 "C: GDK_KEY_Armenian_exclam
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_exclam.html")
 
 
-(rt:define-gconstant +key-armenian-full-stop+ 16778633 "
-C: GDK_KEY_Armenian_full_stop
+(rt:define-gconstant +key-armenian-full-stop+ 16778633 "C: GDK_KEY_Armenian_full_stop
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_full_stop.html")
 
 
-(rt:define-gconstant +key-armenian-hyphen+ 16778634 "
-C: GDK_KEY_Armenian_hyphen
+(rt:define-gconstant +key-armenian-hyphen+ 16778634 "C: GDK_KEY_Armenian_hyphen
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_hyphen.html")
 
 
-(rt:define-gconstant +key-armenian-ligature-ew+ 16778631 "
-C: GDK_KEY_Armenian_ligature_ew
+(rt:define-gconstant +key-armenian-ligature-ew+ 16778631 "C: GDK_KEY_Armenian_ligature_ew
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_ligature_ew.html")
 
 
-(rt:define-gconstant +key-armenian-paruyk+ 16778590 "
-C: GDK_KEY_Armenian_paruyk
+(rt:define-gconstant +key-armenian-paruyk+ 16778590 "C: GDK_KEY_Armenian_paruyk
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_paruyk.html")
 
 
-(rt:define-gconstant +key-armenian-question+ 16778590 "
-C: GDK_KEY_Armenian_question
+(rt:define-gconstant +key-armenian-question+ 16778590 "C: GDK_KEY_Armenian_question
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_question.html")
 
 
-(rt:define-gconstant +key-armenian-separation-mark+ 16778589 "
-C: GDK_KEY_Armenian_separation_mark
+(rt:define-gconstant +key-armenian-separation-mark+ 16778589 "C: GDK_KEY_Armenian_separation_mark
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_separation_mark.html")
 
 
-(rt:define-gconstant +key-armenian-shesht+ 16778587 "
-C: GDK_KEY_Armenian_shesht
+(rt:define-gconstant +key-armenian-shesht+ 16778587 "C: GDK_KEY_Armenian_shesht
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_shesht.html")
 
 
-(rt:define-gconstant +key-armenian-verjaket+ 16778633 "
-C: GDK_KEY_Armenian_verjaket
+(rt:define-gconstant +key-armenian-verjaket+ 16778633 "C: GDK_KEY_Armenian_verjaket
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_verjaket.html")
 
 
-(rt:define-gconstant +key-armenian-yentamna+ 16778634 "
-C: GDK_KEY_Armenian_yentamna
+(rt:define-gconstant +key-armenian-yentamna+ 16778634 "C: GDK_KEY_Armenian_yentamna
 See: https://docs.gtk.org/gdk4/const.KEY_Armenian_yentamna.html")
 
 
-(rt:define-gconstant +key-aspectratio+ 268964215 "
-C: GDK_KEY_AspectRatio
+(rt:define-gconstant +key-aspectratio+ 268964215 "C: GDK_KEY_AspectRatio
 See: https://docs.gtk.org/gdk4/const.KEY_AspectRatio.html")
 
 
-(rt:define-gconstant +key-assistant+ 268964423 "
-C: GDK_KEY_Assistant
+(rt:define-gconstant +key-assistant+ 268964423 "C: GDK_KEY_Assistant
 See: https://docs.gtk.org/gdk4/const.KEY_Assistant.html")
 
 
-(rt:define-gconstant +key-atilde+ 195 "
-C: GDK_KEY_Atilde
+(rt:define-gconstant +key-atilde+ 195 "C: GDK_KEY_Atilde
 See: https://docs.gtk.org/gdk4/const.KEY_Atilde.html")
 
 
-(rt:define-gconstant +key-attendantoff+ 268964380 "
-C: GDK_KEY_AttendantOff
+(rt:define-gconstant +key-attendantoff+ 268964380 "C: GDK_KEY_AttendantOff
 See: https://docs.gtk.org/gdk4/const.KEY_AttendantOff.html")
 
 
-(rt:define-gconstant +key-attendanton+ 268964379 "
-C: GDK_KEY_AttendantOn
+(rt:define-gconstant +key-attendanton+ 268964379 "C: GDK_KEY_AttendantOn
 See: https://docs.gtk.org/gdk4/const.KEY_AttendantOn.html")
 
 
-(rt:define-gconstant +key-attendanttoggle+ 268964381 "
-C: GDK_KEY_AttendantToggle
+(rt:define-gconstant +key-attendanttoggle+ 268964381 "C: GDK_KEY_AttendantToggle
 See: https://docs.gtk.org/gdk4/const.KEY_AttendantToggle.html")
 
 
-(rt:define-gconstant +key-audiblebell-enable+ 65146 "
-C: GDK_KEY_AudibleBell_Enable
+(rt:define-gconstant +key-audiblebell-enable+ 65146 "C: GDK_KEY_AudibleBell_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_AudibleBell_Enable.html")
 
 
-(rt:define-gconstant +key-audio+ 268964232 "
-C: GDK_KEY_Audio
+(rt:define-gconstant +key-audio+ 268964232 "C: GDK_KEY_Audio
 See: https://docs.gtk.org/gdk4/const.KEY_Audio.html")
 
 
-(rt:define-gconstant +key-audiocycletrack+ 269025179 "
-C: GDK_KEY_AudioCycleTrack
+(rt:define-gconstant +key-audiocycletrack+ 269025179 "C: GDK_KEY_AudioCycleTrack
 See: https://docs.gtk.org/gdk4/const.KEY_AudioCycleTrack.html")
 
 
-(rt:define-gconstant +key-audiodesc+ 268964462 "
-C: GDK_KEY_AudioDesc
+(rt:define-gconstant +key-audiodesc+ 268964462 "C: GDK_KEY_AudioDesc
 See: https://docs.gtk.org/gdk4/const.KEY_AudioDesc.html")
 
 
-(rt:define-gconstant +key-audioforward+ 269025175 "
-C: GDK_KEY_AudioForward
+(rt:define-gconstant +key-audioforward+ 269025175 "C: GDK_KEY_AudioForward
 See: https://docs.gtk.org/gdk4/const.KEY_AudioForward.html")
 
 
-(rt:define-gconstant +key-audiolowervolume+ 269025041 "
-C: GDK_KEY_AudioLowerVolume
+(rt:define-gconstant +key-audiolowervolume+ 269025041 "C: GDK_KEY_AudioLowerVolume
 See: https://docs.gtk.org/gdk4/const.KEY_AudioLowerVolume.html")
 
 
-(rt:define-gconstant +key-audiomedia+ 269025074 "
-C: GDK_KEY_AudioMedia
+(rt:define-gconstant +key-audiomedia+ 269025074 "C: GDK_KEY_AudioMedia
 See: https://docs.gtk.org/gdk4/const.KEY_AudioMedia.html")
 
 
-(rt:define-gconstant +key-audiomicmute+ 269025202 "
-C: GDK_KEY_AudioMicMute
+(rt:define-gconstant +key-audiomicmute+ 269025202 "C: GDK_KEY_AudioMicMute
 See: https://docs.gtk.org/gdk4/const.KEY_AudioMicMute.html")
 
 
-(rt:define-gconstant +key-audiomute+ 269025042 "
-C: GDK_KEY_AudioMute
+(rt:define-gconstant +key-audiomute+ 269025042 "C: GDK_KEY_AudioMute
 See: https://docs.gtk.org/gdk4/const.KEY_AudioMute.html")
 
 
-(rt:define-gconstant +key-audionext+ 269025047 "
-C: GDK_KEY_AudioNext
+(rt:define-gconstant +key-audionext+ 269025047 "C: GDK_KEY_AudioNext
 See: https://docs.gtk.org/gdk4/const.KEY_AudioNext.html")
 
 
-(rt:define-gconstant +key-audiopause+ 269025073 "
-C: GDK_KEY_AudioPause
+(rt:define-gconstant +key-audiopause+ 269025073 "C: GDK_KEY_AudioPause
 See: https://docs.gtk.org/gdk4/const.KEY_AudioPause.html")
 
 
-(rt:define-gconstant +key-audioplay+ 269025044 "
-C: GDK_KEY_AudioPlay
+(rt:define-gconstant +key-audioplay+ 269025044 "C: GDK_KEY_AudioPlay
 See: https://docs.gtk.org/gdk4/const.KEY_AudioPlay.html")
 
 
-(rt:define-gconstant +key-audiopreset+ 269025206 "
-C: GDK_KEY_AudioPreset
+(rt:define-gconstant +key-audiopreset+ 269025206 "C: GDK_KEY_AudioPreset
 See: https://docs.gtk.org/gdk4/const.KEY_AudioPreset.html")
 
 
-(rt:define-gconstant +key-audioprev+ 269025046 "
-C: GDK_KEY_AudioPrev
+(rt:define-gconstant +key-audioprev+ 269025046 "C: GDK_KEY_AudioPrev
 See: https://docs.gtk.org/gdk4/const.KEY_AudioPrev.html")
 
 
-(rt:define-gconstant +key-audioraisevolume+ 269025043 "
-C: GDK_KEY_AudioRaiseVolume
+(rt:define-gconstant +key-audioraisevolume+ 269025043 "C: GDK_KEY_AudioRaiseVolume
 See: https://docs.gtk.org/gdk4/const.KEY_AudioRaiseVolume.html")
 
 
-(rt:define-gconstant +key-audiorandomplay+ 269025177 "
-C: GDK_KEY_AudioRandomPlay
+(rt:define-gconstant +key-audiorandomplay+ 269025177 "C: GDK_KEY_AudioRandomPlay
 See: https://docs.gtk.org/gdk4/const.KEY_AudioRandomPlay.html")
 
 
-(rt:define-gconstant +key-audiorecord+ 269025052 "
-C: GDK_KEY_AudioRecord
+(rt:define-gconstant +key-audiorecord+ 269025052 "C: GDK_KEY_AudioRecord
 See: https://docs.gtk.org/gdk4/const.KEY_AudioRecord.html")
 
 
-(rt:define-gconstant +key-audiorepeat+ 269025176 "
-C: GDK_KEY_AudioRepeat
+(rt:define-gconstant +key-audiorepeat+ 269025176 "C: GDK_KEY_AudioRepeat
 See: https://docs.gtk.org/gdk4/const.KEY_AudioRepeat.html")
 
 
-(rt:define-gconstant +key-audiorewind+ 269025086 "
-C: GDK_KEY_AudioRewind
+(rt:define-gconstant +key-audiorewind+ 269025086 "C: GDK_KEY_AudioRewind
 See: https://docs.gtk.org/gdk4/const.KEY_AudioRewind.html")
 
 
-(rt:define-gconstant +key-audiostop+ 269025045 "
-C: GDK_KEY_AudioStop
+(rt:define-gconstant +key-audiostop+ 269025045 "C: GDK_KEY_AudioStop
 See: https://docs.gtk.org/gdk4/const.KEY_AudioStop.html")
 
 
-(rt:define-gconstant +key-autopilotengagetoggle+ 268964477 "
-C: GDK_KEY_AutopilotEngageToggle
+(rt:define-gconstant +key-autopilotengagetoggle+ 268964477 "C: GDK_KEY_AutopilotEngageToggle
 See: https://docs.gtk.org/gdk4/const.KEY_AutopilotEngageToggle.html")
 
 
-(rt:define-gconstant +key-away+ 269025165 "
-C: GDK_KEY_Away
+(rt:define-gconstant +key-away+ 269025165 "C: GDK_KEY_Away
 See: https://docs.gtk.org/gdk4/const.KEY_Away.html")
 
 
-(rt:define-gconstant +key-b+ 66 "
-C: GDK_KEY_B
+(rt:define-gconstant +key-b+ 66 "C: GDK_KEY_B
 See: https://docs.gtk.org/gdk4/const.KEY_B.html")
 
 
-(rt:define-gconstant +key-babovedot+ 16784898 "
-C: GDK_KEY_Babovedot
+(rt:define-gconstant +key-babovedot+ 16784898 "C: GDK_KEY_Babovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Babovedot.html")
 
 
-(rt:define-gconstant +key-back+ 269025062 "
-C: GDK_KEY_Back
+(rt:define-gconstant +key-back+ 269025062 "C: GDK_KEY_Back
 See: https://docs.gtk.org/gdk4/const.KEY_Back.html")
 
 
-(rt:define-gconstant +key-backforward+ 269025087 "
-C: GDK_KEY_BackForward
+(rt:define-gconstant +key-backforward+ 269025087 "C: GDK_KEY_BackForward
 See: https://docs.gtk.org/gdk4/const.KEY_BackForward.html")
 
 
-(rt:define-gconstant +key-backspace+ 65288 "
-C: GDK_KEY_BackSpace
+(rt:define-gconstant +key-backspace+ 65288 "C: GDK_KEY_BackSpace
 See: https://docs.gtk.org/gdk4/const.KEY_BackSpace.html")
 
 
-(rt:define-gconstant +key-battery+ 269025171 "
-C: GDK_KEY_Battery
+(rt:define-gconstant +key-battery+ 269025171 "C: GDK_KEY_Battery
 See: https://docs.gtk.org/gdk4/const.KEY_Battery.html")
 
 
-(rt:define-gconstant +key-begin+ 65368 "
-C: GDK_KEY_Begin
+(rt:define-gconstant +key-begin+ 65368 "C: GDK_KEY_Begin
 See: https://docs.gtk.org/gdk4/const.KEY_Begin.html")
 
 
-(rt:define-gconstant +key-blue+ 269025190 "
-C: GDK_KEY_Blue
+(rt:define-gconstant +key-blue+ 269025190 "C: GDK_KEY_Blue
 See: https://docs.gtk.org/gdk4/const.KEY_Blue.html")
 
 
-(rt:define-gconstant +key-bluetooth+ 269025172 "
-C: GDK_KEY_Bluetooth
+(rt:define-gconstant +key-bluetooth+ 269025172 "C: GDK_KEY_Bluetooth
 See: https://docs.gtk.org/gdk4/const.KEY_Bluetooth.html")
 
 
-(rt:define-gconstant +key-book+ 269025106 "
-C: GDK_KEY_Book
+(rt:define-gconstant +key-book+ 269025106 "C: GDK_KEY_Book
 See: https://docs.gtk.org/gdk4/const.KEY_Book.html")
 
 
-(rt:define-gconstant +key-bouncekeys-enable+ 65140 "
-C: GDK_KEY_BounceKeys_Enable
+(rt:define-gconstant +key-bouncekeys-enable+ 65140 "C: GDK_KEY_BounceKeys_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_BounceKeys_Enable.html")
 
 
-(rt:define-gconstant +key-break+ 65387 "
-C: GDK_KEY_Break
+(rt:define-gconstant +key-break+ 65387 "C: GDK_KEY_Break
 See: https://docs.gtk.org/gdk4/const.KEY_Break.html")
 
 
-(rt:define-gconstant +key-brightnessadjust+ 269025083 "
-C: GDK_KEY_BrightnessAdjust
+(rt:define-gconstant +key-brightnessadjust+ 269025083 "C: GDK_KEY_BrightnessAdjust
 See: https://docs.gtk.org/gdk4/const.KEY_BrightnessAdjust.html")
 
 
-(rt:define-gconstant +key-brightnessauto+ 268964084 "
-C: GDK_KEY_BrightnessAuto
+(rt:define-gconstant +key-brightnessauto+ 268964084 "C: GDK_KEY_BrightnessAuto
 See: https://docs.gtk.org/gdk4/const.KEY_BrightnessAuto.html")
 
 
-(rt:define-gconstant +key-brightnessmax+ 268964433 "
-C: GDK_KEY_BrightnessMax
+(rt:define-gconstant +key-brightnessmax+ 268964433 "C: GDK_KEY_BrightnessMax
 See: https://docs.gtk.org/gdk4/const.KEY_BrightnessMax.html")
 
 
-(rt:define-gconstant +key-brightnessmin+ 268964432 "
-C: GDK_KEY_BrightnessMin
+(rt:define-gconstant +key-brightnessmin+ 268964432 "C: GDK_KEY_BrightnessMin
 See: https://docs.gtk.org/gdk4/const.KEY_BrightnessMin.html")
 
 
-(rt:define-gconstant +key-buttonconfig+ 268964416 "
-C: GDK_KEY_Buttonconfig
+(rt:define-gconstant +key-buttonconfig+ 268964416 "C: GDK_KEY_Buttonconfig
 See: https://docs.gtk.org/gdk4/const.KEY_Buttonconfig.html")
 
 
-(rt:define-gconstant +key-byelorussian-shortu+ 1726 "
-C: GDK_KEY_Byelorussian_SHORTU
+(rt:define-gconstant +key-byelorussian-shortu+ 1726 "C: GDK_KEY_Byelorussian_SHORTU
 See: https://docs.gtk.org/gdk4/const.KEY_Byelorussian_SHORTU.html")
 
 
-(rt:define-gconstant +key-c+ 67 "
-C: GDK_KEY_C
+(rt:define-gconstant +key-c+ 67 "C: GDK_KEY_C
 See: https://docs.gtk.org/gdk4/const.KEY_C.html")
 
 
-(rt:define-gconstant +key-cd+ 269025107 "
-C: GDK_KEY_CD
+(rt:define-gconstant +key-cd+ 269025107 "C: GDK_KEY_CD
 See: https://docs.gtk.org/gdk4/const.KEY_CD.html")
 
 
-(rt:define-gconstant +key-ch+ 65186 "
-C: GDK_KEY_CH
+(rt:define-gconstant +key-ch+ 65186 "C: GDK_KEY_CH
 See: https://docs.gtk.org/gdk4/const.KEY_CH.html")
 
 
-(rt:define-gconstant +key-c-h+ 65189 "
-C: GDK_KEY_C_H
+(rt:define-gconstant +key-c-h+ 65189 "C: GDK_KEY_C_H
 See: https://docs.gtk.org/gdk4/const.KEY_C_H.html")
 
 
-(rt:define-gconstant +key-cabovedot+ 709 "
-C: GDK_KEY_Cabovedot
+(rt:define-gconstant +key-cabovedot+ 709 "C: GDK_KEY_Cabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Cabovedot.html")
 
 
-(rt:define-gconstant +key-cacute+ 454 "
-C: GDK_KEY_Cacute
+(rt:define-gconstant +key-cacute+ 454 "C: GDK_KEY_Cacute
 See: https://docs.gtk.org/gdk4/const.KEY_Cacute.html")
 
 
-(rt:define-gconstant +key-calculator+ 269025053 "
-C: GDK_KEY_Calculator
+(rt:define-gconstant +key-calculator+ 269025053 "C: GDK_KEY_Calculator
 See: https://docs.gtk.org/gdk4/const.KEY_Calculator.html")
 
 
-(rt:define-gconstant +key-calendar+ 269025056 "
-C: GDK_KEY_Calendar
+(rt:define-gconstant +key-calendar+ 269025056 "C: GDK_KEY_Calendar
 See: https://docs.gtk.org/gdk4/const.KEY_Calendar.html")
 
 
-(rt:define-gconstant +key-cameraaccessdisable+ 268964428 "
-C: GDK_KEY_CameraAccessDisable
+(rt:define-gconstant +key-cameraaccessdisable+ 268964428 "C: GDK_KEY_CameraAccessDisable
 See: https://docs.gtk.org/gdk4/const.KEY_CameraAccessDisable.html")
 
 
-(rt:define-gconstant +key-cameraaccessenable+ 268964427 "
-C: GDK_KEY_CameraAccessEnable
+(rt:define-gconstant +key-cameraaccessenable+ 268964427 "C: GDK_KEY_CameraAccessEnable
 See: https://docs.gtk.org/gdk4/const.KEY_CameraAccessEnable.html")
 
 
-(rt:define-gconstant +key-cameraaccesstoggle+ 268964429 "
-C: GDK_KEY_CameraAccessToggle
+(rt:define-gconstant +key-cameraaccesstoggle+ 268964429 "C: GDK_KEY_CameraAccessToggle
 See: https://docs.gtk.org/gdk4/const.KEY_CameraAccessToggle.html")
 
 
-(rt:define-gconstant +key-cameradown+ 268964376 "
-C: GDK_KEY_CameraDown
+(rt:define-gconstant +key-cameradown+ 268964376 "C: GDK_KEY_CameraDown
 See: https://docs.gtk.org/gdk4/const.KEY_CameraDown.html")
 
 
-(rt:define-gconstant +key-camerafocus+ 268964368 "
-C: GDK_KEY_CameraFocus
+(rt:define-gconstant +key-camerafocus+ 268964368 "C: GDK_KEY_CameraFocus
 See: https://docs.gtk.org/gdk4/const.KEY_CameraFocus.html")
 
 
-(rt:define-gconstant +key-cameraleft+ 268964377 "
-C: GDK_KEY_CameraLeft
+(rt:define-gconstant +key-cameraleft+ 268964377 "C: GDK_KEY_CameraLeft
 See: https://docs.gtk.org/gdk4/const.KEY_CameraLeft.html")
 
 
-(rt:define-gconstant +key-cameraright+ 268964378 "
-C: GDK_KEY_CameraRight
+(rt:define-gconstant +key-cameraright+ 268964378 "C: GDK_KEY_CameraRight
 See: https://docs.gtk.org/gdk4/const.KEY_CameraRight.html")
 
 
-(rt:define-gconstant +key-cameraup+ 268964375 "
-C: GDK_KEY_CameraUp
+(rt:define-gconstant +key-cameraup+ 268964375 "C: GDK_KEY_CameraUp
 See: https://docs.gtk.org/gdk4/const.KEY_CameraUp.html")
 
 
-(rt:define-gconstant +key-camerazoomin+ 268964373 "
-C: GDK_KEY_CameraZoomIn
+(rt:define-gconstant +key-camerazoomin+ 268964373 "C: GDK_KEY_CameraZoomIn
 See: https://docs.gtk.org/gdk4/const.KEY_CameraZoomIn.html")
 
 
-(rt:define-gconstant +key-camerazoomout+ 268964374 "
-C: GDK_KEY_CameraZoomOut
+(rt:define-gconstant +key-camerazoomout+ 268964374 "C: GDK_KEY_CameraZoomOut
 See: https://docs.gtk.org/gdk4/const.KEY_CameraZoomOut.html")
 
 
-(rt:define-gconstant +key-cancel+ 65385 "
-C: GDK_KEY_Cancel
+(rt:define-gconstant +key-cancel+ 65385 "C: GDK_KEY_Cancel
 See: https://docs.gtk.org/gdk4/const.KEY_Cancel.html")
 
 
-(rt:define-gconstant +key-caps-lock+ 65509 "
-C: GDK_KEY_Caps_Lock
+(rt:define-gconstant +key-caps-lock+ 65509 "C: GDK_KEY_Caps_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_Caps_Lock.html")
 
 
-(rt:define-gconstant +key-ccaron+ 456 "
-C: GDK_KEY_Ccaron
+(rt:define-gconstant +key-ccaron+ 456 "C: GDK_KEY_Ccaron
 See: https://docs.gtk.org/gdk4/const.KEY_Ccaron.html")
 
 
-(rt:define-gconstant +key-ccedilla+ 199 "
-C: GDK_KEY_Ccedilla
+(rt:define-gconstant +key-ccedilla+ 199 "C: GDK_KEY_Ccedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Ccedilla.html")
 
 
-(rt:define-gconstant +key-ccircumflex+ 710 "
-C: GDK_KEY_Ccircumflex
+(rt:define-gconstant +key-ccircumflex+ 710 "C: GDK_KEY_Ccircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Ccircumflex.html")
 
 
-(rt:define-gconstant +key-channeldown+ 268964243 "
-C: GDK_KEY_ChannelDown
+(rt:define-gconstant +key-channeldown+ 268964243 "C: GDK_KEY_ChannelDown
 See: https://docs.gtk.org/gdk4/const.KEY_ChannelDown.html")
 
 
-(rt:define-gconstant +key-channelup+ 268964242 "
-C: GDK_KEY_ChannelUp
+(rt:define-gconstant +key-channelup+ 268964242 "C: GDK_KEY_ChannelUp
 See: https://docs.gtk.org/gdk4/const.KEY_ChannelUp.html")
 
 
-(rt:define-gconstant +key-clear+ 65291 "
-C: GDK_KEY_Clear
+(rt:define-gconstant +key-clear+ 65291 "C: GDK_KEY_Clear
 See: https://docs.gtk.org/gdk4/const.KEY_Clear.html")
 
 
-(rt:define-gconstant +key-cleargrab+ 269024801 "
-C: GDK_KEY_ClearGrab
+(rt:define-gconstant +key-cleargrab+ 269024801 "C: GDK_KEY_ClearGrab
 See: https://docs.gtk.org/gdk4/const.KEY_ClearGrab.html")
 
 
-(rt:define-gconstant +key-clearvusonar+ 268964486 "
-C: GDK_KEY_ClearvuSonar
+(rt:define-gconstant +key-clearvusonar+ 268964486 "C: GDK_KEY_ClearvuSonar
 See: https://docs.gtk.org/gdk4/const.KEY_ClearvuSonar.html")
 
 
-(rt:define-gconstant +key-close+ 269025110 "
-C: GDK_KEY_Close
+(rt:define-gconstant +key-close+ 269025110 "C: GDK_KEY_Close
 See: https://docs.gtk.org/gdk4/const.KEY_Close.html")
 
 
-(rt:define-gconstant +key-codeinput+ 65335 "
-C: GDK_KEY_Codeinput
+(rt:define-gconstant +key-codeinput+ 65335 "C: GDK_KEY_Codeinput
 See: https://docs.gtk.org/gdk4/const.KEY_Codeinput.html")
 
 
-(rt:define-gconstant +key-colonsign+ 16785569 "
-C: GDK_KEY_ColonSign
+(rt:define-gconstant +key-colonsign+ 16785569 "C: GDK_KEY_ColonSign
 See: https://docs.gtk.org/gdk4/const.KEY_ColonSign.html")
 
 
-(rt:define-gconstant +key-community+ 269025085 "
-C: GDK_KEY_Community
+(rt:define-gconstant +key-community+ 269025085 "C: GDK_KEY_Community
 See: https://docs.gtk.org/gdk4/const.KEY_Community.html")
 
 
-(rt:define-gconstant +key-contextmenu+ 268964278 "
-C: GDK_KEY_ContextMenu
+(rt:define-gconstant +key-contextmenu+ 268964278 "C: GDK_KEY_ContextMenu
 See: https://docs.gtk.org/gdk4/const.KEY_ContextMenu.html")
 
 
-(rt:define-gconstant +key-contrastadjust+ 269025058 "
-C: GDK_KEY_ContrastAdjust
+(rt:define-gconstant +key-contrastadjust+ 269025058 "C: GDK_KEY_ContrastAdjust
 See: https://docs.gtk.org/gdk4/const.KEY_ContrastAdjust.html")
 
 
-(rt:define-gconstant +key-controlpanel+ 268964419 "
-C: GDK_KEY_ControlPanel
+(rt:define-gconstant +key-controlpanel+ 268964419 "C: GDK_KEY_ControlPanel
 See: https://docs.gtk.org/gdk4/const.KEY_ControlPanel.html")
 
 
-(rt:define-gconstant +key-control-l+ 65507 "
-C: GDK_KEY_Control_L
+(rt:define-gconstant +key-control-l+ 65507 "C: GDK_KEY_Control_L
 See: https://docs.gtk.org/gdk4/const.KEY_Control_L.html")
 
 
-(rt:define-gconstant +key-control-r+ 65508 "
-C: GDK_KEY_Control_R
+(rt:define-gconstant +key-control-r+ 65508 "C: GDK_KEY_Control_R
 See: https://docs.gtk.org/gdk4/const.KEY_Control_R.html")
 
 
-(rt:define-gconstant +key-copy+ 269025111 "
-C: GDK_KEY_Copy
+(rt:define-gconstant +key-copy+ 269025111 "C: GDK_KEY_Copy
 See: https://docs.gtk.org/gdk4/const.KEY_Copy.html")
 
 
-(rt:define-gconstant +key-cruzeirosign+ 16785570 "
-C: GDK_KEY_CruzeiroSign
+(rt:define-gconstant +key-cruzeirosign+ 16785570 "C: GDK_KEY_CruzeiroSign
 See: https://docs.gtk.org/gdk4/const.KEY_CruzeiroSign.html")
 
 
-(rt:define-gconstant +key-cut+ 269025112 "
-C: GDK_KEY_Cut
+(rt:define-gconstant +key-cut+ 269025112 "C: GDK_KEY_Cut
 See: https://docs.gtk.org/gdk4/const.KEY_Cut.html")
 
 
-(rt:define-gconstant +key-cycleangle+ 269025180 "
-C: GDK_KEY_CycleAngle
+(rt:define-gconstant +key-cycleangle+ 269025180 "C: GDK_KEY_CycleAngle
 See: https://docs.gtk.org/gdk4/const.KEY_CycleAngle.html")
 
 
-(rt:define-gconstant +key-cyrillic-a+ 1761 "
-C: GDK_KEY_Cyrillic_A
+(rt:define-gconstant +key-cyrillic-a+ 1761 "C: GDK_KEY_Cyrillic_A
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_A.html")
 
 
-(rt:define-gconstant +key-cyrillic-be+ 1762 "
-C: GDK_KEY_Cyrillic_BE
+(rt:define-gconstant +key-cyrillic-be+ 1762 "C: GDK_KEY_Cyrillic_BE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_BE.html")
 
 
-(rt:define-gconstant +key-cyrillic-che+ 1790 "
-C: GDK_KEY_Cyrillic_CHE
+(rt:define-gconstant +key-cyrillic-che+ 1790 "C: GDK_KEY_Cyrillic_CHE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_CHE.html")
 
 
-(rt:define-gconstant +key-cyrillic-che-descender+ 16778422 "
-C: GDK_KEY_Cyrillic_CHE_descender
+(rt:define-gconstant +key-cyrillic-che-descender+ 16778422 "C: GDK_KEY_Cyrillic_CHE_descender
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_CHE_descender.html")
 
 
-(rt:define-gconstant +key-cyrillic-che-vertstroke+ 16778424 "
-C: GDK_KEY_Cyrillic_CHE_vertstroke
+(rt:define-gconstant +key-cyrillic-che-vertstroke+ 16778424 "C: GDK_KEY_Cyrillic_CHE_vertstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_CHE_vertstroke.html")
 
 
-(rt:define-gconstant +key-cyrillic-de+ 1764 "
-C: GDK_KEY_Cyrillic_DE
+(rt:define-gconstant +key-cyrillic-de+ 1764 "C: GDK_KEY_Cyrillic_DE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_DE.html")
 
 
-(rt:define-gconstant +key-cyrillic-dzhe+ 1727 "
-C: GDK_KEY_Cyrillic_DZHE
+(rt:define-gconstant +key-cyrillic-dzhe+ 1727 "C: GDK_KEY_Cyrillic_DZHE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_DZHE.html")
 
 
-(rt:define-gconstant +key-cyrillic-e+ 1788 "
-C: GDK_KEY_Cyrillic_E
+(rt:define-gconstant +key-cyrillic-e+ 1788 "C: GDK_KEY_Cyrillic_E
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_E.html")
 
 
-(rt:define-gconstant +key-cyrillic-ef+ 1766 "
-C: GDK_KEY_Cyrillic_EF
+(rt:define-gconstant +key-cyrillic-ef+ 1766 "C: GDK_KEY_Cyrillic_EF
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_EF.html")
 
 
-(rt:define-gconstant +key-cyrillic-el+ 1772 "
-C: GDK_KEY_Cyrillic_EL
+(rt:define-gconstant +key-cyrillic-el+ 1772 "C: GDK_KEY_Cyrillic_EL
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_EL.html")
 
 
-(rt:define-gconstant +key-cyrillic-em+ 1773 "
-C: GDK_KEY_Cyrillic_EM
+(rt:define-gconstant +key-cyrillic-em+ 1773 "C: GDK_KEY_Cyrillic_EM
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_EM.html")
 
 
-(rt:define-gconstant +key-cyrillic-en+ 1774 "
-C: GDK_KEY_Cyrillic_EN
+(rt:define-gconstant +key-cyrillic-en+ 1774 "C: GDK_KEY_Cyrillic_EN
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_EN.html")
 
 
-(rt:define-gconstant +key-cyrillic-en-descender+ 16778402 "
-C: GDK_KEY_Cyrillic_EN_descender
+(rt:define-gconstant +key-cyrillic-en-descender+ 16778402 "C: GDK_KEY_Cyrillic_EN_descender
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_EN_descender.html")
 
 
-(rt:define-gconstant +key-cyrillic-er+ 1778 "
-C: GDK_KEY_Cyrillic_ER
+(rt:define-gconstant +key-cyrillic-er+ 1778 "C: GDK_KEY_Cyrillic_ER
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_ER.html")
 
 
-(rt:define-gconstant +key-cyrillic-es+ 1779 "
-C: GDK_KEY_Cyrillic_ES
+(rt:define-gconstant +key-cyrillic-es+ 1779 "C: GDK_KEY_Cyrillic_ES
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_ES.html")
 
 
-(rt:define-gconstant +key-cyrillic-ghe+ 1767 "
-C: GDK_KEY_Cyrillic_GHE
+(rt:define-gconstant +key-cyrillic-ghe+ 1767 "C: GDK_KEY_Cyrillic_GHE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_GHE.html")
 
 
-(rt:define-gconstant +key-cyrillic-ghe-bar+ 16778386 "
-C: GDK_KEY_Cyrillic_GHE_bar
+(rt:define-gconstant +key-cyrillic-ghe-bar+ 16778386 "C: GDK_KEY_Cyrillic_GHE_bar
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_GHE_bar.html")
 
 
-(rt:define-gconstant +key-cyrillic-ha+ 1768 "
-C: GDK_KEY_Cyrillic_HA
+(rt:define-gconstant +key-cyrillic-ha+ 1768 "C: GDK_KEY_Cyrillic_HA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_HA.html")
 
 
-(rt:define-gconstant +key-cyrillic-hardsign+ 1791 "
-C: GDK_KEY_Cyrillic_HARDSIGN
+(rt:define-gconstant +key-cyrillic-hardsign+ 1791 "C: GDK_KEY_Cyrillic_HARDSIGN
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_HARDSIGN.html")
 
 
-(rt:define-gconstant +key-cyrillic-ha-descender+ 16778418 "
-C: GDK_KEY_Cyrillic_HA_descender
+(rt:define-gconstant +key-cyrillic-ha-descender+ 16778418 "C: GDK_KEY_Cyrillic_HA_descender
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_HA_descender.html")
 
 
-(rt:define-gconstant +key-cyrillic-i+ 1769 "
-C: GDK_KEY_Cyrillic_I
+(rt:define-gconstant +key-cyrillic-i+ 1769 "C: GDK_KEY_Cyrillic_I
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_I.html")
 
 
-(rt:define-gconstant +key-cyrillic-ie+ 1765 "
-C: GDK_KEY_Cyrillic_IE
+(rt:define-gconstant +key-cyrillic-ie+ 1765 "C: GDK_KEY_Cyrillic_IE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_IE.html")
 
 
-(rt:define-gconstant +key-cyrillic-io+ 1715 "
-C: GDK_KEY_Cyrillic_IO
+(rt:define-gconstant +key-cyrillic-io+ 1715 "C: GDK_KEY_Cyrillic_IO
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_IO.html")
 
 
-(rt:define-gconstant +key-cyrillic-i-macron+ 16778466 "
-C: GDK_KEY_Cyrillic_I_macron
+(rt:define-gconstant +key-cyrillic-i-macron+ 16778466 "C: GDK_KEY_Cyrillic_I_macron
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_I_macron.html")
 
 
-(rt:define-gconstant +key-cyrillic-je+ 1720 "
-C: GDK_KEY_Cyrillic_JE
+(rt:define-gconstant +key-cyrillic-je+ 1720 "C: GDK_KEY_Cyrillic_JE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_JE.html")
 
 
-(rt:define-gconstant +key-cyrillic-ka+ 1771 "
-C: GDK_KEY_Cyrillic_KA
+(rt:define-gconstant +key-cyrillic-ka+ 1771 "C: GDK_KEY_Cyrillic_KA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_KA.html")
 
 
-(rt:define-gconstant +key-cyrillic-ka-descender+ 16778394 "
-C: GDK_KEY_Cyrillic_KA_descender
+(rt:define-gconstant +key-cyrillic-ka-descender+ 16778394 "C: GDK_KEY_Cyrillic_KA_descender
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_KA_descender.html")
 
 
-(rt:define-gconstant +key-cyrillic-ka-vertstroke+ 16778396 "
-C: GDK_KEY_Cyrillic_KA_vertstroke
+(rt:define-gconstant +key-cyrillic-ka-vertstroke+ 16778396 "C: GDK_KEY_Cyrillic_KA_vertstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_KA_vertstroke.html")
 
 
-(rt:define-gconstant +key-cyrillic-lje+ 1721 "
-C: GDK_KEY_Cyrillic_LJE
+(rt:define-gconstant +key-cyrillic-lje+ 1721 "C: GDK_KEY_Cyrillic_LJE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_LJE.html")
 
 
-(rt:define-gconstant +key-cyrillic-nje+ 1722 "
-C: GDK_KEY_Cyrillic_NJE
+(rt:define-gconstant +key-cyrillic-nje+ 1722 "C: GDK_KEY_Cyrillic_NJE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_NJE.html")
 
 
-(rt:define-gconstant +key-cyrillic-o+ 1775 "
-C: GDK_KEY_Cyrillic_O
+(rt:define-gconstant +key-cyrillic-o+ 1775 "C: GDK_KEY_Cyrillic_O
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_O.html")
 
 
-(rt:define-gconstant +key-cyrillic-o-bar+ 16778472 "
-C: GDK_KEY_Cyrillic_O_bar
+(rt:define-gconstant +key-cyrillic-o-bar+ 16778472 "C: GDK_KEY_Cyrillic_O_bar
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_O_bar.html")
 
 
-(rt:define-gconstant +key-cyrillic-pe+ 1776 "
-C: GDK_KEY_Cyrillic_PE
+(rt:define-gconstant +key-cyrillic-pe+ 1776 "C: GDK_KEY_Cyrillic_PE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_PE.html")
 
 
-(rt:define-gconstant +key-cyrillic-schwa+ 16778456 "
-C: GDK_KEY_Cyrillic_SCHWA
+(rt:define-gconstant +key-cyrillic-schwa+ 16778456 "C: GDK_KEY_Cyrillic_SCHWA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SCHWA.html")
 
 
-(rt:define-gconstant +key-cyrillic-sha+ 1787 "
-C: GDK_KEY_Cyrillic_SHA
+(rt:define-gconstant +key-cyrillic-sha+ 1787 "C: GDK_KEY_Cyrillic_SHA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SHA.html")
 
 
-(rt:define-gconstant +key-cyrillic-shcha+ 1789 "
-C: GDK_KEY_Cyrillic_SHCHA
+(rt:define-gconstant +key-cyrillic-shcha+ 1789 "C: GDK_KEY_Cyrillic_SHCHA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SHCHA.html")
 
 
-(rt:define-gconstant +key-cyrillic-shha+ 16778426 "
-C: GDK_KEY_Cyrillic_SHHA
+(rt:define-gconstant +key-cyrillic-shha+ 16778426 "C: GDK_KEY_Cyrillic_SHHA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SHHA.html")
 
 
-(rt:define-gconstant +key-cyrillic-shorti+ 1770 "
-C: GDK_KEY_Cyrillic_SHORTI
+(rt:define-gconstant +key-cyrillic-shorti+ 1770 "C: GDK_KEY_Cyrillic_SHORTI
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SHORTI.html")
 
 
-(rt:define-gconstant +key-cyrillic-softsign+ 1784 "
-C: GDK_KEY_Cyrillic_SOFTSIGN
+(rt:define-gconstant +key-cyrillic-softsign+ 1784 "C: GDK_KEY_Cyrillic_SOFTSIGN
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_SOFTSIGN.html")
 
 
-(rt:define-gconstant +key-cyrillic-te+ 1780 "
-C: GDK_KEY_Cyrillic_TE
+(rt:define-gconstant +key-cyrillic-te+ 1780 "C: GDK_KEY_Cyrillic_TE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_TE.html")
 
 
-(rt:define-gconstant +key-cyrillic-tse+ 1763 "
-C: GDK_KEY_Cyrillic_TSE
+(rt:define-gconstant +key-cyrillic-tse+ 1763 "C: GDK_KEY_Cyrillic_TSE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_TSE.html")
 
 
-(rt:define-gconstant +key-cyrillic-u+ 1781 "
-C: GDK_KEY_Cyrillic_U
+(rt:define-gconstant +key-cyrillic-u+ 1781 "C: GDK_KEY_Cyrillic_U
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_U.html")
 
 
-(rt:define-gconstant +key-cyrillic-u-macron+ 16778478 "
-C: GDK_KEY_Cyrillic_U_macron
+(rt:define-gconstant +key-cyrillic-u-macron+ 16778478 "C: GDK_KEY_Cyrillic_U_macron
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_U_macron.html")
 
 
-(rt:define-gconstant +key-cyrillic-u-straight+ 16778414 "
-C: GDK_KEY_Cyrillic_U_straight
+(rt:define-gconstant +key-cyrillic-u-straight+ 16778414 "C: GDK_KEY_Cyrillic_U_straight
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_U_straight.html")
 
 
-(rt:define-gconstant +key-cyrillic-u-straight-bar+ 16778416 "
-C: GDK_KEY_Cyrillic_U_straight_bar
+(rt:define-gconstant +key-cyrillic-u-straight-bar+ 16778416 "C: GDK_KEY_Cyrillic_U_straight_bar
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_U_straight_bar.html")
 
 
-(rt:define-gconstant +key-cyrillic-ve+ 1783 "
-C: GDK_KEY_Cyrillic_VE
+(rt:define-gconstant +key-cyrillic-ve+ 1783 "C: GDK_KEY_Cyrillic_VE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_VE.html")
 
 
-(rt:define-gconstant +key-cyrillic-ya+ 1777 "
-C: GDK_KEY_Cyrillic_YA
+(rt:define-gconstant +key-cyrillic-ya+ 1777 "C: GDK_KEY_Cyrillic_YA
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_YA.html")
 
 
-(rt:define-gconstant +key-cyrillic-yeru+ 1785 "
-C: GDK_KEY_Cyrillic_YERU
+(rt:define-gconstant +key-cyrillic-yeru+ 1785 "C: GDK_KEY_Cyrillic_YERU
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_YERU.html")
 
 
-(rt:define-gconstant +key-cyrillic-yu+ 1760 "
-C: GDK_KEY_Cyrillic_YU
+(rt:define-gconstant +key-cyrillic-yu+ 1760 "C: GDK_KEY_Cyrillic_YU
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_YU.html")
 
 
-(rt:define-gconstant +key-cyrillic-ze+ 1786 "
-C: GDK_KEY_Cyrillic_ZE
+(rt:define-gconstant +key-cyrillic-ze+ 1786 "C: GDK_KEY_Cyrillic_ZE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_ZE.html")
 
 
-(rt:define-gconstant +key-cyrillic-zhe+ 1782 "
-C: GDK_KEY_Cyrillic_ZHE
+(rt:define-gconstant +key-cyrillic-zhe+ 1782 "C: GDK_KEY_Cyrillic_ZHE
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_ZHE.html")
 
 
-(rt:define-gconstant +key-cyrillic-zhe-descender+ 16778390 "
-C: GDK_KEY_Cyrillic_ZHE_descender
+(rt:define-gconstant +key-cyrillic-zhe-descender+ 16778390 "C: GDK_KEY_Cyrillic_ZHE_descender
 See: https://docs.gtk.org/gdk4/const.KEY_Cyrillic_ZHE_descender.html")
 
 
-(rt:define-gconstant +key-d+ 68 "
-C: GDK_KEY_D
+(rt:define-gconstant +key-d+ 68 "C: GDK_KEY_D
 See: https://docs.gtk.org/gdk4/const.KEY_D.html")
 
 
-(rt:define-gconstant +key-dos+ 269025114 "
-C: GDK_KEY_DOS
+(rt:define-gconstant +key-dos+ 269025114 "C: GDK_KEY_DOS
 See: https://docs.gtk.org/gdk4/const.KEY_DOS.html")
 
 
-(rt:define-gconstant +key-dvd+ 268964229 "
-C: GDK_KEY_DVD
+(rt:define-gconstant +key-dvd+ 268964229 "C: GDK_KEY_DVD
 See: https://docs.gtk.org/gdk4/const.KEY_DVD.html")
 
 
-(rt:define-gconstant +key-dabovedot+ 16784906 "
-C: GDK_KEY_Dabovedot
+(rt:define-gconstant +key-dabovedot+ 16784906 "C: GDK_KEY_Dabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Dabovedot.html")
 
 
-(rt:define-gconstant +key-data+ 268964471 "
-C: GDK_KEY_Data
+(rt:define-gconstant +key-data+ 268964471 "C: GDK_KEY_Data
 See: https://docs.gtk.org/gdk4/const.KEY_Data.html")
 
 
-(rt:define-gconstant +key-database+ 268964266 "
-C: GDK_KEY_Database
+(rt:define-gconstant +key-database+ 268964266 "C: GDK_KEY_Database
 See: https://docs.gtk.org/gdk4/const.KEY_Database.html")
 
 
-(rt:define-gconstant +key-dcaron+ 463 "
-C: GDK_KEY_Dcaron
+(rt:define-gconstant +key-dcaron+ 463 "C: GDK_KEY_Dcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Dcaron.html")
 
 
-(rt:define-gconstant +key-delete+ 65535 "
-C: GDK_KEY_Delete
+(rt:define-gconstant +key-delete+ 65535 "C: GDK_KEY_Delete
 See: https://docs.gtk.org/gdk4/const.KEY_Delete.html")
 
 
-(rt:define-gconstant +key-dictate+ 268964426 "
-C: GDK_KEY_Dictate
+(rt:define-gconstant +key-dictate+ 268964426 "C: GDK_KEY_Dictate
 See: https://docs.gtk.org/gdk4/const.KEY_Dictate.html")
 
 
-(rt:define-gconstant +key-display+ 269025113 "
-C: GDK_KEY_Display
+(rt:define-gconstant +key-display+ 269025113 "C: GDK_KEY_Display
 See: https://docs.gtk.org/gdk4/const.KEY_Display.html")
 
 
-(rt:define-gconstant +key-displayoff+ 268964085 "
-C: GDK_KEY_DisplayOff
+(rt:define-gconstant +key-displayoff+ 268964085 "C: GDK_KEY_DisplayOff
 See: https://docs.gtk.org/gdk4/const.KEY_DisplayOff.html")
 
 
-(rt:define-gconstant +key-displaytoggle+ 268964271 "
-C: GDK_KEY_DisplayToggle
+(rt:define-gconstant +key-displaytoggle+ 268964271 "C: GDK_KEY_DisplayToggle
 See: https://docs.gtk.org/gdk4/const.KEY_DisplayToggle.html")
 
 
-(rt:define-gconstant +key-donotdisturb+ 268964431 "
-C: GDK_KEY_DoNotDisturb
+(rt:define-gconstant +key-donotdisturb+ 268964431 "C: GDK_KEY_DoNotDisturb
 See: https://docs.gtk.org/gdk4/const.KEY_DoNotDisturb.html")
 
 
-(rt:define-gconstant +key-documents+ 269025115 "
-C: GDK_KEY_Documents
+(rt:define-gconstant +key-documents+ 269025115 "C: GDK_KEY_Documents
 See: https://docs.gtk.org/gdk4/const.KEY_Documents.html")
 
 
-(rt:define-gconstant +key-dongsign+ 16785579 "
-C: GDK_KEY_DongSign
+(rt:define-gconstant +key-dongsign+ 16785579 "C: GDK_KEY_DongSign
 See: https://docs.gtk.org/gdk4/const.KEY_DongSign.html")
 
 
-(rt:define-gconstant +key-down+ 65364 "
-C: GDK_KEY_Down
+(rt:define-gconstant +key-down+ 65364 "C: GDK_KEY_Down
 See: https://docs.gtk.org/gdk4/const.KEY_Down.html")
 
 
-(rt:define-gconstant +key-dstroke+ 464 "
-C: GDK_KEY_Dstroke
+(rt:define-gconstant +key-dstroke+ 464 "C: GDK_KEY_Dstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Dstroke.html")
 
 
-(rt:define-gconstant +key-dualrangeradar+ 268964483 "
-C: GDK_KEY_DualRangeRadar
+(rt:define-gconstant +key-dualrangeradar+ 268964483 "C: GDK_KEY_DualRangeRadar
 See: https://docs.gtk.org/gdk4/const.KEY_DualRangeRadar.html")
 
 
-(rt:define-gconstant +key-e+ 69 "
-C: GDK_KEY_E
+(rt:define-gconstant +key-e+ 69 "C: GDK_KEY_E
 See: https://docs.gtk.org/gdk4/const.KEY_E.html")
 
 
-(rt:define-gconstant +key-eng+ 957 "
-C: GDK_KEY_ENG
+(rt:define-gconstant +key-eng+ 957 "C: GDK_KEY_ENG
 See: https://docs.gtk.org/gdk4/const.KEY_ENG.html")
 
 
-(rt:define-gconstant +key-eth+ 208 "
-C: GDK_KEY_ETH
+(rt:define-gconstant +key-eth+ 208 "C: GDK_KEY_ETH
 See: https://docs.gtk.org/gdk4/const.KEY_ETH.html")
 
 
-(rt:define-gconstant +key-ezh+ 16777655 "
-C: GDK_KEY_EZH
+(rt:define-gconstant +key-ezh+ 16777655 "C: GDK_KEY_EZH
 See: https://docs.gtk.org/gdk4/const.KEY_EZH.html")
 
 
-(rt:define-gconstant +key-eabovedot+ 972 "
-C: GDK_KEY_Eabovedot
+(rt:define-gconstant +key-eabovedot+ 972 "C: GDK_KEY_Eabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Eabovedot.html")
 
 
-(rt:define-gconstant +key-eacute+ 201 "
-C: GDK_KEY_Eacute
+(rt:define-gconstant +key-eacute+ 201 "C: GDK_KEY_Eacute
 See: https://docs.gtk.org/gdk4/const.KEY_Eacute.html")
 
 
-(rt:define-gconstant +key-ebelowdot+ 16785080 "
-C: GDK_KEY_Ebelowdot
+(rt:define-gconstant +key-ebelowdot+ 16785080 "C: GDK_KEY_Ebelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ebelowdot.html")
 
 
-(rt:define-gconstant +key-ecaron+ 460 "
-C: GDK_KEY_Ecaron
+(rt:define-gconstant +key-ecaron+ 460 "C: GDK_KEY_Ecaron
 See: https://docs.gtk.org/gdk4/const.KEY_Ecaron.html")
 
 
-(rt:define-gconstant +key-ecircumflex+ 202 "
-C: GDK_KEY_Ecircumflex
+(rt:define-gconstant +key-ecircumflex+ 202 "C: GDK_KEY_Ecircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflex.html")
 
 
-(rt:define-gconstant +key-ecircumflexacute+ 16785086 "
-C: GDK_KEY_Ecircumflexacute
+(rt:define-gconstant +key-ecircumflexacute+ 16785086 "C: GDK_KEY_Ecircumflexacute
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflexacute.html")
 
 
-(rt:define-gconstant +key-ecircumflexbelowdot+ 16785094 "
-C: GDK_KEY_Ecircumflexbelowdot
+(rt:define-gconstant +key-ecircumflexbelowdot+ 16785094 "C: GDK_KEY_Ecircumflexbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflexbelowdot.html")
 
 
-(rt:define-gconstant +key-ecircumflexgrave+ 16785088 "
-C: GDK_KEY_Ecircumflexgrave
+(rt:define-gconstant +key-ecircumflexgrave+ 16785088 "C: GDK_KEY_Ecircumflexgrave
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflexgrave.html")
 
 
-(rt:define-gconstant +key-ecircumflexhook+ 16785090 "
-C: GDK_KEY_Ecircumflexhook
+(rt:define-gconstant +key-ecircumflexhook+ 16785090 "C: GDK_KEY_Ecircumflexhook
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflexhook.html")
 
 
-(rt:define-gconstant +key-ecircumflextilde+ 16785092 "
-C: GDK_KEY_Ecircumflextilde
+(rt:define-gconstant +key-ecircumflextilde+ 16785092 "C: GDK_KEY_Ecircumflextilde
 See: https://docs.gtk.org/gdk4/const.KEY_Ecircumflextilde.html")
 
 
-(rt:define-gconstant +key-ecusign+ 16785568 "
-C: GDK_KEY_EcuSign
+(rt:define-gconstant +key-ecusign+ 16785568 "C: GDK_KEY_EcuSign
 See: https://docs.gtk.org/gdk4/const.KEY_EcuSign.html")
 
 
-(rt:define-gconstant +key-ediaeresis+ 203 "
-C: GDK_KEY_Ediaeresis
+(rt:define-gconstant +key-ediaeresis+ 203 "C: GDK_KEY_Ediaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Ediaeresis.html")
 
 
-(rt:define-gconstant +key-editor+ 268964262 "
-C: GDK_KEY_Editor
+(rt:define-gconstant +key-editor+ 268964262 "C: GDK_KEY_Editor
 See: https://docs.gtk.org/gdk4/const.KEY_Editor.html")
 
 
-(rt:define-gconstant +key-egrave+ 200 "
-C: GDK_KEY_Egrave
+(rt:define-gconstant +key-egrave+ 200 "C: GDK_KEY_Egrave
 See: https://docs.gtk.org/gdk4/const.KEY_Egrave.html")
 
 
-(rt:define-gconstant +key-ehook+ 16785082 "
-C: GDK_KEY_Ehook
+(rt:define-gconstant +key-ehook+ 16785082 "C: GDK_KEY_Ehook
 See: https://docs.gtk.org/gdk4/const.KEY_Ehook.html")
 
 
-(rt:define-gconstant +key-eisu-shift+ 65327 "
-C: GDK_KEY_Eisu_Shift
+(rt:define-gconstant +key-eisu-shift+ 65327 "C: GDK_KEY_Eisu_Shift
 See: https://docs.gtk.org/gdk4/const.KEY_Eisu_Shift.html")
 
 
-(rt:define-gconstant +key-eisu-toggle+ 65328 "
-C: GDK_KEY_Eisu_toggle
+(rt:define-gconstant +key-eisu-toggle+ 65328 "C: GDK_KEY_Eisu_toggle
 See: https://docs.gtk.org/gdk4/const.KEY_Eisu_toggle.html")
 
 
-(rt:define-gconstant +key-eject+ 269025068 "
-C: GDK_KEY_Eject
+(rt:define-gconstant +key-eject+ 269025068 "C: GDK_KEY_Eject
 See: https://docs.gtk.org/gdk4/const.KEY_Eject.html")
 
 
-(rt:define-gconstant +key-emacron+ 938 "
-C: GDK_KEY_Emacron
+(rt:define-gconstant +key-emacron+ 938 "C: GDK_KEY_Emacron
 See: https://docs.gtk.org/gdk4/const.KEY_Emacron.html")
 
 
-(rt:define-gconstant +key-emojipicker+ 268964425 "
-C: GDK_KEY_EmojiPicker
+(rt:define-gconstant +key-emojipicker+ 268964425 "C: GDK_KEY_EmojiPicker
 See: https://docs.gtk.org/gdk4/const.KEY_EmojiPicker.html")
 
 
-(rt:define-gconstant +key-end+ 65367 "
-C: GDK_KEY_End
+(rt:define-gconstant +key-end+ 65367 "C: GDK_KEY_End
 See: https://docs.gtk.org/gdk4/const.KEY_End.html")
 
 
-(rt:define-gconstant +key-eogonek+ 458 "
-C: GDK_KEY_Eogonek
+(rt:define-gconstant +key-eogonek+ 458 "C: GDK_KEY_Eogonek
 See: https://docs.gtk.org/gdk4/const.KEY_Eogonek.html")
 
 
-(rt:define-gconstant +key-escape+ 65307 "
-C: GDK_KEY_Escape
+(rt:define-gconstant +key-escape+ 65307 "C: GDK_KEY_Escape
 See: https://docs.gtk.org/gdk4/const.KEY_Escape.html")
 
 
-(rt:define-gconstant +key-etilde+ 16785084 "
-C: GDK_KEY_Etilde
+(rt:define-gconstant +key-etilde+ 16785084 "C: GDK_KEY_Etilde
 See: https://docs.gtk.org/gdk4/const.KEY_Etilde.html")
 
 
-(rt:define-gconstant +key-eurosign+ 8364 "
-C: GDK_KEY_EuroSign
+(rt:define-gconstant +key-eurosign+ 8364 "C: GDK_KEY_EuroSign
 See: https://docs.gtk.org/gdk4/const.KEY_EuroSign.html")
 
 
-(rt:define-gconstant +key-excel+ 269025116 "
-C: GDK_KEY_Excel
+(rt:define-gconstant +key-excel+ 269025116 "C: GDK_KEY_Excel
 See: https://docs.gtk.org/gdk4/const.KEY_Excel.html")
 
 
-(rt:define-gconstant +key-execute+ 65378 "
-C: GDK_KEY_Execute
+(rt:define-gconstant +key-execute+ 65378 "C: GDK_KEY_Execute
 See: https://docs.gtk.org/gdk4/const.KEY_Execute.html")
 
 
-(rt:define-gconstant +key-explorer+ 269025117 "
-C: GDK_KEY_Explorer
+(rt:define-gconstant +key-explorer+ 269025117 "C: GDK_KEY_Explorer
 See: https://docs.gtk.org/gdk4/const.KEY_Explorer.html")
 
 
-(rt:define-gconstant +key-f+ 70 "
-C: GDK_KEY_F
+(rt:define-gconstant +key-f+ 70 "C: GDK_KEY_F
 See: https://docs.gtk.org/gdk4/const.KEY_F.html")
 
 
-(rt:define-gconstant +key-f1+ 65470 "
-C: GDK_KEY_F1
+(rt:define-gconstant +key-f1+ 65470 "C: GDK_KEY_F1
 See: https://docs.gtk.org/gdk4/const.KEY_F1.html")
 
 
-(rt:define-gconstant +key-f10+ 65479 "
-C: GDK_KEY_F10
+(rt:define-gconstant +key-f10+ 65479 "C: GDK_KEY_F10
 See: https://docs.gtk.org/gdk4/const.KEY_F10.html")
 
 
-(rt:define-gconstant +key-f11+ 65480 "
-C: GDK_KEY_F11
+(rt:define-gconstant +key-f11+ 65480 "C: GDK_KEY_F11
 See: https://docs.gtk.org/gdk4/const.KEY_F11.html")
 
 
-(rt:define-gconstant +key-f12+ 65481 "
-C: GDK_KEY_F12
+(rt:define-gconstant +key-f12+ 65481 "C: GDK_KEY_F12
 See: https://docs.gtk.org/gdk4/const.KEY_F12.html")
 
 
-(rt:define-gconstant +key-f13+ 65482 "
-C: GDK_KEY_F13
+(rt:define-gconstant +key-f13+ 65482 "C: GDK_KEY_F13
 See: https://docs.gtk.org/gdk4/const.KEY_F13.html")
 
 
-(rt:define-gconstant +key-f14+ 65483 "
-C: GDK_KEY_F14
+(rt:define-gconstant +key-f14+ 65483 "C: GDK_KEY_F14
 See: https://docs.gtk.org/gdk4/const.KEY_F14.html")
 
 
-(rt:define-gconstant +key-f15+ 65484 "
-C: GDK_KEY_F15
+(rt:define-gconstant +key-f15+ 65484 "C: GDK_KEY_F15
 See: https://docs.gtk.org/gdk4/const.KEY_F15.html")
 
 
-(rt:define-gconstant +key-f16+ 65485 "
-C: GDK_KEY_F16
+(rt:define-gconstant +key-f16+ 65485 "C: GDK_KEY_F16
 See: https://docs.gtk.org/gdk4/const.KEY_F16.html")
 
 
-(rt:define-gconstant +key-f17+ 65486 "
-C: GDK_KEY_F17
+(rt:define-gconstant +key-f17+ 65486 "C: GDK_KEY_F17
 See: https://docs.gtk.org/gdk4/const.KEY_F17.html")
 
 
-(rt:define-gconstant +key-f18+ 65487 "
-C: GDK_KEY_F18
+(rt:define-gconstant +key-f18+ 65487 "C: GDK_KEY_F18
 See: https://docs.gtk.org/gdk4/const.KEY_F18.html")
 
 
-(rt:define-gconstant +key-f19+ 65488 "
-C: GDK_KEY_F19
+(rt:define-gconstant +key-f19+ 65488 "C: GDK_KEY_F19
 See: https://docs.gtk.org/gdk4/const.KEY_F19.html")
 
 
-(rt:define-gconstant +key-f2+ 65471 "
-C: GDK_KEY_F2
+(rt:define-gconstant +key-f2+ 65471 "C: GDK_KEY_F2
 See: https://docs.gtk.org/gdk4/const.KEY_F2.html")
 
 
-(rt:define-gconstant +key-f20+ 65489 "
-C: GDK_KEY_F20
+(rt:define-gconstant +key-f20+ 65489 "C: GDK_KEY_F20
 See: https://docs.gtk.org/gdk4/const.KEY_F20.html")
 
 
-(rt:define-gconstant +key-f21+ 65490 "
-C: GDK_KEY_F21
+(rt:define-gconstant +key-f21+ 65490 "C: GDK_KEY_F21
 See: https://docs.gtk.org/gdk4/const.KEY_F21.html")
 
 
-(rt:define-gconstant +key-f22+ 65491 "
-C: GDK_KEY_F22
+(rt:define-gconstant +key-f22+ 65491 "C: GDK_KEY_F22
 See: https://docs.gtk.org/gdk4/const.KEY_F22.html")
 
 
-(rt:define-gconstant +key-f23+ 65492 "
-C: GDK_KEY_F23
+(rt:define-gconstant +key-f23+ 65492 "C: GDK_KEY_F23
 See: https://docs.gtk.org/gdk4/const.KEY_F23.html")
 
 
-(rt:define-gconstant +key-f24+ 65493 "
-C: GDK_KEY_F24
+(rt:define-gconstant +key-f24+ 65493 "C: GDK_KEY_F24
 See: https://docs.gtk.org/gdk4/const.KEY_F24.html")
 
 
-(rt:define-gconstant +key-f25+ 65494 "
-C: GDK_KEY_F25
+(rt:define-gconstant +key-f25+ 65494 "C: GDK_KEY_F25
 See: https://docs.gtk.org/gdk4/const.KEY_F25.html")
 
 
-(rt:define-gconstant +key-f26+ 65495 "
-C: GDK_KEY_F26
+(rt:define-gconstant +key-f26+ 65495 "C: GDK_KEY_F26
 See: https://docs.gtk.org/gdk4/const.KEY_F26.html")
 
 
-(rt:define-gconstant +key-f27+ 65496 "
-C: GDK_KEY_F27
+(rt:define-gconstant +key-f27+ 65496 "C: GDK_KEY_F27
 See: https://docs.gtk.org/gdk4/const.KEY_F27.html")
 
 
-(rt:define-gconstant +key-f28+ 65497 "
-C: GDK_KEY_F28
+(rt:define-gconstant +key-f28+ 65497 "C: GDK_KEY_F28
 See: https://docs.gtk.org/gdk4/const.KEY_F28.html")
 
 
-(rt:define-gconstant +key-f29+ 65498 "
-C: GDK_KEY_F29
+(rt:define-gconstant +key-f29+ 65498 "C: GDK_KEY_F29
 See: https://docs.gtk.org/gdk4/const.KEY_F29.html")
 
 
-(rt:define-gconstant +key-f3+ 65472 "
-C: GDK_KEY_F3
+(rt:define-gconstant +key-f3+ 65472 "C: GDK_KEY_F3
 See: https://docs.gtk.org/gdk4/const.KEY_F3.html")
 
 
-(rt:define-gconstant +key-f30+ 65499 "
-C: GDK_KEY_F30
+(rt:define-gconstant +key-f30+ 65499 "C: GDK_KEY_F30
 See: https://docs.gtk.org/gdk4/const.KEY_F30.html")
 
 
-(rt:define-gconstant +key-f31+ 65500 "
-C: GDK_KEY_F31
+(rt:define-gconstant +key-f31+ 65500 "C: GDK_KEY_F31
 See: https://docs.gtk.org/gdk4/const.KEY_F31.html")
 
 
-(rt:define-gconstant +key-f32+ 65501 "
-C: GDK_KEY_F32
+(rt:define-gconstant +key-f32+ 65501 "C: GDK_KEY_F32
 See: https://docs.gtk.org/gdk4/const.KEY_F32.html")
 
 
-(rt:define-gconstant +key-f33+ 65502 "
-C: GDK_KEY_F33
+(rt:define-gconstant +key-f33+ 65502 "C: GDK_KEY_F33
 See: https://docs.gtk.org/gdk4/const.KEY_F33.html")
 
 
-(rt:define-gconstant +key-f34+ 65503 "
-C: GDK_KEY_F34
+(rt:define-gconstant +key-f34+ 65503 "C: GDK_KEY_F34
 See: https://docs.gtk.org/gdk4/const.KEY_F34.html")
 
 
-(rt:define-gconstant +key-f35+ 65504 "
-C: GDK_KEY_F35
+(rt:define-gconstant +key-f35+ 65504 "C: GDK_KEY_F35
 See: https://docs.gtk.org/gdk4/const.KEY_F35.html")
 
 
-(rt:define-gconstant +key-f4+ 65473 "
-C: GDK_KEY_F4
+(rt:define-gconstant +key-f4+ 65473 "C: GDK_KEY_F4
 See: https://docs.gtk.org/gdk4/const.KEY_F4.html")
 
 
-(rt:define-gconstant +key-f5+ 65474 "
-C: GDK_KEY_F5
+(rt:define-gconstant +key-f5+ 65474 "C: GDK_KEY_F5
 See: https://docs.gtk.org/gdk4/const.KEY_F5.html")
 
 
-(rt:define-gconstant +key-f6+ 65475 "
-C: GDK_KEY_F6
+(rt:define-gconstant +key-f6+ 65475 "C: GDK_KEY_F6
 See: https://docs.gtk.org/gdk4/const.KEY_F6.html")
 
 
-(rt:define-gconstant +key-f7+ 65476 "
-C: GDK_KEY_F7
+(rt:define-gconstant +key-f7+ 65476 "C: GDK_KEY_F7
 See: https://docs.gtk.org/gdk4/const.KEY_F7.html")
 
 
-(rt:define-gconstant +key-f8+ 65477 "
-C: GDK_KEY_F8
+(rt:define-gconstant +key-f8+ 65477 "C: GDK_KEY_F8
 See: https://docs.gtk.org/gdk4/const.KEY_F8.html")
 
 
-(rt:define-gconstant +key-f9+ 65478 "
-C: GDK_KEY_F9
+(rt:define-gconstant +key-f9+ 65478 "C: GDK_KEY_F9
 See: https://docs.gtk.org/gdk4/const.KEY_F9.html")
 
 
-(rt:define-gconstant +key-ffrancsign+ 16785571 "
-C: GDK_KEY_FFrancSign
+(rt:define-gconstant +key-ffrancsign+ 16785571 "C: GDK_KEY_FFrancSign
 See: https://docs.gtk.org/gdk4/const.KEY_FFrancSign.html")
 
 
-(rt:define-gconstant +key-fabovedot+ 16784926 "
-C: GDK_KEY_Fabovedot
+(rt:define-gconstant +key-fabovedot+ 16784926 "C: GDK_KEY_Fabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Fabovedot.html")
 
 
-(rt:define-gconstant +key-farsi-0+ 16778992 "
-C: GDK_KEY_Farsi_0
+(rt:define-gconstant +key-farsi-0+ 16778992 "C: GDK_KEY_Farsi_0
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_0.html")
 
 
-(rt:define-gconstant +key-farsi-1+ 16778993 "
-C: GDK_KEY_Farsi_1
+(rt:define-gconstant +key-farsi-1+ 16778993 "C: GDK_KEY_Farsi_1
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_1.html")
 
 
-(rt:define-gconstant +key-farsi-2+ 16778994 "
-C: GDK_KEY_Farsi_2
+(rt:define-gconstant +key-farsi-2+ 16778994 "C: GDK_KEY_Farsi_2
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_2.html")
 
 
-(rt:define-gconstant +key-farsi-3+ 16778995 "
-C: GDK_KEY_Farsi_3
+(rt:define-gconstant +key-farsi-3+ 16778995 "C: GDK_KEY_Farsi_3
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_3.html")
 
 
-(rt:define-gconstant +key-farsi-4+ 16778996 "
-C: GDK_KEY_Farsi_4
+(rt:define-gconstant +key-farsi-4+ 16778996 "C: GDK_KEY_Farsi_4
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_4.html")
 
 
-(rt:define-gconstant +key-farsi-5+ 16778997 "
-C: GDK_KEY_Farsi_5
+(rt:define-gconstant +key-farsi-5+ 16778997 "C: GDK_KEY_Farsi_5
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_5.html")
 
 
-(rt:define-gconstant +key-farsi-6+ 16778998 "
-C: GDK_KEY_Farsi_6
+(rt:define-gconstant +key-farsi-6+ 16778998 "C: GDK_KEY_Farsi_6
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_6.html")
 
 
-(rt:define-gconstant +key-farsi-7+ 16778999 "
-C: GDK_KEY_Farsi_7
+(rt:define-gconstant +key-farsi-7+ 16778999 "C: GDK_KEY_Farsi_7
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_7.html")
 
 
-(rt:define-gconstant +key-farsi-8+ 16779000 "
-C: GDK_KEY_Farsi_8
+(rt:define-gconstant +key-farsi-8+ 16779000 "C: GDK_KEY_Farsi_8
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_8.html")
 
 
-(rt:define-gconstant +key-farsi-9+ 16779001 "
-C: GDK_KEY_Farsi_9
+(rt:define-gconstant +key-farsi-9+ 16779001 "C: GDK_KEY_Farsi_9
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_9.html")
 
 
-(rt:define-gconstant +key-farsi-yeh+ 16778956 "
-C: GDK_KEY_Farsi_yeh
+(rt:define-gconstant +key-farsi-yeh+ 16778956 "C: GDK_KEY_Farsi_yeh
 See: https://docs.gtk.org/gdk4/const.KEY_Farsi_yeh.html")
 
 
-(rt:define-gconstant +key-fastreverse+ 268964469 "
-C: GDK_KEY_FastReverse
+(rt:define-gconstant +key-fastreverse+ 268964469 "C: GDK_KEY_FastReverse
 See: https://docs.gtk.org/gdk4/const.KEY_FastReverse.html")
 
 
-(rt:define-gconstant +key-favorites+ 269025072 "
-C: GDK_KEY_Favorites
+(rt:define-gconstant +key-favorites+ 269025072 "C: GDK_KEY_Favorites
 See: https://docs.gtk.org/gdk4/const.KEY_Favorites.html")
 
 
-(rt:define-gconstant +key-finance+ 269025084 "
-C: GDK_KEY_Finance
+(rt:define-gconstant +key-finance+ 269025084 "C: GDK_KEY_Finance
 See: https://docs.gtk.org/gdk4/const.KEY_Finance.html")
 
 
-(rt:define-gconstant +key-find+ 65384 "
-C: GDK_KEY_Find
+(rt:define-gconstant +key-find+ 65384 "C: GDK_KEY_Find
 See: https://docs.gtk.org/gdk4/const.KEY_Find.html")
 
 
-(rt:define-gconstant +key-first-virtual-screen+ 65232 "
-C: GDK_KEY_First_Virtual_Screen
+(rt:define-gconstant +key-first-virtual-screen+ 65232 "C: GDK_KEY_First_Virtual_Screen
 See: https://docs.gtk.org/gdk4/const.KEY_First_Virtual_Screen.html")
 
 
-(rt:define-gconstant +key-fishingchart+ 268964481 "
-C: GDK_KEY_FishingChart
+(rt:define-gconstant +key-fishingchart+ 268964481 "C: GDK_KEY_FishingChart
 See: https://docs.gtk.org/gdk4/const.KEY_FishingChart.html")
 
 
-(rt:define-gconstant +key-fn+ 268964304 "
-C: GDK_KEY_Fn
+(rt:define-gconstant +key-fn+ 268964304 "C: GDK_KEY_Fn
 See: https://docs.gtk.org/gdk4/const.KEY_Fn.html")
 
 
-(rt:define-gconstant +key-fnrightshift+ 268964325 "
-C: GDK_KEY_FnRightShift
+(rt:define-gconstant +key-fnrightshift+ 268964325 "C: GDK_KEY_FnRightShift
 See: https://docs.gtk.org/gdk4/const.KEY_FnRightShift.html")
 
 
-(rt:define-gconstant +key-fn-esc+ 268964305 "
-C: GDK_KEY_Fn_Esc
+(rt:define-gconstant +key-fn-esc+ 268964305 "C: GDK_KEY_Fn_Esc
 See: https://docs.gtk.org/gdk4/const.KEY_Fn_Esc.html")
 
 
-(rt:define-gconstant +key-forward+ 269025063 "
-C: GDK_KEY_Forward
+(rt:define-gconstant +key-forward+ 269025063 "C: GDK_KEY_Forward
 See: https://docs.gtk.org/gdk4/const.KEY_Forward.html")
 
 
-(rt:define-gconstant +key-frameback+ 269025181 "
-C: GDK_KEY_FrameBack
+(rt:define-gconstant +key-frameback+ 269025181 "C: GDK_KEY_FrameBack
 See: https://docs.gtk.org/gdk4/const.KEY_FrameBack.html")
 
 
-(rt:define-gconstant +key-frameforward+ 269025182 "
-C: GDK_KEY_FrameForward
+(rt:define-gconstant +key-frameforward+ 269025182 "C: GDK_KEY_FrameForward
 See: https://docs.gtk.org/gdk4/const.KEY_FrameForward.html")
 
 
-(rt:define-gconstant +key-fullscreen+ 269025208 "
-C: GDK_KEY_FullScreen
+(rt:define-gconstant +key-fullscreen+ 269025208 "C: GDK_KEY_FullScreen
 See: https://docs.gtk.org/gdk4/const.KEY_FullScreen.html")
 
 
-(rt:define-gconstant +key-g+ 71 "
-C: GDK_KEY_G
+(rt:define-gconstant +key-g+ 71 "C: GDK_KEY_G
 See: https://docs.gtk.org/gdk4/const.KEY_G.html")
 
 
-(rt:define-gconstant +key-gabovedot+ 725 "
-C: GDK_KEY_Gabovedot
+(rt:define-gconstant +key-gabovedot+ 725 "C: GDK_KEY_Gabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Gabovedot.html")
 
 
-(rt:define-gconstant +key-game+ 269025118 "
-C: GDK_KEY_Game
+(rt:define-gconstant +key-game+ 269025118 "C: GDK_KEY_Game
 See: https://docs.gtk.org/gdk4/const.KEY_Game.html")
 
 
-(rt:define-gconstant +key-gbreve+ 683 "
-C: GDK_KEY_Gbreve
+(rt:define-gconstant +key-gbreve+ 683 "C: GDK_KEY_Gbreve
 See: https://docs.gtk.org/gdk4/const.KEY_Gbreve.html")
 
 
-(rt:define-gconstant +key-gcaron+ 16777702 "
-C: GDK_KEY_Gcaron
+(rt:define-gconstant +key-gcaron+ 16777702 "C: GDK_KEY_Gcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Gcaron.html")
 
 
-(rt:define-gconstant +key-gcedilla+ 939 "
-C: GDK_KEY_Gcedilla
+(rt:define-gconstant +key-gcedilla+ 939 "C: GDK_KEY_Gcedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Gcedilla.html")
 
 
-(rt:define-gconstant +key-gcircumflex+ 728 "
-C: GDK_KEY_Gcircumflex
+(rt:define-gconstant +key-gcircumflex+ 728 "C: GDK_KEY_Gcircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Gcircumflex.html")
 
 
-(rt:define-gconstant +key-georgian-an+ 16781520 "
-C: GDK_KEY_Georgian_an
+(rt:define-gconstant +key-georgian-an+ 16781520 "C: GDK_KEY_Georgian_an
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_an.html")
 
 
-(rt:define-gconstant +key-georgian-ban+ 16781521 "
-C: GDK_KEY_Georgian_ban
+(rt:define-gconstant +key-georgian-ban+ 16781521 "C: GDK_KEY_Georgian_ban
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_ban.html")
 
 
-(rt:define-gconstant +key-georgian-can+ 16781546 "
-C: GDK_KEY_Georgian_can
+(rt:define-gconstant +key-georgian-can+ 16781546 "C: GDK_KEY_Georgian_can
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_can.html")
 
 
-(rt:define-gconstant +key-georgian-char+ 16781549 "
-C: GDK_KEY_Georgian_char
+(rt:define-gconstant +key-georgian-char+ 16781549 "C: GDK_KEY_Georgian_char
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_char.html")
 
 
-(rt:define-gconstant +key-georgian-chin+ 16781545 "
-C: GDK_KEY_Georgian_chin
+(rt:define-gconstant +key-georgian-chin+ 16781545 "C: GDK_KEY_Georgian_chin
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_chin.html")
 
 
-(rt:define-gconstant +key-georgian-cil+ 16781548 "
-C: GDK_KEY_Georgian_cil
+(rt:define-gconstant +key-georgian-cil+ 16781548 "C: GDK_KEY_Georgian_cil
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_cil.html")
 
 
-(rt:define-gconstant +key-georgian-don+ 16781523 "
-C: GDK_KEY_Georgian_don
+(rt:define-gconstant +key-georgian-don+ 16781523 "C: GDK_KEY_Georgian_don
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_don.html")
 
 
-(rt:define-gconstant +key-georgian-en+ 16781524 "
-C: GDK_KEY_Georgian_en
+(rt:define-gconstant +key-georgian-en+ 16781524 "C: GDK_KEY_Georgian_en
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_en.html")
 
 
-(rt:define-gconstant +key-georgian-fi+ 16781558 "
-C: GDK_KEY_Georgian_fi
+(rt:define-gconstant +key-georgian-fi+ 16781558 "C: GDK_KEY_Georgian_fi
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_fi.html")
 
 
-(rt:define-gconstant +key-georgian-gan+ 16781522 "
-C: GDK_KEY_Georgian_gan
+(rt:define-gconstant +key-georgian-gan+ 16781522 "C: GDK_KEY_Georgian_gan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_gan.html")
 
 
-(rt:define-gconstant +key-georgian-ghan+ 16781542 "
-C: GDK_KEY_Georgian_ghan
+(rt:define-gconstant +key-georgian-ghan+ 16781542 "C: GDK_KEY_Georgian_ghan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_ghan.html")
 
 
-(rt:define-gconstant +key-georgian-hae+ 16781552 "
-C: GDK_KEY_Georgian_hae
+(rt:define-gconstant +key-georgian-hae+ 16781552 "C: GDK_KEY_Georgian_hae
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_hae.html")
 
 
-(rt:define-gconstant +key-georgian-har+ 16781556 "
-C: GDK_KEY_Georgian_har
+(rt:define-gconstant +key-georgian-har+ 16781556 "C: GDK_KEY_Georgian_har
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_har.html")
 
 
-(rt:define-gconstant +key-georgian-he+ 16781553 "
-C: GDK_KEY_Georgian_he
+(rt:define-gconstant +key-georgian-he+ 16781553 "C: GDK_KEY_Georgian_he
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_he.html")
 
 
-(rt:define-gconstant +key-georgian-hie+ 16781554 "
-C: GDK_KEY_Georgian_hie
+(rt:define-gconstant +key-georgian-hie+ 16781554 "C: GDK_KEY_Georgian_hie
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_hie.html")
 
 
-(rt:define-gconstant +key-georgian-hoe+ 16781557 "
-C: GDK_KEY_Georgian_hoe
+(rt:define-gconstant +key-georgian-hoe+ 16781557 "C: GDK_KEY_Georgian_hoe
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_hoe.html")
 
 
-(rt:define-gconstant +key-georgian-in+ 16781528 "
-C: GDK_KEY_Georgian_in
+(rt:define-gconstant +key-georgian-in+ 16781528 "C: GDK_KEY_Georgian_in
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_in.html")
 
 
-(rt:define-gconstant +key-georgian-jhan+ 16781551 "
-C: GDK_KEY_Georgian_jhan
+(rt:define-gconstant +key-georgian-jhan+ 16781551 "C: GDK_KEY_Georgian_jhan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_jhan.html")
 
 
-(rt:define-gconstant +key-georgian-jil+ 16781547 "
-C: GDK_KEY_Georgian_jil
+(rt:define-gconstant +key-georgian-jil+ 16781547 "C: GDK_KEY_Georgian_jil
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_jil.html")
 
 
-(rt:define-gconstant +key-georgian-kan+ 16781529 "
-C: GDK_KEY_Georgian_kan
+(rt:define-gconstant +key-georgian-kan+ 16781529 "C: GDK_KEY_Georgian_kan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_kan.html")
 
 
-(rt:define-gconstant +key-georgian-khar+ 16781541 "
-C: GDK_KEY_Georgian_khar
+(rt:define-gconstant +key-georgian-khar+ 16781541 "C: GDK_KEY_Georgian_khar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_khar.html")
 
 
-(rt:define-gconstant +key-georgian-las+ 16781530 "
-C: GDK_KEY_Georgian_las
+(rt:define-gconstant +key-georgian-las+ 16781530 "C: GDK_KEY_Georgian_las
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_las.html")
 
 
-(rt:define-gconstant +key-georgian-man+ 16781531 "
-C: GDK_KEY_Georgian_man
+(rt:define-gconstant +key-georgian-man+ 16781531 "C: GDK_KEY_Georgian_man
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_man.html")
 
 
-(rt:define-gconstant +key-georgian-nar+ 16781532 "
-C: GDK_KEY_Georgian_nar
+(rt:define-gconstant +key-georgian-nar+ 16781532 "C: GDK_KEY_Georgian_nar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_nar.html")
 
 
-(rt:define-gconstant +key-georgian-on+ 16781533 "
-C: GDK_KEY_Georgian_on
+(rt:define-gconstant +key-georgian-on+ 16781533 "C: GDK_KEY_Georgian_on
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_on.html")
 
 
-(rt:define-gconstant +key-georgian-par+ 16781534 "
-C: GDK_KEY_Georgian_par
+(rt:define-gconstant +key-georgian-par+ 16781534 "C: GDK_KEY_Georgian_par
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_par.html")
 
 
-(rt:define-gconstant +key-georgian-phar+ 16781540 "
-C: GDK_KEY_Georgian_phar
+(rt:define-gconstant +key-georgian-phar+ 16781540 "C: GDK_KEY_Georgian_phar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_phar.html")
 
 
-(rt:define-gconstant +key-georgian-qar+ 16781543 "
-C: GDK_KEY_Georgian_qar
+(rt:define-gconstant +key-georgian-qar+ 16781543 "C: GDK_KEY_Georgian_qar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_qar.html")
 
 
-(rt:define-gconstant +key-georgian-rae+ 16781536 "
-C: GDK_KEY_Georgian_rae
+(rt:define-gconstant +key-georgian-rae+ 16781536 "C: GDK_KEY_Georgian_rae
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_rae.html")
 
 
-(rt:define-gconstant +key-georgian-san+ 16781537 "
-C: GDK_KEY_Georgian_san
+(rt:define-gconstant +key-georgian-san+ 16781537 "C: GDK_KEY_Georgian_san
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_san.html")
 
 
-(rt:define-gconstant +key-georgian-shin+ 16781544 "
-C: GDK_KEY_Georgian_shin
+(rt:define-gconstant +key-georgian-shin+ 16781544 "C: GDK_KEY_Georgian_shin
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_shin.html")
 
 
-(rt:define-gconstant +key-georgian-tan+ 16781527 "
-C: GDK_KEY_Georgian_tan
+(rt:define-gconstant +key-georgian-tan+ 16781527 "C: GDK_KEY_Georgian_tan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_tan.html")
 
 
-(rt:define-gconstant +key-georgian-tar+ 16781538 "
-C: GDK_KEY_Georgian_tar
+(rt:define-gconstant +key-georgian-tar+ 16781538 "C: GDK_KEY_Georgian_tar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_tar.html")
 
 
-(rt:define-gconstant +key-georgian-un+ 16781539 "
-C: GDK_KEY_Georgian_un
+(rt:define-gconstant +key-georgian-un+ 16781539 "C: GDK_KEY_Georgian_un
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_un.html")
 
 
-(rt:define-gconstant +key-georgian-vin+ 16781525 "
-C: GDK_KEY_Georgian_vin
+(rt:define-gconstant +key-georgian-vin+ 16781525 "C: GDK_KEY_Georgian_vin
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_vin.html")
 
 
-(rt:define-gconstant +key-georgian-we+ 16781555 "
-C: GDK_KEY_Georgian_we
+(rt:define-gconstant +key-georgian-we+ 16781555 "C: GDK_KEY_Georgian_we
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_we.html")
 
 
-(rt:define-gconstant +key-georgian-xan+ 16781550 "
-C: GDK_KEY_Georgian_xan
+(rt:define-gconstant +key-georgian-xan+ 16781550 "C: GDK_KEY_Georgian_xan
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_xan.html")
 
 
-(rt:define-gconstant +key-georgian-zen+ 16781526 "
-C: GDK_KEY_Georgian_zen
+(rt:define-gconstant +key-georgian-zen+ 16781526 "C: GDK_KEY_Georgian_zen
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_zen.html")
 
 
-(rt:define-gconstant +key-georgian-zhar+ 16781535 "
-C: GDK_KEY_Georgian_zhar
+(rt:define-gconstant +key-georgian-zhar+ 16781535 "C: GDK_KEY_Georgian_zhar
 See: https://docs.gtk.org/gdk4/const.KEY_Georgian_zhar.html")
 
 
-(rt:define-gconstant +key-go+ 269025119 "
-C: GDK_KEY_Go
+(rt:define-gconstant +key-go+ 269025119 "C: GDK_KEY_Go
 See: https://docs.gtk.org/gdk4/const.KEY_Go.html")
 
 
-(rt:define-gconstant +key-graphicseditor+ 268964264 "
-C: GDK_KEY_GraphicsEditor
+(rt:define-gconstant +key-graphicseditor+ 268964264 "C: GDK_KEY_GraphicsEditor
 See: https://docs.gtk.org/gdk4/const.KEY_GraphicsEditor.html")
 
 
-(rt:define-gconstant +key-greek-alpha+ 1985 "
-C: GDK_KEY_Greek_ALPHA
+(rt:define-gconstant +key-greek-alpha+ 1985 "C: GDK_KEY_Greek_ALPHA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_ALPHA.html")
 
 
-(rt:define-gconstant +key-greek-alphaaccent+ 1953 "
-C: GDK_KEY_Greek_ALPHAaccent
+(rt:define-gconstant +key-greek-alphaaccent+ 1953 "C: GDK_KEY_Greek_ALPHAaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_ALPHAaccent.html")
 
 
-(rt:define-gconstant +key-greek-beta+ 1986 "
-C: GDK_KEY_Greek_BETA
+(rt:define-gconstant +key-greek-beta+ 1986 "C: GDK_KEY_Greek_BETA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_BETA.html")
 
 
-(rt:define-gconstant +key-greek-chi+ 2007 "
-C: GDK_KEY_Greek_CHI
+(rt:define-gconstant +key-greek-chi+ 2007 "C: GDK_KEY_Greek_CHI
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_CHI.html")
 
 
-(rt:define-gconstant +key-greek-delta+ 1988 "
-C: GDK_KEY_Greek_DELTA
+(rt:define-gconstant +key-greek-delta+ 1988 "C: GDK_KEY_Greek_DELTA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_DELTA.html")
 
 
-(rt:define-gconstant +key-greek-epsilon+ 1989 "
-C: GDK_KEY_Greek_EPSILON
+(rt:define-gconstant +key-greek-epsilon+ 1989 "C: GDK_KEY_Greek_EPSILON
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_EPSILON.html")
 
 
-(rt:define-gconstant +key-greek-epsilonaccent+ 1954 "
-C: GDK_KEY_Greek_EPSILONaccent
+(rt:define-gconstant +key-greek-epsilonaccent+ 1954 "C: GDK_KEY_Greek_EPSILONaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_EPSILONaccent.html")
 
 
-(rt:define-gconstant +key-greek-eta+ 1991 "
-C: GDK_KEY_Greek_ETA
+(rt:define-gconstant +key-greek-eta+ 1991 "C: GDK_KEY_Greek_ETA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_ETA.html")
 
 
-(rt:define-gconstant +key-greek-etaaccent+ 1955 "
-C: GDK_KEY_Greek_ETAaccent
+(rt:define-gconstant +key-greek-etaaccent+ 1955 "C: GDK_KEY_Greek_ETAaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_ETAaccent.html")
 
 
-(rt:define-gconstant +key-greek-gamma+ 1987 "
-C: GDK_KEY_Greek_GAMMA
+(rt:define-gconstant +key-greek-gamma+ 1987 "C: GDK_KEY_Greek_GAMMA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_GAMMA.html")
 
 
-(rt:define-gconstant +key-greek-iota+ 1993 "
-C: GDK_KEY_Greek_IOTA
+(rt:define-gconstant +key-greek-iota+ 1993 "C: GDK_KEY_Greek_IOTA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_IOTA.html")
 
 
-(rt:define-gconstant +key-greek-iotaaccent+ 1956 "
-C: GDK_KEY_Greek_IOTAaccent
+(rt:define-gconstant +key-greek-iotaaccent+ 1956 "C: GDK_KEY_Greek_IOTAaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_IOTAaccent.html")
 
 
-(rt:define-gconstant +key-greek-iotadiaeresis+ 1957 "
-C: GDK_KEY_Greek_IOTAdiaeresis
+(rt:define-gconstant +key-greek-iotadiaeresis+ 1957 "C: GDK_KEY_Greek_IOTAdiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_IOTAdiaeresis.html")
 
 
-(rt:define-gconstant +key-greek-iotadieresis+ 1957 "
-C: GDK_KEY_Greek_IOTAdieresis
+(rt:define-gconstant +key-greek-iotadieresis+ 1957 "C: GDK_KEY_Greek_IOTAdieresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_IOTAdieresis.html")
 
 
-(rt:define-gconstant +key-greek-kappa+ 1994 "
-C: GDK_KEY_Greek_KAPPA
+(rt:define-gconstant +key-greek-kappa+ 1994 "C: GDK_KEY_Greek_KAPPA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_KAPPA.html")
 
 
-(rt:define-gconstant +key-greek-lambda+ 1995 "
-C: GDK_KEY_Greek_LAMBDA
+(rt:define-gconstant +key-greek-lambda+ 1995 "C: GDK_KEY_Greek_LAMBDA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_LAMBDA.html")
 
 
-(rt:define-gconstant +key-greek-lamda+ 1995 "
-C: GDK_KEY_Greek_LAMDA
+(rt:define-gconstant +key-greek-lamda+ 1995 "C: GDK_KEY_Greek_LAMDA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_LAMDA.html")
 
 
-(rt:define-gconstant +key-greek-mu+ 1996 "
-C: GDK_KEY_Greek_MU
+(rt:define-gconstant +key-greek-mu+ 1996 "C: GDK_KEY_Greek_MU
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_MU.html")
 
 
-(rt:define-gconstant +key-greek-nu+ 1997 "
-C: GDK_KEY_Greek_NU
+(rt:define-gconstant +key-greek-nu+ 1997 "C: GDK_KEY_Greek_NU
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_NU.html")
 
 
-(rt:define-gconstant +key-greek-omega+ 2009 "
-C: GDK_KEY_Greek_OMEGA
+(rt:define-gconstant +key-greek-omega+ 2009 "C: GDK_KEY_Greek_OMEGA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_OMEGA.html")
 
 
-(rt:define-gconstant +key-greek-omegaaccent+ 1963 "
-C: GDK_KEY_Greek_OMEGAaccent
+(rt:define-gconstant +key-greek-omegaaccent+ 1963 "C: GDK_KEY_Greek_OMEGAaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_OMEGAaccent.html")
 
 
-(rt:define-gconstant +key-greek-omicron+ 1999 "
-C: GDK_KEY_Greek_OMICRON
+(rt:define-gconstant +key-greek-omicron+ 1999 "C: GDK_KEY_Greek_OMICRON
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_OMICRON.html")
 
 
-(rt:define-gconstant +key-greek-omicronaccent+ 1959 "
-C: GDK_KEY_Greek_OMICRONaccent
+(rt:define-gconstant +key-greek-omicronaccent+ 1959 "C: GDK_KEY_Greek_OMICRONaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_OMICRONaccent.html")
 
 
-(rt:define-gconstant +key-greek-phi+ 2006 "
-C: GDK_KEY_Greek_PHI
+(rt:define-gconstant +key-greek-phi+ 2006 "C: GDK_KEY_Greek_PHI
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_PHI.html")
 
 
-(rt:define-gconstant +key-greek-pi+ 2000 "
-C: GDK_KEY_Greek_PI
+(rt:define-gconstant +key-greek-pi+ 2000 "C: GDK_KEY_Greek_PI
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_PI.html")
 
 
-(rt:define-gconstant +key-greek-psi+ 2008 "
-C: GDK_KEY_Greek_PSI
+(rt:define-gconstant +key-greek-psi+ 2008 "C: GDK_KEY_Greek_PSI
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_PSI.html")
 
 
-(rt:define-gconstant +key-greek-rho+ 2001 "
-C: GDK_KEY_Greek_RHO
+(rt:define-gconstant +key-greek-rho+ 2001 "C: GDK_KEY_Greek_RHO
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_RHO.html")
 
 
-(rt:define-gconstant +key-greek-sigma+ 2002 "
-C: GDK_KEY_Greek_SIGMA
+(rt:define-gconstant +key-greek-sigma+ 2002 "C: GDK_KEY_Greek_SIGMA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_SIGMA.html")
 
 
-(rt:define-gconstant +key-greek-tau+ 2004 "
-C: GDK_KEY_Greek_TAU
+(rt:define-gconstant +key-greek-tau+ 2004 "C: GDK_KEY_Greek_TAU
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_TAU.html")
 
 
-(rt:define-gconstant +key-greek-theta+ 1992 "
-C: GDK_KEY_Greek_THETA
+(rt:define-gconstant +key-greek-theta+ 1992 "C: GDK_KEY_Greek_THETA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_THETA.html")
 
 
-(rt:define-gconstant +key-greek-upsilon+ 2005 "
-C: GDK_KEY_Greek_UPSILON
+(rt:define-gconstant +key-greek-upsilon+ 2005 "C: GDK_KEY_Greek_UPSILON
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_UPSILON.html")
 
 
-(rt:define-gconstant +key-greek-upsilonaccent+ 1960 "
-C: GDK_KEY_Greek_UPSILONaccent
+(rt:define-gconstant +key-greek-upsilonaccent+ 1960 "C: GDK_KEY_Greek_UPSILONaccent
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_UPSILONaccent.html")
 
 
-(rt:define-gconstant +key-greek-upsilondieresis+ 1961 "
-C: GDK_KEY_Greek_UPSILONdieresis
+(rt:define-gconstant +key-greek-upsilondieresis+ 1961 "C: GDK_KEY_Greek_UPSILONdieresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_UPSILONdieresis.html")
 
 
-(rt:define-gconstant +key-greek-xi+ 1998 "
-C: GDK_KEY_Greek_XI
+(rt:define-gconstant +key-greek-xi+ 1998 "C: GDK_KEY_Greek_XI
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_XI.html")
 
 
-(rt:define-gconstant +key-greek-zeta+ 1990 "
-C: GDK_KEY_Greek_ZETA
+(rt:define-gconstant +key-greek-zeta+ 1990 "C: GDK_KEY_Greek_ZETA
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_ZETA.html")
 
 
-(rt:define-gconstant +key-greek-accentdieresis+ 1966 "
-C: GDK_KEY_Greek_accentdieresis
+(rt:define-gconstant +key-greek-accentdieresis+ 1966 "C: GDK_KEY_Greek_accentdieresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_accentdieresis.html")
 
 
-(rt:define-gconstant +key-greek-finalsmallsigma+ 2035 "
-C: GDK_KEY_Greek_finalsmallsigma
+(rt:define-gconstant +key-greek-finalsmallsigma+ 2035 "C: GDK_KEY_Greek_finalsmallsigma
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_finalsmallsigma.html")
 
 
-(rt:define-gconstant +key-greek-horizbar+ 1967 "
-C: GDK_KEY_Greek_horizbar
+(rt:define-gconstant +key-greek-horizbar+ 1967 "C: GDK_KEY_Greek_horizbar
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_horizbar.html")
 
 
-(rt:define-gconstant +key-greek-iotaaccentdieresis+ 1974 "
-C: GDK_KEY_Greek_iotaaccentdieresis
+(rt:define-gconstant +key-greek-iotaaccentdieresis+ 1974 "C: GDK_KEY_Greek_iotaaccentdieresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_iotaaccentdieresis.html")
 
 
-(rt:define-gconstant +key-greek-switch+ 65406 "
-C: GDK_KEY_Greek_switch
+(rt:define-gconstant +key-greek-switch+ 65406 "C: GDK_KEY_Greek_switch
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_switch.html")
 
 
-(rt:define-gconstant +key-greek-upsilonaccentdieresis+ 1978 "
-C: GDK_KEY_Greek_upsilonaccentdieresis
+(rt:define-gconstant +key-greek-upsilonaccentdieresis+ 1978 "C: GDK_KEY_Greek_upsilonaccentdieresis
 See: https://docs.gtk.org/gdk4/const.KEY_Greek_upsilonaccentdieresis.html")
 
 
-(rt:define-gconstant +key-green+ 269025188 "
-C: GDK_KEY_Green
+(rt:define-gconstant +key-green+ 269025188 "C: GDK_KEY_Green
 See: https://docs.gtk.org/gdk4/const.KEY_Green.html")
 
 
-(rt:define-gconstant +key-h+ 72 "
-C: GDK_KEY_H
+(rt:define-gconstant +key-h+ 72 "C: GDK_KEY_H
 See: https://docs.gtk.org/gdk4/const.KEY_H.html")
 
 
-(rt:define-gconstant +key-hangul+ 65329 "
-C: GDK_KEY_Hangul
+(rt:define-gconstant +key-hangul+ 65329 "C: GDK_KEY_Hangul
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul.html")
 
 
-(rt:define-gconstant +key-hangul-a+ 3775 "
-C: GDK_KEY_Hangul_A
+(rt:define-gconstant +key-hangul-a+ 3775 "C: GDK_KEY_Hangul_A
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_A.html")
 
 
-(rt:define-gconstant +key-hangul-ae+ 3776 "
-C: GDK_KEY_Hangul_AE
+(rt:define-gconstant +key-hangul-ae+ 3776 "C: GDK_KEY_Hangul_AE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_AE.html")
 
 
-(rt:define-gconstant +key-hangul-araea+ 3830 "
-C: GDK_KEY_Hangul_AraeA
+(rt:define-gconstant +key-hangul-araea+ 3830 "C: GDK_KEY_Hangul_AraeA
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_AraeA.html")
 
 
-(rt:define-gconstant +key-hangul-araeae+ 3831 "
-C: GDK_KEY_Hangul_AraeAE
+(rt:define-gconstant +key-hangul-araeae+ 3831 "C: GDK_KEY_Hangul_AraeAE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_AraeAE.html")
 
 
-(rt:define-gconstant +key-hangul-banja+ 65337 "
-C: GDK_KEY_Hangul_Banja
+(rt:define-gconstant +key-hangul-banja+ 65337 "C: GDK_KEY_Hangul_Banja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Banja.html")
 
 
-(rt:define-gconstant +key-hangul-cieuc+ 3770 "
-C: GDK_KEY_Hangul_Cieuc
+(rt:define-gconstant +key-hangul-cieuc+ 3770 "C: GDK_KEY_Hangul_Cieuc
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Cieuc.html")
 
 
-(rt:define-gconstant +key-hangul-codeinput+ 65335 "
-C: GDK_KEY_Hangul_Codeinput
+(rt:define-gconstant +key-hangul-codeinput+ 65335 "C: GDK_KEY_Hangul_Codeinput
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Codeinput.html")
 
 
-(rt:define-gconstant +key-hangul-dikeud+ 3751 "
-C: GDK_KEY_Hangul_Dikeud
+(rt:define-gconstant +key-hangul-dikeud+ 3751 "C: GDK_KEY_Hangul_Dikeud
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Dikeud.html")
 
 
-(rt:define-gconstant +key-hangul-e+ 3780 "
-C: GDK_KEY_Hangul_E
+(rt:define-gconstant +key-hangul-e+ 3780 "C: GDK_KEY_Hangul_E
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_E.html")
 
 
-(rt:define-gconstant +key-hangul-eo+ 3779 "
-C: GDK_KEY_Hangul_EO
+(rt:define-gconstant +key-hangul-eo+ 3779 "C: GDK_KEY_Hangul_EO
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_EO.html")
 
 
-(rt:define-gconstant +key-hangul-eu+ 3793 "
-C: GDK_KEY_Hangul_EU
+(rt:define-gconstant +key-hangul-eu+ 3793 "C: GDK_KEY_Hangul_EU
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_EU.html")
 
 
-(rt:define-gconstant +key-hangul-end+ 65331 "
-C: GDK_KEY_Hangul_End
+(rt:define-gconstant +key-hangul-end+ 65331 "C: GDK_KEY_Hangul_End
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_End.html")
 
 
-(rt:define-gconstant +key-hangul-hanja+ 65332 "
-C: GDK_KEY_Hangul_Hanja
+(rt:define-gconstant +key-hangul-hanja+ 65332 "C: GDK_KEY_Hangul_Hanja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Hanja.html")
 
 
-(rt:define-gconstant +key-hangul-hieuh+ 3774 "
-C: GDK_KEY_Hangul_Hieuh
+(rt:define-gconstant +key-hangul-hieuh+ 3774 "C: GDK_KEY_Hangul_Hieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Hieuh.html")
 
 
-(rt:define-gconstant +key-hangul-i+ 3795 "
-C: GDK_KEY_Hangul_I
+(rt:define-gconstant +key-hangul-i+ 3795 "C: GDK_KEY_Hangul_I
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_I.html")
 
 
-(rt:define-gconstant +key-hangul-ieung+ 3767 "
-C: GDK_KEY_Hangul_Ieung
+(rt:define-gconstant +key-hangul-ieung+ 3767 "C: GDK_KEY_Hangul_Ieung
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Ieung.html")
 
 
-(rt:define-gconstant +key-hangul-j-cieuc+ 3818 "
-C: GDK_KEY_Hangul_J_Cieuc
+(rt:define-gconstant +key-hangul-j-cieuc+ 3818 "C: GDK_KEY_Hangul_J_Cieuc
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Cieuc.html")
 
 
-(rt:define-gconstant +key-hangul-j-dikeud+ 3802 "
-C: GDK_KEY_Hangul_J_Dikeud
+(rt:define-gconstant +key-hangul-j-dikeud+ 3802 "C: GDK_KEY_Hangul_J_Dikeud
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Dikeud.html")
 
 
-(rt:define-gconstant +key-hangul-j-hieuh+ 3822 "
-C: GDK_KEY_Hangul_J_Hieuh
+(rt:define-gconstant +key-hangul-j-hieuh+ 3822 "C: GDK_KEY_Hangul_J_Hieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Hieuh.html")
 
 
-(rt:define-gconstant +key-hangul-j-ieung+ 3816 "
-C: GDK_KEY_Hangul_J_Ieung
+(rt:define-gconstant +key-hangul-j-ieung+ 3816 "C: GDK_KEY_Hangul_J_Ieung
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Ieung.html")
 
 
-(rt:define-gconstant +key-hangul-j-jieuj+ 3817 "
-C: GDK_KEY_Hangul_J_Jieuj
+(rt:define-gconstant +key-hangul-j-jieuj+ 3817 "C: GDK_KEY_Hangul_J_Jieuj
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Jieuj.html")
 
 
-(rt:define-gconstant +key-hangul-j-khieuq+ 3819 "
-C: GDK_KEY_Hangul_J_Khieuq
+(rt:define-gconstant +key-hangul-j-khieuq+ 3819 "C: GDK_KEY_Hangul_J_Khieuq
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Khieuq.html")
 
 
-(rt:define-gconstant +key-hangul-j-kiyeog+ 3796 "
-C: GDK_KEY_Hangul_J_Kiyeog
+(rt:define-gconstant +key-hangul-j-kiyeog+ 3796 "C: GDK_KEY_Hangul_J_Kiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Kiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-j-kiyeogsios+ 3798 "
-C: GDK_KEY_Hangul_J_KiyeogSios
+(rt:define-gconstant +key-hangul-j-kiyeogsios+ 3798 "C: GDK_KEY_Hangul_J_KiyeogSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_KiyeogSios.html")
 
 
-(rt:define-gconstant +key-hangul-j-kkogjidalrinieung+ 3833 "
-C: GDK_KEY_Hangul_J_KkogjiDalrinIeung
+(rt:define-gconstant +key-hangul-j-kkogjidalrinieung+ 3833 "C: GDK_KEY_Hangul_J_KkogjiDalrinIeung
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_KkogjiDalrinIeung.html")
 
 
-(rt:define-gconstant +key-hangul-j-mieum+ 3811 "
-C: GDK_KEY_Hangul_J_Mieum
+(rt:define-gconstant +key-hangul-j-mieum+ 3811 "C: GDK_KEY_Hangul_J_Mieum
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Mieum.html")
 
 
-(rt:define-gconstant +key-hangul-j-nieun+ 3799 "
-C: GDK_KEY_Hangul_J_Nieun
+(rt:define-gconstant +key-hangul-j-nieun+ 3799 "C: GDK_KEY_Hangul_J_Nieun
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Nieun.html")
 
 
-(rt:define-gconstant +key-hangul-j-nieunhieuh+ 3801 "
-C: GDK_KEY_Hangul_J_NieunHieuh
+(rt:define-gconstant +key-hangul-j-nieunhieuh+ 3801 "C: GDK_KEY_Hangul_J_NieunHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_NieunHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-j-nieunjieuj+ 3800 "
-C: GDK_KEY_Hangul_J_NieunJieuj
+(rt:define-gconstant +key-hangul-j-nieunjieuj+ 3800 "C: GDK_KEY_Hangul_J_NieunJieuj
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_NieunJieuj.html")
 
 
-(rt:define-gconstant +key-hangul-j-pansios+ 3832 "
-C: GDK_KEY_Hangul_J_PanSios
+(rt:define-gconstant +key-hangul-j-pansios+ 3832 "C: GDK_KEY_Hangul_J_PanSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_PanSios.html")
 
 
-(rt:define-gconstant +key-hangul-j-phieuf+ 3821 "
-C: GDK_KEY_Hangul_J_Phieuf
+(rt:define-gconstant +key-hangul-j-phieuf+ 3821 "C: GDK_KEY_Hangul_J_Phieuf
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Phieuf.html")
 
 
-(rt:define-gconstant +key-hangul-j-pieub+ 3812 "
-C: GDK_KEY_Hangul_J_Pieub
+(rt:define-gconstant +key-hangul-j-pieub+ 3812 "C: GDK_KEY_Hangul_J_Pieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Pieub.html")
 
 
-(rt:define-gconstant +key-hangul-j-pieubsios+ 3813 "
-C: GDK_KEY_Hangul_J_PieubSios
+(rt:define-gconstant +key-hangul-j-pieubsios+ 3813 "C: GDK_KEY_Hangul_J_PieubSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_PieubSios.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieul+ 3803 "
-C: GDK_KEY_Hangul_J_Rieul
+(rt:define-gconstant +key-hangul-j-rieul+ 3803 "C: GDK_KEY_Hangul_J_Rieul
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Rieul.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulhieuh+ 3810 "
-C: GDK_KEY_Hangul_J_RieulHieuh
+(rt:define-gconstant +key-hangul-j-rieulhieuh+ 3810 "C: GDK_KEY_Hangul_J_RieulHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulkiyeog+ 3804 "
-C: GDK_KEY_Hangul_J_RieulKiyeog
+(rt:define-gconstant +key-hangul-j-rieulkiyeog+ 3804 "C: GDK_KEY_Hangul_J_RieulKiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulKiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulmieum+ 3805 "
-C: GDK_KEY_Hangul_J_RieulMieum
+(rt:define-gconstant +key-hangul-j-rieulmieum+ 3805 "C: GDK_KEY_Hangul_J_RieulMieum
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulMieum.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulphieuf+ 3809 "
-C: GDK_KEY_Hangul_J_RieulPhieuf
+(rt:define-gconstant +key-hangul-j-rieulphieuf+ 3809 "C: GDK_KEY_Hangul_J_RieulPhieuf
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulPhieuf.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulpieub+ 3806 "
-C: GDK_KEY_Hangul_J_RieulPieub
+(rt:define-gconstant +key-hangul-j-rieulpieub+ 3806 "C: GDK_KEY_Hangul_J_RieulPieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulPieub.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieulsios+ 3807 "
-C: GDK_KEY_Hangul_J_RieulSios
+(rt:define-gconstant +key-hangul-j-rieulsios+ 3807 "C: GDK_KEY_Hangul_J_RieulSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulSios.html")
 
 
-(rt:define-gconstant +key-hangul-j-rieultieut+ 3808 "
-C: GDK_KEY_Hangul_J_RieulTieut
+(rt:define-gconstant +key-hangul-j-rieultieut+ 3808 "C: GDK_KEY_Hangul_J_RieulTieut
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_RieulTieut.html")
 
 
-(rt:define-gconstant +key-hangul-j-sios+ 3814 "
-C: GDK_KEY_Hangul_J_Sios
+(rt:define-gconstant +key-hangul-j-sios+ 3814 "C: GDK_KEY_Hangul_J_Sios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Sios.html")
 
 
-(rt:define-gconstant +key-hangul-j-ssangkiyeog+ 3797 "
-C: GDK_KEY_Hangul_J_SsangKiyeog
+(rt:define-gconstant +key-hangul-j-ssangkiyeog+ 3797 "C: GDK_KEY_Hangul_J_SsangKiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_SsangKiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-j-ssangsios+ 3815 "
-C: GDK_KEY_Hangul_J_SsangSios
+(rt:define-gconstant +key-hangul-j-ssangsios+ 3815 "C: GDK_KEY_Hangul_J_SsangSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_SsangSios.html")
 
 
-(rt:define-gconstant +key-hangul-j-tieut+ 3820 "
-C: GDK_KEY_Hangul_J_Tieut
+(rt:define-gconstant +key-hangul-j-tieut+ 3820 "C: GDK_KEY_Hangul_J_Tieut
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_Tieut.html")
 
 
-(rt:define-gconstant +key-hangul-j-yeorinhieuh+ 3834 "
-C: GDK_KEY_Hangul_J_YeorinHieuh
+(rt:define-gconstant +key-hangul-j-yeorinhieuh+ 3834 "C: GDK_KEY_Hangul_J_YeorinHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_J_YeorinHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-jamo+ 65333 "
-C: GDK_KEY_Hangul_Jamo
+(rt:define-gconstant +key-hangul-jamo+ 65333 "C: GDK_KEY_Hangul_Jamo
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Jamo.html")
 
 
-(rt:define-gconstant +key-hangul-jeonja+ 65336 "
-C: GDK_KEY_Hangul_Jeonja
+(rt:define-gconstant +key-hangul-jeonja+ 65336 "C: GDK_KEY_Hangul_Jeonja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Jeonja.html")
 
 
-(rt:define-gconstant +key-hangul-jieuj+ 3768 "
-C: GDK_KEY_Hangul_Jieuj
+(rt:define-gconstant +key-hangul-jieuj+ 3768 "C: GDK_KEY_Hangul_Jieuj
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Jieuj.html")
 
 
-(rt:define-gconstant +key-hangul-khieuq+ 3771 "
-C: GDK_KEY_Hangul_Khieuq
+(rt:define-gconstant +key-hangul-khieuq+ 3771 "C: GDK_KEY_Hangul_Khieuq
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Khieuq.html")
 
 
-(rt:define-gconstant +key-hangul-kiyeog+ 3745 "
-C: GDK_KEY_Hangul_Kiyeog
+(rt:define-gconstant +key-hangul-kiyeog+ 3745 "C: GDK_KEY_Hangul_Kiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Kiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-kiyeogsios+ 3747 "
-C: GDK_KEY_Hangul_KiyeogSios
+(rt:define-gconstant +key-hangul-kiyeogsios+ 3747 "C: GDK_KEY_Hangul_KiyeogSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_KiyeogSios.html")
 
 
-(rt:define-gconstant +key-hangul-kkogjidalrinieung+ 3827 "
-C: GDK_KEY_Hangul_KkogjiDalrinIeung
+(rt:define-gconstant +key-hangul-kkogjidalrinieung+ 3827 "C: GDK_KEY_Hangul_KkogjiDalrinIeung
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_KkogjiDalrinIeung.html")
 
 
-(rt:define-gconstant +key-hangul-mieum+ 3761 "
-C: GDK_KEY_Hangul_Mieum
+(rt:define-gconstant +key-hangul-mieum+ 3761 "C: GDK_KEY_Hangul_Mieum
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Mieum.html")
 
 
-(rt:define-gconstant +key-hangul-multiplecandidate+ 65341 "
-C: GDK_KEY_Hangul_MultipleCandidate
+(rt:define-gconstant +key-hangul-multiplecandidate+ 65341 "C: GDK_KEY_Hangul_MultipleCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_MultipleCandidate.html")
 
 
-(rt:define-gconstant +key-hangul-nieun+ 3748 "
-C: GDK_KEY_Hangul_Nieun
+(rt:define-gconstant +key-hangul-nieun+ 3748 "C: GDK_KEY_Hangul_Nieun
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Nieun.html")
 
 
-(rt:define-gconstant +key-hangul-nieunhieuh+ 3750 "
-C: GDK_KEY_Hangul_NieunHieuh
+(rt:define-gconstant +key-hangul-nieunhieuh+ 3750 "C: GDK_KEY_Hangul_NieunHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_NieunHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-nieunjieuj+ 3749 "
-C: GDK_KEY_Hangul_NieunJieuj
+(rt:define-gconstant +key-hangul-nieunjieuj+ 3749 "C: GDK_KEY_Hangul_NieunJieuj
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_NieunJieuj.html")
 
 
-(rt:define-gconstant +key-hangul-o+ 3783 "
-C: GDK_KEY_Hangul_O
+(rt:define-gconstant +key-hangul-o+ 3783 "C: GDK_KEY_Hangul_O
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_O.html")
 
 
-(rt:define-gconstant +key-hangul-oe+ 3786 "
-C: GDK_KEY_Hangul_OE
+(rt:define-gconstant +key-hangul-oe+ 3786 "C: GDK_KEY_Hangul_OE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_OE.html")
 
 
-(rt:define-gconstant +key-hangul-pansios+ 3826 "
-C: GDK_KEY_Hangul_PanSios
+(rt:define-gconstant +key-hangul-pansios+ 3826 "C: GDK_KEY_Hangul_PanSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_PanSios.html")
 
 
-(rt:define-gconstant +key-hangul-phieuf+ 3773 "
-C: GDK_KEY_Hangul_Phieuf
+(rt:define-gconstant +key-hangul-phieuf+ 3773 "C: GDK_KEY_Hangul_Phieuf
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Phieuf.html")
 
 
-(rt:define-gconstant +key-hangul-pieub+ 3762 "
-C: GDK_KEY_Hangul_Pieub
+(rt:define-gconstant +key-hangul-pieub+ 3762 "C: GDK_KEY_Hangul_Pieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Pieub.html")
 
 
-(rt:define-gconstant +key-hangul-pieubsios+ 3764 "
-C: GDK_KEY_Hangul_PieubSios
+(rt:define-gconstant +key-hangul-pieubsios+ 3764 "C: GDK_KEY_Hangul_PieubSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_PieubSios.html")
 
 
-(rt:define-gconstant +key-hangul-posthanja+ 65339 "
-C: GDK_KEY_Hangul_PostHanja
+(rt:define-gconstant +key-hangul-posthanja+ 65339 "C: GDK_KEY_Hangul_PostHanja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_PostHanja.html")
 
 
-(rt:define-gconstant +key-hangul-prehanja+ 65338 "
-C: GDK_KEY_Hangul_PreHanja
+(rt:define-gconstant +key-hangul-prehanja+ 65338 "C: GDK_KEY_Hangul_PreHanja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_PreHanja.html")
 
 
-(rt:define-gconstant +key-hangul-previouscandidate+ 65342 "
-C: GDK_KEY_Hangul_PreviousCandidate
+(rt:define-gconstant +key-hangul-previouscandidate+ 65342 "C: GDK_KEY_Hangul_PreviousCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_PreviousCandidate.html")
 
 
-(rt:define-gconstant +key-hangul-rieul+ 3753 "
-C: GDK_KEY_Hangul_Rieul
+(rt:define-gconstant +key-hangul-rieul+ 3753 "C: GDK_KEY_Hangul_Rieul
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Rieul.html")
 
 
-(rt:define-gconstant +key-hangul-rieulhieuh+ 3760 "
-C: GDK_KEY_Hangul_RieulHieuh
+(rt:define-gconstant +key-hangul-rieulhieuh+ 3760 "C: GDK_KEY_Hangul_RieulHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-rieulkiyeog+ 3754 "
-C: GDK_KEY_Hangul_RieulKiyeog
+(rt:define-gconstant +key-hangul-rieulkiyeog+ 3754 "C: GDK_KEY_Hangul_RieulKiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulKiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-rieulmieum+ 3755 "
-C: GDK_KEY_Hangul_RieulMieum
+(rt:define-gconstant +key-hangul-rieulmieum+ 3755 "C: GDK_KEY_Hangul_RieulMieum
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulMieum.html")
 
 
-(rt:define-gconstant +key-hangul-rieulphieuf+ 3759 "
-C: GDK_KEY_Hangul_RieulPhieuf
+(rt:define-gconstant +key-hangul-rieulphieuf+ 3759 "C: GDK_KEY_Hangul_RieulPhieuf
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulPhieuf.html")
 
 
-(rt:define-gconstant +key-hangul-rieulpieub+ 3756 "
-C: GDK_KEY_Hangul_RieulPieub
+(rt:define-gconstant +key-hangul-rieulpieub+ 3756 "C: GDK_KEY_Hangul_RieulPieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulPieub.html")
 
 
-(rt:define-gconstant +key-hangul-rieulsios+ 3757 "
-C: GDK_KEY_Hangul_RieulSios
+(rt:define-gconstant +key-hangul-rieulsios+ 3757 "C: GDK_KEY_Hangul_RieulSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulSios.html")
 
 
-(rt:define-gconstant +key-hangul-rieultieut+ 3758 "
-C: GDK_KEY_Hangul_RieulTieut
+(rt:define-gconstant +key-hangul-rieultieut+ 3758 "C: GDK_KEY_Hangul_RieulTieut
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulTieut.html")
 
 
-(rt:define-gconstant +key-hangul-rieulyeorinhieuh+ 3823 "
-C: GDK_KEY_Hangul_RieulYeorinHieuh
+(rt:define-gconstant +key-hangul-rieulyeorinhieuh+ 3823 "C: GDK_KEY_Hangul_RieulYeorinHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_RieulYeorinHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-romaja+ 65334 "
-C: GDK_KEY_Hangul_Romaja
+(rt:define-gconstant +key-hangul-romaja+ 65334 "C: GDK_KEY_Hangul_Romaja
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Romaja.html")
 
 
-(rt:define-gconstant +key-hangul-singlecandidate+ 65340 "
-C: GDK_KEY_Hangul_SingleCandidate
+(rt:define-gconstant +key-hangul-singlecandidate+ 65340 "C: GDK_KEY_Hangul_SingleCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SingleCandidate.html")
 
 
-(rt:define-gconstant +key-hangul-sios+ 3765 "
-C: GDK_KEY_Hangul_Sios
+(rt:define-gconstant +key-hangul-sios+ 3765 "C: GDK_KEY_Hangul_Sios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Sios.html")
 
 
-(rt:define-gconstant +key-hangul-special+ 65343 "
-C: GDK_KEY_Hangul_Special
+(rt:define-gconstant +key-hangul-special+ 65343 "C: GDK_KEY_Hangul_Special
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Special.html")
 
 
-(rt:define-gconstant +key-hangul-ssangdikeud+ 3752 "
-C: GDK_KEY_Hangul_SsangDikeud
+(rt:define-gconstant +key-hangul-ssangdikeud+ 3752 "C: GDK_KEY_Hangul_SsangDikeud
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SsangDikeud.html")
 
 
-(rt:define-gconstant +key-hangul-ssangjieuj+ 3769 "
-C: GDK_KEY_Hangul_SsangJieuj
+(rt:define-gconstant +key-hangul-ssangjieuj+ 3769 "C: GDK_KEY_Hangul_SsangJieuj
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SsangJieuj.html")
 
 
-(rt:define-gconstant +key-hangul-ssangkiyeog+ 3746 "
-C: GDK_KEY_Hangul_SsangKiyeog
+(rt:define-gconstant +key-hangul-ssangkiyeog+ 3746 "C: GDK_KEY_Hangul_SsangKiyeog
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SsangKiyeog.html")
 
 
-(rt:define-gconstant +key-hangul-ssangpieub+ 3763 "
-C: GDK_KEY_Hangul_SsangPieub
+(rt:define-gconstant +key-hangul-ssangpieub+ 3763 "C: GDK_KEY_Hangul_SsangPieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SsangPieub.html")
 
 
-(rt:define-gconstant +key-hangul-ssangsios+ 3766 "
-C: GDK_KEY_Hangul_SsangSios
+(rt:define-gconstant +key-hangul-ssangsios+ 3766 "C: GDK_KEY_Hangul_SsangSios
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SsangSios.html")
 
 
-(rt:define-gconstant +key-hangul-start+ 65330 "
-C: GDK_KEY_Hangul_Start
+(rt:define-gconstant +key-hangul-start+ 65330 "C: GDK_KEY_Hangul_Start
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Start.html")
 
 
-(rt:define-gconstant +key-hangul-sunkyeongeummieum+ 3824 "
-C: GDK_KEY_Hangul_SunkyeongeumMieum
+(rt:define-gconstant +key-hangul-sunkyeongeummieum+ 3824 "C: GDK_KEY_Hangul_SunkyeongeumMieum
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SunkyeongeumMieum.html")
 
 
-(rt:define-gconstant +key-hangul-sunkyeongeumphieuf+ 3828 "
-C: GDK_KEY_Hangul_SunkyeongeumPhieuf
+(rt:define-gconstant +key-hangul-sunkyeongeumphieuf+ 3828 "C: GDK_KEY_Hangul_SunkyeongeumPhieuf
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SunkyeongeumPhieuf.html")
 
 
-(rt:define-gconstant +key-hangul-sunkyeongeumpieub+ 3825 "
-C: GDK_KEY_Hangul_SunkyeongeumPieub
+(rt:define-gconstant +key-hangul-sunkyeongeumpieub+ 3825 "C: GDK_KEY_Hangul_SunkyeongeumPieub
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_SunkyeongeumPieub.html")
 
 
-(rt:define-gconstant +key-hangul-tieut+ 3772 "
-C: GDK_KEY_Hangul_Tieut
+(rt:define-gconstant +key-hangul-tieut+ 3772 "C: GDK_KEY_Hangul_Tieut
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_Tieut.html")
 
 
-(rt:define-gconstant +key-hangul-u+ 3788 "
-C: GDK_KEY_Hangul_U
+(rt:define-gconstant +key-hangul-u+ 3788 "C: GDK_KEY_Hangul_U
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_U.html")
 
 
-(rt:define-gconstant +key-hangul-wa+ 3784 "
-C: GDK_KEY_Hangul_WA
+(rt:define-gconstant +key-hangul-wa+ 3784 "C: GDK_KEY_Hangul_WA
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_WA.html")
 
 
-(rt:define-gconstant +key-hangul-wae+ 3785 "
-C: GDK_KEY_Hangul_WAE
+(rt:define-gconstant +key-hangul-wae+ 3785 "C: GDK_KEY_Hangul_WAE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_WAE.html")
 
 
-(rt:define-gconstant +key-hangul-we+ 3790 "
-C: GDK_KEY_Hangul_WE
+(rt:define-gconstant +key-hangul-we+ 3790 "C: GDK_KEY_Hangul_WE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_WE.html")
 
 
-(rt:define-gconstant +key-hangul-weo+ 3789 "
-C: GDK_KEY_Hangul_WEO
+(rt:define-gconstant +key-hangul-weo+ 3789 "C: GDK_KEY_Hangul_WEO
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_WEO.html")
 
 
-(rt:define-gconstant +key-hangul-wi+ 3791 "
-C: GDK_KEY_Hangul_WI
+(rt:define-gconstant +key-hangul-wi+ 3791 "C: GDK_KEY_Hangul_WI
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_WI.html")
 
 
-(rt:define-gconstant +key-hangul-ya+ 3777 "
-C: GDK_KEY_Hangul_YA
+(rt:define-gconstant +key-hangul-ya+ 3777 "C: GDK_KEY_Hangul_YA
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YA.html")
 
 
-(rt:define-gconstant +key-hangul-yae+ 3778 "
-C: GDK_KEY_Hangul_YAE
+(rt:define-gconstant +key-hangul-yae+ 3778 "C: GDK_KEY_Hangul_YAE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YAE.html")
 
 
-(rt:define-gconstant +key-hangul-ye+ 3782 "
-C: GDK_KEY_Hangul_YE
+(rt:define-gconstant +key-hangul-ye+ 3782 "C: GDK_KEY_Hangul_YE
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YE.html")
 
 
-(rt:define-gconstant +key-hangul-yeo+ 3781 "
-C: GDK_KEY_Hangul_YEO
+(rt:define-gconstant +key-hangul-yeo+ 3781 "C: GDK_KEY_Hangul_YEO
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YEO.html")
 
 
-(rt:define-gconstant +key-hangul-yi+ 3794 "
-C: GDK_KEY_Hangul_YI
+(rt:define-gconstant +key-hangul-yi+ 3794 "C: GDK_KEY_Hangul_YI
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YI.html")
 
 
-(rt:define-gconstant +key-hangul-yo+ 3787 "
-C: GDK_KEY_Hangul_YO
+(rt:define-gconstant +key-hangul-yo+ 3787 "C: GDK_KEY_Hangul_YO
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YO.html")
 
 
-(rt:define-gconstant +key-hangul-yu+ 3792 "
-C: GDK_KEY_Hangul_YU
+(rt:define-gconstant +key-hangul-yu+ 3792 "C: GDK_KEY_Hangul_YU
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YU.html")
 
 
-(rt:define-gconstant +key-hangul-yeorinhieuh+ 3829 "
-C: GDK_KEY_Hangul_YeorinHieuh
+(rt:define-gconstant +key-hangul-yeorinhieuh+ 3829 "C: GDK_KEY_Hangul_YeorinHieuh
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_YeorinHieuh.html")
 
 
-(rt:define-gconstant +key-hangul-switch+ 65406 "
-C: GDK_KEY_Hangul_switch
+(rt:define-gconstant +key-hangul-switch+ 65406 "C: GDK_KEY_Hangul_switch
 See: https://docs.gtk.org/gdk4/const.KEY_Hangul_switch.html")
 
 
-(rt:define-gconstant +key-hangupphone+ 268964286 "
-C: GDK_KEY_HangupPhone
+(rt:define-gconstant +key-hangupphone+ 268964286 "C: GDK_KEY_HangupPhone
 See: https://docs.gtk.org/gdk4/const.KEY_HangupPhone.html")
 
 
-(rt:define-gconstant +key-hankaku+ 65321 "
-C: GDK_KEY_Hankaku
+(rt:define-gconstant +key-hankaku+ 65321 "C: GDK_KEY_Hankaku
 See: https://docs.gtk.org/gdk4/const.KEY_Hankaku.html")
 
 
-(rt:define-gconstant +key-hcircumflex+ 678 "
-C: GDK_KEY_Hcircumflex
+(rt:define-gconstant +key-hcircumflex+ 678 "C: GDK_KEY_Hcircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Hcircumflex.html")
 
 
-(rt:define-gconstant +key-hebrew-switch+ 65406 "
-C: GDK_KEY_Hebrew_switch
+(rt:define-gconstant +key-hebrew-switch+ 65406 "C: GDK_KEY_Hebrew_switch
 See: https://docs.gtk.org/gdk4/const.KEY_Hebrew_switch.html")
 
 
-(rt:define-gconstant +key-help+ 65386 "
-C: GDK_KEY_Help
+(rt:define-gconstant +key-help+ 65386 "C: GDK_KEY_Help
 See: https://docs.gtk.org/gdk4/const.KEY_Help.html")
 
 
-(rt:define-gconstant +key-henkan+ 65315 "
-C: GDK_KEY_Henkan
+(rt:define-gconstant +key-henkan+ 65315 "C: GDK_KEY_Henkan
 See: https://docs.gtk.org/gdk4/const.KEY_Henkan.html")
 
 
-(rt:define-gconstant +key-henkan-mode+ 65315 "
-C: GDK_KEY_Henkan_Mode
+(rt:define-gconstant +key-henkan-mode+ 65315 "C: GDK_KEY_Henkan_Mode
 See: https://docs.gtk.org/gdk4/const.KEY_Henkan_Mode.html")
 
 
-(rt:define-gconstant +key-hibernate+ 269025192 "
-C: GDK_KEY_Hibernate
+(rt:define-gconstant +key-hibernate+ 269025192 "C: GDK_KEY_Hibernate
 See: https://docs.gtk.org/gdk4/const.KEY_Hibernate.html")
 
 
-(rt:define-gconstant +key-hiragana+ 65317 "
-C: GDK_KEY_Hiragana
+(rt:define-gconstant +key-hiragana+ 65317 "C: GDK_KEY_Hiragana
 See: https://docs.gtk.org/gdk4/const.KEY_Hiragana.html")
 
 
-(rt:define-gconstant +key-hiragana-katakana+ 65319 "
-C: GDK_KEY_Hiragana_Katakana
+(rt:define-gconstant +key-hiragana-katakana+ 65319 "C: GDK_KEY_Hiragana_Katakana
 See: https://docs.gtk.org/gdk4/const.KEY_Hiragana_Katakana.html")
 
 
-(rt:define-gconstant +key-history+ 269025079 "
-C: GDK_KEY_History
+(rt:define-gconstant +key-history+ 269025079 "C: GDK_KEY_History
 See: https://docs.gtk.org/gdk4/const.KEY_History.html")
 
 
-(rt:define-gconstant +key-home+ 65360 "
-C: GDK_KEY_Home
+(rt:define-gconstant +key-home+ 65360 "C: GDK_KEY_Home
 See: https://docs.gtk.org/gdk4/const.KEY_Home.html")
 
 
-(rt:define-gconstant +key-homepage+ 269025048 "
-C: GDK_KEY_HomePage
+(rt:define-gconstant +key-homepage+ 269025048 "C: GDK_KEY_HomePage
 See: https://docs.gtk.org/gdk4/const.KEY_HomePage.html")
 
 
-(rt:define-gconstant +key-hotlinks+ 269025082 "
-C: GDK_KEY_HotLinks
+(rt:define-gconstant +key-hotlinks+ 269025082 "C: GDK_KEY_HotLinks
 See: https://docs.gtk.org/gdk4/const.KEY_HotLinks.html")
 
 
-(rt:define-gconstant +key-hstroke+ 673 "
-C: GDK_KEY_Hstroke
+(rt:define-gconstant +key-hstroke+ 673 "C: GDK_KEY_Hstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Hstroke.html")
 
 
-(rt:define-gconstant +key-hyper-l+ 65517 "
-C: GDK_KEY_Hyper_L
+(rt:define-gconstant +key-hyper-l+ 65517 "C: GDK_KEY_Hyper_L
 See: https://docs.gtk.org/gdk4/const.KEY_Hyper_L.html")
 
 
-(rt:define-gconstant +key-hyper-r+ 65518 "
-C: GDK_KEY_Hyper_R
+(rt:define-gconstant +key-hyper-r+ 65518 "C: GDK_KEY_Hyper_R
 See: https://docs.gtk.org/gdk4/const.KEY_Hyper_R.html")
 
 
-(rt:define-gconstant +key-i+ 73 "
-C: GDK_KEY_I
+(rt:define-gconstant +key-i+ 73 "C: GDK_KEY_I
 See: https://docs.gtk.org/gdk4/const.KEY_I.html")
 
 
-(rt:define-gconstant +key-iso-center-object+ 65075 "
-C: GDK_KEY_ISO_Center_Object
+(rt:define-gconstant +key-iso-center-object+ 65075 "C: GDK_KEY_ISO_Center_Object
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Center_Object.html")
 
 
-(rt:define-gconstant +key-iso-continuous-underline+ 65072 "
-C: GDK_KEY_ISO_Continuous_Underline
+(rt:define-gconstant +key-iso-continuous-underline+ 65072 "C: GDK_KEY_ISO_Continuous_Underline
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Continuous_Underline.html")
 
 
-(rt:define-gconstant +key-iso-discontinuous-underline+ 65073 "
-C: GDK_KEY_ISO_Discontinuous_Underline
+(rt:define-gconstant +key-iso-discontinuous-underline+ 65073 "C: GDK_KEY_ISO_Discontinuous_Underline
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Discontinuous_Underline.html")
 
 
-(rt:define-gconstant +key-iso-emphasize+ 65074 "
-C: GDK_KEY_ISO_Emphasize
+(rt:define-gconstant +key-iso-emphasize+ 65074 "C: GDK_KEY_ISO_Emphasize
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Emphasize.html")
 
 
-(rt:define-gconstant +key-iso-enter+ 65076 "
-C: GDK_KEY_ISO_Enter
+(rt:define-gconstant +key-iso-enter+ 65076 "C: GDK_KEY_ISO_Enter
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Enter.html")
 
 
-(rt:define-gconstant +key-iso-fast-cursor-down+ 65071 "
-C: GDK_KEY_ISO_Fast_Cursor_Down
+(rt:define-gconstant +key-iso-fast-cursor-down+ 65071 "C: GDK_KEY_ISO_Fast_Cursor_Down
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Fast_Cursor_Down.html")
 
 
-(rt:define-gconstant +key-iso-fast-cursor-left+ 65068 "
-C: GDK_KEY_ISO_Fast_Cursor_Left
+(rt:define-gconstant +key-iso-fast-cursor-left+ 65068 "C: GDK_KEY_ISO_Fast_Cursor_Left
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Fast_Cursor_Left.html")
 
 
-(rt:define-gconstant +key-iso-fast-cursor-right+ 65069 "
-C: GDK_KEY_ISO_Fast_Cursor_Right
+(rt:define-gconstant +key-iso-fast-cursor-right+ 65069 "C: GDK_KEY_ISO_Fast_Cursor_Right
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Fast_Cursor_Right.html")
 
 
-(rt:define-gconstant +key-iso-fast-cursor-up+ 65070 "
-C: GDK_KEY_ISO_Fast_Cursor_Up
+(rt:define-gconstant +key-iso-fast-cursor-up+ 65070 "C: GDK_KEY_ISO_Fast_Cursor_Up
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Fast_Cursor_Up.html")
 
 
-(rt:define-gconstant +key-iso-first-group+ 65036 "
-C: GDK_KEY_ISO_First_Group
+(rt:define-gconstant +key-iso-first-group+ 65036 "C: GDK_KEY_ISO_First_Group
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_First_Group.html")
 
 
-(rt:define-gconstant +key-iso-first-group-lock+ 65037 "
-C: GDK_KEY_ISO_First_Group_Lock
+(rt:define-gconstant +key-iso-first-group-lock+ 65037 "C: GDK_KEY_ISO_First_Group_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_First_Group_Lock.html")
 
 
-(rt:define-gconstant +key-iso-group-latch+ 65030 "
-C: GDK_KEY_ISO_Group_Latch
+(rt:define-gconstant +key-iso-group-latch+ 65030 "C: GDK_KEY_ISO_Group_Latch
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Group_Latch.html")
 
 
-(rt:define-gconstant +key-iso-group-lock+ 65031 "
-C: GDK_KEY_ISO_Group_Lock
+(rt:define-gconstant +key-iso-group-lock+ 65031 "C: GDK_KEY_ISO_Group_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Group_Lock.html")
 
 
-(rt:define-gconstant +key-iso-group-shift+ 65406 "
-C: GDK_KEY_ISO_Group_Shift
+(rt:define-gconstant +key-iso-group-shift+ 65406 "C: GDK_KEY_ISO_Group_Shift
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Group_Shift.html")
 
 
-(rt:define-gconstant +key-iso-last-group+ 65038 "
-C: GDK_KEY_ISO_Last_Group
+(rt:define-gconstant +key-iso-last-group+ 65038 "C: GDK_KEY_ISO_Last_Group
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Last_Group.html")
 
 
-(rt:define-gconstant +key-iso-last-group-lock+ 65039 "
-C: GDK_KEY_ISO_Last_Group_Lock
+(rt:define-gconstant +key-iso-last-group-lock+ 65039 "C: GDK_KEY_ISO_Last_Group_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Last_Group_Lock.html")
 
 
-(rt:define-gconstant +key-iso-left-tab+ 65056 "
-C: GDK_KEY_ISO_Left_Tab
+(rt:define-gconstant +key-iso-left-tab+ 65056 "C: GDK_KEY_ISO_Left_Tab
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Left_Tab.html")
 
 
-(rt:define-gconstant +key-iso-level2-latch+ 65026 "
-C: GDK_KEY_ISO_Level2_Latch
+(rt:define-gconstant +key-iso-level2-latch+ 65026 "C: GDK_KEY_ISO_Level2_Latch
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level2_Latch.html")
 
 
-(rt:define-gconstant +key-iso-level3-latch+ 65028 "
-C: GDK_KEY_ISO_Level3_Latch
+(rt:define-gconstant +key-iso-level3-latch+ 65028 "C: GDK_KEY_ISO_Level3_Latch
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level3_Latch.html")
 
 
-(rt:define-gconstant +key-iso-level3-lock+ 65029 "
-C: GDK_KEY_ISO_Level3_Lock
+(rt:define-gconstant +key-iso-level3-lock+ 65029 "C: GDK_KEY_ISO_Level3_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level3_Lock.html")
 
 
-(rt:define-gconstant +key-iso-level3-shift+ 65027 "
-C: GDK_KEY_ISO_Level3_Shift
+(rt:define-gconstant +key-iso-level3-shift+ 65027 "C: GDK_KEY_ISO_Level3_Shift
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level3_Shift.html")
 
 
-(rt:define-gconstant +key-iso-level5-latch+ 65042 "
-C: GDK_KEY_ISO_Level5_Latch
+(rt:define-gconstant +key-iso-level5-latch+ 65042 "C: GDK_KEY_ISO_Level5_Latch
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level5_Latch.html")
 
 
-(rt:define-gconstant +key-iso-level5-lock+ 65043 "
-C: GDK_KEY_ISO_Level5_Lock
+(rt:define-gconstant +key-iso-level5-lock+ 65043 "C: GDK_KEY_ISO_Level5_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level5_Lock.html")
 
 
-(rt:define-gconstant +key-iso-level5-shift+ 65041 "
-C: GDK_KEY_ISO_Level5_Shift
+(rt:define-gconstant +key-iso-level5-shift+ 65041 "C: GDK_KEY_ISO_Level5_Shift
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Level5_Shift.html")
 
 
-(rt:define-gconstant +key-iso-lock+ 65025 "
-C: GDK_KEY_ISO_Lock
+(rt:define-gconstant +key-iso-lock+ 65025 "C: GDK_KEY_ISO_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Lock.html")
 
 
-(rt:define-gconstant +key-iso-move-line-down+ 65058 "
-C: GDK_KEY_ISO_Move_Line_Down
+(rt:define-gconstant +key-iso-move-line-down+ 65058 "C: GDK_KEY_ISO_Move_Line_Down
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Move_Line_Down.html")
 
 
-(rt:define-gconstant +key-iso-move-line-up+ 65057 "
-C: GDK_KEY_ISO_Move_Line_Up
+(rt:define-gconstant +key-iso-move-line-up+ 65057 "C: GDK_KEY_ISO_Move_Line_Up
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Move_Line_Up.html")
 
 
-(rt:define-gconstant +key-iso-next-group+ 65032 "
-C: GDK_KEY_ISO_Next_Group
+(rt:define-gconstant +key-iso-next-group+ 65032 "C: GDK_KEY_ISO_Next_Group
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Next_Group.html")
 
 
-(rt:define-gconstant +key-iso-next-group-lock+ 65033 "
-C: GDK_KEY_ISO_Next_Group_Lock
+(rt:define-gconstant +key-iso-next-group-lock+ 65033 "C: GDK_KEY_ISO_Next_Group_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Next_Group_Lock.html")
 
 
-(rt:define-gconstant +key-iso-partial-line-down+ 65060 "
-C: GDK_KEY_ISO_Partial_Line_Down
+(rt:define-gconstant +key-iso-partial-line-down+ 65060 "C: GDK_KEY_ISO_Partial_Line_Down
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Partial_Line_Down.html")
 
 
-(rt:define-gconstant +key-iso-partial-line-up+ 65059 "
-C: GDK_KEY_ISO_Partial_Line_Up
+(rt:define-gconstant +key-iso-partial-line-up+ 65059 "C: GDK_KEY_ISO_Partial_Line_Up
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Partial_Line_Up.html")
 
 
-(rt:define-gconstant +key-iso-partial-space-left+ 65061 "
-C: GDK_KEY_ISO_Partial_Space_Left
+(rt:define-gconstant +key-iso-partial-space-left+ 65061 "C: GDK_KEY_ISO_Partial_Space_Left
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Partial_Space_Left.html")
 
 
-(rt:define-gconstant +key-iso-partial-space-right+ 65062 "
-C: GDK_KEY_ISO_Partial_Space_Right
+(rt:define-gconstant +key-iso-partial-space-right+ 65062 "C: GDK_KEY_ISO_Partial_Space_Right
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Partial_Space_Right.html")
 
 
-(rt:define-gconstant +key-iso-prev-group+ 65034 "
-C: GDK_KEY_ISO_Prev_Group
+(rt:define-gconstant +key-iso-prev-group+ 65034 "C: GDK_KEY_ISO_Prev_Group
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Prev_Group.html")
 
 
-(rt:define-gconstant +key-iso-prev-group-lock+ 65035 "
-C: GDK_KEY_ISO_Prev_Group_Lock
+(rt:define-gconstant +key-iso-prev-group-lock+ 65035 "C: GDK_KEY_ISO_Prev_Group_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Prev_Group_Lock.html")
 
 
-(rt:define-gconstant +key-iso-release-both-margins+ 65067 "
-C: GDK_KEY_ISO_Release_Both_Margins
+(rt:define-gconstant +key-iso-release-both-margins+ 65067 "C: GDK_KEY_ISO_Release_Both_Margins
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Release_Both_Margins.html")
 
 
-(rt:define-gconstant +key-iso-release-margin-left+ 65065 "
-C: GDK_KEY_ISO_Release_Margin_Left
+(rt:define-gconstant +key-iso-release-margin-left+ 65065 "C: GDK_KEY_ISO_Release_Margin_Left
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Release_Margin_Left.html")
 
 
-(rt:define-gconstant +key-iso-release-margin-right+ 65066 "
-C: GDK_KEY_ISO_Release_Margin_Right
+(rt:define-gconstant +key-iso-release-margin-right+ 65066 "C: GDK_KEY_ISO_Release_Margin_Right
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Release_Margin_Right.html")
 
 
-(rt:define-gconstant +key-iso-set-margin-left+ 65063 "
-C: GDK_KEY_ISO_Set_Margin_Left
+(rt:define-gconstant +key-iso-set-margin-left+ 65063 "C: GDK_KEY_ISO_Set_Margin_Left
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Set_Margin_Left.html")
 
 
-(rt:define-gconstant +key-iso-set-margin-right+ 65064 "
-C: GDK_KEY_ISO_Set_Margin_Right
+(rt:define-gconstant +key-iso-set-margin-right+ 65064 "C: GDK_KEY_ISO_Set_Margin_Right
 See: https://docs.gtk.org/gdk4/const.KEY_ISO_Set_Margin_Right.html")
 
 
-(rt:define-gconstant +key-iabovedot+ 681 "
-C: GDK_KEY_Iabovedot
+(rt:define-gconstant +key-iabovedot+ 681 "C: GDK_KEY_Iabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Iabovedot.html")
 
 
-(rt:define-gconstant +key-iacute+ 205 "
-C: GDK_KEY_Iacute
+(rt:define-gconstant +key-iacute+ 205 "C: GDK_KEY_Iacute
 See: https://docs.gtk.org/gdk4/const.KEY_Iacute.html")
 
 
-(rt:define-gconstant +key-ibelowdot+ 16785098 "
-C: GDK_KEY_Ibelowdot
+(rt:define-gconstant +key-ibelowdot+ 16785098 "C: GDK_KEY_Ibelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ibelowdot.html")
 
 
-(rt:define-gconstant +key-ibreve+ 16777516 "
-C: GDK_KEY_Ibreve
+(rt:define-gconstant +key-ibreve+ 16777516 "C: GDK_KEY_Ibreve
 See: https://docs.gtk.org/gdk4/const.KEY_Ibreve.html")
 
 
-(rt:define-gconstant +key-icircumflex+ 206 "
-C: GDK_KEY_Icircumflex
+(rt:define-gconstant +key-icircumflex+ 206 "C: GDK_KEY_Icircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Icircumflex.html")
 
 
-(rt:define-gconstant +key-idiaeresis+ 207 "
-C: GDK_KEY_Idiaeresis
+(rt:define-gconstant +key-idiaeresis+ 207 "C: GDK_KEY_Idiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Idiaeresis.html")
 
 
-(rt:define-gconstant +key-igrave+ 204 "
-C: GDK_KEY_Igrave
+(rt:define-gconstant +key-igrave+ 204 "C: GDK_KEY_Igrave
 See: https://docs.gtk.org/gdk4/const.KEY_Igrave.html")
 
 
-(rt:define-gconstant +key-ihook+ 16785096 "
-C: GDK_KEY_Ihook
+(rt:define-gconstant +key-ihook+ 16785096 "C: GDK_KEY_Ihook
 See: https://docs.gtk.org/gdk4/const.KEY_Ihook.html")
 
 
-(rt:define-gconstant +key-imacron+ 975 "
-C: GDK_KEY_Imacron
+(rt:define-gconstant +key-imacron+ 975 "C: GDK_KEY_Imacron
 See: https://docs.gtk.org/gdk4/const.KEY_Imacron.html")
 
 
-(rt:define-gconstant +key-images+ 268964282 "
-C: GDK_KEY_Images
+(rt:define-gconstant +key-images+ 268964282 "C: GDK_KEY_Images
 See: https://docs.gtk.org/gdk4/const.KEY_Images.html")
 
 
-(rt:define-gconstant +key-info+ 268964198 "
-C: GDK_KEY_Info
+(rt:define-gconstant +key-info+ 268964198 "C: GDK_KEY_Info
 See: https://docs.gtk.org/gdk4/const.KEY_Info.html")
 
 
-(rt:define-gconstant +key-insert+ 65379 "
-C: GDK_KEY_Insert
+(rt:define-gconstant +key-insert+ 65379 "C: GDK_KEY_Insert
 See: https://docs.gtk.org/gdk4/const.KEY_Insert.html")
 
 
-(rt:define-gconstant +key-iogonek+ 967 "
-C: GDK_KEY_Iogonek
+(rt:define-gconstant +key-iogonek+ 967 "C: GDK_KEY_Iogonek
 See: https://docs.gtk.org/gdk4/const.KEY_Iogonek.html")
 
 
-(rt:define-gconstant +key-itilde+ 933 "
-C: GDK_KEY_Itilde
+(rt:define-gconstant +key-itilde+ 933 "C: GDK_KEY_Itilde
 See: https://docs.gtk.org/gdk4/const.KEY_Itilde.html")
 
 
-(rt:define-gconstant +key-j+ 74 "
-C: GDK_KEY_J
+(rt:define-gconstant +key-j+ 74 "C: GDK_KEY_J
 See: https://docs.gtk.org/gdk4/const.KEY_J.html")
 
 
-(rt:define-gconstant +key-jcircumflex+ 684 "
-C: GDK_KEY_Jcircumflex
+(rt:define-gconstant +key-jcircumflex+ 684 "C: GDK_KEY_Jcircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Jcircumflex.html")
 
 
-(rt:define-gconstant +key-journal+ 268964418 "
-C: GDK_KEY_Journal
+(rt:define-gconstant +key-journal+ 268964418 "C: GDK_KEY_Journal
 See: https://docs.gtk.org/gdk4/const.KEY_Journal.html")
 
 
-(rt:define-gconstant +key-k+ 75 "
-C: GDK_KEY_K
+(rt:define-gconstant +key-k+ 75 "C: GDK_KEY_K
 See: https://docs.gtk.org/gdk4/const.KEY_K.html")
 
 
-(rt:define-gconstant +key-kp-0+ 65456 "
-C: GDK_KEY_KP_0
+(rt:define-gconstant +key-kp-0+ 65456 "C: GDK_KEY_KP_0
 See: https://docs.gtk.org/gdk4/const.KEY_KP_0.html")
 
 
-(rt:define-gconstant +key-kp-1+ 65457 "
-C: GDK_KEY_KP_1
+(rt:define-gconstant +key-kp-1+ 65457 "C: GDK_KEY_KP_1
 See: https://docs.gtk.org/gdk4/const.KEY_KP_1.html")
 
 
-(rt:define-gconstant +key-kp-2+ 65458 "
-C: GDK_KEY_KP_2
+(rt:define-gconstant +key-kp-2+ 65458 "C: GDK_KEY_KP_2
 See: https://docs.gtk.org/gdk4/const.KEY_KP_2.html")
 
 
-(rt:define-gconstant +key-kp-3+ 65459 "
-C: GDK_KEY_KP_3
+(rt:define-gconstant +key-kp-3+ 65459 "C: GDK_KEY_KP_3
 See: https://docs.gtk.org/gdk4/const.KEY_KP_3.html")
 
 
-(rt:define-gconstant +key-kp-4+ 65460 "
-C: GDK_KEY_KP_4
+(rt:define-gconstant +key-kp-4+ 65460 "C: GDK_KEY_KP_4
 See: https://docs.gtk.org/gdk4/const.KEY_KP_4.html")
 
 
-(rt:define-gconstant +key-kp-5+ 65461 "
-C: GDK_KEY_KP_5
+(rt:define-gconstant +key-kp-5+ 65461 "C: GDK_KEY_KP_5
 See: https://docs.gtk.org/gdk4/const.KEY_KP_5.html")
 
 
-(rt:define-gconstant +key-kp-6+ 65462 "
-C: GDK_KEY_KP_6
+(rt:define-gconstant +key-kp-6+ 65462 "C: GDK_KEY_KP_6
 See: https://docs.gtk.org/gdk4/const.KEY_KP_6.html")
 
 
-(rt:define-gconstant +key-kp-7+ 65463 "
-C: GDK_KEY_KP_7
+(rt:define-gconstant +key-kp-7+ 65463 "C: GDK_KEY_KP_7
 See: https://docs.gtk.org/gdk4/const.KEY_KP_7.html")
 
 
-(rt:define-gconstant +key-kp-8+ 65464 "
-C: GDK_KEY_KP_8
+(rt:define-gconstant +key-kp-8+ 65464 "C: GDK_KEY_KP_8
 See: https://docs.gtk.org/gdk4/const.KEY_KP_8.html")
 
 
-(rt:define-gconstant +key-kp-9+ 65465 "
-C: GDK_KEY_KP_9
+(rt:define-gconstant +key-kp-9+ 65465 "C: GDK_KEY_KP_9
 See: https://docs.gtk.org/gdk4/const.KEY_KP_9.html")
 
 
-(rt:define-gconstant +key-kp-add+ 65451 "
-C: GDK_KEY_KP_Add
+(rt:define-gconstant +key-kp-add+ 65451 "C: GDK_KEY_KP_Add
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Add.html")
 
 
-(rt:define-gconstant +key-kp-begin+ 65437 "
-C: GDK_KEY_KP_Begin
+(rt:define-gconstant +key-kp-begin+ 65437 "C: GDK_KEY_KP_Begin
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Begin.html")
 
 
-(rt:define-gconstant +key-kp-decimal+ 65454 "
-C: GDK_KEY_KP_Decimal
+(rt:define-gconstant +key-kp-decimal+ 65454 "C: GDK_KEY_KP_Decimal
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Decimal.html")
 
 
-(rt:define-gconstant +key-kp-delete+ 65439 "
-C: GDK_KEY_KP_Delete
+(rt:define-gconstant +key-kp-delete+ 65439 "C: GDK_KEY_KP_Delete
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Delete.html")
 
 
-(rt:define-gconstant +key-kp-divide+ 65455 "
-C: GDK_KEY_KP_Divide
+(rt:define-gconstant +key-kp-divide+ 65455 "C: GDK_KEY_KP_Divide
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Divide.html")
 
 
-(rt:define-gconstant +key-kp-down+ 65433 "
-C: GDK_KEY_KP_Down
+(rt:define-gconstant +key-kp-down+ 65433 "C: GDK_KEY_KP_Down
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Down.html")
 
 
-(rt:define-gconstant +key-kp-end+ 65436 "
-C: GDK_KEY_KP_End
+(rt:define-gconstant +key-kp-end+ 65436 "C: GDK_KEY_KP_End
 See: https://docs.gtk.org/gdk4/const.KEY_KP_End.html")
 
 
-(rt:define-gconstant +key-kp-enter+ 65421 "
-C: GDK_KEY_KP_Enter
+(rt:define-gconstant +key-kp-enter+ 65421 "C: GDK_KEY_KP_Enter
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Enter.html")
 
 
-(rt:define-gconstant +key-kp-equal+ 65469 "
-C: GDK_KEY_KP_Equal
+(rt:define-gconstant +key-kp-equal+ 65469 "C: GDK_KEY_KP_Equal
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Equal.html")
 
 
-(rt:define-gconstant +key-kp-f1+ 65425 "
-C: GDK_KEY_KP_F1
+(rt:define-gconstant +key-kp-f1+ 65425 "C: GDK_KEY_KP_F1
 See: https://docs.gtk.org/gdk4/const.KEY_KP_F1.html")
 
 
-(rt:define-gconstant +key-kp-f2+ 65426 "
-C: GDK_KEY_KP_F2
+(rt:define-gconstant +key-kp-f2+ 65426 "C: GDK_KEY_KP_F2
 See: https://docs.gtk.org/gdk4/const.KEY_KP_F2.html")
 
 
-(rt:define-gconstant +key-kp-f3+ 65427 "
-C: GDK_KEY_KP_F3
+(rt:define-gconstant +key-kp-f3+ 65427 "C: GDK_KEY_KP_F3
 See: https://docs.gtk.org/gdk4/const.KEY_KP_F3.html")
 
 
-(rt:define-gconstant +key-kp-f4+ 65428 "
-C: GDK_KEY_KP_F4
+(rt:define-gconstant +key-kp-f4+ 65428 "C: GDK_KEY_KP_F4
 See: https://docs.gtk.org/gdk4/const.KEY_KP_F4.html")
 
 
-(rt:define-gconstant +key-kp-home+ 65429 "
-C: GDK_KEY_KP_Home
+(rt:define-gconstant +key-kp-home+ 65429 "C: GDK_KEY_KP_Home
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Home.html")
 
 
-(rt:define-gconstant +key-kp-insert+ 65438 "
-C: GDK_KEY_KP_Insert
+(rt:define-gconstant +key-kp-insert+ 65438 "C: GDK_KEY_KP_Insert
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Insert.html")
 
 
-(rt:define-gconstant +key-kp-left+ 65430 "
-C: GDK_KEY_KP_Left
+(rt:define-gconstant +key-kp-left+ 65430 "C: GDK_KEY_KP_Left
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Left.html")
 
 
-(rt:define-gconstant +key-kp-multiply+ 65450 "
-C: GDK_KEY_KP_Multiply
+(rt:define-gconstant +key-kp-multiply+ 65450 "C: GDK_KEY_KP_Multiply
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Multiply.html")
 
 
-(rt:define-gconstant +key-kp-next+ 65435 "
-C: GDK_KEY_KP_Next
+(rt:define-gconstant +key-kp-next+ 65435 "C: GDK_KEY_KP_Next
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Next.html")
 
 
-(rt:define-gconstant +key-kp-page-down+ 65435 "
-C: GDK_KEY_KP_Page_Down
+(rt:define-gconstant +key-kp-page-down+ 65435 "C: GDK_KEY_KP_Page_Down
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Page_Down.html")
 
 
-(rt:define-gconstant +key-kp-page-up+ 65434 "
-C: GDK_KEY_KP_Page_Up
+(rt:define-gconstant +key-kp-page-up+ 65434 "C: GDK_KEY_KP_Page_Up
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Page_Up.html")
 
 
-(rt:define-gconstant +key-kp-prior+ 65434 "
-C: GDK_KEY_KP_Prior
+(rt:define-gconstant +key-kp-prior+ 65434 "C: GDK_KEY_KP_Prior
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Prior.html")
 
 
-(rt:define-gconstant +key-kp-right+ 65432 "
-C: GDK_KEY_KP_Right
+(rt:define-gconstant +key-kp-right+ 65432 "C: GDK_KEY_KP_Right
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Right.html")
 
 
-(rt:define-gconstant +key-kp-separator+ 65452 "
-C: GDK_KEY_KP_Separator
+(rt:define-gconstant +key-kp-separator+ 65452 "C: GDK_KEY_KP_Separator
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Separator.html")
 
 
-(rt:define-gconstant +key-kp-space+ 65408 "
-C: GDK_KEY_KP_Space
+(rt:define-gconstant +key-kp-space+ 65408 "C: GDK_KEY_KP_Space
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Space.html")
 
 
-(rt:define-gconstant +key-kp-subtract+ 65453 "
-C: GDK_KEY_KP_Subtract
+(rt:define-gconstant +key-kp-subtract+ 65453 "C: GDK_KEY_KP_Subtract
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Subtract.html")
 
 
-(rt:define-gconstant +key-kp-tab+ 65417 "
-C: GDK_KEY_KP_Tab
+(rt:define-gconstant +key-kp-tab+ 65417 "C: GDK_KEY_KP_Tab
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Tab.html")
 
 
-(rt:define-gconstant +key-kp-up+ 65431 "
-C: GDK_KEY_KP_Up
+(rt:define-gconstant +key-kp-up+ 65431 "C: GDK_KEY_KP_Up
 See: https://docs.gtk.org/gdk4/const.KEY_KP_Up.html")
 
 
-(rt:define-gconstant +key-kana-lock+ 65325 "
-C: GDK_KEY_Kana_Lock
+(rt:define-gconstant +key-kana-lock+ 65325 "C: GDK_KEY_Kana_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_Kana_Lock.html")
 
 
-(rt:define-gconstant +key-kana-shift+ 65326 "
-C: GDK_KEY_Kana_Shift
+(rt:define-gconstant +key-kana-shift+ 65326 "C: GDK_KEY_Kana_Shift
 See: https://docs.gtk.org/gdk4/const.KEY_Kana_Shift.html")
 
 
-(rt:define-gconstant +key-kanji+ 65313 "
-C: GDK_KEY_Kanji
+(rt:define-gconstant +key-kanji+ 65313 "C: GDK_KEY_Kanji
 See: https://docs.gtk.org/gdk4/const.KEY_Kanji.html")
 
 
-(rt:define-gconstant +key-kanji-bangou+ 65335 "
-C: GDK_KEY_Kanji_Bangou
+(rt:define-gconstant +key-kanji-bangou+ 65335 "C: GDK_KEY_Kanji_Bangou
 See: https://docs.gtk.org/gdk4/const.KEY_Kanji_Bangou.html")
 
 
-(rt:define-gconstant +key-katakana+ 65318 "
-C: GDK_KEY_Katakana
+(rt:define-gconstant +key-katakana+ 65318 "C: GDK_KEY_Katakana
 See: https://docs.gtk.org/gdk4/const.KEY_Katakana.html")
 
 
-(rt:define-gconstant +key-kbdbrightnessdown+ 269025030 "
-C: GDK_KEY_KbdBrightnessDown
+(rt:define-gconstant +key-kbdbrightnessdown+ 269025030 "C: GDK_KEY_KbdBrightnessDown
 See: https://docs.gtk.org/gdk4/const.KEY_KbdBrightnessDown.html")
 
 
-(rt:define-gconstant +key-kbdbrightnessup+ 269025029 "
-C: GDK_KEY_KbdBrightnessUp
+(rt:define-gconstant +key-kbdbrightnessup+ 269025029 "C: GDK_KEY_KbdBrightnessUp
 See: https://docs.gtk.org/gdk4/const.KEY_KbdBrightnessUp.html")
 
 
-(rt:define-gconstant +key-kbdinputassistaccept+ 268964452 "
-C: GDK_KEY_KbdInputAssistAccept
+(rt:define-gconstant +key-kbdinputassistaccept+ 268964452 "C: GDK_KEY_KbdInputAssistAccept
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistAccept.html")
 
 
-(rt:define-gconstant +key-kbdinputassistcancel+ 268964453 "
-C: GDK_KEY_KbdInputAssistCancel
+(rt:define-gconstant +key-kbdinputassistcancel+ 268964453 "C: GDK_KEY_KbdInputAssistCancel
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistCancel.html")
 
 
-(rt:define-gconstant +key-kbdinputassistnext+ 268964449 "
-C: GDK_KEY_KbdInputAssistNext
+(rt:define-gconstant +key-kbdinputassistnext+ 268964449 "C: GDK_KEY_KbdInputAssistNext
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistNext.html")
 
 
-(rt:define-gconstant +key-kbdinputassistnextgroup+ 268964451 "
-C: GDK_KEY_KbdInputAssistNextgroup
+(rt:define-gconstant +key-kbdinputassistnextgroup+ 268964451 "C: GDK_KEY_KbdInputAssistNextgroup
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistNextgroup.html")
 
 
-(rt:define-gconstant +key-kbdinputassistprev+ 268964448 "
-C: GDK_KEY_KbdInputAssistPrev
+(rt:define-gconstant +key-kbdinputassistprev+ 268964448 "C: GDK_KEY_KbdInputAssistPrev
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistPrev.html")
 
 
-(rt:define-gconstant +key-kbdinputassistprevgroup+ 268964450 "
-C: GDK_KEY_KbdInputAssistPrevgroup
+(rt:define-gconstant +key-kbdinputassistprevgroup+ 268964450 "C: GDK_KEY_KbdInputAssistPrevgroup
 See: https://docs.gtk.org/gdk4/const.KEY_KbdInputAssistPrevgroup.html")
 
 
-(rt:define-gconstant +key-kbdlcdmenu1+ 268964536 "
-C: GDK_KEY_KbdLcdMenu1
+(rt:define-gconstant +key-kbdlcdmenu1+ 268964536 "C: GDK_KEY_KbdLcdMenu1
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLcdMenu1.html")
 
 
-(rt:define-gconstant +key-kbdlcdmenu2+ 268964537 "
-C: GDK_KEY_KbdLcdMenu2
+(rt:define-gconstant +key-kbdlcdmenu2+ 268964537 "C: GDK_KEY_KbdLcdMenu2
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLcdMenu2.html")
 
 
-(rt:define-gconstant +key-kbdlcdmenu3+ 268964538 "
-C: GDK_KEY_KbdLcdMenu3
+(rt:define-gconstant +key-kbdlcdmenu3+ 268964538 "C: GDK_KEY_KbdLcdMenu3
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLcdMenu3.html")
 
 
-(rt:define-gconstant +key-kbdlcdmenu4+ 268964539 "
-C: GDK_KEY_KbdLcdMenu4
+(rt:define-gconstant +key-kbdlcdmenu4+ 268964539 "C: GDK_KEY_KbdLcdMenu4
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLcdMenu4.html")
 
 
-(rt:define-gconstant +key-kbdlcdmenu5+ 268964540 "
-C: GDK_KEY_KbdLcdMenu5
+(rt:define-gconstant +key-kbdlcdmenu5+ 268964540 "C: GDK_KEY_KbdLcdMenu5
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLcdMenu5.html")
 
 
-(rt:define-gconstant +key-kbdlightonoff+ 269025028 "
-C: GDK_KEY_KbdLightOnOff
+(rt:define-gconstant +key-kbdlightonoff+ 269025028 "C: GDK_KEY_KbdLightOnOff
 See: https://docs.gtk.org/gdk4/const.KEY_KbdLightOnOff.html")
 
 
-(rt:define-gconstant +key-kcedilla+ 979 "
-C: GDK_KEY_Kcedilla
+(rt:define-gconstant +key-kcedilla+ 979 "C: GDK_KEY_Kcedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Kcedilla.html")
 
 
-(rt:define-gconstant +key-keyboard+ 269025203 "
-C: GDK_KEY_Keyboard
+(rt:define-gconstant +key-keyboard+ 269025203 "C: GDK_KEY_Keyboard
 See: https://docs.gtk.org/gdk4/const.KEY_Keyboard.html")
 
 
-(rt:define-gconstant +key-korean-won+ 3839 "
-C: GDK_KEY_Korean_Won
+(rt:define-gconstant +key-korean-won+ 3839 "C: GDK_KEY_Korean_Won
 See: https://docs.gtk.org/gdk4/const.KEY_Korean_Won.html")
 
 
-(rt:define-gconstant +key-l+ 76 "
-C: GDK_KEY_L
+(rt:define-gconstant +key-l+ 76 "C: GDK_KEY_L
 See: https://docs.gtk.org/gdk4/const.KEY_L.html")
 
 
-(rt:define-gconstant +key-l1+ 65480 "
-C: GDK_KEY_L1
+(rt:define-gconstant +key-l1+ 65480 "C: GDK_KEY_L1
 See: https://docs.gtk.org/gdk4/const.KEY_L1.html")
 
 
-(rt:define-gconstant +key-l10+ 65489 "
-C: GDK_KEY_L10
+(rt:define-gconstant +key-l10+ 65489 "C: GDK_KEY_L10
 See: https://docs.gtk.org/gdk4/const.KEY_L10.html")
 
 
-(rt:define-gconstant +key-l2+ 65481 "
-C: GDK_KEY_L2
+(rt:define-gconstant +key-l2+ 65481 "C: GDK_KEY_L2
 See: https://docs.gtk.org/gdk4/const.KEY_L2.html")
 
 
-(rt:define-gconstant +key-l3+ 65482 "
-C: GDK_KEY_L3
+(rt:define-gconstant +key-l3+ 65482 "C: GDK_KEY_L3
 See: https://docs.gtk.org/gdk4/const.KEY_L3.html")
 
 
-(rt:define-gconstant +key-l4+ 65483 "
-C: GDK_KEY_L4
+(rt:define-gconstant +key-l4+ 65483 "C: GDK_KEY_L4
 See: https://docs.gtk.org/gdk4/const.KEY_L4.html")
 
 
-(rt:define-gconstant +key-l5+ 65484 "
-C: GDK_KEY_L5
+(rt:define-gconstant +key-l5+ 65484 "C: GDK_KEY_L5
 See: https://docs.gtk.org/gdk4/const.KEY_L5.html")
 
 
-(rt:define-gconstant +key-l6+ 65485 "
-C: GDK_KEY_L6
+(rt:define-gconstant +key-l6+ 65485 "C: GDK_KEY_L6
 See: https://docs.gtk.org/gdk4/const.KEY_L6.html")
 
 
-(rt:define-gconstant +key-l7+ 65486 "
-C: GDK_KEY_L7
+(rt:define-gconstant +key-l7+ 65486 "C: GDK_KEY_L7
 See: https://docs.gtk.org/gdk4/const.KEY_L7.html")
 
 
-(rt:define-gconstant +key-l8+ 65487 "
-C: GDK_KEY_L8
+(rt:define-gconstant +key-l8+ 65487 "C: GDK_KEY_L8
 See: https://docs.gtk.org/gdk4/const.KEY_L8.html")
 
 
-(rt:define-gconstant +key-l9+ 65488 "
-C: GDK_KEY_L9
+(rt:define-gconstant +key-l9+ 65488 "C: GDK_KEY_L9
 See: https://docs.gtk.org/gdk4/const.KEY_L9.html")
 
 
-(rt:define-gconstant +key-lacute+ 453 "
-C: GDK_KEY_Lacute
+(rt:define-gconstant +key-lacute+ 453 "C: GDK_KEY_Lacute
 See: https://docs.gtk.org/gdk4/const.KEY_Lacute.html")
 
 
-(rt:define-gconstant +key-last-virtual-screen+ 65236 "
-C: GDK_KEY_Last_Virtual_Screen
+(rt:define-gconstant +key-last-virtual-screen+ 65236 "C: GDK_KEY_Last_Virtual_Screen
 See: https://docs.gtk.org/gdk4/const.KEY_Last_Virtual_Screen.html")
 
 
-(rt:define-gconstant +key-launch0+ 269025088 "
-C: GDK_KEY_Launch0
+(rt:define-gconstant +key-launch0+ 269025088 "C: GDK_KEY_Launch0
 See: https://docs.gtk.org/gdk4/const.KEY_Launch0.html")
 
 
-(rt:define-gconstant +key-launch1+ 269025089 "
-C: GDK_KEY_Launch1
+(rt:define-gconstant +key-launch1+ 269025089 "C: GDK_KEY_Launch1
 See: https://docs.gtk.org/gdk4/const.KEY_Launch1.html")
 
 
-(rt:define-gconstant +key-launch2+ 269025090 "
-C: GDK_KEY_Launch2
+(rt:define-gconstant +key-launch2+ 269025090 "C: GDK_KEY_Launch2
 See: https://docs.gtk.org/gdk4/const.KEY_Launch2.html")
 
 
-(rt:define-gconstant +key-launch3+ 269025091 "
-C: GDK_KEY_Launch3
+(rt:define-gconstant +key-launch3+ 269025091 "C: GDK_KEY_Launch3
 See: https://docs.gtk.org/gdk4/const.KEY_Launch3.html")
 
 
-(rt:define-gconstant +key-launch4+ 269025092 "
-C: GDK_KEY_Launch4
+(rt:define-gconstant +key-launch4+ 269025092 "C: GDK_KEY_Launch4
 See: https://docs.gtk.org/gdk4/const.KEY_Launch4.html")
 
 
-(rt:define-gconstant +key-launch5+ 269025093 "
-C: GDK_KEY_Launch5
+(rt:define-gconstant +key-launch5+ 269025093 "C: GDK_KEY_Launch5
 See: https://docs.gtk.org/gdk4/const.KEY_Launch5.html")
 
 
-(rt:define-gconstant +key-launch6+ 269025094 "
-C: GDK_KEY_Launch6
+(rt:define-gconstant +key-launch6+ 269025094 "C: GDK_KEY_Launch6
 See: https://docs.gtk.org/gdk4/const.KEY_Launch6.html")
 
 
-(rt:define-gconstant +key-launch7+ 269025095 "
-C: GDK_KEY_Launch7
+(rt:define-gconstant +key-launch7+ 269025095 "C: GDK_KEY_Launch7
 See: https://docs.gtk.org/gdk4/const.KEY_Launch7.html")
 
 
-(rt:define-gconstant +key-launch8+ 269025096 "
-C: GDK_KEY_Launch8
+(rt:define-gconstant +key-launch8+ 269025096 "C: GDK_KEY_Launch8
 See: https://docs.gtk.org/gdk4/const.KEY_Launch8.html")
 
 
-(rt:define-gconstant +key-launch9+ 269025097 "
-C: GDK_KEY_Launch9
+(rt:define-gconstant +key-launch9+ 269025097 "C: GDK_KEY_Launch9
 See: https://docs.gtk.org/gdk4/const.KEY_Launch9.html")
 
 
-(rt:define-gconstant +key-launcha+ 269025098 "
-C: GDK_KEY_LaunchA
+(rt:define-gconstant +key-launcha+ 269025098 "C: GDK_KEY_LaunchA
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchA.html")
 
 
-(rt:define-gconstant +key-launchb+ 269025099 "
-C: GDK_KEY_LaunchB
+(rt:define-gconstant +key-launchb+ 269025099 "C: GDK_KEY_LaunchB
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchB.html")
 
 
-(rt:define-gconstant +key-launchc+ 269025100 "
-C: GDK_KEY_LaunchC
+(rt:define-gconstant +key-launchc+ 269025100 "C: GDK_KEY_LaunchC
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchC.html")
 
 
-(rt:define-gconstant +key-launchd+ 269025101 "
-C: GDK_KEY_LaunchD
+(rt:define-gconstant +key-launchd+ 269025101 "C: GDK_KEY_LaunchD
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchD.html")
 
 
-(rt:define-gconstant +key-launche+ 269025102 "
-C: GDK_KEY_LaunchE
+(rt:define-gconstant +key-launche+ 269025102 "C: GDK_KEY_LaunchE
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchE.html")
 
 
-(rt:define-gconstant +key-launchf+ 269025103 "
-C: GDK_KEY_LaunchF
+(rt:define-gconstant +key-launchf+ 269025103 "C: GDK_KEY_LaunchF
 See: https://docs.gtk.org/gdk4/const.KEY_LaunchF.html")
 
 
-(rt:define-gconstant +key-lbelowdot+ 16784950 "
-C: GDK_KEY_Lbelowdot
+(rt:define-gconstant +key-lbelowdot+ 16784950 "C: GDK_KEY_Lbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Lbelowdot.html")
 
 
-(rt:define-gconstant +key-lcaron+ 421 "
-C: GDK_KEY_Lcaron
+(rt:define-gconstant +key-lcaron+ 421 "C: GDK_KEY_Lcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Lcaron.html")
 
 
-(rt:define-gconstant +key-lcedilla+ 934 "
-C: GDK_KEY_Lcedilla
+(rt:define-gconstant +key-lcedilla+ 934 "C: GDK_KEY_Lcedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Lcedilla.html")
 
 
-(rt:define-gconstant +key-left+ 65361 "
-C: GDK_KEY_Left
+(rt:define-gconstant +key-left+ 65361 "C: GDK_KEY_Left
 See: https://docs.gtk.org/gdk4/const.KEY_Left.html")
 
 
-(rt:define-gconstant +key-leftdown+ 268964457 "
-C: GDK_KEY_LeftDown
+(rt:define-gconstant +key-leftdown+ 268964457 "C: GDK_KEY_LeftDown
 See: https://docs.gtk.org/gdk4/const.KEY_LeftDown.html")
 
 
-(rt:define-gconstant +key-leftup+ 268964456 "
-C: GDK_KEY_LeftUp
+(rt:define-gconstant +key-leftup+ 268964456 "C: GDK_KEY_LeftUp
 See: https://docs.gtk.org/gdk4/const.KEY_LeftUp.html")
 
 
-(rt:define-gconstant +key-lightbulb+ 269025077 "
-C: GDK_KEY_LightBulb
+(rt:define-gconstant +key-lightbulb+ 269025077 "C: GDK_KEY_LightBulb
 See: https://docs.gtk.org/gdk4/const.KEY_LightBulb.html")
 
 
-(rt:define-gconstant +key-lightstoggle+ 268964382 "
-C: GDK_KEY_LightsToggle
+(rt:define-gconstant +key-lightstoggle+ 268964382 "C: GDK_KEY_LightsToggle
 See: https://docs.gtk.org/gdk4/const.KEY_LightsToggle.html")
 
 
-(rt:define-gconstant +key-linefeed+ 65290 "
-C: GDK_KEY_Linefeed
+(rt:define-gconstant +key-linefeed+ 65290 "C: GDK_KEY_Linefeed
 See: https://docs.gtk.org/gdk4/const.KEY_Linefeed.html")
 
 
-(rt:define-gconstant +key-lirasign+ 16785572 "
-C: GDK_KEY_LiraSign
+(rt:define-gconstant +key-lirasign+ 16785572 "C: GDK_KEY_LiraSign
 See: https://docs.gtk.org/gdk4/const.KEY_LiraSign.html")
 
 
-(rt:define-gconstant +key-loggrabinfo+ 269024805 "
-C: GDK_KEY_LogGrabInfo
+(rt:define-gconstant +key-loggrabinfo+ 269024805 "C: GDK_KEY_LogGrabInfo
 See: https://docs.gtk.org/gdk4/const.KEY_LogGrabInfo.html")
 
 
-(rt:define-gconstant +key-logoff+ 269025121 "
-C: GDK_KEY_LogOff
+(rt:define-gconstant +key-logoff+ 269025121 "C: GDK_KEY_LogOff
 See: https://docs.gtk.org/gdk4/const.KEY_LogOff.html")
 
 
-(rt:define-gconstant +key-logwindowtree+ 269024804 "
-C: GDK_KEY_LogWindowTree
+(rt:define-gconstant +key-logwindowtree+ 269024804 "C: GDK_KEY_LogWindowTree
 See: https://docs.gtk.org/gdk4/const.KEY_LogWindowTree.html")
 
 
-(rt:define-gconstant +key-lstroke+ 419 "
-C: GDK_KEY_Lstroke
+(rt:define-gconstant +key-lstroke+ 419 "C: GDK_KEY_Lstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Lstroke.html")
 
 
-(rt:define-gconstant +key-m+ 77 "
-C: GDK_KEY_M
+(rt:define-gconstant +key-m+ 77 "C: GDK_KEY_M
 See: https://docs.gtk.org/gdk4/const.KEY_M.html")
 
 
-(rt:define-gconstant +key-mabovedot+ 16784960 "
-C: GDK_KEY_Mabovedot
+(rt:define-gconstant +key-mabovedot+ 16784960 "C: GDK_KEY_Mabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Mabovedot.html")
 
 
-(rt:define-gconstant +key-macedonia-dse+ 1717 "
-C: GDK_KEY_Macedonia_DSE
+(rt:define-gconstant +key-macedonia-dse+ 1717 "C: GDK_KEY_Macedonia_DSE
 See: https://docs.gtk.org/gdk4/const.KEY_Macedonia_DSE.html")
 
 
-(rt:define-gconstant +key-macedonia-gje+ 1714 "
-C: GDK_KEY_Macedonia_GJE
+(rt:define-gconstant +key-macedonia-gje+ 1714 "C: GDK_KEY_Macedonia_GJE
 See: https://docs.gtk.org/gdk4/const.KEY_Macedonia_GJE.html")
 
 
-(rt:define-gconstant +key-macedonia-kje+ 1724 "
-C: GDK_KEY_Macedonia_KJE
+(rt:define-gconstant +key-macedonia-kje+ 1724 "C: GDK_KEY_Macedonia_KJE
 See: https://docs.gtk.org/gdk4/const.KEY_Macedonia_KJE.html")
 
 
-(rt:define-gconstant +key-macro1+ 268964496 "
-C: GDK_KEY_Macro1
+(rt:define-gconstant +key-macro1+ 268964496 "C: GDK_KEY_Macro1
 See: https://docs.gtk.org/gdk4/const.KEY_Macro1.html")
 
 
-(rt:define-gconstant +key-macro10+ 268964505 "
-C: GDK_KEY_Macro10
+(rt:define-gconstant +key-macro10+ 268964505 "C: GDK_KEY_Macro10
 See: https://docs.gtk.org/gdk4/const.KEY_Macro10.html")
 
 
-(rt:define-gconstant +key-macro11+ 268964506 "
-C: GDK_KEY_Macro11
+(rt:define-gconstant +key-macro11+ 268964506 "C: GDK_KEY_Macro11
 See: https://docs.gtk.org/gdk4/const.KEY_Macro11.html")
 
 
-(rt:define-gconstant +key-macro12+ 268964507 "
-C: GDK_KEY_Macro12
+(rt:define-gconstant +key-macro12+ 268964507 "C: GDK_KEY_Macro12
 See: https://docs.gtk.org/gdk4/const.KEY_Macro12.html")
 
 
-(rt:define-gconstant +key-macro13+ 268964508 "
-C: GDK_KEY_Macro13
+(rt:define-gconstant +key-macro13+ 268964508 "C: GDK_KEY_Macro13
 See: https://docs.gtk.org/gdk4/const.KEY_Macro13.html")
 
 
-(rt:define-gconstant +key-macro14+ 268964509 "
-C: GDK_KEY_Macro14
+(rt:define-gconstant +key-macro14+ 268964509 "C: GDK_KEY_Macro14
 See: https://docs.gtk.org/gdk4/const.KEY_Macro14.html")
 
 
-(rt:define-gconstant +key-macro15+ 268964510 "
-C: GDK_KEY_Macro15
+(rt:define-gconstant +key-macro15+ 268964510 "C: GDK_KEY_Macro15
 See: https://docs.gtk.org/gdk4/const.KEY_Macro15.html")
 
 
-(rt:define-gconstant +key-macro16+ 268964511 "
-C: GDK_KEY_Macro16
+(rt:define-gconstant +key-macro16+ 268964511 "C: GDK_KEY_Macro16
 See: https://docs.gtk.org/gdk4/const.KEY_Macro16.html")
 
 
-(rt:define-gconstant +key-macro17+ 268964512 "
-C: GDK_KEY_Macro17
+(rt:define-gconstant +key-macro17+ 268964512 "C: GDK_KEY_Macro17
 See: https://docs.gtk.org/gdk4/const.KEY_Macro17.html")
 
 
-(rt:define-gconstant +key-macro18+ 268964513 "
-C: GDK_KEY_Macro18
+(rt:define-gconstant +key-macro18+ 268964513 "C: GDK_KEY_Macro18
 See: https://docs.gtk.org/gdk4/const.KEY_Macro18.html")
 
 
-(rt:define-gconstant +key-macro19+ 268964514 "
-C: GDK_KEY_Macro19
+(rt:define-gconstant +key-macro19+ 268964514 "C: GDK_KEY_Macro19
 See: https://docs.gtk.org/gdk4/const.KEY_Macro19.html")
 
 
-(rt:define-gconstant +key-macro2+ 268964497 "
-C: GDK_KEY_Macro2
+(rt:define-gconstant +key-macro2+ 268964497 "C: GDK_KEY_Macro2
 See: https://docs.gtk.org/gdk4/const.KEY_Macro2.html")
 
 
-(rt:define-gconstant +key-macro20+ 268964515 "
-C: GDK_KEY_Macro20
+(rt:define-gconstant +key-macro20+ 268964515 "C: GDK_KEY_Macro20
 See: https://docs.gtk.org/gdk4/const.KEY_Macro20.html")
 
 
-(rt:define-gconstant +key-macro21+ 268964516 "
-C: GDK_KEY_Macro21
+(rt:define-gconstant +key-macro21+ 268964516 "C: GDK_KEY_Macro21
 See: https://docs.gtk.org/gdk4/const.KEY_Macro21.html")
 
 
-(rt:define-gconstant +key-macro22+ 268964517 "
-C: GDK_KEY_Macro22
+(rt:define-gconstant +key-macro22+ 268964517 "C: GDK_KEY_Macro22
 See: https://docs.gtk.org/gdk4/const.KEY_Macro22.html")
 
 
-(rt:define-gconstant +key-macro23+ 268964518 "
-C: GDK_KEY_Macro23
+(rt:define-gconstant +key-macro23+ 268964518 "C: GDK_KEY_Macro23
 See: https://docs.gtk.org/gdk4/const.KEY_Macro23.html")
 
 
-(rt:define-gconstant +key-macro24+ 268964519 "
-C: GDK_KEY_Macro24
+(rt:define-gconstant +key-macro24+ 268964519 "C: GDK_KEY_Macro24
 See: https://docs.gtk.org/gdk4/const.KEY_Macro24.html")
 
 
-(rt:define-gconstant +key-macro25+ 268964520 "
-C: GDK_KEY_Macro25
+(rt:define-gconstant +key-macro25+ 268964520 "C: GDK_KEY_Macro25
 See: https://docs.gtk.org/gdk4/const.KEY_Macro25.html")
 
 
-(rt:define-gconstant +key-macro26+ 268964521 "
-C: GDK_KEY_Macro26
+(rt:define-gconstant +key-macro26+ 268964521 "C: GDK_KEY_Macro26
 See: https://docs.gtk.org/gdk4/const.KEY_Macro26.html")
 
 
-(rt:define-gconstant +key-macro27+ 268964522 "
-C: GDK_KEY_Macro27
+(rt:define-gconstant +key-macro27+ 268964522 "C: GDK_KEY_Macro27
 See: https://docs.gtk.org/gdk4/const.KEY_Macro27.html")
 
 
-(rt:define-gconstant +key-macro28+ 268964523 "
-C: GDK_KEY_Macro28
+(rt:define-gconstant +key-macro28+ 268964523 "C: GDK_KEY_Macro28
 See: https://docs.gtk.org/gdk4/const.KEY_Macro28.html")
 
 
-(rt:define-gconstant +key-macro29+ 268964524 "
-C: GDK_KEY_Macro29
+(rt:define-gconstant +key-macro29+ 268964524 "C: GDK_KEY_Macro29
 See: https://docs.gtk.org/gdk4/const.KEY_Macro29.html")
 
 
-(rt:define-gconstant +key-macro3+ 268964498 "
-C: GDK_KEY_Macro3
+(rt:define-gconstant +key-macro3+ 268964498 "C: GDK_KEY_Macro3
 See: https://docs.gtk.org/gdk4/const.KEY_Macro3.html")
 
 
-(rt:define-gconstant +key-macro30+ 268964525 "
-C: GDK_KEY_Macro30
+(rt:define-gconstant +key-macro30+ 268964525 "C: GDK_KEY_Macro30
 See: https://docs.gtk.org/gdk4/const.KEY_Macro30.html")
 
 
-(rt:define-gconstant +key-macro4+ 268964499 "
-C: GDK_KEY_Macro4
+(rt:define-gconstant +key-macro4+ 268964499 "C: GDK_KEY_Macro4
 See: https://docs.gtk.org/gdk4/const.KEY_Macro4.html")
 
 
-(rt:define-gconstant +key-macro5+ 268964500 "
-C: GDK_KEY_Macro5
+(rt:define-gconstant +key-macro5+ 268964500 "C: GDK_KEY_Macro5
 See: https://docs.gtk.org/gdk4/const.KEY_Macro5.html")
 
 
-(rt:define-gconstant +key-macro6+ 268964501 "
-C: GDK_KEY_Macro6
+(rt:define-gconstant +key-macro6+ 268964501 "C: GDK_KEY_Macro6
 See: https://docs.gtk.org/gdk4/const.KEY_Macro6.html")
 
 
-(rt:define-gconstant +key-macro7+ 268964502 "
-C: GDK_KEY_Macro7
+(rt:define-gconstant +key-macro7+ 268964502 "C: GDK_KEY_Macro7
 See: https://docs.gtk.org/gdk4/const.KEY_Macro7.html")
 
 
-(rt:define-gconstant +key-macro8+ 268964503 "
-C: GDK_KEY_Macro8
+(rt:define-gconstant +key-macro8+ 268964503 "C: GDK_KEY_Macro8
 See: https://docs.gtk.org/gdk4/const.KEY_Macro8.html")
 
 
-(rt:define-gconstant +key-macro9+ 268964504 "
-C: GDK_KEY_Macro9
+(rt:define-gconstant +key-macro9+ 268964504 "C: GDK_KEY_Macro9
 See: https://docs.gtk.org/gdk4/const.KEY_Macro9.html")
 
 
-(rt:define-gconstant +key-macropreset1+ 268964531 "
-C: GDK_KEY_MacroPreset1
+(rt:define-gconstant +key-macropreset1+ 268964531 "C: GDK_KEY_MacroPreset1
 See: https://docs.gtk.org/gdk4/const.KEY_MacroPreset1.html")
 
 
-(rt:define-gconstant +key-macropreset2+ 268964532 "
-C: GDK_KEY_MacroPreset2
+(rt:define-gconstant +key-macropreset2+ 268964532 "C: GDK_KEY_MacroPreset2
 See: https://docs.gtk.org/gdk4/const.KEY_MacroPreset2.html")
 
 
-(rt:define-gconstant +key-macropreset3+ 268964533 "
-C: GDK_KEY_MacroPreset3
+(rt:define-gconstant +key-macropreset3+ 268964533 "C: GDK_KEY_MacroPreset3
 See: https://docs.gtk.org/gdk4/const.KEY_MacroPreset3.html")
 
 
-(rt:define-gconstant +key-macropresetcycle+ 268964530 "
-C: GDK_KEY_MacroPresetCycle
+(rt:define-gconstant +key-macropresetcycle+ 268964530 "C: GDK_KEY_MacroPresetCycle
 See: https://docs.gtk.org/gdk4/const.KEY_MacroPresetCycle.html")
 
 
-(rt:define-gconstant +key-macrorecordstart+ 268964528 "
-C: GDK_KEY_MacroRecordStart
+(rt:define-gconstant +key-macrorecordstart+ 268964528 "C: GDK_KEY_MacroRecordStart
 See: https://docs.gtk.org/gdk4/const.KEY_MacroRecordStart.html")
 
 
-(rt:define-gconstant +key-macrorecordstop+ 268964529 "
-C: GDK_KEY_MacroRecordStop
+(rt:define-gconstant +key-macrorecordstop+ 268964529 "C: GDK_KEY_MacroRecordStop
 See: https://docs.gtk.org/gdk4/const.KEY_MacroRecordStop.html")
 
 
-(rt:define-gconstant +key-mae-koho+ 65342 "
-C: GDK_KEY_Mae_Koho
+(rt:define-gconstant +key-mae-koho+ 65342 "C: GDK_KEY_Mae_Koho
 See: https://docs.gtk.org/gdk4/const.KEY_Mae_Koho.html")
 
 
-(rt:define-gconstant +key-mail+ 269025049 "
-C: GDK_KEY_Mail
+(rt:define-gconstant +key-mail+ 269025049 "C: GDK_KEY_Mail
 See: https://docs.gtk.org/gdk4/const.KEY_Mail.html")
 
 
-(rt:define-gconstant +key-mailforward+ 269025168 "
-C: GDK_KEY_MailForward
+(rt:define-gconstant +key-mailforward+ 269025168 "C: GDK_KEY_MailForward
 See: https://docs.gtk.org/gdk4/const.KEY_MailForward.html")
 
 
-(rt:define-gconstant +key-markwaypoint+ 268964478 "
-C: GDK_KEY_MarkWaypoint
+(rt:define-gconstant +key-markwaypoint+ 268964478 "C: GDK_KEY_MarkWaypoint
 See: https://docs.gtk.org/gdk4/const.KEY_MarkWaypoint.html")
 
 
-(rt:define-gconstant +key-market+ 269025122 "
-C: GDK_KEY_Market
+(rt:define-gconstant +key-market+ 269025122 "C: GDK_KEY_Market
 See: https://docs.gtk.org/gdk4/const.KEY_Market.html")
 
 
-(rt:define-gconstant +key-massyo+ 65324 "
-C: GDK_KEY_Massyo
+(rt:define-gconstant +key-massyo+ 65324 "C: GDK_KEY_Massyo
 See: https://docs.gtk.org/gdk4/const.KEY_Massyo.html")
 
 
-(rt:define-gconstant +key-mediarepeat+ 268964279 "
-C: GDK_KEY_MediaRepeat
+(rt:define-gconstant +key-mediarepeat+ 268964279 "C: GDK_KEY_MediaRepeat
 See: https://docs.gtk.org/gdk4/const.KEY_MediaRepeat.html")
 
 
-(rt:define-gconstant +key-mediatopmenu+ 268964459 "
-C: GDK_KEY_MediaTopMenu
+(rt:define-gconstant +key-mediatopmenu+ 268964459 "C: GDK_KEY_MediaTopMenu
 See: https://docs.gtk.org/gdk4/const.KEY_MediaTopMenu.html")
 
 
-(rt:define-gconstant +key-meeting+ 269025123 "
-C: GDK_KEY_Meeting
+(rt:define-gconstant +key-meeting+ 269025123 "C: GDK_KEY_Meeting
 See: https://docs.gtk.org/gdk4/const.KEY_Meeting.html")
 
 
-(rt:define-gconstant +key-memo+ 269025054 "
-C: GDK_KEY_Memo
+(rt:define-gconstant +key-memo+ 269025054 "C: GDK_KEY_Memo
 See: https://docs.gtk.org/gdk4/const.KEY_Memo.html")
 
 
-(rt:define-gconstant +key-menu+ 65383 "
-C: GDK_KEY_Menu
+(rt:define-gconstant +key-menu+ 65383 "C: GDK_KEY_Menu
 See: https://docs.gtk.org/gdk4/const.KEY_Menu.html")
 
 
-(rt:define-gconstant +key-menukb+ 269025125 "
-C: GDK_KEY_MenuKB
+(rt:define-gconstant +key-menukb+ 269025125 "C: GDK_KEY_MenuKB
 See: https://docs.gtk.org/gdk4/const.KEY_MenuKB.html")
 
 
-(rt:define-gconstant +key-menupb+ 269025126 "
-C: GDK_KEY_MenuPB
+(rt:define-gconstant +key-menupb+ 269025126 "C: GDK_KEY_MenuPB
 See: https://docs.gtk.org/gdk4/const.KEY_MenuPB.html")
 
 
-(rt:define-gconstant +key-messenger+ 269025166 "
-C: GDK_KEY_Messenger
+(rt:define-gconstant +key-messenger+ 269025166 "C: GDK_KEY_Messenger
 See: https://docs.gtk.org/gdk4/const.KEY_Messenger.html")
 
 
-(rt:define-gconstant +key-meta-l+ 65511 "
-C: GDK_KEY_Meta_L
+(rt:define-gconstant +key-meta-l+ 65511 "C: GDK_KEY_Meta_L
 See: https://docs.gtk.org/gdk4/const.KEY_Meta_L.html")
 
 
-(rt:define-gconstant +key-meta-r+ 65512 "
-C: GDK_KEY_Meta_R
+(rt:define-gconstant +key-meta-r+ 65512 "C: GDK_KEY_Meta_R
 See: https://docs.gtk.org/gdk4/const.KEY_Meta_R.html")
 
 
-(rt:define-gconstant +key-millsign+ 16785573 "
-C: GDK_KEY_MillSign
+(rt:define-gconstant +key-millsign+ 16785573 "C: GDK_KEY_MillSign
 See: https://docs.gtk.org/gdk4/const.KEY_MillSign.html")
 
 
-(rt:define-gconstant +key-modelock+ 269025025 "
-C: GDK_KEY_ModeLock
+(rt:define-gconstant +key-modelock+ 269025025 "C: GDK_KEY_ModeLock
 See: https://docs.gtk.org/gdk4/const.KEY_ModeLock.html")
 
 
-(rt:define-gconstant +key-mode-switch+ 65406 "
-C: GDK_KEY_Mode_switch
+(rt:define-gconstant +key-mode-switch+ 65406 "C: GDK_KEY_Mode_switch
 See: https://docs.gtk.org/gdk4/const.KEY_Mode_switch.html")
 
 
-(rt:define-gconstant +key-monbrightnesscycle+ 269025031 "
-C: GDK_KEY_MonBrightnessCycle
+(rt:define-gconstant +key-monbrightnesscycle+ 269025031 "C: GDK_KEY_MonBrightnessCycle
 See: https://docs.gtk.org/gdk4/const.KEY_MonBrightnessCycle.html")
 
 
-(rt:define-gconstant +key-monbrightnessdown+ 269025027 "
-C: GDK_KEY_MonBrightnessDown
+(rt:define-gconstant +key-monbrightnessdown+ 269025027 "C: GDK_KEY_MonBrightnessDown
 See: https://docs.gtk.org/gdk4/const.KEY_MonBrightnessDown.html")
 
 
-(rt:define-gconstant +key-monbrightnessup+ 269025026 "
-C: GDK_KEY_MonBrightnessUp
+(rt:define-gconstant +key-monbrightnessup+ 269025026 "C: GDK_KEY_MonBrightnessUp
 See: https://docs.gtk.org/gdk4/const.KEY_MonBrightnessUp.html")
 
 
-(rt:define-gconstant +key-mousekeys-accel-enable+ 65143 "
-C: GDK_KEY_MouseKeys_Accel_Enable
+(rt:define-gconstant +key-mousekeys-accel-enable+ 65143 "C: GDK_KEY_MouseKeys_Accel_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_MouseKeys_Accel_Enable.html")
 
 
-(rt:define-gconstant +key-mousekeys-enable+ 65142 "
-C: GDK_KEY_MouseKeys_Enable
+(rt:define-gconstant +key-mousekeys-enable+ 65142 "C: GDK_KEY_MouseKeys_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_MouseKeys_Enable.html")
 
 
-(rt:define-gconstant +key-muhenkan+ 65314 "
-C: GDK_KEY_Muhenkan
+(rt:define-gconstant +key-muhenkan+ 65314 "C: GDK_KEY_Muhenkan
 See: https://docs.gtk.org/gdk4/const.KEY_Muhenkan.html")
 
 
-(rt:define-gconstant +key-multi-key+ 65312 "
-C: GDK_KEY_Multi_key
+(rt:define-gconstant +key-multi-key+ 65312 "C: GDK_KEY_Multi_key
 See: https://docs.gtk.org/gdk4/const.KEY_Multi_key.html")
 
 
-(rt:define-gconstant +key-multiplecandidate+ 65341 "
-C: GDK_KEY_MultipleCandidate
+(rt:define-gconstant +key-multiplecandidate+ 65341 "C: GDK_KEY_MultipleCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_MultipleCandidate.html")
 
 
-(rt:define-gconstant +key-music+ 269025170 "
-C: GDK_KEY_Music
+(rt:define-gconstant +key-music+ 269025170 "C: GDK_KEY_Music
 See: https://docs.gtk.org/gdk4/const.KEY_Music.html")
 
 
-(rt:define-gconstant +key-mycomputer+ 269025075 "
-C: GDK_KEY_MyComputer
+(rt:define-gconstant +key-mycomputer+ 269025075 "C: GDK_KEY_MyComputer
 See: https://docs.gtk.org/gdk4/const.KEY_MyComputer.html")
 
 
-(rt:define-gconstant +key-mysites+ 269025127 "
-C: GDK_KEY_MySites
+(rt:define-gconstant +key-mysites+ 269025127 "C: GDK_KEY_MySites
 See: https://docs.gtk.org/gdk4/const.KEY_MySites.html")
 
 
-(rt:define-gconstant +key-n+ 78 "
-C: GDK_KEY_N
+(rt:define-gconstant +key-n+ 78 "C: GDK_KEY_N
 See: https://docs.gtk.org/gdk4/const.KEY_N.html")
 
 
-(rt:define-gconstant +key-nacute+ 465 "
-C: GDK_KEY_Nacute
+(rt:define-gconstant +key-nacute+ 465 "C: GDK_KEY_Nacute
 See: https://docs.gtk.org/gdk4/const.KEY_Nacute.html")
 
 
-(rt:define-gconstant +key-nairasign+ 16785574 "
-C: GDK_KEY_NairaSign
+(rt:define-gconstant +key-nairasign+ 16785574 "C: GDK_KEY_NairaSign
 See: https://docs.gtk.org/gdk4/const.KEY_NairaSign.html")
 
 
-(rt:define-gconstant +key-navchart+ 268964480 "
-C: GDK_KEY_NavChart
+(rt:define-gconstant +key-navchart+ 268964480 "C: GDK_KEY_NavChart
 See: https://docs.gtk.org/gdk4/const.KEY_NavChart.html")
 
 
-(rt:define-gconstant +key-navinfo+ 268964488 "
-C: GDK_KEY_NavInfo
+(rt:define-gconstant +key-navinfo+ 268964488 "C: GDK_KEY_NavInfo
 See: https://docs.gtk.org/gdk4/const.KEY_NavInfo.html")
 
 
-(rt:define-gconstant +key-ncaron+ 466 "
-C: GDK_KEY_Ncaron
+(rt:define-gconstant +key-ncaron+ 466 "C: GDK_KEY_Ncaron
 See: https://docs.gtk.org/gdk4/const.KEY_Ncaron.html")
 
 
-(rt:define-gconstant +key-ncedilla+ 977 "
-C: GDK_KEY_Ncedilla
+(rt:define-gconstant +key-ncedilla+ 977 "C: GDK_KEY_Ncedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Ncedilla.html")
 
 
-(rt:define-gconstant +key-new+ 269025128 "
-C: GDK_KEY_New
+(rt:define-gconstant +key-new+ 269025128 "C: GDK_KEY_New
 See: https://docs.gtk.org/gdk4/const.KEY_New.html")
 
 
-(rt:define-gconstant +key-newsheqelsign+ 16785578 "
-C: GDK_KEY_NewSheqelSign
+(rt:define-gconstant +key-newsheqelsign+ 16785578 "C: GDK_KEY_NewSheqelSign
 See: https://docs.gtk.org/gdk4/const.KEY_NewSheqelSign.html")
 
 
-(rt:define-gconstant +key-news+ 269025129 "
-C: GDK_KEY_News
+(rt:define-gconstant +key-news+ 269025129 "C: GDK_KEY_News
 See: https://docs.gtk.org/gdk4/const.KEY_News.html")
 
 
-(rt:define-gconstant +key-next+ 65366 "
-C: GDK_KEY_Next
+(rt:define-gconstant +key-next+ 65366 "C: GDK_KEY_Next
 See: https://docs.gtk.org/gdk4/const.KEY_Next.html")
 
 
-(rt:define-gconstant +key-nextelement+ 268964475 "
-C: GDK_KEY_NextElement
+(rt:define-gconstant +key-nextelement+ 268964475 "C: GDK_KEY_NextElement
 See: https://docs.gtk.org/gdk4/const.KEY_NextElement.html")
 
 
-(rt:define-gconstant +key-nextfavorite+ 268964464 "
-C: GDK_KEY_NextFavorite
+(rt:define-gconstant +key-nextfavorite+ 268964464 "C: GDK_KEY_NextFavorite
 See: https://docs.gtk.org/gdk4/const.KEY_NextFavorite.html")
 
 
-(rt:define-gconstant +key-next-vmode+ 269024802 "
-C: GDK_KEY_Next_VMode
+(rt:define-gconstant +key-next-vmode+ 269024802 "C: GDK_KEY_Next_VMode
 See: https://docs.gtk.org/gdk4/const.KEY_Next_VMode.html")
 
 
-(rt:define-gconstant +key-next-virtual-screen+ 65234 "
-C: GDK_KEY_Next_Virtual_Screen
+(rt:define-gconstant +key-next-virtual-screen+ 65234 "C: GDK_KEY_Next_Virtual_Screen
 See: https://docs.gtk.org/gdk4/const.KEY_Next_Virtual_Screen.html")
 
 
-(rt:define-gconstant +key-notificationcenter+ 268964284 "
-C: GDK_KEY_NotificationCenter
+(rt:define-gconstant +key-notificationcenter+ 268964284 "C: GDK_KEY_NotificationCenter
 See: https://docs.gtk.org/gdk4/const.KEY_NotificationCenter.html")
 
 
-(rt:define-gconstant +key-ntilde+ 209 "
-C: GDK_KEY_Ntilde
+(rt:define-gconstant +key-ntilde+ 209 "C: GDK_KEY_Ntilde
 See: https://docs.gtk.org/gdk4/const.KEY_Ntilde.html")
 
 
-(rt:define-gconstant +key-num-lock+ 65407 "
-C: GDK_KEY_Num_Lock
+(rt:define-gconstant +key-num-lock+ 65407 "C: GDK_KEY_Num_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_Num_Lock.html")
 
 
-(rt:define-gconstant +key-numeric0+ 268964352 "
-C: GDK_KEY_Numeric0
+(rt:define-gconstant +key-numeric0+ 268964352 "C: GDK_KEY_Numeric0
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric0.html")
 
 
-(rt:define-gconstant +key-numeric1+ 268964353 "
-C: GDK_KEY_Numeric1
+(rt:define-gconstant +key-numeric1+ 268964353 "C: GDK_KEY_Numeric1
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric1.html")
 
 
-(rt:define-gconstant +key-numeric11+ 268964460 "
-C: GDK_KEY_Numeric11
+(rt:define-gconstant +key-numeric11+ 268964460 "C: GDK_KEY_Numeric11
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric11.html")
 
 
-(rt:define-gconstant +key-numeric12+ 268964461 "
-C: GDK_KEY_Numeric12
+(rt:define-gconstant +key-numeric12+ 268964461 "C: GDK_KEY_Numeric12
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric12.html")
 
 
-(rt:define-gconstant +key-numeric2+ 268964354 "
-C: GDK_KEY_Numeric2
+(rt:define-gconstant +key-numeric2+ 268964354 "C: GDK_KEY_Numeric2
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric2.html")
 
 
-(rt:define-gconstant +key-numeric3+ 268964355 "
-C: GDK_KEY_Numeric3
+(rt:define-gconstant +key-numeric3+ 268964355 "C: GDK_KEY_Numeric3
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric3.html")
 
 
-(rt:define-gconstant +key-numeric4+ 268964356 "
-C: GDK_KEY_Numeric4
+(rt:define-gconstant +key-numeric4+ 268964356 "C: GDK_KEY_Numeric4
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric4.html")
 
 
-(rt:define-gconstant +key-numeric5+ 268964357 "
-C: GDK_KEY_Numeric5
+(rt:define-gconstant +key-numeric5+ 268964357 "C: GDK_KEY_Numeric5
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric5.html")
 
 
-(rt:define-gconstant +key-numeric6+ 268964358 "
-C: GDK_KEY_Numeric6
+(rt:define-gconstant +key-numeric6+ 268964358 "C: GDK_KEY_Numeric6
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric6.html")
 
 
-(rt:define-gconstant +key-numeric7+ 268964359 "
-C: GDK_KEY_Numeric7
+(rt:define-gconstant +key-numeric7+ 268964359 "C: GDK_KEY_Numeric7
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric7.html")
 
 
-(rt:define-gconstant +key-numeric8+ 268964360 "
-C: GDK_KEY_Numeric8
+(rt:define-gconstant +key-numeric8+ 268964360 "C: GDK_KEY_Numeric8
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric8.html")
 
 
-(rt:define-gconstant +key-numeric9+ 268964361 "
-C: GDK_KEY_Numeric9
+(rt:define-gconstant +key-numeric9+ 268964361 "C: GDK_KEY_Numeric9
 See: https://docs.gtk.org/gdk4/const.KEY_Numeric9.html")
 
 
-(rt:define-gconstant +key-numerica+ 268964364 "
-C: GDK_KEY_NumericA
+(rt:define-gconstant +key-numerica+ 268964364 "C: GDK_KEY_NumericA
 See: https://docs.gtk.org/gdk4/const.KEY_NumericA.html")
 
 
-(rt:define-gconstant +key-numericb+ 268964365 "
-C: GDK_KEY_NumericB
+(rt:define-gconstant +key-numericb+ 268964365 "C: GDK_KEY_NumericB
 See: https://docs.gtk.org/gdk4/const.KEY_NumericB.html")
 
 
-(rt:define-gconstant +key-numericc+ 268964366 "
-C: GDK_KEY_NumericC
+(rt:define-gconstant +key-numericc+ 268964366 "C: GDK_KEY_NumericC
 See: https://docs.gtk.org/gdk4/const.KEY_NumericC.html")
 
 
-(rt:define-gconstant +key-numericd+ 268964367 "
-C: GDK_KEY_NumericD
+(rt:define-gconstant +key-numericd+ 268964367 "C: GDK_KEY_NumericD
 See: https://docs.gtk.org/gdk4/const.KEY_NumericD.html")
 
 
-(rt:define-gconstant +key-numericpound+ 268964363 "
-C: GDK_KEY_NumericPound
+(rt:define-gconstant +key-numericpound+ 268964363 "C: GDK_KEY_NumericPound
 See: https://docs.gtk.org/gdk4/const.KEY_NumericPound.html")
 
 
-(rt:define-gconstant +key-numericstar+ 268964362 "
-C: GDK_KEY_NumericStar
+(rt:define-gconstant +key-numericstar+ 268964362 "C: GDK_KEY_NumericStar
 See: https://docs.gtk.org/gdk4/const.KEY_NumericStar.html")
 
 
-(rt:define-gconstant +key-o+ 79 "
-C: GDK_KEY_O
+(rt:define-gconstant +key-o+ 79 "C: GDK_KEY_O
 See: https://docs.gtk.org/gdk4/const.KEY_O.html")
 
 
-(rt:define-gconstant +key-oe+ 5052 "
-C: GDK_KEY_OE
+(rt:define-gconstant +key-oe+ 5052 "C: GDK_KEY_OE
 See: https://docs.gtk.org/gdk4/const.KEY_OE.html")
 
 
-(rt:define-gconstant +key-oacute+ 211 "
-C: GDK_KEY_Oacute
+(rt:define-gconstant +key-oacute+ 211 "C: GDK_KEY_Oacute
 See: https://docs.gtk.org/gdk4/const.KEY_Oacute.html")
 
 
-(rt:define-gconstant +key-obarred+ 16777631 "
-C: GDK_KEY_Obarred
+(rt:define-gconstant +key-obarred+ 16777631 "C: GDK_KEY_Obarred
 See: https://docs.gtk.org/gdk4/const.KEY_Obarred.html")
 
 
-(rt:define-gconstant +key-obelowdot+ 16785100 "
-C: GDK_KEY_Obelowdot
+(rt:define-gconstant +key-obelowdot+ 16785100 "C: GDK_KEY_Obelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Obelowdot.html")
 
 
-(rt:define-gconstant +key-ocaron+ 16777681 "
-C: GDK_KEY_Ocaron
+(rt:define-gconstant +key-ocaron+ 16777681 "C: GDK_KEY_Ocaron
 See: https://docs.gtk.org/gdk4/const.KEY_Ocaron.html")
 
 
-(rt:define-gconstant +key-ocircumflex+ 212 "
-C: GDK_KEY_Ocircumflex
+(rt:define-gconstant +key-ocircumflex+ 212 "C: GDK_KEY_Ocircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflex.html")
 
 
-(rt:define-gconstant +key-ocircumflexacute+ 16785104 "
-C: GDK_KEY_Ocircumflexacute
+(rt:define-gconstant +key-ocircumflexacute+ 16785104 "C: GDK_KEY_Ocircumflexacute
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflexacute.html")
 
 
-(rt:define-gconstant +key-ocircumflexbelowdot+ 16785112 "
-C: GDK_KEY_Ocircumflexbelowdot
+(rt:define-gconstant +key-ocircumflexbelowdot+ 16785112 "C: GDK_KEY_Ocircumflexbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflexbelowdot.html")
 
 
-(rt:define-gconstant +key-ocircumflexgrave+ 16785106 "
-C: GDK_KEY_Ocircumflexgrave
+(rt:define-gconstant +key-ocircumflexgrave+ 16785106 "C: GDK_KEY_Ocircumflexgrave
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflexgrave.html")
 
 
-(rt:define-gconstant +key-ocircumflexhook+ 16785108 "
-C: GDK_KEY_Ocircumflexhook
+(rt:define-gconstant +key-ocircumflexhook+ 16785108 "C: GDK_KEY_Ocircumflexhook
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflexhook.html")
 
 
-(rt:define-gconstant +key-ocircumflextilde+ 16785110 "
-C: GDK_KEY_Ocircumflextilde
+(rt:define-gconstant +key-ocircumflextilde+ 16785110 "C: GDK_KEY_Ocircumflextilde
 See: https://docs.gtk.org/gdk4/const.KEY_Ocircumflextilde.html")
 
 
-(rt:define-gconstant +key-odiaeresis+ 214 "
-C: GDK_KEY_Odiaeresis
+(rt:define-gconstant +key-odiaeresis+ 214 "C: GDK_KEY_Odiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Odiaeresis.html")
 
 
-(rt:define-gconstant +key-odoubleacute+ 469 "
-C: GDK_KEY_Odoubleacute
+(rt:define-gconstant +key-odoubleacute+ 469 "C: GDK_KEY_Odoubleacute
 See: https://docs.gtk.org/gdk4/const.KEY_Odoubleacute.html")
 
 
-(rt:define-gconstant +key-officehome+ 269025130 "
-C: GDK_KEY_OfficeHome
+(rt:define-gconstant +key-officehome+ 269025130 "C: GDK_KEY_OfficeHome
 See: https://docs.gtk.org/gdk4/const.KEY_OfficeHome.html")
 
 
-(rt:define-gconstant +key-ograve+ 210 "
-C: GDK_KEY_Ograve
+(rt:define-gconstant +key-ograve+ 210 "C: GDK_KEY_Ograve
 See: https://docs.gtk.org/gdk4/const.KEY_Ograve.html")
 
 
-(rt:define-gconstant +key-ohook+ 16785102 "
-C: GDK_KEY_Ohook
+(rt:define-gconstant +key-ohook+ 16785102 "C: GDK_KEY_Ohook
 See: https://docs.gtk.org/gdk4/const.KEY_Ohook.html")
 
 
-(rt:define-gconstant +key-ohorn+ 16777632 "
-C: GDK_KEY_Ohorn
+(rt:define-gconstant +key-ohorn+ 16777632 "C: GDK_KEY_Ohorn
 See: https://docs.gtk.org/gdk4/const.KEY_Ohorn.html")
 
 
-(rt:define-gconstant +key-ohornacute+ 16785114 "
-C: GDK_KEY_Ohornacute
+(rt:define-gconstant +key-ohornacute+ 16785114 "C: GDK_KEY_Ohornacute
 See: https://docs.gtk.org/gdk4/const.KEY_Ohornacute.html")
 
 
-(rt:define-gconstant +key-ohornbelowdot+ 16785122 "
-C: GDK_KEY_Ohornbelowdot
+(rt:define-gconstant +key-ohornbelowdot+ 16785122 "C: GDK_KEY_Ohornbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ohornbelowdot.html")
 
 
-(rt:define-gconstant +key-ohorngrave+ 16785116 "
-C: GDK_KEY_Ohorngrave
+(rt:define-gconstant +key-ohorngrave+ 16785116 "C: GDK_KEY_Ohorngrave
 See: https://docs.gtk.org/gdk4/const.KEY_Ohorngrave.html")
 
 
-(rt:define-gconstant +key-ohornhook+ 16785118 "
-C: GDK_KEY_Ohornhook
+(rt:define-gconstant +key-ohornhook+ 16785118 "C: GDK_KEY_Ohornhook
 See: https://docs.gtk.org/gdk4/const.KEY_Ohornhook.html")
 
 
-(rt:define-gconstant +key-ohorntilde+ 16785120 "
-C: GDK_KEY_Ohorntilde
+(rt:define-gconstant +key-ohorntilde+ 16785120 "C: GDK_KEY_Ohorntilde
 See: https://docs.gtk.org/gdk4/const.KEY_Ohorntilde.html")
 
 
-(rt:define-gconstant +key-omacron+ 978 "
-C: GDK_KEY_Omacron
+(rt:define-gconstant +key-omacron+ 978 "C: GDK_KEY_Omacron
 See: https://docs.gtk.org/gdk4/const.KEY_Omacron.html")
 
 
-(rt:define-gconstant +key-onscreenkeyboard+ 268964472 "
-C: GDK_KEY_OnScreenKeyboard
+(rt:define-gconstant +key-onscreenkeyboard+ 268964472 "C: GDK_KEY_OnScreenKeyboard
 See: https://docs.gtk.org/gdk4/const.KEY_OnScreenKeyboard.html")
 
 
-(rt:define-gconstant +key-ooblique+ 216 "
-C: GDK_KEY_Ooblique
+(rt:define-gconstant +key-ooblique+ 216 "C: GDK_KEY_Ooblique
 See: https://docs.gtk.org/gdk4/const.KEY_Ooblique.html")
 
 
-(rt:define-gconstant +key-open+ 269025131 "
-C: GDK_KEY_Open
+(rt:define-gconstant +key-open+ 269025131 "C: GDK_KEY_Open
 See: https://docs.gtk.org/gdk4/const.KEY_Open.html")
 
 
-(rt:define-gconstant +key-openurl+ 269025080 "
-C: GDK_KEY_OpenURL
+(rt:define-gconstant +key-openurl+ 269025080 "C: GDK_KEY_OpenURL
 See: https://docs.gtk.org/gdk4/const.KEY_OpenURL.html")
 
 
-(rt:define-gconstant +key-option+ 269025132 "
-C: GDK_KEY_Option
+(rt:define-gconstant +key-option+ 269025132 "C: GDK_KEY_Option
 See: https://docs.gtk.org/gdk4/const.KEY_Option.html")
 
 
-(rt:define-gconstant +key-oslash+ 216 "
-C: GDK_KEY_Oslash
+(rt:define-gconstant +key-oslash+ 216 "C: GDK_KEY_Oslash
 See: https://docs.gtk.org/gdk4/const.KEY_Oslash.html")
 
 
-(rt:define-gconstant +key-otilde+ 213 "
-C: GDK_KEY_Otilde
+(rt:define-gconstant +key-otilde+ 213 "C: GDK_KEY_Otilde
 See: https://docs.gtk.org/gdk4/const.KEY_Otilde.html")
 
 
-(rt:define-gconstant +key-overlay1-enable+ 65144 "
-C: GDK_KEY_Overlay1_Enable
+(rt:define-gconstant +key-overlay1-enable+ 65144 "C: GDK_KEY_Overlay1_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_Overlay1_Enable.html")
 
 
-(rt:define-gconstant +key-overlay2-enable+ 65145 "
-C: GDK_KEY_Overlay2_Enable
+(rt:define-gconstant +key-overlay2-enable+ 65145 "C: GDK_KEY_Overlay2_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_Overlay2_Enable.html")
 
 
-(rt:define-gconstant +key-p+ 80 "
-C: GDK_KEY_P
+(rt:define-gconstant +key-p+ 80 "C: GDK_KEY_P
 See: https://docs.gtk.org/gdk4/const.KEY_P.html")
 
 
-(rt:define-gconstant +key-pabovedot+ 16784982 "
-C: GDK_KEY_Pabovedot
+(rt:define-gconstant +key-pabovedot+ 16784982 "C: GDK_KEY_Pabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Pabovedot.html")
 
 
-(rt:define-gconstant +key-page-down+ 65366 "
-C: GDK_KEY_Page_Down
+(rt:define-gconstant +key-page-down+ 65366 "C: GDK_KEY_Page_Down
 See: https://docs.gtk.org/gdk4/const.KEY_Page_Down.html")
 
 
-(rt:define-gconstant +key-page-up+ 65365 "
-C: GDK_KEY_Page_Up
+(rt:define-gconstant +key-page-up+ 65365 "C: GDK_KEY_Page_Up
 See: https://docs.gtk.org/gdk4/const.KEY_Page_Up.html")
 
 
-(rt:define-gconstant +key-paste+ 269025133 "
-C: GDK_KEY_Paste
+(rt:define-gconstant +key-paste+ 269025133 "C: GDK_KEY_Paste
 See: https://docs.gtk.org/gdk4/const.KEY_Paste.html")
 
 
-(rt:define-gconstant +key-pause+ 65299 "
-C: GDK_KEY_Pause
+(rt:define-gconstant +key-pause+ 65299 "C: GDK_KEY_Pause
 See: https://docs.gtk.org/gdk4/const.KEY_Pause.html")
 
 
-(rt:define-gconstant +key-pauserecord+ 268964466 "
-C: GDK_KEY_PauseRecord
+(rt:define-gconstant +key-pauserecord+ 268964466 "C: GDK_KEY_PauseRecord
 See: https://docs.gtk.org/gdk4/const.KEY_PauseRecord.html")
 
 
-(rt:define-gconstant +key-pesetasign+ 16785575 "
-C: GDK_KEY_PesetaSign
+(rt:define-gconstant +key-pesetasign+ 16785575 "C: GDK_KEY_PesetaSign
 See: https://docs.gtk.org/gdk4/const.KEY_PesetaSign.html")
 
 
-(rt:define-gconstant +key-phone+ 269025134 "
-C: GDK_KEY_Phone
+(rt:define-gconstant +key-phone+ 269025134 "C: GDK_KEY_Phone
 See: https://docs.gtk.org/gdk4/const.KEY_Phone.html")
 
 
-(rt:define-gconstant +key-pickupphone+ 268964285 "
-C: GDK_KEY_PickupPhone
+(rt:define-gconstant +key-pickupphone+ 268964285 "C: GDK_KEY_PickupPhone
 See: https://docs.gtk.org/gdk4/const.KEY_PickupPhone.html")
 
 
-(rt:define-gconstant +key-pictures+ 269025169 "
-C: GDK_KEY_Pictures
+(rt:define-gconstant +key-pictures+ 269025169 "C: GDK_KEY_Pictures
 See: https://docs.gtk.org/gdk4/const.KEY_Pictures.html")
 
 
-(rt:define-gconstant +key-pointer-accelerate+ 65274 "
-C: GDK_KEY_Pointer_Accelerate
+(rt:define-gconstant +key-pointer-accelerate+ 65274 "C: GDK_KEY_Pointer_Accelerate
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Accelerate.html")
 
 
-(rt:define-gconstant +key-pointer-button1+ 65257 "
-C: GDK_KEY_Pointer_Button1
+(rt:define-gconstant +key-pointer-button1+ 65257 "C: GDK_KEY_Pointer_Button1
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button1.html")
 
 
-(rt:define-gconstant +key-pointer-button2+ 65258 "
-C: GDK_KEY_Pointer_Button2
+(rt:define-gconstant +key-pointer-button2+ 65258 "C: GDK_KEY_Pointer_Button2
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button2.html")
 
 
-(rt:define-gconstant +key-pointer-button3+ 65259 "
-C: GDK_KEY_Pointer_Button3
+(rt:define-gconstant +key-pointer-button3+ 65259 "C: GDK_KEY_Pointer_Button3
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button3.html")
 
 
-(rt:define-gconstant +key-pointer-button4+ 65260 "
-C: GDK_KEY_Pointer_Button4
+(rt:define-gconstant +key-pointer-button4+ 65260 "C: GDK_KEY_Pointer_Button4
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button4.html")
 
 
-(rt:define-gconstant +key-pointer-button5+ 65261 "
-C: GDK_KEY_Pointer_Button5
+(rt:define-gconstant +key-pointer-button5+ 65261 "C: GDK_KEY_Pointer_Button5
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button5.html")
 
 
-(rt:define-gconstant +key-pointer-button-dflt+ 65256 "
-C: GDK_KEY_Pointer_Button_Dflt
+(rt:define-gconstant +key-pointer-button-dflt+ 65256 "C: GDK_KEY_Pointer_Button_Dflt
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Button_Dflt.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick1+ 65263 "
-C: GDK_KEY_Pointer_DblClick1
+(rt:define-gconstant +key-pointer-dblclick1+ 65263 "C: GDK_KEY_Pointer_DblClick1
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick1.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick2+ 65264 "
-C: GDK_KEY_Pointer_DblClick2
+(rt:define-gconstant +key-pointer-dblclick2+ 65264 "C: GDK_KEY_Pointer_DblClick2
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick2.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick3+ 65265 "
-C: GDK_KEY_Pointer_DblClick3
+(rt:define-gconstant +key-pointer-dblclick3+ 65265 "C: GDK_KEY_Pointer_DblClick3
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick3.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick4+ 65266 "
-C: GDK_KEY_Pointer_DblClick4
+(rt:define-gconstant +key-pointer-dblclick4+ 65266 "C: GDK_KEY_Pointer_DblClick4
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick4.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick5+ 65267 "
-C: GDK_KEY_Pointer_DblClick5
+(rt:define-gconstant +key-pointer-dblclick5+ 65267 "C: GDK_KEY_Pointer_DblClick5
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick5.html")
 
 
-(rt:define-gconstant +key-pointer-dblclick-dflt+ 65262 "
-C: GDK_KEY_Pointer_DblClick_Dflt
+(rt:define-gconstant +key-pointer-dblclick-dflt+ 65262 "C: GDK_KEY_Pointer_DblClick_Dflt
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DblClick_Dflt.html")
 
 
-(rt:define-gconstant +key-pointer-dfltbtnnext+ 65275 "
-C: GDK_KEY_Pointer_DfltBtnNext
+(rt:define-gconstant +key-pointer-dfltbtnnext+ 65275 "C: GDK_KEY_Pointer_DfltBtnNext
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DfltBtnNext.html")
 
 
-(rt:define-gconstant +key-pointer-dfltbtnprev+ 65276 "
-C: GDK_KEY_Pointer_DfltBtnPrev
+(rt:define-gconstant +key-pointer-dfltbtnprev+ 65276 "C: GDK_KEY_Pointer_DfltBtnPrev
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DfltBtnPrev.html")
 
 
-(rt:define-gconstant +key-pointer-down+ 65251 "
-C: GDK_KEY_Pointer_Down
+(rt:define-gconstant +key-pointer-down+ 65251 "C: GDK_KEY_Pointer_Down
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Down.html")
 
 
-(rt:define-gconstant +key-pointer-downleft+ 65254 "
-C: GDK_KEY_Pointer_DownLeft
+(rt:define-gconstant +key-pointer-downleft+ 65254 "C: GDK_KEY_Pointer_DownLeft
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DownLeft.html")
 
 
-(rt:define-gconstant +key-pointer-downright+ 65255 "
-C: GDK_KEY_Pointer_DownRight
+(rt:define-gconstant +key-pointer-downright+ 65255 "C: GDK_KEY_Pointer_DownRight
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_DownRight.html")
 
 
-(rt:define-gconstant +key-pointer-drag1+ 65269 "
-C: GDK_KEY_Pointer_Drag1
+(rt:define-gconstant +key-pointer-drag1+ 65269 "C: GDK_KEY_Pointer_Drag1
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag1.html")
 
 
-(rt:define-gconstant +key-pointer-drag2+ 65270 "
-C: GDK_KEY_Pointer_Drag2
+(rt:define-gconstant +key-pointer-drag2+ 65270 "C: GDK_KEY_Pointer_Drag2
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag2.html")
 
 
-(rt:define-gconstant +key-pointer-drag3+ 65271 "
-C: GDK_KEY_Pointer_Drag3
+(rt:define-gconstant +key-pointer-drag3+ 65271 "C: GDK_KEY_Pointer_Drag3
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag3.html")
 
 
-(rt:define-gconstant +key-pointer-drag4+ 65272 "
-C: GDK_KEY_Pointer_Drag4
+(rt:define-gconstant +key-pointer-drag4+ 65272 "C: GDK_KEY_Pointer_Drag4
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag4.html")
 
 
-(rt:define-gconstant +key-pointer-drag5+ 65277 "
-C: GDK_KEY_Pointer_Drag5
+(rt:define-gconstant +key-pointer-drag5+ 65277 "C: GDK_KEY_Pointer_Drag5
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag5.html")
 
 
-(rt:define-gconstant +key-pointer-drag-dflt+ 65268 "
-C: GDK_KEY_Pointer_Drag_Dflt
+(rt:define-gconstant +key-pointer-drag-dflt+ 65268 "C: GDK_KEY_Pointer_Drag_Dflt
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Drag_Dflt.html")
 
 
-(rt:define-gconstant +key-pointer-enablekeys+ 65273 "
-C: GDK_KEY_Pointer_EnableKeys
+(rt:define-gconstant +key-pointer-enablekeys+ 65273 "C: GDK_KEY_Pointer_EnableKeys
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_EnableKeys.html")
 
 
-(rt:define-gconstant +key-pointer-left+ 65248 "
-C: GDK_KEY_Pointer_Left
+(rt:define-gconstant +key-pointer-left+ 65248 "C: GDK_KEY_Pointer_Left
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Left.html")
 
 
-(rt:define-gconstant +key-pointer-right+ 65249 "
-C: GDK_KEY_Pointer_Right
+(rt:define-gconstant +key-pointer-right+ 65249 "C: GDK_KEY_Pointer_Right
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Right.html")
 
 
-(rt:define-gconstant +key-pointer-up+ 65250 "
-C: GDK_KEY_Pointer_Up
+(rt:define-gconstant +key-pointer-up+ 65250 "C: GDK_KEY_Pointer_Up
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_Up.html")
 
 
-(rt:define-gconstant +key-pointer-upleft+ 65252 "
-C: GDK_KEY_Pointer_UpLeft
+(rt:define-gconstant +key-pointer-upleft+ 65252 "C: GDK_KEY_Pointer_UpLeft
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_UpLeft.html")
 
 
-(rt:define-gconstant +key-pointer-upright+ 65253 "
-C: GDK_KEY_Pointer_UpRight
+(rt:define-gconstant +key-pointer-upright+ 65253 "C: GDK_KEY_Pointer_UpRight
 See: https://docs.gtk.org/gdk4/const.KEY_Pointer_UpRight.html")
 
 
-(rt:define-gconstant +key-powerdown+ 269025057 "
-C: GDK_KEY_PowerDown
+(rt:define-gconstant +key-powerdown+ 269025057 "C: GDK_KEY_PowerDown
 See: https://docs.gtk.org/gdk4/const.KEY_PowerDown.html")
 
 
-(rt:define-gconstant +key-poweroff+ 269025066 "
-C: GDK_KEY_PowerOff
+(rt:define-gconstant +key-poweroff+ 269025066 "C: GDK_KEY_PowerOff
 See: https://docs.gtk.org/gdk4/const.KEY_PowerOff.html")
 
 
-(rt:define-gconstant +key-presentation+ 268964265 "
-C: GDK_KEY_Presentation
+(rt:define-gconstant +key-presentation+ 268964265 "C: GDK_KEY_Presentation
 See: https://docs.gtk.org/gdk4/const.KEY_Presentation.html")
 
 
-(rt:define-gconstant +key-prev-vmode+ 269024803 "
-C: GDK_KEY_Prev_VMode
+(rt:define-gconstant +key-prev-vmode+ 269024803 "C: GDK_KEY_Prev_VMode
 See: https://docs.gtk.org/gdk4/const.KEY_Prev_VMode.html")
 
 
-(rt:define-gconstant +key-prev-virtual-screen+ 65233 "
-C: GDK_KEY_Prev_Virtual_Screen
+(rt:define-gconstant +key-prev-virtual-screen+ 65233 "C: GDK_KEY_Prev_Virtual_Screen
 See: https://docs.gtk.org/gdk4/const.KEY_Prev_Virtual_Screen.html")
 
 
-(rt:define-gconstant +key-previouscandidate+ 65342 "
-C: GDK_KEY_PreviousCandidate
+(rt:define-gconstant +key-previouscandidate+ 65342 "C: GDK_KEY_PreviousCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_PreviousCandidate.html")
 
 
-(rt:define-gconstant +key-previouselement+ 268964476 "
-C: GDK_KEY_PreviousElement
+(rt:define-gconstant +key-previouselement+ 268964476 "C: GDK_KEY_PreviousElement
 See: https://docs.gtk.org/gdk4/const.KEY_PreviousElement.html")
 
 
-(rt:define-gconstant +key-print+ 65377 "
-C: GDK_KEY_Print
+(rt:define-gconstant +key-print+ 65377 "C: GDK_KEY_Print
 See: https://docs.gtk.org/gdk4/const.KEY_Print.html")
 
 
-(rt:define-gconstant +key-prior+ 65365 "
-C: GDK_KEY_Prior
+(rt:define-gconstant +key-prior+ 65365 "C: GDK_KEY_Prior
 See: https://docs.gtk.org/gdk4/const.KEY_Prior.html")
 
 
-(rt:define-gconstant +key-privacyscreentoggle+ 268964473 "
-C: GDK_KEY_PrivacyScreenToggle
+(rt:define-gconstant +key-privacyscreentoggle+ 268964473 "C: GDK_KEY_PrivacyScreenToggle
 See: https://docs.gtk.org/gdk4/const.KEY_PrivacyScreenToggle.html")
 
 
-(rt:define-gconstant +key-q+ 81 "
-C: GDK_KEY_Q
+(rt:define-gconstant +key-q+ 81 "C: GDK_KEY_Q
 See: https://docs.gtk.org/gdk4/const.KEY_Q.html")
 
 
-(rt:define-gconstant +key-r+ 82 "
-C: GDK_KEY_R
+(rt:define-gconstant +key-r+ 82 "C: GDK_KEY_R
 See: https://docs.gtk.org/gdk4/const.KEY_R.html")
 
 
-(rt:define-gconstant +key-r1+ 65490 "
-C: GDK_KEY_R1
+(rt:define-gconstant +key-r1+ 65490 "C: GDK_KEY_R1
 See: https://docs.gtk.org/gdk4/const.KEY_R1.html")
 
 
-(rt:define-gconstant +key-r10+ 65499 "
-C: GDK_KEY_R10
+(rt:define-gconstant +key-r10+ 65499 "C: GDK_KEY_R10
 See: https://docs.gtk.org/gdk4/const.KEY_R10.html")
 
 
-(rt:define-gconstant +key-r11+ 65500 "
-C: GDK_KEY_R11
+(rt:define-gconstant +key-r11+ 65500 "C: GDK_KEY_R11
 See: https://docs.gtk.org/gdk4/const.KEY_R11.html")
 
 
-(rt:define-gconstant +key-r12+ 65501 "
-C: GDK_KEY_R12
+(rt:define-gconstant +key-r12+ 65501 "C: GDK_KEY_R12
 See: https://docs.gtk.org/gdk4/const.KEY_R12.html")
 
 
-(rt:define-gconstant +key-r13+ 65502 "
-C: GDK_KEY_R13
+(rt:define-gconstant +key-r13+ 65502 "C: GDK_KEY_R13
 See: https://docs.gtk.org/gdk4/const.KEY_R13.html")
 
 
-(rt:define-gconstant +key-r14+ 65503 "
-C: GDK_KEY_R14
+(rt:define-gconstant +key-r14+ 65503 "C: GDK_KEY_R14
 See: https://docs.gtk.org/gdk4/const.KEY_R14.html")
 
 
-(rt:define-gconstant +key-r15+ 65504 "
-C: GDK_KEY_R15
+(rt:define-gconstant +key-r15+ 65504 "C: GDK_KEY_R15
 See: https://docs.gtk.org/gdk4/const.KEY_R15.html")
 
 
-(rt:define-gconstant +key-r2+ 65491 "
-C: GDK_KEY_R2
+(rt:define-gconstant +key-r2+ 65491 "C: GDK_KEY_R2
 See: https://docs.gtk.org/gdk4/const.KEY_R2.html")
 
 
-(rt:define-gconstant +key-r3+ 65492 "
-C: GDK_KEY_R3
+(rt:define-gconstant +key-r3+ 65492 "C: GDK_KEY_R3
 See: https://docs.gtk.org/gdk4/const.KEY_R3.html")
 
 
-(rt:define-gconstant +key-r4+ 65493 "
-C: GDK_KEY_R4
+(rt:define-gconstant +key-r4+ 65493 "C: GDK_KEY_R4
 See: https://docs.gtk.org/gdk4/const.KEY_R4.html")
 
 
-(rt:define-gconstant +key-r5+ 65494 "
-C: GDK_KEY_R5
+(rt:define-gconstant +key-r5+ 65494 "C: GDK_KEY_R5
 See: https://docs.gtk.org/gdk4/const.KEY_R5.html")
 
 
-(rt:define-gconstant +key-r6+ 65495 "
-C: GDK_KEY_R6
+(rt:define-gconstant +key-r6+ 65495 "C: GDK_KEY_R6
 See: https://docs.gtk.org/gdk4/const.KEY_R6.html")
 
 
-(rt:define-gconstant +key-r7+ 65496 "
-C: GDK_KEY_R7
+(rt:define-gconstant +key-r7+ 65496 "C: GDK_KEY_R7
 See: https://docs.gtk.org/gdk4/const.KEY_R7.html")
 
 
-(rt:define-gconstant +key-r8+ 65497 "
-C: GDK_KEY_R8
+(rt:define-gconstant +key-r8+ 65497 "C: GDK_KEY_R8
 See: https://docs.gtk.org/gdk4/const.KEY_R8.html")
 
 
-(rt:define-gconstant +key-r9+ 65498 "
-C: GDK_KEY_R9
+(rt:define-gconstant +key-r9+ 65498 "C: GDK_KEY_R9
 See: https://docs.gtk.org/gdk4/const.KEY_R9.html")
 
 
-(rt:define-gconstant +key-rfkill+ 269025205 "
-C: GDK_KEY_RFKill
+(rt:define-gconstant +key-rfkill+ 269025205 "C: GDK_KEY_RFKill
 See: https://docs.gtk.org/gdk4/const.KEY_RFKill.html")
 
 
-(rt:define-gconstant +key-racute+ 448 "
-C: GDK_KEY_Racute
+(rt:define-gconstant +key-racute+ 448 "C: GDK_KEY_Racute
 See: https://docs.gtk.org/gdk4/const.KEY_Racute.html")
 
 
-(rt:define-gconstant +key-radaroverlay+ 268964484 "
-C: GDK_KEY_RadarOverlay
+(rt:define-gconstant +key-radaroverlay+ 268964484 "C: GDK_KEY_RadarOverlay
 See: https://docs.gtk.org/gdk4/const.KEY_RadarOverlay.html")
 
 
-(rt:define-gconstant +key-rcaron+ 472 "
-C: GDK_KEY_Rcaron
+(rt:define-gconstant +key-rcaron+ 472 "C: GDK_KEY_Rcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Rcaron.html")
 
 
-(rt:define-gconstant +key-rcedilla+ 931 "
-C: GDK_KEY_Rcedilla
+(rt:define-gconstant +key-rcedilla+ 931 "C: GDK_KEY_Rcedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Rcedilla.html")
 
 
-(rt:define-gconstant +key-red+ 269025187 "
-C: GDK_KEY_Red
+(rt:define-gconstant +key-red+ 269025187 "C: GDK_KEY_Red
 See: https://docs.gtk.org/gdk4/const.KEY_Red.html")
 
 
-(rt:define-gconstant +key-redo+ 65382 "
-C: GDK_KEY_Redo
+(rt:define-gconstant +key-redo+ 65382 "C: GDK_KEY_Redo
 See: https://docs.gtk.org/gdk4/const.KEY_Redo.html")
 
 
-(rt:define-gconstant +key-refresh+ 269025065 "
-C: GDK_KEY_Refresh
+(rt:define-gconstant +key-refresh+ 269025065 "C: GDK_KEY_Refresh
 See: https://docs.gtk.org/gdk4/const.KEY_Refresh.html")
 
 
-(rt:define-gconstant +key-refreshratetoggle+ 268964402 "
-C: GDK_KEY_RefreshRateToggle
+(rt:define-gconstant +key-refreshratetoggle+ 268964402 "C: GDK_KEY_RefreshRateToggle
 See: https://docs.gtk.org/gdk4/const.KEY_RefreshRateToggle.html")
 
 
-(rt:define-gconstant +key-reload+ 269025139 "
-C: GDK_KEY_Reload
+(rt:define-gconstant +key-reload+ 269025139 "C: GDK_KEY_Reload
 See: https://docs.gtk.org/gdk4/const.KEY_Reload.html")
 
 
-(rt:define-gconstant +key-repeatkeys-enable+ 65138 "
-C: GDK_KEY_RepeatKeys_Enable
+(rt:define-gconstant +key-repeatkeys-enable+ 65138 "C: GDK_KEY_RepeatKeys_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_RepeatKeys_Enable.html")
 
 
-(rt:define-gconstant +key-reply+ 269025138 "
-C: GDK_KEY_Reply
+(rt:define-gconstant +key-reply+ 269025138 "C: GDK_KEY_Reply
 See: https://docs.gtk.org/gdk4/const.KEY_Reply.html")
 
 
-(rt:define-gconstant +key-return+ 65293 "
-C: GDK_KEY_Return
+(rt:define-gconstant +key-return+ 65293 "C: GDK_KEY_Return
 See: https://docs.gtk.org/gdk4/const.KEY_Return.html")
 
 
-(rt:define-gconstant +key-right+ 65363 "
-C: GDK_KEY_Right
+(rt:define-gconstant +key-right+ 65363 "C: GDK_KEY_Right
 See: https://docs.gtk.org/gdk4/const.KEY_Right.html")
 
 
-(rt:define-gconstant +key-rightdown+ 268964455 "
-C: GDK_KEY_RightDown
+(rt:define-gconstant +key-rightdown+ 268964455 "C: GDK_KEY_RightDown
 See: https://docs.gtk.org/gdk4/const.KEY_RightDown.html")
 
 
-(rt:define-gconstant +key-rightup+ 268964454 "
-C: GDK_KEY_RightUp
+(rt:define-gconstant +key-rightup+ 268964454 "C: GDK_KEY_RightUp
 See: https://docs.gtk.org/gdk4/const.KEY_RightUp.html")
 
 
-(rt:define-gconstant +key-rockerdown+ 269025060 "
-C: GDK_KEY_RockerDown
+(rt:define-gconstant +key-rockerdown+ 269025060 "C: GDK_KEY_RockerDown
 See: https://docs.gtk.org/gdk4/const.KEY_RockerDown.html")
 
 
-(rt:define-gconstant +key-rockerenter+ 269025061 "
-C: GDK_KEY_RockerEnter
+(rt:define-gconstant +key-rockerenter+ 269025061 "C: GDK_KEY_RockerEnter
 See: https://docs.gtk.org/gdk4/const.KEY_RockerEnter.html")
 
 
-(rt:define-gconstant +key-rockerup+ 269025059 "
-C: GDK_KEY_RockerUp
+(rt:define-gconstant +key-rockerup+ 269025059 "C: GDK_KEY_RockerUp
 See: https://docs.gtk.org/gdk4/const.KEY_RockerUp.html")
 
 
-(rt:define-gconstant +key-romaji+ 65316 "
-C: GDK_KEY_Romaji
+(rt:define-gconstant +key-romaji+ 65316 "C: GDK_KEY_Romaji
 See: https://docs.gtk.org/gdk4/const.KEY_Romaji.html")
 
 
-(rt:define-gconstant +key-rootmenu+ 268964458 "
-C: GDK_KEY_RootMenu
+(rt:define-gconstant +key-rootmenu+ 268964458 "C: GDK_KEY_RootMenu
 See: https://docs.gtk.org/gdk4/const.KEY_RootMenu.html")
 
 
-(rt:define-gconstant +key-rotatewindows+ 269025140 "
-C: GDK_KEY_RotateWindows
+(rt:define-gconstant +key-rotatewindows+ 269025140 "C: GDK_KEY_RotateWindows
 See: https://docs.gtk.org/gdk4/const.KEY_RotateWindows.html")
 
 
-(rt:define-gconstant +key-rotationkb+ 269025142 "
-C: GDK_KEY_RotationKB
+(rt:define-gconstant +key-rotationkb+ 269025142 "C: GDK_KEY_RotationKB
 See: https://docs.gtk.org/gdk4/const.KEY_RotationKB.html")
 
 
-(rt:define-gconstant +key-rotationlocktoggle+ 269025207 "
-C: GDK_KEY_RotationLockToggle
+(rt:define-gconstant +key-rotationlocktoggle+ 269025207 "C: GDK_KEY_RotationLockToggle
 See: https://docs.gtk.org/gdk4/const.KEY_RotationLockToggle.html")
 
 
-(rt:define-gconstant +key-rotationpb+ 269025141 "
-C: GDK_KEY_RotationPB
+(rt:define-gconstant +key-rotationpb+ 269025141 "C: GDK_KEY_RotationPB
 See: https://docs.gtk.org/gdk4/const.KEY_RotationPB.html")
 
 
-(rt:define-gconstant +key-rupeesign+ 16785576 "
-C: GDK_KEY_RupeeSign
+(rt:define-gconstant +key-rupeesign+ 16785576 "C: GDK_KEY_RupeeSign
 See: https://docs.gtk.org/gdk4/const.KEY_RupeeSign.html")
 
 
-(rt:define-gconstant +key-s+ 83 "
-C: GDK_KEY_S
+(rt:define-gconstant +key-s+ 83 "C: GDK_KEY_S
 See: https://docs.gtk.org/gdk4/const.KEY_S.html")
 
 
-(rt:define-gconstant +key-schwa+ 16777615 "
-C: GDK_KEY_SCHWA
+(rt:define-gconstant +key-schwa+ 16777615 "C: GDK_KEY_SCHWA
 See: https://docs.gtk.org/gdk4/const.KEY_SCHWA.html")
 
 
-(rt:define-gconstant +key-sabovedot+ 16784992 "
-C: GDK_KEY_Sabovedot
+(rt:define-gconstant +key-sabovedot+ 16784992 "C: GDK_KEY_Sabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Sabovedot.html")
 
 
-(rt:define-gconstant +key-sacute+ 422 "
-C: GDK_KEY_Sacute
+(rt:define-gconstant +key-sacute+ 422 "C: GDK_KEY_Sacute
 See: https://docs.gtk.org/gdk4/const.KEY_Sacute.html")
 
 
-(rt:define-gconstant +key-save+ 269025143 "
-C: GDK_KEY_Save
+(rt:define-gconstant +key-save+ 269025143 "C: GDK_KEY_Save
 See: https://docs.gtk.org/gdk4/const.KEY_Save.html")
 
 
-(rt:define-gconstant +key-scaron+ 425 "
-C: GDK_KEY_Scaron
+(rt:define-gconstant +key-scaron+ 425 "C: GDK_KEY_Scaron
 See: https://docs.gtk.org/gdk4/const.KEY_Scaron.html")
 
 
-(rt:define-gconstant +key-scedilla+ 426 "
-C: GDK_KEY_Scedilla
+(rt:define-gconstant +key-scedilla+ 426 "C: GDK_KEY_Scedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Scedilla.html")
 
 
-(rt:define-gconstant +key-scircumflex+ 734 "
-C: GDK_KEY_Scircumflex
+(rt:define-gconstant +key-scircumflex+ 734 "C: GDK_KEY_Scircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Scircumflex.html")
 
 
-(rt:define-gconstant +key-screensaver+ 269025069 "
-C: GDK_KEY_ScreenSaver
+(rt:define-gconstant +key-screensaver+ 269025069 "C: GDK_KEY_ScreenSaver
 See: https://docs.gtk.org/gdk4/const.KEY_ScreenSaver.html")
 
 
-(rt:define-gconstant +key-scrollclick+ 269025146 "
-C: GDK_KEY_ScrollClick
+(rt:define-gconstant +key-scrollclick+ 269025146 "C: GDK_KEY_ScrollClick
 See: https://docs.gtk.org/gdk4/const.KEY_ScrollClick.html")
 
 
-(rt:define-gconstant +key-scrolldown+ 269025145 "
-C: GDK_KEY_ScrollDown
+(rt:define-gconstant +key-scrolldown+ 269025145 "C: GDK_KEY_ScrollDown
 See: https://docs.gtk.org/gdk4/const.KEY_ScrollDown.html")
 
 
-(rt:define-gconstant +key-scrollup+ 269025144 "
-C: GDK_KEY_ScrollUp
+(rt:define-gconstant +key-scrollup+ 269025144 "C: GDK_KEY_ScrollUp
 See: https://docs.gtk.org/gdk4/const.KEY_ScrollUp.html")
 
 
-(rt:define-gconstant +key-scroll-lock+ 65300 "
-C: GDK_KEY_Scroll_Lock
+(rt:define-gconstant +key-scroll-lock+ 65300 "C: GDK_KEY_Scroll_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_Scroll_Lock.html")
 
 
-(rt:define-gconstant +key-search+ 269025051 "
-C: GDK_KEY_Search
+(rt:define-gconstant +key-search+ 269025051 "C: GDK_KEY_Search
 See: https://docs.gtk.org/gdk4/const.KEY_Search.html")
 
 
-(rt:define-gconstant +key-select+ 65376 "
-C: GDK_KEY_Select
+(rt:define-gconstant +key-select+ 65376 "C: GDK_KEY_Select
 See: https://docs.gtk.org/gdk4/const.KEY_Select.html")
 
 
-(rt:define-gconstant +key-selectbutton+ 269025184 "
-C: GDK_KEY_SelectButton
+(rt:define-gconstant +key-selectbutton+ 269025184 "C: GDK_KEY_SelectButton
 See: https://docs.gtk.org/gdk4/const.KEY_SelectButton.html")
 
 
-(rt:define-gconstant +key-selectivescreenshot+ 268964474 "
-C: GDK_KEY_SelectiveScreenshot
+(rt:define-gconstant +key-selectivescreenshot+ 268964474 "C: GDK_KEY_SelectiveScreenshot
 See: https://docs.gtk.org/gdk4/const.KEY_SelectiveScreenshot.html")
 
 
-(rt:define-gconstant +key-send+ 269025147 "
-C: GDK_KEY_Send
+(rt:define-gconstant +key-send+ 269025147 "C: GDK_KEY_Send
 See: https://docs.gtk.org/gdk4/const.KEY_Send.html")
 
 
-(rt:define-gconstant +key-serbian-dje+ 1713 "
-C: GDK_KEY_Serbian_DJE
+(rt:define-gconstant +key-serbian-dje+ 1713 "C: GDK_KEY_Serbian_DJE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_DJE.html")
 
 
-(rt:define-gconstant +key-serbian-dze+ 1727 "
-C: GDK_KEY_Serbian_DZE
+(rt:define-gconstant +key-serbian-dze+ 1727 "C: GDK_KEY_Serbian_DZE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_DZE.html")
 
 
-(rt:define-gconstant +key-serbian-je+ 1720 "
-C: GDK_KEY_Serbian_JE
+(rt:define-gconstant +key-serbian-je+ 1720 "C: GDK_KEY_Serbian_JE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_JE.html")
 
 
-(rt:define-gconstant +key-serbian-lje+ 1721 "
-C: GDK_KEY_Serbian_LJE
+(rt:define-gconstant +key-serbian-lje+ 1721 "C: GDK_KEY_Serbian_LJE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_LJE.html")
 
 
-(rt:define-gconstant +key-serbian-nje+ 1722 "
-C: GDK_KEY_Serbian_NJE
+(rt:define-gconstant +key-serbian-nje+ 1722 "C: GDK_KEY_Serbian_NJE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_NJE.html")
 
 
-(rt:define-gconstant +key-serbian-tshe+ 1723 "
-C: GDK_KEY_Serbian_TSHE
+(rt:define-gconstant +key-serbian-tshe+ 1723 "C: GDK_KEY_Serbian_TSHE
 See: https://docs.gtk.org/gdk4/const.KEY_Serbian_TSHE.html")
 
 
-(rt:define-gconstant +key-shift-l+ 65505 "
-C: GDK_KEY_Shift_L
+(rt:define-gconstant +key-shift-l+ 65505 "C: GDK_KEY_Shift_L
 See: https://docs.gtk.org/gdk4/const.KEY_Shift_L.html")
 
 
-(rt:define-gconstant +key-shift-lock+ 65510 "
-C: GDK_KEY_Shift_Lock
+(rt:define-gconstant +key-shift-lock+ 65510 "C: GDK_KEY_Shift_Lock
 See: https://docs.gtk.org/gdk4/const.KEY_Shift_Lock.html")
 
 
-(rt:define-gconstant +key-shift-r+ 65506 "
-C: GDK_KEY_Shift_R
+(rt:define-gconstant +key-shift-r+ 65506 "C: GDK_KEY_Shift_R
 See: https://docs.gtk.org/gdk4/const.KEY_Shift_R.html")
 
 
-(rt:define-gconstant +key-shop+ 269025078 "
-C: GDK_KEY_Shop
+(rt:define-gconstant +key-shop+ 269025078 "C: GDK_KEY_Shop
 See: https://docs.gtk.org/gdk4/const.KEY_Shop.html")
 
 
-(rt:define-gconstant +key-sidevusonar+ 268964487 "
-C: GDK_KEY_SidevuSonar
+(rt:define-gconstant +key-sidevusonar+ 268964487 "C: GDK_KEY_SidevuSonar
 See: https://docs.gtk.org/gdk4/const.KEY_SidevuSonar.html")
 
 
-(rt:define-gconstant +key-singlecandidate+ 65340 "
-C: GDK_KEY_SingleCandidate
+(rt:define-gconstant +key-singlecandidate+ 65340 "C: GDK_KEY_SingleCandidate
 See: https://docs.gtk.org/gdk4/const.KEY_SingleCandidate.html")
 
 
-(rt:define-gconstant +key-singlerangeradar+ 268964482 "
-C: GDK_KEY_SingleRangeRadar
+(rt:define-gconstant +key-singlerangeradar+ 268964482 "C: GDK_KEY_SingleRangeRadar
 See: https://docs.gtk.org/gdk4/const.KEY_SingleRangeRadar.html")
 
 
-(rt:define-gconstant +key-sinh-a+ 16780677 "
-C: GDK_KEY_Sinh_a
+(rt:define-gconstant +key-sinh-a+ 16780677 "C: GDK_KEY_Sinh_a
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_a.html")
 
 
-(rt:define-gconstant +key-sinh-aa+ 16780678 "
-C: GDK_KEY_Sinh_aa
+(rt:define-gconstant +key-sinh-aa+ 16780678 "C: GDK_KEY_Sinh_aa
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_aa.html")
 
 
-(rt:define-gconstant +key-sinh-aa2+ 16780751 "
-C: GDK_KEY_Sinh_aa2
+(rt:define-gconstant +key-sinh-aa2+ 16780751 "C: GDK_KEY_Sinh_aa2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_aa2.html")
 
 
-(rt:define-gconstant +key-sinh-ae+ 16780679 "
-C: GDK_KEY_Sinh_ae
+(rt:define-gconstant +key-sinh-ae+ 16780679 "C: GDK_KEY_Sinh_ae
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ae.html")
 
 
-(rt:define-gconstant +key-sinh-ae2+ 16780752 "
-C: GDK_KEY_Sinh_ae2
+(rt:define-gconstant +key-sinh-ae2+ 16780752 "C: GDK_KEY_Sinh_ae2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ae2.html")
 
 
-(rt:define-gconstant +key-sinh-aee+ 16780680 "
-C: GDK_KEY_Sinh_aee
+(rt:define-gconstant +key-sinh-aee+ 16780680 "C: GDK_KEY_Sinh_aee
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_aee.html")
 
 
-(rt:define-gconstant +key-sinh-aee2+ 16780753 "
-C: GDK_KEY_Sinh_aee2
+(rt:define-gconstant +key-sinh-aee2+ 16780753 "C: GDK_KEY_Sinh_aee2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_aee2.html")
 
 
-(rt:define-gconstant +key-sinh-ai+ 16780691 "
-C: GDK_KEY_Sinh_ai
+(rt:define-gconstant +key-sinh-ai+ 16780691 "C: GDK_KEY_Sinh_ai
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ai.html")
 
 
-(rt:define-gconstant +key-sinh-ai2+ 16780763 "
-C: GDK_KEY_Sinh_ai2
+(rt:define-gconstant +key-sinh-ai2+ 16780763 "C: GDK_KEY_Sinh_ai2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ai2.html")
 
 
-(rt:define-gconstant +key-sinh-al+ 16780746 "
-C: GDK_KEY_Sinh_al
+(rt:define-gconstant +key-sinh-al+ 16780746 "C: GDK_KEY_Sinh_al
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_al.html")
 
 
-(rt:define-gconstant +key-sinh-au+ 16780694 "
-C: GDK_KEY_Sinh_au
+(rt:define-gconstant +key-sinh-au+ 16780694 "C: GDK_KEY_Sinh_au
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_au.html")
 
 
-(rt:define-gconstant +key-sinh-au2+ 16780766 "
-C: GDK_KEY_Sinh_au2
+(rt:define-gconstant +key-sinh-au2+ 16780766 "C: GDK_KEY_Sinh_au2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_au2.html")
 
 
-(rt:define-gconstant +key-sinh-ba+ 16780726 "
-C: GDK_KEY_Sinh_ba
+(rt:define-gconstant +key-sinh-ba+ 16780726 "C: GDK_KEY_Sinh_ba
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ba.html")
 
 
-(rt:define-gconstant +key-sinh-bha+ 16780727 "
-C: GDK_KEY_Sinh_bha
+(rt:define-gconstant +key-sinh-bha+ 16780727 "C: GDK_KEY_Sinh_bha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_bha.html")
 
 
-(rt:define-gconstant +key-sinh-ca+ 16780704 "
-C: GDK_KEY_Sinh_ca
+(rt:define-gconstant +key-sinh-ca+ 16780704 "C: GDK_KEY_Sinh_ca
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ca.html")
 
 
-(rt:define-gconstant +key-sinh-cha+ 16780705 "
-C: GDK_KEY_Sinh_cha
+(rt:define-gconstant +key-sinh-cha+ 16780705 "C: GDK_KEY_Sinh_cha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_cha.html")
 
 
-(rt:define-gconstant +key-sinh-dda+ 16780713 "
-C: GDK_KEY_Sinh_dda
+(rt:define-gconstant +key-sinh-dda+ 16780713 "C: GDK_KEY_Sinh_dda
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_dda.html")
 
 
-(rt:define-gconstant +key-sinh-ddha+ 16780714 "
-C: GDK_KEY_Sinh_ddha
+(rt:define-gconstant +key-sinh-ddha+ 16780714 "C: GDK_KEY_Sinh_ddha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ddha.html")
 
 
-(rt:define-gconstant +key-sinh-dha+ 16780719 "
-C: GDK_KEY_Sinh_dha
+(rt:define-gconstant +key-sinh-dha+ 16780719 "C: GDK_KEY_Sinh_dha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_dha.html")
 
 
-(rt:define-gconstant +key-sinh-dhha+ 16780720 "
-C: GDK_KEY_Sinh_dhha
+(rt:define-gconstant +key-sinh-dhha+ 16780720 "C: GDK_KEY_Sinh_dhha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_dhha.html")
 
 
-(rt:define-gconstant +key-sinh-e+ 16780689 "
-C: GDK_KEY_Sinh_e
+(rt:define-gconstant +key-sinh-e+ 16780689 "C: GDK_KEY_Sinh_e
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_e.html")
 
 
-(rt:define-gconstant +key-sinh-e2+ 16780761 "
-C: GDK_KEY_Sinh_e2
+(rt:define-gconstant +key-sinh-e2+ 16780761 "C: GDK_KEY_Sinh_e2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_e2.html")
 
 
-(rt:define-gconstant +key-sinh-ee+ 16780690 "
-C: GDK_KEY_Sinh_ee
+(rt:define-gconstant +key-sinh-ee+ 16780690 "C: GDK_KEY_Sinh_ee
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ee.html")
 
 
-(rt:define-gconstant +key-sinh-ee2+ 16780762 "
-C: GDK_KEY_Sinh_ee2
+(rt:define-gconstant +key-sinh-ee2+ 16780762 "C: GDK_KEY_Sinh_ee2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ee2.html")
 
 
-(rt:define-gconstant +key-sinh-fa+ 16780742 "
-C: GDK_KEY_Sinh_fa
+(rt:define-gconstant +key-sinh-fa+ 16780742 "C: GDK_KEY_Sinh_fa
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_fa.html")
 
 
-(rt:define-gconstant +key-sinh-ga+ 16780700 "
-C: GDK_KEY_Sinh_ga
+(rt:define-gconstant +key-sinh-ga+ 16780700 "C: GDK_KEY_Sinh_ga
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ga.html")
 
 
-(rt:define-gconstant +key-sinh-gha+ 16780701 "
-C: GDK_KEY_Sinh_gha
+(rt:define-gconstant +key-sinh-gha+ 16780701 "C: GDK_KEY_Sinh_gha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_gha.html")
 
 
-(rt:define-gconstant +key-sinh-h2+ 16780675 "
-C: GDK_KEY_Sinh_h2
+(rt:define-gconstant +key-sinh-h2+ 16780675 "C: GDK_KEY_Sinh_h2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_h2.html")
 
 
-(rt:define-gconstant +key-sinh-ha+ 16780740 "
-C: GDK_KEY_Sinh_ha
+(rt:define-gconstant +key-sinh-ha+ 16780740 "C: GDK_KEY_Sinh_ha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ha.html")
 
 
-(rt:define-gconstant +key-sinh-i+ 16780681 "
-C: GDK_KEY_Sinh_i
+(rt:define-gconstant +key-sinh-i+ 16780681 "C: GDK_KEY_Sinh_i
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_i.html")
 
 
-(rt:define-gconstant +key-sinh-i2+ 16780754 "
-C: GDK_KEY_Sinh_i2
+(rt:define-gconstant +key-sinh-i2+ 16780754 "C: GDK_KEY_Sinh_i2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_i2.html")
 
 
-(rt:define-gconstant +key-sinh-ii+ 16780682 "
-C: GDK_KEY_Sinh_ii
+(rt:define-gconstant +key-sinh-ii+ 16780682 "C: GDK_KEY_Sinh_ii
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ii.html")
 
 
-(rt:define-gconstant +key-sinh-ii2+ 16780755 "
-C: GDK_KEY_Sinh_ii2
+(rt:define-gconstant +key-sinh-ii2+ 16780755 "C: GDK_KEY_Sinh_ii2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ii2.html")
 
 
-(rt:define-gconstant +key-sinh-ja+ 16780706 "
-C: GDK_KEY_Sinh_ja
+(rt:define-gconstant +key-sinh-ja+ 16780706 "C: GDK_KEY_Sinh_ja
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ja.html")
 
 
-(rt:define-gconstant +key-sinh-jha+ 16780707 "
-C: GDK_KEY_Sinh_jha
+(rt:define-gconstant +key-sinh-jha+ 16780707 "C: GDK_KEY_Sinh_jha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_jha.html")
 
 
-(rt:define-gconstant +key-sinh-jnya+ 16780709 "
-C: GDK_KEY_Sinh_jnya
+(rt:define-gconstant +key-sinh-jnya+ 16780709 "C: GDK_KEY_Sinh_jnya
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_jnya.html")
 
 
-(rt:define-gconstant +key-sinh-ka+ 16780698 "
-C: GDK_KEY_Sinh_ka
+(rt:define-gconstant +key-sinh-ka+ 16780698 "C: GDK_KEY_Sinh_ka
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ka.html")
 
 
-(rt:define-gconstant +key-sinh-kha+ 16780699 "
-C: GDK_KEY_Sinh_kha
+(rt:define-gconstant +key-sinh-kha+ 16780699 "C: GDK_KEY_Sinh_kha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_kha.html")
 
 
-(rt:define-gconstant +key-sinh-kunddaliya+ 16780788 "
-C: GDK_KEY_Sinh_kunddaliya
+(rt:define-gconstant +key-sinh-kunddaliya+ 16780788 "C: GDK_KEY_Sinh_kunddaliya
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_kunddaliya.html")
 
 
-(rt:define-gconstant +key-sinh-la+ 16780733 "
-C: GDK_KEY_Sinh_la
+(rt:define-gconstant +key-sinh-la+ 16780733 "C: GDK_KEY_Sinh_la
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_la.html")
 
 
-(rt:define-gconstant +key-sinh-lla+ 16780741 "
-C: GDK_KEY_Sinh_lla
+(rt:define-gconstant +key-sinh-lla+ 16780741 "C: GDK_KEY_Sinh_lla
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_lla.html")
 
 
-(rt:define-gconstant +key-sinh-lu+ 16780687 "
-C: GDK_KEY_Sinh_lu
+(rt:define-gconstant +key-sinh-lu+ 16780687 "C: GDK_KEY_Sinh_lu
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_lu.html")
 
 
-(rt:define-gconstant +key-sinh-lu2+ 16780767 "
-C: GDK_KEY_Sinh_lu2
+(rt:define-gconstant +key-sinh-lu2+ 16780767 "C: GDK_KEY_Sinh_lu2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_lu2.html")
 
 
-(rt:define-gconstant +key-sinh-luu+ 16780688 "
-C: GDK_KEY_Sinh_luu
+(rt:define-gconstant +key-sinh-luu+ 16780688 "C: GDK_KEY_Sinh_luu
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_luu.html")
 
 
-(rt:define-gconstant +key-sinh-luu2+ 16780787 "
-C: GDK_KEY_Sinh_luu2
+(rt:define-gconstant +key-sinh-luu2+ 16780787 "C: GDK_KEY_Sinh_luu2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_luu2.html")
 
 
-(rt:define-gconstant +key-sinh-ma+ 16780728 "
-C: GDK_KEY_Sinh_ma
+(rt:define-gconstant +key-sinh-ma+ 16780728 "C: GDK_KEY_Sinh_ma
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ma.html")
 
 
-(rt:define-gconstant +key-sinh-mba+ 16780729 "
-C: GDK_KEY_Sinh_mba
+(rt:define-gconstant +key-sinh-mba+ 16780729 "C: GDK_KEY_Sinh_mba
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_mba.html")
 
 
-(rt:define-gconstant +key-sinh-na+ 16780721 "
-C: GDK_KEY_Sinh_na
+(rt:define-gconstant +key-sinh-na+ 16780721 "C: GDK_KEY_Sinh_na
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_na.html")
 
 
-(rt:define-gconstant +key-sinh-ndda+ 16780716 "
-C: GDK_KEY_Sinh_ndda
+(rt:define-gconstant +key-sinh-ndda+ 16780716 "C: GDK_KEY_Sinh_ndda
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ndda.html")
 
 
-(rt:define-gconstant +key-sinh-ndha+ 16780723 "
-C: GDK_KEY_Sinh_ndha
+(rt:define-gconstant +key-sinh-ndha+ 16780723 "C: GDK_KEY_Sinh_ndha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ndha.html")
 
 
-(rt:define-gconstant +key-sinh-ng+ 16780674 "
-C: GDK_KEY_Sinh_ng
+(rt:define-gconstant +key-sinh-ng+ 16780674 "C: GDK_KEY_Sinh_ng
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ng.html")
 
 
-(rt:define-gconstant +key-sinh-ng2+ 16780702 "
-C: GDK_KEY_Sinh_ng2
+(rt:define-gconstant +key-sinh-ng2+ 16780702 "C: GDK_KEY_Sinh_ng2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ng2.html")
 
 
-(rt:define-gconstant +key-sinh-nga+ 16780703 "
-C: GDK_KEY_Sinh_nga
+(rt:define-gconstant +key-sinh-nga+ 16780703 "C: GDK_KEY_Sinh_nga
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_nga.html")
 
 
-(rt:define-gconstant +key-sinh-nja+ 16780710 "
-C: GDK_KEY_Sinh_nja
+(rt:define-gconstant +key-sinh-nja+ 16780710 "C: GDK_KEY_Sinh_nja
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_nja.html")
 
 
-(rt:define-gconstant +key-sinh-nna+ 16780715 "
-C: GDK_KEY_Sinh_nna
+(rt:define-gconstant +key-sinh-nna+ 16780715 "C: GDK_KEY_Sinh_nna
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_nna.html")
 
 
-(rt:define-gconstant +key-sinh-nya+ 16780708 "
-C: GDK_KEY_Sinh_nya
+(rt:define-gconstant +key-sinh-nya+ 16780708 "C: GDK_KEY_Sinh_nya
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_nya.html")
 
 
-(rt:define-gconstant +key-sinh-o+ 16780692 "
-C: GDK_KEY_Sinh_o
+(rt:define-gconstant +key-sinh-o+ 16780692 "C: GDK_KEY_Sinh_o
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_o.html")
 
 
-(rt:define-gconstant +key-sinh-o2+ 16780764 "
-C: GDK_KEY_Sinh_o2
+(rt:define-gconstant +key-sinh-o2+ 16780764 "C: GDK_KEY_Sinh_o2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_o2.html")
 
 
-(rt:define-gconstant +key-sinh-oo+ 16780693 "
-C: GDK_KEY_Sinh_oo
+(rt:define-gconstant +key-sinh-oo+ 16780693 "C: GDK_KEY_Sinh_oo
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_oo.html")
 
 
-(rt:define-gconstant +key-sinh-oo2+ 16780765 "
-C: GDK_KEY_Sinh_oo2
+(rt:define-gconstant +key-sinh-oo2+ 16780765 "C: GDK_KEY_Sinh_oo2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_oo2.html")
 
 
-(rt:define-gconstant +key-sinh-pa+ 16780724 "
-C: GDK_KEY_Sinh_pa
+(rt:define-gconstant +key-sinh-pa+ 16780724 "C: GDK_KEY_Sinh_pa
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_pa.html")
 
 
-(rt:define-gconstant +key-sinh-pha+ 16780725 "
-C: GDK_KEY_Sinh_pha
+(rt:define-gconstant +key-sinh-pha+ 16780725 "C: GDK_KEY_Sinh_pha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_pha.html")
 
 
-(rt:define-gconstant +key-sinh-ra+ 16780731 "
-C: GDK_KEY_Sinh_ra
+(rt:define-gconstant +key-sinh-ra+ 16780731 "C: GDK_KEY_Sinh_ra
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ra.html")
 
 
-(rt:define-gconstant +key-sinh-ri+ 16780685 "
-C: GDK_KEY_Sinh_ri
+(rt:define-gconstant +key-sinh-ri+ 16780685 "C: GDK_KEY_Sinh_ri
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ri.html")
 
 
-(rt:define-gconstant +key-sinh-rii+ 16780686 "
-C: GDK_KEY_Sinh_rii
+(rt:define-gconstant +key-sinh-rii+ 16780686 "C: GDK_KEY_Sinh_rii
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_rii.html")
 
 
-(rt:define-gconstant +key-sinh-ru2+ 16780760 "
-C: GDK_KEY_Sinh_ru2
+(rt:define-gconstant +key-sinh-ru2+ 16780760 "C: GDK_KEY_Sinh_ru2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ru2.html")
 
 
-(rt:define-gconstant +key-sinh-ruu2+ 16780786 "
-C: GDK_KEY_Sinh_ruu2
+(rt:define-gconstant +key-sinh-ruu2+ 16780786 "C: GDK_KEY_Sinh_ruu2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ruu2.html")
 
 
-(rt:define-gconstant +key-sinh-sa+ 16780739 "
-C: GDK_KEY_Sinh_sa
+(rt:define-gconstant +key-sinh-sa+ 16780739 "C: GDK_KEY_Sinh_sa
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_sa.html")
 
 
-(rt:define-gconstant +key-sinh-sha+ 16780737 "
-C: GDK_KEY_Sinh_sha
+(rt:define-gconstant +key-sinh-sha+ 16780737 "C: GDK_KEY_Sinh_sha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_sha.html")
 
 
-(rt:define-gconstant +key-sinh-ssha+ 16780738 "
-C: GDK_KEY_Sinh_ssha
+(rt:define-gconstant +key-sinh-ssha+ 16780738 "C: GDK_KEY_Sinh_ssha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ssha.html")
 
 
-(rt:define-gconstant +key-sinh-tha+ 16780717 "
-C: GDK_KEY_Sinh_tha
+(rt:define-gconstant +key-sinh-tha+ 16780717 "C: GDK_KEY_Sinh_tha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_tha.html")
 
 
-(rt:define-gconstant +key-sinh-thha+ 16780718 "
-C: GDK_KEY_Sinh_thha
+(rt:define-gconstant +key-sinh-thha+ 16780718 "C: GDK_KEY_Sinh_thha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_thha.html")
 
 
-(rt:define-gconstant +key-sinh-tta+ 16780711 "
-C: GDK_KEY_Sinh_tta
+(rt:define-gconstant +key-sinh-tta+ 16780711 "C: GDK_KEY_Sinh_tta
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_tta.html")
 
 
-(rt:define-gconstant +key-sinh-ttha+ 16780712 "
-C: GDK_KEY_Sinh_ttha
+(rt:define-gconstant +key-sinh-ttha+ 16780712 "C: GDK_KEY_Sinh_ttha
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ttha.html")
 
 
-(rt:define-gconstant +key-sinh-u+ 16780683 "
-C: GDK_KEY_Sinh_u
+(rt:define-gconstant +key-sinh-u+ 16780683 "C: GDK_KEY_Sinh_u
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_u.html")
 
 
-(rt:define-gconstant +key-sinh-u2+ 16780756 "
-C: GDK_KEY_Sinh_u2
+(rt:define-gconstant +key-sinh-u2+ 16780756 "C: GDK_KEY_Sinh_u2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_u2.html")
 
 
-(rt:define-gconstant +key-sinh-uu+ 16780684 "
-C: GDK_KEY_Sinh_uu
+(rt:define-gconstant +key-sinh-uu+ 16780684 "C: GDK_KEY_Sinh_uu
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_uu.html")
 
 
-(rt:define-gconstant +key-sinh-uu2+ 16780758 "
-C: GDK_KEY_Sinh_uu2
+(rt:define-gconstant +key-sinh-uu2+ 16780758 "C: GDK_KEY_Sinh_uu2
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_uu2.html")
 
 
-(rt:define-gconstant +key-sinh-va+ 16780736 "
-C: GDK_KEY_Sinh_va
+(rt:define-gconstant +key-sinh-va+ 16780736 "C: GDK_KEY_Sinh_va
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_va.html")
 
 
-(rt:define-gconstant +key-sinh-ya+ 16780730 "
-C: GDK_KEY_Sinh_ya
+(rt:define-gconstant +key-sinh-ya+ 16780730 "C: GDK_KEY_Sinh_ya
 See: https://docs.gtk.org/gdk4/const.KEY_Sinh_ya.html")
 
 
-(rt:define-gconstant +key-sleep+ 269025071 "
-C: GDK_KEY_Sleep
+(rt:define-gconstant +key-sleep+ 269025071 "C: GDK_KEY_Sleep
 See: https://docs.gtk.org/gdk4/const.KEY_Sleep.html")
 
 
-(rt:define-gconstant +key-slowkeys-enable+ 65139 "
-C: GDK_KEY_SlowKeys_Enable
+(rt:define-gconstant +key-slowkeys-enable+ 65139 "C: GDK_KEY_SlowKeys_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_SlowKeys_Enable.html")
 
 
-(rt:define-gconstant +key-slowreverse+ 268964470 "
-C: GDK_KEY_SlowReverse
+(rt:define-gconstant +key-slowreverse+ 268964470 "C: GDK_KEY_SlowReverse
 See: https://docs.gtk.org/gdk4/const.KEY_SlowReverse.html")
 
 
-(rt:define-gconstant +key-sos+ 268964479 "
-C: GDK_KEY_Sos
+(rt:define-gconstant +key-sos+ 268964479 "C: GDK_KEY_Sos
 See: https://docs.gtk.org/gdk4/const.KEY_Sos.html")
 
 
-(rt:define-gconstant +key-spell+ 269025148 "
-C: GDK_KEY_Spell
+(rt:define-gconstant +key-spell+ 269025148 "C: GDK_KEY_Spell
 See: https://docs.gtk.org/gdk4/const.KEY_Spell.html")
 
 
-(rt:define-gconstant +key-spellcheck+ 268964272 "
-C: GDK_KEY_SpellCheck
+(rt:define-gconstant +key-spellcheck+ 268964272 "C: GDK_KEY_SpellCheck
 See: https://docs.gtk.org/gdk4/const.KEY_SpellCheck.html")
 
 
-(rt:define-gconstant +key-splitscreen+ 269025149 "
-C: GDK_KEY_SplitScreen
+(rt:define-gconstant +key-splitscreen+ 269025149 "C: GDK_KEY_SplitScreen
 See: https://docs.gtk.org/gdk4/const.KEY_SplitScreen.html")
 
 
-(rt:define-gconstant +key-standby+ 269025040 "
-C: GDK_KEY_Standby
+(rt:define-gconstant +key-standby+ 269025040 "C: GDK_KEY_Standby
 See: https://docs.gtk.org/gdk4/const.KEY_Standby.html")
 
 
-(rt:define-gconstant +key-start+ 269025050 "
-C: GDK_KEY_Start
+(rt:define-gconstant +key-start+ 269025050 "C: GDK_KEY_Start
 See: https://docs.gtk.org/gdk4/const.KEY_Start.html")
 
 
-(rt:define-gconstant +key-stickykeys-enable+ 65141 "
-C: GDK_KEY_StickyKeys_Enable
+(rt:define-gconstant +key-stickykeys-enable+ 65141 "C: GDK_KEY_StickyKeys_Enable
 See: https://docs.gtk.org/gdk4/const.KEY_StickyKeys_Enable.html")
 
 
-(rt:define-gconstant +key-stop+ 269025064 "
-C: GDK_KEY_Stop
+(rt:define-gconstant +key-stop+ 269025064 "C: GDK_KEY_Stop
 See: https://docs.gtk.org/gdk4/const.KEY_Stop.html")
 
 
-(rt:define-gconstant +key-stoprecord+ 268964465 "
-C: GDK_KEY_StopRecord
+(rt:define-gconstant +key-stoprecord+ 268964465 "C: GDK_KEY_StopRecord
 See: https://docs.gtk.org/gdk4/const.KEY_StopRecord.html")
 
 
-(rt:define-gconstant +key-subtitle+ 269025178 "
-C: GDK_KEY_Subtitle
+(rt:define-gconstant +key-subtitle+ 269025178 "C: GDK_KEY_Subtitle
 See: https://docs.gtk.org/gdk4/const.KEY_Subtitle.html")
 
 
-(rt:define-gconstant +key-super-l+ 65515 "
-C: GDK_KEY_Super_L
+(rt:define-gconstant +key-super-l+ 65515 "C: GDK_KEY_Super_L
 See: https://docs.gtk.org/gdk4/const.KEY_Super_L.html")
 
 
-(rt:define-gconstant +key-super-r+ 65516 "
-C: GDK_KEY_Super_R
+(rt:define-gconstant +key-super-r+ 65516 "C: GDK_KEY_Super_R
 See: https://docs.gtk.org/gdk4/const.KEY_Super_R.html")
 
 
-(rt:define-gconstant +key-support+ 269025150 "
-C: GDK_KEY_Support
+(rt:define-gconstant +key-support+ 269025150 "C: GDK_KEY_Support
 See: https://docs.gtk.org/gdk4/const.KEY_Support.html")
 
 
-(rt:define-gconstant +key-suspend+ 269025191 "
-C: GDK_KEY_Suspend
+(rt:define-gconstant +key-suspend+ 269025191 "C: GDK_KEY_Suspend
 See: https://docs.gtk.org/gdk4/const.KEY_Suspend.html")
 
 
-(rt:define-gconstant +key-switch-vt-1+ 269024769 "
-C: GDK_KEY_Switch_VT_1
+(rt:define-gconstant +key-switch-vt-1+ 269024769 "C: GDK_KEY_Switch_VT_1
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_1.html")
 
 
-(rt:define-gconstant +key-switch-vt-10+ 269024778 "
-C: GDK_KEY_Switch_VT_10
+(rt:define-gconstant +key-switch-vt-10+ 269024778 "C: GDK_KEY_Switch_VT_10
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_10.html")
 
 
-(rt:define-gconstant +key-switch-vt-11+ 269024779 "
-C: GDK_KEY_Switch_VT_11
+(rt:define-gconstant +key-switch-vt-11+ 269024779 "C: GDK_KEY_Switch_VT_11
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_11.html")
 
 
-(rt:define-gconstant +key-switch-vt-12+ 269024780 "
-C: GDK_KEY_Switch_VT_12
+(rt:define-gconstant +key-switch-vt-12+ 269024780 "C: GDK_KEY_Switch_VT_12
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_12.html")
 
 
-(rt:define-gconstant +key-switch-vt-2+ 269024770 "
-C: GDK_KEY_Switch_VT_2
+(rt:define-gconstant +key-switch-vt-2+ 269024770 "C: GDK_KEY_Switch_VT_2
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_2.html")
 
 
-(rt:define-gconstant +key-switch-vt-3+ 269024771 "
-C: GDK_KEY_Switch_VT_3
+(rt:define-gconstant +key-switch-vt-3+ 269024771 "C: GDK_KEY_Switch_VT_3
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_3.html")
 
 
-(rt:define-gconstant +key-switch-vt-4+ 269024772 "
-C: GDK_KEY_Switch_VT_4
+(rt:define-gconstant +key-switch-vt-4+ 269024772 "C: GDK_KEY_Switch_VT_4
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_4.html")
 
 
-(rt:define-gconstant +key-switch-vt-5+ 269024773 "
-C: GDK_KEY_Switch_VT_5
+(rt:define-gconstant +key-switch-vt-5+ 269024773 "C: GDK_KEY_Switch_VT_5
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_5.html")
 
 
-(rt:define-gconstant +key-switch-vt-6+ 269024774 "
-C: GDK_KEY_Switch_VT_6
+(rt:define-gconstant +key-switch-vt-6+ 269024774 "C: GDK_KEY_Switch_VT_6
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_6.html")
 
 
-(rt:define-gconstant +key-switch-vt-7+ 269024775 "
-C: GDK_KEY_Switch_VT_7
+(rt:define-gconstant +key-switch-vt-7+ 269024775 "C: GDK_KEY_Switch_VT_7
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_7.html")
 
 
-(rt:define-gconstant +key-switch-vt-8+ 269024776 "
-C: GDK_KEY_Switch_VT_8
+(rt:define-gconstant +key-switch-vt-8+ 269024776 "C: GDK_KEY_Switch_VT_8
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_8.html")
 
 
-(rt:define-gconstant +key-switch-vt-9+ 269024777 "
-C: GDK_KEY_Switch_VT_9
+(rt:define-gconstant +key-switch-vt-9+ 269024777 "C: GDK_KEY_Switch_VT_9
 See: https://docs.gtk.org/gdk4/const.KEY_Switch_VT_9.html")
 
 
-(rt:define-gconstant +key-sys-req+ 65301 "
-C: GDK_KEY_Sys_Req
+(rt:define-gconstant +key-sys-req+ 65301 "C: GDK_KEY_Sys_Req
 See: https://docs.gtk.org/gdk4/const.KEY_Sys_Req.html")
 
 
-(rt:define-gconstant +key-t+ 84 "
-C: GDK_KEY_T
+(rt:define-gconstant +key-t+ 84 "C: GDK_KEY_T
 See: https://docs.gtk.org/gdk4/const.KEY_T.html")
 
 
-(rt:define-gconstant +key-thorn+ 222 "
-C: GDK_KEY_THORN
+(rt:define-gconstant +key-thorn+ 222 "C: GDK_KEY_THORN
 See: https://docs.gtk.org/gdk4/const.KEY_THORN.html")
 
 
-(rt:define-gconstant +key-tab+ 65289 "
-C: GDK_KEY_Tab
+(rt:define-gconstant +key-tab+ 65289 "C: GDK_KEY_Tab
 See: https://docs.gtk.org/gdk4/const.KEY_Tab.html")
 
 
-(rt:define-gconstant +key-tabovedot+ 16785002 "
-C: GDK_KEY_Tabovedot
+(rt:define-gconstant +key-tabovedot+ 16785002 "C: GDK_KEY_Tabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Tabovedot.html")
 
 
-(rt:define-gconstant +key-taskpane+ 269025151 "
-C: GDK_KEY_TaskPane
+(rt:define-gconstant +key-taskpane+ 269025151 "C: GDK_KEY_TaskPane
 See: https://docs.gtk.org/gdk4/const.KEY_TaskPane.html")
 
 
-(rt:define-gconstant +key-taskmanager+ 268964417 "
-C: GDK_KEY_Taskmanager
+(rt:define-gconstant +key-taskmanager+ 268964417 "C: GDK_KEY_Taskmanager
 See: https://docs.gtk.org/gdk4/const.KEY_Taskmanager.html")
 
 
-(rt:define-gconstant +key-tcaron+ 427 "
-C: GDK_KEY_Tcaron
+(rt:define-gconstant +key-tcaron+ 427 "C: GDK_KEY_Tcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Tcaron.html")
 
 
-(rt:define-gconstant +key-tcedilla+ 478 "
-C: GDK_KEY_Tcedilla
+(rt:define-gconstant +key-tcedilla+ 478 "C: GDK_KEY_Tcedilla
 See: https://docs.gtk.org/gdk4/const.KEY_Tcedilla.html")
 
 
-(rt:define-gconstant +key-terminal+ 269025152 "
-C: GDK_KEY_Terminal
+(rt:define-gconstant +key-terminal+ 269025152 "C: GDK_KEY_Terminal
 See: https://docs.gtk.org/gdk4/const.KEY_Terminal.html")
 
 
-(rt:define-gconstant +key-terminate-server+ 65237 "
-C: GDK_KEY_Terminate_Server
+(rt:define-gconstant +key-terminate-server+ 65237 "C: GDK_KEY_Terminate_Server
 See: https://docs.gtk.org/gdk4/const.KEY_Terminate_Server.html")
 
 
-(rt:define-gconstant +key-thai-baht+ 3551 "
-C: GDK_KEY_Thai_baht
+(rt:define-gconstant +key-thai-baht+ 3551 "C: GDK_KEY_Thai_baht
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_baht.html")
 
 
-(rt:define-gconstant +key-thai-bobaimai+ 3514 "
-C: GDK_KEY_Thai_bobaimai
+(rt:define-gconstant +key-thai-bobaimai+ 3514 "C: GDK_KEY_Thai_bobaimai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_bobaimai.html")
 
 
-(rt:define-gconstant +key-thai-chochan+ 3496 "
-C: GDK_KEY_Thai_chochan
+(rt:define-gconstant +key-thai-chochan+ 3496 "C: GDK_KEY_Thai_chochan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_chochan.html")
 
 
-(rt:define-gconstant +key-thai-chochang+ 3498 "
-C: GDK_KEY_Thai_chochang
+(rt:define-gconstant +key-thai-chochang+ 3498 "C: GDK_KEY_Thai_chochang
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_chochang.html")
 
 
-(rt:define-gconstant +key-thai-choching+ 3497 "
-C: GDK_KEY_Thai_choching
+(rt:define-gconstant +key-thai-choching+ 3497 "C: GDK_KEY_Thai_choching
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_choching.html")
 
 
-(rt:define-gconstant +key-thai-chochoe+ 3500 "
-C: GDK_KEY_Thai_chochoe
+(rt:define-gconstant +key-thai-chochoe+ 3500 "C: GDK_KEY_Thai_chochoe
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_chochoe.html")
 
 
-(rt:define-gconstant +key-thai-dochada+ 3502 "
-C: GDK_KEY_Thai_dochada
+(rt:define-gconstant +key-thai-dochada+ 3502 "C: GDK_KEY_Thai_dochada
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_dochada.html")
 
 
-(rt:define-gconstant +key-thai-dodek+ 3508 "
-C: GDK_KEY_Thai_dodek
+(rt:define-gconstant +key-thai-dodek+ 3508 "C: GDK_KEY_Thai_dodek
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_dodek.html")
 
 
-(rt:define-gconstant +key-thai-fofa+ 3517 "
-C: GDK_KEY_Thai_fofa
+(rt:define-gconstant +key-thai-fofa+ 3517 "C: GDK_KEY_Thai_fofa
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_fofa.html")
 
 
-(rt:define-gconstant +key-thai-fofan+ 3519 "
-C: GDK_KEY_Thai_fofan
+(rt:define-gconstant +key-thai-fofan+ 3519 "C: GDK_KEY_Thai_fofan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_fofan.html")
 
 
-(rt:define-gconstant +key-thai-hohip+ 3531 "
-C: GDK_KEY_Thai_hohip
+(rt:define-gconstant +key-thai-hohip+ 3531 "C: GDK_KEY_Thai_hohip
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_hohip.html")
 
 
-(rt:define-gconstant +key-thai-honokhuk+ 3534 "
-C: GDK_KEY_Thai_honokhuk
+(rt:define-gconstant +key-thai-honokhuk+ 3534 "C: GDK_KEY_Thai_honokhuk
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_honokhuk.html")
 
 
-(rt:define-gconstant +key-thai-khokhai+ 3490 "
-C: GDK_KEY_Thai_khokhai
+(rt:define-gconstant +key-thai-khokhai+ 3490 "C: GDK_KEY_Thai_khokhai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_khokhai.html")
 
 
-(rt:define-gconstant +key-thai-khokhon+ 3493 "
-C: GDK_KEY_Thai_khokhon
+(rt:define-gconstant +key-thai-khokhon+ 3493 "C: GDK_KEY_Thai_khokhon
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_khokhon.html")
 
 
-(rt:define-gconstant +key-thai-khokhuat+ 3491 "
-C: GDK_KEY_Thai_khokhuat
+(rt:define-gconstant +key-thai-khokhuat+ 3491 "C: GDK_KEY_Thai_khokhuat
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_khokhuat.html")
 
 
-(rt:define-gconstant +key-thai-khokhwai+ 3492 "
-C: GDK_KEY_Thai_khokhwai
+(rt:define-gconstant +key-thai-khokhwai+ 3492 "C: GDK_KEY_Thai_khokhwai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_khokhwai.html")
 
 
-(rt:define-gconstant +key-thai-khorakhang+ 3494 "
-C: GDK_KEY_Thai_khorakhang
+(rt:define-gconstant +key-thai-khorakhang+ 3494 "C: GDK_KEY_Thai_khorakhang
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_khorakhang.html")
 
 
-(rt:define-gconstant +key-thai-kokai+ 3489 "
-C: GDK_KEY_Thai_kokai
+(rt:define-gconstant +key-thai-kokai+ 3489 "C: GDK_KEY_Thai_kokai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_kokai.html")
 
 
-(rt:define-gconstant +key-thai-lakkhangyao+ 3557 "
-C: GDK_KEY_Thai_lakkhangyao
+(rt:define-gconstant +key-thai-lakkhangyao+ 3557 "C: GDK_KEY_Thai_lakkhangyao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lakkhangyao.html")
 
 
-(rt:define-gconstant +key-thai-lekchet+ 3575 "
-C: GDK_KEY_Thai_lekchet
+(rt:define-gconstant +key-thai-lekchet+ 3575 "C: GDK_KEY_Thai_lekchet
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lekchet.html")
 
 
-(rt:define-gconstant +key-thai-lekha+ 3573 "
-C: GDK_KEY_Thai_lekha
+(rt:define-gconstant +key-thai-lekha+ 3573 "C: GDK_KEY_Thai_lekha
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lekha.html")
 
 
-(rt:define-gconstant +key-thai-lekhok+ 3574 "
-C: GDK_KEY_Thai_lekhok
+(rt:define-gconstant +key-thai-lekhok+ 3574 "C: GDK_KEY_Thai_lekhok
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lekhok.html")
 
 
-(rt:define-gconstant +key-thai-lekkao+ 3577 "
-C: GDK_KEY_Thai_lekkao
+(rt:define-gconstant +key-thai-lekkao+ 3577 "C: GDK_KEY_Thai_lekkao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lekkao.html")
 
 
-(rt:define-gconstant +key-thai-leknung+ 3569 "
-C: GDK_KEY_Thai_leknung
+(rt:define-gconstant +key-thai-leknung+ 3569 "C: GDK_KEY_Thai_leknung
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_leknung.html")
 
 
-(rt:define-gconstant +key-thai-lekpaet+ 3576 "
-C: GDK_KEY_Thai_lekpaet
+(rt:define-gconstant +key-thai-lekpaet+ 3576 "C: GDK_KEY_Thai_lekpaet
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lekpaet.html")
 
 
-(rt:define-gconstant +key-thai-leksam+ 3571 "
-C: GDK_KEY_Thai_leksam
+(rt:define-gconstant +key-thai-leksam+ 3571 "C: GDK_KEY_Thai_leksam
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_leksam.html")
 
 
-(rt:define-gconstant +key-thai-leksi+ 3572 "
-C: GDK_KEY_Thai_leksi
+(rt:define-gconstant +key-thai-leksi+ 3572 "C: GDK_KEY_Thai_leksi
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_leksi.html")
 
 
-(rt:define-gconstant +key-thai-leksong+ 3570 "
-C: GDK_KEY_Thai_leksong
+(rt:define-gconstant +key-thai-leksong+ 3570 "C: GDK_KEY_Thai_leksong
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_leksong.html")
 
 
-(rt:define-gconstant +key-thai-leksun+ 3568 "
-C: GDK_KEY_Thai_leksun
+(rt:define-gconstant +key-thai-leksun+ 3568 "C: GDK_KEY_Thai_leksun
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_leksun.html")
 
 
-(rt:define-gconstant +key-thai-lochula+ 3532 "
-C: GDK_KEY_Thai_lochula
+(rt:define-gconstant +key-thai-lochula+ 3532 "C: GDK_KEY_Thai_lochula
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lochula.html")
 
 
-(rt:define-gconstant +key-thai-loling+ 3525 "
-C: GDK_KEY_Thai_loling
+(rt:define-gconstant +key-thai-loling+ 3525 "C: GDK_KEY_Thai_loling
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_loling.html")
 
 
-(rt:define-gconstant +key-thai-lu+ 3526 "
-C: GDK_KEY_Thai_lu
+(rt:define-gconstant +key-thai-lu+ 3526 "C: GDK_KEY_Thai_lu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_lu.html")
 
 
-(rt:define-gconstant +key-thai-maichattawa+ 3563 "
-C: GDK_KEY_Thai_maichattawa
+(rt:define-gconstant +key-thai-maichattawa+ 3563 "C: GDK_KEY_Thai_maichattawa
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maichattawa.html")
 
 
-(rt:define-gconstant +key-thai-maiek+ 3560 "
-C: GDK_KEY_Thai_maiek
+(rt:define-gconstant +key-thai-maiek+ 3560 "C: GDK_KEY_Thai_maiek
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maiek.html")
 
 
-(rt:define-gconstant +key-thai-maihanakat+ 3537 "
-C: GDK_KEY_Thai_maihanakat
+(rt:define-gconstant +key-thai-maihanakat+ 3537 "C: GDK_KEY_Thai_maihanakat
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maihanakat.html")
 
 
-(rt:define-gconstant +key-thai-maihanakat-maitho+ 3550 "
-C: GDK_KEY_Thai_maihanakat_maitho
+(rt:define-gconstant +key-thai-maihanakat-maitho+ 3550 "C: GDK_KEY_Thai_maihanakat_maitho
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maihanakat_maitho.html")
 
 
-(rt:define-gconstant +key-thai-maitaikhu+ 3559 "
-C: GDK_KEY_Thai_maitaikhu
+(rt:define-gconstant +key-thai-maitaikhu+ 3559 "C: GDK_KEY_Thai_maitaikhu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maitaikhu.html")
 
 
-(rt:define-gconstant +key-thai-maitho+ 3561 "
-C: GDK_KEY_Thai_maitho
+(rt:define-gconstant +key-thai-maitho+ 3561 "C: GDK_KEY_Thai_maitho
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maitho.html")
 
 
-(rt:define-gconstant +key-thai-maitri+ 3562 "
-C: GDK_KEY_Thai_maitri
+(rt:define-gconstant +key-thai-maitri+ 3562 "C: GDK_KEY_Thai_maitri
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maitri.html")
 
 
-(rt:define-gconstant +key-thai-maiyamok+ 3558 "
-C: GDK_KEY_Thai_maiyamok
+(rt:define-gconstant +key-thai-maiyamok+ 3558 "C: GDK_KEY_Thai_maiyamok
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_maiyamok.html")
 
 
-(rt:define-gconstant +key-thai-moma+ 3521 "
-C: GDK_KEY_Thai_moma
+(rt:define-gconstant +key-thai-moma+ 3521 "C: GDK_KEY_Thai_moma
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_moma.html")
 
 
-(rt:define-gconstant +key-thai-ngongu+ 3495 "
-C: GDK_KEY_Thai_ngongu
+(rt:define-gconstant +key-thai-ngongu+ 3495 "C: GDK_KEY_Thai_ngongu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_ngongu.html")
 
 
-(rt:define-gconstant +key-thai-nikhahit+ 3565 "
-C: GDK_KEY_Thai_nikhahit
+(rt:define-gconstant +key-thai-nikhahit+ 3565 "C: GDK_KEY_Thai_nikhahit
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_nikhahit.html")
 
 
-(rt:define-gconstant +key-thai-nonen+ 3507 "
-C: GDK_KEY_Thai_nonen
+(rt:define-gconstant +key-thai-nonen+ 3507 "C: GDK_KEY_Thai_nonen
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_nonen.html")
 
 
-(rt:define-gconstant +key-thai-nonu+ 3513 "
-C: GDK_KEY_Thai_nonu
+(rt:define-gconstant +key-thai-nonu+ 3513 "C: GDK_KEY_Thai_nonu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_nonu.html")
 
 
-(rt:define-gconstant +key-thai-oang+ 3533 "
-C: GDK_KEY_Thai_oang
+(rt:define-gconstant +key-thai-oang+ 3533 "C: GDK_KEY_Thai_oang
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_oang.html")
 
 
-(rt:define-gconstant +key-thai-paiyannoi+ 3535 "
-C: GDK_KEY_Thai_paiyannoi
+(rt:define-gconstant +key-thai-paiyannoi+ 3535 "C: GDK_KEY_Thai_paiyannoi
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_paiyannoi.html")
 
 
-(rt:define-gconstant +key-thai-phinthu+ 3546 "
-C: GDK_KEY_Thai_phinthu
+(rt:define-gconstant +key-thai-phinthu+ 3546 "C: GDK_KEY_Thai_phinthu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_phinthu.html")
 
 
-(rt:define-gconstant +key-thai-phophan+ 3518 "
-C: GDK_KEY_Thai_phophan
+(rt:define-gconstant +key-thai-phophan+ 3518 "C: GDK_KEY_Thai_phophan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_phophan.html")
 
 
-(rt:define-gconstant +key-thai-phophung+ 3516 "
-C: GDK_KEY_Thai_phophung
+(rt:define-gconstant +key-thai-phophung+ 3516 "C: GDK_KEY_Thai_phophung
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_phophung.html")
 
 
-(rt:define-gconstant +key-thai-phosamphao+ 3520 "
-C: GDK_KEY_Thai_phosamphao
+(rt:define-gconstant +key-thai-phosamphao+ 3520 "C: GDK_KEY_Thai_phosamphao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_phosamphao.html")
 
 
-(rt:define-gconstant +key-thai-popla+ 3515 "
-C: GDK_KEY_Thai_popla
+(rt:define-gconstant +key-thai-popla+ 3515 "C: GDK_KEY_Thai_popla
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_popla.html")
 
 
-(rt:define-gconstant +key-thai-rorua+ 3523 "
-C: GDK_KEY_Thai_rorua
+(rt:define-gconstant +key-thai-rorua+ 3523 "C: GDK_KEY_Thai_rorua
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_rorua.html")
 
 
-(rt:define-gconstant +key-thai-ru+ 3524 "
-C: GDK_KEY_Thai_ru
+(rt:define-gconstant +key-thai-ru+ 3524 "C: GDK_KEY_Thai_ru
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_ru.html")
 
 
-(rt:define-gconstant +key-thai-saraa+ 3536 "
-C: GDK_KEY_Thai_saraa
+(rt:define-gconstant +key-thai-saraa+ 3536 "C: GDK_KEY_Thai_saraa
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraa.html")
 
 
-(rt:define-gconstant +key-thai-saraaa+ 3538 "
-C: GDK_KEY_Thai_saraaa
+(rt:define-gconstant +key-thai-saraaa+ 3538 "C: GDK_KEY_Thai_saraaa
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraaa.html")
 
 
-(rt:define-gconstant +key-thai-saraae+ 3553 "
-C: GDK_KEY_Thai_saraae
+(rt:define-gconstant +key-thai-saraae+ 3553 "C: GDK_KEY_Thai_saraae
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraae.html")
 
 
-(rt:define-gconstant +key-thai-saraaimaimalai+ 3556 "
-C: GDK_KEY_Thai_saraaimaimalai
+(rt:define-gconstant +key-thai-saraaimaimalai+ 3556 "C: GDK_KEY_Thai_saraaimaimalai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraaimaimalai.html")
 
 
-(rt:define-gconstant +key-thai-saraaimaimuan+ 3555 "
-C: GDK_KEY_Thai_saraaimaimuan
+(rt:define-gconstant +key-thai-saraaimaimuan+ 3555 "C: GDK_KEY_Thai_saraaimaimuan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraaimaimuan.html")
 
 
-(rt:define-gconstant +key-thai-saraam+ 3539 "
-C: GDK_KEY_Thai_saraam
+(rt:define-gconstant +key-thai-saraam+ 3539 "C: GDK_KEY_Thai_saraam
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraam.html")
 
 
-(rt:define-gconstant +key-thai-sarae+ 3552 "
-C: GDK_KEY_Thai_sarae
+(rt:define-gconstant +key-thai-sarae+ 3552 "C: GDK_KEY_Thai_sarae
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarae.html")
 
 
-(rt:define-gconstant +key-thai-sarai+ 3540 "
-C: GDK_KEY_Thai_sarai
+(rt:define-gconstant +key-thai-sarai+ 3540 "C: GDK_KEY_Thai_sarai
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarai.html")
 
 
-(rt:define-gconstant +key-thai-saraii+ 3541 "
-C: GDK_KEY_Thai_saraii
+(rt:define-gconstant +key-thai-saraii+ 3541 "C: GDK_KEY_Thai_saraii
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraii.html")
 
 
-(rt:define-gconstant +key-thai-sarao+ 3554 "
-C: GDK_KEY_Thai_sarao
+(rt:define-gconstant +key-thai-sarao+ 3554 "C: GDK_KEY_Thai_sarao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarao.html")
 
 
-(rt:define-gconstant +key-thai-sarau+ 3544 "
-C: GDK_KEY_Thai_sarau
+(rt:define-gconstant +key-thai-sarau+ 3544 "C: GDK_KEY_Thai_sarau
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarau.html")
 
 
-(rt:define-gconstant +key-thai-saraue+ 3542 "
-C: GDK_KEY_Thai_saraue
+(rt:define-gconstant +key-thai-saraue+ 3542 "C: GDK_KEY_Thai_saraue
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_saraue.html")
 
 
-(rt:define-gconstant +key-thai-sarauee+ 3543 "
-C: GDK_KEY_Thai_sarauee
+(rt:define-gconstant +key-thai-sarauee+ 3543 "C: GDK_KEY_Thai_sarauee
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarauee.html")
 
 
-(rt:define-gconstant +key-thai-sarauu+ 3545 "
-C: GDK_KEY_Thai_sarauu
+(rt:define-gconstant +key-thai-sarauu+ 3545 "C: GDK_KEY_Thai_sarauu
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sarauu.html")
 
 
-(rt:define-gconstant +key-thai-sorusi+ 3529 "
-C: GDK_KEY_Thai_sorusi
+(rt:define-gconstant +key-thai-sorusi+ 3529 "C: GDK_KEY_Thai_sorusi
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sorusi.html")
 
 
-(rt:define-gconstant +key-thai-sosala+ 3528 "
-C: GDK_KEY_Thai_sosala
+(rt:define-gconstant +key-thai-sosala+ 3528 "C: GDK_KEY_Thai_sosala
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sosala.html")
 
 
-(rt:define-gconstant +key-thai-soso+ 3499 "
-C: GDK_KEY_Thai_soso
+(rt:define-gconstant +key-thai-soso+ 3499 "C: GDK_KEY_Thai_soso
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_soso.html")
 
 
-(rt:define-gconstant +key-thai-sosua+ 3530 "
-C: GDK_KEY_Thai_sosua
+(rt:define-gconstant +key-thai-sosua+ 3530 "C: GDK_KEY_Thai_sosua
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_sosua.html")
 
 
-(rt:define-gconstant +key-thai-thanthakhat+ 3564 "
-C: GDK_KEY_Thai_thanthakhat
+(rt:define-gconstant +key-thai-thanthakhat+ 3564 "C: GDK_KEY_Thai_thanthakhat
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thanthakhat.html")
 
 
-(rt:define-gconstant +key-thai-thonangmontho+ 3505 "
-C: GDK_KEY_Thai_thonangmontho
+(rt:define-gconstant +key-thai-thonangmontho+ 3505 "C: GDK_KEY_Thai_thonangmontho
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thonangmontho.html")
 
 
-(rt:define-gconstant +key-thai-thophuthao+ 3506 "
-C: GDK_KEY_Thai_thophuthao
+(rt:define-gconstant +key-thai-thophuthao+ 3506 "C: GDK_KEY_Thai_thophuthao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thophuthao.html")
 
 
-(rt:define-gconstant +key-thai-thothahan+ 3511 "
-C: GDK_KEY_Thai_thothahan
+(rt:define-gconstant +key-thai-thothahan+ 3511 "C: GDK_KEY_Thai_thothahan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thothahan.html")
 
 
-(rt:define-gconstant +key-thai-thothan+ 3504 "
-C: GDK_KEY_Thai_thothan
+(rt:define-gconstant +key-thai-thothan+ 3504 "C: GDK_KEY_Thai_thothan
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thothan.html")
 
 
-(rt:define-gconstant +key-thai-thothong+ 3512 "
-C: GDK_KEY_Thai_thothong
+(rt:define-gconstant +key-thai-thothong+ 3512 "C: GDK_KEY_Thai_thothong
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thothong.html")
 
 
-(rt:define-gconstant +key-thai-thothung+ 3510 "
-C: GDK_KEY_Thai_thothung
+(rt:define-gconstant +key-thai-thothung+ 3510 "C: GDK_KEY_Thai_thothung
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_thothung.html")
 
 
-(rt:define-gconstant +key-thai-topatak+ 3503 "
-C: GDK_KEY_Thai_topatak
+(rt:define-gconstant +key-thai-topatak+ 3503 "C: GDK_KEY_Thai_topatak
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_topatak.html")
 
 
-(rt:define-gconstant +key-thai-totao+ 3509 "
-C: GDK_KEY_Thai_totao
+(rt:define-gconstant +key-thai-totao+ 3509 "C: GDK_KEY_Thai_totao
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_totao.html")
 
 
-(rt:define-gconstant +key-thai-wowaen+ 3527 "
-C: GDK_KEY_Thai_wowaen
+(rt:define-gconstant +key-thai-wowaen+ 3527 "C: GDK_KEY_Thai_wowaen
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_wowaen.html")
 
 
-(rt:define-gconstant +key-thai-yoyak+ 3522 "
-C: GDK_KEY_Thai_yoyak
+(rt:define-gconstant +key-thai-yoyak+ 3522 "C: GDK_KEY_Thai_yoyak
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_yoyak.html")
 
 
-(rt:define-gconstant +key-thai-yoying+ 3501 "
-C: GDK_KEY_Thai_yoying
+(rt:define-gconstant +key-thai-yoying+ 3501 "C: GDK_KEY_Thai_yoying
 See: https://docs.gtk.org/gdk4/const.KEY_Thai_yoying.html")
 
 
-(rt:define-gconstant +key-time+ 269025183 "
-C: GDK_KEY_Time
+(rt:define-gconstant +key-time+ 269025183 "C: GDK_KEY_Time
 See: https://docs.gtk.org/gdk4/const.KEY_Time.html")
 
 
-(rt:define-gconstant +key-todolist+ 269025055 "
-C: GDK_KEY_ToDoList
+(rt:define-gconstant +key-todolist+ 269025055 "C: GDK_KEY_ToDoList
 See: https://docs.gtk.org/gdk4/const.KEY_ToDoList.html")
 
 
-(rt:define-gconstant +key-tools+ 269025153 "
-C: GDK_KEY_Tools
+(rt:define-gconstant +key-tools+ 269025153 "C: GDK_KEY_Tools
 See: https://docs.gtk.org/gdk4/const.KEY_Tools.html")
 
 
-(rt:define-gconstant +key-topmenu+ 269025186 "
-C: GDK_KEY_TopMenu
+(rt:define-gconstant +key-topmenu+ 269025186 "C: GDK_KEY_TopMenu
 See: https://docs.gtk.org/gdk4/const.KEY_TopMenu.html")
 
 
-(rt:define-gconstant +key-touchpadoff+ 269025201 "
-C: GDK_KEY_TouchpadOff
+(rt:define-gconstant +key-touchpadoff+ 269025201 "C: GDK_KEY_TouchpadOff
 See: https://docs.gtk.org/gdk4/const.KEY_TouchpadOff.html")
 
 
-(rt:define-gconstant +key-touchpadon+ 269025200 "
-C: GDK_KEY_TouchpadOn
+(rt:define-gconstant +key-touchpadon+ 269025200 "C: GDK_KEY_TouchpadOn
 See: https://docs.gtk.org/gdk4/const.KEY_TouchpadOn.html")
 
 
-(rt:define-gconstant +key-touchpadtoggle+ 269025193 "
-C: GDK_KEY_TouchpadToggle
+(rt:define-gconstant +key-touchpadtoggle+ 269025193 "C: GDK_KEY_TouchpadToggle
 See: https://docs.gtk.org/gdk4/const.KEY_TouchpadToggle.html")
 
 
-(rt:define-gconstant +key-touroku+ 65323 "
-C: GDK_KEY_Touroku
+(rt:define-gconstant +key-touroku+ 65323 "C: GDK_KEY_Touroku
 See: https://docs.gtk.org/gdk4/const.KEY_Touroku.html")
 
 
-(rt:define-gconstant +key-traditionalsonar+ 268964485 "
-C: GDK_KEY_TraditionalSonar
+(rt:define-gconstant +key-traditionalsonar+ 268964485 "C: GDK_KEY_TraditionalSonar
 See: https://docs.gtk.org/gdk4/const.KEY_TraditionalSonar.html")
 
 
-(rt:define-gconstant +key-travel+ 269025154 "
-C: GDK_KEY_Travel
+(rt:define-gconstant +key-travel+ 269025154 "C: GDK_KEY_Travel
 See: https://docs.gtk.org/gdk4/const.KEY_Travel.html")
 
 
-(rt:define-gconstant +key-tslash+ 940 "
-C: GDK_KEY_Tslash
+(rt:define-gconstant +key-tslash+ 940 "C: GDK_KEY_Tslash
 See: https://docs.gtk.org/gdk4/const.KEY_Tslash.html")
 
 
-(rt:define-gconstant +key-u+ 85 "
-C: GDK_KEY_U
+(rt:define-gconstant +key-u+ 85 "C: GDK_KEY_U
 See: https://docs.gtk.org/gdk4/const.KEY_U.html")
 
 
-(rt:define-gconstant +key-uwb+ 269025174 "
-C: GDK_KEY_UWB
+(rt:define-gconstant +key-uwb+ 269025174 "C: GDK_KEY_UWB
 See: https://docs.gtk.org/gdk4/const.KEY_UWB.html")
 
 
-(rt:define-gconstant +key-uacute+ 218 "
-C: GDK_KEY_Uacute
+(rt:define-gconstant +key-uacute+ 218 "C: GDK_KEY_Uacute
 See: https://docs.gtk.org/gdk4/const.KEY_Uacute.html")
 
 
-(rt:define-gconstant +key-ubelowdot+ 16785124 "
-C: GDK_KEY_Ubelowdot
+(rt:define-gconstant +key-ubelowdot+ 16785124 "C: GDK_KEY_Ubelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ubelowdot.html")
 
 
-(rt:define-gconstant +key-ubreve+ 733 "
-C: GDK_KEY_Ubreve
+(rt:define-gconstant +key-ubreve+ 733 "C: GDK_KEY_Ubreve
 See: https://docs.gtk.org/gdk4/const.KEY_Ubreve.html")
 
 
-(rt:define-gconstant +key-ucircumflex+ 219 "
-C: GDK_KEY_Ucircumflex
+(rt:define-gconstant +key-ucircumflex+ 219 "C: GDK_KEY_Ucircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Ucircumflex.html")
 
 
-(rt:define-gconstant +key-udiaeresis+ 220 "
-C: GDK_KEY_Udiaeresis
+(rt:define-gconstant +key-udiaeresis+ 220 "C: GDK_KEY_Udiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Udiaeresis.html")
 
 
-(rt:define-gconstant +key-udoubleacute+ 475 "
-C: GDK_KEY_Udoubleacute
+(rt:define-gconstant +key-udoubleacute+ 475 "C: GDK_KEY_Udoubleacute
 See: https://docs.gtk.org/gdk4/const.KEY_Udoubleacute.html")
 
 
-(rt:define-gconstant +key-ugrave+ 217 "
-C: GDK_KEY_Ugrave
+(rt:define-gconstant +key-ugrave+ 217 "C: GDK_KEY_Ugrave
 See: https://docs.gtk.org/gdk4/const.KEY_Ugrave.html")
 
 
-(rt:define-gconstant +key-uhook+ 16785126 "
-C: GDK_KEY_Uhook
+(rt:define-gconstant +key-uhook+ 16785126 "C: GDK_KEY_Uhook
 See: https://docs.gtk.org/gdk4/const.KEY_Uhook.html")
 
 
-(rt:define-gconstant +key-uhorn+ 16777647 "
-C: GDK_KEY_Uhorn
+(rt:define-gconstant +key-uhorn+ 16777647 "C: GDK_KEY_Uhorn
 See: https://docs.gtk.org/gdk4/const.KEY_Uhorn.html")
 
 
-(rt:define-gconstant +key-uhornacute+ 16785128 "
-C: GDK_KEY_Uhornacute
+(rt:define-gconstant +key-uhornacute+ 16785128 "C: GDK_KEY_Uhornacute
 See: https://docs.gtk.org/gdk4/const.KEY_Uhornacute.html")
 
 
-(rt:define-gconstant +key-uhornbelowdot+ 16785136 "
-C: GDK_KEY_Uhornbelowdot
+(rt:define-gconstant +key-uhornbelowdot+ 16785136 "C: GDK_KEY_Uhornbelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Uhornbelowdot.html")
 
 
-(rt:define-gconstant +key-uhorngrave+ 16785130 "
-C: GDK_KEY_Uhorngrave
+(rt:define-gconstant +key-uhorngrave+ 16785130 "C: GDK_KEY_Uhorngrave
 See: https://docs.gtk.org/gdk4/const.KEY_Uhorngrave.html")
 
 
-(rt:define-gconstant +key-uhornhook+ 16785132 "
-C: GDK_KEY_Uhornhook
+(rt:define-gconstant +key-uhornhook+ 16785132 "C: GDK_KEY_Uhornhook
 See: https://docs.gtk.org/gdk4/const.KEY_Uhornhook.html")
 
 
-(rt:define-gconstant +key-uhorntilde+ 16785134 "
-C: GDK_KEY_Uhorntilde
+(rt:define-gconstant +key-uhorntilde+ 16785134 "C: GDK_KEY_Uhorntilde
 See: https://docs.gtk.org/gdk4/const.KEY_Uhorntilde.html")
 
 
-(rt:define-gconstant +key-ukrainian-ghe-with-upturn+ 1725 "
-C: GDK_KEY_Ukrainian_GHE_WITH_UPTURN
+(rt:define-gconstant +key-ukrainian-ghe-with-upturn+ 1725 "C: GDK_KEY_Ukrainian_GHE_WITH_UPTURN
 See: https://docs.gtk.org/gdk4/const.KEY_Ukrainian_GHE_WITH_UPTURN.html")
 
 
-(rt:define-gconstant +key-ukrainian-i+ 1718 "
-C: GDK_KEY_Ukrainian_I
+(rt:define-gconstant +key-ukrainian-i+ 1718 "C: GDK_KEY_Ukrainian_I
 See: https://docs.gtk.org/gdk4/const.KEY_Ukrainian_I.html")
 
 
-(rt:define-gconstant +key-ukrainian-ie+ 1716 "
-C: GDK_KEY_Ukrainian_IE
+(rt:define-gconstant +key-ukrainian-ie+ 1716 "C: GDK_KEY_Ukrainian_IE
 See: https://docs.gtk.org/gdk4/const.KEY_Ukrainian_IE.html")
 
 
-(rt:define-gconstant +key-ukrainian-yi+ 1719 "
-C: GDK_KEY_Ukrainian_YI
+(rt:define-gconstant +key-ukrainian-yi+ 1719 "C: GDK_KEY_Ukrainian_YI
 See: https://docs.gtk.org/gdk4/const.KEY_Ukrainian_YI.html")
 
 
-(rt:define-gconstant +key-ukranian-i+ 1718 "
-C: GDK_KEY_Ukranian_I
+(rt:define-gconstant +key-ukranian-i+ 1718 "C: GDK_KEY_Ukranian_I
 See: https://docs.gtk.org/gdk4/const.KEY_Ukranian_I.html")
 
 
-(rt:define-gconstant +key-ukranian-je+ 1716 "
-C: GDK_KEY_Ukranian_JE
+(rt:define-gconstant +key-ukranian-je+ 1716 "C: GDK_KEY_Ukranian_JE
 See: https://docs.gtk.org/gdk4/const.KEY_Ukranian_JE.html")
 
 
-(rt:define-gconstant +key-ukranian-yi+ 1719 "
-C: GDK_KEY_Ukranian_YI
+(rt:define-gconstant +key-ukranian-yi+ 1719 "C: GDK_KEY_Ukranian_YI
 See: https://docs.gtk.org/gdk4/const.KEY_Ukranian_YI.html")
 
 
-(rt:define-gconstant +key-umacron+ 990 "
-C: GDK_KEY_Umacron
+(rt:define-gconstant +key-umacron+ 990 "C: GDK_KEY_Umacron
 See: https://docs.gtk.org/gdk4/const.KEY_Umacron.html")
 
 
-(rt:define-gconstant +key-undo+ 65381 "
-C: GDK_KEY_Undo
+(rt:define-gconstant +key-undo+ 65381 "C: GDK_KEY_Undo
 See: https://docs.gtk.org/gdk4/const.KEY_Undo.html")
 
 
-(rt:define-gconstant +key-ungrab+ 269024800 "
-C: GDK_KEY_Ungrab
+(rt:define-gconstant +key-ungrab+ 269024800 "C: GDK_KEY_Ungrab
 See: https://docs.gtk.org/gdk4/const.KEY_Ungrab.html")
 
 
-(rt:define-gconstant +key-unmute+ 268964468 "
-C: GDK_KEY_Unmute
+(rt:define-gconstant +key-unmute+ 268964468 "C: GDK_KEY_Unmute
 See: https://docs.gtk.org/gdk4/const.KEY_Unmute.html")
 
 
-(rt:define-gconstant +key-uogonek+ 985 "
-C: GDK_KEY_Uogonek
+(rt:define-gconstant +key-uogonek+ 985 "C: GDK_KEY_Uogonek
 See: https://docs.gtk.org/gdk4/const.KEY_Uogonek.html")
 
 
-(rt:define-gconstant +key-up+ 65362 "
-C: GDK_KEY_Up
+(rt:define-gconstant +key-up+ 65362 "C: GDK_KEY_Up
 See: https://docs.gtk.org/gdk4/const.KEY_Up.html")
 
 
-(rt:define-gconstant +key-uring+ 473 "
-C: GDK_KEY_Uring
+(rt:define-gconstant +key-uring+ 473 "C: GDK_KEY_Uring
 See: https://docs.gtk.org/gdk4/const.KEY_Uring.html")
 
 
-(rt:define-gconstant +key-user1kb+ 269025157 "
-C: GDK_KEY_User1KB
+(rt:define-gconstant +key-user1kb+ 269025157 "C: GDK_KEY_User1KB
 See: https://docs.gtk.org/gdk4/const.KEY_User1KB.html")
 
 
-(rt:define-gconstant +key-user2kb+ 269025158 "
-C: GDK_KEY_User2KB
+(rt:define-gconstant +key-user2kb+ 269025158 "C: GDK_KEY_User2KB
 See: https://docs.gtk.org/gdk4/const.KEY_User2KB.html")
 
 
-(rt:define-gconstant +key-userpb+ 269025156 "
-C: GDK_KEY_UserPB
+(rt:define-gconstant +key-userpb+ 269025156 "C: GDK_KEY_UserPB
 See: https://docs.gtk.org/gdk4/const.KEY_UserPB.html")
 
 
-(rt:define-gconstant +key-utilde+ 989 "
-C: GDK_KEY_Utilde
+(rt:define-gconstant +key-utilde+ 989 "C: GDK_KEY_Utilde
 See: https://docs.gtk.org/gdk4/const.KEY_Utilde.html")
 
 
-(rt:define-gconstant +key-v+ 86 "
-C: GDK_KEY_V
+(rt:define-gconstant +key-v+ 86 "C: GDK_KEY_V
 See: https://docs.gtk.org/gdk4/const.KEY_V.html")
 
 
-(rt:define-gconstant +key-vod+ 268964467 "
-C: GDK_KEY_VOD
+(rt:define-gconstant +key-vod+ 268964467 "C: GDK_KEY_VOD
 See: https://docs.gtk.org/gdk4/const.KEY_VOD.html")
 
 
-(rt:define-gconstant +key-vendorhome+ 269025076 "
-C: GDK_KEY_VendorHome
+(rt:define-gconstant +key-vendorhome+ 269025076 "C: GDK_KEY_VendorHome
 See: https://docs.gtk.org/gdk4/const.KEY_VendorHome.html")
 
 
-(rt:define-gconstant +key-video+ 269025159 "
-C: GDK_KEY_Video
+(rt:define-gconstant +key-video+ 269025159 "C: GDK_KEY_Video
 See: https://docs.gtk.org/gdk4/const.KEY_Video.html")
 
 
-(rt:define-gconstant +key-videophone+ 268964256 "
-C: GDK_KEY_VideoPhone
+(rt:define-gconstant +key-videophone+ 268964256 "C: GDK_KEY_VideoPhone
 See: https://docs.gtk.org/gdk4/const.KEY_VideoPhone.html")
 
 
-(rt:define-gconstant +key-view+ 269025185 "
-C: GDK_KEY_View
+(rt:define-gconstant +key-view+ 269025185 "C: GDK_KEY_View
 See: https://docs.gtk.org/gdk4/const.KEY_View.html")
 
 
-(rt:define-gconstant +key-voicecommand+ 268964422 "
-C: GDK_KEY_VoiceCommand
+(rt:define-gconstant +key-voicecommand+ 268964422 "C: GDK_KEY_VoiceCommand
 See: https://docs.gtk.org/gdk4/const.KEY_VoiceCommand.html")
 
 
-(rt:define-gconstant +key-voicemail+ 268964268 "
-C: GDK_KEY_Voicemail
+(rt:define-gconstant +key-voicemail+ 268964268 "C: GDK_KEY_Voicemail
 See: https://docs.gtk.org/gdk4/const.KEY_Voicemail.html")
 
 
-(rt:define-gconstant +key-voidsymbol+ 16777215 "
-C: GDK_KEY_VoidSymbol
+(rt:define-gconstant +key-voidsymbol+ 16777215 "C: GDK_KEY_VoidSymbol
 See: https://docs.gtk.org/gdk4/const.KEY_VoidSymbol.html")
 
 
-(rt:define-gconstant +key-w+ 87 "
-C: GDK_KEY_W
+(rt:define-gconstant +key-w+ 87 "C: GDK_KEY_W
 See: https://docs.gtk.org/gdk4/const.KEY_W.html")
 
 
-(rt:define-gconstant +key-wlan+ 269025173 "
-C: GDK_KEY_WLAN
+(rt:define-gconstant +key-wlan+ 269025173 "C: GDK_KEY_WLAN
 See: https://docs.gtk.org/gdk4/const.KEY_WLAN.html")
 
 
-(rt:define-gconstant +key-wpsbutton+ 268964369 "
-C: GDK_KEY_WPSButton
+(rt:define-gconstant +key-wpsbutton+ 268964369 "C: GDK_KEY_WPSButton
 See: https://docs.gtk.org/gdk4/const.KEY_WPSButton.html")
 
 
-(rt:define-gconstant +key-wwan+ 269025204 "
-C: GDK_KEY_WWAN
+(rt:define-gconstant +key-wwan+ 269025204 "C: GDK_KEY_WWAN
 See: https://docs.gtk.org/gdk4/const.KEY_WWAN.html")
 
 
-(rt:define-gconstant +key-www+ 269025070 "
-C: GDK_KEY_WWW
+(rt:define-gconstant +key-www+ 269025070 "C: GDK_KEY_WWW
 See: https://docs.gtk.org/gdk4/const.KEY_WWW.html")
 
 
-(rt:define-gconstant +key-wacute+ 16785026 "
-C: GDK_KEY_Wacute
+(rt:define-gconstant +key-wacute+ 16785026 "C: GDK_KEY_Wacute
 See: https://docs.gtk.org/gdk4/const.KEY_Wacute.html")
 
 
-(rt:define-gconstant +key-wakeup+ 269025067 "
-C: GDK_KEY_WakeUp
+(rt:define-gconstant +key-wakeup+ 269025067 "C: GDK_KEY_WakeUp
 See: https://docs.gtk.org/gdk4/const.KEY_WakeUp.html")
 
 
-(rt:define-gconstant +key-wcircumflex+ 16777588 "
-C: GDK_KEY_Wcircumflex
+(rt:define-gconstant +key-wcircumflex+ 16777588 "C: GDK_KEY_Wcircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Wcircumflex.html")
 
 
-(rt:define-gconstant +key-wdiaeresis+ 16785028 "
-C: GDK_KEY_Wdiaeresis
+(rt:define-gconstant +key-wdiaeresis+ 16785028 "C: GDK_KEY_Wdiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Wdiaeresis.html")
 
 
-(rt:define-gconstant +key-webcam+ 269025167 "
-C: GDK_KEY_WebCam
+(rt:define-gconstant +key-webcam+ 269025167 "C: GDK_KEY_WebCam
 See: https://docs.gtk.org/gdk4/const.KEY_WebCam.html")
 
 
-(rt:define-gconstant +key-wgrave+ 16785024 "
-C: GDK_KEY_Wgrave
+(rt:define-gconstant +key-wgrave+ 16785024 "C: GDK_KEY_Wgrave
 See: https://docs.gtk.org/gdk4/const.KEY_Wgrave.html")
 
 
-(rt:define-gconstant +key-wheelbutton+ 269025160 "
-C: GDK_KEY_WheelButton
+(rt:define-gconstant +key-wheelbutton+ 269025160 "C: GDK_KEY_WheelButton
 See: https://docs.gtk.org/gdk4/const.KEY_WheelButton.html")
 
 
-(rt:define-gconstant +key-windowclear+ 269025109 "
-C: GDK_KEY_WindowClear
+(rt:define-gconstant +key-windowclear+ 269025109 "C: GDK_KEY_WindowClear
 See: https://docs.gtk.org/gdk4/const.KEY_WindowClear.html")
 
 
-(rt:define-gconstant +key-wonsign+ 16785577 "
-C: GDK_KEY_WonSign
+(rt:define-gconstant +key-wonsign+ 16785577 "C: GDK_KEY_WonSign
 See: https://docs.gtk.org/gdk4/const.KEY_WonSign.html")
 
 
-(rt:define-gconstant +key-word+ 269025161 "
-C: GDK_KEY_Word
+(rt:define-gconstant +key-word+ 269025161 "C: GDK_KEY_Word
 See: https://docs.gtk.org/gdk4/const.KEY_Word.html")
 
 
-(rt:define-gconstant +key-x+ 88 "
-C: GDK_KEY_X
+(rt:define-gconstant +key-x+ 88 "C: GDK_KEY_X
 See: https://docs.gtk.org/gdk4/const.KEY_X.html")
 
 
-(rt:define-gconstant +key-xabovedot+ 16785034 "
-C: GDK_KEY_Xabovedot
+(rt:define-gconstant +key-xabovedot+ 16785034 "C: GDK_KEY_Xabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Xabovedot.html")
 
 
-(rt:define-gconstant +key-xfer+ 269025162 "
-C: GDK_KEY_Xfer
+(rt:define-gconstant +key-xfer+ 269025162 "C: GDK_KEY_Xfer
 See: https://docs.gtk.org/gdk4/const.KEY_Xfer.html")
 
 
-(rt:define-gconstant +key-y+ 89 "
-C: GDK_KEY_Y
+(rt:define-gconstant +key-y+ 89 "C: GDK_KEY_Y
 See: https://docs.gtk.org/gdk4/const.KEY_Y.html")
 
 
-(rt:define-gconstant +key-yacute+ 221 "
-C: GDK_KEY_Yacute
+(rt:define-gconstant +key-yacute+ 221 "C: GDK_KEY_Yacute
 See: https://docs.gtk.org/gdk4/const.KEY_Yacute.html")
 
 
-(rt:define-gconstant +key-ybelowdot+ 16785140 "
-C: GDK_KEY_Ybelowdot
+(rt:define-gconstant +key-ybelowdot+ 16785140 "C: GDK_KEY_Ybelowdot
 See: https://docs.gtk.org/gdk4/const.KEY_Ybelowdot.html")
 
 
-(rt:define-gconstant +key-ycircumflex+ 16777590 "
-C: GDK_KEY_Ycircumflex
+(rt:define-gconstant +key-ycircumflex+ 16777590 "C: GDK_KEY_Ycircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_Ycircumflex.html")
 
 
-(rt:define-gconstant +key-ydiaeresis+ 5054 "
-C: GDK_KEY_Ydiaeresis
+(rt:define-gconstant +key-ydiaeresis+ 5054 "C: GDK_KEY_Ydiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_Ydiaeresis.html")
 
 
-(rt:define-gconstant +key-yellow+ 269025189 "
-C: GDK_KEY_Yellow
+(rt:define-gconstant +key-yellow+ 269025189 "C: GDK_KEY_Yellow
 See: https://docs.gtk.org/gdk4/const.KEY_Yellow.html")
 
 
-(rt:define-gconstant +key-ygrave+ 16785138 "
-C: GDK_KEY_Ygrave
+(rt:define-gconstant +key-ygrave+ 16785138 "C: GDK_KEY_Ygrave
 See: https://docs.gtk.org/gdk4/const.KEY_Ygrave.html")
 
 
-(rt:define-gconstant +key-yhook+ 16785142 "
-C: GDK_KEY_Yhook
+(rt:define-gconstant +key-yhook+ 16785142 "C: GDK_KEY_Yhook
 See: https://docs.gtk.org/gdk4/const.KEY_Yhook.html")
 
 
-(rt:define-gconstant +key-ytilde+ 16785144 "
-C: GDK_KEY_Ytilde
+(rt:define-gconstant +key-ytilde+ 16785144 "C: GDK_KEY_Ytilde
 See: https://docs.gtk.org/gdk4/const.KEY_Ytilde.html")
 
 
-(rt:define-gconstant +key-z+ 90 "
-C: GDK_KEY_Z
+(rt:define-gconstant +key-z+ 90 "C: GDK_KEY_Z
 See: https://docs.gtk.org/gdk4/const.KEY_Z.html")
 
 
-(rt:define-gconstant +key-zabovedot+ 431 "
-C: GDK_KEY_Zabovedot
+(rt:define-gconstant +key-zabovedot+ 431 "C: GDK_KEY_Zabovedot
 See: https://docs.gtk.org/gdk4/const.KEY_Zabovedot.html")
 
 
-(rt:define-gconstant +key-zacute+ 428 "
-C: GDK_KEY_Zacute
+(rt:define-gconstant +key-zacute+ 428 "C: GDK_KEY_Zacute
 See: https://docs.gtk.org/gdk4/const.KEY_Zacute.html")
 
 
-(rt:define-gconstant +key-zcaron+ 430 "
-C: GDK_KEY_Zcaron
+(rt:define-gconstant +key-zcaron+ 430 "C: GDK_KEY_Zcaron
 See: https://docs.gtk.org/gdk4/const.KEY_Zcaron.html")
 
 
-(rt:define-gconstant +key-zen-koho+ 65341 "
-C: GDK_KEY_Zen_Koho
+(rt:define-gconstant +key-zen-koho+ 65341 "C: GDK_KEY_Zen_Koho
 See: https://docs.gtk.org/gdk4/const.KEY_Zen_Koho.html")
 
 
-(rt:define-gconstant +key-zenkaku+ 65320 "
-C: GDK_KEY_Zenkaku
+(rt:define-gconstant +key-zenkaku+ 65320 "C: GDK_KEY_Zenkaku
 See: https://docs.gtk.org/gdk4/const.KEY_Zenkaku.html")
 
 
-(rt:define-gconstant +key-zenkaku-hankaku+ 65322 "
-C: GDK_KEY_Zenkaku_Hankaku
+(rt:define-gconstant +key-zenkaku-hankaku+ 65322 "C: GDK_KEY_Zenkaku_Hankaku
 See: https://docs.gtk.org/gdk4/const.KEY_Zenkaku_Hankaku.html")
 
 
-(rt:define-gconstant +key-zoomin+ 269025163 "
-C: GDK_KEY_ZoomIn
+(rt:define-gconstant +key-zoomin+ 269025163 "C: GDK_KEY_ZoomIn
 See: https://docs.gtk.org/gdk4/const.KEY_ZoomIn.html")
 
 
-(rt:define-gconstant +key-zoomout+ 269025164 "
-C: GDK_KEY_ZoomOut
+(rt:define-gconstant +key-zoomout+ 269025164 "C: GDK_KEY_ZoomOut
 See: https://docs.gtk.org/gdk4/const.KEY_ZoomOut.html")
 
 
-(rt:define-gconstant +key-zoomreset+ 268964260 "
-C: GDK_KEY_ZoomReset
+(rt:define-gconstant +key-zoomreset+ 268964260 "C: GDK_KEY_ZoomReset
 See: https://docs.gtk.org/gdk4/const.KEY_ZoomReset.html")
 
 
-(rt:define-gconstant +key-zstroke+ 16777653 "
-C: GDK_KEY_Zstroke
+(rt:define-gconstant +key-zstroke+ 16777653 "C: GDK_KEY_Zstroke
 See: https://docs.gtk.org/gdk4/const.KEY_Zstroke.html")
 
 
-(rt:define-gconstant +key-abovedot+ 511 "
-C: GDK_KEY_abovedot
+(rt:define-gconstant +key-abovedot+ 511 "C: GDK_KEY_abovedot
 See: https://docs.gtk.org/gdk4/const.KEY_abovedot.html")
 
 
-(rt:define-gconstant +key-acute+ 180 "
-C: GDK_KEY_acute
+(rt:define-gconstant +key-acute+ 180 "C: GDK_KEY_acute
 See: https://docs.gtk.org/gdk4/const.KEY_acute.html")
 
 
-(rt:define-gconstant +key-ampersand+ 38 "
-C: GDK_KEY_ampersand
+(rt:define-gconstant +key-ampersand+ 38 "C: GDK_KEY_ampersand
 See: https://docs.gtk.org/gdk4/const.KEY_ampersand.html")
 
 
-(rt:define-gconstant +key-apostrophe+ 39 "
-C: GDK_KEY_apostrophe
+(rt:define-gconstant +key-apostrophe+ 39 "C: GDK_KEY_apostrophe
 See: https://docs.gtk.org/gdk4/const.KEY_apostrophe.html")
 
 
-(rt:define-gconstant +key-approxeq+ 16785992 "
-C: GDK_KEY_approxeq
+(rt:define-gconstant +key-approxeq+ 16785992 "C: GDK_KEY_approxeq
 See: https://docs.gtk.org/gdk4/const.KEY_approxeq.html")
 
 
-(rt:define-gconstant +key-approximate+ 2248 "
-C: GDK_KEY_approximate
+(rt:define-gconstant +key-approximate+ 2248 "C: GDK_KEY_approximate
 See: https://docs.gtk.org/gdk4/const.KEY_approximate.html")
 
 
-(rt:define-gconstant +key-asciicircum+ 94 "
-C: GDK_KEY_asciicircum
+(rt:define-gconstant +key-asciicircum+ 94 "C: GDK_KEY_asciicircum
 See: https://docs.gtk.org/gdk4/const.KEY_asciicircum.html")
 
 
-(rt:define-gconstant +key-asciitilde+ 126 "
-C: GDK_KEY_asciitilde
+(rt:define-gconstant +key-asciitilde+ 126 "C: GDK_KEY_asciitilde
 See: https://docs.gtk.org/gdk4/const.KEY_asciitilde.html")
 
 
-(rt:define-gconstant +key-asterisk+ 42 "
-C: GDK_KEY_asterisk
+(rt:define-gconstant +key-asterisk+ 42 "C: GDK_KEY_asterisk
 See: https://docs.gtk.org/gdk4/const.KEY_asterisk.html")
 
 
-(rt:define-gconstant +key-at+ 64 "
-C: GDK_KEY_at
+(rt:define-gconstant +key-at+ 64 "C: GDK_KEY_at
 See: https://docs.gtk.org/gdk4/const.KEY_at.html")
 
 
-(rt:define-gconstant +key-backslash+ 92 "
-C: GDK_KEY_backslash
+(rt:define-gconstant +key-backslash+ 92 "C: GDK_KEY_backslash
 See: https://docs.gtk.org/gdk4/const.KEY_backslash.html")
 
 
-(rt:define-gconstant +key-ballotcross+ 2804 "
-C: GDK_KEY_ballotcross
+(rt:define-gconstant +key-ballotcross+ 2804 "C: GDK_KEY_ballotcross
 See: https://docs.gtk.org/gdk4/const.KEY_ballotcross.html")
 
 
-(rt:define-gconstant +key-bar+ 124 "
-C: GDK_KEY_bar
+(rt:define-gconstant +key-bar+ 124 "C: GDK_KEY_bar
 See: https://docs.gtk.org/gdk4/const.KEY_bar.html")
 
 
-(rt:define-gconstant +key-because+ 16785973 "
-C: GDK_KEY_because
+(rt:define-gconstant +key-because+ 16785973 "C: GDK_KEY_because
 See: https://docs.gtk.org/gdk4/const.KEY_because.html")
 
 
-(rt:define-gconstant +key-blank+ 2527 "
-C: GDK_KEY_blank
+(rt:define-gconstant +key-blank+ 2527 "C: GDK_KEY_blank
 See: https://docs.gtk.org/gdk4/const.KEY_blank.html")
 
 
-(rt:define-gconstant +key-botintegral+ 2213 "
-C: GDK_KEY_botintegral
+(rt:define-gconstant +key-botintegral+ 2213 "C: GDK_KEY_botintegral
 See: https://docs.gtk.org/gdk4/const.KEY_botintegral.html")
 
 
-(rt:define-gconstant +key-botleftparens+ 2220 "
-C: GDK_KEY_botleftparens
+(rt:define-gconstant +key-botleftparens+ 2220 "C: GDK_KEY_botleftparens
 See: https://docs.gtk.org/gdk4/const.KEY_botleftparens.html")
 
 
-(rt:define-gconstant +key-botleftsqbracket+ 2216 "
-C: GDK_KEY_botleftsqbracket
+(rt:define-gconstant +key-botleftsqbracket+ 2216 "C: GDK_KEY_botleftsqbracket
 See: https://docs.gtk.org/gdk4/const.KEY_botleftsqbracket.html")
 
 
-(rt:define-gconstant +key-botleftsummation+ 2226 "
-C: GDK_KEY_botleftsummation
+(rt:define-gconstant +key-botleftsummation+ 2226 "C: GDK_KEY_botleftsummation
 See: https://docs.gtk.org/gdk4/const.KEY_botleftsummation.html")
 
 
-(rt:define-gconstant +key-botrightparens+ 2222 "
-C: GDK_KEY_botrightparens
+(rt:define-gconstant +key-botrightparens+ 2222 "C: GDK_KEY_botrightparens
 See: https://docs.gtk.org/gdk4/const.KEY_botrightparens.html")
 
 
-(rt:define-gconstant +key-botrightsqbracket+ 2218 "
-C: GDK_KEY_botrightsqbracket
+(rt:define-gconstant +key-botrightsqbracket+ 2218 "C: GDK_KEY_botrightsqbracket
 See: https://docs.gtk.org/gdk4/const.KEY_botrightsqbracket.html")
 
 
-(rt:define-gconstant +key-botrightsummation+ 2230 "
-C: GDK_KEY_botrightsummation
+(rt:define-gconstant +key-botrightsummation+ 2230 "C: GDK_KEY_botrightsummation
 See: https://docs.gtk.org/gdk4/const.KEY_botrightsummation.html")
 
 
-(rt:define-gconstant +key-bott+ 2550 "
-C: GDK_KEY_bott
+(rt:define-gconstant +key-bott+ 2550 "C: GDK_KEY_bott
 See: https://docs.gtk.org/gdk4/const.KEY_bott.html")
 
 
-(rt:define-gconstant +key-botvertsummationconnector+ 2228 "
-C: GDK_KEY_botvertsummationconnector
+(rt:define-gconstant +key-botvertsummationconnector+ 2228 "C: GDK_KEY_botvertsummationconnector
 See: https://docs.gtk.org/gdk4/const.KEY_botvertsummationconnector.html")
 
 
-(rt:define-gconstant +key-braceleft+ 123 "
-C: GDK_KEY_braceleft
+(rt:define-gconstant +key-braceleft+ 123 "C: GDK_KEY_braceleft
 See: https://docs.gtk.org/gdk4/const.KEY_braceleft.html")
 
 
-(rt:define-gconstant +key-braceright+ 125 "
-C: GDK_KEY_braceright
+(rt:define-gconstant +key-braceright+ 125 "C: GDK_KEY_braceright
 See: https://docs.gtk.org/gdk4/const.KEY_braceright.html")
 
 
-(rt:define-gconstant +key-bracketleft+ 91 "
-C: GDK_KEY_bracketleft
+(rt:define-gconstant +key-bracketleft+ 91 "C: GDK_KEY_bracketleft
 See: https://docs.gtk.org/gdk4/const.KEY_bracketleft.html")
 
 
-(rt:define-gconstant +key-bracketright+ 93 "
-C: GDK_KEY_bracketright
+(rt:define-gconstant +key-bracketright+ 93 "C: GDK_KEY_bracketright
 See: https://docs.gtk.org/gdk4/const.KEY_bracketright.html")
 
 
-(rt:define-gconstant +key-braille-blank+ 16787456 "
-C: GDK_KEY_braille_blank
+(rt:define-gconstant +key-braille-blank+ 16787456 "C: GDK_KEY_braille_blank
 See: https://docs.gtk.org/gdk4/const.KEY_braille_blank.html")
 
 
-(rt:define-gconstant +key-braille-dot-1+ 65521 "
-C: GDK_KEY_braille_dot_1
+(rt:define-gconstant +key-braille-dot-1+ 65521 "C: GDK_KEY_braille_dot_1
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_1.html")
 
 
-(rt:define-gconstant +key-braille-dot-10+ 65530 "
-C: GDK_KEY_braille_dot_10
+(rt:define-gconstant +key-braille-dot-10+ 65530 "C: GDK_KEY_braille_dot_10
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_10.html")
 
 
-(rt:define-gconstant +key-braille-dot-2+ 65522 "
-C: GDK_KEY_braille_dot_2
+(rt:define-gconstant +key-braille-dot-2+ 65522 "C: GDK_KEY_braille_dot_2
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_2.html")
 
 
-(rt:define-gconstant +key-braille-dot-3+ 65523 "
-C: GDK_KEY_braille_dot_3
+(rt:define-gconstant +key-braille-dot-3+ 65523 "C: GDK_KEY_braille_dot_3
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_3.html")
 
 
-(rt:define-gconstant +key-braille-dot-4+ 65524 "
-C: GDK_KEY_braille_dot_4
+(rt:define-gconstant +key-braille-dot-4+ 65524 "C: GDK_KEY_braille_dot_4
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_4.html")
 
 
-(rt:define-gconstant +key-braille-dot-5+ 65525 "
-C: GDK_KEY_braille_dot_5
+(rt:define-gconstant +key-braille-dot-5+ 65525 "C: GDK_KEY_braille_dot_5
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_5.html")
 
 
-(rt:define-gconstant +key-braille-dot-6+ 65526 "
-C: GDK_KEY_braille_dot_6
+(rt:define-gconstant +key-braille-dot-6+ 65526 "C: GDK_KEY_braille_dot_6
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_6.html")
 
 
-(rt:define-gconstant +key-braille-dot-7+ 65527 "
-C: GDK_KEY_braille_dot_7
+(rt:define-gconstant +key-braille-dot-7+ 65527 "C: GDK_KEY_braille_dot_7
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_7.html")
 
 
-(rt:define-gconstant +key-braille-dot-8+ 65528 "
-C: GDK_KEY_braille_dot_8
+(rt:define-gconstant +key-braille-dot-8+ 65528 "C: GDK_KEY_braille_dot_8
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_8.html")
 
 
-(rt:define-gconstant +key-braille-dot-9+ 65529 "
-C: GDK_KEY_braille_dot_9
+(rt:define-gconstant +key-braille-dot-9+ 65529 "C: GDK_KEY_braille_dot_9
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dot_9.html")
 
 
-(rt:define-gconstant +key-braille-dots-1+ 16787457 "
-C: GDK_KEY_braille_dots_1
+(rt:define-gconstant +key-braille-dots-1+ 16787457 "C: GDK_KEY_braille_dots_1
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1.html")
 
 
-(rt:define-gconstant +key-braille-dots-12+ 16787459 "
-C: GDK_KEY_braille_dots_12
+(rt:define-gconstant +key-braille-dots-12+ 16787459 "C: GDK_KEY_braille_dots_12
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12.html")
 
 
-(rt:define-gconstant +key-braille-dots-123+ 16787463 "
-C: GDK_KEY_braille_dots_123
+(rt:define-gconstant +key-braille-dots-123+ 16787463 "C: GDK_KEY_braille_dots_123
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123.html")
 
 
-(rt:define-gconstant +key-braille-dots-1234+ 16787471 "
-C: GDK_KEY_braille_dots_1234
+(rt:define-gconstant +key-braille-dots-1234+ 16787471 "C: GDK_KEY_braille_dots_1234
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1234.html")
 
 
-(rt:define-gconstant +key-braille-dots-12345+ 16787487 "
-C: GDK_KEY_braille_dots_12345
+(rt:define-gconstant +key-braille-dots-12345+ 16787487 "C: GDK_KEY_braille_dots_12345
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12345.html")
 
 
-(rt:define-gconstant +key-braille-dots-123456+ 16787519 "
-C: GDK_KEY_braille_dots_123456
+(rt:define-gconstant +key-braille-dots-123456+ 16787519 "C: GDK_KEY_braille_dots_123456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123456.html")
 
 
-(rt:define-gconstant +key-braille-dots-1234567+ 16787583 "
-C: GDK_KEY_braille_dots_1234567
+(rt:define-gconstant +key-braille-dots-1234567+ 16787583 "C: GDK_KEY_braille_dots_1234567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1234567.html")
 
 
-(rt:define-gconstant +key-braille-dots-12345678+ 16787711 "
-C: GDK_KEY_braille_dots_12345678
+(rt:define-gconstant +key-braille-dots-12345678+ 16787711 "C: GDK_KEY_braille_dots_12345678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12345678.html")
 
 
-(rt:define-gconstant +key-braille-dots-1234568+ 16787647 "
-C: GDK_KEY_braille_dots_1234568
+(rt:define-gconstant +key-braille-dots-1234568+ 16787647 "C: GDK_KEY_braille_dots_1234568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1234568.html")
 
 
-(rt:define-gconstant +key-braille-dots-123457+ 16787551 "
-C: GDK_KEY_braille_dots_123457
+(rt:define-gconstant +key-braille-dots-123457+ 16787551 "C: GDK_KEY_braille_dots_123457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123457.html")
 
 
-(rt:define-gconstant +key-braille-dots-1234578+ 16787679 "
-C: GDK_KEY_braille_dots_1234578
+(rt:define-gconstant +key-braille-dots-1234578+ 16787679 "C: GDK_KEY_braille_dots_1234578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1234578.html")
 
 
-(rt:define-gconstant +key-braille-dots-123458+ 16787615 "
-C: GDK_KEY_braille_dots_123458
+(rt:define-gconstant +key-braille-dots-123458+ 16787615 "C: GDK_KEY_braille_dots_123458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123458.html")
 
 
-(rt:define-gconstant +key-braille-dots-12346+ 16787503 "
-C: GDK_KEY_braille_dots_12346
+(rt:define-gconstant +key-braille-dots-12346+ 16787503 "C: GDK_KEY_braille_dots_12346
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12346.html")
 
 
-(rt:define-gconstant +key-braille-dots-123467+ 16787567 "
-C: GDK_KEY_braille_dots_123467
+(rt:define-gconstant +key-braille-dots-123467+ 16787567 "C: GDK_KEY_braille_dots_123467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123467.html")
 
 
-(rt:define-gconstant +key-braille-dots-1234678+ 16787695 "
-C: GDK_KEY_braille_dots_1234678
+(rt:define-gconstant +key-braille-dots-1234678+ 16787695 "C: GDK_KEY_braille_dots_1234678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1234678.html")
 
 
-(rt:define-gconstant +key-braille-dots-123468+ 16787631 "
-C: GDK_KEY_braille_dots_123468
+(rt:define-gconstant +key-braille-dots-123468+ 16787631 "C: GDK_KEY_braille_dots_123468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123468.html")
 
 
-(rt:define-gconstant +key-braille-dots-12347+ 16787535 "
-C: GDK_KEY_braille_dots_12347
+(rt:define-gconstant +key-braille-dots-12347+ 16787535 "C: GDK_KEY_braille_dots_12347
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12347.html")
 
 
-(rt:define-gconstant +key-braille-dots-123478+ 16787663 "
-C: GDK_KEY_braille_dots_123478
+(rt:define-gconstant +key-braille-dots-123478+ 16787663 "C: GDK_KEY_braille_dots_123478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123478.html")
 
 
-(rt:define-gconstant +key-braille-dots-12348+ 16787599 "
-C: GDK_KEY_braille_dots_12348
+(rt:define-gconstant +key-braille-dots-12348+ 16787599 "C: GDK_KEY_braille_dots_12348
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12348.html")
 
 
-(rt:define-gconstant +key-braille-dots-1235+ 16787479 "
-C: GDK_KEY_braille_dots_1235
+(rt:define-gconstant +key-braille-dots-1235+ 16787479 "C: GDK_KEY_braille_dots_1235
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1235.html")
 
 
-(rt:define-gconstant +key-braille-dots-12356+ 16787511 "
-C: GDK_KEY_braille_dots_12356
+(rt:define-gconstant +key-braille-dots-12356+ 16787511 "C: GDK_KEY_braille_dots_12356
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12356.html")
 
 
-(rt:define-gconstant +key-braille-dots-123567+ 16787575 "
-C: GDK_KEY_braille_dots_123567
+(rt:define-gconstant +key-braille-dots-123567+ 16787575 "C: GDK_KEY_braille_dots_123567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123567.html")
 
 
-(rt:define-gconstant +key-braille-dots-1235678+ 16787703 "
-C: GDK_KEY_braille_dots_1235678
+(rt:define-gconstant +key-braille-dots-1235678+ 16787703 "C: GDK_KEY_braille_dots_1235678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1235678.html")
 
 
-(rt:define-gconstant +key-braille-dots-123568+ 16787639 "
-C: GDK_KEY_braille_dots_123568
+(rt:define-gconstant +key-braille-dots-123568+ 16787639 "C: GDK_KEY_braille_dots_123568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123568.html")
 
 
-(rt:define-gconstant +key-braille-dots-12357+ 16787543 "
-C: GDK_KEY_braille_dots_12357
+(rt:define-gconstant +key-braille-dots-12357+ 16787543 "C: GDK_KEY_braille_dots_12357
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12357.html")
 
 
-(rt:define-gconstant +key-braille-dots-123578+ 16787671 "
-C: GDK_KEY_braille_dots_123578
+(rt:define-gconstant +key-braille-dots-123578+ 16787671 "C: GDK_KEY_braille_dots_123578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123578.html")
 
 
-(rt:define-gconstant +key-braille-dots-12358+ 16787607 "
-C: GDK_KEY_braille_dots_12358
+(rt:define-gconstant +key-braille-dots-12358+ 16787607 "C: GDK_KEY_braille_dots_12358
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12358.html")
 
 
-(rt:define-gconstant +key-braille-dots-1236+ 16787495 "
-C: GDK_KEY_braille_dots_1236
+(rt:define-gconstant +key-braille-dots-1236+ 16787495 "C: GDK_KEY_braille_dots_1236
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1236.html")
 
 
-(rt:define-gconstant +key-braille-dots-12367+ 16787559 "
-C: GDK_KEY_braille_dots_12367
+(rt:define-gconstant +key-braille-dots-12367+ 16787559 "C: GDK_KEY_braille_dots_12367
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12367.html")
 
 
-(rt:define-gconstant +key-braille-dots-123678+ 16787687 "
-C: GDK_KEY_braille_dots_123678
+(rt:define-gconstant +key-braille-dots-123678+ 16787687 "C: GDK_KEY_braille_dots_123678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_123678.html")
 
 
-(rt:define-gconstant +key-braille-dots-12368+ 16787623 "
-C: GDK_KEY_braille_dots_12368
+(rt:define-gconstant +key-braille-dots-12368+ 16787623 "C: GDK_KEY_braille_dots_12368
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12368.html")
 
 
-(rt:define-gconstant +key-braille-dots-1237+ 16787527 "
-C: GDK_KEY_braille_dots_1237
+(rt:define-gconstant +key-braille-dots-1237+ 16787527 "C: GDK_KEY_braille_dots_1237
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1237.html")
 
 
-(rt:define-gconstant +key-braille-dots-12378+ 16787655 "
-C: GDK_KEY_braille_dots_12378
+(rt:define-gconstant +key-braille-dots-12378+ 16787655 "C: GDK_KEY_braille_dots_12378
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12378.html")
 
 
-(rt:define-gconstant +key-braille-dots-1238+ 16787591 "
-C: GDK_KEY_braille_dots_1238
+(rt:define-gconstant +key-braille-dots-1238+ 16787591 "C: GDK_KEY_braille_dots_1238
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1238.html")
 
 
-(rt:define-gconstant +key-braille-dots-124+ 16787467 "
-C: GDK_KEY_braille_dots_124
+(rt:define-gconstant +key-braille-dots-124+ 16787467 "C: GDK_KEY_braille_dots_124
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_124.html")
 
 
-(rt:define-gconstant +key-braille-dots-1245+ 16787483 "
-C: GDK_KEY_braille_dots_1245
+(rt:define-gconstant +key-braille-dots-1245+ 16787483 "C: GDK_KEY_braille_dots_1245
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1245.html")
 
 
-(rt:define-gconstant +key-braille-dots-12456+ 16787515 "
-C: GDK_KEY_braille_dots_12456
+(rt:define-gconstant +key-braille-dots-12456+ 16787515 "C: GDK_KEY_braille_dots_12456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12456.html")
 
 
-(rt:define-gconstant +key-braille-dots-124567+ 16787579 "
-C: GDK_KEY_braille_dots_124567
+(rt:define-gconstant +key-braille-dots-124567+ 16787579 "C: GDK_KEY_braille_dots_124567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_124567.html")
 
 
-(rt:define-gconstant +key-braille-dots-1245678+ 16787707 "
-C: GDK_KEY_braille_dots_1245678
+(rt:define-gconstant +key-braille-dots-1245678+ 16787707 "C: GDK_KEY_braille_dots_1245678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1245678.html")
 
 
-(rt:define-gconstant +key-braille-dots-124568+ 16787643 "
-C: GDK_KEY_braille_dots_124568
+(rt:define-gconstant +key-braille-dots-124568+ 16787643 "C: GDK_KEY_braille_dots_124568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_124568.html")
 
 
-(rt:define-gconstant +key-braille-dots-12457+ 16787547 "
-C: GDK_KEY_braille_dots_12457
+(rt:define-gconstant +key-braille-dots-12457+ 16787547 "C: GDK_KEY_braille_dots_12457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12457.html")
 
 
-(rt:define-gconstant +key-braille-dots-124578+ 16787675 "
-C: GDK_KEY_braille_dots_124578
+(rt:define-gconstant +key-braille-dots-124578+ 16787675 "C: GDK_KEY_braille_dots_124578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_124578.html")
 
 
-(rt:define-gconstant +key-braille-dots-12458+ 16787611 "
-C: GDK_KEY_braille_dots_12458
+(rt:define-gconstant +key-braille-dots-12458+ 16787611 "C: GDK_KEY_braille_dots_12458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12458.html")
 
 
-(rt:define-gconstant +key-braille-dots-1246+ 16787499 "
-C: GDK_KEY_braille_dots_1246
+(rt:define-gconstant +key-braille-dots-1246+ 16787499 "C: GDK_KEY_braille_dots_1246
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1246.html")
 
 
-(rt:define-gconstant +key-braille-dots-12467+ 16787563 "
-C: GDK_KEY_braille_dots_12467
+(rt:define-gconstant +key-braille-dots-12467+ 16787563 "C: GDK_KEY_braille_dots_12467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12467.html")
 
 
-(rt:define-gconstant +key-braille-dots-124678+ 16787691 "
-C: GDK_KEY_braille_dots_124678
+(rt:define-gconstant +key-braille-dots-124678+ 16787691 "C: GDK_KEY_braille_dots_124678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_124678.html")
 
 
-(rt:define-gconstant +key-braille-dots-12468+ 16787627 "
-C: GDK_KEY_braille_dots_12468
+(rt:define-gconstant +key-braille-dots-12468+ 16787627 "C: GDK_KEY_braille_dots_12468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12468.html")
 
 
-(rt:define-gconstant +key-braille-dots-1247+ 16787531 "
-C: GDK_KEY_braille_dots_1247
+(rt:define-gconstant +key-braille-dots-1247+ 16787531 "C: GDK_KEY_braille_dots_1247
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1247.html")
 
 
-(rt:define-gconstant +key-braille-dots-12478+ 16787659 "
-C: GDK_KEY_braille_dots_12478
+(rt:define-gconstant +key-braille-dots-12478+ 16787659 "C: GDK_KEY_braille_dots_12478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12478.html")
 
 
-(rt:define-gconstant +key-braille-dots-1248+ 16787595 "
-C: GDK_KEY_braille_dots_1248
+(rt:define-gconstant +key-braille-dots-1248+ 16787595 "C: GDK_KEY_braille_dots_1248
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1248.html")
 
 
-(rt:define-gconstant +key-braille-dots-125+ 16787475 "
-C: GDK_KEY_braille_dots_125
+(rt:define-gconstant +key-braille-dots-125+ 16787475 "C: GDK_KEY_braille_dots_125
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_125.html")
 
 
-(rt:define-gconstant +key-braille-dots-1256+ 16787507 "
-C: GDK_KEY_braille_dots_1256
+(rt:define-gconstant +key-braille-dots-1256+ 16787507 "C: GDK_KEY_braille_dots_1256
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1256.html")
 
 
-(rt:define-gconstant +key-braille-dots-12567+ 16787571 "
-C: GDK_KEY_braille_dots_12567
+(rt:define-gconstant +key-braille-dots-12567+ 16787571 "C: GDK_KEY_braille_dots_12567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12567.html")
 
 
-(rt:define-gconstant +key-braille-dots-125678+ 16787699 "
-C: GDK_KEY_braille_dots_125678
+(rt:define-gconstant +key-braille-dots-125678+ 16787699 "C: GDK_KEY_braille_dots_125678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_125678.html")
 
 
-(rt:define-gconstant +key-braille-dots-12568+ 16787635 "
-C: GDK_KEY_braille_dots_12568
+(rt:define-gconstant +key-braille-dots-12568+ 16787635 "C: GDK_KEY_braille_dots_12568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12568.html")
 
 
-(rt:define-gconstant +key-braille-dots-1257+ 16787539 "
-C: GDK_KEY_braille_dots_1257
+(rt:define-gconstant +key-braille-dots-1257+ 16787539 "C: GDK_KEY_braille_dots_1257
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1257.html")
 
 
-(rt:define-gconstant +key-braille-dots-12578+ 16787667 "
-C: GDK_KEY_braille_dots_12578
+(rt:define-gconstant +key-braille-dots-12578+ 16787667 "C: GDK_KEY_braille_dots_12578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12578.html")
 
 
-(rt:define-gconstant +key-braille-dots-1258+ 16787603 "
-C: GDK_KEY_braille_dots_1258
+(rt:define-gconstant +key-braille-dots-1258+ 16787603 "C: GDK_KEY_braille_dots_1258
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1258.html")
 
 
-(rt:define-gconstant +key-braille-dots-126+ 16787491 "
-C: GDK_KEY_braille_dots_126
+(rt:define-gconstant +key-braille-dots-126+ 16787491 "C: GDK_KEY_braille_dots_126
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_126.html")
 
 
-(rt:define-gconstant +key-braille-dots-1267+ 16787555 "
-C: GDK_KEY_braille_dots_1267
+(rt:define-gconstant +key-braille-dots-1267+ 16787555 "C: GDK_KEY_braille_dots_1267
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1267.html")
 
 
-(rt:define-gconstant +key-braille-dots-12678+ 16787683 "
-C: GDK_KEY_braille_dots_12678
+(rt:define-gconstant +key-braille-dots-12678+ 16787683 "C: GDK_KEY_braille_dots_12678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_12678.html")
 
 
-(rt:define-gconstant +key-braille-dots-1268+ 16787619 "
-C: GDK_KEY_braille_dots_1268
+(rt:define-gconstant +key-braille-dots-1268+ 16787619 "C: GDK_KEY_braille_dots_1268
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1268.html")
 
 
-(rt:define-gconstant +key-braille-dots-127+ 16787523 "
-C: GDK_KEY_braille_dots_127
+(rt:define-gconstant +key-braille-dots-127+ 16787523 "C: GDK_KEY_braille_dots_127
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_127.html")
 
 
-(rt:define-gconstant +key-braille-dots-1278+ 16787651 "
-C: GDK_KEY_braille_dots_1278
+(rt:define-gconstant +key-braille-dots-1278+ 16787651 "C: GDK_KEY_braille_dots_1278
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1278.html")
 
 
-(rt:define-gconstant +key-braille-dots-128+ 16787587 "
-C: GDK_KEY_braille_dots_128
+(rt:define-gconstant +key-braille-dots-128+ 16787587 "C: GDK_KEY_braille_dots_128
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_128.html")
 
 
-(rt:define-gconstant +key-braille-dots-13+ 16787461 "
-C: GDK_KEY_braille_dots_13
+(rt:define-gconstant +key-braille-dots-13+ 16787461 "C: GDK_KEY_braille_dots_13
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13.html")
 
 
-(rt:define-gconstant +key-braille-dots-134+ 16787469 "
-C: GDK_KEY_braille_dots_134
+(rt:define-gconstant +key-braille-dots-134+ 16787469 "C: GDK_KEY_braille_dots_134
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_134.html")
 
 
-(rt:define-gconstant +key-braille-dots-1345+ 16787485 "
-C: GDK_KEY_braille_dots_1345
+(rt:define-gconstant +key-braille-dots-1345+ 16787485 "C: GDK_KEY_braille_dots_1345
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1345.html")
 
 
-(rt:define-gconstant +key-braille-dots-13456+ 16787517 "
-C: GDK_KEY_braille_dots_13456
+(rt:define-gconstant +key-braille-dots-13456+ 16787517 "C: GDK_KEY_braille_dots_13456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13456.html")
 
 
-(rt:define-gconstant +key-braille-dots-134567+ 16787581 "
-C: GDK_KEY_braille_dots_134567
+(rt:define-gconstant +key-braille-dots-134567+ 16787581 "C: GDK_KEY_braille_dots_134567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_134567.html")
 
 
-(rt:define-gconstant +key-braille-dots-1345678+ 16787709 "
-C: GDK_KEY_braille_dots_1345678
+(rt:define-gconstant +key-braille-dots-1345678+ 16787709 "C: GDK_KEY_braille_dots_1345678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1345678.html")
 
 
-(rt:define-gconstant +key-braille-dots-134568+ 16787645 "
-C: GDK_KEY_braille_dots_134568
+(rt:define-gconstant +key-braille-dots-134568+ 16787645 "C: GDK_KEY_braille_dots_134568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_134568.html")
 
 
-(rt:define-gconstant +key-braille-dots-13457+ 16787549 "
-C: GDK_KEY_braille_dots_13457
+(rt:define-gconstant +key-braille-dots-13457+ 16787549 "C: GDK_KEY_braille_dots_13457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13457.html")
 
 
-(rt:define-gconstant +key-braille-dots-134578+ 16787677 "
-C: GDK_KEY_braille_dots_134578
+(rt:define-gconstant +key-braille-dots-134578+ 16787677 "C: GDK_KEY_braille_dots_134578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_134578.html")
 
 
-(rt:define-gconstant +key-braille-dots-13458+ 16787613 "
-C: GDK_KEY_braille_dots_13458
+(rt:define-gconstant +key-braille-dots-13458+ 16787613 "C: GDK_KEY_braille_dots_13458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13458.html")
 
 
-(rt:define-gconstant +key-braille-dots-1346+ 16787501 "
-C: GDK_KEY_braille_dots_1346
+(rt:define-gconstant +key-braille-dots-1346+ 16787501 "C: GDK_KEY_braille_dots_1346
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1346.html")
 
 
-(rt:define-gconstant +key-braille-dots-13467+ 16787565 "
-C: GDK_KEY_braille_dots_13467
+(rt:define-gconstant +key-braille-dots-13467+ 16787565 "C: GDK_KEY_braille_dots_13467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13467.html")
 
 
-(rt:define-gconstant +key-braille-dots-134678+ 16787693 "
-C: GDK_KEY_braille_dots_134678
+(rt:define-gconstant +key-braille-dots-134678+ 16787693 "C: GDK_KEY_braille_dots_134678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_134678.html")
 
 
-(rt:define-gconstant +key-braille-dots-13468+ 16787629 "
-C: GDK_KEY_braille_dots_13468
+(rt:define-gconstant +key-braille-dots-13468+ 16787629 "C: GDK_KEY_braille_dots_13468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13468.html")
 
 
-(rt:define-gconstant +key-braille-dots-1347+ 16787533 "
-C: GDK_KEY_braille_dots_1347
+(rt:define-gconstant +key-braille-dots-1347+ 16787533 "C: GDK_KEY_braille_dots_1347
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1347.html")
 
 
-(rt:define-gconstant +key-braille-dots-13478+ 16787661 "
-C: GDK_KEY_braille_dots_13478
+(rt:define-gconstant +key-braille-dots-13478+ 16787661 "C: GDK_KEY_braille_dots_13478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13478.html")
 
 
-(rt:define-gconstant +key-braille-dots-1348+ 16787597 "
-C: GDK_KEY_braille_dots_1348
+(rt:define-gconstant +key-braille-dots-1348+ 16787597 "C: GDK_KEY_braille_dots_1348
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1348.html")
 
 
-(rt:define-gconstant +key-braille-dots-135+ 16787477 "
-C: GDK_KEY_braille_dots_135
+(rt:define-gconstant +key-braille-dots-135+ 16787477 "C: GDK_KEY_braille_dots_135
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_135.html")
 
 
-(rt:define-gconstant +key-braille-dots-1356+ 16787509 "
-C: GDK_KEY_braille_dots_1356
+(rt:define-gconstant +key-braille-dots-1356+ 16787509 "C: GDK_KEY_braille_dots_1356
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1356.html")
 
 
-(rt:define-gconstant +key-braille-dots-13567+ 16787573 "
-C: GDK_KEY_braille_dots_13567
+(rt:define-gconstant +key-braille-dots-13567+ 16787573 "C: GDK_KEY_braille_dots_13567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13567.html")
 
 
-(rt:define-gconstant +key-braille-dots-135678+ 16787701 "
-C: GDK_KEY_braille_dots_135678
+(rt:define-gconstant +key-braille-dots-135678+ 16787701 "C: GDK_KEY_braille_dots_135678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_135678.html")
 
 
-(rt:define-gconstant +key-braille-dots-13568+ 16787637 "
-C: GDK_KEY_braille_dots_13568
+(rt:define-gconstant +key-braille-dots-13568+ 16787637 "C: GDK_KEY_braille_dots_13568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13568.html")
 
 
-(rt:define-gconstant +key-braille-dots-1357+ 16787541 "
-C: GDK_KEY_braille_dots_1357
+(rt:define-gconstant +key-braille-dots-1357+ 16787541 "C: GDK_KEY_braille_dots_1357
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1357.html")
 
 
-(rt:define-gconstant +key-braille-dots-13578+ 16787669 "
-C: GDK_KEY_braille_dots_13578
+(rt:define-gconstant +key-braille-dots-13578+ 16787669 "C: GDK_KEY_braille_dots_13578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13578.html")
 
 
-(rt:define-gconstant +key-braille-dots-1358+ 16787605 "
-C: GDK_KEY_braille_dots_1358
+(rt:define-gconstant +key-braille-dots-1358+ 16787605 "C: GDK_KEY_braille_dots_1358
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1358.html")
 
 
-(rt:define-gconstant +key-braille-dots-136+ 16787493 "
-C: GDK_KEY_braille_dots_136
+(rt:define-gconstant +key-braille-dots-136+ 16787493 "C: GDK_KEY_braille_dots_136
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_136.html")
 
 
-(rt:define-gconstant +key-braille-dots-1367+ 16787557 "
-C: GDK_KEY_braille_dots_1367
+(rt:define-gconstant +key-braille-dots-1367+ 16787557 "C: GDK_KEY_braille_dots_1367
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1367.html")
 
 
-(rt:define-gconstant +key-braille-dots-13678+ 16787685 "
-C: GDK_KEY_braille_dots_13678
+(rt:define-gconstant +key-braille-dots-13678+ 16787685 "C: GDK_KEY_braille_dots_13678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_13678.html")
 
 
-(rt:define-gconstant +key-braille-dots-1368+ 16787621 "
-C: GDK_KEY_braille_dots_1368
+(rt:define-gconstant +key-braille-dots-1368+ 16787621 "C: GDK_KEY_braille_dots_1368
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1368.html")
 
 
-(rt:define-gconstant +key-braille-dots-137+ 16787525 "
-C: GDK_KEY_braille_dots_137
+(rt:define-gconstant +key-braille-dots-137+ 16787525 "C: GDK_KEY_braille_dots_137
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_137.html")
 
 
-(rt:define-gconstant +key-braille-dots-1378+ 16787653 "
-C: GDK_KEY_braille_dots_1378
+(rt:define-gconstant +key-braille-dots-1378+ 16787653 "C: GDK_KEY_braille_dots_1378
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1378.html")
 
 
-(rt:define-gconstant +key-braille-dots-138+ 16787589 "
-C: GDK_KEY_braille_dots_138
+(rt:define-gconstant +key-braille-dots-138+ 16787589 "C: GDK_KEY_braille_dots_138
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_138.html")
 
 
-(rt:define-gconstant +key-braille-dots-14+ 16787465 "
-C: GDK_KEY_braille_dots_14
+(rt:define-gconstant +key-braille-dots-14+ 16787465 "C: GDK_KEY_braille_dots_14
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_14.html")
 
 
-(rt:define-gconstant +key-braille-dots-145+ 16787481 "
-C: GDK_KEY_braille_dots_145
+(rt:define-gconstant +key-braille-dots-145+ 16787481 "C: GDK_KEY_braille_dots_145
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_145.html")
 
 
-(rt:define-gconstant +key-braille-dots-1456+ 16787513 "
-C: GDK_KEY_braille_dots_1456
+(rt:define-gconstant +key-braille-dots-1456+ 16787513 "C: GDK_KEY_braille_dots_1456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1456.html")
 
 
-(rt:define-gconstant +key-braille-dots-14567+ 16787577 "
-C: GDK_KEY_braille_dots_14567
+(rt:define-gconstant +key-braille-dots-14567+ 16787577 "C: GDK_KEY_braille_dots_14567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_14567.html")
 
 
-(rt:define-gconstant +key-braille-dots-145678+ 16787705 "
-C: GDK_KEY_braille_dots_145678
+(rt:define-gconstant +key-braille-dots-145678+ 16787705 "C: GDK_KEY_braille_dots_145678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_145678.html")
 
 
-(rt:define-gconstant +key-braille-dots-14568+ 16787641 "
-C: GDK_KEY_braille_dots_14568
+(rt:define-gconstant +key-braille-dots-14568+ 16787641 "C: GDK_KEY_braille_dots_14568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_14568.html")
 
 
-(rt:define-gconstant +key-braille-dots-1457+ 16787545 "
-C: GDK_KEY_braille_dots_1457
+(rt:define-gconstant +key-braille-dots-1457+ 16787545 "C: GDK_KEY_braille_dots_1457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1457.html")
 
 
-(rt:define-gconstant +key-braille-dots-14578+ 16787673 "
-C: GDK_KEY_braille_dots_14578
+(rt:define-gconstant +key-braille-dots-14578+ 16787673 "C: GDK_KEY_braille_dots_14578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_14578.html")
 
 
-(rt:define-gconstant +key-braille-dots-1458+ 16787609 "
-C: GDK_KEY_braille_dots_1458
+(rt:define-gconstant +key-braille-dots-1458+ 16787609 "C: GDK_KEY_braille_dots_1458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1458.html")
 
 
-(rt:define-gconstant +key-braille-dots-146+ 16787497 "
-C: GDK_KEY_braille_dots_146
+(rt:define-gconstant +key-braille-dots-146+ 16787497 "C: GDK_KEY_braille_dots_146
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_146.html")
 
 
-(rt:define-gconstant +key-braille-dots-1467+ 16787561 "
-C: GDK_KEY_braille_dots_1467
+(rt:define-gconstant +key-braille-dots-1467+ 16787561 "C: GDK_KEY_braille_dots_1467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1467.html")
 
 
-(rt:define-gconstant +key-braille-dots-14678+ 16787689 "
-C: GDK_KEY_braille_dots_14678
+(rt:define-gconstant +key-braille-dots-14678+ 16787689 "C: GDK_KEY_braille_dots_14678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_14678.html")
 
 
-(rt:define-gconstant +key-braille-dots-1468+ 16787625 "
-C: GDK_KEY_braille_dots_1468
+(rt:define-gconstant +key-braille-dots-1468+ 16787625 "C: GDK_KEY_braille_dots_1468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1468.html")
 
 
-(rt:define-gconstant +key-braille-dots-147+ 16787529 "
-C: GDK_KEY_braille_dots_147
+(rt:define-gconstant +key-braille-dots-147+ 16787529 "C: GDK_KEY_braille_dots_147
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_147.html")
 
 
-(rt:define-gconstant +key-braille-dots-1478+ 16787657 "
-C: GDK_KEY_braille_dots_1478
+(rt:define-gconstant +key-braille-dots-1478+ 16787657 "C: GDK_KEY_braille_dots_1478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1478.html")
 
 
-(rt:define-gconstant +key-braille-dots-148+ 16787593 "
-C: GDK_KEY_braille_dots_148
+(rt:define-gconstant +key-braille-dots-148+ 16787593 "C: GDK_KEY_braille_dots_148
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_148.html")
 
 
-(rt:define-gconstant +key-braille-dots-15+ 16787473 "
-C: GDK_KEY_braille_dots_15
+(rt:define-gconstant +key-braille-dots-15+ 16787473 "C: GDK_KEY_braille_dots_15
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_15.html")
 
 
-(rt:define-gconstant +key-braille-dots-156+ 16787505 "
-C: GDK_KEY_braille_dots_156
+(rt:define-gconstant +key-braille-dots-156+ 16787505 "C: GDK_KEY_braille_dots_156
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_156.html")
 
 
-(rt:define-gconstant +key-braille-dots-1567+ 16787569 "
-C: GDK_KEY_braille_dots_1567
+(rt:define-gconstant +key-braille-dots-1567+ 16787569 "C: GDK_KEY_braille_dots_1567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1567.html")
 
 
-(rt:define-gconstant +key-braille-dots-15678+ 16787697 "
-C: GDK_KEY_braille_dots_15678
+(rt:define-gconstant +key-braille-dots-15678+ 16787697 "C: GDK_KEY_braille_dots_15678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_15678.html")
 
 
-(rt:define-gconstant +key-braille-dots-1568+ 16787633 "
-C: GDK_KEY_braille_dots_1568
+(rt:define-gconstant +key-braille-dots-1568+ 16787633 "C: GDK_KEY_braille_dots_1568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1568.html")
 
 
-(rt:define-gconstant +key-braille-dots-157+ 16787537 "
-C: GDK_KEY_braille_dots_157
+(rt:define-gconstant +key-braille-dots-157+ 16787537 "C: GDK_KEY_braille_dots_157
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_157.html")
 
 
-(rt:define-gconstant +key-braille-dots-1578+ 16787665 "
-C: GDK_KEY_braille_dots_1578
+(rt:define-gconstant +key-braille-dots-1578+ 16787665 "C: GDK_KEY_braille_dots_1578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1578.html")
 
 
-(rt:define-gconstant +key-braille-dots-158+ 16787601 "
-C: GDK_KEY_braille_dots_158
+(rt:define-gconstant +key-braille-dots-158+ 16787601 "C: GDK_KEY_braille_dots_158
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_158.html")
 
 
-(rt:define-gconstant +key-braille-dots-16+ 16787489 "
-C: GDK_KEY_braille_dots_16
+(rt:define-gconstant +key-braille-dots-16+ 16787489 "C: GDK_KEY_braille_dots_16
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_16.html")
 
 
-(rt:define-gconstant +key-braille-dots-167+ 16787553 "
-C: GDK_KEY_braille_dots_167
+(rt:define-gconstant +key-braille-dots-167+ 16787553 "C: GDK_KEY_braille_dots_167
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_167.html")
 
 
-(rt:define-gconstant +key-braille-dots-1678+ 16787681 "
-C: GDK_KEY_braille_dots_1678
+(rt:define-gconstant +key-braille-dots-1678+ 16787681 "C: GDK_KEY_braille_dots_1678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_1678.html")
 
 
-(rt:define-gconstant +key-braille-dots-168+ 16787617 "
-C: GDK_KEY_braille_dots_168
+(rt:define-gconstant +key-braille-dots-168+ 16787617 "C: GDK_KEY_braille_dots_168
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_168.html")
 
 
-(rt:define-gconstant +key-braille-dots-17+ 16787521 "
-C: GDK_KEY_braille_dots_17
+(rt:define-gconstant +key-braille-dots-17+ 16787521 "C: GDK_KEY_braille_dots_17
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_17.html")
 
 
-(rt:define-gconstant +key-braille-dots-178+ 16787649 "
-C: GDK_KEY_braille_dots_178
+(rt:define-gconstant +key-braille-dots-178+ 16787649 "C: GDK_KEY_braille_dots_178
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_178.html")
 
 
-(rt:define-gconstant +key-braille-dots-18+ 16787585 "
-C: GDK_KEY_braille_dots_18
+(rt:define-gconstant +key-braille-dots-18+ 16787585 "C: GDK_KEY_braille_dots_18
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_18.html")
 
 
-(rt:define-gconstant +key-braille-dots-2+ 16787458 "
-C: GDK_KEY_braille_dots_2
+(rt:define-gconstant +key-braille-dots-2+ 16787458 "C: GDK_KEY_braille_dots_2
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2.html")
 
 
-(rt:define-gconstant +key-braille-dots-23+ 16787462 "
-C: GDK_KEY_braille_dots_23
+(rt:define-gconstant +key-braille-dots-23+ 16787462 "C: GDK_KEY_braille_dots_23
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23.html")
 
 
-(rt:define-gconstant +key-braille-dots-234+ 16787470 "
-C: GDK_KEY_braille_dots_234
+(rt:define-gconstant +key-braille-dots-234+ 16787470 "C: GDK_KEY_braille_dots_234
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_234.html")
 
 
-(rt:define-gconstant +key-braille-dots-2345+ 16787486 "
-C: GDK_KEY_braille_dots_2345
+(rt:define-gconstant +key-braille-dots-2345+ 16787486 "C: GDK_KEY_braille_dots_2345
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2345.html")
 
 
-(rt:define-gconstant +key-braille-dots-23456+ 16787518 "
-C: GDK_KEY_braille_dots_23456
+(rt:define-gconstant +key-braille-dots-23456+ 16787518 "C: GDK_KEY_braille_dots_23456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23456.html")
 
 
-(rt:define-gconstant +key-braille-dots-234567+ 16787582 "
-C: GDK_KEY_braille_dots_234567
+(rt:define-gconstant +key-braille-dots-234567+ 16787582 "C: GDK_KEY_braille_dots_234567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_234567.html")
 
 
-(rt:define-gconstant +key-braille-dots-2345678+ 16787710 "
-C: GDK_KEY_braille_dots_2345678
+(rt:define-gconstant +key-braille-dots-2345678+ 16787710 "C: GDK_KEY_braille_dots_2345678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2345678.html")
 
 
-(rt:define-gconstant +key-braille-dots-234568+ 16787646 "
-C: GDK_KEY_braille_dots_234568
+(rt:define-gconstant +key-braille-dots-234568+ 16787646 "C: GDK_KEY_braille_dots_234568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_234568.html")
 
 
-(rt:define-gconstant +key-braille-dots-23457+ 16787550 "
-C: GDK_KEY_braille_dots_23457
+(rt:define-gconstant +key-braille-dots-23457+ 16787550 "C: GDK_KEY_braille_dots_23457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23457.html")
 
 
-(rt:define-gconstant +key-braille-dots-234578+ 16787678 "
-C: GDK_KEY_braille_dots_234578
+(rt:define-gconstant +key-braille-dots-234578+ 16787678 "C: GDK_KEY_braille_dots_234578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_234578.html")
 
 
-(rt:define-gconstant +key-braille-dots-23458+ 16787614 "
-C: GDK_KEY_braille_dots_23458
+(rt:define-gconstant +key-braille-dots-23458+ 16787614 "C: GDK_KEY_braille_dots_23458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23458.html")
 
 
-(rt:define-gconstant +key-braille-dots-2346+ 16787502 "
-C: GDK_KEY_braille_dots_2346
+(rt:define-gconstant +key-braille-dots-2346+ 16787502 "C: GDK_KEY_braille_dots_2346
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2346.html")
 
 
-(rt:define-gconstant +key-braille-dots-23467+ 16787566 "
-C: GDK_KEY_braille_dots_23467
+(rt:define-gconstant +key-braille-dots-23467+ 16787566 "C: GDK_KEY_braille_dots_23467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23467.html")
 
 
-(rt:define-gconstant +key-braille-dots-234678+ 16787694 "
-C: GDK_KEY_braille_dots_234678
+(rt:define-gconstant +key-braille-dots-234678+ 16787694 "C: GDK_KEY_braille_dots_234678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_234678.html")
 
 
-(rt:define-gconstant +key-braille-dots-23468+ 16787630 "
-C: GDK_KEY_braille_dots_23468
+(rt:define-gconstant +key-braille-dots-23468+ 16787630 "C: GDK_KEY_braille_dots_23468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23468.html")
 
 
-(rt:define-gconstant +key-braille-dots-2347+ 16787534 "
-C: GDK_KEY_braille_dots_2347
+(rt:define-gconstant +key-braille-dots-2347+ 16787534 "C: GDK_KEY_braille_dots_2347
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2347.html")
 
 
-(rt:define-gconstant +key-braille-dots-23478+ 16787662 "
-C: GDK_KEY_braille_dots_23478
+(rt:define-gconstant +key-braille-dots-23478+ 16787662 "C: GDK_KEY_braille_dots_23478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23478.html")
 
 
-(rt:define-gconstant +key-braille-dots-2348+ 16787598 "
-C: GDK_KEY_braille_dots_2348
+(rt:define-gconstant +key-braille-dots-2348+ 16787598 "C: GDK_KEY_braille_dots_2348
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2348.html")
 
 
-(rt:define-gconstant +key-braille-dots-235+ 16787478 "
-C: GDK_KEY_braille_dots_235
+(rt:define-gconstant +key-braille-dots-235+ 16787478 "C: GDK_KEY_braille_dots_235
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_235.html")
 
 
-(rt:define-gconstant +key-braille-dots-2356+ 16787510 "
-C: GDK_KEY_braille_dots_2356
+(rt:define-gconstant +key-braille-dots-2356+ 16787510 "C: GDK_KEY_braille_dots_2356
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2356.html")
 
 
-(rt:define-gconstant +key-braille-dots-23567+ 16787574 "
-C: GDK_KEY_braille_dots_23567
+(rt:define-gconstant +key-braille-dots-23567+ 16787574 "C: GDK_KEY_braille_dots_23567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23567.html")
 
 
-(rt:define-gconstant +key-braille-dots-235678+ 16787702 "
-C: GDK_KEY_braille_dots_235678
+(rt:define-gconstant +key-braille-dots-235678+ 16787702 "C: GDK_KEY_braille_dots_235678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_235678.html")
 
 
-(rt:define-gconstant +key-braille-dots-23568+ 16787638 "
-C: GDK_KEY_braille_dots_23568
+(rt:define-gconstant +key-braille-dots-23568+ 16787638 "C: GDK_KEY_braille_dots_23568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23568.html")
 
 
-(rt:define-gconstant +key-braille-dots-2357+ 16787542 "
-C: GDK_KEY_braille_dots_2357
+(rt:define-gconstant +key-braille-dots-2357+ 16787542 "C: GDK_KEY_braille_dots_2357
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2357.html")
 
 
-(rt:define-gconstant +key-braille-dots-23578+ 16787670 "
-C: GDK_KEY_braille_dots_23578
+(rt:define-gconstant +key-braille-dots-23578+ 16787670 "C: GDK_KEY_braille_dots_23578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23578.html")
 
 
-(rt:define-gconstant +key-braille-dots-2358+ 16787606 "
-C: GDK_KEY_braille_dots_2358
+(rt:define-gconstant +key-braille-dots-2358+ 16787606 "C: GDK_KEY_braille_dots_2358
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2358.html")
 
 
-(rt:define-gconstant +key-braille-dots-236+ 16787494 "
-C: GDK_KEY_braille_dots_236
+(rt:define-gconstant +key-braille-dots-236+ 16787494 "C: GDK_KEY_braille_dots_236
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_236.html")
 
 
-(rt:define-gconstant +key-braille-dots-2367+ 16787558 "
-C: GDK_KEY_braille_dots_2367
+(rt:define-gconstant +key-braille-dots-2367+ 16787558 "C: GDK_KEY_braille_dots_2367
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2367.html")
 
 
-(rt:define-gconstant +key-braille-dots-23678+ 16787686 "
-C: GDK_KEY_braille_dots_23678
+(rt:define-gconstant +key-braille-dots-23678+ 16787686 "C: GDK_KEY_braille_dots_23678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_23678.html")
 
 
-(rt:define-gconstant +key-braille-dots-2368+ 16787622 "
-C: GDK_KEY_braille_dots_2368
+(rt:define-gconstant +key-braille-dots-2368+ 16787622 "C: GDK_KEY_braille_dots_2368
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2368.html")
 
 
-(rt:define-gconstant +key-braille-dots-237+ 16787526 "
-C: GDK_KEY_braille_dots_237
+(rt:define-gconstant +key-braille-dots-237+ 16787526 "C: GDK_KEY_braille_dots_237
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_237.html")
 
 
-(rt:define-gconstant +key-braille-dots-2378+ 16787654 "
-C: GDK_KEY_braille_dots_2378
+(rt:define-gconstant +key-braille-dots-2378+ 16787654 "C: GDK_KEY_braille_dots_2378
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2378.html")
 
 
-(rt:define-gconstant +key-braille-dots-238+ 16787590 "
-C: GDK_KEY_braille_dots_238
+(rt:define-gconstant +key-braille-dots-238+ 16787590 "C: GDK_KEY_braille_dots_238
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_238.html")
 
 
-(rt:define-gconstant +key-braille-dots-24+ 16787466 "
-C: GDK_KEY_braille_dots_24
+(rt:define-gconstant +key-braille-dots-24+ 16787466 "C: GDK_KEY_braille_dots_24
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_24.html")
 
 
-(rt:define-gconstant +key-braille-dots-245+ 16787482 "
-C: GDK_KEY_braille_dots_245
+(rt:define-gconstant +key-braille-dots-245+ 16787482 "C: GDK_KEY_braille_dots_245
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_245.html")
 
 
-(rt:define-gconstant +key-braille-dots-2456+ 16787514 "
-C: GDK_KEY_braille_dots_2456
+(rt:define-gconstant +key-braille-dots-2456+ 16787514 "C: GDK_KEY_braille_dots_2456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2456.html")
 
 
-(rt:define-gconstant +key-braille-dots-24567+ 16787578 "
-C: GDK_KEY_braille_dots_24567
+(rt:define-gconstant +key-braille-dots-24567+ 16787578 "C: GDK_KEY_braille_dots_24567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_24567.html")
 
 
-(rt:define-gconstant +key-braille-dots-245678+ 16787706 "
-C: GDK_KEY_braille_dots_245678
+(rt:define-gconstant +key-braille-dots-245678+ 16787706 "C: GDK_KEY_braille_dots_245678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_245678.html")
 
 
-(rt:define-gconstant +key-braille-dots-24568+ 16787642 "
-C: GDK_KEY_braille_dots_24568
+(rt:define-gconstant +key-braille-dots-24568+ 16787642 "C: GDK_KEY_braille_dots_24568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_24568.html")
 
 
-(rt:define-gconstant +key-braille-dots-2457+ 16787546 "
-C: GDK_KEY_braille_dots_2457
+(rt:define-gconstant +key-braille-dots-2457+ 16787546 "C: GDK_KEY_braille_dots_2457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2457.html")
 
 
-(rt:define-gconstant +key-braille-dots-24578+ 16787674 "
-C: GDK_KEY_braille_dots_24578
+(rt:define-gconstant +key-braille-dots-24578+ 16787674 "C: GDK_KEY_braille_dots_24578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_24578.html")
 
 
-(rt:define-gconstant +key-braille-dots-2458+ 16787610 "
-C: GDK_KEY_braille_dots_2458
+(rt:define-gconstant +key-braille-dots-2458+ 16787610 "C: GDK_KEY_braille_dots_2458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2458.html")
 
 
-(rt:define-gconstant +key-braille-dots-246+ 16787498 "
-C: GDK_KEY_braille_dots_246
+(rt:define-gconstant +key-braille-dots-246+ 16787498 "C: GDK_KEY_braille_dots_246
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_246.html")
 
 
-(rt:define-gconstant +key-braille-dots-2467+ 16787562 "
-C: GDK_KEY_braille_dots_2467
+(rt:define-gconstant +key-braille-dots-2467+ 16787562 "C: GDK_KEY_braille_dots_2467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2467.html")
 
 
-(rt:define-gconstant +key-braille-dots-24678+ 16787690 "
-C: GDK_KEY_braille_dots_24678
+(rt:define-gconstant +key-braille-dots-24678+ 16787690 "C: GDK_KEY_braille_dots_24678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_24678.html")
 
 
-(rt:define-gconstant +key-braille-dots-2468+ 16787626 "
-C: GDK_KEY_braille_dots_2468
+(rt:define-gconstant +key-braille-dots-2468+ 16787626 "C: GDK_KEY_braille_dots_2468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2468.html")
 
 
-(rt:define-gconstant +key-braille-dots-247+ 16787530 "
-C: GDK_KEY_braille_dots_247
+(rt:define-gconstant +key-braille-dots-247+ 16787530 "C: GDK_KEY_braille_dots_247
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_247.html")
 
 
-(rt:define-gconstant +key-braille-dots-2478+ 16787658 "
-C: GDK_KEY_braille_dots_2478
+(rt:define-gconstant +key-braille-dots-2478+ 16787658 "C: GDK_KEY_braille_dots_2478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2478.html")
 
 
-(rt:define-gconstant +key-braille-dots-248+ 16787594 "
-C: GDK_KEY_braille_dots_248
+(rt:define-gconstant +key-braille-dots-248+ 16787594 "C: GDK_KEY_braille_dots_248
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_248.html")
 
 
-(rt:define-gconstant +key-braille-dots-25+ 16787474 "
-C: GDK_KEY_braille_dots_25
+(rt:define-gconstant +key-braille-dots-25+ 16787474 "C: GDK_KEY_braille_dots_25
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_25.html")
 
 
-(rt:define-gconstant +key-braille-dots-256+ 16787506 "
-C: GDK_KEY_braille_dots_256
+(rt:define-gconstant +key-braille-dots-256+ 16787506 "C: GDK_KEY_braille_dots_256
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_256.html")
 
 
-(rt:define-gconstant +key-braille-dots-2567+ 16787570 "
-C: GDK_KEY_braille_dots_2567
+(rt:define-gconstant +key-braille-dots-2567+ 16787570 "C: GDK_KEY_braille_dots_2567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2567.html")
 
 
-(rt:define-gconstant +key-braille-dots-25678+ 16787698 "
-C: GDK_KEY_braille_dots_25678
+(rt:define-gconstant +key-braille-dots-25678+ 16787698 "C: GDK_KEY_braille_dots_25678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_25678.html")
 
 
-(rt:define-gconstant +key-braille-dots-2568+ 16787634 "
-C: GDK_KEY_braille_dots_2568
+(rt:define-gconstant +key-braille-dots-2568+ 16787634 "C: GDK_KEY_braille_dots_2568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2568.html")
 
 
-(rt:define-gconstant +key-braille-dots-257+ 16787538 "
-C: GDK_KEY_braille_dots_257
+(rt:define-gconstant +key-braille-dots-257+ 16787538 "C: GDK_KEY_braille_dots_257
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_257.html")
 
 
-(rt:define-gconstant +key-braille-dots-2578+ 16787666 "
-C: GDK_KEY_braille_dots_2578
+(rt:define-gconstant +key-braille-dots-2578+ 16787666 "C: GDK_KEY_braille_dots_2578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2578.html")
 
 
-(rt:define-gconstant +key-braille-dots-258+ 16787602 "
-C: GDK_KEY_braille_dots_258
+(rt:define-gconstant +key-braille-dots-258+ 16787602 "C: GDK_KEY_braille_dots_258
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_258.html")
 
 
-(rt:define-gconstant +key-braille-dots-26+ 16787490 "
-C: GDK_KEY_braille_dots_26
+(rt:define-gconstant +key-braille-dots-26+ 16787490 "C: GDK_KEY_braille_dots_26
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_26.html")
 
 
-(rt:define-gconstant +key-braille-dots-267+ 16787554 "
-C: GDK_KEY_braille_dots_267
+(rt:define-gconstant +key-braille-dots-267+ 16787554 "C: GDK_KEY_braille_dots_267
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_267.html")
 
 
-(rt:define-gconstant +key-braille-dots-2678+ 16787682 "
-C: GDK_KEY_braille_dots_2678
+(rt:define-gconstant +key-braille-dots-2678+ 16787682 "C: GDK_KEY_braille_dots_2678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_2678.html")
 
 
-(rt:define-gconstant +key-braille-dots-268+ 16787618 "
-C: GDK_KEY_braille_dots_268
+(rt:define-gconstant +key-braille-dots-268+ 16787618 "C: GDK_KEY_braille_dots_268
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_268.html")
 
 
-(rt:define-gconstant +key-braille-dots-27+ 16787522 "
-C: GDK_KEY_braille_dots_27
+(rt:define-gconstant +key-braille-dots-27+ 16787522 "C: GDK_KEY_braille_dots_27
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_27.html")
 
 
-(rt:define-gconstant +key-braille-dots-278+ 16787650 "
-C: GDK_KEY_braille_dots_278
+(rt:define-gconstant +key-braille-dots-278+ 16787650 "C: GDK_KEY_braille_dots_278
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_278.html")
 
 
-(rt:define-gconstant +key-braille-dots-28+ 16787586 "
-C: GDK_KEY_braille_dots_28
+(rt:define-gconstant +key-braille-dots-28+ 16787586 "C: GDK_KEY_braille_dots_28
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_28.html")
 
 
-(rt:define-gconstant +key-braille-dots-3+ 16787460 "
-C: GDK_KEY_braille_dots_3
+(rt:define-gconstant +key-braille-dots-3+ 16787460 "C: GDK_KEY_braille_dots_3
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3.html")
 
 
-(rt:define-gconstant +key-braille-dots-34+ 16787468 "
-C: GDK_KEY_braille_dots_34
+(rt:define-gconstant +key-braille-dots-34+ 16787468 "C: GDK_KEY_braille_dots_34
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_34.html")
 
 
-(rt:define-gconstant +key-braille-dots-345+ 16787484 "
-C: GDK_KEY_braille_dots_345
+(rt:define-gconstant +key-braille-dots-345+ 16787484 "C: GDK_KEY_braille_dots_345
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_345.html")
 
 
-(rt:define-gconstant +key-braille-dots-3456+ 16787516 "
-C: GDK_KEY_braille_dots_3456
+(rt:define-gconstant +key-braille-dots-3456+ 16787516 "C: GDK_KEY_braille_dots_3456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3456.html")
 
 
-(rt:define-gconstant +key-braille-dots-34567+ 16787580 "
-C: GDK_KEY_braille_dots_34567
+(rt:define-gconstant +key-braille-dots-34567+ 16787580 "C: GDK_KEY_braille_dots_34567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_34567.html")
 
 
-(rt:define-gconstant +key-braille-dots-345678+ 16787708 "
-C: GDK_KEY_braille_dots_345678
+(rt:define-gconstant +key-braille-dots-345678+ 16787708 "C: GDK_KEY_braille_dots_345678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_345678.html")
 
 
-(rt:define-gconstant +key-braille-dots-34568+ 16787644 "
-C: GDK_KEY_braille_dots_34568
+(rt:define-gconstant +key-braille-dots-34568+ 16787644 "C: GDK_KEY_braille_dots_34568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_34568.html")
 
 
-(rt:define-gconstant +key-braille-dots-3457+ 16787548 "
-C: GDK_KEY_braille_dots_3457
+(rt:define-gconstant +key-braille-dots-3457+ 16787548 "C: GDK_KEY_braille_dots_3457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3457.html")
 
 
-(rt:define-gconstant +key-braille-dots-34578+ 16787676 "
-C: GDK_KEY_braille_dots_34578
+(rt:define-gconstant +key-braille-dots-34578+ 16787676 "C: GDK_KEY_braille_dots_34578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_34578.html")
 
 
-(rt:define-gconstant +key-braille-dots-3458+ 16787612 "
-C: GDK_KEY_braille_dots_3458
+(rt:define-gconstant +key-braille-dots-3458+ 16787612 "C: GDK_KEY_braille_dots_3458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3458.html")
 
 
-(rt:define-gconstant +key-braille-dots-346+ 16787500 "
-C: GDK_KEY_braille_dots_346
+(rt:define-gconstant +key-braille-dots-346+ 16787500 "C: GDK_KEY_braille_dots_346
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_346.html")
 
 
-(rt:define-gconstant +key-braille-dots-3467+ 16787564 "
-C: GDK_KEY_braille_dots_3467
+(rt:define-gconstant +key-braille-dots-3467+ 16787564 "C: GDK_KEY_braille_dots_3467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3467.html")
 
 
-(rt:define-gconstant +key-braille-dots-34678+ 16787692 "
-C: GDK_KEY_braille_dots_34678
+(rt:define-gconstant +key-braille-dots-34678+ 16787692 "C: GDK_KEY_braille_dots_34678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_34678.html")
 
 
-(rt:define-gconstant +key-braille-dots-3468+ 16787628 "
-C: GDK_KEY_braille_dots_3468
+(rt:define-gconstant +key-braille-dots-3468+ 16787628 "C: GDK_KEY_braille_dots_3468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3468.html")
 
 
-(rt:define-gconstant +key-braille-dots-347+ 16787532 "
-C: GDK_KEY_braille_dots_347
+(rt:define-gconstant +key-braille-dots-347+ 16787532 "C: GDK_KEY_braille_dots_347
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_347.html")
 
 
-(rt:define-gconstant +key-braille-dots-3478+ 16787660 "
-C: GDK_KEY_braille_dots_3478
+(rt:define-gconstant +key-braille-dots-3478+ 16787660 "C: GDK_KEY_braille_dots_3478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3478.html")
 
 
-(rt:define-gconstant +key-braille-dots-348+ 16787596 "
-C: GDK_KEY_braille_dots_348
+(rt:define-gconstant +key-braille-dots-348+ 16787596 "C: GDK_KEY_braille_dots_348
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_348.html")
 
 
-(rt:define-gconstant +key-braille-dots-35+ 16787476 "
-C: GDK_KEY_braille_dots_35
+(rt:define-gconstant +key-braille-dots-35+ 16787476 "C: GDK_KEY_braille_dots_35
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_35.html")
 
 
-(rt:define-gconstant +key-braille-dots-356+ 16787508 "
-C: GDK_KEY_braille_dots_356
+(rt:define-gconstant +key-braille-dots-356+ 16787508 "C: GDK_KEY_braille_dots_356
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_356.html")
 
 
-(rt:define-gconstant +key-braille-dots-3567+ 16787572 "
-C: GDK_KEY_braille_dots_3567
+(rt:define-gconstant +key-braille-dots-3567+ 16787572 "C: GDK_KEY_braille_dots_3567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3567.html")
 
 
-(rt:define-gconstant +key-braille-dots-35678+ 16787700 "
-C: GDK_KEY_braille_dots_35678
+(rt:define-gconstant +key-braille-dots-35678+ 16787700 "C: GDK_KEY_braille_dots_35678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_35678.html")
 
 
-(rt:define-gconstant +key-braille-dots-3568+ 16787636 "
-C: GDK_KEY_braille_dots_3568
+(rt:define-gconstant +key-braille-dots-3568+ 16787636 "C: GDK_KEY_braille_dots_3568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3568.html")
 
 
-(rt:define-gconstant +key-braille-dots-357+ 16787540 "
-C: GDK_KEY_braille_dots_357
+(rt:define-gconstant +key-braille-dots-357+ 16787540 "C: GDK_KEY_braille_dots_357
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_357.html")
 
 
-(rt:define-gconstant +key-braille-dots-3578+ 16787668 "
-C: GDK_KEY_braille_dots_3578
+(rt:define-gconstant +key-braille-dots-3578+ 16787668 "C: GDK_KEY_braille_dots_3578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3578.html")
 
 
-(rt:define-gconstant +key-braille-dots-358+ 16787604 "
-C: GDK_KEY_braille_dots_358
+(rt:define-gconstant +key-braille-dots-358+ 16787604 "C: GDK_KEY_braille_dots_358
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_358.html")
 
 
-(rt:define-gconstant +key-braille-dots-36+ 16787492 "
-C: GDK_KEY_braille_dots_36
+(rt:define-gconstant +key-braille-dots-36+ 16787492 "C: GDK_KEY_braille_dots_36
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_36.html")
 
 
-(rt:define-gconstant +key-braille-dots-367+ 16787556 "
-C: GDK_KEY_braille_dots_367
+(rt:define-gconstant +key-braille-dots-367+ 16787556 "C: GDK_KEY_braille_dots_367
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_367.html")
 
 
-(rt:define-gconstant +key-braille-dots-3678+ 16787684 "
-C: GDK_KEY_braille_dots_3678
+(rt:define-gconstant +key-braille-dots-3678+ 16787684 "C: GDK_KEY_braille_dots_3678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_3678.html")
 
 
-(rt:define-gconstant +key-braille-dots-368+ 16787620 "
-C: GDK_KEY_braille_dots_368
+(rt:define-gconstant +key-braille-dots-368+ 16787620 "C: GDK_KEY_braille_dots_368
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_368.html")
 
 
-(rt:define-gconstant +key-braille-dots-37+ 16787524 "
-C: GDK_KEY_braille_dots_37
+(rt:define-gconstant +key-braille-dots-37+ 16787524 "C: GDK_KEY_braille_dots_37
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_37.html")
 
 
-(rt:define-gconstant +key-braille-dots-378+ 16787652 "
-C: GDK_KEY_braille_dots_378
+(rt:define-gconstant +key-braille-dots-378+ 16787652 "C: GDK_KEY_braille_dots_378
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_378.html")
 
 
-(rt:define-gconstant +key-braille-dots-38+ 16787588 "
-C: GDK_KEY_braille_dots_38
+(rt:define-gconstant +key-braille-dots-38+ 16787588 "C: GDK_KEY_braille_dots_38
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_38.html")
 
 
-(rt:define-gconstant +key-braille-dots-4+ 16787464 "
-C: GDK_KEY_braille_dots_4
+(rt:define-gconstant +key-braille-dots-4+ 16787464 "C: GDK_KEY_braille_dots_4
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_4.html")
 
 
-(rt:define-gconstant +key-braille-dots-45+ 16787480 "
-C: GDK_KEY_braille_dots_45
+(rt:define-gconstant +key-braille-dots-45+ 16787480 "C: GDK_KEY_braille_dots_45
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_45.html")
 
 
-(rt:define-gconstant +key-braille-dots-456+ 16787512 "
-C: GDK_KEY_braille_dots_456
+(rt:define-gconstant +key-braille-dots-456+ 16787512 "C: GDK_KEY_braille_dots_456
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_456.html")
 
 
-(rt:define-gconstant +key-braille-dots-4567+ 16787576 "
-C: GDK_KEY_braille_dots_4567
+(rt:define-gconstant +key-braille-dots-4567+ 16787576 "C: GDK_KEY_braille_dots_4567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_4567.html")
 
 
-(rt:define-gconstant +key-braille-dots-45678+ 16787704 "
-C: GDK_KEY_braille_dots_45678
+(rt:define-gconstant +key-braille-dots-45678+ 16787704 "C: GDK_KEY_braille_dots_45678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_45678.html")
 
 
-(rt:define-gconstant +key-braille-dots-4568+ 16787640 "
-C: GDK_KEY_braille_dots_4568
+(rt:define-gconstant +key-braille-dots-4568+ 16787640 "C: GDK_KEY_braille_dots_4568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_4568.html")
 
 
-(rt:define-gconstant +key-braille-dots-457+ 16787544 "
-C: GDK_KEY_braille_dots_457
+(rt:define-gconstant +key-braille-dots-457+ 16787544 "C: GDK_KEY_braille_dots_457
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_457.html")
 
 
-(rt:define-gconstant +key-braille-dots-4578+ 16787672 "
-C: GDK_KEY_braille_dots_4578
+(rt:define-gconstant +key-braille-dots-4578+ 16787672 "C: GDK_KEY_braille_dots_4578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_4578.html")
 
 
-(rt:define-gconstant +key-braille-dots-458+ 16787608 "
-C: GDK_KEY_braille_dots_458
+(rt:define-gconstant +key-braille-dots-458+ 16787608 "C: GDK_KEY_braille_dots_458
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_458.html")
 
 
-(rt:define-gconstant +key-braille-dots-46+ 16787496 "
-C: GDK_KEY_braille_dots_46
+(rt:define-gconstant +key-braille-dots-46+ 16787496 "C: GDK_KEY_braille_dots_46
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_46.html")
 
 
-(rt:define-gconstant +key-braille-dots-467+ 16787560 "
-C: GDK_KEY_braille_dots_467
+(rt:define-gconstant +key-braille-dots-467+ 16787560 "C: GDK_KEY_braille_dots_467
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_467.html")
 
 
-(rt:define-gconstant +key-braille-dots-4678+ 16787688 "
-C: GDK_KEY_braille_dots_4678
+(rt:define-gconstant +key-braille-dots-4678+ 16787688 "C: GDK_KEY_braille_dots_4678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_4678.html")
 
 
-(rt:define-gconstant +key-braille-dots-468+ 16787624 "
-C: GDK_KEY_braille_dots_468
+(rt:define-gconstant +key-braille-dots-468+ 16787624 "C: GDK_KEY_braille_dots_468
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_468.html")
 
 
-(rt:define-gconstant +key-braille-dots-47+ 16787528 "
-C: GDK_KEY_braille_dots_47
+(rt:define-gconstant +key-braille-dots-47+ 16787528 "C: GDK_KEY_braille_dots_47
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_47.html")
 
 
-(rt:define-gconstant +key-braille-dots-478+ 16787656 "
-C: GDK_KEY_braille_dots_478
+(rt:define-gconstant +key-braille-dots-478+ 16787656 "C: GDK_KEY_braille_dots_478
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_478.html")
 
 
-(rt:define-gconstant +key-braille-dots-48+ 16787592 "
-C: GDK_KEY_braille_dots_48
+(rt:define-gconstant +key-braille-dots-48+ 16787592 "C: GDK_KEY_braille_dots_48
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_48.html")
 
 
-(rt:define-gconstant +key-braille-dots-5+ 16787472 "
-C: GDK_KEY_braille_dots_5
+(rt:define-gconstant +key-braille-dots-5+ 16787472 "C: GDK_KEY_braille_dots_5
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_5.html")
 
 
-(rt:define-gconstant +key-braille-dots-56+ 16787504 "
-C: GDK_KEY_braille_dots_56
+(rt:define-gconstant +key-braille-dots-56+ 16787504 "C: GDK_KEY_braille_dots_56
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_56.html")
 
 
-(rt:define-gconstant +key-braille-dots-567+ 16787568 "
-C: GDK_KEY_braille_dots_567
+(rt:define-gconstant +key-braille-dots-567+ 16787568 "C: GDK_KEY_braille_dots_567
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_567.html")
 
 
-(rt:define-gconstant +key-braille-dots-5678+ 16787696 "
-C: GDK_KEY_braille_dots_5678
+(rt:define-gconstant +key-braille-dots-5678+ 16787696 "C: GDK_KEY_braille_dots_5678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_5678.html")
 
 
-(rt:define-gconstant +key-braille-dots-568+ 16787632 "
-C: GDK_KEY_braille_dots_568
+(rt:define-gconstant +key-braille-dots-568+ 16787632 "C: GDK_KEY_braille_dots_568
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_568.html")
 
 
-(rt:define-gconstant +key-braille-dots-57+ 16787536 "
-C: GDK_KEY_braille_dots_57
+(rt:define-gconstant +key-braille-dots-57+ 16787536 "C: GDK_KEY_braille_dots_57
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_57.html")
 
 
-(rt:define-gconstant +key-braille-dots-578+ 16787664 "
-C: GDK_KEY_braille_dots_578
+(rt:define-gconstant +key-braille-dots-578+ 16787664 "C: GDK_KEY_braille_dots_578
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_578.html")
 
 
-(rt:define-gconstant +key-braille-dots-58+ 16787600 "
-C: GDK_KEY_braille_dots_58
+(rt:define-gconstant +key-braille-dots-58+ 16787600 "C: GDK_KEY_braille_dots_58
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_58.html")
 
 
-(rt:define-gconstant +key-braille-dots-6+ 16787488 "
-C: GDK_KEY_braille_dots_6
+(rt:define-gconstant +key-braille-dots-6+ 16787488 "C: GDK_KEY_braille_dots_6
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_6.html")
 
 
-(rt:define-gconstant +key-braille-dots-67+ 16787552 "
-C: GDK_KEY_braille_dots_67
+(rt:define-gconstant +key-braille-dots-67+ 16787552 "C: GDK_KEY_braille_dots_67
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_67.html")
 
 
-(rt:define-gconstant +key-braille-dots-678+ 16787680 "
-C: GDK_KEY_braille_dots_678
+(rt:define-gconstant +key-braille-dots-678+ 16787680 "C: GDK_KEY_braille_dots_678
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_678.html")
 
 
-(rt:define-gconstant +key-braille-dots-68+ 16787616 "
-C: GDK_KEY_braille_dots_68
+(rt:define-gconstant +key-braille-dots-68+ 16787616 "C: GDK_KEY_braille_dots_68
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_68.html")
 
 
-(rt:define-gconstant +key-braille-dots-7+ 16787520 "
-C: GDK_KEY_braille_dots_7
+(rt:define-gconstant +key-braille-dots-7+ 16787520 "C: GDK_KEY_braille_dots_7
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_7.html")
 
 
-(rt:define-gconstant +key-braille-dots-78+ 16787648 "
-C: GDK_KEY_braille_dots_78
+(rt:define-gconstant +key-braille-dots-78+ 16787648 "C: GDK_KEY_braille_dots_78
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_78.html")
 
 
-(rt:define-gconstant +key-braille-dots-8+ 16787584 "
-C: GDK_KEY_braille_dots_8
+(rt:define-gconstant +key-braille-dots-8+ 16787584 "C: GDK_KEY_braille_dots_8
 See: https://docs.gtk.org/gdk4/const.KEY_braille_dots_8.html")
 
 
-(rt:define-gconstant +key-breve+ 418 "
-C: GDK_KEY_breve
+(rt:define-gconstant +key-breve+ 418 "C: GDK_KEY_breve
 See: https://docs.gtk.org/gdk4/const.KEY_breve.html")
 
 
-(rt:define-gconstant +key-brokenbar+ 166 "
-C: GDK_KEY_brokenbar
+(rt:define-gconstant +key-brokenbar+ 166 "C: GDK_KEY_brokenbar
 See: https://docs.gtk.org/gdk4/const.KEY_brokenbar.html")
 
 
-(rt:define-gconstant +key-careof+ 2744 "
-C: GDK_KEY_careof
+(rt:define-gconstant +key-careof+ 2744 "C: GDK_KEY_careof
 See: https://docs.gtk.org/gdk4/const.KEY_careof.html")
 
 
-(rt:define-gconstant +key-caret+ 2812 "
-C: GDK_KEY_caret
+(rt:define-gconstant +key-caret+ 2812 "C: GDK_KEY_caret
 See: https://docs.gtk.org/gdk4/const.KEY_caret.html")
 
 
-(rt:define-gconstant +key-caron+ 439 "
-C: GDK_KEY_caron
+(rt:define-gconstant +key-caron+ 439 "C: GDK_KEY_caron
 See: https://docs.gtk.org/gdk4/const.KEY_caron.html")
 
 
-(rt:define-gconstant +key-cedilla+ 184 "
-C: GDK_KEY_cedilla
+(rt:define-gconstant +key-cedilla+ 184 "C: GDK_KEY_cedilla
 See: https://docs.gtk.org/gdk4/const.KEY_cedilla.html")
 
 
-(rt:define-gconstant +key-cent+ 162 "
-C: GDK_KEY_cent
+(rt:define-gconstant +key-cent+ 162 "C: GDK_KEY_cent
 See: https://docs.gtk.org/gdk4/const.KEY_cent.html")
 
 
-(rt:define-gconstant +key-checkerboard+ 2529 "
-C: GDK_KEY_checkerboard
+(rt:define-gconstant +key-checkerboard+ 2529 "C: GDK_KEY_checkerboard
 See: https://docs.gtk.org/gdk4/const.KEY_checkerboard.html")
 
 
-(rt:define-gconstant +key-checkmark+ 2803 "
-C: GDK_KEY_checkmark
+(rt:define-gconstant +key-checkmark+ 2803 "C: GDK_KEY_checkmark
 See: https://docs.gtk.org/gdk4/const.KEY_checkmark.html")
 
 
-(rt:define-gconstant +key-circle+ 3023 "
-C: GDK_KEY_circle
+(rt:define-gconstant +key-circle+ 3023 "C: GDK_KEY_circle
 See: https://docs.gtk.org/gdk4/const.KEY_circle.html")
 
 
-(rt:define-gconstant +key-club+ 2796 "
-C: GDK_KEY_club
+(rt:define-gconstant +key-club+ 2796 "C: GDK_KEY_club
 See: https://docs.gtk.org/gdk4/const.KEY_club.html")
 
 
-(rt:define-gconstant +key-colon+ 58 "
-C: GDK_KEY_colon
+(rt:define-gconstant +key-colon+ 58 "C: GDK_KEY_colon
 See: https://docs.gtk.org/gdk4/const.KEY_colon.html")
 
 
-(rt:define-gconstant +key-combining-acute+ 16777985 "
-C: GDK_KEY_combining_acute
+(rt:define-gconstant +key-combining-acute+ 16777985 "C: GDK_KEY_combining_acute
 See: https://docs.gtk.org/gdk4/const.KEY_combining_acute.html")
 
 
-(rt:define-gconstant +key-combining-belowdot+ 16778019 "
-C: GDK_KEY_combining_belowdot
+(rt:define-gconstant +key-combining-belowdot+ 16778019 "C: GDK_KEY_combining_belowdot
 See: https://docs.gtk.org/gdk4/const.KEY_combining_belowdot.html")
 
 
-(rt:define-gconstant +key-combining-grave+ 16777984 "
-C: GDK_KEY_combining_grave
+(rt:define-gconstant +key-combining-grave+ 16777984 "C: GDK_KEY_combining_grave
 See: https://docs.gtk.org/gdk4/const.KEY_combining_grave.html")
 
 
-(rt:define-gconstant +key-combining-hook+ 16777993 "
-C: GDK_KEY_combining_hook
+(rt:define-gconstant +key-combining-hook+ 16777993 "C: GDK_KEY_combining_hook
 See: https://docs.gtk.org/gdk4/const.KEY_combining_hook.html")
 
 
-(rt:define-gconstant +key-combining-tilde+ 16777987 "
-C: GDK_KEY_combining_tilde
+(rt:define-gconstant +key-combining-tilde+ 16777987 "C: GDK_KEY_combining_tilde
 See: https://docs.gtk.org/gdk4/const.KEY_combining_tilde.html")
 
 
-(rt:define-gconstant +key-comma+ 44 "
-C: GDK_KEY_comma
+(rt:define-gconstant +key-comma+ 44 "C: GDK_KEY_comma
 See: https://docs.gtk.org/gdk4/const.KEY_comma.html")
 
 
-(rt:define-gconstant +key-containsas+ 16785931 "
-C: GDK_KEY_containsas
+(rt:define-gconstant +key-containsas+ 16785931 "C: GDK_KEY_containsas
 See: https://docs.gtk.org/gdk4/const.KEY_containsas.html")
 
 
-(rt:define-gconstant +key-copyright+ 169 "
-C: GDK_KEY_copyright
+(rt:define-gconstant +key-copyright+ 169 "C: GDK_KEY_copyright
 See: https://docs.gtk.org/gdk4/const.KEY_copyright.html")
 
 
-(rt:define-gconstant +key-cr+ 2532 "
-C: GDK_KEY_cr
+(rt:define-gconstant +key-cr+ 2532 "C: GDK_KEY_cr
 See: https://docs.gtk.org/gdk4/const.KEY_cr.html")
 
 
-(rt:define-gconstant +key-crossinglines+ 2542 "
-C: GDK_KEY_crossinglines
+(rt:define-gconstant +key-crossinglines+ 2542 "C: GDK_KEY_crossinglines
 See: https://docs.gtk.org/gdk4/const.KEY_crossinglines.html")
 
 
-(rt:define-gconstant +key-cuberoot+ 16785947 "
-C: GDK_KEY_cuberoot
+(rt:define-gconstant +key-cuberoot+ 16785947 "C: GDK_KEY_cuberoot
 See: https://docs.gtk.org/gdk4/const.KEY_cuberoot.html")
 
 
-(rt:define-gconstant +key-currency+ 164 "
-C: GDK_KEY_currency
+(rt:define-gconstant +key-currency+ 164 "C: GDK_KEY_currency
 See: https://docs.gtk.org/gdk4/const.KEY_currency.html")
 
 
-(rt:define-gconstant +key-cursor+ 2815 "
-C: GDK_KEY_cursor
+(rt:define-gconstant +key-cursor+ 2815 "C: GDK_KEY_cursor
 See: https://docs.gtk.org/gdk4/const.KEY_cursor.html")
 
 
-(rt:define-gconstant +key-dagger+ 2801 "
-C: GDK_KEY_dagger
+(rt:define-gconstant +key-dagger+ 2801 "C: GDK_KEY_dagger
 See: https://docs.gtk.org/gdk4/const.KEY_dagger.html")
 
 
-(rt:define-gconstant +key-dead-a+ 65153 "
-C: GDK_KEY_dead_A
+(rt:define-gconstant +key-dead-a+ 65153 "C: GDK_KEY_dead_A
 See: https://docs.gtk.org/gdk4/const.KEY_dead_A.html")
 
 
-(rt:define-gconstant +key-dead-e+ 65155 "
-C: GDK_KEY_dead_E
+(rt:define-gconstant +key-dead-e+ 65155 "C: GDK_KEY_dead_E
 See: https://docs.gtk.org/gdk4/const.KEY_dead_E.html")
 
 
-(rt:define-gconstant +key-dead-i+ 65157 "
-C: GDK_KEY_dead_I
+(rt:define-gconstant +key-dead-i+ 65157 "C: GDK_KEY_dead_I
 See: https://docs.gtk.org/gdk4/const.KEY_dead_I.html")
 
 
-(rt:define-gconstant +key-dead-o+ 65159 "
-C: GDK_KEY_dead_O
+(rt:define-gconstant +key-dead-o+ 65159 "C: GDK_KEY_dead_O
 See: https://docs.gtk.org/gdk4/const.KEY_dead_O.html")
 
 
-(rt:define-gconstant +key-dead-schwa+ 65163 "
-C: GDK_KEY_dead_SCHWA
+(rt:define-gconstant +key-dead-schwa+ 65163 "C: GDK_KEY_dead_SCHWA
 See: https://docs.gtk.org/gdk4/const.KEY_dead_SCHWA.html")
 
 
-(rt:define-gconstant +key-dead-u+ 65161 "
-C: GDK_KEY_dead_U
+(rt:define-gconstant +key-dead-u+ 65161 "C: GDK_KEY_dead_U
 See: https://docs.gtk.org/gdk4/const.KEY_dead_U.html")
 
 
-(rt:define-gconstant +key-dead-abovecomma+ 65124 "
-C: GDK_KEY_dead_abovecomma
+(rt:define-gconstant +key-dead-abovecomma+ 65124 "C: GDK_KEY_dead_abovecomma
 See: https://docs.gtk.org/gdk4/const.KEY_dead_abovecomma.html")
 
 
-(rt:define-gconstant +key-dead-abovedot+ 65110 "
-C: GDK_KEY_dead_abovedot
+(rt:define-gconstant +key-dead-abovedot+ 65110 "C: GDK_KEY_dead_abovedot
 See: https://docs.gtk.org/gdk4/const.KEY_dead_abovedot.html")
 
 
-(rt:define-gconstant +key-dead-abovereversedcomma+ 65125 "
-C: GDK_KEY_dead_abovereversedcomma
+(rt:define-gconstant +key-dead-abovereversedcomma+ 65125 "C: GDK_KEY_dead_abovereversedcomma
 See: https://docs.gtk.org/gdk4/const.KEY_dead_abovereversedcomma.html")
 
 
-(rt:define-gconstant +key-dead-abovering+ 65112 "
-C: GDK_KEY_dead_abovering
+(rt:define-gconstant +key-dead-abovering+ 65112 "C: GDK_KEY_dead_abovering
 See: https://docs.gtk.org/gdk4/const.KEY_dead_abovering.html")
 
 
-(rt:define-gconstant +key-dead-aboveverticalline+ 65169 "
-C: GDK_KEY_dead_aboveverticalline
+(rt:define-gconstant +key-dead-aboveverticalline+ 65169 "C: GDK_KEY_dead_aboveverticalline
 See: https://docs.gtk.org/gdk4/const.KEY_dead_aboveverticalline.html")
 
 
-(rt:define-gconstant +key-dead-acute+ 65105 "
-C: GDK_KEY_dead_acute
+(rt:define-gconstant +key-dead-acute+ 65105 "C: GDK_KEY_dead_acute
 See: https://docs.gtk.org/gdk4/const.KEY_dead_acute.html")
 
 
-(rt:define-gconstant +key-dead-belowbreve+ 65131 "
-C: GDK_KEY_dead_belowbreve
+(rt:define-gconstant +key-dead-belowbreve+ 65131 "C: GDK_KEY_dead_belowbreve
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowbreve.html")
 
 
-(rt:define-gconstant +key-dead-belowcircumflex+ 65129 "
-C: GDK_KEY_dead_belowcircumflex
+(rt:define-gconstant +key-dead-belowcircumflex+ 65129 "C: GDK_KEY_dead_belowcircumflex
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowcircumflex.html")
 
 
-(rt:define-gconstant +key-dead-belowcomma+ 65134 "
-C: GDK_KEY_dead_belowcomma
+(rt:define-gconstant +key-dead-belowcomma+ 65134 "C: GDK_KEY_dead_belowcomma
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowcomma.html")
 
 
-(rt:define-gconstant +key-dead-belowdiaeresis+ 65132 "
-C: GDK_KEY_dead_belowdiaeresis
+(rt:define-gconstant +key-dead-belowdiaeresis+ 65132 "C: GDK_KEY_dead_belowdiaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowdiaeresis.html")
 
 
-(rt:define-gconstant +key-dead-belowdot+ 65120 "
-C: GDK_KEY_dead_belowdot
+(rt:define-gconstant +key-dead-belowdot+ 65120 "C: GDK_KEY_dead_belowdot
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowdot.html")
 
 
-(rt:define-gconstant +key-dead-belowmacron+ 65128 "
-C: GDK_KEY_dead_belowmacron
+(rt:define-gconstant +key-dead-belowmacron+ 65128 "C: GDK_KEY_dead_belowmacron
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowmacron.html")
 
 
-(rt:define-gconstant +key-dead-belowring+ 65127 "
-C: GDK_KEY_dead_belowring
+(rt:define-gconstant +key-dead-belowring+ 65127 "C: GDK_KEY_dead_belowring
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowring.html")
 
 
-(rt:define-gconstant +key-dead-belowtilde+ 65130 "
-C: GDK_KEY_dead_belowtilde
+(rt:define-gconstant +key-dead-belowtilde+ 65130 "C: GDK_KEY_dead_belowtilde
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowtilde.html")
 
 
-(rt:define-gconstant +key-dead-belowverticalline+ 65170 "
-C: GDK_KEY_dead_belowverticalline
+(rt:define-gconstant +key-dead-belowverticalline+ 65170 "C: GDK_KEY_dead_belowverticalline
 See: https://docs.gtk.org/gdk4/const.KEY_dead_belowverticalline.html")
 
 
-(rt:define-gconstant +key-dead-breve+ 65109 "
-C: GDK_KEY_dead_breve
+(rt:define-gconstant +key-dead-breve+ 65109 "C: GDK_KEY_dead_breve
 See: https://docs.gtk.org/gdk4/const.KEY_dead_breve.html")
 
 
-(rt:define-gconstant +key-dead-capital-schwa+ 65163 "
-C: GDK_KEY_dead_capital_schwa
+(rt:define-gconstant +key-dead-capital-schwa+ 65163 "C: GDK_KEY_dead_capital_schwa
 See: https://docs.gtk.org/gdk4/const.KEY_dead_capital_schwa.html")
 
 
-(rt:define-gconstant +key-dead-caron+ 65114 "
-C: GDK_KEY_dead_caron
+(rt:define-gconstant +key-dead-caron+ 65114 "C: GDK_KEY_dead_caron
 See: https://docs.gtk.org/gdk4/const.KEY_dead_caron.html")
 
 
-(rt:define-gconstant +key-dead-cedilla+ 65115 "
-C: GDK_KEY_dead_cedilla
+(rt:define-gconstant +key-dead-cedilla+ 65115 "C: GDK_KEY_dead_cedilla
 See: https://docs.gtk.org/gdk4/const.KEY_dead_cedilla.html")
 
 
-(rt:define-gconstant +key-dead-circumflex+ 65106 "
-C: GDK_KEY_dead_circumflex
+(rt:define-gconstant +key-dead-circumflex+ 65106 "C: GDK_KEY_dead_circumflex
 See: https://docs.gtk.org/gdk4/const.KEY_dead_circumflex.html")
 
 
-(rt:define-gconstant +key-dead-currency+ 65135 "
-C: GDK_KEY_dead_currency
+(rt:define-gconstant +key-dead-currency+ 65135 "C: GDK_KEY_dead_currency
 See: https://docs.gtk.org/gdk4/const.KEY_dead_currency.html")
 
 
-(rt:define-gconstant +key-dead-dasia+ 65125 "
-C: GDK_KEY_dead_dasia
+(rt:define-gconstant +key-dead-dasia+ 65125 "C: GDK_KEY_dead_dasia
 See: https://docs.gtk.org/gdk4/const.KEY_dead_dasia.html")
 
 
-(rt:define-gconstant +key-dead-diaeresis+ 65111 "
-C: GDK_KEY_dead_diaeresis
+(rt:define-gconstant +key-dead-diaeresis+ 65111 "C: GDK_KEY_dead_diaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_dead_diaeresis.html")
 
 
-(rt:define-gconstant +key-dead-doubleacute+ 65113 "
-C: GDK_KEY_dead_doubleacute
+(rt:define-gconstant +key-dead-doubleacute+ 65113 "C: GDK_KEY_dead_doubleacute
 See: https://docs.gtk.org/gdk4/const.KEY_dead_doubleacute.html")
 
 
-(rt:define-gconstant +key-dead-doublegrave+ 65126 "
-C: GDK_KEY_dead_doublegrave
+(rt:define-gconstant +key-dead-doublegrave+ 65126 "C: GDK_KEY_dead_doublegrave
 See: https://docs.gtk.org/gdk4/const.KEY_dead_doublegrave.html")
 
 
-(rt:define-gconstant +key-dead-grave+ 65104 "
-C: GDK_KEY_dead_grave
+(rt:define-gconstant +key-dead-grave+ 65104 "C: GDK_KEY_dead_grave
 See: https://docs.gtk.org/gdk4/const.KEY_dead_grave.html")
 
 
-(rt:define-gconstant +key-dead-greek+ 65164 "
-C: GDK_KEY_dead_greek
+(rt:define-gconstant +key-dead-greek+ 65164 "C: GDK_KEY_dead_greek
 See: https://docs.gtk.org/gdk4/const.KEY_dead_greek.html")
 
 
-(rt:define-gconstant +key-dead-hamza+ 65165 "
-C: GDK_KEY_dead_hamza
+(rt:define-gconstant +key-dead-hamza+ 65165 "C: GDK_KEY_dead_hamza
 See: https://docs.gtk.org/gdk4/const.KEY_dead_hamza.html")
 
 
-(rt:define-gconstant +key-dead-hook+ 65121 "
-C: GDK_KEY_dead_hook
+(rt:define-gconstant +key-dead-hook+ 65121 "C: GDK_KEY_dead_hook
 See: https://docs.gtk.org/gdk4/const.KEY_dead_hook.html")
 
 
-(rt:define-gconstant +key-dead-horn+ 65122 "
-C: GDK_KEY_dead_horn
+(rt:define-gconstant +key-dead-horn+ 65122 "C: GDK_KEY_dead_horn
 See: https://docs.gtk.org/gdk4/const.KEY_dead_horn.html")
 
 
-(rt:define-gconstant +key-dead-invertedbreve+ 65133 "
-C: GDK_KEY_dead_invertedbreve
+(rt:define-gconstant +key-dead-invertedbreve+ 65133 "C: GDK_KEY_dead_invertedbreve
 See: https://docs.gtk.org/gdk4/const.KEY_dead_invertedbreve.html")
 
 
-(rt:define-gconstant +key-dead-iota+ 65117 "
-C: GDK_KEY_dead_iota
+(rt:define-gconstant +key-dead-iota+ 65117 "C: GDK_KEY_dead_iota
 See: https://docs.gtk.org/gdk4/const.KEY_dead_iota.html")
 
 
-(rt:define-gconstant +key-dead-longsolidusoverlay+ 65171 "
-C: GDK_KEY_dead_longsolidusoverlay
+(rt:define-gconstant +key-dead-longsolidusoverlay+ 65171 "C: GDK_KEY_dead_longsolidusoverlay
 See: https://docs.gtk.org/gdk4/const.KEY_dead_longsolidusoverlay.html")
 
 
-(rt:define-gconstant +key-dead-lowline+ 65168 "
-C: GDK_KEY_dead_lowline
+(rt:define-gconstant +key-dead-lowline+ 65168 "C: GDK_KEY_dead_lowline
 See: https://docs.gtk.org/gdk4/const.KEY_dead_lowline.html")
 
 
-(rt:define-gconstant +key-dead-macron+ 65108 "
-C: GDK_KEY_dead_macron
+(rt:define-gconstant +key-dead-macron+ 65108 "C: GDK_KEY_dead_macron
 See: https://docs.gtk.org/gdk4/const.KEY_dead_macron.html")
 
 
-(rt:define-gconstant +key-dead-ogonek+ 65116 "
-C: GDK_KEY_dead_ogonek
+(rt:define-gconstant +key-dead-ogonek+ 65116 "C: GDK_KEY_dead_ogonek
 See: https://docs.gtk.org/gdk4/const.KEY_dead_ogonek.html")
 
 
-(rt:define-gconstant +key-dead-perispomeni+ 65107 "
-C: GDK_KEY_dead_perispomeni
+(rt:define-gconstant +key-dead-perispomeni+ 65107 "C: GDK_KEY_dead_perispomeni
 See: https://docs.gtk.org/gdk4/const.KEY_dead_perispomeni.html")
 
 
-(rt:define-gconstant +key-dead-psili+ 65124 "
-C: GDK_KEY_dead_psili
+(rt:define-gconstant +key-dead-psili+ 65124 "C: GDK_KEY_dead_psili
 See: https://docs.gtk.org/gdk4/const.KEY_dead_psili.html")
 
 
-(rt:define-gconstant +key-dead-semivoiced-sound+ 65119 "
-C: GDK_KEY_dead_semivoiced_sound
+(rt:define-gconstant +key-dead-semivoiced-sound+ 65119 "C: GDK_KEY_dead_semivoiced_sound
 See: https://docs.gtk.org/gdk4/const.KEY_dead_semivoiced_sound.html")
 
 
-(rt:define-gconstant +key-dead-small-schwa+ 65162 "
-C: GDK_KEY_dead_small_schwa
+(rt:define-gconstant +key-dead-small-schwa+ 65162 "C: GDK_KEY_dead_small_schwa
 See: https://docs.gtk.org/gdk4/const.KEY_dead_small_schwa.html")
 
 
-(rt:define-gconstant +key-dead-stroke+ 65123 "
-C: GDK_KEY_dead_stroke
+(rt:define-gconstant +key-dead-stroke+ 65123 "C: GDK_KEY_dead_stroke
 See: https://docs.gtk.org/gdk4/const.KEY_dead_stroke.html")
 
 
-(rt:define-gconstant +key-dead-tilde+ 65107 "
-C: GDK_KEY_dead_tilde
+(rt:define-gconstant +key-dead-tilde+ 65107 "C: GDK_KEY_dead_tilde
 See: https://docs.gtk.org/gdk4/const.KEY_dead_tilde.html")
 
 
-(rt:define-gconstant +key-dead-voiced-sound+ 65118 "
-C: GDK_KEY_dead_voiced_sound
+(rt:define-gconstant +key-dead-voiced-sound+ 65118 "C: GDK_KEY_dead_voiced_sound
 See: https://docs.gtk.org/gdk4/const.KEY_dead_voiced_sound.html")
 
 
-(rt:define-gconstant +key-decimalpoint+ 2749 "
-C: GDK_KEY_decimalpoint
+(rt:define-gconstant +key-decimalpoint+ 2749 "C: GDK_KEY_decimalpoint
 See: https://docs.gtk.org/gdk4/const.KEY_decimalpoint.html")
 
 
-(rt:define-gconstant +key-degree+ 176 "
-C: GDK_KEY_degree
+(rt:define-gconstant +key-degree+ 176 "C: GDK_KEY_degree
 See: https://docs.gtk.org/gdk4/const.KEY_degree.html")
 
 
-(rt:define-gconstant +key-diaeresis+ 168 "
-C: GDK_KEY_diaeresis
+(rt:define-gconstant +key-diaeresis+ 168 "C: GDK_KEY_diaeresis
 See: https://docs.gtk.org/gdk4/const.KEY_diaeresis.html")
 
 
-(rt:define-gconstant +key-diamond+ 2797 "
-C: GDK_KEY_diamond
+(rt:define-gconstant +key-diamond+ 2797 "C: GDK_KEY_diamond
 See: https://docs.gtk.org/gdk4/const.KEY_diamond.html")
 
 
-(rt:define-gconstant +key-digitspace+ 2725 "
-C: GDK_KEY_digitspace
+(rt:define-gconstant +key-digitspace+ 2725 "C: GDK_KEY_digitspace
 See: https://docs.gtk.org/gdk4/const.KEY_digitspace.html")
 
 
-(rt:define-gconstant +key-dintegral+ 16785964 "
-C: GDK_KEY_dintegral
+(rt:define-gconstant +key-dintegral+ 16785964 "C: GDK_KEY_dintegral
 See: https://docs.gtk.org/gdk4/const.KEY_dintegral.html")
 
 
-(rt:define-gconstant +key-division+ 247 "
-C: GDK_KEY_division
+(rt:define-gconstant +key-division+ 247 "C: GDK_KEY_division
 See: https://docs.gtk.org/gdk4/const.KEY_division.html")
 
 
-(rt:define-gconstant +key-dollar+ 36 "
-C: GDK_KEY_dollar
+(rt:define-gconstant +key-dollar+ 36 "C: GDK_KEY_dollar
 See: https://docs.gtk.org/gdk4/const.KEY_dollar.html")
 
 
-(rt:define-gconstant +key-doubbaselinedot+ 2735 "
-C: GDK_KEY_doubbaselinedot
+(rt:define-gconstant +key-doubbaselinedot+ 2735 "C: GDK_KEY_doubbaselinedot
 See: https://docs.gtk.org/gdk4/const.KEY_doubbaselinedot.html")
 
 
-(rt:define-gconstant +key-doubleacute+ 445 "
-C: GDK_KEY_doubleacute
+(rt:define-gconstant +key-doubleacute+ 445 "C: GDK_KEY_doubleacute
 See: https://docs.gtk.org/gdk4/const.KEY_doubleacute.html")
 
 
-(rt:define-gconstant +key-doubledagger+ 2802 "
-C: GDK_KEY_doubledagger
+(rt:define-gconstant +key-doubledagger+ 2802 "C: GDK_KEY_doubledagger
 See: https://docs.gtk.org/gdk4/const.KEY_doubledagger.html")
 
 
-(rt:define-gconstant +key-doublelowquotemark+ 2814 "
-C: GDK_KEY_doublelowquotemark
+(rt:define-gconstant +key-doublelowquotemark+ 2814 "C: GDK_KEY_doublelowquotemark
 See: https://docs.gtk.org/gdk4/const.KEY_doublelowquotemark.html")
 
 
-(rt:define-gconstant +key-downarrow+ 2302 "
-C: GDK_KEY_downarrow
+(rt:define-gconstant +key-downarrow+ 2302 "C: GDK_KEY_downarrow
 See: https://docs.gtk.org/gdk4/const.KEY_downarrow.html")
 
 
-(rt:define-gconstant +key-downcaret+ 2984 "
-C: GDK_KEY_downcaret
+(rt:define-gconstant +key-downcaret+ 2984 "C: GDK_KEY_downcaret
 See: https://docs.gtk.org/gdk4/const.KEY_downcaret.html")
 
 
-(rt:define-gconstant +key-downshoe+ 3030 "
-C: GDK_KEY_downshoe
+(rt:define-gconstant +key-downshoe+ 3030 "C: GDK_KEY_downshoe
 See: https://docs.gtk.org/gdk4/const.KEY_downshoe.html")
 
 
-(rt:define-gconstant +key-downstile+ 3012 "
-C: GDK_KEY_downstile
+(rt:define-gconstant +key-downstile+ 3012 "C: GDK_KEY_downstile
 See: https://docs.gtk.org/gdk4/const.KEY_downstile.html")
 
 
-(rt:define-gconstant +key-downtack+ 3010 "
-C: GDK_KEY_downtack
+(rt:define-gconstant +key-downtack+ 3010 "C: GDK_KEY_downtack
 See: https://docs.gtk.org/gdk4/const.KEY_downtack.html")
 
 
-(rt:define-gconstant +key-eightsubscript+ 16785544 "
-C: GDK_KEY_eightsubscript
+(rt:define-gconstant +key-eightsubscript+ 16785544 "C: GDK_KEY_eightsubscript
 See: https://docs.gtk.org/gdk4/const.KEY_eightsubscript.html")
 
 
-(rt:define-gconstant +key-eightsuperior+ 16785528 "
-C: GDK_KEY_eightsuperior
+(rt:define-gconstant +key-eightsuperior+ 16785528 "C: GDK_KEY_eightsuperior
 See: https://docs.gtk.org/gdk4/const.KEY_eightsuperior.html")
 
 
-(rt:define-gconstant +key-elementof+ 16785928 "
-C: GDK_KEY_elementof
+(rt:define-gconstant +key-elementof+ 16785928 "C: GDK_KEY_elementof
 See: https://docs.gtk.org/gdk4/const.KEY_elementof.html")
 
 
-(rt:define-gconstant +key-ellipsis+ 2734 "
-C: GDK_KEY_ellipsis
+(rt:define-gconstant +key-ellipsis+ 2734 "C: GDK_KEY_ellipsis
 See: https://docs.gtk.org/gdk4/const.KEY_ellipsis.html")
 
 
-(rt:define-gconstant +key-em3space+ 2723 "
-C: GDK_KEY_em3space
+(rt:define-gconstant +key-em3space+ 2723 "C: GDK_KEY_em3space
 See: https://docs.gtk.org/gdk4/const.KEY_em3space.html")
 
 
-(rt:define-gconstant +key-em4space+ 2724 "
-C: GDK_KEY_em4space
+(rt:define-gconstant +key-em4space+ 2724 "C: GDK_KEY_em4space
 See: https://docs.gtk.org/gdk4/const.KEY_em4space.html")
 
 
-(rt:define-gconstant +key-emdash+ 2729 "
-C: GDK_KEY_emdash
+(rt:define-gconstant +key-emdash+ 2729 "C: GDK_KEY_emdash
 See: https://docs.gtk.org/gdk4/const.KEY_emdash.html")
 
 
-(rt:define-gconstant +key-emfilledcircle+ 2782 "
-C: GDK_KEY_emfilledcircle
+(rt:define-gconstant +key-emfilledcircle+ 2782 "C: GDK_KEY_emfilledcircle
 See: https://docs.gtk.org/gdk4/const.KEY_emfilledcircle.html")
 
 
-(rt:define-gconstant +key-emfilledrect+ 2783 "
-C: GDK_KEY_emfilledrect
+(rt:define-gconstant +key-emfilledrect+ 2783 "C: GDK_KEY_emfilledrect
 See: https://docs.gtk.org/gdk4/const.KEY_emfilledrect.html")
 
 
-(rt:define-gconstant +key-emopencircle+ 2766 "
-C: GDK_KEY_emopencircle
+(rt:define-gconstant +key-emopencircle+ 2766 "C: GDK_KEY_emopencircle
 See: https://docs.gtk.org/gdk4/const.KEY_emopencircle.html")
 
 
-(rt:define-gconstant +key-emopenrectangle+ 2767 "
-C: GDK_KEY_emopenrectangle
+(rt:define-gconstant +key-emopenrectangle+ 2767 "C: GDK_KEY_emopenrectangle
 See: https://docs.gtk.org/gdk4/const.KEY_emopenrectangle.html")
 
 
-(rt:define-gconstant +key-emptyset+ 16785925 "
-C: GDK_KEY_emptyset
+(rt:define-gconstant +key-emptyset+ 16785925 "C: GDK_KEY_emptyset
 See: https://docs.gtk.org/gdk4/const.KEY_emptyset.html")
 
 
-(rt:define-gconstant +key-emspace+ 2721 "
-C: GDK_KEY_emspace
+(rt:define-gconstant +key-emspace+ 2721 "C: GDK_KEY_emspace
 See: https://docs.gtk.org/gdk4/const.KEY_emspace.html")
 
 
-(rt:define-gconstant +key-endash+ 2730 "
-C: GDK_KEY_endash
+(rt:define-gconstant +key-endash+ 2730 "C: GDK_KEY_endash
 See: https://docs.gtk.org/gdk4/const.KEY_endash.html")
 
 
-(rt:define-gconstant +key-enfilledcircbullet+ 2790 "
-C: GDK_KEY_enfilledcircbullet
+(rt:define-gconstant +key-enfilledcircbullet+ 2790 "C: GDK_KEY_enfilledcircbullet
 See: https://docs.gtk.org/gdk4/const.KEY_enfilledcircbullet.html")
 
 
-(rt:define-gconstant +key-enfilledsqbullet+ 2791 "
-C: GDK_KEY_enfilledsqbullet
+(rt:define-gconstant +key-enfilledsqbullet+ 2791 "C: GDK_KEY_enfilledsqbullet
 See: https://docs.gtk.org/gdk4/const.KEY_enfilledsqbullet.html")
 
 
-(rt:define-gconstant +key-enopencircbullet+ 2784 "
-C: GDK_KEY_enopencircbullet
+(rt:define-gconstant +key-enopencircbullet+ 2784 "C: GDK_KEY_enopencircbullet
 See: https://docs.gtk.org/gdk4/const.KEY_enopencircbullet.html")
 
 
-(rt:define-gconstant +key-enopensquarebullet+ 2785 "
-C: GDK_KEY_enopensquarebullet
+(rt:define-gconstant +key-enopensquarebullet+ 2785 "C: GDK_KEY_enopensquarebullet
 See: https://docs.gtk.org/gdk4/const.KEY_enopensquarebullet.html")
 
 
-(rt:define-gconstant +key-enspace+ 2722 "
-C: GDK_KEY_enspace
+(rt:define-gconstant +key-enspace+ 2722 "C: GDK_KEY_enspace
 See: https://docs.gtk.org/gdk4/const.KEY_enspace.html")
 
 
-(rt:define-gconstant +key-equal+ 61 "
-C: GDK_KEY_equal
+(rt:define-gconstant +key-equal+ 61 "C: GDK_KEY_equal
 See: https://docs.gtk.org/gdk4/const.KEY_equal.html")
 
 
-(rt:define-gconstant +key-exclam+ 33 "
-C: GDK_KEY_exclam
+(rt:define-gconstant +key-exclam+ 33 "C: GDK_KEY_exclam
 See: https://docs.gtk.org/gdk4/const.KEY_exclam.html")
 
 
-(rt:define-gconstant +key-exclamdown+ 161 "
-C: GDK_KEY_exclamdown
+(rt:define-gconstant +key-exclamdown+ 161 "C: GDK_KEY_exclamdown
 See: https://docs.gtk.org/gdk4/const.KEY_exclamdown.html")
 
 
-(rt:define-gconstant +key-femalesymbol+ 2808 "
-C: GDK_KEY_femalesymbol
+(rt:define-gconstant +key-femalesymbol+ 2808 "C: GDK_KEY_femalesymbol
 See: https://docs.gtk.org/gdk4/const.KEY_femalesymbol.html")
 
 
-(rt:define-gconstant +key-ff+ 2531 "
-C: GDK_KEY_ff
+(rt:define-gconstant +key-ff+ 2531 "C: GDK_KEY_ff
 See: https://docs.gtk.org/gdk4/const.KEY_ff.html")
 
 
-(rt:define-gconstant +key-figdash+ 2747 "
-C: GDK_KEY_figdash
+(rt:define-gconstant +key-figdash+ 2747 "C: GDK_KEY_figdash
 See: https://docs.gtk.org/gdk4/const.KEY_figdash.html")
 
 
-(rt:define-gconstant +key-filledlefttribullet+ 2780 "
-C: GDK_KEY_filledlefttribullet
+(rt:define-gconstant +key-filledlefttribullet+ 2780 "C: GDK_KEY_filledlefttribullet
 See: https://docs.gtk.org/gdk4/const.KEY_filledlefttribullet.html")
 
 
-(rt:define-gconstant +key-filledrectbullet+ 2779 "
-C: GDK_KEY_filledrectbullet
+(rt:define-gconstant +key-filledrectbullet+ 2779 "C: GDK_KEY_filledrectbullet
 See: https://docs.gtk.org/gdk4/const.KEY_filledrectbullet.html")
 
 
-(rt:define-gconstant +key-filledrighttribullet+ 2781 "
-C: GDK_KEY_filledrighttribullet
+(rt:define-gconstant +key-filledrighttribullet+ 2781 "C: GDK_KEY_filledrighttribullet
 See: https://docs.gtk.org/gdk4/const.KEY_filledrighttribullet.html")
 
 
-(rt:define-gconstant +key-filledtribulletdown+ 2793 "
-C: GDK_KEY_filledtribulletdown
+(rt:define-gconstant +key-filledtribulletdown+ 2793 "C: GDK_KEY_filledtribulletdown
 See: https://docs.gtk.org/gdk4/const.KEY_filledtribulletdown.html")
 
 
-(rt:define-gconstant +key-filledtribulletup+ 2792 "
-C: GDK_KEY_filledtribulletup
+(rt:define-gconstant +key-filledtribulletup+ 2792 "C: GDK_KEY_filledtribulletup
 See: https://docs.gtk.org/gdk4/const.KEY_filledtribulletup.html")
 
 
-(rt:define-gconstant +key-fiveeighths+ 2757 "
-C: GDK_KEY_fiveeighths
+(rt:define-gconstant +key-fiveeighths+ 2757 "C: GDK_KEY_fiveeighths
 See: https://docs.gtk.org/gdk4/const.KEY_fiveeighths.html")
 
 
-(rt:define-gconstant +key-fivesixths+ 2743 "
-C: GDK_KEY_fivesixths
+(rt:define-gconstant +key-fivesixths+ 2743 "C: GDK_KEY_fivesixths
 See: https://docs.gtk.org/gdk4/const.KEY_fivesixths.html")
 
 
-(rt:define-gconstant +key-fivesubscript+ 16785541 "
-C: GDK_KEY_fivesubscript
+(rt:define-gconstant +key-fivesubscript+ 16785541 "C: GDK_KEY_fivesubscript
 See: https://docs.gtk.org/gdk4/const.KEY_fivesubscript.html")
 
 
-(rt:define-gconstant +key-fivesuperior+ 16785525 "
-C: GDK_KEY_fivesuperior
+(rt:define-gconstant +key-fivesuperior+ 16785525 "C: GDK_KEY_fivesuperior
 See: https://docs.gtk.org/gdk4/const.KEY_fivesuperior.html")
 
 
-(rt:define-gconstant +key-fourfifths+ 2741 "
-C: GDK_KEY_fourfifths
+(rt:define-gconstant +key-fourfifths+ 2741 "C: GDK_KEY_fourfifths
 See: https://docs.gtk.org/gdk4/const.KEY_fourfifths.html")
 
 
-(rt:define-gconstant +key-foursubscript+ 16785540 "
-C: GDK_KEY_foursubscript
+(rt:define-gconstant +key-foursubscript+ 16785540 "C: GDK_KEY_foursubscript
 See: https://docs.gtk.org/gdk4/const.KEY_foursubscript.html")
 
 
-(rt:define-gconstant +key-foursuperior+ 16785524 "
-C: GDK_KEY_foursuperior
+(rt:define-gconstant +key-foursuperior+ 16785524 "C: GDK_KEY_foursuperior
 See: https://docs.gtk.org/gdk4/const.KEY_foursuperior.html")
 
 
-(rt:define-gconstant +key-fourthroot+ 16785948 "
-C: GDK_KEY_fourthroot
+(rt:define-gconstant +key-fourthroot+ 16785948 "C: GDK_KEY_fourthroot
 See: https://docs.gtk.org/gdk4/const.KEY_fourthroot.html")
 
 
-(rt:define-gconstant +key-function+ 2294 "
-C: GDK_KEY_function
+(rt:define-gconstant +key-function+ 2294 "C: GDK_KEY_function
 See: https://docs.gtk.org/gdk4/const.KEY_function.html")
 
 
-(rt:define-gconstant +key-grave+ 96 "
-C: GDK_KEY_grave
+(rt:define-gconstant +key-grave+ 96 "C: GDK_KEY_grave
 See: https://docs.gtk.org/gdk4/const.KEY_grave.html")
 
 
-(rt:define-gconstant +key-greater+ 62 "
-C: GDK_KEY_greater
+(rt:define-gconstant +key-greater+ 62 "C: GDK_KEY_greater
 See: https://docs.gtk.org/gdk4/const.KEY_greater.html")
 
 
-(rt:define-gconstant +key-greaterthanequal+ 2238 "
-C: GDK_KEY_greaterthanequal
+(rt:define-gconstant +key-greaterthanequal+ 2238 "C: GDK_KEY_greaterthanequal
 See: https://docs.gtk.org/gdk4/const.KEY_greaterthanequal.html")
 
 
-(rt:define-gconstant +key-guillemetleft+ 171 "
-C: GDK_KEY_guillemetleft
+(rt:define-gconstant +key-guillemetleft+ 171 "C: GDK_KEY_guillemetleft
 See: https://docs.gtk.org/gdk4/const.KEY_guillemetleft.html")
 
 
-(rt:define-gconstant +key-guillemetright+ 187 "
-C: GDK_KEY_guillemetright
+(rt:define-gconstant +key-guillemetright+ 187 "C: GDK_KEY_guillemetright
 See: https://docs.gtk.org/gdk4/const.KEY_guillemetright.html")
 
 
-(rt:define-gconstant +key-guillemotleft+ 171 "
-C: GDK_KEY_guillemotleft
+(rt:define-gconstant +key-guillemotleft+ 171 "C: GDK_KEY_guillemotleft
 See: https://docs.gtk.org/gdk4/const.KEY_guillemotleft.html")
 
 
-(rt:define-gconstant +key-guillemotright+ 187 "
-C: GDK_KEY_guillemotright
+(rt:define-gconstant +key-guillemotright+ 187 "C: GDK_KEY_guillemotright
 See: https://docs.gtk.org/gdk4/const.KEY_guillemotright.html")
 
 
-(rt:define-gconstant +key-hairspace+ 2728 "
-C: GDK_KEY_hairspace
+(rt:define-gconstant +key-hairspace+ 2728 "C: GDK_KEY_hairspace
 See: https://docs.gtk.org/gdk4/const.KEY_hairspace.html")
 
 
-(rt:define-gconstant +key-heart+ 2798 "
-C: GDK_KEY_heart
+(rt:define-gconstant +key-heart+ 2798 "C: GDK_KEY_heart
 See: https://docs.gtk.org/gdk4/const.KEY_heart.html")
 
 
-(rt:define-gconstant +key-hebrew-aleph+ 3296 "
-C: GDK_KEY_hebrew_aleph
+(rt:define-gconstant +key-hebrew-aleph+ 3296 "C: GDK_KEY_hebrew_aleph
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_aleph.html")
 
 
-(rt:define-gconstant +key-hebrew-ayin+ 3314 "
-C: GDK_KEY_hebrew_ayin
+(rt:define-gconstant +key-hebrew-ayin+ 3314 "C: GDK_KEY_hebrew_ayin
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_ayin.html")
 
 
-(rt:define-gconstant +key-hebrew-bet+ 3297 "
-C: GDK_KEY_hebrew_bet
+(rt:define-gconstant +key-hebrew-bet+ 3297 "C: GDK_KEY_hebrew_bet
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_bet.html")
 
 
-(rt:define-gconstant +key-hebrew-beth+ 3297 "
-C: GDK_KEY_hebrew_beth
+(rt:define-gconstant +key-hebrew-beth+ 3297 "C: GDK_KEY_hebrew_beth
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_beth.html")
 
 
-(rt:define-gconstant +key-hebrew-chet+ 3303 "
-C: GDK_KEY_hebrew_chet
+(rt:define-gconstant +key-hebrew-chet+ 3303 "C: GDK_KEY_hebrew_chet
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_chet.html")
 
 
-(rt:define-gconstant +key-hebrew-dalet+ 3299 "
-C: GDK_KEY_hebrew_dalet
+(rt:define-gconstant +key-hebrew-dalet+ 3299 "C: GDK_KEY_hebrew_dalet
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_dalet.html")
 
 
-(rt:define-gconstant +key-hebrew-daleth+ 3299 "
-C: GDK_KEY_hebrew_daleth
+(rt:define-gconstant +key-hebrew-daleth+ 3299 "C: GDK_KEY_hebrew_daleth
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_daleth.html")
 
 
-(rt:define-gconstant +key-hebrew-doublelowline+ 3295 "
-C: GDK_KEY_hebrew_doublelowline
+(rt:define-gconstant +key-hebrew-doublelowline+ 3295 "C: GDK_KEY_hebrew_doublelowline
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_doublelowline.html")
 
 
-(rt:define-gconstant +key-hebrew-finalkaph+ 3306 "
-C: GDK_KEY_hebrew_finalkaph
+(rt:define-gconstant +key-hebrew-finalkaph+ 3306 "C: GDK_KEY_hebrew_finalkaph
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalkaph.html")
 
 
-(rt:define-gconstant +key-hebrew-finalmem+ 3309 "
-C: GDK_KEY_hebrew_finalmem
+(rt:define-gconstant +key-hebrew-finalmem+ 3309 "C: GDK_KEY_hebrew_finalmem
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalmem.html")
 
 
-(rt:define-gconstant +key-hebrew-finalnun+ 3311 "
-C: GDK_KEY_hebrew_finalnun
+(rt:define-gconstant +key-hebrew-finalnun+ 3311 "C: GDK_KEY_hebrew_finalnun
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalnun.html")
 
 
-(rt:define-gconstant +key-hebrew-finalpe+ 3315 "
-C: GDK_KEY_hebrew_finalpe
+(rt:define-gconstant +key-hebrew-finalpe+ 3315 "C: GDK_KEY_hebrew_finalpe
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalpe.html")
 
 
-(rt:define-gconstant +key-hebrew-finalzade+ 3317 "
-C: GDK_KEY_hebrew_finalzade
+(rt:define-gconstant +key-hebrew-finalzade+ 3317 "C: GDK_KEY_hebrew_finalzade
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalzade.html")
 
 
-(rt:define-gconstant +key-hebrew-finalzadi+ 3317 "
-C: GDK_KEY_hebrew_finalzadi
+(rt:define-gconstant +key-hebrew-finalzadi+ 3317 "C: GDK_KEY_hebrew_finalzadi
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_finalzadi.html")
 
 
-(rt:define-gconstant +key-hebrew-gimel+ 3298 "
-C: GDK_KEY_hebrew_gimel
+(rt:define-gconstant +key-hebrew-gimel+ 3298 "C: GDK_KEY_hebrew_gimel
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_gimel.html")
 
 
-(rt:define-gconstant +key-hebrew-gimmel+ 3298 "
-C: GDK_KEY_hebrew_gimmel
+(rt:define-gconstant +key-hebrew-gimmel+ 3298 "C: GDK_KEY_hebrew_gimmel
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_gimmel.html")
 
 
-(rt:define-gconstant +key-hebrew-he+ 3300 "
-C: GDK_KEY_hebrew_he
+(rt:define-gconstant +key-hebrew-he+ 3300 "C: GDK_KEY_hebrew_he
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_he.html")
 
 
-(rt:define-gconstant +key-hebrew-het+ 3303 "
-C: GDK_KEY_hebrew_het
+(rt:define-gconstant +key-hebrew-het+ 3303 "C: GDK_KEY_hebrew_het
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_het.html")
 
 
-(rt:define-gconstant +key-hebrew-kaph+ 3307 "
-C: GDK_KEY_hebrew_kaph
+(rt:define-gconstant +key-hebrew-kaph+ 3307 "C: GDK_KEY_hebrew_kaph
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_kaph.html")
 
 
-(rt:define-gconstant +key-hebrew-kuf+ 3319 "
-C: GDK_KEY_hebrew_kuf
+(rt:define-gconstant +key-hebrew-kuf+ 3319 "C: GDK_KEY_hebrew_kuf
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_kuf.html")
 
 
-(rt:define-gconstant +key-hebrew-lamed+ 3308 "
-C: GDK_KEY_hebrew_lamed
+(rt:define-gconstant +key-hebrew-lamed+ 3308 "C: GDK_KEY_hebrew_lamed
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_lamed.html")
 
 
-(rt:define-gconstant +key-hebrew-mem+ 3310 "
-C: GDK_KEY_hebrew_mem
+(rt:define-gconstant +key-hebrew-mem+ 3310 "C: GDK_KEY_hebrew_mem
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_mem.html")
 
 
-(rt:define-gconstant +key-hebrew-nun+ 3312 "
-C: GDK_KEY_hebrew_nun
+(rt:define-gconstant +key-hebrew-nun+ 3312 "C: GDK_KEY_hebrew_nun
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_nun.html")
 
 
-(rt:define-gconstant +key-hebrew-pe+ 3316 "
-C: GDK_KEY_hebrew_pe
+(rt:define-gconstant +key-hebrew-pe+ 3316 "C: GDK_KEY_hebrew_pe
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_pe.html")
 
 
-(rt:define-gconstant +key-hebrew-qoph+ 3319 "
-C: GDK_KEY_hebrew_qoph
+(rt:define-gconstant +key-hebrew-qoph+ 3319 "C: GDK_KEY_hebrew_qoph
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_qoph.html")
 
 
-(rt:define-gconstant +key-hebrew-resh+ 3320 "
-C: GDK_KEY_hebrew_resh
+(rt:define-gconstant +key-hebrew-resh+ 3320 "C: GDK_KEY_hebrew_resh
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_resh.html")
 
 
-(rt:define-gconstant +key-hebrew-samech+ 3313 "
-C: GDK_KEY_hebrew_samech
+(rt:define-gconstant +key-hebrew-samech+ 3313 "C: GDK_KEY_hebrew_samech
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_samech.html")
 
 
-(rt:define-gconstant +key-hebrew-samekh+ 3313 "
-C: GDK_KEY_hebrew_samekh
+(rt:define-gconstant +key-hebrew-samekh+ 3313 "C: GDK_KEY_hebrew_samekh
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_samekh.html")
 
 
-(rt:define-gconstant +key-hebrew-shin+ 3321 "
-C: GDK_KEY_hebrew_shin
+(rt:define-gconstant +key-hebrew-shin+ 3321 "C: GDK_KEY_hebrew_shin
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_shin.html")
 
 
-(rt:define-gconstant +key-hebrew-taf+ 3322 "
-C: GDK_KEY_hebrew_taf
+(rt:define-gconstant +key-hebrew-taf+ 3322 "C: GDK_KEY_hebrew_taf
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_taf.html")
 
 
-(rt:define-gconstant +key-hebrew-taw+ 3322 "
-C: GDK_KEY_hebrew_taw
+(rt:define-gconstant +key-hebrew-taw+ 3322 "C: GDK_KEY_hebrew_taw
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_taw.html")
 
 
-(rt:define-gconstant +key-hebrew-tet+ 3304 "
-C: GDK_KEY_hebrew_tet
+(rt:define-gconstant +key-hebrew-tet+ 3304 "C: GDK_KEY_hebrew_tet
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_tet.html")
 
 
-(rt:define-gconstant +key-hebrew-teth+ 3304 "
-C: GDK_KEY_hebrew_teth
+(rt:define-gconstant +key-hebrew-teth+ 3304 "C: GDK_KEY_hebrew_teth
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_teth.html")
 
 
-(rt:define-gconstant +key-hebrew-waw+ 3301 "
-C: GDK_KEY_hebrew_waw
+(rt:define-gconstant +key-hebrew-waw+ 3301 "C: GDK_KEY_hebrew_waw
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_waw.html")
 
 
-(rt:define-gconstant +key-hebrew-yod+ 3305 "
-C: GDK_KEY_hebrew_yod
+(rt:define-gconstant +key-hebrew-yod+ 3305 "C: GDK_KEY_hebrew_yod
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_yod.html")
 
 
-(rt:define-gconstant +key-hebrew-zade+ 3318 "
-C: GDK_KEY_hebrew_zade
+(rt:define-gconstant +key-hebrew-zade+ 3318 "C: GDK_KEY_hebrew_zade
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_zade.html")
 
 
-(rt:define-gconstant +key-hebrew-zadi+ 3318 "
-C: GDK_KEY_hebrew_zadi
+(rt:define-gconstant +key-hebrew-zadi+ 3318 "C: GDK_KEY_hebrew_zadi
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_zadi.html")
 
 
-(rt:define-gconstant +key-hebrew-zain+ 3302 "
-C: GDK_KEY_hebrew_zain
+(rt:define-gconstant +key-hebrew-zain+ 3302 "C: GDK_KEY_hebrew_zain
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_zain.html")
 
 
-(rt:define-gconstant +key-hebrew-zayin+ 3302 "
-C: GDK_KEY_hebrew_zayin
+(rt:define-gconstant +key-hebrew-zayin+ 3302 "C: GDK_KEY_hebrew_zayin
 See: https://docs.gtk.org/gdk4/const.KEY_hebrew_zayin.html")
 
 
-(rt:define-gconstant +key-hexagram+ 2778 "
-C: GDK_KEY_hexagram
+(rt:define-gconstant +key-hexagram+ 2778 "C: GDK_KEY_hexagram
 See: https://docs.gtk.org/gdk4/const.KEY_hexagram.html")
 
 
-(rt:define-gconstant +key-horizconnector+ 2211 "
-C: GDK_KEY_horizconnector
+(rt:define-gconstant +key-horizconnector+ 2211 "C: GDK_KEY_horizconnector
 See: https://docs.gtk.org/gdk4/const.KEY_horizconnector.html")
 
 
-(rt:define-gconstant +key-horizlinescan1+ 2543 "
-C: GDK_KEY_horizlinescan1
+(rt:define-gconstant +key-horizlinescan1+ 2543 "C: GDK_KEY_horizlinescan1
 See: https://docs.gtk.org/gdk4/const.KEY_horizlinescan1.html")
 
 
-(rt:define-gconstant +key-horizlinescan3+ 2544 "
-C: GDK_KEY_horizlinescan3
+(rt:define-gconstant +key-horizlinescan3+ 2544 "C: GDK_KEY_horizlinescan3
 See: https://docs.gtk.org/gdk4/const.KEY_horizlinescan3.html")
 
 
-(rt:define-gconstant +key-horizlinescan5+ 2545 "
-C: GDK_KEY_horizlinescan5
+(rt:define-gconstant +key-horizlinescan5+ 2545 "C: GDK_KEY_horizlinescan5
 See: https://docs.gtk.org/gdk4/const.KEY_horizlinescan5.html")
 
 
-(rt:define-gconstant +key-horizlinescan7+ 2546 "
-C: GDK_KEY_horizlinescan7
+(rt:define-gconstant +key-horizlinescan7+ 2546 "C: GDK_KEY_horizlinescan7
 See: https://docs.gtk.org/gdk4/const.KEY_horizlinescan7.html")
 
 
-(rt:define-gconstant +key-horizlinescan9+ 2547 "
-C: GDK_KEY_horizlinescan9
+(rt:define-gconstant +key-horizlinescan9+ 2547 "C: GDK_KEY_horizlinescan9
 See: https://docs.gtk.org/gdk4/const.KEY_horizlinescan9.html")
 
 
-(rt:define-gconstant +key-ht+ 2530 "
-C: GDK_KEY_ht
+(rt:define-gconstant +key-ht+ 2530 "C: GDK_KEY_ht
 See: https://docs.gtk.org/gdk4/const.KEY_ht.html")
 
 
-(rt:define-gconstant +key-hyphen+ 173 "
-C: GDK_KEY_hyphen
+(rt:define-gconstant +key-hyphen+ 173 "C: GDK_KEY_hyphen
 See: https://docs.gtk.org/gdk4/const.KEY_hyphen.html")
 
 
-(rt:define-gconstant +key-itouch+ 269025120 "
-C: GDK_KEY_iTouch
+(rt:define-gconstant +key-itouch+ 269025120 "C: GDK_KEY_iTouch
 See: https://docs.gtk.org/gdk4/const.KEY_iTouch.html")
 
 
-(rt:define-gconstant +key-identical+ 2255 "
-C: GDK_KEY_identical
+(rt:define-gconstant +key-identical+ 2255 "C: GDK_KEY_identical
 See: https://docs.gtk.org/gdk4/const.KEY_identical.html")
 
 
-(rt:define-gconstant +key-idotless+ 697 "
-C: GDK_KEY_idotless
+(rt:define-gconstant +key-idotless+ 697 "C: GDK_KEY_idotless
 See: https://docs.gtk.org/gdk4/const.KEY_idotless.html")
 
 
-(rt:define-gconstant +key-ifonlyif+ 2253 "
-C: GDK_KEY_ifonlyif
+(rt:define-gconstant +key-ifonlyif+ 2253 "C: GDK_KEY_ifonlyif
 See: https://docs.gtk.org/gdk4/const.KEY_ifonlyif.html")
 
 
-(rt:define-gconstant +key-implies+ 2254 "
-C: GDK_KEY_implies
+(rt:define-gconstant +key-implies+ 2254 "C: GDK_KEY_implies
 See: https://docs.gtk.org/gdk4/const.KEY_implies.html")
 
 
-(rt:define-gconstant +key-includedin+ 2266 "
-C: GDK_KEY_includedin
+(rt:define-gconstant +key-includedin+ 2266 "C: GDK_KEY_includedin
 See: https://docs.gtk.org/gdk4/const.KEY_includedin.html")
 
 
-(rt:define-gconstant +key-includes+ 2267 "
-C: GDK_KEY_includes
+(rt:define-gconstant +key-includes+ 2267 "C: GDK_KEY_includes
 See: https://docs.gtk.org/gdk4/const.KEY_includes.html")
 
 
-(rt:define-gconstant +key-infinity+ 2242 "
-C: GDK_KEY_infinity
+(rt:define-gconstant +key-infinity+ 2242 "C: GDK_KEY_infinity
 See: https://docs.gtk.org/gdk4/const.KEY_infinity.html")
 
 
-(rt:define-gconstant +key-integral+ 2239 "
-C: GDK_KEY_integral
+(rt:define-gconstant +key-integral+ 2239 "C: GDK_KEY_integral
 See: https://docs.gtk.org/gdk4/const.KEY_integral.html")
 
 
-(rt:define-gconstant +key-intersection+ 2268 "
-C: GDK_KEY_intersection
+(rt:define-gconstant +key-intersection+ 2268 "C: GDK_KEY_intersection
 See: https://docs.gtk.org/gdk4/const.KEY_intersection.html")
 
 
-(rt:define-gconstant +key-jot+ 3018 "
-C: GDK_KEY_jot
+(rt:define-gconstant +key-jot+ 3018 "C: GDK_KEY_jot
 See: https://docs.gtk.org/gdk4/const.KEY_jot.html")
 
 
-(rt:define-gconstant +key-kana-a+ 1201 "
-C: GDK_KEY_kana_A
+(rt:define-gconstant +key-kana-a+ 1201 "C: GDK_KEY_kana_A
 See: https://docs.gtk.org/gdk4/const.KEY_kana_A.html")
 
 
-(rt:define-gconstant +key-kana-chi+ 1217 "
-C: GDK_KEY_kana_CHI
+(rt:define-gconstant +key-kana-chi+ 1217 "C: GDK_KEY_kana_CHI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_CHI.html")
 
 
-(rt:define-gconstant +key-kana-e+ 1204 "
-C: GDK_KEY_kana_E
+(rt:define-gconstant +key-kana-e+ 1204 "C: GDK_KEY_kana_E
 See: https://docs.gtk.org/gdk4/const.KEY_kana_E.html")
 
 
-(rt:define-gconstant +key-kana-fu+ 1228 "
-C: GDK_KEY_kana_FU
+(rt:define-gconstant +key-kana-fu+ 1228 "C: GDK_KEY_kana_FU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_FU.html")
 
 
-(rt:define-gconstant +key-kana-ha+ 1226 "
-C: GDK_KEY_kana_HA
+(rt:define-gconstant +key-kana-ha+ 1226 "C: GDK_KEY_kana_HA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_HA.html")
 
 
-(rt:define-gconstant +key-kana-he+ 1229 "
-C: GDK_KEY_kana_HE
+(rt:define-gconstant +key-kana-he+ 1229 "C: GDK_KEY_kana_HE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_HE.html")
 
 
-(rt:define-gconstant +key-kana-hi+ 1227 "
-C: GDK_KEY_kana_HI
+(rt:define-gconstant +key-kana-hi+ 1227 "C: GDK_KEY_kana_HI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_HI.html")
 
 
-(rt:define-gconstant +key-kana-ho+ 1230 "
-C: GDK_KEY_kana_HO
+(rt:define-gconstant +key-kana-ho+ 1230 "C: GDK_KEY_kana_HO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_HO.html")
 
 
-(rt:define-gconstant +key-kana-hu+ 1228 "
-C: GDK_KEY_kana_HU
+(rt:define-gconstant +key-kana-hu+ 1228 "C: GDK_KEY_kana_HU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_HU.html")
 
 
-(rt:define-gconstant +key-kana-i+ 1202 "
-C: GDK_KEY_kana_I
+(rt:define-gconstant +key-kana-i+ 1202 "C: GDK_KEY_kana_I
 See: https://docs.gtk.org/gdk4/const.KEY_kana_I.html")
 
 
-(rt:define-gconstant +key-kana-ka+ 1206 "
-C: GDK_KEY_kana_KA
+(rt:define-gconstant +key-kana-ka+ 1206 "C: GDK_KEY_kana_KA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_KA.html")
 
 
-(rt:define-gconstant +key-kana-ke+ 1209 "
-C: GDK_KEY_kana_KE
+(rt:define-gconstant +key-kana-ke+ 1209 "C: GDK_KEY_kana_KE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_KE.html")
 
 
-(rt:define-gconstant +key-kana-ki+ 1207 "
-C: GDK_KEY_kana_KI
+(rt:define-gconstant +key-kana-ki+ 1207 "C: GDK_KEY_kana_KI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_KI.html")
 
 
-(rt:define-gconstant +key-kana-ko+ 1210 "
-C: GDK_KEY_kana_KO
+(rt:define-gconstant +key-kana-ko+ 1210 "C: GDK_KEY_kana_KO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_KO.html")
 
 
-(rt:define-gconstant +key-kana-ku+ 1208 "
-C: GDK_KEY_kana_KU
+(rt:define-gconstant +key-kana-ku+ 1208 "C: GDK_KEY_kana_KU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_KU.html")
 
 
-(rt:define-gconstant +key-kana-ma+ 1231 "
-C: GDK_KEY_kana_MA
+(rt:define-gconstant +key-kana-ma+ 1231 "C: GDK_KEY_kana_MA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_MA.html")
 
 
-(rt:define-gconstant +key-kana-me+ 1234 "
-C: GDK_KEY_kana_ME
+(rt:define-gconstant +key-kana-me+ 1234 "C: GDK_KEY_kana_ME
 See: https://docs.gtk.org/gdk4/const.KEY_kana_ME.html")
 
 
-(rt:define-gconstant +key-kana-mi+ 1232 "
-C: GDK_KEY_kana_MI
+(rt:define-gconstant +key-kana-mi+ 1232 "C: GDK_KEY_kana_MI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_MI.html")
 
 
-(rt:define-gconstant +key-kana-mo+ 1235 "
-C: GDK_KEY_kana_MO
+(rt:define-gconstant +key-kana-mo+ 1235 "C: GDK_KEY_kana_MO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_MO.html")
 
 
-(rt:define-gconstant +key-kana-mu+ 1233 "
-C: GDK_KEY_kana_MU
+(rt:define-gconstant +key-kana-mu+ 1233 "C: GDK_KEY_kana_MU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_MU.html")
 
 
-(rt:define-gconstant +key-kana-n+ 1245 "
-C: GDK_KEY_kana_N
+(rt:define-gconstant +key-kana-n+ 1245 "C: GDK_KEY_kana_N
 See: https://docs.gtk.org/gdk4/const.KEY_kana_N.html")
 
 
-(rt:define-gconstant +key-kana-na+ 1221 "
-C: GDK_KEY_kana_NA
+(rt:define-gconstant +key-kana-na+ 1221 "C: GDK_KEY_kana_NA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_NA.html")
 
 
-(rt:define-gconstant +key-kana-ne+ 1224 "
-C: GDK_KEY_kana_NE
+(rt:define-gconstant +key-kana-ne+ 1224 "C: GDK_KEY_kana_NE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_NE.html")
 
 
-(rt:define-gconstant +key-kana-ni+ 1222 "
-C: GDK_KEY_kana_NI
+(rt:define-gconstant +key-kana-ni+ 1222 "C: GDK_KEY_kana_NI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_NI.html")
 
 
-(rt:define-gconstant +key-kana-no+ 1225 "
-C: GDK_KEY_kana_NO
+(rt:define-gconstant +key-kana-no+ 1225 "C: GDK_KEY_kana_NO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_NO.html")
 
 
-(rt:define-gconstant +key-kana-nu+ 1223 "
-C: GDK_KEY_kana_NU
+(rt:define-gconstant +key-kana-nu+ 1223 "C: GDK_KEY_kana_NU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_NU.html")
 
 
-(rt:define-gconstant +key-kana-o+ 1205 "
-C: GDK_KEY_kana_O
+(rt:define-gconstant +key-kana-o+ 1205 "C: GDK_KEY_kana_O
 See: https://docs.gtk.org/gdk4/const.KEY_kana_O.html")
 
 
-(rt:define-gconstant +key-kana-ra+ 1239 "
-C: GDK_KEY_kana_RA
+(rt:define-gconstant +key-kana-ra+ 1239 "C: GDK_KEY_kana_RA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_RA.html")
 
 
-(rt:define-gconstant +key-kana-re+ 1242 "
-C: GDK_KEY_kana_RE
+(rt:define-gconstant +key-kana-re+ 1242 "C: GDK_KEY_kana_RE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_RE.html")
 
 
-(rt:define-gconstant +key-kana-ri+ 1240 "
-C: GDK_KEY_kana_RI
+(rt:define-gconstant +key-kana-ri+ 1240 "C: GDK_KEY_kana_RI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_RI.html")
 
 
-(rt:define-gconstant +key-kana-ro+ 1243 "
-C: GDK_KEY_kana_RO
+(rt:define-gconstant +key-kana-ro+ 1243 "C: GDK_KEY_kana_RO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_RO.html")
 
 
-(rt:define-gconstant +key-kana-ru+ 1241 "
-C: GDK_KEY_kana_RU
+(rt:define-gconstant +key-kana-ru+ 1241 "C: GDK_KEY_kana_RU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_RU.html")
 
 
-(rt:define-gconstant +key-kana-sa+ 1211 "
-C: GDK_KEY_kana_SA
+(rt:define-gconstant +key-kana-sa+ 1211 "C: GDK_KEY_kana_SA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_SA.html")
 
 
-(rt:define-gconstant +key-kana-se+ 1214 "
-C: GDK_KEY_kana_SE
+(rt:define-gconstant +key-kana-se+ 1214 "C: GDK_KEY_kana_SE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_SE.html")
 
 
-(rt:define-gconstant +key-kana-shi+ 1212 "
-C: GDK_KEY_kana_SHI
+(rt:define-gconstant +key-kana-shi+ 1212 "C: GDK_KEY_kana_SHI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_SHI.html")
 
 
-(rt:define-gconstant +key-kana-so+ 1215 "
-C: GDK_KEY_kana_SO
+(rt:define-gconstant +key-kana-so+ 1215 "C: GDK_KEY_kana_SO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_SO.html")
 
 
-(rt:define-gconstant +key-kana-su+ 1213 "
-C: GDK_KEY_kana_SU
+(rt:define-gconstant +key-kana-su+ 1213 "C: GDK_KEY_kana_SU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_SU.html")
 
 
-(rt:define-gconstant +key-kana-ta+ 1216 "
-C: GDK_KEY_kana_TA
+(rt:define-gconstant +key-kana-ta+ 1216 "C: GDK_KEY_kana_TA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TA.html")
 
 
-(rt:define-gconstant +key-kana-te+ 1219 "
-C: GDK_KEY_kana_TE
+(rt:define-gconstant +key-kana-te+ 1219 "C: GDK_KEY_kana_TE
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TE.html")
 
 
-(rt:define-gconstant +key-kana-ti+ 1217 "
-C: GDK_KEY_kana_TI
+(rt:define-gconstant +key-kana-ti+ 1217 "C: GDK_KEY_kana_TI
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TI.html")
 
 
-(rt:define-gconstant +key-kana-to+ 1220 "
-C: GDK_KEY_kana_TO
+(rt:define-gconstant +key-kana-to+ 1220 "C: GDK_KEY_kana_TO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TO.html")
 
 
-(rt:define-gconstant +key-kana-tsu+ 1218 "
-C: GDK_KEY_kana_TSU
+(rt:define-gconstant +key-kana-tsu+ 1218 "C: GDK_KEY_kana_TSU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TSU.html")
 
 
-(rt:define-gconstant +key-kana-tu+ 1218 "
-C: GDK_KEY_kana_TU
+(rt:define-gconstant +key-kana-tu+ 1218 "C: GDK_KEY_kana_TU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_TU.html")
 
 
-(rt:define-gconstant +key-kana-u+ 1203 "
-C: GDK_KEY_kana_U
+(rt:define-gconstant +key-kana-u+ 1203 "C: GDK_KEY_kana_U
 See: https://docs.gtk.org/gdk4/const.KEY_kana_U.html")
 
 
-(rt:define-gconstant +key-kana-wa+ 1244 "
-C: GDK_KEY_kana_WA
+(rt:define-gconstant +key-kana-wa+ 1244 "C: GDK_KEY_kana_WA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_WA.html")
 
 
-(rt:define-gconstant +key-kana-wo+ 1190 "
-C: GDK_KEY_kana_WO
+(rt:define-gconstant +key-kana-wo+ 1190 "C: GDK_KEY_kana_WO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_WO.html")
 
 
-(rt:define-gconstant +key-kana-ya+ 1236 "
-C: GDK_KEY_kana_YA
+(rt:define-gconstant +key-kana-ya+ 1236 "C: GDK_KEY_kana_YA
 See: https://docs.gtk.org/gdk4/const.KEY_kana_YA.html")
 
 
-(rt:define-gconstant +key-kana-yo+ 1238 "
-C: GDK_KEY_kana_YO
+(rt:define-gconstant +key-kana-yo+ 1238 "C: GDK_KEY_kana_YO
 See: https://docs.gtk.org/gdk4/const.KEY_kana_YO.html")
 
 
-(rt:define-gconstant +key-kana-yu+ 1237 "
-C: GDK_KEY_kana_YU
+(rt:define-gconstant +key-kana-yu+ 1237 "C: GDK_KEY_kana_YU
 See: https://docs.gtk.org/gdk4/const.KEY_kana_YU.html")
 
 
-(rt:define-gconstant +key-kana-closingbracket+ 1187 "
-C: GDK_KEY_kana_closingbracket
+(rt:define-gconstant +key-kana-closingbracket+ 1187 "C: GDK_KEY_kana_closingbracket
 See: https://docs.gtk.org/gdk4/const.KEY_kana_closingbracket.html")
 
 
-(rt:define-gconstant +key-kana-comma+ 1188 "
-C: GDK_KEY_kana_comma
+(rt:define-gconstant +key-kana-comma+ 1188 "C: GDK_KEY_kana_comma
 See: https://docs.gtk.org/gdk4/const.KEY_kana_comma.html")
 
 
-(rt:define-gconstant +key-kana-conjunctive+ 1189 "
-C: GDK_KEY_kana_conjunctive
+(rt:define-gconstant +key-kana-conjunctive+ 1189 "C: GDK_KEY_kana_conjunctive
 See: https://docs.gtk.org/gdk4/const.KEY_kana_conjunctive.html")
 
 
-(rt:define-gconstant +key-kana-fullstop+ 1185 "
-C: GDK_KEY_kana_fullstop
+(rt:define-gconstant +key-kana-fullstop+ 1185 "C: GDK_KEY_kana_fullstop
 See: https://docs.gtk.org/gdk4/const.KEY_kana_fullstop.html")
 
 
-(rt:define-gconstant +key-kana-middledot+ 1189 "
-C: GDK_KEY_kana_middledot
+(rt:define-gconstant +key-kana-middledot+ 1189 "C: GDK_KEY_kana_middledot
 See: https://docs.gtk.org/gdk4/const.KEY_kana_middledot.html")
 
 
-(rt:define-gconstant +key-kana-openingbracket+ 1186 "
-C: GDK_KEY_kana_openingbracket
+(rt:define-gconstant +key-kana-openingbracket+ 1186 "C: GDK_KEY_kana_openingbracket
 See: https://docs.gtk.org/gdk4/const.KEY_kana_openingbracket.html")
 
 
-(rt:define-gconstant +key-kana-switch+ 65406 "
-C: GDK_KEY_kana_switch
+(rt:define-gconstant +key-kana-switch+ 65406 "C: GDK_KEY_kana_switch
 See: https://docs.gtk.org/gdk4/const.KEY_kana_switch.html")
 
 
-(rt:define-gconstant +key-kappa+ 930 "
-C: GDK_KEY_kappa
+(rt:define-gconstant +key-kappa+ 930 "C: GDK_KEY_kappa
 See: https://docs.gtk.org/gdk4/const.KEY_kappa.html")
 
 
-(rt:define-gconstant +key-kra+ 930 "
-C: GDK_KEY_kra
+(rt:define-gconstant +key-kra+ 930 "C: GDK_KEY_kra
 See: https://docs.gtk.org/gdk4/const.KEY_kra.html")
 
 
-(rt:define-gconstant +key-latincross+ 2777 "
-C: GDK_KEY_latincross
+(rt:define-gconstant +key-latincross+ 2777 "C: GDK_KEY_latincross
 See: https://docs.gtk.org/gdk4/const.KEY_latincross.html")
 
 
-(rt:define-gconstant +key-leftanglebracket+ 2748 "
-C: GDK_KEY_leftanglebracket
+(rt:define-gconstant +key-leftanglebracket+ 2748 "C: GDK_KEY_leftanglebracket
 See: https://docs.gtk.org/gdk4/const.KEY_leftanglebracket.html")
 
 
-(rt:define-gconstant +key-leftarrow+ 2299 "
-C: GDK_KEY_leftarrow
+(rt:define-gconstant +key-leftarrow+ 2299 "C: GDK_KEY_leftarrow
 See: https://docs.gtk.org/gdk4/const.KEY_leftarrow.html")
 
 
-(rt:define-gconstant +key-leftcaret+ 2979 "
-C: GDK_KEY_leftcaret
+(rt:define-gconstant +key-leftcaret+ 2979 "C: GDK_KEY_leftcaret
 See: https://docs.gtk.org/gdk4/const.KEY_leftcaret.html")
 
 
-(rt:define-gconstant +key-leftdoublequotemark+ 2770 "
-C: GDK_KEY_leftdoublequotemark
+(rt:define-gconstant +key-leftdoublequotemark+ 2770 "C: GDK_KEY_leftdoublequotemark
 See: https://docs.gtk.org/gdk4/const.KEY_leftdoublequotemark.html")
 
 
-(rt:define-gconstant +key-leftmiddlecurlybrace+ 2223 "
-C: GDK_KEY_leftmiddlecurlybrace
+(rt:define-gconstant +key-leftmiddlecurlybrace+ 2223 "C: GDK_KEY_leftmiddlecurlybrace
 See: https://docs.gtk.org/gdk4/const.KEY_leftmiddlecurlybrace.html")
 
 
-(rt:define-gconstant +key-leftopentriangle+ 2764 "
-C: GDK_KEY_leftopentriangle
+(rt:define-gconstant +key-leftopentriangle+ 2764 "C: GDK_KEY_leftopentriangle
 See: https://docs.gtk.org/gdk4/const.KEY_leftopentriangle.html")
 
 
-(rt:define-gconstant +key-leftpointer+ 2794 "
-C: GDK_KEY_leftpointer
+(rt:define-gconstant +key-leftpointer+ 2794 "C: GDK_KEY_leftpointer
 See: https://docs.gtk.org/gdk4/const.KEY_leftpointer.html")
 
 
-(rt:define-gconstant +key-leftradical+ 2209 "
-C: GDK_KEY_leftradical
+(rt:define-gconstant +key-leftradical+ 2209 "C: GDK_KEY_leftradical
 See: https://docs.gtk.org/gdk4/const.KEY_leftradical.html")
 
 
-(rt:define-gconstant +key-leftshoe+ 3034 "
-C: GDK_KEY_leftshoe
+(rt:define-gconstant +key-leftshoe+ 3034 "C: GDK_KEY_leftshoe
 See: https://docs.gtk.org/gdk4/const.KEY_leftshoe.html")
 
 
-(rt:define-gconstant +key-leftsinglequotemark+ 2768 "
-C: GDK_KEY_leftsinglequotemark
+(rt:define-gconstant +key-leftsinglequotemark+ 2768 "C: GDK_KEY_leftsinglequotemark
 See: https://docs.gtk.org/gdk4/const.KEY_leftsinglequotemark.html")
 
 
-(rt:define-gconstant +key-leftt+ 2548 "
-C: GDK_KEY_leftt
+(rt:define-gconstant +key-leftt+ 2548 "C: GDK_KEY_leftt
 See: https://docs.gtk.org/gdk4/const.KEY_leftt.html")
 
 
-(rt:define-gconstant +key-lefttack+ 3036 "
-C: GDK_KEY_lefttack
+(rt:define-gconstant +key-lefttack+ 3036 "C: GDK_KEY_lefttack
 See: https://docs.gtk.org/gdk4/const.KEY_lefttack.html")
 
 
-(rt:define-gconstant +key-less+ 60 "
-C: GDK_KEY_less
+(rt:define-gconstant +key-less+ 60 "C: GDK_KEY_less
 See: https://docs.gtk.org/gdk4/const.KEY_less.html")
 
 
-(rt:define-gconstant +key-lessthanequal+ 2236 "
-C: GDK_KEY_lessthanequal
+(rt:define-gconstant +key-lessthanequal+ 2236 "C: GDK_KEY_lessthanequal
 See: https://docs.gtk.org/gdk4/const.KEY_lessthanequal.html")
 
 
-(rt:define-gconstant +key-lf+ 2533 "
-C: GDK_KEY_lf
+(rt:define-gconstant +key-lf+ 2533 "C: GDK_KEY_lf
 See: https://docs.gtk.org/gdk4/const.KEY_lf.html")
 
 
-(rt:define-gconstant +key-logicaland+ 2270 "
-C: GDK_KEY_logicaland
+(rt:define-gconstant +key-logicaland+ 2270 "C: GDK_KEY_logicaland
 See: https://docs.gtk.org/gdk4/const.KEY_logicaland.html")
 
 
-(rt:define-gconstant +key-logicalor+ 2271 "
-C: GDK_KEY_logicalor
+(rt:define-gconstant +key-logicalor+ 2271 "C: GDK_KEY_logicalor
 See: https://docs.gtk.org/gdk4/const.KEY_logicalor.html")
 
 
-(rt:define-gconstant +key-lowleftcorner+ 2541 "
-C: GDK_KEY_lowleftcorner
+(rt:define-gconstant +key-lowleftcorner+ 2541 "C: GDK_KEY_lowleftcorner
 See: https://docs.gtk.org/gdk4/const.KEY_lowleftcorner.html")
 
 
-(rt:define-gconstant +key-lowrightcorner+ 2538 "
-C: GDK_KEY_lowrightcorner
+(rt:define-gconstant +key-lowrightcorner+ 2538 "C: GDK_KEY_lowrightcorner
 See: https://docs.gtk.org/gdk4/const.KEY_lowrightcorner.html")
 
 
-(rt:define-gconstant +key-macron+ 175 "
-C: GDK_KEY_macron
+(rt:define-gconstant +key-macron+ 175 "C: GDK_KEY_macron
 See: https://docs.gtk.org/gdk4/const.KEY_macron.html")
 
 
-(rt:define-gconstant +key-malesymbol+ 2807 "
-C: GDK_KEY_malesymbol
+(rt:define-gconstant +key-malesymbol+ 2807 "C: GDK_KEY_malesymbol
 See: https://docs.gtk.org/gdk4/const.KEY_malesymbol.html")
 
 
-(rt:define-gconstant +key-maltesecross+ 2800 "
-C: GDK_KEY_maltesecross
+(rt:define-gconstant +key-maltesecross+ 2800 "C: GDK_KEY_maltesecross
 See: https://docs.gtk.org/gdk4/const.KEY_maltesecross.html")
 
 
-(rt:define-gconstant +key-marker+ 2751 "
-C: GDK_KEY_marker
+(rt:define-gconstant +key-marker+ 2751 "C: GDK_KEY_marker
 See: https://docs.gtk.org/gdk4/const.KEY_marker.html")
 
 
-(rt:define-gconstant +key-masculine+ 186 "
-C: GDK_KEY_masculine
+(rt:define-gconstant +key-masculine+ 186 "C: GDK_KEY_masculine
 See: https://docs.gtk.org/gdk4/const.KEY_masculine.html")
 
 
-(rt:define-gconstant +key-minus+ 45 "
-C: GDK_KEY_minus
+(rt:define-gconstant +key-minus+ 45 "C: GDK_KEY_minus
 See: https://docs.gtk.org/gdk4/const.KEY_minus.html")
 
 
-(rt:define-gconstant +key-minutes+ 2774 "
-C: GDK_KEY_minutes
+(rt:define-gconstant +key-minutes+ 2774 "C: GDK_KEY_minutes
 See: https://docs.gtk.org/gdk4/const.KEY_minutes.html")
 
 
-(rt:define-gconstant +key-mu+ 181 "
-C: GDK_KEY_mu
+(rt:define-gconstant +key-mu+ 181 "C: GDK_KEY_mu
 See: https://docs.gtk.org/gdk4/const.KEY_mu.html")
 
 
-(rt:define-gconstant +key-multiply+ 215 "
-C: GDK_KEY_multiply
+(rt:define-gconstant +key-multiply+ 215 "C: GDK_KEY_multiply
 See: https://docs.gtk.org/gdk4/const.KEY_multiply.html")
 
 
-(rt:define-gconstant +key-musicalflat+ 2806 "
-C: GDK_KEY_musicalflat
+(rt:define-gconstant +key-musicalflat+ 2806 "C: GDK_KEY_musicalflat
 See: https://docs.gtk.org/gdk4/const.KEY_musicalflat.html")
 
 
-(rt:define-gconstant +key-musicalsharp+ 2805 "
-C: GDK_KEY_musicalsharp
+(rt:define-gconstant +key-musicalsharp+ 2805 "C: GDK_KEY_musicalsharp
 See: https://docs.gtk.org/gdk4/const.KEY_musicalsharp.html")
 
 
-(rt:define-gconstant +key-nabla+ 2245 "
-C: GDK_KEY_nabla
+(rt:define-gconstant +key-nabla+ 2245 "C: GDK_KEY_nabla
 See: https://docs.gtk.org/gdk4/const.KEY_nabla.html")
 
 
-(rt:define-gconstant +key-ninesubscript+ 16785545 "
-C: GDK_KEY_ninesubscript
+(rt:define-gconstant +key-ninesubscript+ 16785545 "C: GDK_KEY_ninesubscript
 See: https://docs.gtk.org/gdk4/const.KEY_ninesubscript.html")
 
 
-(rt:define-gconstant +key-ninesuperior+ 16785529 "
-C: GDK_KEY_ninesuperior
+(rt:define-gconstant +key-ninesuperior+ 16785529 "C: GDK_KEY_ninesuperior
 See: https://docs.gtk.org/gdk4/const.KEY_ninesuperior.html")
 
 
-(rt:define-gconstant +key-nl+ 2536 "
-C: GDK_KEY_nl
+(rt:define-gconstant +key-nl+ 2536 "C: GDK_KEY_nl
 See: https://docs.gtk.org/gdk4/const.KEY_nl.html")
 
 
-(rt:define-gconstant +key-nobreakspace+ 160 "
-C: GDK_KEY_nobreakspace
+(rt:define-gconstant +key-nobreakspace+ 160 "C: GDK_KEY_nobreakspace
 See: https://docs.gtk.org/gdk4/const.KEY_nobreakspace.html")
 
 
-(rt:define-gconstant +key-notapproxeq+ 16785991 "
-C: GDK_KEY_notapproxeq
+(rt:define-gconstant +key-notapproxeq+ 16785991 "C: GDK_KEY_notapproxeq
 See: https://docs.gtk.org/gdk4/const.KEY_notapproxeq.html")
 
 
-(rt:define-gconstant +key-notelementof+ 16785929 "
-C: GDK_KEY_notelementof
+(rt:define-gconstant +key-notelementof+ 16785929 "C: GDK_KEY_notelementof
 See: https://docs.gtk.org/gdk4/const.KEY_notelementof.html")
 
 
-(rt:define-gconstant +key-notequal+ 2237 "
-C: GDK_KEY_notequal
+(rt:define-gconstant +key-notequal+ 2237 "C: GDK_KEY_notequal
 See: https://docs.gtk.org/gdk4/const.KEY_notequal.html")
 
 
-(rt:define-gconstant +key-notidentical+ 16786018 "
-C: GDK_KEY_notidentical
+(rt:define-gconstant +key-notidentical+ 16786018 "C: GDK_KEY_notidentical
 See: https://docs.gtk.org/gdk4/const.KEY_notidentical.html")
 
 
-(rt:define-gconstant +key-notsign+ 172 "
-C: GDK_KEY_notsign
+(rt:define-gconstant +key-notsign+ 172 "C: GDK_KEY_notsign
 See: https://docs.gtk.org/gdk4/const.KEY_notsign.html")
 
 
-(rt:define-gconstant +key-numbersign+ 35 "
-C: GDK_KEY_numbersign
+(rt:define-gconstant +key-numbersign+ 35 "C: GDK_KEY_numbersign
 See: https://docs.gtk.org/gdk4/const.KEY_numbersign.html")
 
 
-(rt:define-gconstant +key-numerosign+ 1712 "
-C: GDK_KEY_numerosign
+(rt:define-gconstant +key-numerosign+ 1712 "C: GDK_KEY_numerosign
 See: https://docs.gtk.org/gdk4/const.KEY_numerosign.html")
 
 
-(rt:define-gconstant +key-ogonek+ 434 "
-C: GDK_KEY_ogonek
+(rt:define-gconstant +key-ogonek+ 434 "C: GDK_KEY_ogonek
 See: https://docs.gtk.org/gdk4/const.KEY_ogonek.html")
 
 
-(rt:define-gconstant +key-oneeighth+ 2755 "
-C: GDK_KEY_oneeighth
+(rt:define-gconstant +key-oneeighth+ 2755 "C: GDK_KEY_oneeighth
 See: https://docs.gtk.org/gdk4/const.KEY_oneeighth.html")
 
 
-(rt:define-gconstant +key-onefifth+ 2738 "
-C: GDK_KEY_onefifth
+(rt:define-gconstant +key-onefifth+ 2738 "C: GDK_KEY_onefifth
 See: https://docs.gtk.org/gdk4/const.KEY_onefifth.html")
 
 
-(rt:define-gconstant +key-onehalf+ 189 "
-C: GDK_KEY_onehalf
+(rt:define-gconstant +key-onehalf+ 189 "C: GDK_KEY_onehalf
 See: https://docs.gtk.org/gdk4/const.KEY_onehalf.html")
 
 
-(rt:define-gconstant +key-onequarter+ 188 "
-C: GDK_KEY_onequarter
+(rt:define-gconstant +key-onequarter+ 188 "C: GDK_KEY_onequarter
 See: https://docs.gtk.org/gdk4/const.KEY_onequarter.html")
 
 
-(rt:define-gconstant +key-onesixth+ 2742 "
-C: GDK_KEY_onesixth
+(rt:define-gconstant +key-onesixth+ 2742 "C: GDK_KEY_onesixth
 See: https://docs.gtk.org/gdk4/const.KEY_onesixth.html")
 
 
-(rt:define-gconstant +key-onesubscript+ 16785537 "
-C: GDK_KEY_onesubscript
+(rt:define-gconstant +key-onesubscript+ 16785537 "C: GDK_KEY_onesubscript
 See: https://docs.gtk.org/gdk4/const.KEY_onesubscript.html")
 
 
-(rt:define-gconstant +key-onesuperior+ 185 "
-C: GDK_KEY_onesuperior
+(rt:define-gconstant +key-onesuperior+ 185 "C: GDK_KEY_onesuperior
 See: https://docs.gtk.org/gdk4/const.KEY_onesuperior.html")
 
 
-(rt:define-gconstant +key-onethird+ 2736 "
-C: GDK_KEY_onethird
+(rt:define-gconstant +key-onethird+ 2736 "C: GDK_KEY_onethird
 See: https://docs.gtk.org/gdk4/const.KEY_onethird.html")
 
 
-(rt:define-gconstant +key-openrectbullet+ 2786 "
-C: GDK_KEY_openrectbullet
+(rt:define-gconstant +key-openrectbullet+ 2786 "C: GDK_KEY_openrectbullet
 See: https://docs.gtk.org/gdk4/const.KEY_openrectbullet.html")
 
 
-(rt:define-gconstant +key-openstar+ 2789 "
-C: GDK_KEY_openstar
+(rt:define-gconstant +key-openstar+ 2789 "C: GDK_KEY_openstar
 See: https://docs.gtk.org/gdk4/const.KEY_openstar.html")
 
 
-(rt:define-gconstant +key-opentribulletdown+ 2788 "
-C: GDK_KEY_opentribulletdown
+(rt:define-gconstant +key-opentribulletdown+ 2788 "C: GDK_KEY_opentribulletdown
 See: https://docs.gtk.org/gdk4/const.KEY_opentribulletdown.html")
 
 
-(rt:define-gconstant +key-opentribulletup+ 2787 "
-C: GDK_KEY_opentribulletup
+(rt:define-gconstant +key-opentribulletup+ 2787 "C: GDK_KEY_opentribulletup
 See: https://docs.gtk.org/gdk4/const.KEY_opentribulletup.html")
 
 
-(rt:define-gconstant +key-ordfeminine+ 170 "
-C: GDK_KEY_ordfeminine
+(rt:define-gconstant +key-ordfeminine+ 170 "C: GDK_KEY_ordfeminine
 See: https://docs.gtk.org/gdk4/const.KEY_ordfeminine.html")
 
 
-(rt:define-gconstant +key-ordmasculine+ 186 "
-C: GDK_KEY_ordmasculine
+(rt:define-gconstant +key-ordmasculine+ 186 "C: GDK_KEY_ordmasculine
 See: https://docs.gtk.org/gdk4/const.KEY_ordmasculine.html")
 
 
-(rt:define-gconstant +key-overbar+ 3008 "
-C: GDK_KEY_overbar
+(rt:define-gconstant +key-overbar+ 3008 "C: GDK_KEY_overbar
 See: https://docs.gtk.org/gdk4/const.KEY_overbar.html")
 
 
-(rt:define-gconstant +key-overline+ 1150 "
-C: GDK_KEY_overline
+(rt:define-gconstant +key-overline+ 1150 "C: GDK_KEY_overline
 See: https://docs.gtk.org/gdk4/const.KEY_overline.html")
 
 
-(rt:define-gconstant +key-paragraph+ 182 "
-C: GDK_KEY_paragraph
+(rt:define-gconstant +key-paragraph+ 182 "C: GDK_KEY_paragraph
 See: https://docs.gtk.org/gdk4/const.KEY_paragraph.html")
 
 
-(rt:define-gconstant +key-parenleft+ 40 "
-C: GDK_KEY_parenleft
+(rt:define-gconstant +key-parenleft+ 40 "C: GDK_KEY_parenleft
 See: https://docs.gtk.org/gdk4/const.KEY_parenleft.html")
 
 
-(rt:define-gconstant +key-parenright+ 41 "
-C: GDK_KEY_parenright
+(rt:define-gconstant +key-parenright+ 41 "C: GDK_KEY_parenright
 See: https://docs.gtk.org/gdk4/const.KEY_parenright.html")
 
 
-(rt:define-gconstant +key-partdifferential+ 16785922 "
-C: GDK_KEY_partdifferential
+(rt:define-gconstant +key-partdifferential+ 16785922 "C: GDK_KEY_partdifferential
 See: https://docs.gtk.org/gdk4/const.KEY_partdifferential.html")
 
 
-(rt:define-gconstant +key-partialderivative+ 2287 "
-C: GDK_KEY_partialderivative
+(rt:define-gconstant +key-partialderivative+ 2287 "C: GDK_KEY_partialderivative
 See: https://docs.gtk.org/gdk4/const.KEY_partialderivative.html")
 
 
-(rt:define-gconstant +key-percent+ 37 "
-C: GDK_KEY_percent
+(rt:define-gconstant +key-percent+ 37 "C: GDK_KEY_percent
 See: https://docs.gtk.org/gdk4/const.KEY_percent.html")
 
 
-(rt:define-gconstant +key-period+ 46 "
-C: GDK_KEY_period
+(rt:define-gconstant +key-period+ 46 "C: GDK_KEY_period
 See: https://docs.gtk.org/gdk4/const.KEY_period.html")
 
 
-(rt:define-gconstant +key-periodcentered+ 183 "
-C: GDK_KEY_periodcentered
+(rt:define-gconstant +key-periodcentered+ 183 "C: GDK_KEY_periodcentered
 See: https://docs.gtk.org/gdk4/const.KEY_periodcentered.html")
 
 
-(rt:define-gconstant +key-permille+ 2773 "
-C: GDK_KEY_permille
+(rt:define-gconstant +key-permille+ 2773 "C: GDK_KEY_permille
 See: https://docs.gtk.org/gdk4/const.KEY_permille.html")
 
 
-(rt:define-gconstant +key-phonographcopyright+ 2811 "
-C: GDK_KEY_phonographcopyright
+(rt:define-gconstant +key-phonographcopyright+ 2811 "C: GDK_KEY_phonographcopyright
 See: https://docs.gtk.org/gdk4/const.KEY_phonographcopyright.html")
 
 
-(rt:define-gconstant +key-plus+ 43 "
-C: GDK_KEY_plus
+(rt:define-gconstant +key-plus+ 43 "C: GDK_KEY_plus
 See: https://docs.gtk.org/gdk4/const.KEY_plus.html")
 
 
-(rt:define-gconstant +key-plusminus+ 177 "
-C: GDK_KEY_plusminus
+(rt:define-gconstant +key-plusminus+ 177 "C: GDK_KEY_plusminus
 See: https://docs.gtk.org/gdk4/const.KEY_plusminus.html")
 
 
-(rt:define-gconstant +key-prescription+ 2772 "
-C: GDK_KEY_prescription
+(rt:define-gconstant +key-prescription+ 2772 "C: GDK_KEY_prescription
 See: https://docs.gtk.org/gdk4/const.KEY_prescription.html")
 
 
-(rt:define-gconstant +key-prolongedsound+ 1200 "
-C: GDK_KEY_prolongedsound
+(rt:define-gconstant +key-prolongedsound+ 1200 "C: GDK_KEY_prolongedsound
 See: https://docs.gtk.org/gdk4/const.KEY_prolongedsound.html")
 
 
-(rt:define-gconstant +key-punctspace+ 2726 "
-C: GDK_KEY_punctspace
+(rt:define-gconstant +key-punctspace+ 2726 "C: GDK_KEY_punctspace
 See: https://docs.gtk.org/gdk4/const.KEY_punctspace.html")
 
 
-(rt:define-gconstant +key-quad+ 3020 "
-C: GDK_KEY_quad
+(rt:define-gconstant +key-quad+ 3020 "C: GDK_KEY_quad
 See: https://docs.gtk.org/gdk4/const.KEY_quad.html")
 
 
-(rt:define-gconstant +key-question+ 63 "
-C: GDK_KEY_question
+(rt:define-gconstant +key-question+ 63 "C: GDK_KEY_question
 See: https://docs.gtk.org/gdk4/const.KEY_question.html")
 
 
-(rt:define-gconstant +key-questiondown+ 191 "
-C: GDK_KEY_questiondown
+(rt:define-gconstant +key-questiondown+ 191 "C: GDK_KEY_questiondown
 See: https://docs.gtk.org/gdk4/const.KEY_questiondown.html")
 
 
-(rt:define-gconstant +key-quotedbl+ 34 "
-C: GDK_KEY_quotedbl
+(rt:define-gconstant +key-quotedbl+ 34 "C: GDK_KEY_quotedbl
 See: https://docs.gtk.org/gdk4/const.KEY_quotedbl.html")
 
 
-(rt:define-gconstant +key-quoteleft+ 96 "
-C: GDK_KEY_quoteleft
+(rt:define-gconstant +key-quoteleft+ 96 "C: GDK_KEY_quoteleft
 See: https://docs.gtk.org/gdk4/const.KEY_quoteleft.html")
 
 
-(rt:define-gconstant +key-quoteright+ 39 "
-C: GDK_KEY_quoteright
+(rt:define-gconstant +key-quoteright+ 39 "C: GDK_KEY_quoteright
 See: https://docs.gtk.org/gdk4/const.KEY_quoteright.html")
 
 
-(rt:define-gconstant +key-radical+ 2262 "
-C: GDK_KEY_radical
+(rt:define-gconstant +key-radical+ 2262 "C: GDK_KEY_radical
 See: https://docs.gtk.org/gdk4/const.KEY_radical.html")
 
 
-(rt:define-gconstant +key-registered+ 174 "
-C: GDK_KEY_registered
+(rt:define-gconstant +key-registered+ 174 "C: GDK_KEY_registered
 See: https://docs.gtk.org/gdk4/const.KEY_registered.html")
 
 
-(rt:define-gconstant +key-rightanglebracket+ 2750 "
-C: GDK_KEY_rightanglebracket
+(rt:define-gconstant +key-rightanglebracket+ 2750 "C: GDK_KEY_rightanglebracket
 See: https://docs.gtk.org/gdk4/const.KEY_rightanglebracket.html")
 
 
-(rt:define-gconstant +key-rightarrow+ 2301 "
-C: GDK_KEY_rightarrow
+(rt:define-gconstant +key-rightarrow+ 2301 "C: GDK_KEY_rightarrow
 See: https://docs.gtk.org/gdk4/const.KEY_rightarrow.html")
 
 
-(rt:define-gconstant +key-rightcaret+ 2982 "
-C: GDK_KEY_rightcaret
+(rt:define-gconstant +key-rightcaret+ 2982 "C: GDK_KEY_rightcaret
 See: https://docs.gtk.org/gdk4/const.KEY_rightcaret.html")
 
 
-(rt:define-gconstant +key-rightdoublequotemark+ 2771 "
-C: GDK_KEY_rightdoublequotemark
+(rt:define-gconstant +key-rightdoublequotemark+ 2771 "C: GDK_KEY_rightdoublequotemark
 See: https://docs.gtk.org/gdk4/const.KEY_rightdoublequotemark.html")
 
 
-(rt:define-gconstant +key-rightmiddlecurlybrace+ 2224 "
-C: GDK_KEY_rightmiddlecurlybrace
+(rt:define-gconstant +key-rightmiddlecurlybrace+ 2224 "C: GDK_KEY_rightmiddlecurlybrace
 See: https://docs.gtk.org/gdk4/const.KEY_rightmiddlecurlybrace.html")
 
 
-(rt:define-gconstant +key-rightmiddlesummation+ 2231 "
-C: GDK_KEY_rightmiddlesummation
+(rt:define-gconstant +key-rightmiddlesummation+ 2231 "C: GDK_KEY_rightmiddlesummation
 See: https://docs.gtk.org/gdk4/const.KEY_rightmiddlesummation.html")
 
 
-(rt:define-gconstant +key-rightopentriangle+ 2765 "
-C: GDK_KEY_rightopentriangle
+(rt:define-gconstant +key-rightopentriangle+ 2765 "C: GDK_KEY_rightopentriangle
 See: https://docs.gtk.org/gdk4/const.KEY_rightopentriangle.html")
 
 
-(rt:define-gconstant +key-rightpointer+ 2795 "
-C: GDK_KEY_rightpointer
+(rt:define-gconstant +key-rightpointer+ 2795 "C: GDK_KEY_rightpointer
 See: https://docs.gtk.org/gdk4/const.KEY_rightpointer.html")
 
 
-(rt:define-gconstant +key-rightshoe+ 3032 "
-C: GDK_KEY_rightshoe
+(rt:define-gconstant +key-rightshoe+ 3032 "C: GDK_KEY_rightshoe
 See: https://docs.gtk.org/gdk4/const.KEY_rightshoe.html")
 
 
-(rt:define-gconstant +key-rightsinglequotemark+ 2769 "
-C: GDK_KEY_rightsinglequotemark
+(rt:define-gconstant +key-rightsinglequotemark+ 2769 "C: GDK_KEY_rightsinglequotemark
 See: https://docs.gtk.org/gdk4/const.KEY_rightsinglequotemark.html")
 
 
-(rt:define-gconstant +key-rightt+ 2549 "
-C: GDK_KEY_rightt
+(rt:define-gconstant +key-rightt+ 2549 "C: GDK_KEY_rightt
 See: https://docs.gtk.org/gdk4/const.KEY_rightt.html")
 
 
-(rt:define-gconstant +key-righttack+ 3068 "
-C: GDK_KEY_righttack
+(rt:define-gconstant +key-righttack+ 3068 "C: GDK_KEY_righttack
 See: https://docs.gtk.org/gdk4/const.KEY_righttack.html")
 
 
-(rt:define-gconstant +key-script-switch+ 65406 "
-C: GDK_KEY_script_switch
+(rt:define-gconstant +key-script-switch+ 65406 "C: GDK_KEY_script_switch
 See: https://docs.gtk.org/gdk4/const.KEY_script_switch.html")
 
 
-(rt:define-gconstant +key-seconds+ 2775 "
-C: GDK_KEY_seconds
+(rt:define-gconstant +key-seconds+ 2775 "C: GDK_KEY_seconds
 See: https://docs.gtk.org/gdk4/const.KEY_seconds.html")
 
 
-(rt:define-gconstant +key-section+ 167 "
-C: GDK_KEY_section
+(rt:define-gconstant +key-section+ 167 "C: GDK_KEY_section
 See: https://docs.gtk.org/gdk4/const.KEY_section.html")
 
 
-(rt:define-gconstant +key-semicolon+ 59 "
-C: GDK_KEY_semicolon
+(rt:define-gconstant +key-semicolon+ 59 "C: GDK_KEY_semicolon
 See: https://docs.gtk.org/gdk4/const.KEY_semicolon.html")
 
 
-(rt:define-gconstant +key-semivoicedsound+ 1247 "
-C: GDK_KEY_semivoicedsound
+(rt:define-gconstant +key-semivoicedsound+ 1247 "C: GDK_KEY_semivoicedsound
 See: https://docs.gtk.org/gdk4/const.KEY_semivoicedsound.html")
 
 
-(rt:define-gconstant +key-seveneighths+ 2758 "
-C: GDK_KEY_seveneighths
+(rt:define-gconstant +key-seveneighths+ 2758 "C: GDK_KEY_seveneighths
 See: https://docs.gtk.org/gdk4/const.KEY_seveneighths.html")
 
 
-(rt:define-gconstant +key-sevensubscript+ 16785543 "
-C: GDK_KEY_sevensubscript
+(rt:define-gconstant +key-sevensubscript+ 16785543 "C: GDK_KEY_sevensubscript
 See: https://docs.gtk.org/gdk4/const.KEY_sevensubscript.html")
 
 
-(rt:define-gconstant +key-sevensuperior+ 16785527 "
-C: GDK_KEY_sevensuperior
+(rt:define-gconstant +key-sevensuperior+ 16785527 "C: GDK_KEY_sevensuperior
 See: https://docs.gtk.org/gdk4/const.KEY_sevensuperior.html")
 
 
-(rt:define-gconstant +key-signaturemark+ 2762 "
-C: GDK_KEY_signaturemark
+(rt:define-gconstant +key-signaturemark+ 2762 "C: GDK_KEY_signaturemark
 See: https://docs.gtk.org/gdk4/const.KEY_signaturemark.html")
 
 
-(rt:define-gconstant +key-signifblank+ 2732 "
-C: GDK_KEY_signifblank
+(rt:define-gconstant +key-signifblank+ 2732 "C: GDK_KEY_signifblank
 See: https://docs.gtk.org/gdk4/const.KEY_signifblank.html")
 
 
-(rt:define-gconstant +key-similarequal+ 2249 "
-C: GDK_KEY_similarequal
+(rt:define-gconstant +key-similarequal+ 2249 "C: GDK_KEY_similarequal
 See: https://docs.gtk.org/gdk4/const.KEY_similarequal.html")
 
 
-(rt:define-gconstant +key-singlelowquotemark+ 2813 "
-C: GDK_KEY_singlelowquotemark
+(rt:define-gconstant +key-singlelowquotemark+ 2813 "C: GDK_KEY_singlelowquotemark
 See: https://docs.gtk.org/gdk4/const.KEY_singlelowquotemark.html")
 
 
-(rt:define-gconstant +key-sixsubscript+ 16785542 "
-C: GDK_KEY_sixsubscript
+(rt:define-gconstant +key-sixsubscript+ 16785542 "C: GDK_KEY_sixsubscript
 See: https://docs.gtk.org/gdk4/const.KEY_sixsubscript.html")
 
 
-(rt:define-gconstant +key-sixsuperior+ 16785526 "
-C: GDK_KEY_sixsuperior
+(rt:define-gconstant +key-sixsuperior+ 16785526 "C: GDK_KEY_sixsuperior
 See: https://docs.gtk.org/gdk4/const.KEY_sixsuperior.html")
 
 
-(rt:define-gconstant +key-slash+ 47 "
-C: GDK_KEY_slash
+(rt:define-gconstant +key-slash+ 47 "C: GDK_KEY_slash
 See: https://docs.gtk.org/gdk4/const.KEY_slash.html")
 
 
-(rt:define-gconstant +key-soliddiamond+ 2528 "
-C: GDK_KEY_soliddiamond
+(rt:define-gconstant +key-soliddiamond+ 2528 "C: GDK_KEY_soliddiamond
 See: https://docs.gtk.org/gdk4/const.KEY_soliddiamond.html")
 
 
-(rt:define-gconstant +key-space+ 32 "
-C: GDK_KEY_space
+(rt:define-gconstant +key-space+ 32 "C: GDK_KEY_space
 See: https://docs.gtk.org/gdk4/const.KEY_space.html")
 
 
-(rt:define-gconstant +key-squareroot+ 16785946 "
-C: GDK_KEY_squareroot
+(rt:define-gconstant +key-squareroot+ 16785946 "C: GDK_KEY_squareroot
 See: https://docs.gtk.org/gdk4/const.KEY_squareroot.html")
 
 
-(rt:define-gconstant +key-ssharp+ 223 "
-C: GDK_KEY_ssharp
+(rt:define-gconstant +key-ssharp+ 223 "C: GDK_KEY_ssharp
 See: https://docs.gtk.org/gdk4/const.KEY_ssharp.html")
 
 
-(rt:define-gconstant +key-sterling+ 163 "
-C: GDK_KEY_sterling
+(rt:define-gconstant +key-sterling+ 163 "C: GDK_KEY_sterling
 See: https://docs.gtk.org/gdk4/const.KEY_sterling.html")
 
 
-(rt:define-gconstant +key-stricteq+ 16786019 "
-C: GDK_KEY_stricteq
+(rt:define-gconstant +key-stricteq+ 16786019 "C: GDK_KEY_stricteq
 See: https://docs.gtk.org/gdk4/const.KEY_stricteq.html")
 
 
-(rt:define-gconstant +key-telephone+ 2809 "
-C: GDK_KEY_telephone
+(rt:define-gconstant +key-telephone+ 2809 "C: GDK_KEY_telephone
 See: https://docs.gtk.org/gdk4/const.KEY_telephone.html")
 
 
-(rt:define-gconstant +key-telephonerecorder+ 2810 "
-C: GDK_KEY_telephonerecorder
+(rt:define-gconstant +key-telephonerecorder+ 2810 "C: GDK_KEY_telephonerecorder
 See: https://docs.gtk.org/gdk4/const.KEY_telephonerecorder.html")
 
 
-(rt:define-gconstant +key-therefore+ 2240 "
-C: GDK_KEY_therefore
+(rt:define-gconstant +key-therefore+ 2240 "C: GDK_KEY_therefore
 See: https://docs.gtk.org/gdk4/const.KEY_therefore.html")
 
 
-(rt:define-gconstant +key-thinspace+ 2727 "
-C: GDK_KEY_thinspace
+(rt:define-gconstant +key-thinspace+ 2727 "C: GDK_KEY_thinspace
 See: https://docs.gtk.org/gdk4/const.KEY_thinspace.html")
 
 
-(rt:define-gconstant +key-threeeighths+ 2756 "
-C: GDK_KEY_threeeighths
+(rt:define-gconstant +key-threeeighths+ 2756 "C: GDK_KEY_threeeighths
 See: https://docs.gtk.org/gdk4/const.KEY_threeeighths.html")
 
 
-(rt:define-gconstant +key-threefifths+ 2740 "
-C: GDK_KEY_threefifths
+(rt:define-gconstant +key-threefifths+ 2740 "C: GDK_KEY_threefifths
 See: https://docs.gtk.org/gdk4/const.KEY_threefifths.html")
 
 
-(rt:define-gconstant +key-threequarters+ 190 "
-C: GDK_KEY_threequarters
+(rt:define-gconstant +key-threequarters+ 190 "C: GDK_KEY_threequarters
 See: https://docs.gtk.org/gdk4/const.KEY_threequarters.html")
 
 
-(rt:define-gconstant +key-threesubscript+ 16785539 "
-C: GDK_KEY_threesubscript
+(rt:define-gconstant +key-threesubscript+ 16785539 "C: GDK_KEY_threesubscript
 See: https://docs.gtk.org/gdk4/const.KEY_threesubscript.html")
 
 
-(rt:define-gconstant +key-threesuperior+ 179 "
-C: GDK_KEY_threesuperior
+(rt:define-gconstant +key-threesuperior+ 179 "C: GDK_KEY_threesuperior
 See: https://docs.gtk.org/gdk4/const.KEY_threesuperior.html")
 
 
-(rt:define-gconstant +key-tintegral+ 16785965 "
-C: GDK_KEY_tintegral
+(rt:define-gconstant +key-tintegral+ 16785965 "C: GDK_KEY_tintegral
 See: https://docs.gtk.org/gdk4/const.KEY_tintegral.html")
 
 
-(rt:define-gconstant +key-topintegral+ 2212 "
-C: GDK_KEY_topintegral
+(rt:define-gconstant +key-topintegral+ 2212 "C: GDK_KEY_topintegral
 See: https://docs.gtk.org/gdk4/const.KEY_topintegral.html")
 
 
-(rt:define-gconstant +key-topleftparens+ 2219 "
-C: GDK_KEY_topleftparens
+(rt:define-gconstant +key-topleftparens+ 2219 "C: GDK_KEY_topleftparens
 See: https://docs.gtk.org/gdk4/const.KEY_topleftparens.html")
 
 
-(rt:define-gconstant +key-topleftradical+ 2210 "
-C: GDK_KEY_topleftradical
+(rt:define-gconstant +key-topleftradical+ 2210 "C: GDK_KEY_topleftradical
 See: https://docs.gtk.org/gdk4/const.KEY_topleftradical.html")
 
 
-(rt:define-gconstant +key-topleftsqbracket+ 2215 "
-C: GDK_KEY_topleftsqbracket
+(rt:define-gconstant +key-topleftsqbracket+ 2215 "C: GDK_KEY_topleftsqbracket
 See: https://docs.gtk.org/gdk4/const.KEY_topleftsqbracket.html")
 
 
-(rt:define-gconstant +key-topleftsummation+ 2225 "
-C: GDK_KEY_topleftsummation
+(rt:define-gconstant +key-topleftsummation+ 2225 "C: GDK_KEY_topleftsummation
 See: https://docs.gtk.org/gdk4/const.KEY_topleftsummation.html")
 
 
-(rt:define-gconstant +key-toprightparens+ 2221 "
-C: GDK_KEY_toprightparens
+(rt:define-gconstant +key-toprightparens+ 2221 "C: GDK_KEY_toprightparens
 See: https://docs.gtk.org/gdk4/const.KEY_toprightparens.html")
 
 
-(rt:define-gconstant +key-toprightsqbracket+ 2217 "
-C: GDK_KEY_toprightsqbracket
+(rt:define-gconstant +key-toprightsqbracket+ 2217 "C: GDK_KEY_toprightsqbracket
 See: https://docs.gtk.org/gdk4/const.KEY_toprightsqbracket.html")
 
 
-(rt:define-gconstant +key-toprightsummation+ 2229 "
-C: GDK_KEY_toprightsummation
+(rt:define-gconstant +key-toprightsummation+ 2229 "C: GDK_KEY_toprightsummation
 See: https://docs.gtk.org/gdk4/const.KEY_toprightsummation.html")
 
 
-(rt:define-gconstant +key-topt+ 2551 "
-C: GDK_KEY_topt
+(rt:define-gconstant +key-topt+ 2551 "C: GDK_KEY_topt
 See: https://docs.gtk.org/gdk4/const.KEY_topt.html")
 
 
-(rt:define-gconstant +key-topvertsummationconnector+ 2227 "
-C: GDK_KEY_topvertsummationconnector
+(rt:define-gconstant +key-topvertsummationconnector+ 2227 "C: GDK_KEY_topvertsummationconnector
 See: https://docs.gtk.org/gdk4/const.KEY_topvertsummationconnector.html")
 
 
-(rt:define-gconstant +key-trademark+ 2761 "
-C: GDK_KEY_trademark
+(rt:define-gconstant +key-trademark+ 2761 "C: GDK_KEY_trademark
 See: https://docs.gtk.org/gdk4/const.KEY_trademark.html")
 
 
-(rt:define-gconstant +key-trademarkincircle+ 2763 "
-C: GDK_KEY_trademarkincircle
+(rt:define-gconstant +key-trademarkincircle+ 2763 "C: GDK_KEY_trademarkincircle
 See: https://docs.gtk.org/gdk4/const.KEY_trademarkincircle.html")
 
 
-(rt:define-gconstant +key-twofifths+ 2739 "
-C: GDK_KEY_twofifths
+(rt:define-gconstant +key-twofifths+ 2739 "C: GDK_KEY_twofifths
 See: https://docs.gtk.org/gdk4/const.KEY_twofifths.html")
 
 
-(rt:define-gconstant +key-twosubscript+ 16785538 "
-C: GDK_KEY_twosubscript
+(rt:define-gconstant +key-twosubscript+ 16785538 "C: GDK_KEY_twosubscript
 See: https://docs.gtk.org/gdk4/const.KEY_twosubscript.html")
 
 
-(rt:define-gconstant +key-twosuperior+ 178 "
-C: GDK_KEY_twosuperior
+(rt:define-gconstant +key-twosuperior+ 178 "C: GDK_KEY_twosuperior
 See: https://docs.gtk.org/gdk4/const.KEY_twosuperior.html")
 
 
-(rt:define-gconstant +key-twothirds+ 2737 "
-C: GDK_KEY_twothirds
+(rt:define-gconstant +key-twothirds+ 2737 "C: GDK_KEY_twothirds
 See: https://docs.gtk.org/gdk4/const.KEY_twothirds.html")
 
 
-(rt:define-gconstant +key-underbar+ 3014 "
-C: GDK_KEY_underbar
+(rt:define-gconstant +key-underbar+ 3014 "C: GDK_KEY_underbar
 See: https://docs.gtk.org/gdk4/const.KEY_underbar.html")
 
 
-(rt:define-gconstant +key-underscore+ 95 "
-C: GDK_KEY_underscore
+(rt:define-gconstant +key-underscore+ 95 "C: GDK_KEY_underscore
 See: https://docs.gtk.org/gdk4/const.KEY_underscore.html")
 
 
-(rt:define-gconstant +key-union+ 2269 "
-C: GDK_KEY_union
+(rt:define-gconstant +key-union+ 2269 "C: GDK_KEY_union
 See: https://docs.gtk.org/gdk4/const.KEY_union.html")
 
 
-(rt:define-gconstant +key-uparrow+ 2300 "
-C: GDK_KEY_uparrow
+(rt:define-gconstant +key-uparrow+ 2300 "C: GDK_KEY_uparrow
 See: https://docs.gtk.org/gdk4/const.KEY_uparrow.html")
 
 
-(rt:define-gconstant +key-upcaret+ 2985 "
-C: GDK_KEY_upcaret
+(rt:define-gconstant +key-upcaret+ 2985 "C: GDK_KEY_upcaret
 See: https://docs.gtk.org/gdk4/const.KEY_upcaret.html")
 
 
-(rt:define-gconstant +key-upleftcorner+ 2540 "
-C: GDK_KEY_upleftcorner
+(rt:define-gconstant +key-upleftcorner+ 2540 "C: GDK_KEY_upleftcorner
 See: https://docs.gtk.org/gdk4/const.KEY_upleftcorner.html")
 
 
-(rt:define-gconstant +key-uprightcorner+ 2539 "
-C: GDK_KEY_uprightcorner
+(rt:define-gconstant +key-uprightcorner+ 2539 "C: GDK_KEY_uprightcorner
 See: https://docs.gtk.org/gdk4/const.KEY_uprightcorner.html")
 
 
-(rt:define-gconstant +key-upshoe+ 3011 "
-C: GDK_KEY_upshoe
+(rt:define-gconstant +key-upshoe+ 3011 "C: GDK_KEY_upshoe
 See: https://docs.gtk.org/gdk4/const.KEY_upshoe.html")
 
 
-(rt:define-gconstant +key-upstile+ 3027 "
-C: GDK_KEY_upstile
+(rt:define-gconstant +key-upstile+ 3027 "C: GDK_KEY_upstile
 See: https://docs.gtk.org/gdk4/const.KEY_upstile.html")
 
 
-(rt:define-gconstant +key-uptack+ 3022 "
-C: GDK_KEY_uptack
+(rt:define-gconstant +key-uptack+ 3022 "C: GDK_KEY_uptack
 See: https://docs.gtk.org/gdk4/const.KEY_uptack.html")
 
 
-(rt:define-gconstant +key-variation+ 2241 "
-C: GDK_KEY_variation
+(rt:define-gconstant +key-variation+ 2241 "C: GDK_KEY_variation
 See: https://docs.gtk.org/gdk4/const.KEY_variation.html")
 
 
-(rt:define-gconstant +key-vertbar+ 2552 "
-C: GDK_KEY_vertbar
+(rt:define-gconstant +key-vertbar+ 2552 "C: GDK_KEY_vertbar
 See: https://docs.gtk.org/gdk4/const.KEY_vertbar.html")
 
 
-(rt:define-gconstant +key-vertconnector+ 2214 "
-C: GDK_KEY_vertconnector
+(rt:define-gconstant +key-vertconnector+ 2214 "C: GDK_KEY_vertconnector
 See: https://docs.gtk.org/gdk4/const.KEY_vertconnector.html")
 
 
-(rt:define-gconstant +key-voicedsound+ 1246 "
-C: GDK_KEY_voicedsound
+(rt:define-gconstant +key-voicedsound+ 1246 "C: GDK_KEY_voicedsound
 See: https://docs.gtk.org/gdk4/const.KEY_voicedsound.html")
 
 
-(rt:define-gconstant +key-vt+ 2537 "
-C: GDK_KEY_vt
+(rt:define-gconstant +key-vt+ 2537 "C: GDK_KEY_vt
 See: https://docs.gtk.org/gdk4/const.KEY_vt.html")
 
 
-(rt:define-gconstant +key-yen+ 165 "
-C: GDK_KEY_yen
+(rt:define-gconstant +key-yen+ 165 "C: GDK_KEY_yen
 See: https://docs.gtk.org/gdk4/const.KEY_yen.html")
 
 
-(rt:define-gconstant +key-zerosubscript+ 16785536 "
-C: GDK_KEY_zerosubscript
+(rt:define-gconstant +key-zerosubscript+ 16785536 "C: GDK_KEY_zerosubscript
 See: https://docs.gtk.org/gdk4/const.KEY_zerosubscript.html")
 
 
-(rt:define-gconstant +key-zerosuperior+ 16785520 "
-C: GDK_KEY_zerosuperior
+(rt:define-gconstant +key-zerosuperior+ 16785520 "C: GDK_KEY_zerosuperior
 See: https://docs.gtk.org/gdk4/const.KEY_zerosuperior.html")
 
 
-(rt:define-gconstant +modifier-mask+ 469769999 "A mask covering all entries in `GdkModifierType`.
+(rt:define-gconstant +modifier-mask+ 469769999 "A mask covering all entries in `gdk:modifier-type`.
 
 C: GDK_MODIFIER_MASK
 See: https://docs.gtk.org/gdk4/const.MODIFIER_MASK.html")
@@ -11217,14 +9147,17 @@ See: https://docs.gtk.org/gdk4/const.PRIORITY_REDRAW.html")
 
 (rt:define-gclass app-launch-context (gio:app-launch-context)
                   (:gtype-name "GdkAppLaunchContext" :get-type "gdk_app_launch_context_get_type"
-                   :documentation "Handles launching an application in a graphical context.
+                   :c-name "GdkAppLaunchContext" :url
+                   "https://docs.gtk.org/gdk4/class.AppLaunchContext.html" :documentation
+                   "Handles launching an application in a graphical context.
 
 C: GdkAppLaunchContext
 See: https://docs.gtk.org/gdk4/class.AppLaunchContext.html"))
 
 
 (rt:define-gclass draw-context (rt:object)
-                  (:gtype-name "GdkDrawContext" :get-type "gdk_draw_context_get_type"
+                  (:gtype-name "GdkDrawContext" :get-type "gdk_draw_context_get_type" :c-name
+                   "GdkDrawContext" :url "https://docs.gtk.org/gdk4/class.DrawContext.html"
                    :documentation "Base class for objects implementing different rendering methods.
 
 C: GdkDrawContext
@@ -11232,7 +9165,8 @@ See: https://docs.gtk.org/gdk4/class.DrawContext.html"))
 
 
 (rt:define-gclass cairo-context (draw-context)
-                  (:gtype-name "GdkCairoContext" :get-type "gdk_cairo_context_get_type"
+                  (:gtype-name "GdkCairoContext" :get-type "gdk_cairo_context_get_type" :c-name
+                   "GdkCairoContext" :url "https://docs.gtk.org/gdk4/class.CairoContext.html"
                    :documentation "Represents the platform-specific draw context.
 
 C: GdkCairoContext
@@ -11240,7 +9174,9 @@ See: https://docs.gtk.org/gdk4/class.CairoContext.html"))
 
 
 (rt:define-gclass cicp-params (rt:object)
-                  (:gtype-name "GdkCicpParams" :get-type "gdk_cicp_params_get_type" :documentation
+                  (:gtype-name "GdkCicpParams" :get-type "gdk_cicp_params_get_type" :c-name
+                   "GdkCicpParams" :url "https://docs.gtk.org/gdk4/class.CicpParams.html"
+                   :documentation
                    "Contains the parameters that define a colorstate with cicp parameters.
 
 C: GdkCicpParams
@@ -11248,7 +9184,9 @@ See: https://docs.gtk.org/gdk4/class.CicpParams.html"))
 
 
 (rt:define-gclass clipboard (rt:object)
-                  (:gtype-name "GdkClipboard" :get-type "gdk_clipboard_get_type" :documentation
+                  (:gtype-name "GdkClipboard" :get-type "gdk_clipboard_get_type" :c-name
+                   "GdkClipboard" :url "https://docs.gtk.org/gdk4/class.Clipboard.html"
+                   :documentation
                    "Represents data shared between applications or inside an application.
 
 C: GdkClipboard
@@ -11257,7 +9195,8 @@ See: https://docs.gtk.org/gdk4/class.Clipboard.html"))
 
 (rt:define-gclass content-deserializer (rt:object gio:async-result)
                   (:gtype-name "GdkContentDeserializer" :get-type
-                   "gdk_content_deserializer_get_type" :documentation
+                   "gdk_content_deserializer_get_type" :c-name "GdkContentDeserializer" :url
+                   "https://docs.gtk.org/gdk4/class.ContentDeserializer.html" :documentation
                    "Deserializes content received via inter-application data transfers.
 
 C: GdkContentDeserializer
@@ -11266,7 +9205,8 @@ See: https://docs.gtk.org/gdk4/class.ContentDeserializer.html"))
 
 (rt:define-gclass content-provider (rt:object)
                   (:gtype-name "GdkContentProvider" :get-type "gdk_content_provider_get_type"
-                   :documentation
+                   :c-name "GdkContentProvider" :url
+                   "https://docs.gtk.org/gdk4/class.ContentProvider.html" :documentation
                    "Provides content for the clipboard or for drag-and-drop operations
 in a number of formats.
 
@@ -11276,14 +9216,17 @@ See: https://docs.gtk.org/gdk4/class.ContentProvider.html"))
 
 (rt:define-gclass content-serializer (rt:object gio:async-result)
                   (:gtype-name "GdkContentSerializer" :get-type "gdk_content_serializer_get_type"
-                   :documentation "Serializes content for inter-application data transfers.
+                   :c-name "GdkContentSerializer" :url
+                   "https://docs.gtk.org/gdk4/class.ContentSerializer.html" :documentation
+                   "Serializes content for inter-application data transfers.
 
 C: GdkContentSerializer
 See: https://docs.gtk.org/gdk4/class.ContentSerializer.html"))
 
 
 (rt:define-gclass cursor (rt:object)
-                  (:gtype-name "GdkCursor" :get-type "gdk_cursor_get_type" :documentation
+                  (:gtype-name "GdkCursor" :get-type "gdk_cursor_get_type" :c-name "GdkCursor" :url
+                   "https://docs.gtk.org/gdk4/class.Cursor.html" :documentation
                    "Used to create and destroy cursors.
 
 C: GdkCursor
@@ -11291,7 +9234,8 @@ See: https://docs.gtk.org/gdk4/class.Cursor.html"))
 
 
 (rt:define-gclass device (rt:object)
-                  (:gtype-name "GdkDevice" :get-type "gdk_device_get_type" :documentation
+                  (:gtype-name "GdkDevice" :get-type "gdk_device_get_type" :c-name "GdkDevice" :url
+                   "https://docs.gtk.org/gdk4/class.Device.html" :documentation
                    "Represents an input device, such as a keyboard, mouse or touchpad.
 
 C: GdkDevice
@@ -11299,23 +9243,26 @@ See: https://docs.gtk.org/gdk4/class.Device.html"))
 
 
 (rt:define-gclass device-pad nil
-                  (:gtype-name "GdkDevicePad" :get-type "gdk_device_pad_get_type" :documentation
-                   "An interface for tablet pad devices.
+                  (:gtype-name "GdkDevicePad" :get-type "gdk_device_pad_get_type" :c-name
+                   "GdkDevicePad" :url "https://docs.gtk.org/gdk4/iface.DevicePad.html"
+                   :documentation "An interface for tablet pad devices.
 
 C: GdkDevicePad
 See: https://docs.gtk.org/gdk4/iface.DevicePad.html"))
 
 
 (rt:define-gclass device-tool (rt:object)
-                  (:gtype-name "GdkDeviceTool" :get-type "gdk_device_tool_get_type" :documentation
-                   "A physical tool associated to a `GdkDevice`.
+                  (:gtype-name "GdkDeviceTool" :get-type "gdk_device_tool_get_type" :c-name
+                   "GdkDeviceTool" :url "https://docs.gtk.org/gdk4/class.DeviceTool.html"
+                   :documentation "A physical tool associated to a `gdk:device`.
 
 C: GdkDeviceTool
 See: https://docs.gtk.org/gdk4/class.DeviceTool.html"))
 
 
 (rt:define-gclass display (rt:object)
-                  (:gtype-name "GdkDisplay" :get-type "gdk_display_get_type" :documentation
+                  (:gtype-name "GdkDisplay" :get-type "gdk_display_get_type" :c-name "GdkDisplay"
+                   :url "https://docs.gtk.org/gdk4/class.Display.html" :documentation
                    "A representation of a workstation.
 
 C: GdkDisplay
@@ -11323,7 +9270,8 @@ See: https://docs.gtk.org/gdk4/class.Display.html"))
 
 
 (rt:define-gclass display-manager (rt:object)
-                  (:gtype-name "GdkDisplayManager" :get-type "gdk_display_manager_get_type"
+                  (:gtype-name "GdkDisplayManager" :get-type "gdk_display_manager_get_type" :c-name
+                   "GdkDisplayManager" :url "https://docs.gtk.org/gdk4/class.DisplayManager.html"
                    :documentation "Offers notification when displays appear or disappear.
 
 C: GdkDisplayManager
@@ -11331,15 +9279,17 @@ See: https://docs.gtk.org/gdk4/class.DisplayManager.html"))
 
 
 (rt:define-gclass paintable nil
-                  (:gtype-name "GdkPaintable" :get-type "gdk_paintable_get_type" :documentation
-                   "An interface for content that can be painted.
+                  (:gtype-name "GdkPaintable" :get-type "gdk_paintable_get_type" :c-name
+                   "GdkPaintable" :url "https://docs.gtk.org/gdk4/iface.Paintable.html"
+                   :documentation "An interface for content that can be painted.
 
 C: GdkPaintable
 See: https://docs.gtk.org/gdk4/iface.Paintable.html"))
 
 
 (rt:define-gclass texture (rt:object paintable gio:loadable-icon)
-                  (:gtype-name "GdkTexture" :get-type "gdk_texture_get_type" :documentation
+                  (:gtype-name "GdkTexture" :get-type "gdk_texture_get_type" :c-name "GdkTexture"
+                   :url "https://docs.gtk.org/gdk4/class.Texture.html" :documentation
                    "Refers to pixel data in various forms.
 
 C: GdkTexture
@@ -11347,8 +9297,9 @@ See: https://docs.gtk.org/gdk4/class.Texture.html"))
 
 
 (rt:define-gclass dmabuf-texture (texture)
-                  (:gtype-name "GdkDmabufTexture" :get-type "gdk_dmabuf_texture_get_type"
-                   :documentation "A `GdkTexture` representing a DMA buffer.
+                  (:gtype-name "GdkDmabufTexture" :get-type "gdk_dmabuf_texture_get_type" :c-name
+                   "GdkDmabufTexture" :url "https://docs.gtk.org/gdk4/class.DmabufTexture.html"
+                   :documentation "A `gdk:texture` representing a DMA buffer.
 
 C: GdkDmabufTexture
 See: https://docs.gtk.org/gdk4/class.DmabufTexture.html"))
@@ -11356,15 +9307,17 @@ See: https://docs.gtk.org/gdk4/class.DmabufTexture.html"))
 
 (rt:define-gclass dmabuf-texture-builder (rt:object)
                   (:gtype-name "GdkDmabufTextureBuilder" :get-type
-                   "gdk_dmabuf_texture_builder_get_type" :documentation
-                   "Constructs Gdk.Texture objects from DMA buffers.
+                   "gdk_dmabuf_texture_builder_get_type" :c-name "GdkDmabufTextureBuilder" :url
+                   "https://docs.gtk.org/gdk4/class.DmabufTextureBuilder.html" :documentation
+                   "Constructs `gdk:texture` objects from DMA buffers.
 
 C: GdkDmabufTextureBuilder
 See: https://docs.gtk.org/gdk4/class.DmabufTextureBuilder.html"))
 
 
 (rt:define-gclass drag (rt:object)
-                  (:gtype-name "GdkDrag" :get-type "gdk_drag_get_type" :documentation
+                  (:gtype-name "GdkDrag" :get-type "gdk_drag_get_type" :c-name "GdkDrag" :url
+                   "https://docs.gtk.org/gdk4/class.Drag.html" :documentation
                    "Represents the source of an ongoing DND operation.
 
 C: GdkDrag
@@ -11372,7 +9325,8 @@ See: https://docs.gtk.org/gdk4/class.Drag.html"))
 
 
 (rt:define-gclass surface (rt:object)
-                  (:gtype-name "GdkSurface" :get-type "gdk_surface_get_type" :documentation
+                  (:gtype-name "GdkSurface" :get-type "gdk_surface_get_type" :c-name "GdkSurface"
+                   :url "https://docs.gtk.org/gdk4/class.Surface.html" :documentation
                    "Represents a rectangular region on the screen.
 
 C: GdkSurface
@@ -11380,7 +9334,8 @@ See: https://docs.gtk.org/gdk4/class.Surface.html"))
 
 
 (rt:define-gclass drag-surface nil
-                  (:gtype-name "GdkDragSurface" :get-type "gdk_drag_surface_get_type"
+                  (:gtype-name "GdkDragSurface" :get-type "gdk_drag_surface_get_type" :c-name
+                   "GdkDragSurface" :url "https://docs.gtk.org/gdk4/iface.DragSurface.html"
                    :documentation "A surface that is used during DND.
 
 C: GdkDragSurface
@@ -11388,7 +9343,8 @@ See: https://docs.gtk.org/gdk4/iface.DragSurface.html"))
 
 
 (rt:define-gclass drop (rt:object)
-                  (:gtype-name "GdkDrop" :get-type "gdk_drop_get_type" :documentation
+                  (:gtype-name "GdkDrop" :get-type "gdk_drop_get_type" :c-name "GdkDrop" :url
+                   "https://docs.gtk.org/gdk4/class.Drop.html" :documentation
                    "Represents the target of an ongoing DND operation.
 
 C: GdkDrop
@@ -11396,24 +9352,27 @@ See: https://docs.gtk.org/gdk4/class.Drop.html"))
 
 
 (rt:define-gclass frame-clock (rt:object)
-                  (:gtype-name "GdkFrameClock" :get-type "gdk_frame_clock_get_type" :documentation
-                   "Tells the application when to update and repaint a surface.
+                  (:gtype-name "GdkFrameClock" :get-type "gdk_frame_clock_get_type" :c-name
+                   "GdkFrameClock" :url "https://docs.gtk.org/gdk4/class.FrameClock.html"
+                   :documentation "Tells the application when to update and repaint a surface.
 
 C: GdkFrameClock
 See: https://docs.gtk.org/gdk4/class.FrameClock.html"))
 
 
 (rt:define-gclass gl-context (draw-context)
-                  (:gtype-name "GdkGLContext" :get-type "gdk_gl_context_get_type" :documentation
-                   "Represents a platform-specific OpenGL draw context.
+                  (:gtype-name "GdkGLContext" :get-type "gdk_gl_context_get_type" :c-name
+                   "GdkGLContext" :url "https://docs.gtk.org/gdk4/class.GLContext.html"
+                   :documentation "Represents a platform-specific OpenGL draw context.
 
 C: GdkGLContext
 See: https://docs.gtk.org/gdk4/class.GLContext.html"))
 
 
 (rt:define-gclass gl-texture (texture)
-                  (:gtype-name "GdkGLTexture" :get-type "gdk_gl_texture_get_type" :documentation
-                   "A `GdkTexture` representing a GL texture object.
+                  (:gtype-name "GdkGLTexture" :get-type "gdk_gl_texture_get_type" :c-name
+                   "GdkGLTexture" :url "https://docs.gtk.org/gdk4/class.GLTexture.html"
+                   :documentation "A `gdk:texture` representing a GL texture object.
 
 C: GdkGLTexture
 See: https://docs.gtk.org/gdk4/class.GLTexture.html"))
@@ -11421,15 +9380,18 @@ See: https://docs.gtk.org/gdk4/class.GLTexture.html"))
 
 (rt:define-gclass gl-texture-builder (rt:object)
                   (:gtype-name "GdkGLTextureBuilder" :get-type "gdk_gl_texture_builder_get_type"
-                   :documentation "Constructs Gdk.Texture objects from GL textures.
+                   :c-name "GdkGLTextureBuilder" :url
+                   "https://docs.gtk.org/gdk4/class.GLTextureBuilder.html" :documentation
+                   "Constructs `gdk:texture` objects from GL textures.
 
 C: GdkGLTextureBuilder
 See: https://docs.gtk.org/gdk4/class.GLTextureBuilder.html"))
 
 
 (rt:define-gclass memory-texture (texture)
-                  (:gtype-name "GdkMemoryTexture" :get-type "gdk_memory_texture_get_type"
-                   :documentation "A `GdkTexture` representing image data in memory.
+                  (:gtype-name "GdkMemoryTexture" :get-type "gdk_memory_texture_get_type" :c-name
+                   "GdkMemoryTexture" :url "https://docs.gtk.org/gdk4/class.MemoryTexture.html"
+                   :documentation "A `gdk:texture` representing image data in memory.
 
 C: GdkMemoryTexture
 See: https://docs.gtk.org/gdk4/class.MemoryTexture.html"))
@@ -11437,24 +9399,27 @@ See: https://docs.gtk.org/gdk4/class.MemoryTexture.html"))
 
 (rt:define-gclass memory-texture-builder (rt:object)
                   (:gtype-name "GdkMemoryTextureBuilder" :get-type
-                   "gdk_memory_texture_builder_get_type" :documentation
-                   "Constructs Gdk.Texture objects from system memory provided
-via GLib.Bytes.
+                   "gdk_memory_texture_builder_get_type" :c-name "GdkMemoryTextureBuilder" :url
+                   "https://docs.gtk.org/gdk4/class.MemoryTextureBuilder.html" :documentation
+                   "Constructs `gdk:texture` objects from system memory provided
+via `glib:bytes`.
 
 C: GdkMemoryTextureBuilder
 See: https://docs.gtk.org/gdk4/class.MemoryTextureBuilder.html"))
 
 
 (rt:define-gclass monitor (rt:object)
-                  (:gtype-name "GdkMonitor" :get-type "gdk_monitor_get_type" :documentation
-                   "Represents the individual outputs that are associated with a `GdkDisplay`.
+                  (:gtype-name "GdkMonitor" :get-type "gdk_monitor_get_type" :c-name "GdkMonitor"
+                   :url "https://docs.gtk.org/gdk4/class.Monitor.html" :documentation
+                   "Represents the individual outputs that are associated with a `gdk:display`.
 
 C: GdkMonitor
 See: https://docs.gtk.org/gdk4/class.Monitor.html"))
 
 
 (rt:define-gclass popup nil
-                  (:gtype-name "GdkPopup" :get-type "gdk_popup_get_type" :documentation
+                  (:gtype-name "GdkPopup" :get-type "gdk_popup_get_type" :c-name "GdkPopup" :url
+                   "https://docs.gtk.org/gdk4/iface.Popup.html" :documentation
                    "A surface that is attached to another surface.
 
 C: GdkPopup
@@ -11462,7 +9427,8 @@ See: https://docs.gtk.org/gdk4/iface.Popup.html"))
 
 
 (rt:define-gclass seat (rt:object)
-                  (:gtype-name "GdkSeat" :get-type "gdk_seat_get_type" :documentation
+                  (:gtype-name "GdkSeat" :get-type "gdk_seat_get_type" :c-name "GdkSeat" :url
+                   "https://docs.gtk.org/gdk4/class.Seat.html" :documentation
                    "Represents a collection of input devices that belong to a user.
 
 C: GdkSeat
@@ -11470,23 +9436,26 @@ See: https://docs.gtk.org/gdk4/class.Seat.html"))
 
 
 (rt:define-gclass snapshot (rt:object)
-                  (:gtype-name "GdkSnapshot" :get-type "gdk_snapshot_get_type" :documentation
-                   "Base type for snapshot operations.
+                  (:gtype-name "GdkSnapshot" :get-type "gdk_snapshot_get_type" :c-name
+                   "GdkSnapshot" :url "https://docs.gtk.org/gdk4/class.Snapshot.html"
+                   :documentation "Base type for snapshot operations.
 
 C: GdkSnapshot
 See: https://docs.gtk.org/gdk4/class.Snapshot.html"))
 
 
 (rt:define-gclass toplevel nil
-                  (:gtype-name "GdkToplevel" :get-type "gdk_toplevel_get_type" :documentation
-                   "A freestanding toplevel surface.
+                  (:gtype-name "GdkToplevel" :get-type "gdk_toplevel_get_type" :c-name
+                   "GdkToplevel" :url "https://docs.gtk.org/gdk4/iface.Toplevel.html"
+                   :documentation "A freestanding toplevel surface.
 
 C: GdkToplevel
 See: https://docs.gtk.org/gdk4/iface.Toplevel.html"))
 
 
 (rt:define-gclass vulkan-context (draw-context)
-                  (:gtype-name "GdkVulkanContext" :get-type "gdk_vulkan_context_get_type"
+                  (:gtype-name "GdkVulkanContext" :get-type "gdk_vulkan_context_get_type" :c-name
+                   "GdkVulkanContext" :url "https://docs.gtk.org/gdk4/class.VulkanContext.html"
                    :documentation "Represents the platform-specific Vulkan draw context.
 
 C: GdkVulkanContext
@@ -11496,7 +9465,8 @@ See: https://docs.gtk.org/gdk4/class.VulkanContext.html"))
 
 
 (rt:define-grecord color-state
-                   (:gtype-name "GdkColorState" :documentation
+                   (:gtype-name "GdkColorState" :c-name "GdkColorState" :url
+                    "https://docs.gtk.org/gdk4/struct.ColorState.html" :documentation
                     "Provides information to interpret colors and pixels in a variety of ways.
 
 C: GdkColorState
@@ -11504,7 +9474,8 @@ See: https://docs.gtk.org/gdk4/struct.ColorState.html"))
 
 
 (rt:define-grecord content-formats
-                   (:gtype-name "GdkContentFormats" :documentation
+                   (:gtype-name "GdkContentFormats" :c-name "GdkContentFormats" :url
+                    "https://docs.gtk.org/gdk4/struct.ContentFormats.html" :documentation
                     "Used to advertise and negotiate the format of content.
 
 C: GdkContentFormats
@@ -11512,15 +9483,17 @@ See: https://docs.gtk.org/gdk4/struct.ContentFormats.html"))
 
 
 (rt:define-grecord content-formats-builder
-                   (:gtype-name "GdkContentFormatsBuilder" :documentation
-                    "Creates `GdkContentFormats` objects.
+                   (:gtype-name "GdkContentFormatsBuilder" :c-name "GdkContentFormatsBuilder" :url
+                    "https://docs.gtk.org/gdk4/struct.ContentFormatsBuilder.html" :documentation
+                    "Creates `gdk:content-formats` objects.
 
 C: GdkContentFormatsBuilder
 See: https://docs.gtk.org/gdk4/struct.ContentFormatsBuilder.html"))
 
 
 (rt:define-grecord dmabuf-formats
-                   (:gtype-name "GdkDmabufFormats" :documentation
+                   (:gtype-name "GdkDmabufFormats" :c-name "GdkDmabufFormats" :url
+                    "https://docs.gtk.org/gdk4/struct.DmabufFormats.html" :documentation
                     "Provides information about supported DMA buffer formats.
 
 C: GdkDmabufFormats
@@ -11528,7 +9501,8 @@ See: https://docs.gtk.org/gdk4/struct.DmabufFormats.html"))
 
 
 (rt:define-grecord drag-surface-size
-                   (:gtype-name "GdkDragSurfaceSize" :documentation
+                   (:gtype-name "GdkDragSurfaceSize" :c-name "GdkDragSurfaceSize" :url
+                    "https://docs.gtk.org/gdk4/struct.DragSurfaceSize.html" :documentation
                     "Contains information that is useful to compute the size of a drag surface.
 
 C: GdkDragSurfaceSize
@@ -11536,7 +9510,8 @@ See: https://docs.gtk.org/gdk4/struct.DragSurfaceSize.html"))
 
 
 (rt:define-grecord event-sequence
-                   (:gtype-name "GdkEventSequence" :documentation
+                   (:gtype-name "GdkEventSequence" :c-name "GdkEventSequence" :url
+                    "https://docs.gtk.org/gdk4/struct.EventSequence.html" :documentation
                     "An opaque type representing a sequence of related events.
 
 C: GdkEventSequence
@@ -11544,7 +9519,8 @@ See: https://docs.gtk.org/gdk4/struct.EventSequence.html"))
 
 
 (rt:define-grecord file-list
-                   (:gtype-name "GdkFileList" :documentation
+                   (:gtype-name "GdkFileList" :c-name "GdkFileList" :url
+                    "https://docs.gtk.org/gdk4/struct.FileList.html" :documentation
                     "An opaque type representing a list of files.
 
 C: GdkFileList
@@ -11552,7 +9528,8 @@ See: https://docs.gtk.org/gdk4/struct.FileList.html"))
 
 
 (rt:define-grecord frame-timings
-                   (:gtype-name "GdkFrameTimings" :documentation
+                   (:gtype-name "GdkFrameTimings" :c-name "GdkFrameTimings" :url
+                    "https://docs.gtk.org/gdk4/struct.FrameTimings.html" :documentation
                     "Holds timing information for a single frame of the application’s displays.
 
 C: GdkFrameTimings
@@ -11560,8 +9537,9 @@ See: https://docs.gtk.org/gdk4/struct.FrameTimings.html"))
 
 
 (rt:define-grecord popup-layout
-                   (:gtype-name "GdkPopupLayout" :documentation
-                    "Contains information that is necessary position a Gdk.Popup
+                   (:gtype-name "GdkPopupLayout" :c-name "GdkPopupLayout" :url
+                    "https://docs.gtk.org/gdk4/struct.PopupLayout.html" :documentation
+                    "Contains information that is necessary position a `gdk:popup`
 relative to its parent.
 
 C: GdkPopupLayout
@@ -11569,7 +9547,8 @@ See: https://docs.gtk.org/gdk4/struct.PopupLayout.html"))
 
 
 (rt:define-grecord rgba
-                   (:gtype-name "GdkRGBA" :documentation
+                   (:gtype-name "GdkRGBA" :c-name "GdkRGBA" :url
+                    "https://docs.gtk.org/gdk4/struct.RGBA.html" :documentation
                     "Represents a color, in a way that is compatible with cairo’s notion of color.
 
 C: GdkRGBA
@@ -11577,22 +9556,26 @@ See: https://docs.gtk.org/gdk4/struct.RGBA.html"))
 
 
 (rt:define-grecord rectangle
-                   (:gtype-name "GdkRectangle" :documentation "Represents a rectangle.
+                   (:gtype-name "GdkRectangle" :c-name "GdkRectangle" :url
+                    "https://docs.gtk.org/gdk4/struct.Rectangle.html" :documentation
+                    "Represents a rectangle.
 
 C: GdkRectangle
 See: https://docs.gtk.org/gdk4/struct.Rectangle.html"))
 
 
 (rt:define-grecord texture-downloader
-                   (:gtype-name "GdkTextureDownloader" :documentation
-                    "Used to download the contents of a Gdk.Texture.
+                   (:gtype-name "GdkTextureDownloader" :c-name "GdkTextureDownloader" :url
+                    "https://docs.gtk.org/gdk4/struct.TextureDownloader.html" :documentation
+                    "Used to download the contents of a `gdk:texture`.
 
 C: GdkTextureDownloader
 See: https://docs.gtk.org/gdk4/struct.TextureDownloader.html"))
 
 
 (rt:define-grecord toplevel-layout
-                   (:gtype-name "GdkToplevelLayout" :documentation
+                   (:gtype-name "GdkToplevelLayout" :c-name "GdkToplevelLayout" :url
+                    "https://docs.gtk.org/gdk4/struct.ToplevelLayout.html" :documentation
                     "Contains information that is necessary to present a sovereign
 window on screen.
 
@@ -11601,7 +9584,8 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelLayout.html"))
 
 
 (rt:define-grecord toplevel-size
-                   (:gtype-name "GdkToplevelSize" :documentation
+                   (:gtype-name "GdkToplevelSize" :c-name "GdkToplevelSize" :url
+                    "https://docs.gtk.org/gdk4/struct.ToplevelSize.html" :documentation
                     "Contains information that is useful to compute the size of a toplevel.
 
 C: GdkToplevelSize
@@ -11620,7 +9604,9 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 (rt:define-gfield keymap-key-keycode keymap-key :keycode :uint :writable t :documentation
                   "the hardware keycode. This is an identifying number for a
   physical key.
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.KeymapKey.html")
 
 
 (rt:define-gfield keymap-key-group keymap-key :group :int :writable t :documentation
@@ -11628,7 +9614,9 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
   for two different languages. In group 0, a key might have two English
   characters, and in group 1 it might have two Hebrew characters. The Hebrew
   characters will be printed on the key next to the English characters.
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.KeymapKey.html")
 
 
 (rt:define-gfield keymap-key-level keymap-key :level :int :writable t :documentation
@@ -11638,7 +9626,9 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
   the “1” or the “!” symbol. The letter keys are considered to have a lowercase
   letter at level 0, and an uppercase letter at level 1, though only the
   uppercase letter is printed.
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.KeymapKey.html")
 
 
 (rt:define-gstruct-constructor make-keymap-key (:record keymap-key)
@@ -11657,23 +9647,31 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 
 (rt:define-gfield rgba-red rgba :red :float :writable t :documentation
                   "The intensity of the red channel from 0.0 to 1.0 inclusive
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.RGBA.html")
 
 
 (rt:define-gfield rgba-green rgba :green :float :writable t :documentation
                   "The intensity of the green channel from 0.0 to 1.0 inclusive
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.RGBA.html")
 
 
 (rt:define-gfield rgba-blue rgba :blue :float :writable t :documentation
                   "The intensity of the blue channel from 0.0 to 1.0 inclusive
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.RGBA.html")
 
 
 (rt:define-gfield rgba-alpha rgba :alpha :float :writable t :documentation
                   "The opacity of the color from 0.0 for completely translucent to
   1.0 for opaque
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.RGBA.html")
 
 
 (rt:define-gstruct-constructor make-rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)
@@ -11692,22 +9690,30 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 
 (rt:define-gfield rectangle-x rectangle :x :int :writable t :documentation
                   "the x coordinate of the top left corner
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-y rectangle :y :int :writable t :documentation
                   "the y coordinate of the top left corner
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-width rectangle :width :int :writable t :documentation
                   "the width of the rectangle
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-height rectangle :height :int :writable t :documentation
                   "the height of the rectangle
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.Rectangle.html")
 
 
 (rt:define-gstruct-constructor make-rectangle
@@ -11726,12 +9732,16 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 
 (rt:define-gfield time-coord-time time-coord :time :uint32 :writable t :documentation
                   "The timestamp for this event
-")
+
+
+See: https://docs.gtk.org/gdk4/struct.TimeCoord.html")
 
 
 (rt:define-gfield time-coord-flags time-coord :flags (:flags axis-flags) :writable t :documentation
-                  "Flags indicating what axes are present, see Gdk.AxisFlags
-")
+                  "Flags indicating what axes are present, see `gdk:axis-flags`
+
+
+See: https://docs.gtk.org/gdk4/struct.TimeCoord.html")
 
 
 (rt:define-gstruct-constructor make-time-coord (:record time-coord)
@@ -11744,27 +9754,31 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 
 (rt:define-gproperty app-launch-context-display "display"
                      (:readable t :writable nil :documentation
-                      "The display that the `GdkAppLaunchContext` is on.
+                      "The display that the `gdk:app-launch-context` is on.
+
 
 See: https://docs.gtk.org/gdk4/property.AppLaunchContext.display.html"))
 
 
 (rt:define-gproperty draw-context-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` used to create the `GdkDrawContext`.
+                      "The `gdk:display` used to create the `gdk:draw-context`.
+
 
 See: https://docs.gtk.org/gdk4/property.DrawContext.display.html"))
 
 
 (rt:define-gproperty draw-context-surface "surface"
                      (:readable t :writable nil :documentation
-                      "The `GdkSurface` the context is bound to.
+                      "The `gdk:surface` the context is bound to.
+
 
 See: https://docs.gtk.org/gdk4/property.DrawContext.surface.html"))
 
 
 (rt:define-gproperty cicp-params-color-primaries "color-primaries"
                      (:readable t :writable t :documentation "The color primaries to use.
+
 
 See: https://docs.gtk.org/gdk4/property.CicpParams.color-primaries.html"))
 
@@ -11773,6 +9787,7 @@ See: https://docs.gtk.org/gdk4/property.CicpParams.color-primaries.html"))
                      (:readable t :writable t :documentation
                       "The matrix coefficients (for YUV to RGB conversion).
 
+
 See: https://docs.gtk.org/gdk4/property.CicpParams.matrix-coefficients.html"))
 
 
@@ -11780,26 +9795,30 @@ See: https://docs.gtk.org/gdk4/property.CicpParams.matrix-coefficients.html"))
                      (:readable t :writable t :documentation
                       "Whether the data is using the full range of values.
 
+
 See: https://docs.gtk.org/gdk4/property.CicpParams.range.html"))
 
 
 (rt:define-gproperty cicp-params-transfer-function "transfer-function"
                      (:readable t :writable t :documentation "The transfer function to use.
 
+
 See: https://docs.gtk.org/gdk4/property.CicpParams.transfer-function.html"))
 
 
 (rt:define-gproperty clipboard-content "content"
                      (:readable t :writable nil :documentation
-                      "The `GdkContentProvider` or NIL if the clipboard is empty or contents are
+                      "The `gdk:content-provider` or NIL if the clipboard is empty or contents are
 provided otherwise.
+
 
 See: https://docs.gtk.org/gdk4/property.Clipboard.content.html"))
 
 
 (rt:define-gproperty clipboard-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` that the clipboard belongs to.
+                      "The `gdk:display` that the clipboard belongs to.
+
 
 See: https://docs.gtk.org/gdk4/property.Clipboard.display.html"))
 
@@ -11808,12 +9827,14 @@ See: https://docs.gtk.org/gdk4/property.Clipboard.display.html"))
                      (:readable t :writable nil :documentation
                       "The possible formats that the clipboard can provide its data in.
 
+
 See: https://docs.gtk.org/gdk4/property.Clipboard.formats.html"))
 
 
 (rt:define-gproperty clipboard-local "local"
                      (:readable t :writable nil :documentation
-                      "true if the contents of the clipboard are owned by this process.
+                      "T if the contents of the clipboard are owned by this process.
+
 
 See: https://docs.gtk.org/gdk4/property.Clipboard.local.html"))
 
@@ -11822,12 +9843,14 @@ See: https://docs.gtk.org/gdk4/property.Clipboard.local.html"))
                      (:readable t :writable nil :documentation
                       "The possible formats that the provider can provide its data in.
 
+
 See: https://docs.gtk.org/gdk4/property.ContentProvider.formats.html"))
 
 
 (rt:define-gproperty content-provider-storable-formats "storable-formats"
                      (:readable t :writable nil :documentation
                       "The subset of formats that clipboard managers should store this provider's data in.
+
 
 See: https://docs.gtk.org/gdk4/property.ContentProvider.storable-formats.html"))
 
@@ -11836,12 +9859,14 @@ See: https://docs.gtk.org/gdk4/property.ContentProvider.storable-formats.html"))
                      (:readable t :writable nil :documentation
                       "Cursor to fall back to if this cursor cannot be displayed.
 
+
 See: https://docs.gtk.org/gdk4/property.Cursor.fallback.html"))
 
 
 (rt:define-gproperty cursor-hotspot-x "hotspot-x"
                      (:readable t :writable nil :documentation
                       "X position of the cursor hotspot in the cursor image.
+
 
 See: https://docs.gtk.org/gdk4/property.Cursor.hotspot-x.html"))
 
@@ -11850,11 +9875,13 @@ See: https://docs.gtk.org/gdk4/property.Cursor.hotspot-x.html"))
                      (:readable t :writable nil :documentation
                       "Y position of the cursor hotspot in the cursor image.
 
+
 See: https://docs.gtk.org/gdk4/property.Cursor.hotspot-y.html"))
 
 
 (rt:define-gproperty cursor-name "name"
                      (:readable t :writable nil :documentation "Name of this this cursor.
+
 
 See: https://docs.gtk.org/gdk4/property.Cursor.name.html"))
 
@@ -11863,12 +9890,14 @@ See: https://docs.gtk.org/gdk4/property.Cursor.name.html"))
                      (:readable t :writable nil :documentation
                       "The texture displayed by this cursor.
 
+
 See: https://docs.gtk.org/gdk4/property.Cursor.texture.html"))
 
 
 (rt:define-gproperty device-active-layout-index "active-layout-index"
                      (:readable t :writable nil :documentation
-                      "The index of the keyboard active layout of a `GdkDevice`.
+                      "The index of the keyboard active layout of a `gdk:device`.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.active-layout-index.html"))
 
@@ -11876,18 +9905,21 @@ See: https://docs.gtk.org/gdk4/property.Device.active-layout-index.html"))
 (rt:define-gproperty device-caps-lock-state "caps-lock-state"
                      (:readable t :writable nil :documentation "Whether Caps Lock is on.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.caps-lock-state.html"))
 
 
 (rt:define-gproperty device-direction "direction"
                      (:readable t :writable nil :documentation "The direction of the current layout.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.direction.html"))
 
 
 (rt:define-gproperty device-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` the `GdkDevice` pertains to.
+                      "The `gdk:display` the `gdk:device` pertains to.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.display.html"))
 
@@ -11896,12 +9928,14 @@ See: https://docs.gtk.org/gdk4/property.Device.display.html"))
                      (:readable t :writable nil :documentation
                       "Whether the device is represented by a cursor on the screen.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.has-cursor.html"))
 
 
 (rt:define-gproperty device-layout-names "layout-names"
                      (:readable t :writable nil :documentation
-                      "The names of the keyboard layouts of a `GdkDevice`.
+                      "The names of the keyboard layouts of a `gdk:device`.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.layout-names.html"))
 
@@ -11910,11 +9944,13 @@ See: https://docs.gtk.org/gdk4/property.Device.layout-names.html"))
                      (:readable t :writable nil :documentation
                       "The current modifier state of the device.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.modifier-state.html"))
 
 
 (rt:define-gproperty device-n-axes "n-axes"
                      (:readable t :writable nil :documentation "Number of axes in the device.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.n-axes.html"))
 
@@ -11922,11 +9958,13 @@ See: https://docs.gtk.org/gdk4/property.Device.n-axes.html"))
 (rt:define-gproperty device-name "name"
                      (:readable t :writable nil :documentation "The device name.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.name.html"))
 
 
 (rt:define-gproperty device-num-lock-state "num-lock-state"
                      (:readable t :writable nil :documentation "Whether Num Lock is on.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.num-lock-state.html"))
 
@@ -11935,11 +9973,13 @@ See: https://docs.gtk.org/gdk4/property.Device.num-lock-state.html"))
                      (:readable t :writable nil :documentation
                       "The maximal number of concurrent touches on a touch device.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.num-touches.html"))
 
 
 (rt:define-gproperty device-product-id "product-id"
                      (:readable t :writable nil :documentation "Product ID of this device.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.product-id.html"))
 
@@ -11947,11 +9987,13 @@ See: https://docs.gtk.org/gdk4/property.Device.product-id.html"))
 (rt:define-gproperty device-scroll-lock-state "scroll-lock-state"
                      (:readable t :writable nil :documentation "Whether Scroll Lock is on.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.scroll-lock-state.html"))
 
 
 (rt:define-gproperty device-seat "seat"
-                     (:readable t :writable t :documentation "`GdkSeat` of this device.
+                     (:readable t :writable t :documentation "`gdk:seat` of this device.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.seat.html"))
 
@@ -11959,12 +10001,14 @@ See: https://docs.gtk.org/gdk4/property.Device.seat.html"))
 (rt:define-gproperty device-source "source"
                      (:readable t :writable nil :documentation "Source type for the device.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.source.html"))
 
 
 (rt:define-gproperty device-tool "tool"
                      (:readable t :writable nil :documentation
-                      "The `GdkDeviceTool` that is currently used with this device.
+                      "The `gdk:device-tool` that is currently used with this device.
+
 
 See: https://docs.gtk.org/gdk4/property.Device.tool.html"))
 
@@ -11972,11 +10016,13 @@ See: https://docs.gtk.org/gdk4/property.Device.tool.html"))
 (rt:define-gproperty device-vendor-id "vendor-id"
                      (:readable t :writable nil :documentation "Vendor ID of this device.
 
+
 See: https://docs.gtk.org/gdk4/property.Device.vendor-id.html"))
 
 
 (rt:define-gproperty device-tool-axes "axes"
                      (:readable t :writable nil :documentation "The axes of the tool.
+
 
 See: https://docs.gtk.org/gdk4/property.DeviceTool.axes.html"))
 
@@ -11984,11 +10030,13 @@ See: https://docs.gtk.org/gdk4/property.DeviceTool.axes.html"))
 (rt:define-gproperty device-tool-hardware-id "hardware-id"
                      (:readable t :writable nil :documentation "The hardware ID of the tool.
 
+
 See: https://docs.gtk.org/gdk4/property.DeviceTool.hardware-id.html"))
 
 
 (rt:define-gproperty device-tool-serial "serial"
                      (:readable t :writable nil :documentation "The serial number of the tool.
+
 
 See: https://docs.gtk.org/gdk4/property.DeviceTool.serial.html"))
 
@@ -11996,12 +10044,14 @@ See: https://docs.gtk.org/gdk4/property.DeviceTool.serial.html"))
 (rt:define-gproperty device-tool-tool-type "tool-type"
                      (:readable t :writable nil :documentation "The type of the tool.
 
+
 See: https://docs.gtk.org/gdk4/property.DeviceTool.tool-type.html"))
 
 
 (rt:define-gproperty display-composited "composited"
                      (:readable t :writable nil :documentation
-                      "true if the display properly composites the alpha channel.
+                      "T if the display properly composites the alpha channel.
+
 
 See: https://docs.gtk.org/gdk4/property.Display.composited.html"))
 
@@ -12010,26 +10060,30 @@ See: https://docs.gtk.org/gdk4/property.Display.composited.html"))
                      (:readable t :writable nil :documentation
                       "The dma-buf formats that are supported on this display
 
+
 See: https://docs.gtk.org/gdk4/property.Display.dmabuf-formats.html"))
 
 
 (rt:define-gproperty display-input-shapes "input-shapes"
                      (:readable t :writable nil :documentation
-                      "true if the display supports input shapes.
+                      "T if the display supports input shapes.
+
 
 See: https://docs.gtk.org/gdk4/property.Display.input-shapes.html"))
 
 
 (rt:define-gproperty display-rgba "rgba"
                      (:readable t :writable nil :documentation
-                      "true if the display supports an alpha channel.
+                      "T if the display supports an alpha channel.
+
 
 See: https://docs.gtk.org/gdk4/property.Display.rgba.html"))
 
 
 (rt:define-gproperty display-shadow-width "shadow-width"
                      (:readable t :writable nil :documentation
-                      "true if the display supports extensible frames.
+                      "T if the display supports extensible frames.
+
 
 See: https://docs.gtk.org/gdk4/property.Display.shadow-width.html"))
 
@@ -12037,11 +10091,13 @@ See: https://docs.gtk.org/gdk4/property.Display.shadow-width.html"))
 (rt:define-gproperty display-manager-default-display "default-display"
                      (:readable t :writable t :documentation "The default display.
 
+
 See: https://docs.gtk.org/gdk4/property.DisplayManager.default-display.html"))
 
 
 (rt:define-gproperty texture-color-state "color-state"
                      (:readable t :writable nil :documentation "The color state of the texture.
+
 
 See: https://docs.gtk.org/gdk4/property.Texture.color-state.html"))
 
@@ -12050,17 +10106,20 @@ See: https://docs.gtk.org/gdk4/property.Texture.color-state.html"))
                      (:readable t :writable nil :documentation
                       "The height of the texture, in pixels.
 
+
 See: https://docs.gtk.org/gdk4/property.Texture.height.html"))
 
 
 (rt:define-gproperty texture-width "width"
                      (:readable t :writable nil :documentation "The width of the texture, in pixels.
 
+
 See: https://docs.gtk.org/gdk4/property.Texture.width.html"))
 
 
 (rt:define-gproperty dmabuf-texture-builder-color-state "color-state"
                      (:readable t :writable t :documentation "The color state of the texture.
+
 
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.color-state.html"))
 
@@ -12069,6 +10128,7 @@ See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.color-state.html"))
                      (:readable t :writable t :documentation
                       "The display that this texture will be used on.
 
+
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.display.html"))
 
 
@@ -12076,11 +10136,13 @@ See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.display.html"))
                      (:readable t :writable t :documentation
                       "The format of the texture, as a fourcc value.
 
+
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.fourcc.html"))
 
 
 (rt:define-gproperty dmabuf-texture-builder-height "height"
                      (:readable t :writable t :documentation "The height of the texture.
+
 
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.height.html"))
 
@@ -12088,11 +10150,13 @@ See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.height.html"))
 (rt:define-gproperty dmabuf-texture-builder-modifier "modifier"
                      (:readable t :writable t :documentation "The modifier.
 
+
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.modifier.html"))
 
 
 (rt:define-gproperty dmabuf-texture-builder-n-planes "n-planes"
                      (:readable t :writable t :documentation "The number of planes of the texture.
+
 
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.n-planes.html"))
 
@@ -12101,19 +10165,22 @@ See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.n-planes.html"))
                      (:readable t :writable t :documentation
                       "Whether the alpha channel is premultiplied into the others.
 
+
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.premultiplied.html"))
 
 
 (rt:define-gproperty dmabuf-texture-builder-update-region "update-region"
                      (:readable t :writable t :documentation
-                      "The update region for Gdk.DmabufTextureBuilder:update-texture.
+                      "The update region for `gdk:dmabuf-texture-builder-update-texture`.
+
 
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.update-region.html"))
 
 
 (rt:define-gproperty dmabuf-texture-builder-update-texture "update-texture"
                      (:readable t :writable t :documentation
-                      "The texture Gdk.DmabufTextureBuilder:update-region is an update for.
+                      "The texture `gdk:dmabuf-texture-builder-update-region` is an update for.
+
 
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.update-texture.html"))
 
@@ -12121,31 +10188,36 @@ See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.update-texture.html
 (rt:define-gproperty dmabuf-texture-builder-width "width"
                      (:readable t :writable t :documentation "The width of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.DmabufTextureBuilder.width.html"))
 
 
 (rt:define-gproperty drag-actions "actions"
                      (:readable t :writable t :documentation "The possible actions of this drag.
 
+
 See: https://docs.gtk.org/gdk4/property.Drag.actions.html"))
 
 
 (rt:define-gproperty drag-content "content"
-                     (:readable t :writable nil :documentation "The `GdkContentProvider`.
+                     (:readable t :writable nil :documentation "The `gdk:content-provider`.
+
 
 See: https://docs.gtk.org/gdk4/property.Drag.content.html"))
 
 
 (rt:define-gproperty drag-device "device"
                      (:readable t :writable nil :documentation
-                      "The `GdkDevice` that is performing the drag.
+                      "The `gdk:device` that is performing the drag.
+
 
 See: https://docs.gtk.org/gdk4/property.Drag.device.html"))
 
 
 (rt:define-gproperty drag-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` that the drag belongs to.
+                      "The `gdk:display` that the drag belongs to.
+
 
 See: https://docs.gtk.org/gdk4/property.Drag.display.html"))
 
@@ -12154,12 +10226,14 @@ See: https://docs.gtk.org/gdk4/property.Drag.display.html"))
                      (:readable t :writable nil :documentation
                       "The possible formats that the drag can provide its data in.
 
+
 See: https://docs.gtk.org/gdk4/property.Drag.formats.html"))
 
 
 (rt:define-gproperty drag-selected-action "selected-action"
                      (:readable t :writable t :documentation
                       "The currently selected action of the drag.
+
 
 See: https://docs.gtk.org/gdk4/property.Drag.selected-action.html"))
 
@@ -12168,25 +10242,30 @@ See: https://docs.gtk.org/gdk4/property.Drag.selected-action.html"))
                      (:readable t :writable nil :documentation
                       "The surface where the drag originates.
 
+
 See: https://docs.gtk.org/gdk4/property.Drag.surface.html"))
 
 
 (rt:define-gproperty surface-cursor "cursor"
                      (:readable t :writable t :documentation
-                      "The mouse pointer for the `GdkSurface`.
+                      "The mouse pointer for the `gdk:surface`.
+
 
 See: https://docs.gtk.org/gdk4/property.Surface.cursor.html"))
 
 
 (rt:define-gproperty surface-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` connection of the surface.
+                      "The `gdk:display` connection of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Surface.display.html"))
 
 
 (rt:define-gproperty surface-frame-clock "frame-clock"
-                     (:readable t :writable nil :documentation "The `GdkFrameClock` of the surface.
+                     (:readable t :writable nil :documentation
+                      "The `gdk:frame-clock` of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Surface.frame-clock.html"))
 
@@ -12195,11 +10274,13 @@ See: https://docs.gtk.org/gdk4/property.Surface.frame-clock.html"))
                      (:readable t :writable nil :documentation
                       "The height of the surface, in pixels.
 
+
 See: https://docs.gtk.org/gdk4/property.Surface.height.html"))
 
 
 (rt:define-gproperty surface-mapped "mapped"
                      (:readable t :writable nil :documentation "Whether the surface is mapped.
+
 
 See: https://docs.gtk.org/gdk4/property.Surface.mapped.html"))
 
@@ -12207,11 +10288,13 @@ See: https://docs.gtk.org/gdk4/property.Surface.mapped.html"))
 (rt:define-gproperty surface-scale "scale"
                      (:readable t :writable nil :documentation "The scale of the surface.
 
+
 See: https://docs.gtk.org/gdk4/property.Surface.scale.html"))
 
 
 (rt:define-gproperty surface-scale-factor "scale-factor"
                      (:readable t :writable nil :documentation "The scale factor of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Surface.scale-factor.html"))
 
@@ -12219,31 +10302,36 @@ See: https://docs.gtk.org/gdk4/property.Surface.scale-factor.html"))
 (rt:define-gproperty surface-width "width"
                      (:readable t :writable nil :documentation "The width of the surface in pixels.
 
+
 See: https://docs.gtk.org/gdk4/property.Surface.width.html"))
 
 
 (rt:define-gproperty drop-actions "actions"
                      (:readable t :writable nil :documentation "The possible actions for this drop
 
+
 See: https://docs.gtk.org/gdk4/property.Drop.actions.html"))
 
 
 (rt:define-gproperty drop-device "device"
-                     (:readable t :writable nil :documentation "The `GdkDevice` performing the drop
+                     (:readable t :writable nil :documentation "The `gdk:device` performing the drop
+
 
 See: https://docs.gtk.org/gdk4/property.Drop.device.html"))
 
 
 (rt:define-gproperty drop-display "display"
                      (:readable t :writable nil :documentation
-                      "The `GdkDisplay` that the drop belongs to.
+                      "The `gdk:display` that the drop belongs to.
+
 
 See: https://docs.gtk.org/gdk4/property.Drop.display.html"))
 
 
 (rt:define-gproperty drop-drag "drag"
                      (:readable t :writable nil :documentation
-                      "The `GdkDrag` that initiated this drop
+                      "The `gdk:drag` that initiated this drop
+
 
 See: https://docs.gtk.org/gdk4/property.Drop.drag.html"))
 
@@ -12252,11 +10340,14 @@ See: https://docs.gtk.org/gdk4/property.Drop.drag.html"))
                      (:readable t :writable nil :documentation
                       "The possible formats that the drop can provide its data in.
 
+
 See: https://docs.gtk.org/gdk4/property.Drop.formats.html"))
 
 
 (rt:define-gproperty drop-surface "surface"
-                     (:readable t :writable nil :documentation "The `GdkSurface` the drop happens on
+                     (:readable t :writable nil :documentation
+                      "The `gdk:surface` the drop happens on
+
 
 See: https://docs.gtk.org/gdk4/property.Drop.surface.html"))
 
@@ -12264,11 +10355,13 @@ See: https://docs.gtk.org/gdk4/property.Drop.surface.html"))
 (rt:define-gproperty gl-context-allowed-apis "allowed-apis"
                      (:readable t :writable t :documentation "The allowed APIs.
 
+
 See: https://docs.gtk.org/gdk4/property.GLContext.allowed-apis.html"))
 
 
 (rt:define-gproperty gl-context-api "api"
                      (:readable t :writable nil :documentation "The API currently in use.
+
 
 See: https://docs.gtk.org/gdk4/property.GLContext.api.html"))
 
@@ -12276,17 +10369,20 @@ See: https://docs.gtk.org/gdk4/property.GLContext.api.html"))
 (rt:define-gproperty gl-context-shared-context "shared-context"
                      (:readable t :writable nil :documentation "Always NIL
 
+
 See: https://docs.gtk.org/gdk4/property.GLContext.shared-context.html"))
 
 
 (rt:define-gproperty gl-texture-builder-color-state "color-state"
                      (:readable t :writable t :documentation "The color state of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.color-state.html"))
 
 
 (rt:define-gproperty gl-texture-builder-context "context"
                      (:readable t :writable t :documentation "The context owning the texture.
+
 
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.context.html"))
 
@@ -12295,11 +10391,13 @@ See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.context.html"))
                      (:readable t :writable t :documentation
                       "The format when downloading the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.format.html"))
 
 
 (rt:define-gproperty gl-texture-builder-has-mipmap "has-mipmap"
                      (:readable t :writable t :documentation "If the texture has a mipmap.
+
 
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.has-mipmap.html"))
 
@@ -12307,11 +10405,13 @@ See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.has-mipmap.html"))
 (rt:define-gproperty gl-texture-builder-height "height"
                      (:readable t :writable t :documentation "The height of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.height.html"))
 
 
 (rt:define-gproperty gl-texture-builder-id "id"
                      (:readable t :writable t :documentation "The texture ID to use.
+
 
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.id.html"))
 
@@ -12319,19 +10419,22 @@ See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.id.html"))
 (rt:define-gproperty gl-texture-builder-sync "sync"
                      (:readable t :writable t :documentation "An optional `GLSync` object.
 
+
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.sync.html"))
 
 
 (rt:define-gproperty gl-texture-builder-update-region "update-region"
                      (:readable t :writable t :documentation
-                      "The update region for Gdk.GLTextureBuilder:update-texture.
+                      "The update region for `gdk:gl-texture-builder-update-texture`.
+
 
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.update-region.html"))
 
 
 (rt:define-gproperty gl-texture-builder-update-texture "update-texture"
                      (:readable t :writable t :documentation
-                      "The texture Gdk.GLTextureBuilder:update-region is an update for.
+                      "The texture `gdk:gl-texture-builder-update-region` is an update for.
+
 
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.update-texture.html"))
 
@@ -12339,11 +10442,13 @@ See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.update-texture.html"))
 (rt:define-gproperty gl-texture-builder-width "width"
                      (:readable t :writable t :documentation "The width of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.GLTextureBuilder.width.html"))
 
 
 (rt:define-gproperty memory-texture-builder-bytes "bytes"
                      (:readable t :writable t :documentation "The bytes holding the data.
+
 
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.bytes.html"))
 
@@ -12351,11 +10456,13 @@ See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.bytes.html"))
 (rt:define-gproperty memory-texture-builder-color-state "color-state"
                      (:readable t :writable t :documentation "The colorstate describing the data.
 
+
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.color-state.html"))
 
 
 (rt:define-gproperty memory-texture-builder-format "format"
                      (:readable t :writable t :documentation "The format of the data.
+
 
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.format.html"))
 
@@ -12363,25 +10470,29 @@ See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.format.html"))
 (rt:define-gproperty memory-texture-builder-height "height"
                      (:readable t :writable t :documentation "The height of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.height.html"))
 
 
 (rt:define-gproperty memory-texture-builder-stride "stride"
                      (:readable t :writable t :documentation "The rowstride of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.stride.html"))
 
 
 (rt:define-gproperty memory-texture-builder-update-region "update-region"
                      (:readable t :writable t :documentation
-                      "The update region for Gdk.MemoryTextureBuilder:update-texture.
+                      "The update region for `gdk:memory-texture-builder-update-texture`.
+
 
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.update-region.html"))
 
 
 (rt:define-gproperty memory-texture-builder-update-texture "update-texture"
                      (:readable t :writable t :documentation
-                      "The texture Gdk.MemoryTextureBuilder:update-region is an update for.
+                      "The texture `gdk:memory-texture-builder-update-region` is an update for.
+
 
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.update-texture.html"))
 
@@ -12389,11 +10500,13 @@ See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.update-texture.html
 (rt:define-gproperty memory-texture-builder-width "width"
                      (:readable t :writable t :documentation "The width of the texture.
 
+
 See: https://docs.gtk.org/gdk4/property.MemoryTextureBuilder.width.html"))
 
 
 (rt:define-gproperty monitor-connector "connector"
                      (:readable t :writable nil :documentation "The connector name.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.connector.html"))
 
@@ -12402,17 +10515,20 @@ See: https://docs.gtk.org/gdk4/property.Monitor.connector.html"))
                      (:readable t :writable nil :documentation
                       "A short description of the monitor, meant for display to the user.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.description.html"))
 
 
 (rt:define-gproperty monitor-display "display"
-                     (:readable t :writable nil :documentation "The `GdkDisplay` of the monitor.
+                     (:readable t :writable nil :documentation "The `gdk:display` of the monitor.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.display.html"))
 
 
 (rt:define-gproperty monitor-geometry "geometry"
                      (:readable t :writable nil :documentation "The geometry of the monitor.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.geometry.html"))
 
@@ -12421,11 +10537,13 @@ See: https://docs.gtk.org/gdk4/property.Monitor.geometry.html"))
                      (:readable t :writable nil :documentation
                       "The height of the monitor, in millimeters.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.height-mm.html"))
 
 
 (rt:define-gproperty monitor-manufacturer "manufacturer"
                      (:readable t :writable nil :documentation "The manufacturer name.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.manufacturer.html"))
 
@@ -12433,11 +10551,13 @@ See: https://docs.gtk.org/gdk4/property.Monitor.manufacturer.html"))
 (rt:define-gproperty monitor-model "model"
                      (:readable t :writable nil :documentation "The model name.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.model.html"))
 
 
 (rt:define-gproperty monitor-refresh-rate "refresh-rate"
                      (:readable t :writable nil :documentation "The refresh rate, in milli-Hertz.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.refresh-rate.html"))
 
@@ -12445,11 +10565,13 @@ See: https://docs.gtk.org/gdk4/property.Monitor.refresh-rate.html"))
 (rt:define-gproperty monitor-scale "scale"
                      (:readable t :writable nil :documentation "The scale of the monitor.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.scale.html"))
 
 
 (rt:define-gproperty monitor-scale-factor "scale-factor"
                      (:readable t :writable nil :documentation "The scale factor.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.scale-factor.html"))
 
@@ -12457,11 +10579,13 @@ See: https://docs.gtk.org/gdk4/property.Monitor.scale-factor.html"))
 (rt:define-gproperty monitor-subpixel-layout "subpixel-layout"
                      (:readable t :writable nil :documentation "The subpixel layout.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.subpixel-layout.html"))
 
 
 (rt:define-gproperty monitor-valid "valid"
                      (:readable t :writable nil :documentation "Whether the object is still valid.
+
 
 See: https://docs.gtk.org/gdk4/property.Monitor.valid.html"))
 
@@ -12470,11 +10594,13 @@ See: https://docs.gtk.org/gdk4/property.Monitor.valid.html"))
                      (:readable t :writable nil :documentation
                       "The width of the monitor, in millimeters.
 
+
 See: https://docs.gtk.org/gdk4/property.Monitor.width-mm.html"))
 
 
 (rt:define-gproperty popup-autohide "autohide"
                      (:readable t :writable nil :documentation "Whether to hide on outside clicks.
+
 
 See: https://docs.gtk.org/gdk4/property.Popup.autohide.html"))
 
@@ -12482,11 +10608,13 @@ See: https://docs.gtk.org/gdk4/property.Popup.autohide.html"))
 (rt:define-gproperty popup-parent "parent"
                      (:readable t :writable nil :documentation "The parent surface.
 
+
 See: https://docs.gtk.org/gdk4/property.Popup.parent.html"))
 
 
 (rt:define-gproperty seat-display "display"
-                     (:readable t :writable nil :documentation "`GdkDisplay` of this seat.
+                     (:readable t :writable nil :documentation "`gdk:display` of this seat.
+
 
 See: https://docs.gtk.org/gdk4/property.Seat.display.html"))
 
@@ -12495,12 +10623,14 @@ See: https://docs.gtk.org/gdk4/property.Seat.display.html"))
                      (:readable t :writable nil :documentation
                       "The capabilities that are available for this toplevel.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.capabilities.html"))
 
 
 (rt:define-gproperty toplevel-decorated "decorated"
                      (:readable t :writable t :documentation
                       "Whether the window manager should add decorations.
+
 
 See: https://docs.gtk.org/gdk4/property.Toplevel.decorated.html"))
 
@@ -12509,11 +10639,13 @@ See: https://docs.gtk.org/gdk4/property.Toplevel.decorated.html"))
                      (:readable t :writable t :documentation
                       "Whether the window manager should allow to close the surface.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.deletable.html"))
 
 
 (rt:define-gproperty toplevel-fullscreen-mode "fullscreen-mode"
                      (:readable t :writable t :documentation "The fullscreen mode of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Toplevel.fullscreen-mode.html"))
 
@@ -12522,17 +10654,20 @@ See: https://docs.gtk.org/gdk4/property.Toplevel.fullscreen-mode.html"))
                      (:readable t :writable t :documentation
                       "The gravity to use when resizing a surface programmatically.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.gravity.html"))
 
 
 (rt:define-gproperty toplevel-icon-list "icon-list"
                      (:readable t :writable t :documentation "A list of textures to use as icon.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.icon-list.html"))
 
 
 (rt:define-gproperty toplevel-modal "modal"
                      (:readable t :writable t :documentation "Whether the surface is modal.
+
 
 See: https://docs.gtk.org/gdk4/property.Toplevel.modal.html"))
 
@@ -12541,11 +10676,13 @@ See: https://docs.gtk.org/gdk4/property.Toplevel.modal.html"))
                      (:readable t :writable nil :documentation
                       "Whether the surface should inhibit keyboard shortcuts.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.shortcuts-inhibited.html"))
 
 
 (rt:define-gproperty toplevel-startup-id "startup-id"
                      (:readable t :writable t :documentation "The startup ID of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Toplevel.startup-id.html"))
 
@@ -12553,11 +10690,13 @@ See: https://docs.gtk.org/gdk4/property.Toplevel.startup-id.html"))
 (rt:define-gproperty toplevel-state "state"
                      (:readable t :writable nil :documentation "The state of the toplevel.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.state.html"))
 
 
 (rt:define-gproperty toplevel-title "title"
                      (:readable t :writable t :documentation "The title of the surface.
+
 
 See: https://docs.gtk.org/gdk4/property.Toplevel.title.html"))
 
@@ -12565,5102 +10704,7 @@ See: https://docs.gtk.org/gdk4/property.Toplevel.title.html"))
 (rt:define-gproperty toplevel-transient-for "transient-for"
                      (:readable t :writable t :documentation "The transient parent of the surface.
 
+
 See: https://docs.gtk.org/gdk4/property.Toplevel.transient-for.html"))
 
 ;;; Callback types
-
-;;; Functions, constructors and methods
-
-
-(rt:define-gfunction (cairo-draw-from-gl "gdk_cairo_draw_from_gl") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (surface (:object surface)) (source :int) (source-type :int)
-                      (buffer-scale :int) (x :int) (y :int) (width :int) (height :int))
-                     :documentation "Draws GL content onto a cairo context.
-
-C: gdk_cairo_draw_from_gl
-See: https://docs.gtk.org/gdk4/func.cairo_draw_from_gl.html
-Deprecated.")
-
-
-(rt:define-gfunction (cairo-rectangle "gdk_cairo_rectangle") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (rectangle (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
-                     :documentation "Adds the given rectangle to the current path of CR.
-
-C: gdk_cairo_rectangle
-See: https://docs.gtk.org/gdk4/func.cairo_rectangle.html")
-
-
-(rt:define-gfunction (cairo-region "gdk_cairo_region") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (region (:boxed "CairoRegion" "cairo_gobject_region_get_type")))
-                     :documentation "Adds the given region to the current path of CR.
-
-C: gdk_cairo_region
-See: https://docs.gtk.org/gdk4/func.cairo_region.html")
-
-
-(rt:define-gfunction (cairo-region-create-from-surface "gdk_cairo_region_create_from_surface")
-                     :args ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type")))
-                     :return (:boxed "CairoRegion" "cairo_gobject_region_get_type")
-                     :return-transfer :full :documentation
-                     "Creates region that covers the area where the given
-SURFACE is more than 50% opaque.
-
-C: gdk_cairo_region_create_from_surface
-See: https://docs.gtk.org/gdk4/func.cairo_region_create_from_surface.html")
-
-
-(rt:define-gfunction (cairo-set-source-pixbuf "gdk_cairo_set_source_pixbuf") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (pixbuf (:object gdk-pixbuf:pixbuf)) (pixbuf-x :double) (pixbuf-y :double))
-                     :documentation "Sets the given pixbuf as the source pattern for CR.
-
-C: gdk_cairo_set_source_pixbuf
-See: https://docs.gtk.org/gdk4/func.cairo_set_source_pixbuf.html
-Deprecated.")
-
-
-(rt:define-gfunction (cairo-set-source-rgba "gdk_cairo_set_source_rgba") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)))
-                     :documentation "Sets the specified `GdkRGBA` as the source color of CR.
-
-C: gdk_cairo_set_source_rgba
-See: https://docs.gtk.org/gdk4/func.cairo_set_source_rgba.html")
-
-
-(rt:define-gfunction (content-deserialize-async "gdk_content_deserialize_async") :args
-                     ((stream (:object gio:input-stream)) (mime-type :string) (type :gtype)
-                      (io-priority :int) (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Reads content from the given input stream and deserialize it, asynchronously.
-
-C: gdk_content_deserialize_async
-See: https://docs.gtk.org/gdk4/func.content_deserialize_async.html")
-
-
-(rt:define-gfunction (content-deserialize-finish "gdk_content_deserialize_finish") :args
-                     ((result (:object gio:async-result))
-                      (value :gvalue :direction :out :caller-allocates t))
-                     :return :boolean :throws t :documentation
-                     "Finishes a content deserialization operation.
-
-C: gdk_content_deserialize_finish
-See: https://docs.gtk.org/gdk4/func.content_deserialize_finish.html")
-
-
-(rt:define-gfunction (content-serialize-async "gdk_content_serialize_async") :args
-                     ((stream (:object gio:output-stream)) (mime-type :string)
-                      (value (:boxed "GValue" "g_value_get_type" gobject:value)) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Serialize content and write it to the given output stream, asynchronously.
-
-C: gdk_content_serialize_async
-See: https://docs.gtk.org/gdk4/func.content_serialize_async.html")
-
-
-(rt:define-gfunction (content-serialize-finish "gdk_content_serialize_finish") :args
-                     ((result (:object gio:async-result))) :return :boolean :throws t
-                     :documentation "Finishes a content serialization operation.
-
-C: gdk_content_serialize_finish
-See: https://docs.gtk.org/gdk4/func.content_serialize_finish.html")
-
-
-(rt:define-gfunction (events-get-angle "gdk_events_get_angle") :args
-                     ((event1 :pointer) (event2 :pointer)
-                      (angle :double :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Returns the relative angle from EVENT1 to EVENT2.
-
-C: gdk_events_get_angle
-See: https://docs.gtk.org/gdk4/func.events_get_angle.html")
-
-
-(rt:define-gfunction (events-get-center "gdk_events_get_center") :args
-                     ((event1 :pointer) (event2 :pointer)
-                      (x :double :direction :out :transfer :full)
-                      (y :double :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Returns the point halfway between the events' positions.
-
-C: gdk_events_get_center
-See: https://docs.gtk.org/gdk4/func.events_get_center.html")
-
-
-(rt:define-gfunction (events-get-distance "gdk_events_get_distance") :args
-                     ((event1 :pointer) (event2 :pointer)
-                      (distance :double :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Returns the distance between the event locations.
-
-C: gdk_events_get_distance
-See: https://docs.gtk.org/gdk4/func.events_get_distance.html")
-
-
-(rt:define-gfunction (intern-mime-type "gdk_intern_mime_type") :args ((string :string)) :return
-                     :string :documentation
-                     "Canonicalizes the given mime type and interns the result.
-
-C: gdk_intern_mime_type
-See: https://docs.gtk.org/gdk4/func.intern_mime_type.html")
-
-
-(rt:define-gfunction (keyval-convert-case "gdk_keyval_convert_case") :args
-                     ((symbol :uint) (lower :uint :direction :out :transfer :full)
-                      (upper :uint :direction :out :transfer :full))
-                     :documentation
-                     "Obtains the upper- and lower-case versions of the keyval SYMBOL.
-
-C: gdk_keyval_convert_case
-See: https://docs.gtk.org/gdk4/func.keyval_convert_case.html")
-
-
-(rt:define-gfunction (keyval-from-name "gdk_keyval_from_name") :args ((keyval-name :string))
-                     :return :uint :documentation "Converts a key name to a key value.
-
-C: gdk_keyval_from_name
-See: https://docs.gtk.org/gdk4/func.keyval_from_name.html")
-
-
-(rt:define-gfunction (keyval-get-aliases "gdk_keyval_get_aliases") :args
-                     ((keyval :uint) (n-aliases :uint :length-of :return :direction :out)) :return
-                     (:array :uint) :version "4.24" :documentation
-                     "Gets keyvals that are 'aliases' for KEYVAL.
-
-C: gdk_keyval_get_aliases
-See: https://docs.gtk.org/gdk4/func.keyval_get_aliases.html
-Since: 4.24")
-
-
-(rt:define-gfunction (keyval-is-lower "gdk_keyval_is_lower") :args ((keyval :uint)) :return
-                     :boolean :documentation "Returns true if the given key value is in lower case.
-
-C: gdk_keyval_is_lower
-See: https://docs.gtk.org/gdk4/func.keyval_is_lower.html")
-
-
-(rt:define-gfunction (keyval-is-upper "gdk_keyval_is_upper") :args ((keyval :uint)) :return
-                     :boolean :documentation "Returns true if the given key value is in upper case.
-
-C: gdk_keyval_is_upper
-See: https://docs.gtk.org/gdk4/func.keyval_is_upper.html")
-
-
-(rt:define-gfunction (keyval-name "gdk_keyval_name") :args ((keyval :uint)) :return :string
-                     :documentation "Converts a key value into a symbolic name.
-
-C: gdk_keyval_name
-See: https://docs.gtk.org/gdk4/func.keyval_name.html")
-
-
-(rt:define-gfunction (keyval-to-lower "gdk_keyval_to_lower") :args ((keyval :uint)) :return :uint
-                     :documentation "Converts a key value to lower case, if applicable.
-
-C: gdk_keyval_to_lower
-See: https://docs.gtk.org/gdk4/func.keyval_to_lower.html")
-
-
-(rt:define-gfunction (keyval-to-unicode "gdk_keyval_to_unicode") :args ((keyval :uint)) :return
-                     :uint32 :documentation
-                     "Converts from a GDK key symbol to the corresponding Unicode
-character.
-
-C: gdk_keyval_to_unicode
-See: https://docs.gtk.org/gdk4/func.keyval_to_unicode.html")
-
-
-(rt:define-gfunction (keyval-to-upper "gdk_keyval_to_upper") :args ((keyval :uint)) :return :uint
-                     :documentation "Converts a key value to upper case, if applicable.
-
-C: gdk_keyval_to_upper
-See: https://docs.gtk.org/gdk4/func.keyval_to_upper.html")
-
-
-(rt:define-gfunction (pixbuf-get-from-surface "gdk_pixbuf_get_from_surface") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (src-x :int) (src-y :int) (width :int) (height :int))
-                     :return (:object gdk-pixbuf:pixbuf) :return-transfer :full :documentation
-                     "Transfers image data from a `cairo_surface_t` and converts it
-to a `GdkPixbuf`.
-
-C: gdk_pixbuf_get_from_surface
-See: https://docs.gtk.org/gdk4/func.pixbuf_get_from_surface.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-get-from-texture "gdk_pixbuf_get_from_texture") :args
-                     ((texture (:object texture))) :return (:object gdk-pixbuf:pixbuf)
-                     :return-transfer :full :documentation "Creates a new pixbuf from TEXTURE.
-
-C: gdk_pixbuf_get_from_texture
-See: https://docs.gtk.org/gdk4/func.pixbuf_get_from_texture.html
-Deprecated.")
-
-
-(rt:define-gfunction (set-allowed-backends "gdk_set_allowed_backends") :args ((backends :string))
-                     :documentation "Sets a list of backends that GDK should try to use.
-
-C: gdk_set_allowed_backends
-See: https://docs.gtk.org/gdk4/func.set_allowed_backends.html")
-
-
-(rt:define-gfunction (unicode-to-keyval "gdk_unicode_to_keyval") :args ((wc :uint32)) :return :uint
-                     :documentation "Converts from a Unicode character to a key symbol.
-
-C: gdk_unicode_to_keyval
-See: https://docs.gtk.org/gdk4/func.unicode_to_keyval.html")
-
-
-(rt:define-gfunction (app-launch-context-get-display "gdk_app_launch_context_get_display") :args
-                     ((context (:object app-launch-context))) :return (:object display)
-                     :documentation "Gets the `GdkDisplay` that CONTEXT is for.
-
-C: gdk_app_launch_context_get_display
-See: https://docs.gtk.org/gdk4/method.AppLaunchContext.get_display.html")
-
-
-(rt:define-gfunction (app-launch-context-set-desktop "gdk_app_launch_context_set_desktop") :args
-                     ((context (:object app-launch-context)) (desktop :int)) :documentation
-                     "Sets the workspace on which applications will be launched.
-
-C: gdk_app_launch_context_set_desktop
-See: https://docs.gtk.org/gdk4/method.AppLaunchContext.set_desktop.html")
-
-
-(rt:define-gfunction (app-launch-context-set-icon "gdk_app_launch_context_set_icon") :args
-                     ((context (:object app-launch-context)) (icon (:object gio:icon) :optional t))
-                     :documentation "Sets the icon for applications that are launched with this
-context.
-
-C: gdk_app_launch_context_set_icon
-See: https://docs.gtk.org/gdk4/method.AppLaunchContext.set_icon.html")
-
-
-(rt:define-gfunction (app-launch-context-set-icon-name "gdk_app_launch_context_set_icon_name")
-                     :args ((context (:object app-launch-context)) (icon-name :string :optional t))
-                     :documentation
-                     "Sets the icon for applications that are launched with this context.
-
-C: gdk_app_launch_context_set_icon_name
-See: https://docs.gtk.org/gdk4/method.AppLaunchContext.set_icon_name.html")
-
-
-(rt:define-gfunction (app-launch-context-set-timestamp "gdk_app_launch_context_set_timestamp")
-                     :args ((context (:object app-launch-context)) (timestamp :uint32))
-                     :documentation "Sets the timestamp of CONTEXT.
-
-C: gdk_app_launch_context_set_timestamp
-See: https://docs.gtk.org/gdk4/method.AppLaunchContext.set_timestamp.html")
-
-
-(rt:define-gfunction (button-event-get-button "gdk_button_event_get_button") :args
-                     ((event :pointer)) :return :uint :documentation
-                     "Extract the button number from a button event.
-
-C: gdk_button_event_get_button
-See: https://docs.gtk.org/gdk4/method.ButtonEvent.get_button.html")
-
-
-(rt:define-gfunction (cairo-context-cairo-create "gdk_cairo_context_cairo_create") :args
-                     ((self (:object cairo-context))) :return
-                     (:boxed "CairoContext" "cairo_gobject_context_get_type") :return-transfer
-                     :full :documentation
-                     "Retrieves a Cairo context to be used to draw on the `GdkSurface`
-of CONTEXT.
-
-C: gdk_cairo_context_cairo_create
-See: https://docs.gtk.org/gdk4/method.CairoContext.cairo_create.html
-Deprecated.")
-
-
-(rt:define-gfunction (cicp-params-new "gdk_cicp_params_new") :return (:object cicp-params)
-                     :return-transfer :full :version "4.16" :documentation
-                     "Creates a new `GdkCicpParams` object.
-
-C: gdk_cicp_params_new
-See: https://docs.gtk.org/gdk4/ctor.CicpParams.new.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-build-color-state "gdk_cicp_params_build_color_state") :args
-                     ((self (:object cicp-params))) :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :throws t :version "4.16" :documentation
-                     "Creates a new `GdkColorState` object for the cicp parameters in SELF.
-
-C: gdk_cicp_params_build_color_state
-See: https://docs.gtk.org/gdk4/method.CicpParams.build_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-get-color-primaries "gdk_cicp_params_get_color_primaries") :args
-                     ((self (:object cicp-params))) :return :uint :version "4.16" :documentation
-                     "Returns the value of the color-primaries property
-of SELF.
-
-C: gdk_cicp_params_get_color_primaries
-See: https://docs.gtk.org/gdk4/method.CicpParams.get_color_primaries.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (cicp-params-get-matrix-coefficients "gdk_cicp_params_get_matrix_coefficients") :args
- ((self (:object cicp-params))) :return :uint :version "4.16" :documentation
- "Gets the matrix-coefficients property of SELF.
-
-C: gdk_cicp_params_get_matrix_coefficients
-See: https://docs.gtk.org/gdk4/method.CicpParams.get_matrix_coefficients.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-get-range "gdk_cicp_params_get_range") :args
-                     ((self (:object cicp-params))) :return (:enum cicp-range) :version "4.16"
-                     :documentation "Gets the range property of SELF.
-
-C: gdk_cicp_params_get_range
-See: https://docs.gtk.org/gdk4/method.CicpParams.get_range.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-get-transfer-function "gdk_cicp_params_get_transfer_function")
-                     :args ((self (:object cicp-params))) :return :uint :version "4.16"
-                     :documentation "Gets the transfer-function property of SELF.
-
-C: gdk_cicp_params_get_transfer_function
-See: https://docs.gtk.org/gdk4/method.CicpParams.get_transfer_function.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-set-color-primaries "gdk_cicp_params_set_color_primaries") :args
-                     ((self (:object cicp-params)) (color-primaries :uint)) :version "4.16"
-                     :documentation "Sets the color-primaries property of SELF.
-
-C: gdk_cicp_params_set_color_primaries
-See: https://docs.gtk.org/gdk4/method.CicpParams.set_color_primaries.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (cicp-params-set-matrix-coefficients "gdk_cicp_params_set_matrix_coefficients") :args
- ((self (:object cicp-params)) (matrix-coefficients :uint)) :version "4.16" :documentation
- "SELF a `GdkCicpParams`
-Sets the matrix-coefficients property of SELF.
-
-C: gdk_cicp_params_set_matrix_coefficients
-See: https://docs.gtk.org/gdk4/method.CicpParams.set_matrix_coefficients.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-set-range "gdk_cicp_params_set_range") :args
-                     ((self (:object cicp-params)) (range (:enum cicp-range))) :version "4.16"
-                     :documentation "Sets the range property of SELF
-
-C: gdk_cicp_params_set_range
-See: https://docs.gtk.org/gdk4/method.CicpParams.set_range.html
-Since: 4.16")
-
-
-(rt:define-gfunction (cicp-params-set-transfer-function "gdk_cicp_params_set_transfer_function")
-                     :args ((self (:object cicp-params)) (transfer-function :uint)) :version "4.16"
-                     :documentation "Sets the transfer-function property of SELF.
-
-C: gdk_cicp_params_set_transfer_function
-See: https://docs.gtk.org/gdk4/method.CicpParams.set_transfer_function.html
-Since: 4.16")
-
-
-(rt:define-gfunction (clipboard-get-content "gdk_clipboard_get_content") :args
-                     ((clipboard (:object clipboard))) :return (:object content-provider)
-                     :documentation "Returns the `GdkContentProvider` currently set on CLIPBOARD.
-
-C: gdk_clipboard_get_content
-See: https://docs.gtk.org/gdk4/method.Clipboard.get_content.html")
-
-
-(rt:define-gfunction (clipboard-get-display "gdk_clipboard_get_display") :args
-                     ((clipboard (:object clipboard))) :return (:object display) :documentation
-                     "Gets the `GdkDisplay` that the clipboard was created for.
-
-C: gdk_clipboard_get_display
-See: https://docs.gtk.org/gdk4/method.Clipboard.get_display.html")
-
-
-(rt:define-gfunction (clipboard-get-formats "gdk_clipboard_get_formats") :args
-                     ((clipboard (:object clipboard))) :return
-                     (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :documentation
-                     "Gets the formats that the clipboard can provide its current contents in.
-
-C: gdk_clipboard_get_formats
-See: https://docs.gtk.org/gdk4/method.Clipboard.get_formats.html")
-
-
-(rt:define-gfunction (clipboard-is-local "gdk_clipboard_is_local") :args
-                     ((clipboard (:object clipboard))) :return :boolean :documentation
-                     "Returns if the clipboard is local.
-
-C: gdk_clipboard_is_local
-See: https://docs.gtk.org/gdk4/method.Clipboard.is_local.html")
-
-
-(rt:define-gfunction (clipboard-read-async "gdk_clipboard_read_async") :args
-                     ((clipboard (:object clipboard)) (mime-types :strv) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation "Asynchronously requests an input stream to read the CLIPBOARD's
-contents from.
-
-C: gdk_clipboard_read_async
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_async.html")
-
-
-(rt:define-gfunction (clipboard-read-finish "gdk_clipboard_read_finish") :args
-                     ((clipboard (:object clipboard)) (result (:object gio:async-result))
-                      (out-mime-type :string :direction :out))
-                     :return (:object gio:input-stream) :return-transfer :full :throws t
-                     :documentation "Finishes an asynchronous clipboard read.
-
-C: gdk_clipboard_read_finish
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_finish.html")
-
-
-(rt:define-gfunction (clipboard-read-text-async "gdk_clipboard_read_text_async") :args
-                     ((clipboard (:object clipboard))
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Asynchronously request the CLIPBOARD contents converted to a string.
-
-C: gdk_clipboard_read_text_async
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_text_async.html")
-
-
-(rt:define-gfunction (clipboard-read-text-finish "gdk_clipboard_read_text_finish") :args
-                     ((clipboard (:object clipboard)) (result (:object gio:async-result))) :return
-                     :string :return-transfer :full :throws t :documentation
-                     "Finishes an asynchronous clipboard read.
-
-C: gdk_clipboard_read_text_finish
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_text_finish.html")
-
-
-(rt:define-gfunction (clipboard-read-texture-async "gdk_clipboard_read_texture_async") :args
-                     ((clipboard (:object clipboard))
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Asynchronously request the CLIPBOARD contents converted to a `GdkPixbuf`.
-
-C: gdk_clipboard_read_texture_async
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_texture_async.html")
-
-
-(rt:define-gfunction (clipboard-read-texture-finish "gdk_clipboard_read_texture_finish") :args
-                     ((clipboard (:object clipboard)) (result (:object gio:async-result))) :return
-                     (:object texture) :return-transfer :full :throws t :documentation
-                     "Finishes an asynchronous clipboard read.
-
-C: gdk_clipboard_read_texture_finish
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_texture_finish.html")
-
-
-(rt:define-gfunction (clipboard-read-value-async "gdk_clipboard_read_value_async") :args
-                     ((clipboard (:object clipboard)) (type :gtype) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Asynchronously request the CLIPBOARD contents converted to the given
-TYPE.
-
-C: gdk_clipboard_read_value_async
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_value_async.html")
-
-
-(rt:define-gfunction (clipboard-read-value-finish "gdk_clipboard_read_value_finish") :args
-                     ((clipboard (:object clipboard)) (result (:object gio:async-result))) :return
-                     (:boxed "GValue" "g_value_get_type" gobject:value) :throws t :documentation
-                     "Finishes an asynchronous clipboard read.
-
-C: gdk_clipboard_read_value_finish
-See: https://docs.gtk.org/gdk4/method.Clipboard.read_value_finish.html")
-
-
-(rt:define-gfunction (clipboard-set-content "gdk_clipboard_set_content") :args
-                     ((clipboard (:object clipboard))
-                      (provider (:object content-provider) :optional t))
-                     :return :boolean :documentation "Sets a new content provider on CLIPBOARD.
-
-C: gdk_clipboard_set_content
-See: https://docs.gtk.org/gdk4/method.Clipboard.set_content.html")
-
-
-(rt:define-gfunction (clipboard-set "gdk_clipboard_set_value") :args
-                     ((clipboard (:object clipboard))
-                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
-                     :documentation "Sets the CLIPBOARD to contain the given VALUE.
-
-C: gdk_clipboard_set_value
-See: https://docs.gtk.org/gdk4/method.Clipboard.set_value.html")
-
-
-(rt:define-gfunction (clipboard-store-async "gdk_clipboard_store_async") :args
-                     ((clipboard (:object clipboard)) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation
-                     "Asynchronously instructs the CLIPBOARD to store its contents remotely.
-
-C: gdk_clipboard_store_async
-See: https://docs.gtk.org/gdk4/method.Clipboard.store_async.html")
-
-
-(rt:define-gfunction (clipboard-store-finish "gdk_clipboard_store_finish") :args
-                     ((clipboard (:object clipboard)) (result (:object gio:async-result))) :return
-                     :boolean :throws t :documentation "Finishes an asynchronous clipboard store.
-
-C: gdk_clipboard_store_finish
-See: https://docs.gtk.org/gdk4/method.Clipboard.store_finish.html")
-
-
-(rt:define-gfunction (color-state-get-oklab "gdk_color_state_get_oklab") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.18" :documentation
-                     "Returns the color state object representing the oklab color space.
-
-C: gdk_color_state_get_oklab
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_oklab.html
-Since: 4.18")
-
-
-(rt:define-gfunction (color-state-get-oklch "gdk_color_state_get_oklch") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.18" :documentation
-                     "Returns the color state object representing the oklch color space.
-
-C: gdk_color_state_get_oklch
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_oklch.html
-Since: 4.18")
-
-
-(rt:define-gfunction (color-state-get-rec2100-linear "gdk_color_state_get_rec2100_linear") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.16" :documentation
-                     "Returns the color state object representing the linear rec2100 color space.
-
-C: gdk_color_state_get_rec2100_linear
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_rec2100_linear.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-get-rec2100-pq "gdk_color_state_get_rec2100_pq") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.16" :documentation
-                     "Returns the color state object representing the rec2100-pq color space.
-
-C: gdk_color_state_get_rec2100_pq
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_rec2100_pq.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-get-srgb "gdk_color_state_get_srgb") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.16" :documentation
-                     "Returns the color state object representing the sRGB color space.
-
-C: gdk_color_state_get_srgb
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_srgb.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-get-srgb-linear "gdk_color_state_get_srgb_linear") :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.16" :documentation
-                     "Returns the color state object representing the linearized sRGB color space.
-
-C: gdk_color_state_get_srgb_linear
-See: https://docs.gtk.org/gdk4/type_func.ColorState.get_srgb_linear.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-create-cicp-params "gdk_color_state_create_cicp_params") :args
-                     ((self (:boxed "GdkColorState" "gdk_color_state_get_type"))) :return
-                     (:object cicp-params) :return-transfer :full :version "4.16" :documentation
-                     "Create a Gdk.CicpParams representing the colorstate.
-
-C: gdk_color_state_create_cicp_params
-See: https://docs.gtk.org/gdk4/method.ColorState.create_cicp_params.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-equal "gdk_color_state_equal") :args
-                     ((self (:boxed "GdkColorState" "gdk_color_state_get_type"))
-                      (other (:boxed "GdkColorState" "gdk_color_state_get_type")))
-                     :return :boolean :version "4.16" :documentation
-                     "Compares two `GdkColorStates` for equality.
-
-C: gdk_color_state_equal
-See: https://docs.gtk.org/gdk4/method.ColorState.equal.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-equivalent "gdk_color_state_equivalent") :args
-                     ((self (:boxed "GdkColorState" "gdk_color_state_get_type"))
-                      (other (:boxed "GdkColorState" "gdk_color_state_get_type")))
-                     :return :boolean :version "4.20" :documentation
-                     "Compares two `GdkColorStates` for equivalence.
-
-C: gdk_color_state_equivalent
-See: https://docs.gtk.org/gdk4/method.ColorState.equivalent.html
-Since: 4.20")
-
-
-(rt:define-gfunction (color-state-ref "gdk_color_state_ref") :args
-                     ((self (:boxed "GdkColorState" "gdk_color_state_get_type"))) :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer :full
-                     :version "4.16" :documentation "Increase the reference count of SELF.
-
-C: gdk_color_state_ref
-See: https://docs.gtk.org/gdk4/method.ColorState.ref.html
-Since: 4.16")
-
-
-(rt:define-gfunction (color-state-unref "gdk_color_state_unref") :args
-                     ((self (:boxed "GdkColorState" "gdk_color_state_get_type"))) :version "4.16"
-                     :documentation "Decrease the reference count of SELF.
-
-C: gdk_color_state_unref
-See: https://docs.gtk.org/gdk4/method.ColorState.unref.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (content-deserializer-get-cancellable "gdk_content_deserializer_get_cancellable") :args
- ((deserializer (:object content-deserializer))) :return (:object gio:cancellable) :documentation
- "Gets the cancellable for the current operation.
-
-C: gdk_content_deserializer_get_cancellable
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_cancellable.html")
-
-
-(rt:define-gfunction (content-deserializer-get-gtype "gdk_content_deserializer_get_gtype") :args
-                     ((deserializer (:object content-deserializer))) :return :gtype :documentation
-                     "Gets the `GType` to create an instance of.
-
-C: gdk_content_deserializer_get_gtype
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_gtype.html")
-
-
-(rt:define-gfunction
- (content-deserializer-get-input-stream "gdk_content_deserializer_get_input_stream") :args
- ((deserializer (:object content-deserializer))) :return (:object gio:input-stream) :documentation
- "Gets the input stream for the current operation.
-
-C: gdk_content_deserializer_get_input_stream
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_input_stream.html")
-
-
-(rt:define-gfunction (content-deserializer-get-mime-type "gdk_content_deserializer_get_mime_type")
-                     :args ((deserializer (:object content-deserializer))) :return :string
-                     :documentation "Gets the mime type to deserialize from.
-
-C: gdk_content_deserializer_get_mime_type
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_mime_type.html")
-
-
-(rt:define-gfunction (content-deserializer-get-priority "gdk_content_deserializer_get_priority")
-                     :args ((deserializer (:object content-deserializer))) :return :int
-                     :documentation "Gets the I/O priority for the current operation.
-
-C: gdk_content_deserializer_get_priority
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_priority.html")
-
-
-(rt:define-gfunction (content-deserializer-get-task-data "gdk_content_deserializer_get_task_data")
-                     :args ((deserializer (:object content-deserializer))) :return :pointer
-                     :documentation "Gets the data that was associated with the current operation.
-
-C: gdk_content_deserializer_get_task_data
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_task_data.html")
-
-
-(rt:define-gfunction (content-deserializer-get-user-data "gdk_content_deserializer_get_user_data")
-                     :args ((deserializer (:object content-deserializer))) :return :pointer
-                     :documentation
-                     "Gets the user data that was passed when the deserializer was registered.
-
-C: gdk_content_deserializer_get_user_data
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_user_data.html")
-
-
-(rt:define-gfunction (content-deserializer-get-value "gdk_content_deserializer_get_value") :args
-                     ((deserializer (:object content-deserializer))) :return
-                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
-                     "Gets the `GValue` to store the deserialized object in.
-
-C: gdk_content_deserializer_get_value
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_value.html")
-
-
-(rt:define-gfunction (content-deserializer-return-error "gdk_content_deserializer_return_error")
-                     :args
-                     ((deserializer (:object content-deserializer))
-                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
-                     :documentation "Indicate that the deserialization has ended with an error.
-
-C: gdk_content_deserializer_return_error
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.return_error.html")
-
-
-(rt:define-gfunction
- (content-deserializer-return-success "gdk_content_deserializer_return_success") :args
- ((deserializer (:object content-deserializer))) :documentation
- "Indicate that the deserialization has been successfully completed.
-
-C: gdk_content_deserializer_return_success
-See: https://docs.gtk.org/gdk4/method.ContentDeserializer.return_success.html")
-
-
-(rt:define-gfunction (content-formats-new "gdk_content_formats_new") :args
-                     ((mime-types (:array :string)) (n-mime-types :uint :length-of mime-types))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :return-transfer :full :documentation
-                     "Creates a new `GdkContentFormats` from an array of mime types.
-
-C: gdk_content_formats_new
-See: https://docs.gtk.org/gdk4/ctor.ContentFormats.new.html")
-
-
-(rt:define-gfunction (content-formats-new-for-gtype "gdk_content_formats_new_for_gtype") :args
-                     ((type :gtype)) :return
-                     (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer
-                     :full :documentation "Creates a new `GdkContentFormats` for a given `GType`.
-
-C: gdk_content_formats_new_for_gtype
-See: https://docs.gtk.org/gdk4/ctor.ContentFormats.new_for_gtype.html")
-
-
-(rt:define-gfunction (content-formats-parse "gdk_content_formats_parse") :args ((string :string))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :return-transfer :full :version "4.4" :documentation
-                     "Parses the given STRING into `GdkContentFormats` and
-returns the formats.
-
-C: gdk_content_formats_parse
-See: https://docs.gtk.org/gdk4/type_func.ContentFormats.parse.html
-Since: 4.4")
-
-
-(rt:define-gfunction (content-formats-contain-gtype "gdk_content_formats_contain_gtype") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (type :gtype))
-                     :return :boolean :documentation
-                     "Checks if a given `GType` is part of the given FORMATS.
-
-C: gdk_content_formats_contain_gtype
-See: https://docs.gtk.org/gdk4/method.ContentFormats.contain_gtype.html")
-
-
-(rt:define-gfunction (content-formats-contain-mime-type "gdk_content_formats_contain_mime_type")
-                     :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (mime-type :string))
-                     :return :boolean :documentation
-                     "Checks if a given mime type is part of the given FORMATS.
-
-C: gdk_content_formats_contain_mime_type
-See: https://docs.gtk.org/gdk4/method.ContentFormats.contain_mime_type.html")
-
-
-(rt:define-gfunction (content-formats-get-gtypes "gdk_content_formats_get_gtypes") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (n-gtypes :size :length-of :return :direction :out))
-                     :return (:array :gtype :zero-terminated t) :documentation
-                     "Gets the `GType`s included in FORMATS.
-
-C: gdk_content_formats_get_gtypes
-See: https://docs.gtk.org/gdk4/method.ContentFormats.get_gtypes.html")
-
-
-(rt:define-gfunction (content-formats-get-mime-types "gdk_content_formats_get_mime_types") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (n-mime-types :size :length-of :return :direction :out))
-                     :return (:array :string :zero-terminated t) :documentation
-                     "Gets the mime types included in FORMATS.
-
-C: gdk_content_formats_get_mime_types
-See: https://docs.gtk.org/gdk4/method.ContentFormats.get_mime_types.html")
-
-
-(rt:define-gfunction (content-formats-is-empty "gdk_content_formats_is_empty") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return :boolean :version "4.18" :documentation
-                     "Returns whether the content formats contain any formats.
-
-C: gdk_content_formats_is_empty
-See: https://docs.gtk.org/gdk4/method.ContentFormats.is_empty.html
-Since: 4.18")
-
-
-(rt:define-gfunction (content-formats-match "gdk_content_formats_match") :args
-                     ((first (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (second (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return :boolean :documentation
-                     "Checks if FIRST and SECOND have any matching formats.
-
-C: gdk_content_formats_match
-See: https://docs.gtk.org/gdk4/method.ContentFormats.match.html")
-
-
-(rt:define-gfunction (content-formats-match-gtype "gdk_content_formats_match_gtype") :args
-                     ((first (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (second (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return :gtype :documentation
-                     "Finds the first `GType` from FIRST that is also contained
-in SECOND.
-
-C: gdk_content_formats_match_gtype
-See: https://docs.gtk.org/gdk4/method.ContentFormats.match_gtype.html")
-
-
-(rt:define-gfunction (content-formats-match-mime-type "gdk_content_formats_match_mime_type") :args
-                     ((first (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (second (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return :string :documentation
-                     "Finds the first mime type from FIRST that is also contained
-in SECOND.
-
-C: gdk_content_formats_match_mime_type
-See: https://docs.gtk.org/gdk4/method.ContentFormats.match_mime_type.html")
-
-
-(rt:define-gfunction (content-formats-print "gdk_content_formats_print") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
-                     :documentation "Prints the given FORMATS into a string for human consumption.
-
-C: gdk_content_formats_print
-See: https://docs.gtk.org/gdk4/method.ContentFormats.print.html")
-
-
-(rt:define-gfunction (content-formats-ref "gdk_content_formats_ref") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :return-transfer :full :documentation
-                     "Increases the reference count of a `GdkContentFormats` by one.
-
-C: gdk_content_formats_ref
-See: https://docs.gtk.org/gdk4/method.ContentFormats.ref.html")
-
-
-(rt:define-gfunction (content-formats-to-string "gdk_content_formats_to_string") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return :string :return-transfer :full :documentation
-                     "Prints the given FORMATS into a human-readable string.
-
-C: gdk_content_formats_to_string
-See: https://docs.gtk.org/gdk4/method.ContentFormats.to_string.html")
-
-
-(rt:define-gfunction (content-formats-union "gdk_content_formats_union") :args
-                     ((first (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :transfer
-                             :full)
-                      (second (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :return-transfer :full :documentation
-                     "Append all missing types from SECOND to FIRST, in the order
-they had in SECOND.
-
-C: gdk_content_formats_union
-See: https://docs.gtk.org/gdk4/method.ContentFormats.union.html")
-
-
-(rt:define-gfunction
- (content-formats-union-deserialize-gtypes "gdk_content_formats_union_deserialize_gtypes") :args
- ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :transfer :full)) :return
- (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer :full :documentation
- "Add GTypes for mime types in FORMATS for which deserializers are
-registered.
-
-C: gdk_content_formats_union_deserialize_gtypes
-See: https://docs.gtk.org/gdk4/method.ContentFormats.union_deserialize_gtypes.html")
-
-
-(rt:define-gfunction
- (content-formats-union-deserialize-mime-types "gdk_content_formats_union_deserialize_mime_types")
- :args ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :transfer :full))
- :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer :full
- :documentation "Add mime types for GTypes in FORMATS for which deserializers are
-registered.
-
-C: gdk_content_formats_union_deserialize_mime_types
-See: https://docs.gtk.org/gdk4/method.ContentFormats.union_deserialize_mime_types.html")
-
-
-(rt:define-gfunction
- (content-formats-union-serialize-gtypes "gdk_content_formats_union_serialize_gtypes") :args
- ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :transfer :full)) :return
- (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer :full :documentation
- "Add GTypes for the mime types in FORMATS for which serializers are
-registered.
-
-C: gdk_content_formats_union_serialize_gtypes
-See: https://docs.gtk.org/gdk4/method.ContentFormats.union_serialize_gtypes.html")
-
-
-(rt:define-gfunction
- (content-formats-union-serialize-mime-types "gdk_content_formats_union_serialize_mime_types")
- :args ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :transfer :full))
- :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer :full
- :documentation "Add mime types for GTypes in FORMATS for which serializers are
-registered.
-
-C: gdk_content_formats_union_serialize_mime_types
-See: https://docs.gtk.org/gdk4/method.ContentFormats.union_serialize_mime_types.html")
-
-
-(rt:define-gfunction (content-formats-unref "gdk_content_formats_unref") :args
-                     ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
-                     :documentation "Decreases the reference count of a `GdkContentFormats` by one.
-
-C: gdk_content_formats_unref
-See: https://docs.gtk.org/gdk4/method.ContentFormats.unref.html")
-
-
-(rt:define-gfunction (content-formats-builder-new "gdk_content_formats_builder_new") :return
-                     (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type")
-                     :return-transfer :full :documentation
-                     "Create a new `GdkContentFormatsBuilder` object.
-
-C: gdk_content_formats_builder_new
-See: https://docs.gtk.org/gdk4/ctor.ContentFormatsBuilder.new.html")
-
-
-(rt:define-gfunction
- (content-formats-builder-add-formats "gdk_content_formats_builder_add_formats") :args
- ((builder (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type"))
-  (formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type")))
- :documentation "Appends all formats from FORMATS to BUILDER, skipping those that
-already exist.
-
-C: gdk_content_formats_builder_add_formats
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.add_formats.html")
-
-
-(rt:define-gfunction (content-formats-builder-add-gtype "gdk_content_formats_builder_add_gtype")
-                     :args
-                     ((builder
-                       (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type"))
-                      (type :gtype))
-                     :documentation "Appends TYPE to BUILDER if it has not already been added.
-
-C: gdk_content_formats_builder_add_gtype
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.add_gtype.html")
-
-
-(rt:define-gfunction
- (content-formats-builder-add-mime-type "gdk_content_formats_builder_add_mime_type") :args
- ((builder (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type"))
-  (mime-type :string))
- :documentation "Appends MIME-TYPE to BUILDER if it has not already been added.
-
-C: gdk_content_formats_builder_add_mime_type
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.add_mime_type.html")
-
-
-(rt:define-gfunction (content-formats-builder-ref "gdk_content_formats_builder_ref") :args
-                     ((builder
-                       (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type")))
-                     :return
-                     (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type")
-                     :documentation "Acquires a reference on the given BUILDER.
-
-C: gdk_content_formats_builder_ref
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.ref.html")
-
-
-(rt:define-gfunction (content-formats-builder-to-formats "gdk_content_formats_builder_to_formats")
-                     :args
-                     ((builder
-                       (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type")))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :return-transfer :full :documentation
-                     "Creates a new `GdkContentFormats` from the given BUILDER.
-
-C: gdk_content_formats_builder_to_formats
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.to_formats.html")
-
-
-(rt:define-gfunction (content-formats-builder-unref "gdk_content_formats_builder_unref") :args
-                     ((builder
-                       (:boxed "GdkContentFormatsBuilder" "gdk_content_formats_builder_get_type")))
-                     :documentation "Releases a reference on the given BUILDER.
-
-C: gdk_content_formats_builder_unref
-See: https://docs.gtk.org/gdk4/method.ContentFormatsBuilder.unref.html")
-
-
-(rt:define-gfunction (content-provider-new-for-bytes "gdk_content_provider_new_for_bytes") :args
-                     ((mime-type :string) (bytes (:boxed "GBytes" "g_bytes_get_type"))) :return
-                     (:object content-provider) :return-transfer :full :documentation
-                     "Create a content provider that provides the given BYTES as data for
-the given MIME-TYPE.
-
-C: gdk_content_provider_new_for_bytes
-See: https://docs.gtk.org/gdk4/ctor.ContentProvider.new_for_bytes.html")
-
-
-(rt:define-gfunction (content-provider-new-for-value "gdk_content_provider_new_for_value") :args
-                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return
-                     (:object content-provider) :return-transfer :full :documentation
-                     "Create a content provider that provides the given VALUE.
-
-C: gdk_content_provider_new_for_value
-See: https://docs.gtk.org/gdk4/ctor.ContentProvider.new_for_value.html")
-
-
-(rt:define-gfunction (content-provider-content-changed "gdk_content_provider_content_changed")
-                     :args ((provider (:object content-provider))) :documentation
-                     "Emits the ::content-changed signal.
-
-C: gdk_content_provider_content_changed
-See: https://docs.gtk.org/gdk4/method.ContentProvider.content_changed.html")
-
-
-(rt:define-gfunction (content-provider-get-value "gdk_content_provider_get_value") :args
-                     ((provider (:object content-provider))
-                      (value :gvalue :direction :out :caller-allocates t))
-                     :return :boolean :throws t :documentation
-                     "Gets the contents of PROVIDER stored in VALUE.
-
-C: gdk_content_provider_get_value
-See: https://docs.gtk.org/gdk4/method.ContentProvider.get_value.html")
-
-
-(rt:define-gfunction (content-provider-ref-formats "gdk_content_provider_ref_formats") :args
-                     ((provider (:object content-provider))) :return
-                     (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer
-                     :full :documentation
-                     "Gets the formats that the provider can provide its current contents in.
-
-C: gdk_content_provider_ref_formats
-See: https://docs.gtk.org/gdk4/method.ContentProvider.ref_formats.html")
-
-
-(rt:define-gfunction
- (content-provider-ref-storable-formats "gdk_content_provider_ref_storable_formats") :args
- ((provider (:object content-provider))) :return
- (:boxed "GdkContentFormats" "gdk_content_formats_get_type") :return-transfer :full :documentation
- "Gets the formats that the provider suggests other applications to store
-the data in.
-
-C: gdk_content_provider_ref_storable_formats
-See: https://docs.gtk.org/gdk4/method.ContentProvider.ref_storable_formats.html")
-
-
-(rt:define-gfunction
- (content-provider-write-mime-type-async "gdk_content_provider_write_mime_type_async") :args
- ((provider (:object content-provider)) (mime-type :string) (stream (:object gio:output-stream))
-  (io-priority :int) (cancellable (:object gio:cancellable) :optional t)
-  (callback (:callback gio:async-ready-callback :async) :optional t)
-  (user-data :pointer :user-data-of callback))
- :documentation "Asynchronously writes the contents of PROVIDER to STREAM in the given
-MIME-TYPE.
-
-C: gdk_content_provider_write_mime_type_async
-See: https://docs.gtk.org/gdk4/method.ContentProvider.write_mime_type_async.html")
-
-
-(rt:define-gfunction
- (content-provider-write-mime-type-finish "gdk_content_provider_write_mime_type_finish") :args
- ((provider (:object content-provider)) (result (:object gio:async-result))) :return :boolean
- :throws t :documentation "Finishes an asynchronous write operation.
-
-C: gdk_content_provider_write_mime_type_finish
-See: https://docs.gtk.org/gdk4/method.ContentProvider.write_mime_type_finish.html")
-
-
-(rt:define-gfunction (content-serializer-get-cancellable "gdk_content_serializer_get_cancellable")
-                     :args ((serializer (:object content-serializer))) :return
-                     (:object gio:cancellable) :documentation
-                     "Gets the cancellable for the current operation.
-
-C: gdk_content_serializer_get_cancellable
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_cancellable.html")
-
-
-(rt:define-gfunction (content-serializer-get-gtype "gdk_content_serializer_get_gtype") :args
-                     ((serializer (:object content-serializer))) :return :gtype :documentation
-                     "Gets the `GType` to of the object to serialize.
-
-C: gdk_content_serializer_get_gtype
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_gtype.html")
-
-
-(rt:define-gfunction (content-serializer-get-mime-type "gdk_content_serializer_get_mime_type")
-                     :args ((serializer (:object content-serializer))) :return :string
-                     :documentation "Gets the mime type to serialize to.
-
-C: gdk_content_serializer_get_mime_type
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_mime_type.html")
-
-
-(rt:define-gfunction
- (content-serializer-get-output-stream "gdk_content_serializer_get_output_stream") :args
- ((serializer (:object content-serializer))) :return (:object gio:output-stream) :documentation
- "Gets the output stream for the current operation.
-
-C: gdk_content_serializer_get_output_stream
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_output_stream.html")
-
-
-(rt:define-gfunction (content-serializer-get-priority "gdk_content_serializer_get_priority") :args
-                     ((serializer (:object content-serializer))) :return :int :documentation
-                     "Gets the I/O priority for the current operation.
-
-C: gdk_content_serializer_get_priority
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_priority.html")
-
-
-(rt:define-gfunction (content-serializer-get-task-data "gdk_content_serializer_get_task_data")
-                     :args ((serializer (:object content-serializer))) :return :pointer
-                     :documentation "Gets the data that was associated with the current operation.
-
-C: gdk_content_serializer_get_task_data
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_task_data.html")
-
-
-(rt:define-gfunction (content-serializer-get-user-data "gdk_content_serializer_get_user_data")
-                     :args ((serializer (:object content-serializer))) :return :pointer
-                     :documentation
-                     "Gets the user data that was passed when the serializer was registered.
-
-C: gdk_content_serializer_get_user_data
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_user_data.html")
-
-
-(rt:define-gfunction (content-serializer-get-value "gdk_content_serializer_get_value") :args
-                     ((serializer (:object content-serializer))) :return
-                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
-                     "Gets the `GValue` to read the object to serialize from.
-
-C: gdk_content_serializer_get_value
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_value.html")
-
-
-(rt:define-gfunction (content-serializer-return-error "gdk_content_serializer_return_error") :args
-                     ((serializer (:object content-serializer))
-                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
-                     :documentation "Indicate that the serialization has ended with an error.
-
-C: gdk_content_serializer_return_error
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.return_error.html")
-
-
-(rt:define-gfunction (content-serializer-return-success "gdk_content_serializer_return_success")
-                     :args ((serializer (:object content-serializer))) :documentation
-                     "Indicate that the serialization has been successfully completed.
-
-C: gdk_content_serializer_return_success
-See: https://docs.gtk.org/gdk4/method.ContentSerializer.return_success.html")
-
-
-(rt:define-gfunction (crossing-event-get-detail "gdk_crossing_event_get_detail") :args
-                     ((event :pointer)) :return (:enum notify-type) :documentation
-                     "Extracts the notify detail from a crossing event.
-
-C: gdk_crossing_event_get_detail
-See: https://docs.gtk.org/gdk4/method.CrossingEvent.get_detail.html")
-
-
-(rt:define-gfunction (crossing-event-get-focus "gdk_crossing_event_get_focus") :args
-                     ((event :pointer)) :return :boolean :documentation
-                     "Checks if the EVENT surface is the focus surface.
-
-C: gdk_crossing_event_get_focus
-See: https://docs.gtk.org/gdk4/method.CrossingEvent.get_focus.html")
-
-
-(rt:define-gfunction (crossing-event-get-mode "gdk_crossing_event_get_mode") :args
-                     ((event :pointer)) :return (:enum crossing-mode) :documentation
-                     "Extracts the crossing mode from a crossing event.
-
-C: gdk_crossing_event_get_mode
-See: https://docs.gtk.org/gdk4/method.CrossingEvent.get_mode.html")
-
-
-(rt:define-gfunction (cursor-new-from-name "gdk_cursor_new_from_name") :args
-                     ((name :string) (fallback (:object cursor) :optional t)) :return
-                     (:object cursor) :return-transfer :full :documentation
-                     "Creates a new cursor by looking up NAME in the current cursor
-theme.
-
-C: gdk_cursor_new_from_name
-See: https://docs.gtk.org/gdk4/ctor.Cursor.new_from_name.html")
-
-
-(rt:define-gfunction (cursor-new-from-texture "gdk_cursor_new_from_texture") :args
-                     ((texture (:object texture)) (hotspot-x :int) (hotspot-y :int)
-                      (fallback (:object cursor) :optional t))
-                     :return (:object cursor) :return-transfer :full :documentation
-                     "Creates a new cursor from a `GdkTexture`.
-
-C: gdk_cursor_new_from_texture
-See: https://docs.gtk.org/gdk4/ctor.Cursor.new_from_texture.html")
-
-
-(rt:define-gfunction (cursor-get-fallback "gdk_cursor_get_fallback") :args
-                     ((cursor (:object cursor))) :return (:object cursor) :documentation
-                     "Returns the fallback for this CURSOR.
-
-C: gdk_cursor_get_fallback
-See: https://docs.gtk.org/gdk4/method.Cursor.get_fallback.html")
-
-
-(rt:define-gfunction (cursor-get-hotspot-x "gdk_cursor_get_hotspot_x") :args
-                     ((cursor (:object cursor))) :return :int :documentation
-                     "Returns the horizontal offset of the hotspot.
-
-C: gdk_cursor_get_hotspot_x
-See: https://docs.gtk.org/gdk4/method.Cursor.get_hotspot_x.html")
-
-
-(rt:define-gfunction (cursor-get-hotspot-y "gdk_cursor_get_hotspot_y") :args
-                     ((cursor (:object cursor))) :return :int :documentation
-                     "Returns the vertical offset of the hotspot.
-
-C: gdk_cursor_get_hotspot_y
-See: https://docs.gtk.org/gdk4/method.Cursor.get_hotspot_y.html")
-
-
-(rt:define-gfunction (cursor-get-name "gdk_cursor_get_name") :args ((cursor (:object cursor)))
-                     :return :string :documentation "Returns the name of the cursor.
-
-C: gdk_cursor_get_name
-See: https://docs.gtk.org/gdk4/method.Cursor.get_name.html")
-
-
-(rt:define-gfunction (cursor-get-texture "gdk_cursor_get_texture") :args
-                     ((cursor (:object cursor))) :return (:object texture) :documentation
-                     "Returns the texture for the cursor.
-
-C: gdk_cursor_get_texture
-See: https://docs.gtk.org/gdk4/method.Cursor.get_texture.html")
-
-
-(rt:define-gfunction (dnd-event-get-drop "gdk_dnd_event_get_drop") :args ((event :pointer)) :return
-                     (:object drop) :documentation "Gets the `GdkDrop` object from a DND event.
-
-C: gdk_dnd_event_get_drop
-See: https://docs.gtk.org/gdk4/method.DNDEvent.get_drop.html")
-
-
-(rt:define-gfunction (device-get-active-layout-index "gdk_device_get_active_layout_index") :args
-                     ((device (:object device))) :return :int :version "4.18" :documentation
-                     "Retrieves the index of the active layout of the keyboard.
-
-C: gdk_device_get_active_layout_index
-See: https://docs.gtk.org/gdk4/method.Device.get_active_layout_index.html
-Since: 4.18")
-
-
-(rt:define-gfunction (device-get-caps-lock-state "gdk_device_get_caps_lock_state") :args
-                     ((device (:object device))) :return :boolean :documentation
-                     "Retrieves whether the Caps Lock modifier of the keyboard is locked.
-
-C: gdk_device_get_caps_lock_state
-See: https://docs.gtk.org/gdk4/method.Device.get_caps_lock_state.html")
-
-
-(rt:define-gfunction (device-get-device-tool "gdk_device_get_device_tool") :args
-                     ((device (:object device))) :return (:object device-tool) :documentation
-                     "Retrieves the current tool for DEVICE.
-
-C: gdk_device_get_device_tool
-See: https://docs.gtk.org/gdk4/method.Device.get_device_tool.html")
-
-
-(rt:define-gfunction (device-get-direction "gdk_device_get_direction") :args
-                     ((device (:object device))) :return (:enum pango:direction) :documentation
-                     "Returns the direction of effective layout of the keyboard.
-
-C: gdk_device_get_direction
-See: https://docs.gtk.org/gdk4/method.Device.get_direction.html")
-
-
-(rt:define-gfunction (device-get-display "gdk_device_get_display") :args
-                     ((device (:object device))) :return (:object display) :documentation
-                     "Returns the `GdkDisplay` to which DEVICE pertains.
-
-C: gdk_device_get_display
-See: https://docs.gtk.org/gdk4/method.Device.get_display.html")
-
-
-(rt:define-gfunction (device-get-has-cursor "gdk_device_get_has_cursor") :args
-                     ((device (:object device))) :return :boolean :documentation
-                     "Determines whether the pointer follows device motion.
-
-C: gdk_device_get_has_cursor
-See: https://docs.gtk.org/gdk4/method.Device.get_has_cursor.html")
-
-
-(rt:define-gfunction (device-get-layout-names "gdk_device_get_layout_names") :args
-                     ((device (:object device))) :return :strv :return-transfer :full :version
-                     "4.18" :documentation "Retrieves the names of the layouts of the keyboard.
-
-C: gdk_device_get_layout_names
-See: https://docs.gtk.org/gdk4/method.Device.get_layout_names.html
-Since: 4.18")
-
-
-(rt:define-gfunction (device-get-modifier-state "gdk_device_get_modifier_state") :args
-                     ((device (:object device))) :return (:flags modifier-type) :documentation
-                     "Retrieves the current modifier state of the keyboard.
-
-C: gdk_device_get_modifier_state
-See: https://docs.gtk.org/gdk4/method.Device.get_modifier_state.html")
-
-
-(rt:define-gfunction (device-get-name "gdk_device_get_name") :args ((device (:object device)))
-                     :return :string :documentation
-                     "The name of the device, suitable for showing in a user interface.
-
-C: gdk_device_get_name
-See: https://docs.gtk.org/gdk4/method.Device.get_name.html")
-
-
-(rt:define-gfunction (device-get-num-lock-state "gdk_device_get_num_lock_state") :args
-                     ((device (:object device))) :return :boolean :documentation
-                     "Retrieves whether the Num Lock modifier of the keyboard is locked.
-
-C: gdk_device_get_num_lock_state
-See: https://docs.gtk.org/gdk4/method.Device.get_num_lock_state.html")
-
-
-(rt:define-gfunction (device-get-num-touches "gdk_device_get_num_touches") :args
-                     ((device (:object device))) :return :uint :documentation
-                     "Retrieves the number of touch points associated to DEVICE.
-
-C: gdk_device_get_num_touches
-See: https://docs.gtk.org/gdk4/method.Device.get_num_touches.html")
-
-
-(rt:define-gfunction (device-get-product-id "gdk_device_get_product_id") :args
-                     ((device (:object device))) :return :string :documentation
-                     "Returns the product ID of this device.
-
-C: gdk_device_get_product_id
-See: https://docs.gtk.org/gdk4/method.Device.get_product_id.html")
-
-
-(rt:define-gfunction (device-get-scroll-lock-state "gdk_device_get_scroll_lock_state") :args
-                     ((device (:object device))) :return :boolean :documentation
-                     "Retrieves whether the Scroll Lock modifier of the keyboard is locked.
-
-C: gdk_device_get_scroll_lock_state
-See: https://docs.gtk.org/gdk4/method.Device.get_scroll_lock_state.html")
-
-
-(rt:define-gfunction (device-get-seat "gdk_device_get_seat") :args ((device (:object device)))
-                     :return (:object seat) :documentation
-                     "Returns the `GdkSeat` the device belongs to.
-
-C: gdk_device_get_seat
-See: https://docs.gtk.org/gdk4/method.Device.get_seat.html")
-
-
-(rt:define-gfunction (device-get-source "gdk_device_get_source") :args ((device (:object device)))
-                     :return (:enum input-source) :documentation "Determines the type of the device.
-
-C: gdk_device_get_source
-See: https://docs.gtk.org/gdk4/method.Device.get_source.html")
-
-
-(rt:define-gfunction (device-get-surface-at-position "gdk_device_get_surface_at_position") :args
-                     ((device (:object device)) (win-x :double :direction :out :transfer :full)
-                      (win-y :double :direction :out :transfer :full))
-                     :return (:object surface) :documentation
-                     "Obtains the surface underneath DEVICE, returning the location of the
-device in WIN-X and WIN-Y.
-
-C: gdk_device_get_surface_at_position
-See: https://docs.gtk.org/gdk4/method.Device.get_surface_at_position.html")
-
-
-(rt:define-gfunction (device-get-timestamp "gdk_device_get_timestamp") :args
-                     ((device (:object device))) :return :uint32 :version "4.2" :documentation
-                     "Returns the timestamp of the last activity for this device.
-
-C: gdk_device_get_timestamp
-See: https://docs.gtk.org/gdk4/method.Device.get_timestamp.html
-Since: 4.2")
-
-
-(rt:define-gfunction (device-get-vendor-id "gdk_device_get_vendor_id") :args
-                     ((device (:object device))) :return :string :documentation
-                     "Returns the vendor ID of this device.
-
-C: gdk_device_get_vendor_id
-See: https://docs.gtk.org/gdk4/method.Device.get_vendor_id.html")
-
-
-(rt:define-gfunction (device-has-bidi-layouts "gdk_device_has_bidi_layouts") :args
-                     ((device (:object device))) :return :boolean :documentation
-                     "Determines if layouts for both right-to-left and
-left-to-right languages are in use on the keyboard.
-
-C: gdk_device_has_bidi_layouts
-See: https://docs.gtk.org/gdk4/method.Device.has_bidi_layouts.html")
-
-
-(rt:define-gfunction (device-pad-get-feature-group "gdk_device_pad_get_feature_group") :args
-                     ((pad (:object device-pad)) (feature (:enum device-pad-feature))
-                      (feature-idx :int))
-                     :return :int :documentation
-                     "Returns the group the given FEATURE and IDX belong to.
-
-C: gdk_device_pad_get_feature_group
-See: https://docs.gtk.org/gdk4/method.DevicePad.get_feature_group.html")
-
-
-(rt:define-gfunction (device-pad-get-group-n-modes "gdk_device_pad_get_group_n_modes") :args
-                     ((pad (:object device-pad)) (group-idx :int)) :return :int :documentation
-                     "Returns the number of modes that GROUP may have.
-
-C: gdk_device_pad_get_group_n_modes
-See: https://docs.gtk.org/gdk4/method.DevicePad.get_group_n_modes.html")
-
-
-(rt:define-gfunction (device-pad-get-n-features "gdk_device_pad_get_n_features") :args
-                     ((pad (:object device-pad)) (feature (:enum device-pad-feature))) :return :int
-                     :documentation "Returns the number of features a tablet pad has.
-
-C: gdk_device_pad_get_n_features
-See: https://docs.gtk.org/gdk4/method.DevicePad.get_n_features.html")
-
-
-(rt:define-gfunction (device-pad-get-n-groups "gdk_device_pad_get_n_groups") :args
-                     ((pad (:object device-pad))) :return :int :documentation
-                     "Returns the number of groups this pad device has.
-
-C: gdk_device_pad_get_n_groups
-See: https://docs.gtk.org/gdk4/method.DevicePad.get_n_groups.html")
-
-
-(rt:define-gfunction (device-tool-get-axes "gdk_device_tool_get_axes") :args
-                     ((tool (:object device-tool))) :return (:flags axis-flags) :documentation
-                     "Gets the axes of the tool.
-
-C: gdk_device_tool_get_axes
-See: https://docs.gtk.org/gdk4/method.DeviceTool.get_axes.html")
-
-
-(rt:define-gfunction (device-tool-get-hardware-id "gdk_device_tool_get_hardware_id") :args
-                     ((tool (:object device-tool))) :return :uint64 :documentation
-                     "Gets the hardware ID of this tool, or 0 if it's not known.
-
-C: gdk_device_tool_get_hardware_id
-See: https://docs.gtk.org/gdk4/method.DeviceTool.get_hardware_id.html")
-
-
-(rt:define-gfunction (device-tool-get-serial "gdk_device_tool_get_serial") :args
-                     ((tool (:object device-tool))) :return :uint64 :documentation
-                     "Gets the serial number of this tool.
-
-C: gdk_device_tool_get_serial
-See: https://docs.gtk.org/gdk4/method.DeviceTool.get_serial.html")
-
-
-(rt:define-gfunction (device-tool-get-tool-type "gdk_device_tool_get_tool_type") :args
-                     ((tool (:object device-tool))) :return (:enum device-tool-type) :documentation
-                     "Gets the `GdkDeviceToolType` of the tool.
-
-C: gdk_device_tool_get_tool_type
-See: https://docs.gtk.org/gdk4/method.DeviceTool.get_tool_type.html")
-
-
-(rt:define-gfunction (display-get-default "gdk_display_get_default") :return (:object display)
-                     :documentation "Gets the default `GdkDisplay`.
-
-C: gdk_display_get_default
-See: https://docs.gtk.org/gdk4/type_func.Display.get_default.html")
-
-
-(rt:define-gfunction (display-open "gdk_display_open") :args ((display-name :string)) :return
-                     (:object display) :documentation "Opens a display.
-
-C: gdk_display_open
-See: https://docs.gtk.org/gdk4/type_func.Display.open.html")
-
-
-(rt:define-gfunction (display-beep "gdk_display_beep") :args ((display (:object display)))
-                     :documentation "Emits a short beep on DISPLAY
-
-C: gdk_display_beep
-See: https://docs.gtk.org/gdk4/method.Display.beep.html")
-
-
-(rt:define-gfunction (display-close "gdk_display_close") :args ((display (:object display)))
-                     :documentation
-                     "Closes the connection to the windowing system for the given display.
-
-C: gdk_display_close
-See: https://docs.gtk.org/gdk4/method.Display.close.html")
-
-
-(rt:define-gfunction (display-create-gl-context "gdk_display_create_gl_context") :args
-                     ((self (:object display))) :return (:object gl-context) :return-transfer :full
-                     :throws t :version "4.6" :documentation
-                     "Creates a new `GdkGLContext` for the `GdkDisplay`.
-
-C: gdk_display_create_gl_context
-See: https://docs.gtk.org/gdk4/method.Display.create_gl_context.html
-Since: 4.6")
-
-
-(rt:define-gfunction (display-device-is-grabbed "gdk_display_device_is_grabbed") :args
-                     ((display (:object display)) (device (:object device))) :return :boolean
-                     :documentation "Returns true if there is an ongoing grab on DEVICE for DISPLAY.
-
-C: gdk_display_device_is_grabbed
-See: https://docs.gtk.org/gdk4/method.Display.device_is_grabbed.html")
-
-
-(rt:define-gfunction (display-flush "gdk_display_flush") :args ((display (:object display)))
-                     :documentation "Flushes any requests queued for the windowing system.
-
-C: gdk_display_flush
-See: https://docs.gtk.org/gdk4/method.Display.flush.html")
-
-
-(rt:define-gfunction (display-get-app-launch-context "gdk_display_get_app_launch_context") :args
-                     ((display (:object display))) :return (:object app-launch-context)
-                     :return-transfer :full :documentation
-                     "Returns a `GdkAppLaunchContext` suitable for launching
-applications on the given display.
-
-C: gdk_display_get_app_launch_context
-See: https://docs.gtk.org/gdk4/method.Display.get_app_launch_context.html")
-
-
-(rt:define-gfunction (display-get-clipboard "gdk_display_get_clipboard") :args
-                     ((display (:object display))) :return (:object clipboard) :documentation
-                     "Gets the clipboard used for copy/paste operations.
-
-C: gdk_display_get_clipboard
-See: https://docs.gtk.org/gdk4/method.Display.get_clipboard.html")
-
-
-(rt:define-gfunction (display-get-default-seat "gdk_display_get_default_seat") :args
-                     ((display (:object display))) :return (:object seat) :documentation
-                     "Returns the default `GdkSeat` for this display.
-
-C: gdk_display_get_default_seat
-See: https://docs.gtk.org/gdk4/method.Display.get_default_seat.html")
-
-
-(rt:define-gfunction (display-get-dmabuf-formats "gdk_display_get_dmabuf_formats") :args
-                     ((display (:object display))) :return
-                     (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type") :version "4.14"
-                     :documentation "Returns the dma-buf formats that are supported on this display.
-
-C: gdk_display_get_dmabuf_formats
-See: https://docs.gtk.org/gdk4/method.Display.get_dmabuf_formats.html
-Since: 4.14")
-
-
-(rt:define-gfunction (display-get-monitor-at-surface "gdk_display_get_monitor_at_surface") :args
-                     ((display (:object display)) (surface (:object surface))) :return
-                     (:object monitor) :documentation
-                     "Gets the monitor in which the largest area of SURFACE
-resides.
-
-C: gdk_display_get_monitor_at_surface
-See: https://docs.gtk.org/gdk4/method.Display.get_monitor_at_surface.html")
-
-
-(rt:define-gfunction (display-get-monitors "gdk_display_get_monitors") :args
-                     ((self (:object display))) :return (:object gio:list-model) :documentation
-                     "Gets the list of monitors associated with this display.
-
-C: gdk_display_get_monitors
-See: https://docs.gtk.org/gdk4/method.Display.get_monitors.html")
-
-
-(rt:define-gfunction (display-get-name "gdk_display_get_name") :args ((display (:object display)))
-                     :return :string :documentation "Gets the name of the display.
-
-C: gdk_display_get_name
-See: https://docs.gtk.org/gdk4/method.Display.get_name.html")
-
-
-(rt:define-gfunction (display-get-primary-clipboard "gdk_display_get_primary_clipboard") :args
-                     ((display (:object display))) :return (:object clipboard) :documentation
-                     "Gets the clipboard used for the primary selection.
-
-C: gdk_display_get_primary_clipboard
-See: https://docs.gtk.org/gdk4/method.Display.get_primary_clipboard.html")
-
-
-(rt:define-gfunction (display-get-setting "gdk_display_get_setting") :args
-                     ((display (:object display)) (name :string)
-                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
-                     :return :boolean :documentation
-                     "Retrieves a desktop-wide setting such as double-click time
-for the DISPLAY.
-
-C: gdk_display_get_setting
-See: https://docs.gtk.org/gdk4/method.Display.get_setting.html")
-
-
-(rt:define-gfunction
- (display-get-startup-notification-id "gdk_display_get_startup_notification_id") :args
- ((display (:object display))) :return :string :documentation
- "Gets the startup notification ID for a Wayland display, or NIL
-if no ID has been defined.
-
-C: gdk_display_get_startup_notification_id
-See: https://docs.gtk.org/gdk4/method.Display.get_startup_notification_id.html
-Deprecated.")
-
-
-(rt:define-gfunction (display-is-closed "gdk_display_is_closed") :args
-                     ((display (:object display))) :return :boolean :documentation
-                     "Finds out if the display has been closed.
-
-C: gdk_display_is_closed
-See: https://docs.gtk.org/gdk4/method.Display.is_closed.html")
-
-
-(rt:define-gfunction (display-is-composited "gdk_display_is_composited") :args
-                     ((display (:object display))) :return :boolean :documentation
-                     "Returns whether surfaces can reasonably be expected to have
-their alpha channel drawn correctly on the screen.
-
-C: gdk_display_is_composited
-See: https://docs.gtk.org/gdk4/method.Display.is_composited.html")
-
-
-(rt:define-gfunction (display-is-rgba "gdk_display_is_rgba") :args ((display (:object display)))
-                     :return :boolean :documentation
-                     "Returns whether surfaces on this DISPLAY are created with an
-alpha channel.
-
-C: gdk_display_is_rgba
-See: https://docs.gtk.org/gdk4/method.Display.is_rgba.html")
-
-
-(rt:define-gfunction (display-list-seats "gdk_display_list_seats") :args
-                     ((display (:object display))) :return (:glist (:object seat)) :return-transfer
-                     :container :documentation "Returns the list of seats known to DISPLAY.
-
-C: gdk_display_list_seats
-See: https://docs.gtk.org/gdk4/method.Display.list_seats.html")
-
-
-(rt:define-gfunction (display-map-keyval "gdk_display_map_keyval") :args
-                     ((display (:object display)) (keyval :uint)
-                      (keys (:array :pointer) :direction :out :transfer :full)
-                      (n-keys :int :length-of keys :direction :out))
-                     :return :boolean :documentation
-                     "Obtains a list of keycode/group/level combinations that will
-generate KEYVAL.
-
-C: gdk_display_map_keyval
-See: https://docs.gtk.org/gdk4/method.Display.map_keyval.html")
-
-
-(rt:define-gfunction (display-notify-startup-complete "gdk_display_notify_startup_complete") :args
-                     ((display (:object display)) (startup-id :string)) :documentation
-                     "Indicates to the GUI environment that the application has
-finished loading, using a given identifier.
-
-C: gdk_display_notify_startup_complete
-See: https://docs.gtk.org/gdk4/method.Display.notify_startup_complete.html
-Deprecated.")
-
-
-(rt:define-gfunction (display-prepare-gl "gdk_display_prepare_gl") :args ((self (:object display)))
-                     :return :boolean :throws t :version "4.4" :documentation
-                     "Checks that OpenGL is available for SELF and ensures that it is
-properly initialized.
-When this fails, an ERROR will be set describing the error and this
-function returns false.
-
-C: gdk_display_prepare_gl
-See: https://docs.gtk.org/gdk4/method.Display.prepare_gl.html
-Since: 4.4")
-
-
-(rt:define-gfunction (display-put-event "gdk_display_put_event") :args
-                     ((display (:object display)) (event :pointer)) :documentation
-                     "Adds the given event to the event queue for DISPLAY.
-
-C: gdk_display_put_event
-See: https://docs.gtk.org/gdk4/method.Display.put_event.html
-Deprecated.")
-
-
-(rt:define-gfunction (display-supports-input-shapes "gdk_display_supports_input_shapes") :args
-                     ((display (:object display))) :return :boolean :documentation
-                     "Returns true if the display supports input shapes.
-
-C: gdk_display_supports_input_shapes
-See: https://docs.gtk.org/gdk4/method.Display.supports_input_shapes.html")
-
-
-(rt:define-gfunction (display-supports-shadow-width "gdk_display_supports_shadow_width") :args
-                     ((display (:object display))) :return :boolean :version "4.14" :documentation
-                     "Returns whether it's possible for a surface to draw outside of the window area.
-
-C: gdk_display_supports_shadow_width
-See: https://docs.gtk.org/gdk4/method.Display.supports_shadow_width.html
-Since: 4.14")
-
-
-(rt:define-gfunction (display-sync "gdk_display_sync") :args ((display (:object display)))
-                     :documentation
-                     "Flushes any requests queued for the windowing system and waits until all
-requests have been handled.
-
-C: gdk_display_sync
-See: https://docs.gtk.org/gdk4/method.Display.sync.html")
-
-
-(rt:define-gfunction (display-translate-key "gdk_display_translate_key") :args
-                     ((display (:object display)) (keycode :uint) (state (:flags modifier-type))
-                      (group :int) (keyval :uint :direction :out :transfer :full)
-                      (effective-group :int :direction :out :transfer :full)
-                      (level :int :direction :out :transfer :full)
-                      (consumed (:flags modifier-type) :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Translates the contents of a `GdkEventKey` into a keyval, effective group,
-and level.
-
-C: gdk_display_translate_key
-See: https://docs.gtk.org/gdk4/method.Display.translate_key.html")
-
-
-(rt:define-gfunction (display-manager-get "gdk_display_manager_get") :return
-                     (:object display-manager) :documentation
-                     "Gets the singleton `GdkDisplayManager` object.
-
-C: gdk_display_manager_get
-See: https://docs.gtk.org/gdk4/type_func.DisplayManager.get.html")
-
-
-(rt:define-gfunction
- (display-manager-get-default-display "gdk_display_manager_get_default_display") :args
- ((manager (:object display-manager))) :return (:object display) :documentation
- "Gets the default `GdkDisplay`.
-
-C: gdk_display_manager_get_default_display
-See: https://docs.gtk.org/gdk4/method.DisplayManager.get_default_display.html")
-
-
-(rt:define-gfunction (display-manager-list-displays "gdk_display_manager_list_displays") :args
-                     ((manager (:object display-manager))) :return (:gslist (:object display))
-                     :return-transfer :container :documentation "List all currently open displays.
-
-C: gdk_display_manager_list_displays
-See: https://docs.gtk.org/gdk4/method.DisplayManager.list_displays.html")
-
-
-(rt:define-gfunction (display-manager-open-display "gdk_display_manager_open_display") :args
-                     ((manager (:object display-manager)) (name :string :optional t)) :return
-                     (:object display) :documentation "Opens a display.
-
-C: gdk_display_manager_open_display
-See: https://docs.gtk.org/gdk4/method.DisplayManager.open_display.html")
-
-
-(rt:define-gfunction
- (display-manager-set-default-display "gdk_display_manager_set_default_display") :args
- ((manager (:object display-manager)) (display (:object display))) :documentation
- "Sets DISPLAY as the default display.
-
-C: gdk_display_manager_set_default_display
-See: https://docs.gtk.org/gdk4/method.DisplayManager.set_default_display.html")
-
-
-(rt:define-gfunction (dmabuf-formats-contains "gdk_dmabuf_formats_contains") :args
-                     ((formats (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))
-                      (fourcc :uint32) (modifier :uint64))
-                     :return :boolean :version "4.14" :documentation
-                     "Returns whether a given format is contained in FORMATS.
-
-C: gdk_dmabuf_formats_contains
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.contains.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-formats-equal "gdk_dmabuf_formats_equal") :args
-                     ((formats1 (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))
-                      (formats2 (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type") :optional
-                       t))
-                     :return :boolean :version "4.14" :documentation
-                     "Returns whether FORMATS1 and FORMATS2 contain the
-same dmabuf formats, in the same order.
-
-C: gdk_dmabuf_formats_equal
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.equal.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-formats-get-format "gdk_dmabuf_formats_get_format") :args
-                     ((formats (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))
-                      (idx :size) (fourcc :uint32 :direction :out :transfer :full)
-                      (modifier :uint64 :direction :out :transfer :full))
-                     :version "4.14" :documentation "Gets the fourcc code and modifier for a format
-that is contained in FORMATS.
-
-C: gdk_dmabuf_formats_get_format
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.get_format.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-formats-get-n-formats "gdk_dmabuf_formats_get_n_formats") :args
-                     ((formats (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))) :return
-                     :size :version "4.14" :documentation
-                     "Returns the number of formats that the FORMATS object
-contains.
-
-C: gdk_dmabuf_formats_get_n_formats
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.get_n_formats.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-formats-ref "gdk_dmabuf_formats_ref") :args
-                     ((formats (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))) :return
-                     (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type") :return-transfer
-                     :full :version "4.14" :documentation "Increases the reference count of FORMATS.
-
-C: gdk_dmabuf_formats_ref
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.ref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-formats-unref "gdk_dmabuf_formats_unref") :args
-                     ((formats (:boxed "GdkDmabufFormats" "gdk_dmabuf_formats_get_type"))) :version
-                     "4.14" :documentation "Decreases the reference count of FORMATS.
-
-C: gdk_dmabuf_formats_unref
-See: https://docs.gtk.org/gdk4/method.DmabufFormats.unref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-new "gdk_dmabuf_texture_builder_new") :return
-                     (:object dmabuf-texture-builder) :return-transfer :full :version "4.14"
-                     :documentation "Creates a new texture builder.
-
-C: gdk_dmabuf_texture_builder_new
-See: https://docs.gtk.org/gdk4/ctor.DmabufTextureBuilder.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-color-state "gdk_dmabuf_texture_builder_get_color_state") :args
- ((self (:object dmabuf-texture-builder))) :return
- (:boxed "GdkColorState" "gdk_color_state_get_type") :version "4.16" :documentation
- "Gets the color state previously set via gdk_dmabuf_texture_builder_set_color_state().
-
-C: gdk_dmabuf_texture_builder_get_color_state
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-display "gdk_dmabuf_texture_builder_get_display")
-                     :args ((self (:object dmabuf-texture-builder))) :return (:object display)
-                     :version "4.14" :documentation
-                     "Returns the display that this texture builder is
-associated with.
-
-C: gdk_dmabuf_texture_builder_get_display
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_display.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-fd "gdk_dmabuf_texture_builder_get_fd") :args
-                     ((self (:object dmabuf-texture-builder)) (plane :uint)) :return :int :version
-                     "4.14" :documentation "Gets the file descriptor for a plane or -1 if none.
-
-C: gdk_dmabuf_texture_builder_get_fd
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_fd.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-fourcc "gdk_dmabuf_texture_builder_get_fourcc")
-                     :args ((self (:object dmabuf-texture-builder))) :return :uint32 :version
-                     "4.14" :documentation
-                     "Gets the format previously set via gdk_dmabuf_texture_builder_set_fourcc()
-or 0 if the format wasn't set.
-
-C: gdk_dmabuf_texture_builder_get_fourcc
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_fourcc.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-height "gdk_dmabuf_texture_builder_get_height")
-                     :args ((self (:object dmabuf-texture-builder))) :return :uint :version "4.14"
-                     :documentation
-                     "Gets the height previously set via gdk_dmabuf_texture_builder_set_height() or
-0 if the height wasn't set.
-
-C: gdk_dmabuf_texture_builder_get_height
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_height.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-modifier "gdk_dmabuf_texture_builder_get_modifier") :args
- ((self (:object dmabuf-texture-builder))) :return :uint64 :version "4.14" :documentation
- "Gets the modifier value.
-
-C: gdk_dmabuf_texture_builder_get_modifier
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_modifier.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-n-planes "gdk_dmabuf_texture_builder_get_n_planes") :args
- ((self (:object dmabuf-texture-builder))) :return :uint :version "4.14" :documentation
- "Gets the number of planes.
-
-C: gdk_dmabuf_texture_builder_get_n_planes
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_n_planes.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-offset "gdk_dmabuf_texture_builder_get_offset")
-                     :args ((self (:object dmabuf-texture-builder)) (plane :uint)) :return :uint
-                     :version "4.14" :documentation "Gets the offset value for a plane.
-
-C: gdk_dmabuf_texture_builder_get_offset
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_offset.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-premultiplied "gdk_dmabuf_texture_builder_get_premultiplied") :args
- ((self (:object dmabuf-texture-builder))) :return :boolean :version "4.14" :documentation
- "Whether the data is premultiplied.
-
-C: gdk_dmabuf_texture_builder_get_premultiplied
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_premultiplied.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-stride "gdk_dmabuf_texture_builder_get_stride")
-                     :args ((self (:object dmabuf-texture-builder)) (plane :uint)) :return :uint
-                     :version "4.14" :documentation "Gets the stride value for a plane.
-
-C: gdk_dmabuf_texture_builder_get_stride
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_stride.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-update-region "gdk_dmabuf_texture_builder_get_update_region") :args
- ((self (:object dmabuf-texture-builder))) :return
- (:boxed "CairoRegion" "cairo_gobject_region_get_type") :version "4.14" :documentation
- "Gets the region previously set via gdk_dmabuf_texture_builder_set_update_region() or
-NIL if none was set.
-
-C: gdk_dmabuf_texture_builder_get_update_region
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_update_region.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-get-update-texture "gdk_dmabuf_texture_builder_get_update_texture") :args
- ((self (:object dmabuf-texture-builder))) :return (:object texture) :version "4.14" :documentation
- "Gets the texture previously set via gdk_dmabuf_texture_builder_set_update_texture() or
-NIL if none was set.
-
-C: gdk_dmabuf_texture_builder_get_update_texture
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_update_texture.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-get-width "gdk_dmabuf_texture_builder_get_width")
-                     :args ((self (:object dmabuf-texture-builder))) :return :uint :version "4.14"
-                     :documentation
-                     "Gets the width previously set via gdk_dmabuf_texture_builder_set_width() or
-0 if the width wasn't set.
-
-C: gdk_dmabuf_texture_builder_get_width
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.get_width.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-color-state "gdk_dmabuf_texture_builder_set_color_state") :args
- ((self (:object dmabuf-texture-builder))
-  (color-state (:boxed "GdkColorState" "gdk_color_state_get_type") :optional t))
- :version "4.16" :documentation "Sets the color state for the texture.
-
-C: gdk_dmabuf_texture_builder_set_color_state
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-display "gdk_dmabuf_texture_builder_set_display")
-                     :args ((self (:object dmabuf-texture-builder)) (display (:object display)))
-                     :version "4.14" :documentation "Sets the display that this texture builder is
-associated with.
-
-C: gdk_dmabuf_texture_builder_set_display
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_display.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-fd "gdk_dmabuf_texture_builder_set_fd") :args
-                     ((self (:object dmabuf-texture-builder)) (plane :uint) (fd :int)) :version
-                     "4.14" :documentation
-                     "Sets the file descriptor for a plane or to -1 to unset it.
-
-C: gdk_dmabuf_texture_builder_set_fd
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_fd.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-fourcc "gdk_dmabuf_texture_builder_set_fourcc")
-                     :args ((self (:object dmabuf-texture-builder)) (fourcc :uint32)) :version
-                     "4.14" :documentation "Sets the format of the texture.
-
-C: gdk_dmabuf_texture_builder_set_fourcc
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_fourcc.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-height "gdk_dmabuf_texture_builder_set_height")
-                     :args ((self (:object dmabuf-texture-builder)) (height :uint)) :version "4.14"
-                     :documentation "Sets the height of the texture.
-
-C: gdk_dmabuf_texture_builder_set_height
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_height.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-modifier "gdk_dmabuf_texture_builder_set_modifier") :args
- ((self (:object dmabuf-texture-builder)) (modifier :uint64)) :version "4.14" :documentation
- "Sets the modifier.
-
-C: gdk_dmabuf_texture_builder_set_modifier
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_modifier.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-n-planes "gdk_dmabuf_texture_builder_set_n_planes") :args
- ((self (:object dmabuf-texture-builder)) (n-planes :uint)) :version "4.14" :documentation
- "Sets the number of planes of the texture.
-
-C: gdk_dmabuf_texture_builder_set_n_planes
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_n_planes.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-offset "gdk_dmabuf_texture_builder_set_offset")
-                     :args ((self (:object dmabuf-texture-builder)) (plane :uint) (offset :uint))
-                     :version "4.14" :documentation "Sets the offset for a plane.
-
-C: gdk_dmabuf_texture_builder_set_offset
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_offset.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-premultiplied "gdk_dmabuf_texture_builder_set_premultiplied") :args
- ((self (:object dmabuf-texture-builder)) (premultiplied :boolean)) :version "4.14" :documentation
- "Sets whether the data is premultiplied.
-
-C: gdk_dmabuf_texture_builder_set_premultiplied
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_premultiplied.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-stride "gdk_dmabuf_texture_builder_set_stride")
-                     :args ((self (:object dmabuf-texture-builder)) (plane :uint) (stride :uint))
-                     :version "4.14" :documentation "Sets the stride for a plane.
-
-C: gdk_dmabuf_texture_builder_set_stride
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_stride.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-update-region "gdk_dmabuf_texture_builder_set_update_region") :args
- ((self (:object dmabuf-texture-builder))
-  (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
- :version "4.14" :documentation "Sets the region to be updated by this texture. Together with
-Gdk.DmabufTextureBuilder:update-texture this describes an
-update of a previous texture.
-
-C: gdk_dmabuf_texture_builder_set_update_region
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_update_region.html
-Since: 4.14")
-
-
-(rt:define-gfunction
- (dmabuf-texture-builder-set-update-texture "gdk_dmabuf_texture_builder_set_update_texture") :args
- ((self (:object dmabuf-texture-builder)) (texture (:object texture) :optional t)) :version "4.14"
- :documentation "Sets the texture to be updated by this texture. See
-Gdk.DmabufTextureBuilder.set_update_region for an explanation.
-
-C: gdk_dmabuf_texture_builder_set_update_texture
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_update_texture.html
-Since: 4.14")
-
-
-(rt:define-gfunction (dmabuf-texture-builder-set-width "gdk_dmabuf_texture_builder_set_width")
-                     :args ((self (:object dmabuf-texture-builder)) (width :uint)) :version "4.14"
-                     :documentation "Sets the width of the texture.
-
-C: gdk_dmabuf_texture_builder_set_width
-See: https://docs.gtk.org/gdk4/method.DmabufTextureBuilder.set_width.html
-Since: 4.14")
-
-
-(rt:define-gfunction (drag-begin "gdk_drag_begin") :args
-                     ((surface (:object surface)) (device (:object device))
-                      (content (:object content-provider)) (actions (:flags drag-action))
-                      (dx :double) (dy :double))
-                     :return (:object drag) :return-transfer :full :documentation
-                     "Starts a drag and creates a new drag context for it.
-
-C: gdk_drag_begin
-See: https://docs.gtk.org/gdk4/type_func.Drag.begin.html")
-
-
-(rt:define-gfunction (drag-drop-done "gdk_drag_drop_done") :args
-                     ((drag (:object drag)) (success :boolean)) :documentation
-                     "Informs GDK that the drop ended.
-
-C: gdk_drag_drop_done
-See: https://docs.gtk.org/gdk4/method.Drag.drop_done.html")
-
-
-(rt:define-gfunction (drag-get-actions "gdk_drag_get_actions") :args ((drag (:object drag)))
-                     :return (:flags drag-action) :documentation
-                     "Determines the bitmask of possible actions proposed by the source.
-
-C: gdk_drag_get_actions
-See: https://docs.gtk.org/gdk4/method.Drag.get_actions.html")
-
-
-(rt:define-gfunction (drag-get-content "gdk_drag_get_content") :args ((drag (:object drag)))
-                     :return (:object content-provider) :documentation
-                     "Returns the `GdkContentProvider` associated to the `GdkDrag` object.
-
-C: gdk_drag_get_content
-See: https://docs.gtk.org/gdk4/method.Drag.get_content.html")
-
-
-(rt:define-gfunction (drag-get-device "gdk_drag_get_device") :args ((drag (:object drag))) :return
-                     (:object device) :documentation
-                     "Returns the `GdkDevice` associated to the `GdkDrag` object.
-
-C: gdk_drag_get_device
-See: https://docs.gtk.org/gdk4/method.Drag.get_device.html")
-
-
-(rt:define-gfunction (drag-get-display "gdk_drag_get_display") :args ((drag (:object drag)))
-                     :return (:object display) :documentation
-                     "Gets the `GdkDisplay` that the drag object was created for.
-
-C: gdk_drag_get_display
-See: https://docs.gtk.org/gdk4/method.Drag.get_display.html")
-
-
-(rt:define-gfunction (drag-get-drag-surface "gdk_drag_get_drag_surface") :args
-                     ((drag (:object drag))) :return (:object surface) :documentation
-                     "Returns the surface on which the drag icon should be rendered
-during the drag operation.
-
-C: gdk_drag_get_drag_surface
-See: https://docs.gtk.org/gdk4/method.Drag.get_drag_surface.html")
-
-
-(rt:define-gfunction (drag-get-formats "gdk_drag_get_formats") :args ((drag (:object drag)))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :documentation "Retrieves the formats supported by this `GdkDrag` object.
-
-C: gdk_drag_get_formats
-See: https://docs.gtk.org/gdk4/method.Drag.get_formats.html")
-
-
-(rt:define-gfunction (drag-get-selected-action "gdk_drag_get_selected_action") :args
-                     ((drag (:object drag))) :return (:flags drag-action) :documentation
-                     "Determines the action chosen by the drag destination.
-
-C: gdk_drag_get_selected_action
-See: https://docs.gtk.org/gdk4/method.Drag.get_selected_action.html")
-
-
-(rt:define-gfunction (drag-get-surface "gdk_drag_get_surface") :args ((drag (:object drag)))
-                     :return (:object surface) :documentation
-                     "Returns the `GdkSurface` where the drag originates.
-
-C: gdk_drag_get_surface
-See: https://docs.gtk.org/gdk4/method.Drag.get_surface.html")
-
-
-(rt:define-gfunction (drag-set-hotspot "gdk_drag_set_hotspot") :args
-                     ((drag (:object drag)) (hot-x :int) (hot-y :int)) :documentation
-                     "Sets the position of the drag surface that will be kept
-under the cursor hotspot.
-
-C: gdk_drag_set_hotspot
-See: https://docs.gtk.org/gdk4/method.Drag.set_hotspot.html")
-
-
-(rt:define-gfunction (drag-surface-present "gdk_drag_surface_present") :args
-                     ((drag-surface (:object drag-surface)) (width :int) (height :int)) :return
-                     :boolean :documentation "Present DRAG-SURFACE.
-
-C: gdk_drag_surface_present
-See: https://docs.gtk.org/gdk4/method.DragSurface.present.html")
-
-
-(rt:define-gfunction (drag-surface-size-set-size "gdk_drag_surface_size_set_size") :args
-                     ((size (:boxed "GdkDragSurfaceSize" "gdk_drag_surface_size_get_type"))
-                      (width :int) (height :int))
-                     :version "4.12" :documentation
-                     "Sets the size the drag surface prefers to be resized to.
-
-C: gdk_drag_surface_size_set_size
-See: https://docs.gtk.org/gdk4/method.DragSurfaceSize.set_size.html
-Since: 4.12")
-
-
-(rt:define-gfunction (draw-context-begin-frame "gdk_draw_context_begin_frame") :args
-                     ((context (:object draw-context))
-                      (region (:boxed "CairoRegion" "cairo_gobject_region_get_type")))
-                     :documentation
-                     "Indicates that you are beginning the process of redrawing REGION
-on the CONTEXT's surface.
-
-C: gdk_draw_context_begin_frame
-See: https://docs.gtk.org/gdk4/method.DrawContext.begin_frame.html
-Deprecated.")
-
-
-(rt:define-gfunction (draw-context-end-frame "gdk_draw_context_end_frame") :args
-                     ((context (:object draw-context))) :documentation
-                     "Ends a drawing operation started with gdk_draw_context_begin_frame().
-
-C: gdk_draw_context_end_frame
-See: https://docs.gtk.org/gdk4/method.DrawContext.end_frame.html
-Deprecated.")
-
-
-(rt:define-gfunction (draw-context-get-display "gdk_draw_context_get_display") :args
-                     ((context (:object draw-context))) :return (:object display) :documentation
-                     "Retrieves the `GdkDisplay` the CONTEXT is created for
-
-C: gdk_draw_context_get_display
-See: https://docs.gtk.org/gdk4/method.DrawContext.get_display.html")
-
-
-(rt:define-gfunction (draw-context-get-frame-region "gdk_draw_context_get_frame_region") :args
-                     ((context (:object draw-context))) :return
-                     (:boxed "CairoRegion" "cairo_gobject_region_get_type") :documentation
-                     "Retrieves the region that is currently being repainted.
-
-C: gdk_draw_context_get_frame_region
-See: https://docs.gtk.org/gdk4/method.DrawContext.get_frame_region.html
-Deprecated.")
-
-
-(rt:define-gfunction (draw-context-get-surface "gdk_draw_context_get_surface") :args
-                     ((context (:object draw-context))) :return (:object surface) :documentation
-                     "Retrieves the surface that CONTEXT is bound to.
-
-C: gdk_draw_context_get_surface
-See: https://docs.gtk.org/gdk4/method.DrawContext.get_surface.html")
-
-
-(rt:define-gfunction (draw-context-is-in-frame "gdk_draw_context_is_in_frame") :args
-                     ((context (:object draw-context))) :return :boolean :documentation
-                     "Returns true if CONTEXT is in the process of drawing to its surface.
-
-C: gdk_draw_context_is_in_frame
-See: https://docs.gtk.org/gdk4/method.DrawContext.is_in_frame.html
-Deprecated.")
-
-
-(rt:define-gfunction (drop-finish "gdk_drop_finish") :args
-                     ((self (:object drop)) (action (:flags drag-action))) :documentation
-                     "Ends the drag operation after a drop.
-
-C: gdk_drop_finish
-See: https://docs.gtk.org/gdk4/method.Drop.finish.html")
-
-
-(rt:define-gfunction (drop-get-actions "gdk_drop_get_actions") :args ((self (:object drop)))
-                     :return (:flags drag-action) :documentation
-                     "Returns the possible actions for this `GdkDrop`.
-
-C: gdk_drop_get_actions
-See: https://docs.gtk.org/gdk4/method.Drop.get_actions.html")
-
-
-(rt:define-gfunction (drop-get-device "gdk_drop_get_device") :args ((self (:object drop))) :return
-                     (:object device) :documentation "Returns the `GdkDevice` performing the drop.
-
-C: gdk_drop_get_device
-See: https://docs.gtk.org/gdk4/method.Drop.get_device.html")
-
-
-(rt:define-gfunction (drop-get-display "gdk_drop_get_display") :args ((self (:object drop)))
-                     :return (:object display) :documentation
-                     "Gets the `GdkDisplay` that SELF was created for.
-
-C: gdk_drop_get_display
-See: https://docs.gtk.org/gdk4/method.Drop.get_display.html")
-
-
-(rt:define-gfunction (drop-get-drag "gdk_drop_get_drag") :args ((self (:object drop))) :return
-                     (:object drag) :documentation
-                     "If this is an in-app drag-and-drop operation, returns the `GdkDrag`
-that corresponds to this drop.
-
-C: gdk_drop_get_drag
-See: https://docs.gtk.org/gdk4/method.Drop.get_drag.html")
-
-
-(rt:define-gfunction (drop-get-formats "gdk_drop_get_formats") :args ((self (:object drop)))
-                     :return (:boxed "GdkContentFormats" "gdk_content_formats_get_type")
-                     :documentation "Returns the `GdkContentFormats` that the drop offers the data
-to be read in.
-
-C: gdk_drop_get_formats
-See: https://docs.gtk.org/gdk4/method.Drop.get_formats.html")
-
-
-(rt:define-gfunction (drop-get-surface "gdk_drop_get_surface") :args ((self (:object drop)))
-                     :return (:object surface) :documentation
-                     "Returns the `GdkSurface` performing the drop.
-
-C: gdk_drop_get_surface
-See: https://docs.gtk.org/gdk4/method.Drop.get_surface.html")
-
-
-(rt:define-gfunction (drop-read-async "gdk_drop_read_async") :args
-                     ((self (:object drop)) (mime-types :strv) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation "Asynchronously read the dropped data from a `GdkDrop`
-in a format that complies with one of the mime types.
-
-C: gdk_drop_read_async
-See: https://docs.gtk.org/gdk4/method.Drop.read_async.html")
-
-
-(rt:define-gfunction (drop-read-finish "gdk_drop_read_finish") :args
-                     ((self (:object drop)) (result (:object gio:async-result))
-                      (out-mime-type :string :direction :out))
-                     :return (:object gio:input-stream) :return-transfer :full :throws t
-                     :documentation "Finishes an async drop read operation.
-
-C: gdk_drop_read_finish
-See: https://docs.gtk.org/gdk4/method.Drop.read_finish.html")
-
-
-(rt:define-gfunction (drop-read-value-async "gdk_drop_read_value_async") :args
-                     ((self (:object drop)) (type :gtype) (io-priority :int)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :documentation "Asynchronously request the drag operation's contents converted
-to the given TYPE.
-
-C: gdk_drop_read_value_async
-See: https://docs.gtk.org/gdk4/method.Drop.read_value_async.html")
-
-
-(rt:define-gfunction (drop-read-value-finish "gdk_drop_read_value_finish") :args
-                     ((self (:object drop)) (result (:object gio:async-result))) :return
-                     (:boxed "GValue" "g_value_get_type" gobject:value) :throws t :documentation
-                     "Finishes an async drop read.
-
-C: gdk_drop_read_value_finish
-See: https://docs.gtk.org/gdk4/method.Drop.read_value_finish.html")
-
-
-(rt:define-gfunction (drop-status "gdk_drop_status") :args
-                     ((self (:object drop)) (actions (:flags drag-action))
-                      (preferred (:flags drag-action)))
-                     :documentation
-                     "Selects all actions that are potentially supported by the destination.
-
-C: gdk_drop_status
-See: https://docs.gtk.org/gdk4/method.Drop.status.html")
-
-
-(rt:define-gfunction (event-get-axes "gdk_event_get_axes") :args
-                     ((event :pointer) (axes (:array :double) :direction :out)
-                      (n-axes :uint :length-of axes :direction :out))
-                     :return :boolean :documentation "Extracts all axis values from an event.
-
-C: gdk_event_get_axes
-See: https://docs.gtk.org/gdk4/method.Event.get_axes.html")
-
-
-(rt:define-gfunction (event-get-axis "gdk_event_get_axis") :args
-                     ((event :pointer) (axis-use (:enum axis-use))
-                      (value :double :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Extract the axis value for a particular axis use from
-an event structure.
-
-C: gdk_event_get_axis
-See: https://docs.gtk.org/gdk4/method.Event.get_axis.html")
-
-
-(rt:define-gfunction (event-get-device "gdk_event_get_device") :args ((event :pointer)) :return
-                     (:object device) :documentation "Returns the device of an event.
-
-C: gdk_event_get_device
-See: https://docs.gtk.org/gdk4/method.Event.get_device.html")
-
-
-(rt:define-gfunction (event-get-device-tool "gdk_event_get_device_tool") :args ((event :pointer))
-                     :return (:object device-tool) :documentation
-                     "Returns a `GdkDeviceTool` representing the tool that
-caused the event.
-
-C: gdk_event_get_device_tool
-See: https://docs.gtk.org/gdk4/method.Event.get_device_tool.html")
-
-
-(rt:define-gfunction (event-get-display "gdk_event_get_display") :args ((event :pointer)) :return
-                     (:object display) :documentation
-                     "Retrieves the display associated to the EVENT.
-
-C: gdk_event_get_display
-See: https://docs.gtk.org/gdk4/method.Event.get_display.html")
-
-
-(rt:define-gfunction (event-get-event-sequence "gdk_event_get_event_sequence") :args
-                     ((event :pointer)) :return
-                     (:boxed "GdkEventSequence" "gdk_event_sequence_get_type") :documentation
-                     "Returns the event sequence to which the event belongs.
-
-C: gdk_event_get_event_sequence
-See: https://docs.gtk.org/gdk4/method.Event.get_event_sequence.html")
-
-
-(rt:define-gfunction (event-get-event-type "gdk_event_get_event_type") :args ((event :pointer))
-                     :return (:enum event-type) :documentation "Retrieves the type of the event.
-
-C: gdk_event_get_event_type
-See: https://docs.gtk.org/gdk4/method.Event.get_event_type.html")
-
-
-(rt:define-gfunction (event-get-history "gdk_event_get_history") :args
-                     ((event :pointer) (out-n-coords :uint :length-of :return :direction :out))
-                     :return (:array (:record time-coord)) :return-transfer :container
-                     :documentation
-                     "Retrieves the history of the device that EVENT is for, as a list of
-time and coordinates.
-
-C: gdk_event_get_history
-See: https://docs.gtk.org/gdk4/method.Event.get_history.html")
-
-
-(rt:define-gfunction (event-get-modifier-state "gdk_event_get_modifier_state") :args
-                     ((event :pointer)) :return (:flags modifier-type) :documentation
-                     "Returns the modifier state field of an event.
-
-C: gdk_event_get_modifier_state
-See: https://docs.gtk.org/gdk4/method.Event.get_modifier_state.html")
-
-
-(rt:define-gfunction (event-get-pointer-emulated "gdk_event_get_pointer_emulated") :args
-                     ((event :pointer)) :return :boolean :documentation
-                     "Returns whether this event is an 'emulated' pointer event.
-
-C: gdk_event_get_pointer_emulated
-See: https://docs.gtk.org/gdk4/method.Event.get_pointer_emulated.html")
-
-
-(rt:define-gfunction (event-get-position "gdk_event_get_position") :args
-                     ((event :pointer) (x :double :direction :out :transfer :full)
-                      (y :double :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Extract the event surface relative x/y coordinates from an event.
-
-C: gdk_event_get_position
-See: https://docs.gtk.org/gdk4/method.Event.get_position.html")
-
-
-(rt:define-gfunction (event-get-seat "gdk_event_get_seat") :args ((event :pointer)) :return
-                     (:object seat) :documentation "Returns the seat that originated the event.
-
-C: gdk_event_get_seat
-See: https://docs.gtk.org/gdk4/method.Event.get_seat.html")
-
-
-(rt:define-gfunction (event-get-surface "gdk_event_get_surface") :args ((event :pointer)) :return
-                     (:object surface) :documentation
-                     "Extracts the surface associated with an event.
-
-C: gdk_event_get_surface
-See: https://docs.gtk.org/gdk4/method.Event.get_surface.html")
-
-
-(rt:define-gfunction (event-get-time "gdk_event_get_time") :args ((event :pointer)) :return :uint32
-                     :documentation "Returns the timestamp of EVENT.
-
-C: gdk_event_get_time
-See: https://docs.gtk.org/gdk4/method.Event.get_time.html")
-
-
-(rt:define-gfunction (event-ref "gdk_event_ref") :args ((event :pointer)) :return :pointer
-                     :return-transfer :full :documentation "Increase the ref count of EVENT.
-
-C: gdk_event_ref
-See: https://docs.gtk.org/gdk4/method.Event.ref.html")
-
-
-(rt:define-gfunction (event-triggers-context-menu "gdk_event_triggers_context_menu") :args
-                     ((event :pointer)) :return :boolean :documentation
-                     "Returns whether a `GdkEvent` should trigger a context menu,
-according to platform conventions.
-
-C: gdk_event_triggers_context_menu
-See: https://docs.gtk.org/gdk4/method.Event.triggers_context_menu.html")
-
-
-(rt:define-gfunction (event-unref "gdk_event_unref") :args ((event :pointer :transfer :full))
-                     :documentation "Decrease the ref count of EVENT.
-
-C: gdk_event_unref
-See: https://docs.gtk.org/gdk4/method.Event.unref.html")
-
-
-(rt:define-gfunction (file-list-new-from-array "gdk_file_list_new_from_array") :args
-                     ((files (:array (:object gio:file))) (n-files :size :length-of files)) :return
-                     (:boxed "GdkFileList" "gdk_file_list_get_type") :return-transfer :full
-                     :version "4.8" :documentation
-                     "Creates a new `GdkFileList` for the given array of files.
-
-C: gdk_file_list_new_from_array
-See: https://docs.gtk.org/gdk4/ctor.FileList.new_from_array.html
-Since: 4.8")
-
-
-(rt:define-gfunction (file-list-new-from-list "gdk_file_list_new_from_list") :args
-                     ((files (:gslist (:object gio:file)))) :return
-                     (:boxed "GdkFileList" "gdk_file_list_get_type") :return-transfer :full
-                     :version "4.8" :documentation
-                     "Creates a new files list container from a singly linked list of
-`GFile` instances.
-
-C: gdk_file_list_new_from_list
-See: https://docs.gtk.org/gdk4/ctor.FileList.new_from_list.html
-Since: 4.8")
-
-
-(rt:define-gfunction (file-list-get-files "gdk_file_list_get_files") :args
-                     ((file-list (:boxed "GdkFileList" "gdk_file_list_get_type"))) :return
-                     (:gslist (:object gio:file)) :return-transfer :container :version "4.6"
-                     :documentation "Retrieves the list of files inside a `GdkFileList`.
-
-C: gdk_file_list_get_files
-See: https://docs.gtk.org/gdk4/method.FileList.get_files.html
-Since: 4.6")
-
-
-(rt:define-gfunction (focus-event-get-in "gdk_focus_event_get_in") :args ((event :pointer)) :return
-                     :boolean :documentation "Extracts whether this event is about focus entering or
-leaving the surface.
-
-C: gdk_focus_event_get_in
-See: https://docs.gtk.org/gdk4/method.FocusEvent.get_in.html")
-
-
-(rt:define-gfunction (frame-clock-begin-updating "gdk_frame_clock_begin_updating") :args
-                     ((self (:object frame-clock))) :documentation "Starts updates for an animation.
-
-C: gdk_frame_clock_begin_updating
-See: https://docs.gtk.org/gdk4/method.FrameClock.begin_updating.html")
-
-
-(rt:define-gfunction (frame-clock-end-updating "gdk_frame_clock_end_updating") :args
-                     ((self (:object frame-clock))) :documentation "Stops updates for an animation.
-
-C: gdk_frame_clock_end_updating
-See: https://docs.gtk.org/gdk4/method.FrameClock.end_updating.html")
-
-
-(rt:define-gfunction (frame-clock-get-current-timings "gdk_frame_clock_get_current_timings") :args
-                     ((frame-clock (:object frame-clock))) :return
-                     (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type") :documentation
-                     "Gets the frame timings for the current frame.
-
-C: gdk_frame_clock_get_current_timings
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_current_timings.html")
-
-
-(rt:define-gfunction (frame-clock-get-fps "gdk_frame_clock_get_fps") :args
-                     ((frame-clock (:object frame-clock))) :return :double :documentation
-                     "Calculates the current frames-per-second, based on the
-frame timings of FRAME-CLOCK.
-
-C: gdk_frame_clock_get_fps
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_fps.html")
-
-
-(rt:define-gfunction (frame-clock-get-frame-counter "gdk_frame_clock_get_frame_counter") :args
-                     ((frame-clock (:object frame-clock))) :return :int64 :documentation
-                     "`GdkFrameClock` maintains a 64-bit counter that increments for
-each frame drawn.
-
-C: gdk_frame_clock_get_frame_counter
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_frame_counter.html")
-
-
-(rt:define-gfunction (frame-clock-get-frame-time "gdk_frame_clock_get_frame_time") :args
-                     ((self (:object frame-clock))) :return :int64 :documentation
-                     "Gets the time that should currently be used for animations.
-
-C: gdk_frame_clock_get_frame_time
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_frame_time.html")
-
-
-(rt:define-gfunction (frame-clock-get-history-start "gdk_frame_clock_get_history_start") :args
-                     ((frame-clock (:object frame-clock))) :return :int64 :documentation
-                     "Returns the frame counter for the oldest frame available in history.
-
-C: gdk_frame_clock_get_history_start
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_history_start.html")
-
-
-(rt:define-gfunction (frame-clock-get-refresh-info "gdk_frame_clock_get_refresh_info") :args
-                     ((frame-clock (:object frame-clock)) (base-time :int64)
-                      (refresh-interval-return :int64 :direction :out :transfer :full)
-                      (presentation-time-return :int64 :direction :out :transfer :full))
-                     :documentation "Predicts a presentation time, based on history.
-
-C: gdk_frame_clock_get_refresh_info
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_refresh_info.html")
-
-
-(rt:define-gfunction (frame-clock-get-timings "gdk_frame_clock_get_timings") :args
-                     ((frame-clock (:object frame-clock)) (frame-counter :int64)) :return
-                     (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type") :documentation
-                     "Retrieves a `GdkFrameTimings` object holding timing information
-for the current frame or a recent frame.
-
-C: gdk_frame_clock_get_timings
-See: https://docs.gtk.org/gdk4/method.FrameClock.get_timings.html")
-
-
-(rt:define-gfunction (frame-clock-request-phase "gdk_frame_clock_request_phase") :args
-                     ((self (:object frame-clock)) (phase (:flags frame-clock-phase)))
-                     :documentation "Asks the frame clock to run a particular phase.
-
-C: gdk_frame_clock_request_phase
-See: https://docs.gtk.org/gdk4/method.FrameClock.request_phase.html")
-
-
-(rt:define-gfunction (frame-timings-get-complete "gdk_frame_timings_get_complete") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return
-                     :boolean :documentation "Returns whether TIMINGS are complete.
-
-C: gdk_frame_timings_get_complete
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_complete.html")
-
-
-(rt:define-gfunction (frame-timings-get-frame-counter "gdk_frame_timings_get_frame_counter") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return
-                     :int64 :documentation "Gets the frame counter value of the `GdkFrameClock` when
-this frame was drawn.
-
-C: gdk_frame_timings_get_frame_counter
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_frame_counter.html")
-
-
-(rt:define-gfunction (frame-timings-get-frame-time "gdk_frame_timings_get_frame_time") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return
-                     :int64 :documentation "Returns the frame time for the frame.
-
-C: gdk_frame_timings_get_frame_time
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_frame_time.html")
-
-
-(rt:define-gfunction
- (frame-timings-get-predicted-presentation-time
-  "gdk_frame_timings_get_predicted_presentation_time")
- :args ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return :int64
- :documentation "Gets the predicted time at which this frame will be displayed.
-
-C: gdk_frame_timings_get_predicted_presentation_time
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_predicted_presentation_time.html")
-
-
-(rt:define-gfunction
- (frame-timings-get-presentation-time "gdk_frame_timings_get_presentation_time") :args
- ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return :int64 :documentation
- "Reurns the presentation time.
-
-C: gdk_frame_timings_get_presentation_time
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_presentation_time.html")
-
-
-(rt:define-gfunction (frame-timings-get-refresh-interval "gdk_frame_timings_get_refresh_interval")
-                     :args ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type")))
-                     :return :int64 :documentation
-                     "Gets the natural interval between presentation times for
-the display that this frame was displayed on.
-
-C: gdk_frame_timings_get_refresh_interval
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_refresh_interval.html")
-
-
-(rt:define-gfunction (frame-timings-get-result "gdk_frame_timings_get_result") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return
-                     (:enum frame-result) :version "4.24" :documentation
-                     "Gets the result of the frame cycle that recorded these timings.
-
-C: gdk_frame_timings_get_result
-See: https://docs.gtk.org/gdk4/method.FrameTimings.get_result.html
-Since: 4.24")
-
-
-(rt:define-gfunction (frame-timings-ref "gdk_frame_timings_ref") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type"))) :return
-                     (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type") :return-transfer :full
-                     :documentation "Increases the reference count of TIMINGS.
-
-C: gdk_frame_timings_ref
-See: https://docs.gtk.org/gdk4/method.FrameTimings.ref.html")
-
-
-(rt:define-gfunction (frame-timings-unref "gdk_frame_timings_unref") :args
-                     ((timings (:boxed "GdkFrameTimings" "gdk_frame_timings_get_type")))
-                     :documentation "Decreases the reference count of TIMINGS.
-
-C: gdk_frame_timings_unref
-See: https://docs.gtk.org/gdk4/method.FrameTimings.unref.html")
-
-
-(rt:define-gfunction (gl-context-clear-current "gdk_gl_context_clear_current") :documentation
-                     "Clears the current `GdkGLContext`.
-
-C: gdk_gl_context_clear_current
-See: https://docs.gtk.org/gdk4/type_func.GLContext.clear_current.html")
-
-
-(rt:define-gfunction (gl-context-get-current "gdk_gl_context_get_current") :return
-                     (:object gl-context) :documentation "Retrieves the current `GdkGLContext`.
-
-C: gdk_gl_context_get_current
-See: https://docs.gtk.org/gdk4/type_func.GLContext.get_current.html")
-
-
-(rt:define-gfunction (gl-context-get-allowed-apis "gdk_gl_context_get_allowed_apis") :args
-                     ((self (:object gl-context))) :return (:flags glapi) :version "4.6"
-                     :documentation
-                     "Gets the allowed APIs set via gdk_gl_context_set_allowed_apis().
-
-C: gdk_gl_context_get_allowed_apis
-See: https://docs.gtk.org/gdk4/method.GLContext.get_allowed_apis.html
-Since: 4.6")
-
-
-(rt:define-gfunction (gl-context-get-api "gdk_gl_context_get_api") :args
-                     ((self (:object gl-context))) :return (:flags glapi) :version "4.6"
-                     :documentation "Gets the API currently in use.
-
-C: gdk_gl_context_get_api
-See: https://docs.gtk.org/gdk4/method.GLContext.get_api.html
-Since: 4.6")
-
-
-(rt:define-gfunction (gl-context-get-debug-enabled "gdk_gl_context_get_debug_enabled") :args
-                     ((context (:object gl-context))) :return :boolean :documentation
-                     "Retrieves whether the context is doing extra validations and runtime checking.
-
-C: gdk_gl_context_get_debug_enabled
-See: https://docs.gtk.org/gdk4/method.GLContext.get_debug_enabled.html")
-
-
-(rt:define-gfunction (gl-context-get-display "gdk_gl_context_get_display") :args
-                     ((context (:object gl-context))) :return (:object display) :documentation
-                     "Retrieves the display the CONTEXT is created for
-
-C: gdk_gl_context_get_display
-See: https://docs.gtk.org/gdk4/method.GLContext.get_display.html")
-
-
-(rt:define-gfunction (gl-context-get-forward-compatible "gdk_gl_context_get_forward_compatible")
-                     :args ((context (:object gl-context))) :return :boolean :documentation
-                     "Retrieves whether the context is forward-compatible.
-
-C: gdk_gl_context_get_forward_compatible
-See: https://docs.gtk.org/gdk4/method.GLContext.get_forward_compatible.html")
-
-
-(rt:define-gfunction (gl-context-get-required-version "gdk_gl_context_get_required_version") :args
-                     ((context (:object gl-context)) (major :int :direction :out :transfer :full)
-                      (minor :int :direction :out :transfer :full))
-                     :documentation
-                     "Retrieves required OpenGL version set as a requirement for the CONTEXT
-realization. It will not change even if a greater OpenGL version is supported
-and used after the CONTEXT is realized. See
-Gdk.GLContext.get_version for the real version in use.
-
-C: gdk_gl_context_get_required_version
-See: https://docs.gtk.org/gdk4/method.GLContext.get_required_version.html")
-
-
-(rt:define-gfunction (gl-context-get-shared-context "gdk_gl_context_get_shared_context") :args
-                     ((context (:object gl-context))) :return (:object gl-context) :documentation
-                     "Used to retrieves the `GdkGLContext` that this CONTEXT share data with.
-
-C: gdk_gl_context_get_shared_context
-See: https://docs.gtk.org/gdk4/method.GLContext.get_shared_context.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-context-get-surface "gdk_gl_context_get_surface") :args
-                     ((context (:object gl-context))) :return (:object surface) :documentation
-                     "Retrieves the surface used by the CONTEXT.
-
-C: gdk_gl_context_get_surface
-See: https://docs.gtk.org/gdk4/method.GLContext.get_surface.html")
-
-
-(rt:define-gfunction (gl-context-get-use-es "gdk_gl_context_get_use_es") :args
-                     ((context (:object gl-context))) :return :boolean :documentation
-                     "Checks whether the CONTEXT is using an OpenGL or OpenGL ES profile.
-
-C: gdk_gl_context_get_use_es
-See: https://docs.gtk.org/gdk4/method.GLContext.get_use_es.html")
-
-
-(rt:define-gfunction (gl-context-get-version "gdk_gl_context_get_version") :args
-                     ((context (:object gl-context)) (major :int :direction :out :transfer :full)
-                      (minor :int :direction :out :transfer :full))
-                     :documentation "Retrieves the OpenGL version of the CONTEXT.
-
-C: gdk_gl_context_get_version
-See: https://docs.gtk.org/gdk4/method.GLContext.get_version.html")
-
-
-(rt:define-gfunction (gl-context-is-legacy "gdk_gl_context_is_legacy") :args
-                     ((context (:object gl-context))) :return :boolean :documentation
-                     "Whether the `GdkGLContext` is in legacy mode or not.
-
-C: gdk_gl_context_is_legacy
-See: https://docs.gtk.org/gdk4/method.GLContext.is_legacy.html")
-
-
-(rt:define-gfunction (gl-context-is-shared "gdk_gl_context_is_shared") :args
-                     ((self (:object gl-context)) (other (:object gl-context))) :return :boolean
-                     :version "4.4" :documentation
-                     "Checks if the two GL contexts can share resources.
-
-C: gdk_gl_context_is_shared
-See: https://docs.gtk.org/gdk4/method.GLContext.is_shared.html
-Since: 4.4")
-
-
-(rt:define-gfunction (gl-context-make-current "gdk_gl_context_make_current") :args
-                     ((context (:object gl-context))) :documentation
-                     "Makes the CONTEXT the current one.
-
-C: gdk_gl_context_make_current
-See: https://docs.gtk.org/gdk4/method.GLContext.make_current.html")
-
-
-(rt:define-gfunction (gl-context-realize "gdk_gl_context_realize") :args
-                     ((context (:object gl-context))) :return :boolean :throws t :documentation
-                     "Realizes the given `GdkGLContext`.
-
-C: gdk_gl_context_realize
-See: https://docs.gtk.org/gdk4/method.GLContext.realize.html")
-
-
-(rt:define-gfunction (gl-context-set-allowed-apis "gdk_gl_context_set_allowed_apis") :args
-                     ((self (:object gl-context)) (apis (:flags glapi))) :version "4.6"
-                     :documentation
-                     "Sets the allowed APIs. When gdk_gl_context_realize() is called, only the
-allowed APIs will be tried. If you set this to 0, realizing will always fail.
-
-C: gdk_gl_context_set_allowed_apis
-See: https://docs.gtk.org/gdk4/method.GLContext.set_allowed_apis.html
-Since: 4.6")
-
-
-(rt:define-gfunction (gl-context-set-debug-enabled "gdk_gl_context_set_debug_enabled") :args
-                     ((context (:object gl-context)) (enabled :boolean)) :documentation
-                     "Sets whether the `GdkGLContext` should perform extra validations and
-runtime checking.
-
-C: gdk_gl_context_set_debug_enabled
-See: https://docs.gtk.org/gdk4/method.GLContext.set_debug_enabled.html")
-
-
-(rt:define-gfunction (gl-context-set-forward-compatible "gdk_gl_context_set_forward_compatible")
-                     :args ((context (:object gl-context)) (compatible :boolean)) :documentation
-                     "Sets whether the `GdkGLContext` should be forward-compatible.
-
-C: gdk_gl_context_set_forward_compatible
-See: https://docs.gtk.org/gdk4/method.GLContext.set_forward_compatible.html")
-
-
-(rt:define-gfunction (gl-context-set-required-version "gdk_gl_context_set_required_version") :args
-                     ((context (:object gl-context)) (major :int) (minor :int)) :documentation
-                     "Sets the major and minor version of OpenGL to request.
-
-C: gdk_gl_context_set_required_version
-See: https://docs.gtk.org/gdk4/method.GLContext.set_required_version.html")
-
-
-(rt:define-gfunction (gl-context-set-use-es "gdk_gl_context_set_use_es") :args
-                     ((context (:object gl-context)) (use-es :int)) :documentation
-                     "Requests that GDK create an OpenGL ES context instead of an OpenGL one.
-
-C: gdk_gl_context_set_use_es
-See: https://docs.gtk.org/gdk4/method.GLContext.set_use_es.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-texture-release "gdk_gl_texture_release") :args
-                     ((self (:object gl-texture))) :documentation
-                     "Releases the GL resources held by a `GdkGLTexture`.
-
-C: gdk_gl_texture_release
-See: https://docs.gtk.org/gdk4/method.GLTexture.release.html")
-
-
-(rt:define-gfunction (gl-texture-builder-new "gdk_gl_texture_builder_new") :return
-                     (:object gl-texture-builder) :return-transfer :full :version "4.12"
-                     :documentation "Creates a new texture builder.
-
-C: gdk_gl_texture_builder_new
-See: https://docs.gtk.org/gdk4/ctor.GLTextureBuilder.new.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-color-state "gdk_gl_texture_builder_get_color_state")
-                     :args ((self (:object gl-texture-builder))) :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :version "4.16"
-                     :documentation
-                     "Gets the color state previously set via gdk_gl_texture_builder_set_color_state().
-
-C: gdk_gl_texture_builder_get_color_state
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (gl-texture-builder-get-context "gdk_gl_texture_builder_get_context") :args
-                     ((self (:object gl-texture-builder))) :return (:object gl-context) :version
-                     "4.12" :documentation
-                     "Gets the context previously set via gdk_gl_texture_builder_set_context() or
-NIL if none was set.
-
-C: gdk_gl_texture_builder_get_context
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_context.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-format "gdk_gl_texture_builder_get_format") :args
-                     ((self (:object gl-texture-builder))) :return (:enum memory-format) :version
-                     "4.12" :documentation
-                     "Gets the format previously set via gdk_gl_texture_builder_set_format().
-
-C: gdk_gl_texture_builder_get_format
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_format.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-has-mipmap "gdk_gl_texture_builder_get_has_mipmap")
-                     :args ((self (:object gl-texture-builder))) :return :boolean :version "4.12"
-                     :documentation "Gets whether the texture has a mipmap.
-
-C: gdk_gl_texture_builder_get_has_mipmap
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_has_mipmap.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-height "gdk_gl_texture_builder_get_height") :args
-                     ((self (:object gl-texture-builder))) :return :int :version "4.12"
-                     :documentation
-                     "Gets the height previously set via gdk_gl_texture_builder_set_height() or
-0 if the height wasn't set.
-
-C: gdk_gl_texture_builder_get_height
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_height.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-id "gdk_gl_texture_builder_get_id") :args
-                     ((self (:object gl-texture-builder))) :return :uint :version "4.12"
-                     :documentation
-                     "Gets the texture id previously set via gdk_gl_texture_builder_set_id() or
-0 if the id wasn't set.
-
-C: gdk_gl_texture_builder_get_id
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_id.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-sync "gdk_gl_texture_builder_get_sync") :args
-                     ((self (:object gl-texture-builder))) :return :pointer :version "4.12"
-                     :documentation
-                     "Gets the `GLsync` previously set via gdk_gl_texture_builder_set_sync().
-
-C: gdk_gl_texture_builder_get_sync
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_sync.html
-Since: 4.12")
-
-
-(rt:define-gfunction
- (gl-texture-builder-get-update-region "gdk_gl_texture_builder_get_update_region") :args
- ((self (:object gl-texture-builder))) :return
- (:boxed "CairoRegion" "cairo_gobject_region_get_type") :version "4.12" :documentation
- "Gets the region previously set via gdk_gl_texture_builder_set_update_region() or
-NIL if none was set.
-
-C: gdk_gl_texture_builder_get_update_region
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_update_region.html
-Since: 4.12")
-
-
-(rt:define-gfunction
- (gl-texture-builder-get-update-texture "gdk_gl_texture_builder_get_update_texture") :args
- ((self (:object gl-texture-builder))) :return (:object texture) :version "4.12" :documentation
- "Gets the texture previously set via gdk_gl_texture_builder_set_update_texture() or
-NIL if none was set.
-
-C: gdk_gl_texture_builder_get_update_texture
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_update_texture.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-get-width "gdk_gl_texture_builder_get_width") :args
-                     ((self (:object gl-texture-builder))) :return :int :version "4.12"
-                     :documentation
-                     "Gets the width previously set via gdk_gl_texture_builder_set_width() or
-0 if the width wasn't set.
-
-C: gdk_gl_texture_builder_get_width
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.get_width.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-color-state "gdk_gl_texture_builder_set_color_state")
-                     :args
-                     ((self (:object gl-texture-builder))
-                      (color-state (:boxed "GdkColorState" "gdk_color_state_get_type")))
-                     :version "4.16" :documentation "Sets the color state for the texture.
-
-C: gdk_gl_texture_builder_set_color_state
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (gl-texture-builder-set-context "gdk_gl_texture_builder_set_context") :args
-                     ((self (:object gl-texture-builder))
-                      (context (:object gl-context) :optional t))
-                     :version "4.12" :documentation
-                     "Sets the context to be used for the texture. This is the context that owns
-the texture.
-
-C: gdk_gl_texture_builder_set_context
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_context.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-format "gdk_gl_texture_builder_set_format") :args
-                     ((self (:object gl-texture-builder)) (format (:enum memory-format))) :version
-                     "4.12" :documentation
-                     "Sets the format of the texture. The default is `GDK_MEMORY_R8G8B8A8_PREMULTIPLIED`.
-
-C: gdk_gl_texture_builder_set_format
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_format.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-has-mipmap "gdk_gl_texture_builder_set_has_mipmap")
-                     :args ((self (:object gl-texture-builder)) (has-mipmap :boolean)) :version
-                     "4.12" :documentation
-                     "Sets whether the texture has a mipmap. This allows the renderer and other users of the
-generated texture to use a higher quality downscaling.
-
-C: gdk_gl_texture_builder_set_has_mipmap
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_has_mipmap.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-height "gdk_gl_texture_builder_set_height") :args
-                     ((self (:object gl-texture-builder)) (height :int)) :version "4.12"
-                     :documentation "Sets the height of the texture.
-
-C: gdk_gl_texture_builder_set_height
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_height.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-id "gdk_gl_texture_builder_set_id") :args
-                     ((self (:object gl-texture-builder)) (id :uint)) :version "4.12"
-                     :documentation
-                     "Sets the texture id of the texture. The texture id must remain unmodified
-until the texture was finalized. See Gdk.GLTextureBuilder.build
-for a longer discussion.
-
-C: gdk_gl_texture_builder_set_id
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_id.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-sync "gdk_gl_texture_builder_set_sync") :args
-                     ((self (:object gl-texture-builder)) (sync :pointer :optional t)) :version
-                     "4.12" :documentation "Sets the GLSync object to use for the texture.
-
-C: gdk_gl_texture_builder_set_sync
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_sync.html
-Since: 4.12")
-
-
-(rt:define-gfunction
- (gl-texture-builder-set-update-region "gdk_gl_texture_builder_set_update_region") :args
- ((self (:object gl-texture-builder))
-  (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
- :version "4.12" :documentation "Sets the region to be updated by this texture. Together with
-Gdk.GLTextureBuilder:update-texture this describes an
-update of a previous texture.
-
-C: gdk_gl_texture_builder_set_update_region
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_update_region.html
-Since: 4.12")
-
-
-(rt:define-gfunction
- (gl-texture-builder-set-update-texture "gdk_gl_texture_builder_set_update_texture") :args
- ((self (:object gl-texture-builder)) (texture (:object texture) :optional t)) :version "4.12"
- :documentation "Sets the texture to be updated by this texture. See
-Gdk.GLTextureBuilder.set_update_region for an explanation.
-
-C: gdk_gl_texture_builder_set_update_texture
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_update_texture.html
-Since: 4.12")
-
-
-(rt:define-gfunction (gl-texture-builder-set-width "gdk_gl_texture_builder_set_width") :args
-                     ((self (:object gl-texture-builder)) (width :int)) :version "4.12"
-                     :documentation "Sets the width of the texture.
-
-C: gdk_gl_texture_builder_set_width
-See: https://docs.gtk.org/gdk4/method.GLTextureBuilder.set_width.html
-Since: 4.12")
-
-
-(rt:define-gfunction (grab-broken-event-get-grab-surface "gdk_grab_broken_event_get_grab_surface")
-                     :args ((event :pointer)) :return (:object surface) :documentation
-                     "Extracts the grab surface from a grab broken event.
-
-C: gdk_grab_broken_event_get_grab_surface
-See: https://docs.gtk.org/gdk4/method.GrabBrokenEvent.get_grab_surface.html")
-
-
-(rt:define-gfunction (grab-broken-event-get-implicit "gdk_grab_broken_event_get_implicit") :args
-                     ((event :pointer)) :return :boolean :documentation
-                     "Checks whether the grab broken event is for an implicit grab.
-
-C: gdk_grab_broken_event_get_implicit
-See: https://docs.gtk.org/gdk4/method.GrabBrokenEvent.get_implicit.html")
-
-
-(rt:define-gfunction (key-event-get-consumed-modifiers "gdk_key_event_get_consumed_modifiers")
-                     :args ((event :pointer)) :return (:flags modifier-type) :documentation
-                     "Extracts the consumed modifiers from a key event.
-
-C: gdk_key_event_get_consumed_modifiers
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_consumed_modifiers.html")
-
-
-(rt:define-gfunction (key-event-get-keycode "gdk_key_event_get_keycode") :args ((event :pointer))
-                     :return :uint :documentation "Extracts the keycode from a key event.
-
-C: gdk_key_event_get_keycode
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_keycode.html")
-
-
-(rt:define-gfunction (key-event-get-keyval "gdk_key_event_get_keyval") :args ((event :pointer))
-                     :return :uint :documentation "Extracts the keyval from a key event.
-
-C: gdk_key_event_get_keyval
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_keyval.html")
-
-
-(rt:define-gfunction (key-event-get-layout "gdk_key_event_get_layout") :args ((event :pointer))
-                     :return :uint :documentation "Extracts the layout from a key event.
-
-C: gdk_key_event_get_layout
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_layout.html")
-
-
-(rt:define-gfunction (key-event-get-level "gdk_key_event_get_level") :args ((event :pointer))
-                     :return :uint :documentation "Extracts the shift level from a key event.
-
-C: gdk_key_event_get_level
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_level.html")
-
-
-(rt:define-gfunction (key-event-get-match "gdk_key_event_get_match") :args
-                     ((event :pointer) (keyval :uint :direction :out :transfer :full)
-                      (modifiers (:flags modifier-type) :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Gets a keyval and modifier combination that will match
-the event.
-
-C: gdk_key_event_get_match
-See: https://docs.gtk.org/gdk4/method.KeyEvent.get_match.html")
-
-
-(rt:define-gfunction (key-event-is-modifier "gdk_key_event_is_modifier") :args ((event :pointer))
-                     :return :boolean :documentation
-                     "Extracts whether the key event is for a modifier key.
-
-C: gdk_key_event_is_modifier
-See: https://docs.gtk.org/gdk4/method.KeyEvent.is_modifier.html")
-
-
-(rt:define-gfunction (key-event-matches "gdk_key_event_matches") :args
-                     ((event :pointer) (keyval :uint) (modifiers (:flags modifier-type))) :return
-                     (:enum key-match) :documentation
-                     "Matches a key event against a keyval and modifiers.
-
-C: gdk_key_event_matches
-See: https://docs.gtk.org/gdk4/method.KeyEvent.matches.html")
-
-
-(rt:define-gfunction (memory-texture-new "gdk_memory_texture_new") :args
-                     ((width :int) (height :int) (format (:enum memory-format))
-                      (bytes (:boxed "GBytes" "g_bytes_get_type")) (stride :size))
-                     :return (:object memory-texture) :return-transfer :full :documentation
-                     "Creates a new texture for a blob of image data.
-
-C: gdk_memory_texture_new
-See: https://docs.gtk.org/gdk4/ctor.MemoryTexture.new.html")
-
-
-(rt:define-gfunction (memory-texture-builder-new "gdk_memory_texture_builder_new") :return
-                     (:object memory-texture-builder) :return-transfer :full :version "4.16"
-                     :documentation "Creates a new texture builder.
-
-C: gdk_memory_texture_builder_new
-See: https://docs.gtk.org/gdk4/ctor.MemoryTextureBuilder.new.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-build "gdk_memory_texture_builder_build") :args
-                     ((self (:object memory-texture-builder))) :return (:object texture)
-                     :return-transfer :full :version "4.16" :documentation
-                     "Builds a new `GdkTexture` with the values set up in the builder.
-
-C: gdk_memory_texture_builder_build
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.build.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-get-bytes "gdk_memory_texture_builder_get_bytes")
-                     :args ((self (:object memory-texture-builder))) :return
-                     (:boxed "GBytes" "g_bytes_get_type") :version "4.16" :documentation
-                     "Gets the bytes previously set via gdk_memory_texture_builder_set_bytes()
-or NIL if none was set.
-
-C: gdk_memory_texture_builder_get_bytes
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_bytes.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-get-color-state "gdk_memory_texture_builder_get_color_state") :args
- ((self (:object memory-texture-builder))) :return
- (:boxed "GdkColorState" "gdk_color_state_get_type") :version "4.16" :documentation
- "Gets the colorstate previously set via gdk_memory_texture_builder_set_color_state().
-
-C: gdk_memory_texture_builder_get_color_state
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-get-format "gdk_memory_texture_builder_get_format")
-                     :args ((self (:object memory-texture-builder))) :return (:enum memory-format)
-                     :version "4.16" :documentation
-                     "Gets the format previously set via gdk_memory_texture_builder_set_format().
-
-C: gdk_memory_texture_builder_get_format
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_format.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-get-height "gdk_memory_texture_builder_get_height")
-                     :args ((self (:object memory-texture-builder))) :return :int :version "4.16"
-                     :documentation
-                     "Gets the height previously set via gdk_memory_texture_builder_set_height()
-or 0 if the height wasn't set.
-
-C: gdk_memory_texture_builder_get_height
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_height.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-get-offset "gdk_memory_texture_builder_get_offset")
-                     :args ((self (:object memory-texture-builder)) (plane :uint)) :return :size
-                     :version "4.20" :documentation
-                     "Gets the offset previously set via gdk_memory_texture_builder_set_offset().
-
-C: gdk_memory_texture_builder_get_offset
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_offset.html
-Since: 4.20")
-
-
-(rt:define-gfunction (memory-texture-builder-get-stride "gdk_memory_texture_builder_get_stride")
-                     :args ((self (:object memory-texture-builder))) :return :size :version "4.16"
-                     :documentation
-                     "Gets the stride previously set via gdk_memory_texture_builder_set_stride().
-
-C: gdk_memory_texture_builder_get_stride
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_stride.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-get-stride-for-plane "gdk_memory_texture_builder_get_stride_for_plane")
- :args ((self (:object memory-texture-builder)) (plane :uint)) :return :size :version "4.20"
- :documentation
- "Gets the stride previously set via gdk_memory_texture_builder_set_stride_for_plane().
-
-C: gdk_memory_texture_builder_get_stride_for_plane
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_stride_for_plane.html
-Since: 4.20")
-
-
-(rt:define-gfunction
- (memory-texture-builder-get-update-region "gdk_memory_texture_builder_get_update_region") :args
- ((self (:object memory-texture-builder))) :return
- (:boxed "CairoRegion" "cairo_gobject_region_get_type") :version "4.16" :documentation
- "Gets the region previously set via gdk_memory_texture_builder_set_update_region()
-or NIL if none was set.
-
-C: gdk_memory_texture_builder_get_update_region
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_update_region.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-get-update-texture "gdk_memory_texture_builder_get_update_texture") :args
- ((self (:object memory-texture-builder))) :return (:object texture) :version "4.16" :documentation
- "Gets the texture previously set via gdk_memory_texture_builder_set_update_texture()
-or NIL if none was set.
-
-C: gdk_memory_texture_builder_get_update_texture
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_update_texture.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-get-width "gdk_memory_texture_builder_get_width")
-                     :args ((self (:object memory-texture-builder))) :return :int :version "4.16"
-                     :documentation
-                     "Gets the width previously set via gdk_memory_texture_builder_set_width()
-or 0 if the width wasn't set.
-
-C: gdk_memory_texture_builder_get_width
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.get_width.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-set-bytes "gdk_memory_texture_builder_set_bytes")
-                     :args
-                     ((self (:object memory-texture-builder))
-                      (bytes (:boxed "GBytes" "g_bytes_get_type") :optional t))
-                     :version "4.16" :documentation "Sets the data to be shown but the texture.
-
-C: gdk_memory_texture_builder_set_bytes
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_bytes.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-set-color-state "gdk_memory_texture_builder_set_color_state") :args
- ((self (:object memory-texture-builder))
-  (color-state (:boxed "GdkColorState" "gdk_color_state_get_type")))
- :version "4.16" :documentation "Sets the colorstate describing the data.
-
-C: gdk_memory_texture_builder_set_color_state
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-set-format "gdk_memory_texture_builder_set_format")
-                     :args ((self (:object memory-texture-builder)) (format (:enum memory-format)))
-                     :version "4.16" :documentation "Sets the format of the bytes.
-
-C: gdk_memory_texture_builder_set_format
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_format.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-set-height "gdk_memory_texture_builder_set_height")
-                     :args ((self (:object memory-texture-builder)) (height :int)) :version "4.16"
-                     :documentation "Sets the height of the texture.
-
-C: gdk_memory_texture_builder_set_height
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_height.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-set-offset "gdk_memory_texture_builder_set_offset")
-                     :args ((self (:object memory-texture-builder)) (plane :uint) (offset :size))
-                     :version "4.20" :documentation "Sets the offset of the texture for PLANE.
-
-C: gdk_memory_texture_builder_set_offset
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_offset.html
-Since: 4.20")
-
-
-(rt:define-gfunction (memory-texture-builder-set-stride "gdk_memory_texture_builder_set_stride")
-                     :args ((self (:object memory-texture-builder)) (stride :size)) :version "4.16"
-                     :documentation "Sets the rowstride of the bytes used.
-
-C: gdk_memory_texture_builder_set_stride
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_stride.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-set-stride-for-plane "gdk_memory_texture_builder_set_stride_for_plane")
- :args ((self (:object memory-texture-builder)) (plane :uint) (stride :size)) :version "4.20"
- :documentation "Sets the stride of the texture for PLANE.
-
-C: gdk_memory_texture_builder_set_stride_for_plane
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_stride_for_plane.html
-Since: 4.20")
-
-
-(rt:define-gfunction
- (memory-texture-builder-set-update-region "gdk_memory_texture_builder_set_update_region") :args
- ((self (:object memory-texture-builder))
-  (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
- :version "4.16" :documentation "Sets the region to be updated by this texture.
-
-C: gdk_memory_texture_builder_set_update_region
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_update_region.html
-Since: 4.16")
-
-
-(rt:define-gfunction
- (memory-texture-builder-set-update-texture "gdk_memory_texture_builder_set_update_texture") :args
- ((self (:object memory-texture-builder)) (texture (:object texture) :optional t)) :version "4.16"
- :documentation "Sets the texture to be updated by this texture.
-
-C: gdk_memory_texture_builder_set_update_texture
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_update_texture.html
-Since: 4.16")
-
-
-(rt:define-gfunction (memory-texture-builder-set-width "gdk_memory_texture_builder_set_width")
-                     :args ((self (:object memory-texture-builder)) (width :int)) :version "4.16"
-                     :documentation "Sets the width of the texture.
-
-C: gdk_memory_texture_builder_set_width
-See: https://docs.gtk.org/gdk4/method.MemoryTextureBuilder.set_width.html
-Since: 4.16")
-
-
-(rt:define-gfunction (monitor-get-connector "gdk_monitor_get_connector") :args
-                     ((monitor (:object monitor))) :return :string :documentation
-                     "Gets the name of the monitor's connector, if available.
-
-C: gdk_monitor_get_connector
-See: https://docs.gtk.org/gdk4/method.Monitor.get_connector.html")
-
-
-(rt:define-gfunction (monitor-get-description "gdk_monitor_get_description") :args
-                     ((monitor (:object monitor))) :return :string :version "4.10" :documentation
-                     "Gets a string describing the monitor, if available.
-
-C: gdk_monitor_get_description
-See: https://docs.gtk.org/gdk4/method.Monitor.get_description.html
-Since: 4.10")
-
-
-(rt:define-gfunction (monitor-get-display "gdk_monitor_get_display") :args
-                     ((monitor (:object monitor))) :return (:object display) :documentation
-                     "Gets the display that this monitor belongs to.
-
-C: gdk_monitor_get_display
-See: https://docs.gtk.org/gdk4/method.Monitor.get_display.html")
-
-
-(rt:define-gfunction (monitor-get-geometry "gdk_monitor_get_geometry") :args
-                     ((monitor (:object monitor))
-                      (geometry (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)
-                       :direction :out :caller-allocates t))
-                     :documentation "Retrieves the size and position of the monitor within the
-display coordinate space.
-
-C: gdk_monitor_get_geometry
-See: https://docs.gtk.org/gdk4/method.Monitor.get_geometry.html")
-
-
-(rt:define-gfunction (monitor-get-height-mm "gdk_monitor_get_height_mm") :args
-                     ((monitor (:object monitor))) :return :int :documentation
-                     "Gets the height in millimeters of the monitor.
-
-C: gdk_monitor_get_height_mm
-See: https://docs.gtk.org/gdk4/method.Monitor.get_height_mm.html")
-
-
-(rt:define-gfunction (monitor-get-manufacturer "gdk_monitor_get_manufacturer") :args
-                     ((monitor (:object monitor))) :return :string :documentation
-                     "Gets the name or PNP ID of the monitor's manufacturer.
-
-C: gdk_monitor_get_manufacturer
-See: https://docs.gtk.org/gdk4/method.Monitor.get_manufacturer.html")
-
-
-(rt:define-gfunction (monitor-get-model "gdk_monitor_get_model") :args
-                     ((monitor (:object monitor))) :return :string :documentation
-                     "Gets the string identifying the monitor model, if available.
-
-C: gdk_monitor_get_model
-See: https://docs.gtk.org/gdk4/method.Monitor.get_model.html")
-
-
-(rt:define-gfunction (monitor-get-refresh-rate "gdk_monitor_get_refresh_rate") :args
-                     ((monitor (:object monitor))) :return :int :documentation
-                     "Gets the refresh rate of the monitor, if available.
-
-C: gdk_monitor_get_refresh_rate
-See: https://docs.gtk.org/gdk4/method.Monitor.get_refresh_rate.html")
-
-
-(rt:define-gfunction (monitor-get-scale "gdk_monitor_get_scale") :args
-                     ((monitor (:object monitor))) :return :double :version "4.14" :documentation
-                     "Gets the internal scale factor that maps from monitor coordinates
-to device pixels.
-
-C: gdk_monitor_get_scale
-See: https://docs.gtk.org/gdk4/method.Monitor.get_scale.html
-Since: 4.14")
-
-
-(rt:define-gfunction (monitor-get-scale-factor "gdk_monitor_get_scale_factor") :args
-                     ((monitor (:object monitor))) :return :int :documentation
-                     "Gets the internal scale factor that maps from monitor coordinates
-to device pixels.
-
-C: gdk_monitor_get_scale_factor
-See: https://docs.gtk.org/gdk4/method.Monitor.get_scale_factor.html")
-
-
-(rt:define-gfunction (monitor-get-subpixel-layout "gdk_monitor_get_subpixel_layout") :args
-                     ((monitor (:object monitor))) :return (:enum subpixel-layout) :documentation
-                     "Gets information about the layout of red, green and blue
-primaries for pixels.
-
-C: gdk_monitor_get_subpixel_layout
-See: https://docs.gtk.org/gdk4/method.Monitor.get_subpixel_layout.html")
-
-
-(rt:define-gfunction (monitor-get-width-mm "gdk_monitor_get_width_mm") :args
-                     ((monitor (:object monitor))) :return :int :documentation
-                     "Gets the width in millimeters of the monitor.
-
-C: gdk_monitor_get_width_mm
-See: https://docs.gtk.org/gdk4/method.Monitor.get_width_mm.html")
-
-
-(rt:define-gfunction (monitor-is-valid "gdk_monitor_is_valid") :args ((monitor (:object monitor)))
-                     :return :boolean :documentation
-                     "Returns true if the MONITOR object corresponds to a
-physical monitor.
-
-C: gdk_monitor_is_valid
-See: https://docs.gtk.org/gdk4/method.Monitor.is_valid.html")
-
-
-(rt:define-gfunction (pad-event-get-axis-value "gdk_pad_event_get_axis_value") :args
-                     ((event :pointer) (index :uint :direction :out :transfer :full)
-                      (value :double :direction :out :transfer :full))
-                     :documentation "Extracts the information from a pad strip or ring event.
-
-C: gdk_pad_event_get_axis_value
-See: https://docs.gtk.org/gdk4/method.PadEvent.get_axis_value.html")
-
-
-(rt:define-gfunction (pad-event-get-button "gdk_pad_event_get_button") :args ((event :pointer))
-                     :return :uint :documentation
-                     "Extracts information about the pressed button from
-a pad event.
-
-C: gdk_pad_event_get_button
-See: https://docs.gtk.org/gdk4/method.PadEvent.get_button.html")
-
-
-(rt:define-gfunction (pad-event-get-group-mode "gdk_pad_event_get_group_mode") :args
-                     ((event :pointer) (group :uint :direction :out :transfer :full)
-                      (mode :uint :direction :out :transfer :full))
-                     :documentation "Extracts group and mode information from a pad event.
-
-C: gdk_pad_event_get_group_mode
-See: https://docs.gtk.org/gdk4/method.PadEvent.get_group_mode.html")
-
-
-(rt:define-gfunction (paintable-new-empty "gdk_paintable_new_empty") :args
-                     ((intrinsic-width :int) (intrinsic-height :int)) :return (:object paintable)
-                     :return-transfer :full :documentation
-                     "Returns a paintable that has the given intrinsic size and draws nothing.
-
-C: gdk_paintable_new_empty
-See: https://docs.gtk.org/gdk4/type_func.Paintable.new_empty.html")
-
-
-(rt:define-gfunction (paintable-compute-concrete-size "gdk_paintable_compute_concrete_size") :args
-                     ((paintable (:object paintable)) (specified-width :double)
-                      (specified-height :double) (default-width :double) (default-height :double)
-                      (concrete-width :double :direction :out :transfer :full)
-                      (concrete-height :double :direction :out :transfer :full))
-                     :documentation "Compute a concrete size for the `GdkPaintable`.
-
-C: gdk_paintable_compute_concrete_size
-See: https://docs.gtk.org/gdk4/method.Paintable.compute_concrete_size.html")
-
-
-(rt:define-gfunction (paintable-get-current-image "gdk_paintable_get_current_image") :args
-                     ((paintable (:object paintable))) :return (:object paintable) :return-transfer
-                     :full :documentation
-                     "Gets an immutable paintable for the current contents displayed by PAINTABLE.
-
-C: gdk_paintable_get_current_image
-See: https://docs.gtk.org/gdk4/method.Paintable.get_current_image.html")
-
-
-(rt:define-gfunction (paintable-get-flags "gdk_paintable_get_flags") :args
-                     ((paintable (:object paintable))) :return (:flags paintable-flags)
-                     :documentation "Get flags for the paintable.
-
-C: gdk_paintable_get_flags
-See: https://docs.gtk.org/gdk4/method.Paintable.get_flags.html")
-
-
-(rt:define-gfunction
- (paintable-get-intrinsic-aspect-ratio "gdk_paintable_get_intrinsic_aspect_ratio") :args
- ((paintable (:object paintable))) :return :double :documentation
- "Gets the preferred aspect ratio the PAINTABLE would like to be displayed at.
-
-C: gdk_paintable_get_intrinsic_aspect_ratio
-See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_aspect_ratio.html")
-
-
-(rt:define-gfunction (paintable-get-intrinsic-height "gdk_paintable_get_intrinsic_height") :args
-                     ((paintable (:object paintable))) :return :int :documentation
-                     "Gets the preferred height the PAINTABLE would like to be displayed at.
-
-C: gdk_paintable_get_intrinsic_height
-See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_height.html")
-
-
-(rt:define-gfunction (paintable-get-intrinsic-width "gdk_paintable_get_intrinsic_width") :args
-                     ((paintable (:object paintable))) :return :int :documentation
-                     "Gets the preferred width the PAINTABLE would like to be displayed at.
-
-C: gdk_paintable_get_intrinsic_width
-See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_width.html")
-
-
-(rt:define-gfunction (paintable-invalidate-contents "gdk_paintable_invalidate_contents") :args
-                     ((paintable (:object paintable))) :documentation
-                     "Called by implementations of `GdkPaintable` to invalidate their contents.
-
-C: gdk_paintable_invalidate_contents
-See: https://docs.gtk.org/gdk4/method.Paintable.invalidate_contents.html")
-
-
-(rt:define-gfunction (paintable-invalidate-size "gdk_paintable_invalidate_size") :args
-                     ((paintable (:object paintable))) :documentation
-                     "Called by implementations of `GdkPaintable` to invalidate their size.
-
-C: gdk_paintable_invalidate_size
-See: https://docs.gtk.org/gdk4/method.Paintable.invalidate_size.html")
-
-
-(rt:define-gfunction (paintable-snapshot "gdk_paintable_snapshot") :args
-                     ((paintable (:object paintable)) (snapshot (:object snapshot)) (width :double)
-                      (height :double))
-                     :documentation "Snapshots the given paintable with the given WIDTH and HEIGHT.
-
-C: gdk_paintable_snapshot
-See: https://docs.gtk.org/gdk4/method.Paintable.snapshot.html")
-
-
-(rt:define-gfunction (popup-get-autohide "gdk_popup_get_autohide") :args ((popup (:object popup)))
-                     :return :boolean :documentation
-                     "Returns whether this popup is set to hide on outside clicks.
-
-C: gdk_popup_get_autohide
-See: https://docs.gtk.org/gdk4/method.Popup.get_autohide.html")
-
-
-(rt:define-gfunction (popup-get-parent "gdk_popup_get_parent") :args ((popup (:object popup)))
-                     :return (:object surface) :documentation
-                     "Returns the parent surface of a popup.
-
-C: gdk_popup_get_parent
-See: https://docs.gtk.org/gdk4/method.Popup.get_parent.html")
-
-
-(rt:define-gfunction (popup-get-position-x "gdk_popup_get_position_x") :args
-                     ((popup (:object popup))) :return :int :documentation
-                     "Obtains the position of the popup relative to its parent.
-
-C: gdk_popup_get_position_x
-See: https://docs.gtk.org/gdk4/method.Popup.get_position_x.html")
-
-
-(rt:define-gfunction (popup-get-position-y "gdk_popup_get_position_y") :args
-                     ((popup (:object popup))) :return :int :documentation
-                     "Obtains the position of the popup relative to its parent.
-
-C: gdk_popup_get_position_y
-See: https://docs.gtk.org/gdk4/method.Popup.get_position_y.html")
-
-
-(rt:define-gfunction (popup-get-rect-anchor "gdk_popup_get_rect_anchor") :args
-                     ((popup (:object popup))) :return (:enum gravity) :documentation
-                     "Gets the current popup rectangle anchor.
-
-C: gdk_popup_get_rect_anchor
-See: https://docs.gtk.org/gdk4/method.Popup.get_rect_anchor.html")
-
-
-(rt:define-gfunction (popup-get-surface-anchor "gdk_popup_get_surface_anchor") :args
-                     ((popup (:object popup))) :return (:enum gravity) :documentation
-                     "Gets the current popup surface anchor.
-
-C: gdk_popup_get_surface_anchor
-See: https://docs.gtk.org/gdk4/method.Popup.get_surface_anchor.html")
-
-
-(rt:define-gfunction (popup-present "gdk_popup_present") :args
-                     ((popup (:object popup)) (width :int) (height :int)
-                      (layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type")))
-                     :return :boolean :documentation
-                     "Present POPUP after having processed the `GdkPopupLayout` rules.
-
-C: gdk_popup_present
-See: https://docs.gtk.org/gdk4/method.Popup.present.html")
-
-
-(rt:define-gfunction (popup-layout-new "gdk_popup_layout_new") :args
-                     ((anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (rect-anchor (:enum gravity)) (surface-anchor (:enum gravity)))
-                     :return (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type") :return-transfer
-                     :full :documentation "Create a popup layout description.
-
-C: gdk_popup_layout_new
-See: https://docs.gtk.org/gdk4/ctor.PopupLayout.new.html")
-
-
-(rt:define-gfunction (popup-layout-copy "gdk_popup_layout_copy") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type") :return-transfer :full
-                     :documentation "Makes a copy of LAYOUT.
-
-C: gdk_popup_layout_copy
-See: https://docs.gtk.org/gdk4/method.PopupLayout.copy.html")
-
-
-(rt:define-gfunction (popup-layout-equal "gdk_popup_layout_equal") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (other (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type")))
-                     :return :boolean :documentation
-                     "Check whether LAYOUT and OTHER has identical layout properties.
-
-C: gdk_popup_layout_equal
-See: https://docs.gtk.org/gdk4/method.PopupLayout.equal.html")
-
-
-(rt:define-gfunction (popup-layout-get-anchor-hints "gdk_popup_layout_get_anchor_hints") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:flags anchor-hints) :documentation "Get the anchor hints.
-
-C: gdk_popup_layout_get_anchor_hints
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_anchor_hints.html")
-
-
-(rt:define-gfunction (popup-layout-get-anchor-rect "gdk_popup_layout_get_anchor_rect") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :documentation
-                     "Get the anchor rectangle.
-
-C: gdk_popup_layout_get_anchor_rect
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_anchor_rect.html")
-
-
-(rt:define-gfunction (popup-layout-get-offset "gdk_popup_layout_get_offset") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (dx :int :direction :out :transfer :full)
-                      (dy :int :direction :out :transfer :full))
-                     :documentation "Retrieves the offset for the anchor rectangle.
-
-C: gdk_popup_layout_get_offset
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_offset.html")
-
-
-(rt:define-gfunction (popup-layout-get-rect-anchor "gdk_popup_layout_get_rect_anchor") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:enum gravity) :documentation
-                     "Returns the anchor position on the anchor rectangle.
-
-C: gdk_popup_layout_get_rect_anchor
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_rect_anchor.html")
-
-
-(rt:define-gfunction (popup-layout-get-shadow-width "gdk_popup_layout_get_shadow_width") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (left :int :direction :out :transfer :full)
-                      (right :int :direction :out :transfer :full)
-                      (top :int :direction :out :transfer :full)
-                      (bottom :int :direction :out :transfer :full))
-                     :version "4.2" :documentation "Obtains the shadow widths of this layout.
-
-C: gdk_popup_layout_get_shadow_width
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_shadow_width.html
-Since: 4.2")
-
-
-(rt:define-gfunction (popup-layout-get-surface-anchor "gdk_popup_layout_get_surface_anchor") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:enum gravity) :documentation
-                     "Returns the anchor position on the popup surface.
-
-C: gdk_popup_layout_get_surface_anchor
-See: https://docs.gtk.org/gdk4/method.PopupLayout.get_surface_anchor.html")
-
-
-(rt:define-gfunction (popup-layout-ref "gdk_popup_layout_ref") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type") :return-transfer :full
-                     :documentation "Increases the reference count of VALUE.
-
-C: gdk_popup_layout_ref
-See: https://docs.gtk.org/gdk4/method.PopupLayout.ref.html")
-
-
-(rt:define-gfunction (popup-layout-set-anchor-hints "gdk_popup_layout_set_anchor_hints") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (anchor-hints (:flags anchor-hints)))
-                     :documentation "Set new anchor hints.
-
-C: gdk_popup_layout_set_anchor_hints
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_anchor_hints.html")
-
-
-(rt:define-gfunction (popup-layout-set-anchor-rect "gdk_popup_layout_set_anchor_rect") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
-                     :documentation "Set the anchor rectangle.
-
-C: gdk_popup_layout_set_anchor_rect
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_anchor_rect.html")
-
-
-(rt:define-gfunction (popup-layout-set-offset "gdk_popup_layout_set_offset") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type")) (dx :int)
-                      (dy :int))
-                     :documentation
-                     "Offset the position of the anchor rectangle with the given delta.
-
-C: gdk_popup_layout_set_offset
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_offset.html")
-
-
-(rt:define-gfunction (popup-layout-set-rect-anchor "gdk_popup_layout_set_rect_anchor") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (anchor (:enum gravity)))
-                     :documentation "Set the anchor on the anchor rectangle.
-
-C: gdk_popup_layout_set_rect_anchor
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_rect_anchor.html")
-
-
-(rt:define-gfunction (popup-layout-set-shadow-width "gdk_popup_layout_set_shadow_width") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type")) (left :int)
-                      (right :int) (top :int) (bottom :int))
-                     :version "4.2" :documentation "Sets the shadow width of the popup.
-
-C: gdk_popup_layout_set_shadow_width
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_shadow_width.html
-Since: 4.2")
-
-
-(rt:define-gfunction (popup-layout-set-surface-anchor "gdk_popup_layout_set_surface_anchor") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (anchor (:enum gravity)))
-                     :documentation "Set the anchor on the popup surface.
-
-C: gdk_popup_layout_set_surface_anchor
-See: https://docs.gtk.org/gdk4/method.PopupLayout.set_surface_anchor.html")
-
-
-(rt:define-gfunction (popup-layout-unref "gdk_popup_layout_unref") :args
-                     ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type")))
-                     :documentation "Decreases the reference count of VALUE.
-
-C: gdk_popup_layout_unref
-See: https://docs.gtk.org/gdk4/method.PopupLayout.unref.html")
-
-
-(rt:define-gfunction (rgba-copy "gdk_rgba_copy") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return
-                     (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba) :return-transfer :full
-                     :documentation "Makes a copy of a `GdkRGBA`.
-
-C: gdk_rgba_copy
-See: https://docs.gtk.org/gdk4/method.RGBA.copy.html")
-
-
-(rt:define-gfunction (rgba-equal "gdk_rgba_equal") :args
-                     ((p1 (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))
-                      (p2 (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)))
-                     :return :boolean :documentation "Compares two `GdkRGBA` colors.
-
-C: gdk_rgba_equal
-See: https://docs.gtk.org/gdk4/method.RGBA.equal.html")
-
-
-(rt:define-gfunction (rgba-free "gdk_rgba_free") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :documentation
-                     "Frees a `GdkRGBA`.
-
-C: gdk_rgba_free
-See: https://docs.gtk.org/gdk4/method.RGBA.free.html")
-
-
-(rt:define-gfunction (rgba-hash "gdk_rgba_hash") :args
-                     ((p (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :uint :documentation
-                     "A hash function suitable for using for a hash
-table that stores `GdkRGBA`s.
-
-C: gdk_rgba_hash
-See: https://docs.gtk.org/gdk4/method.RGBA.hash.html")
-
-
-(rt:define-gfunction (rgba-is-clear "gdk_rgba_is_clear") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :boolean
-                     :documentation "Checks if an RGBA value is transparent.
-
-C: gdk_rgba_is_clear
-See: https://docs.gtk.org/gdk4/method.RGBA.is_clear.html")
-
-
-(rt:define-gfunction (rgba-is-opaque "gdk_rgba_is_opaque") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :boolean
-                     :documentation "Checks if an RGBA value is opaque.
-
-C: gdk_rgba_is_opaque
-See: https://docs.gtk.org/gdk4/method.RGBA.is_opaque.html")
-
-
-(rt:define-gfunction (rgba-parse "gdk_rgba_parse") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)) (spec :string)) :return
-                     :boolean :documentation "Parses a textual representation of a color.
-
-C: gdk_rgba_parse
-See: https://docs.gtk.org/gdk4/method.RGBA.parse.html")
-
-
-(rt:define-gfunction (rgba-print "gdk_rgba_print") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))
-                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
-                     :return (:boxed "GString" "g_gstring_get_type" glib:string) :return-transfer
-                     :full :version "4.22" :documentation
-                     "Appends a representation of RGBA to STRING.
-
-C: gdk_rgba_print
-See: https://docs.gtk.org/gdk4/method.RGBA.print.html
-Since: 4.22")
-
-
-(rt:define-gfunction (rgba-to-string "gdk_rgba_to_string") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :string
-                     :return-transfer :full :documentation
-                     "Returns a textual specification of RGBA in the form
-`rgb(r,g,b)` or `rgba(r,g,b,a)`, where “r”, “g”, “b” and
-“a” represent the red, green, blue and alpha values
-respectively. “r”, “g”, and “b” are represented as integers
-in the range 0 to 255, and “a” is represented as a floating
-point value in the range 0 to 1.
-
-C: gdk_rgba_to_string
-See: https://docs.gtk.org/gdk4/method.RGBA.to_string.html")
-
-
-(rt:define-gfunction (rectangle-contains-point "gdk_rectangle_contains_point") :args
-                     ((rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)) (x :int)
-                      (y :int))
-                     :return :boolean :documentation
-                     "Returns true if RECT contains the point described by X and Y.
-
-C: gdk_rectangle_contains_point
-See: https://docs.gtk.org/gdk4/method.Rectangle.contains_point.html")
-
-
-(rt:define-gfunction (rectangle-equal "gdk_rectangle_equal") :args
-                     ((rect1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (rect2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
-                     :return :boolean :documentation "Checks if the two given rectangles are equal.
-
-C: gdk_rectangle_equal
-See: https://docs.gtk.org/gdk4/method.Rectangle.equal.html")
-
-
-(rt:define-gfunction (rectangle-intersect "gdk_rectangle_intersect") :args
-                     ((src1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (src2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (dest (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :direction
-                       :out :caller-allocates t))
-                     :return :boolean :documentation "Calculates the intersection of two rectangles.
-
-C: gdk_rectangle_intersect
-See: https://docs.gtk.org/gdk4/method.Rectangle.intersect.html")
-
-
-(rt:define-gfunction (rectangle-union "gdk_rectangle_union") :args
-                     ((src1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (src2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
-                      (dest (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :direction
-                       :out :caller-allocates t))
-                     :documentation "Calculates the union of two rectangles.
-
-C: gdk_rectangle_union
-See: https://docs.gtk.org/gdk4/method.Rectangle.union.html")
-
-
-(rt:define-gfunction (scroll-event-get-deltas "gdk_scroll_event_get_deltas") :args
-                     ((event :pointer) (delta-x :double :direction :out :transfer :full)
-                      (delta-y :double :direction :out :transfer :full))
-                     :documentation "Extracts the scroll deltas of a scroll event.
-
-C: gdk_scroll_event_get_deltas
-See: https://docs.gtk.org/gdk4/method.ScrollEvent.get_deltas.html")
-
-
-(rt:define-gfunction (scroll-event-get-direction "gdk_scroll_event_get_direction") :args
-                     ((event :pointer)) :return (:enum scroll-direction) :documentation
-                     "Extracts the direction of a scroll event.
-
-C: gdk_scroll_event_get_direction
-See: https://docs.gtk.org/gdk4/method.ScrollEvent.get_direction.html")
-
-
-(rt:define-gfunction
- (scroll-event-get-relative-direction "gdk_scroll_event_get_relative_direction") :args
- ((event :pointer)) :return (:enum scroll-relative-direction) :version "4.20" :documentation
- "Extracts the scroll direction relative to the physical motion.
-
-C: gdk_scroll_event_get_relative_direction
-See: https://docs.gtk.org/gdk4/method.ScrollEvent.get_relative_direction.html
-Since: 4.20")
-
-
-(rt:define-gfunction (scroll-event-get-unit "gdk_scroll_event_get_unit") :args ((event :pointer))
-                     :return (:enum scroll-unit) :version "4.8" :documentation
-                     "Extracts the scroll delta unit of a scroll event.
-
-C: gdk_scroll_event_get_unit
-See: https://docs.gtk.org/gdk4/method.ScrollEvent.get_unit.html
-Since: 4.8")
-
-
-(rt:define-gfunction (scroll-event-is-stop "gdk_scroll_event_is_stop") :args ((event :pointer))
-                     :return :boolean :documentation
-                     "Check whether a scroll event is a stop scroll event.
-
-C: gdk_scroll_event_is_stop
-See: https://docs.gtk.org/gdk4/method.ScrollEvent.is_stop.html")
-
-
-(rt:define-gfunction (seat-get-capabilities "gdk_seat_get_capabilities") :args
-                     ((seat (:object seat))) :return (:flags seat-capabilities) :documentation
-                     "Returns the capabilities this `GdkSeat` currently has.
-
-C: gdk_seat_get_capabilities
-See: https://docs.gtk.org/gdk4/method.Seat.get_capabilities.html")
-
-
-(rt:define-gfunction (seat-get-devices "gdk_seat_get_devices") :args
-                     ((seat (:object seat)) (capabilities (:flags seat-capabilities))) :return
-                     (:glist (:object device)) :return-transfer :container :documentation
-                     "Returns the devices that match the given capabilities.
-
-C: gdk_seat_get_devices
-See: https://docs.gtk.org/gdk4/method.Seat.get_devices.html")
-
-
-(rt:define-gfunction (seat-get-display "gdk_seat_get_display") :args ((seat (:object seat)))
-                     :return (:object display) :documentation
-                     "Returns the `GdkDisplay` this seat belongs to.
-
-C: gdk_seat_get_display
-See: https://docs.gtk.org/gdk4/method.Seat.get_display.html")
-
-
-(rt:define-gfunction (seat-get-keyboard "gdk_seat_get_keyboard") :args ((seat (:object seat)))
-                     :return (:object device) :documentation
-                     "Returns the device that routes keyboard events.
-
-C: gdk_seat_get_keyboard
-See: https://docs.gtk.org/gdk4/method.Seat.get_keyboard.html")
-
-
-(rt:define-gfunction (seat-get-pointer "gdk_seat_get_pointer") :args ((seat (:object seat)))
-                     :return (:object device) :documentation
-                     "Returns the device that routes pointer events.
-
-C: gdk_seat_get_pointer
-See: https://docs.gtk.org/gdk4/method.Seat.get_pointer.html")
-
-
-(rt:define-gfunction (seat-get-tools "gdk_seat_get_tools") :args ((seat (:object seat))) :return
-                     (:glist (:object device-tool)) :return-transfer :container :documentation
-                     "Returns all `GdkDeviceTools` that are known to the application.
-
-C: gdk_seat_get_tools
-See: https://docs.gtk.org/gdk4/method.Seat.get_tools.html")
-
-
-(rt:define-gfunction (surface-new-popup "gdk_surface_new_popup") :args
-                     ((parent (:object surface)) (autohide :boolean)) :return (:object surface)
-                     :return-transfer :full :documentation "Create a new popup surface.
-
-C: gdk_surface_new_popup
-See: https://docs.gtk.org/gdk4/ctor.Surface.new_popup.html")
-
-
-(rt:define-gfunction (surface-new-toplevel "gdk_surface_new_toplevel") :args
-                     ((display (:object display))) :return (:object surface) :return-transfer :full
-                     :documentation "Creates a new toplevel surface.
-
-C: gdk_surface_new_toplevel
-See: https://docs.gtk.org/gdk4/ctor.Surface.new_toplevel.html")
-
-
-(rt:define-gfunction (surface-beep "gdk_surface_beep") :args ((surface (:object surface)))
-                     :documentation "Emits a short beep associated to SURFACE.
-
-C: gdk_surface_beep
-See: https://docs.gtk.org/gdk4/method.Surface.beep.html")
-
-
-(rt:define-gfunction (surface-create-cairo-context "gdk_surface_create_cairo_context") :args
-                     ((surface (:object surface))) :return (:object cairo-context) :return-transfer
-                     :full :documentation "Creates a new `GdkCairoContext` for rendering on SURFACE.
-
-C: gdk_surface_create_cairo_context
-See: https://docs.gtk.org/gdk4/method.Surface.create_cairo_context.html
-Deprecated.")
-
-
-(rt:define-gfunction (surface-create-gl-context "gdk_surface_create_gl_context") :args
-                     ((surface (:object surface))) :return (:object gl-context) :return-transfer
-                     :full :throws t :documentation
-                     "Creates a new `GdkGLContext` for the `GdkSurface`.
-
-C: gdk_surface_create_gl_context
-See: https://docs.gtk.org/gdk4/method.Surface.create_gl_context.html")
-
-
-(rt:define-gfunction (surface-create-similar-surface "gdk_surface_create_similar_surface") :args
-                     ((surface (:object surface)) (content (:enum cairo:content)) (width :int)
-                      (height :int))
-                     :return (:boxed "CairoSurface" "cairo_gobject_surface_get_type")
-                     :return-transfer :full :documentation
-                     "Create a new Cairo surface that is as compatible as possible with the
-given SURFACE.
-
-C: gdk_surface_create_similar_surface
-See: https://docs.gtk.org/gdk4/method.Surface.create_similar_surface.html
-Deprecated.")
-
-
-(rt:define-gfunction (surface-create-vulkan-context "gdk_surface_create_vulkan_context") :args
-                     ((surface (:object surface))) :return (:object vulkan-context)
-                     :return-transfer :full :throws t :documentation "Sets an error and returns NIL.
-
-C: gdk_surface_create_vulkan_context
-See: https://docs.gtk.org/gdk4/method.Surface.create_vulkan_context.html
-Deprecated.")
-
-
-(rt:define-gfunction (surface-destroy "gdk_surface_destroy") :args ((surface (:object surface)))
-                     :documentation
-                     "Destroys the window system resources associated with SURFACE and
-decrements SURFACE's reference count.
-
-C: gdk_surface_destroy
-See: https://docs.gtk.org/gdk4/method.Surface.destroy.html")
-
-
-(rt:define-gfunction (surface-get-cursor "gdk_surface_get_cursor") :args
-                     ((surface (:object surface))) :return (:object cursor) :documentation
-                     "Retrieves a `GdkCursor` pointer for the cursor currently set on the
-`GdkSurface`.
-
-C: gdk_surface_get_cursor
-See: https://docs.gtk.org/gdk4/method.Surface.get_cursor.html")
-
-
-(rt:define-gfunction (surface-get-device-cursor "gdk_surface_get_device_cursor") :args
-                     ((surface (:object surface)) (device (:object device))) :return
-                     (:object cursor) :documentation
-                     "Retrieves a `GdkCursor` pointer for the DEVICE currently set on the
-specified `GdkSurface`.
-
-C: gdk_surface_get_device_cursor
-See: https://docs.gtk.org/gdk4/method.Surface.get_device_cursor.html")
-
-
-(rt:define-gfunction (surface-get-device-position "gdk_surface_get_device_position") :args
-                     ((surface (:object surface)) (device (:object device))
-                      (x :double :direction :out :transfer :full)
-                      (y :double :direction :out :transfer :full)
-                      (mask (:flags modifier-type) :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Obtains the current device position and modifier state.
-
-C: gdk_surface_get_device_position
-See: https://docs.gtk.org/gdk4/method.Surface.get_device_position.html")
-
-
-(rt:define-gfunction (surface-get-display "gdk_surface_get_display") :args
-                     ((surface (:object surface))) :return (:object display) :documentation
-                     "Gets the `GdkDisplay` associated with a `GdkSurface`.
-
-C: gdk_surface_get_display
-See: https://docs.gtk.org/gdk4/method.Surface.get_display.html")
-
-
-(rt:define-gfunction (surface-get-frame-clock "gdk_surface_get_frame_clock") :args
-                     ((surface (:object surface))) :return (:object frame-clock) :documentation
-                     "Gets the frame clock for the surface.
-
-C: gdk_surface_get_frame_clock
-See: https://docs.gtk.org/gdk4/method.Surface.get_frame_clock.html")
-
-
-(rt:define-gfunction (surface-get-height "gdk_surface_get_height") :args
-                     ((surface (:object surface))) :return :int :documentation
-                     "Returns the height of the given SURFACE.
-
-C: gdk_surface_get_height
-See: https://docs.gtk.org/gdk4/method.Surface.get_height.html")
-
-
-(rt:define-gfunction (surface-get-mapped "gdk_surface_get_mapped") :args
-                     ((surface (:object surface))) :return :boolean :documentation
-                     "Checks whether the surface has been mapped.
-
-C: gdk_surface_get_mapped
-See: https://docs.gtk.org/gdk4/method.Surface.get_mapped.html")
-
-
-(rt:define-gfunction (surface-get-scale "gdk_surface_get_scale") :args
-                     ((surface (:object surface))) :return :double :version "4.12" :documentation
-                     "Returns the internal scale that maps from surface coordinates
-to the actual device pixels.
-
-C: gdk_surface_get_scale
-See: https://docs.gtk.org/gdk4/method.Surface.get_scale.html
-Since: 4.12")
-
-
-(rt:define-gfunction (surface-get-scale-factor "gdk_surface_get_scale_factor") :args
-                     ((surface (:object surface))) :return :int :documentation
-                     "Returns the internal scale factor that maps from surface coordinates
-to the actual device pixels.
-
-C: gdk_surface_get_scale_factor
-See: https://docs.gtk.org/gdk4/method.Surface.get_scale_factor.html")
-
-
-(rt:define-gfunction (surface-get-width "gdk_surface_get_width") :args
-                     ((surface (:object surface))) :return :int :documentation
-                     "Returns the width of the given SURFACE.
-
-C: gdk_surface_get_width
-See: https://docs.gtk.org/gdk4/method.Surface.get_width.html")
-
-
-(rt:define-gfunction (surface-hide "gdk_surface_hide") :args ((surface (:object surface)))
-                     :documentation "Hide the surface.
-
-C: gdk_surface_hide
-See: https://docs.gtk.org/gdk4/method.Surface.hide.html")
-
-
-(rt:define-gfunction (surface-is-destroyed "gdk_surface_is_destroyed") :args
-                     ((surface (:object surface))) :return :boolean :documentation
-                     "Check to see if a surface is destroyed.
-
-C: gdk_surface_is_destroyed
-See: https://docs.gtk.org/gdk4/method.Surface.is_destroyed.html")
-
-
-(rt:define-gfunction (surface-queue-render "gdk_surface_queue_render") :args
-                     ((surface (:object surface))) :documentation
-                     "Forces a Gdk.Surface::render signal emission for SURFACE
-to be scheduled.
-
-C: gdk_surface_queue_render
-See: https://docs.gtk.org/gdk4/method.Surface.queue_render.html")
-
-
-(rt:define-gfunction (surface-request-layout "gdk_surface_request_layout") :args
-                     ((surface (:object surface))) :documentation
-                     "Request a layout phase from the surface's frame clock.
-
-C: gdk_surface_request_layout
-See: https://docs.gtk.org/gdk4/method.Surface.request_layout.html")
-
-
-(rt:define-gfunction (surface-set-cursor "gdk_surface_set_cursor") :args
-                     ((surface (:object surface)) (cursor (:object cursor) :optional t))
-                     :documentation "Sets the default mouse pointer for a `GdkSurface`.
-
-C: gdk_surface_set_cursor
-See: https://docs.gtk.org/gdk4/method.Surface.set_cursor.html")
-
-
-(rt:define-gfunction (surface-set-device-cursor "gdk_surface_set_device_cursor") :args
-                     ((surface (:object surface)) (device (:object device))
-                      (cursor (:object cursor)))
-                     :documentation
-                     "Sets a specific `GdkCursor` for a given device when it gets inside SURFACE.
-
-C: gdk_surface_set_device_cursor
-See: https://docs.gtk.org/gdk4/method.Surface.set_device_cursor.html")
-
-
-(rt:define-gfunction (surface-set-input-region "gdk_surface_set_input_region") :args
-                     ((surface (:object surface))
-                      (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
-                     :documentation "Apply the region to the surface for the purpose of event
-handling.
-
-C: gdk_surface_set_input_region
-See: https://docs.gtk.org/gdk4/method.Surface.set_input_region.html")
-
-
-(rt:define-gfunction (surface-set-opaque-region "gdk_surface_set_opaque_region") :args
-                     ((surface (:object surface))
-                      (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
-                     :documentation "Marks a region of the `GdkSurface` as opaque.
-
-C: gdk_surface_set_opaque_region
-See: https://docs.gtk.org/gdk4/method.Surface.set_opaque_region.html
-Deprecated.")
-
-
-(rt:define-gfunction (texture-new-for-pixbuf "gdk_texture_new_for_pixbuf") :args
-                     ((pixbuf (:object gdk-pixbuf:pixbuf))) :return (:object texture)
-                     :return-transfer :full :documentation
-                     "Creates a new texture object representing the `GdkPixbuf`.
-
-C: gdk_texture_new_for_pixbuf
-See: https://docs.gtk.org/gdk4/ctor.Texture.new_for_pixbuf.html
-Deprecated.")
-
-
-(rt:define-gfunction (texture-new-from-bytes "gdk_texture_new_from_bytes") :args
-                     ((bytes (:boxed "GBytes" "g_bytes_get_type"))) :return (:object texture)
-                     :return-transfer :full :throws t :version "4.6" :documentation
-                     "Creates a new texture by loading an image from memory,
-
-C: gdk_texture_new_from_bytes
-See: https://docs.gtk.org/gdk4/ctor.Texture.new_from_bytes.html
-Since: 4.6")
-
-
-(rt:define-gfunction (texture-new-from-file "gdk_texture_new_from_file") :args
-                     ((file (:object gio:file))) :return (:object texture) :return-transfer :full
-                     :throws t :documentation
-                     "Creates a new texture by loading an image from a file.
-
-C: gdk_texture_new_from_file
-See: https://docs.gtk.org/gdk4/ctor.Texture.new_from_file.html")
-
-
-(rt:define-gfunction (texture-new-from-filename "gdk_texture_new_from_filename") :args
-                     ((path :string)) :return (:object texture) :return-transfer :full :throws t
-                     :version "4.6" :documentation
-                     "Creates a new texture by loading an image from a file.
-
-C: gdk_texture_new_from_filename
-See: https://docs.gtk.org/gdk4/ctor.Texture.new_from_filename.html
-Since: 4.6")
-
-
-(rt:define-gfunction (texture-new-from-resource "gdk_texture_new_from_resource") :args
-                     ((resource-path :string)) :return (:object texture) :return-transfer :full
-                     :documentation "Creates a new texture by loading an image from a resource.
-
-C: gdk_texture_new_from_resource
-See: https://docs.gtk.org/gdk4/ctor.Texture.new_from_resource.html")
-
-
-(rt:define-gfunction (texture-get-color-state "gdk_texture_get_color_state") :args
-                     ((self (:object texture))) :return
-                     (:boxed "GdkColorState" "gdk_color_state_get_type") :version "4.16"
-                     :documentation "Returns the color state associated with the texture.
-
-C: gdk_texture_get_color_state
-See: https://docs.gtk.org/gdk4/method.Texture.get_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (texture-get-format "gdk_texture_get_format") :args ((self (:object texture)))
-                     :return (:enum memory-format) :version "4.10" :documentation
-                     "Gets the memory format most closely associated with the data of
-the texture.
-
-C: gdk_texture_get_format
-See: https://docs.gtk.org/gdk4/method.Texture.get_format.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-get-height "gdk_texture_get_height") :args
-                     ((texture (:object texture))) :return :int :documentation
-                     "Returns the height of the TEXTURE, in pixels.
-
-C: gdk_texture_get_height
-See: https://docs.gtk.org/gdk4/method.Texture.get_height.html")
-
-
-(rt:define-gfunction (texture-get-width "gdk_texture_get_width") :args
-                     ((texture (:object texture))) :return :int :documentation
-                     "Returns the width of TEXTURE, in pixels.
-
-C: gdk_texture_get_width
-See: https://docs.gtk.org/gdk4/method.Texture.get_width.html")
-
-
-(rt:define-gfunction (texture-save-to-png "gdk_texture_save_to_png") :args
-                     ((texture (:object texture)) (filename :string)) :return :boolean
-                     :documentation "Store the given TEXTURE to the FILENAME as a PNG file.
-
-C: gdk_texture_save_to_png
-See: https://docs.gtk.org/gdk4/method.Texture.save_to_png.html")
-
-
-(rt:define-gfunction (texture-save-to-png-bytes "gdk_texture_save_to_png_bytes") :args
-                     ((texture (:object texture))) :return (:boxed "GBytes" "g_bytes_get_type")
-                     :return-transfer :full :version "4.6" :documentation
-                     "Store the given TEXTURE in memory as a PNG file.
-
-C: gdk_texture_save_to_png_bytes
-See: https://docs.gtk.org/gdk4/method.Texture.save_to_png_bytes.html
-Since: 4.6")
-
-
-(rt:define-gfunction (texture-save-to-tiff "gdk_texture_save_to_tiff") :args
-                     ((texture (:object texture)) (filename :string)) :return :boolean :version
-                     "4.6" :documentation "Store the given TEXTURE to the FILENAME as a TIFF file.
-
-C: gdk_texture_save_to_tiff
-See: https://docs.gtk.org/gdk4/method.Texture.save_to_tiff.html
-Since: 4.6")
-
-
-(rt:define-gfunction (texture-save-to-tiff-bytes "gdk_texture_save_to_tiff_bytes") :args
-                     ((texture (:object texture))) :return (:boxed "GBytes" "g_bytes_get_type")
-                     :return-transfer :full :version "4.6" :documentation
-                     "Store the given TEXTURE in memory as a TIFF file.
-
-C: gdk_texture_save_to_tiff_bytes
-See: https://docs.gtk.org/gdk4/method.Texture.save_to_tiff_bytes.html
-Since: 4.6")
-
-
-(rt:define-gfunction (texture-downloader-new "gdk_texture_downloader_new") :args
-                     ((texture (:object texture))) :return
-                     (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")
-                     :return-transfer :full :version "4.10" :documentation
-                     "Creates a new texture downloader for TEXTURE.
-
-C: gdk_texture_downloader_new
-See: https://docs.gtk.org/gdk4/ctor.TextureDownloader.new.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-copy "gdk_texture_downloader_copy") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")))
-                     :return (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")
-                     :return-transfer :full :version "4.10" :documentation
-                     "Creates a copy of the downloader.
-
-C: gdk_texture_downloader_copy
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.copy.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-download-bytes "gdk_texture_downloader_download_bytes")
-                     :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type"))
-                      (out-stride :size :direction :out :transfer :full))
-                     :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version
-                     "4.10" :documentation
-                     "Downloads the given texture pixels into a `GBytes`. The rowstride will
-be stored in the stride value.
-
-C: gdk_texture_downloader_download_bytes
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.download_bytes.html
-Since: 4.10")
-
-
-(rt:define-gfunction
- (texture-downloader-download-bytes-with-planes
-  "gdk_texture_downloader_download_bytes_with_planes")
- :args
- ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type"))
-  (out-offsets (:array :size :fixed-size 4 :caller-allocates t) :direction :out)
-  (out-strides (:array :size :fixed-size 4 :caller-allocates t) :direction :out))
- :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "4.20" :documentation
- "Downloads the given texture pixels into a `GBytes`. The offsets and
-strides of the resulting buffer will be stored in the respective values.
-
-C: gdk_texture_downloader_download_bytes_with_planes
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.download_bytes_with_planes.html
-Since: 4.20")
-
-
-(rt:define-gfunction (texture-downloader-free "gdk_texture_downloader_free") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")))
-                     :version "4.10" :documentation
-                     "Frees the given downloader and all its associated resources.
-
-C: gdk_texture_downloader_free
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.free.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-get-color-state "gdk_texture_downloader_get_color_state")
-                     :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")))
-                     :return (:boxed "GdkColorState" "gdk_color_state_get_type") :return-transfer
-                     :full :version "4.16" :documentation
-                     "Gets the color state that the data will be downloaded in.
-
-C: gdk_texture_downloader_get_color_state
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.get_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (texture-downloader-get-format "gdk_texture_downloader_get_format") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")))
-                     :return (:enum memory-format) :version "4.10" :documentation
-                     "Gets the format that the data will be downloaded in.
-
-C: gdk_texture_downloader_get_format
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.get_format.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-get-texture "gdk_texture_downloader_get_texture") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type")))
-                     :return (:object texture) :version "4.10" :documentation
-                     "Gets the texture that the downloader will download.
-
-C: gdk_texture_downloader_get_texture
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.get_texture.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-set-color-state "gdk_texture_downloader_set_color_state")
-                     :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type"))
-                      (color-state (:boxed "GdkColorState" "gdk_color_state_get_type")))
-                     :version "4.16" :documentation
-                     "Sets the color state the downloader will convert the data to.
-
-C: gdk_texture_downloader_set_color_state
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.set_color_state.html
-Since: 4.16")
-
-
-(rt:define-gfunction (texture-downloader-set-format "gdk_texture_downloader_set_format") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type"))
-                      (format (:enum memory-format)))
-                     :version "4.10" :documentation "Sets the format the downloader will download.
-
-C: gdk_texture_downloader_set_format
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.set_format.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-downloader-set-texture "gdk_texture_downloader_set_texture") :args
-                     ((self (:boxed "GdkTextureDownloader" "gdk_texture_downloader_get_type"))
-                      (texture (:object texture)))
-                     :version "4.10" :documentation
-                     "Changes the texture the downloader will download.
-
-C: gdk_texture_downloader_set_texture
-See: https://docs.gtk.org/gdk4/method.TextureDownloader.set_texture.html
-Since: 4.10")
-
-
-(rt:define-gfunction (toplevel-begin-move "gdk_toplevel_begin_move") :args
-                     ((toplevel (:object toplevel)) (device (:object device)) (button :int)
-                      (x :double) (y :double) (timestamp :uint32))
-                     :documentation "Begins an interactive move operation.
-
-C: gdk_toplevel_begin_move
-See: https://docs.gtk.org/gdk4/method.Toplevel.begin_move.html")
-
-
-(rt:define-gfunction (toplevel-begin-resize "gdk_toplevel_begin_resize") :args
-                     ((toplevel (:object toplevel)) (edge (:enum surface-edge))
-                      (device (:object device)) (button :int) (x :double) (y :double)
-                      (timestamp :uint32))
-                     :documentation "Begins an interactive resize operation.
-
-C: gdk_toplevel_begin_resize
-See: https://docs.gtk.org/gdk4/method.Toplevel.begin_resize.html")
-
-
-(rt:define-gfunction (toplevel-focus "gdk_toplevel_focus") :args
-                     ((toplevel (:object toplevel)) (timestamp :uint32)) :documentation
-                     "Sets keyboard focus to SURFACE.
-
-C: gdk_toplevel_focus
-See: https://docs.gtk.org/gdk4/method.Toplevel.focus.html")
-
-
-(rt:define-gfunction (toplevel-get-capabilities "gdk_toplevel_get_capabilities") :args
-                     ((toplevel (:object toplevel))) :return (:flags toplevel-capabilities)
-                     :version "4.20" :documentation
-                     "The capabilities that are available for this toplevel.
-
-C: gdk_toplevel_get_capabilities
-See: https://docs.gtk.org/gdk4/method.Toplevel.get_capabilities.html
-Since: 4.20")
-
-
-(rt:define-gfunction (toplevel-get-gravity "gdk_toplevel_get_gravity") :args
-                     ((toplevel (:object toplevel))) :return (:enum gravity) :version "4.20"
-                     :documentation "Returns the gravity that is used when changing the toplevel
-size programmatically.
-
-C: gdk_toplevel_get_gravity
-See: https://docs.gtk.org/gdk4/method.Toplevel.get_gravity.html
-Since: 4.20")
-
-
-(rt:define-gfunction (toplevel-get-state "gdk_toplevel_get_state") :args
-                     ((toplevel (:object toplevel))) :return (:flags toplevel-state) :documentation
-                     "Gets the bitwise or of the currently active surface state flags,
-from the `GdkToplevelState` enumeration.
-
-C: gdk_toplevel_get_state
-See: https://docs.gtk.org/gdk4/method.Toplevel.get_state.html")
-
-
-(rt:define-gfunction (toplevel-inhibit-system-shortcuts "gdk_toplevel_inhibit_system_shortcuts")
-                     :args ((toplevel (:object toplevel)) (event :pointer :optional t))
-                     :documentation "Requests that the TOPLEVEL inhibit the system shortcuts.
-
-C: gdk_toplevel_inhibit_system_shortcuts
-See: https://docs.gtk.org/gdk4/method.Toplevel.inhibit_system_shortcuts.html")
-
-
-(rt:define-gfunction (toplevel-lower "gdk_toplevel_lower") :args ((toplevel (:object toplevel)))
-                     :return :boolean :documentation
-                     "Asks to lower the TOPLEVEL below other windows.
-
-C: gdk_toplevel_lower
-See: https://docs.gtk.org/gdk4/method.Toplevel.lower.html")
-
-
-(rt:define-gfunction (toplevel-minimize "gdk_toplevel_minimize") :args
-                     ((toplevel (:object toplevel))) :return :boolean :documentation
-                     "Asks to minimize the TOPLEVEL.
-
-C: gdk_toplevel_minimize
-See: https://docs.gtk.org/gdk4/method.Toplevel.minimize.html")
-
-
-(rt:define-gfunction (toplevel-present "gdk_toplevel_present") :args
-                     ((toplevel (:object toplevel))
-                      (layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type")))
-                     :documentation
-                     "Present TOPLEVEL after having processed the `GdkToplevelLayout` rules.
-
-C: gdk_toplevel_present
-See: https://docs.gtk.org/gdk4/method.Toplevel.present.html")
-
-
-(rt:define-gfunction (toplevel-restore-system-shortcuts "gdk_toplevel_restore_system_shortcuts")
-                     :args ((toplevel (:object toplevel))) :documentation
-                     "Restore default system keyboard shortcuts which were previously
-inhibited.
-
-C: gdk_toplevel_restore_system_shortcuts
-See: https://docs.gtk.org/gdk4/method.Toplevel.restore_system_shortcuts.html")
-
-
-(rt:define-gfunction (toplevel-set-decorated "gdk_toplevel_set_decorated") :args
-                     ((toplevel (:object toplevel)) (decorated :boolean)) :documentation
-                     "Sets the toplevel to be decorated.
-
-C: gdk_toplevel_set_decorated
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_decorated.html")
-
-
-(rt:define-gfunction (toplevel-set-deletable "gdk_toplevel_set_deletable") :args
-                     ((toplevel (:object toplevel)) (deletable :boolean)) :documentation
-                     "Sets the toplevel to be deletable.
-
-C: gdk_toplevel_set_deletable
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_deletable.html")
-
-
-(rt:define-gfunction (toplevel-set-gravity "gdk_toplevel_set_gravity") :args
-                     ((toplevel (:object toplevel)) (gravity (:enum gravity))) :version "4.20"
-                     :documentation "Sets the gravity that is used when changing the toplevel
-size programmatically.
-
-C: gdk_toplevel_set_gravity
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_gravity.html
-Since: 4.20")
-
-
-(rt:define-gfunction (toplevel-set-icon-list "gdk_toplevel_set_icon_list") :args
-                     ((toplevel (:object toplevel)) (surfaces (:glist (:object texture))))
-                     :documentation "Sets a list of icons for the surface.
-
-C: gdk_toplevel_set_icon_list
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_icon_list.html")
-
-
-(rt:define-gfunction (toplevel-set-modal "gdk_toplevel_set_modal") :args
-                     ((toplevel (:object toplevel)) (modal :boolean)) :documentation
-                     "Sets the toplevel to be modal.
-
-C: gdk_toplevel_set_modal
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_modal.html")
-
-
-(rt:define-gfunction (toplevel-set-startup-id "gdk_toplevel_set_startup_id") :args
-                     ((toplevel (:object toplevel)) (startup-id :string)) :documentation
-                     "Sets the startup notification ID.
-
-C: gdk_toplevel_set_startup_id
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_startup_id.html")
-
-
-(rt:define-gfunction (toplevel-set-title "gdk_toplevel_set_title") :args
-                     ((toplevel (:object toplevel)) (title :string)) :documentation
-                     "Sets the title of a toplevel surface.
-
-C: gdk_toplevel_set_title
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_title.html")
-
-
-(rt:define-gfunction (toplevel-set-transient-for "gdk_toplevel_set_transient_for") :args
-                     ((toplevel (:object toplevel)) (parent (:object surface))) :documentation
-                     "Sets a transient-for parent.
-
-C: gdk_toplevel_set_transient_for
-See: https://docs.gtk.org/gdk4/method.Toplevel.set_transient_for.html")
-
-
-(rt:define-gfunction (toplevel-show-window-menu "gdk_toplevel_show_window_menu") :args
-                     ((toplevel (:object toplevel)) (event :pointer)) :return :boolean
-                     :documentation "Asks the windowing system to show the window menu.
-
-C: gdk_toplevel_show_window_menu
-See: https://docs.gtk.org/gdk4/method.Toplevel.show_window_menu.html")
-
-
-(rt:define-gfunction (toplevel-supports-edge-constraints "gdk_toplevel_supports_edge_constraints")
-                     :args ((toplevel (:object toplevel))) :return :boolean :documentation
-                     "Returns whether the desktop environment supports
-tiled window states.
-
-C: gdk_toplevel_supports_edge_constraints
-See: https://docs.gtk.org/gdk4/method.Toplevel.supports_edge_constraints.html")
-
-
-(rt:define-gfunction (toplevel-titlebar-gesture "gdk_toplevel_titlebar_gesture") :args
-                     ((toplevel (:object toplevel)) (gesture (:enum titlebar-gesture))) :return
-                     :boolean :version "4.4" :documentation "Performs a title bar gesture.
-
-C: gdk_toplevel_titlebar_gesture
-See: https://docs.gtk.org/gdk4/method.Toplevel.titlebar_gesture.html
-Since: 4.4")
-
-
-(rt:define-gfunction (toplevel-layout-new "gdk_toplevel_layout_new") :return
-                     (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type") :return-transfer
-                     :full :documentation "Create a toplevel layout description.
-
-C: gdk_toplevel_layout_new
-See: https://docs.gtk.org/gdk4/ctor.ToplevelLayout.new.html")
-
-
-(rt:define-gfunction (toplevel-layout-copy "gdk_toplevel_layout_copy") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))) :return
-                     (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type") :return-transfer
-                     :full :documentation
-                     "Create a new `GdkToplevelLayout` and copy the contents of LAYOUT into it.
-
-C: gdk_toplevel_layout_copy
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.copy.html")
-
-
-(rt:define-gfunction (toplevel-layout-equal "gdk_toplevel_layout_equal") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (other (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type")))
-                     :return :boolean :documentation
-                     "Check whether LAYOUT and OTHER has identical layout properties.
-
-C: gdk_toplevel_layout_equal
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.equal.html")
-
-
-(rt:define-gfunction (toplevel-layout-get-fullscreen "gdk_toplevel_layout_get_fullscreen") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (fullscreen :boolean :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "If the layout specifies whether to the toplevel should go fullscreen,
-the value pointed to by FULLSCREEN is set to true if it should go
-fullscreen, or false, if it should go unfullscreen.
-
-C: gdk_toplevel_layout_get_fullscreen
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.get_fullscreen.html")
-
-
-(rt:define-gfunction
- (toplevel-layout-get-fullscreen-monitor "gdk_toplevel_layout_get_fullscreen_monitor") :args
- ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))) :return (:object monitor)
- :documentation "Returns the monitor that the layout is fullscreening
-the surface on.
-
-C: gdk_toplevel_layout_get_fullscreen_monitor
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.get_fullscreen_monitor.html")
-
-
-(rt:define-gfunction (toplevel-layout-get-maximized "gdk_toplevel_layout_get_maximized") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (maximized :boolean :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "If the layout specifies whether to the toplevel should go maximized,
-the value pointed to by MAXIMIZED is set to true if it should go
-maximized, or false, if it should go unmaximized.
-
-C: gdk_toplevel_layout_get_maximized
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.get_maximized.html")
-
-
-(rt:define-gfunction (toplevel-layout-get-resizable "gdk_toplevel_layout_get_resizable") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))) :return
-                     :boolean :documentation "Returns whether the layout should allow the user
-to resize the surface.
-
-C: gdk_toplevel_layout_get_resizable
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.get_resizable.html")
-
-
-(rt:define-gfunction (toplevel-layout-ref "gdk_toplevel_layout_ref") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))) :return
-                     (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type") :return-transfer
-                     :full :documentation "Increases the reference count of LAYOUT.
-
-C: gdk_toplevel_layout_ref
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.ref.html")
-
-
-(rt:define-gfunction (toplevel-layout-set-fullscreen "gdk_toplevel_layout_set_fullscreen") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (fullscreen :boolean) (monitor (:object monitor) :optional t))
-                     :documentation "Sets whether the layout should cause the surface
-to be fullscreen when presented.
-
-C: gdk_toplevel_layout_set_fullscreen
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.set_fullscreen.html")
-
-
-(rt:define-gfunction (toplevel-layout-set-maximized "gdk_toplevel_layout_set_maximized") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (maximized :boolean))
-                     :documentation "Sets whether the layout should cause the surface
-to be maximized when presented.
-
-C: gdk_toplevel_layout_set_maximized
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.set_maximized.html")
-
-
-(rt:define-gfunction (toplevel-layout-set-resizable "gdk_toplevel_layout_set_resizable") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type"))
-                      (resizable :boolean))
-                     :documentation "Sets whether the layout should allow the user
-to resize the surface after it has been presented.
-
-C: gdk_toplevel_layout_set_resizable
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.set_resizable.html")
-
-
-(rt:define-gfunction (toplevel-layout-unref "gdk_toplevel_layout_unref") :args
-                     ((layout (:boxed "GdkToplevelLayout" "gdk_toplevel_layout_get_type")))
-                     :documentation "Decreases the reference count of LAYOUT.
-
-C: gdk_toplevel_layout_unref
-See: https://docs.gtk.org/gdk4/method.ToplevelLayout.unref.html")
-
-
-(rt:define-gfunction (toplevel-size-get-bounds "gdk_toplevel_size_get_bounds") :args
-                     ((size (:boxed "GdkToplevelSize" "gdk_toplevel_size_get_type"))
-                      (bounds-width :int :direction :out :transfer :full)
-                      (bounds-height :int :direction :out :transfer :full))
-                     :documentation "Retrieves the bounds the toplevel is placed within.
-
-C: gdk_toplevel_size_get_bounds
-See: https://docs.gtk.org/gdk4/method.ToplevelSize.get_bounds.html")
-
-
-(rt:define-gfunction (toplevel-size-set-min-size "gdk_toplevel_size_set_min_size") :args
-                     ((size (:boxed "GdkToplevelSize" "gdk_toplevel_size_get_type"))
-                      (min-width :int) (min-height :int))
-                     :documentation "Sets the minimum size of the toplevel.
-
-C: gdk_toplevel_size_set_min_size
-See: https://docs.gtk.org/gdk4/method.ToplevelSize.set_min_size.html")
-
-
-(rt:define-gfunction (toplevel-size-set-shadow-width "gdk_toplevel_size_set_shadow_width") :args
-                     ((size (:boxed "GdkToplevelSize" "gdk_toplevel_size_get_type")) (left :int)
-                      (right :int) (top :int) (bottom :int))
-                     :documentation "Sets the shadows size of the toplevel.
-
-C: gdk_toplevel_size_set_shadow_width
-See: https://docs.gtk.org/gdk4/method.ToplevelSize.set_shadow_width.html")
-
-
-(rt:define-gfunction (toplevel-size-set-size "gdk_toplevel_size_set_size") :args
-                     ((size (:boxed "GdkToplevelSize" "gdk_toplevel_size_get_type")) (width :int)
-                      (height :int))
-                     :documentation "Sets the size the toplevel prefers to be resized to.
-
-C: gdk_toplevel_size_set_size
-See: https://docs.gtk.org/gdk4/method.ToplevelSize.set_size.html")
-
-
-(rt:define-gfunction (touch-event-get-emulating-pointer "gdk_touch_event_get_emulating_pointer")
-                     :args ((event :pointer)) :return :boolean :documentation
-                     "Extracts whether a touch event is emulating a pointer event.
-
-C: gdk_touch_event_get_emulating_pointer
-See: https://docs.gtk.org/gdk4/method.TouchEvent.get_emulating_pointer.html")
-
-
-(rt:define-gfunction (touchpad-event-get-deltas "gdk_touchpad_event_get_deltas") :args
-                     ((event :pointer) (dx :double :direction :out :transfer :full)
-                      (dy :double :direction :out :transfer :full))
-                     :documentation "Extracts delta information from a touchpad event.
-
-C: gdk_touchpad_event_get_deltas
-See: https://docs.gtk.org/gdk4/method.TouchpadEvent.get_deltas.html")
-
-
-(rt:define-gfunction (touchpad-event-get-gesture-phase "gdk_touchpad_event_get_gesture_phase")
-                     :args ((event :pointer)) :return (:enum touchpad-gesture-phase) :documentation
-                     "Extracts the touchpad gesture phase from a touchpad event.
-
-C: gdk_touchpad_event_get_gesture_phase
-See: https://docs.gtk.org/gdk4/method.TouchpadEvent.get_gesture_phase.html")
-
-
-(rt:define-gfunction (touchpad-event-get-n-fingers "gdk_touchpad_event_get_n_fingers") :args
-                     ((event :pointer)) :return :uint :documentation
-                     "Extracts the number of fingers from a touchpad event.
-
-C: gdk_touchpad_event_get_n_fingers
-See: https://docs.gtk.org/gdk4/method.TouchpadEvent.get_n_fingers.html")
-
-
-(rt:define-gfunction
- (touchpad-event-get-pinch-angle-delta "gdk_touchpad_event_get_pinch_angle_delta") :args
- ((event :pointer)) :return :double :documentation
- "Extracts the angle delta from a touchpad pinch event.
-
-C: gdk_touchpad_event_get_pinch_angle_delta
-See: https://docs.gtk.org/gdk4/method.TouchpadEvent.get_pinch_angle_delta.html")
-
-
-(rt:define-gfunction (touchpad-event-get-pinch-scale "gdk_touchpad_event_get_pinch_scale") :args
-                     ((event :pointer)) :return :double :documentation
-                     "Extracts the scale from a touchpad pinch event.
-
-C: gdk_touchpad_event_get_pinch_scale
-See: https://docs.gtk.org/gdk4/method.TouchpadEvent.get_pinch_scale.html")
-
-
-(rt:define-gfunction (dmabuf-error-quark "gdk_dmabuf_error_quark") :return :uint32 :documentation
-                     "Registers an error quark for Gdk.DmabufTexture errors.
-
-C: gdk_dmabuf_error_quark
-See: https://docs.gtk.org/gdk4/type_func.DmabufError.quark.html")
-
-
-(rt:define-gfunction (drag-action-is-unique "gdk_drag_action_is_unique") :args
-                     ((action (:flags drag-action))) :return :boolean :documentation
-                     "Checks if ACTION represents a single action or includes
-multiple actions.
-
-C: gdk_drag_action_is_unique
-See: https://docs.gtk.org/gdk4/type_func.DragAction.is_unique.html")
-
-
-(rt:define-gfunction (gl-error-quark "gdk_gl_error_quark") :return :uint32 :documentation
-                     "Registers an error quark for Gdk.GLContext errors.
-
-C: gdk_gl_error_quark
-See: https://docs.gtk.org/gdk4/type_func.GLError.quark.html")
-
-
-(rt:define-gfunction (texture-error-quark "gdk_texture_error_quark") :return :uint32 :documentation
-                     "Registers an error quark for Gdk.Texture errors.
-
-C: gdk_texture_error_quark
-See: https://docs.gtk.org/gdk4/type_func.TextureError.quark.html")
-
-
-(rt:define-gfunction (vulkan-error-quark "gdk_vulkan_error_quark") :return :uint32 :documentation
-                     "Registers an error quark for Gdk.VulkanContext errors.
-
-C: gdk_vulkan_error_quark
-See: https://docs.gtk.org/gdk4/type_func.VulkanError.quark.html")

@@ -2,7 +2,7 @@ SBCL ?= sbcl
 LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test stress summary generate full-stack hello example
+.PHONY: test stress summary generate docs full-stack hello example
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -20,8 +20,12 @@ generate:
 	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
 	        --eval '(gtk4.generator:generate)'
 
+docs:
+	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
+	        --eval '(gtk4.generator:generate :site-directory (merge-pathnames "build/docs/" (truename ".")))' \
+	        | tail -1
+
 full-stack:
-	$(SBCL) --non-interactive --load scripts/full-stack.lisp generate | sed -n '/^| Namespace/,/^| \*\*Total/p'
 	$(SBCL) --non-interactive --load scripts/full-stack.lisp compile | grep 'of all namespaces'
 	$(SBCL) --non-interactive --load scripts/full-stack.lisp load | grep 'of all namespaces'
 

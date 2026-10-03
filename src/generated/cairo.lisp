@@ -7,9 +7,8 @@
 
 
 (rt:define-genum status
-    (:kind :enum :gtype-name "cairo_status_t" :get-type "cairo_gobject_status_get_type"
-     :documentation "
-C: cairo_status_t")
+    (:kind :enum :gtype-name "cairo_status_t" :get-type "cairo_gobject_status_get_type" :c-name
+     "cairo_status_t" :documentation "C: cairo_status_t")
   (:success . 0)
   (:no-memory . 1)
   (:invalid-restore . 2)
@@ -52,18 +51,16 @@ C: cairo_status_t")
 
 
 (rt:define-genum content
-    (:kind :enum :gtype-name "cairo_content_t" :get-type "cairo_gobject_content_get_type"
-     :documentation "
-C: cairo_content_t")
+    (:kind :enum :gtype-name "cairo_content_t" :get-type "cairo_gobject_content_get_type" :c-name
+     "cairo_content_t" :documentation "C: cairo_content_t")
   (:color . 4096)
   (:alpha . 8192)
   (:color-alpha . 12288))
 
 
 (rt:define-genum operator
-    (:kind :enum :gtype-name "cairo_operator_t" :get-type "cairo_gobject_operator_get_type"
-     :documentation "
-C: cairo_operator_t")
+    (:kind :enum :gtype-name "cairo_operator_t" :get-type "cairo_gobject_operator_get_type" :c-name
+     "cairo_operator_t" :documentation "C: cairo_operator_t")
   (:clear . 0)
   (:source . 1)
   (:over . 2)
@@ -97,8 +94,7 @@ C: cairo_operator_t")
 
 (rt:define-genum antialias
     (:kind :enum :gtype-name "cairo_antialias_t" :get-type "cairo_gobject_antialias_get_type"
-     :documentation "
-C: cairo_antialias_t")
+     :c-name "cairo_antialias_t" :documentation "C: cairo_antialias_t")
   (:default . 0)
   (:none . 1)
   (:gray . 2)
@@ -110,16 +106,14 @@ C: cairo_antialias_t")
 
 (rt:define-genum fill-rule
     (:kind :enum :gtype-name "cairo_fill_rule_t" :get-type "cairo_gobject_fill_rule_get_type"
-     :documentation "
-C: cairo_fill_rule_t")
+     :c-name "cairo_fill_rule_t" :documentation "C: cairo_fill_rule_t")
   (:winding . 0)
   (:even-odd . 1))
 
 
 (rt:define-genum line-cap
-    (:kind :enum :gtype-name "cairo_line_cap_t" :get-type "cairo_gobject_line_cap_get_type"
-     :documentation "
-C: cairo_line_cap_t")
+    (:kind :enum :gtype-name "cairo_line_cap_t" :get-type "cairo_gobject_line_cap_get_type" :c-name
+     "cairo_line_cap_t" :documentation "C: cairo_line_cap_t")
   (:butt . 0)
   (:round . 1)
   (:square . 2))
@@ -127,8 +121,7 @@ C: cairo_line_cap_t")
 
 (rt:define-genum line-join
     (:kind :enum :gtype-name "cairo_line_join_t" :get-type "cairo_gobject_line_join_get_type"
-     :documentation "
-C: cairo_line_join_t")
+     :c-name "cairo_line_join_t" :documentation "C: cairo_line_join_t")
   (:miter . 0)
   (:round . 1)
   (:bevel . 2))
@@ -136,15 +129,14 @@ C: cairo_line_join_t")
 
 (rt:define-genum text-cluster-flags
     (:kind :enum :gtype-name "cairo_text_cluster_flags_t" :get-type
-     "cairo_gobject_text_cluster_flags_get_type" :documentation "
-C: cairo_text_cluster_flags_t")
+     "cairo_gobject_text_cluster_flags_get_type" :c-name "cairo_text_cluster_flags_t"
+     :documentation "C: cairo_text_cluster_flags_t")
   (:backward . 1))
 
 
 (rt:define-genum font-slant
     (:kind :enum :gtype-name "cairo_font_slant_t" :get-type "cairo_gobject_font_slant_get_type"
-     :documentation "
-C: cairo_font_slant_t")
+     :c-name "cairo_font_slant_t" :documentation "C: cairo_font_slant_t")
   (:normal . 0)
   (:italic . 1)
   (:oblique . 2))
@@ -152,16 +144,15 @@ C: cairo_font_slant_t")
 
 (rt:define-genum font-weight
     (:kind :enum :gtype-name "cairo_font_weight_t" :get-type "cairo_gobject_font_weight_get_type"
-     :documentation "
-C: cairo_font_weight_t")
+     :c-name "cairo_font_weight_t" :documentation "C: cairo_font_weight_t")
   (:normal . 0)
   (:bold . 1))
 
 
 (rt:define-genum subpixel-order
     (:kind :enum :gtype-name "cairo_subpixel_order_t" :get-type
-     "cairo_gobject_subpixel_order_get_type" :documentation "
-C: cairo_subpixel_order_t")
+     "cairo_gobject_subpixel_order_get_type" :c-name "cairo_subpixel_order_t" :documentation
+     "C: cairo_subpixel_order_t")
   (:default . 0)
   (:rgb . 1)
   (:bgr . 2)
@@ -171,8 +162,7 @@ C: cairo_subpixel_order_t")
 
 (rt:define-genum hint-style
     (:kind :enum :gtype-name "cairo_hint_style_t" :get-type "cairo_gobject_hint_style_get_type"
-     :documentation "
-C: cairo_hint_style_t")
+     :c-name "cairo_hint_style_t" :documentation "C: cairo_hint_style_t")
   (:default . 0)
   (:none . 1)
   (:slight . 2)
@@ -182,8 +172,7 @@ C: cairo_hint_style_t")
 
 (rt:define-genum hint-metrics
     (:kind :enum :gtype-name "cairo_hint_metrics_t" :get-type "cairo_gobject_hint_metrics_get_type"
-     :documentation "
-C: cairo_hint_metrics_t")
+     :c-name "cairo_hint_metrics_t" :documentation "C: cairo_hint_metrics_t")
   (:default . 0)
   (:off . 1)
   (:on . 2))
@@ -191,8 +180,7 @@ C: cairo_hint_metrics_t")
 
 (rt:define-genum font-type
     (:kind :enum :gtype-name "cairo_font_type_t" :get-type "cairo_gobject_font_type_get_type"
-     :documentation "
-C: cairo_font_type_t")
+     :c-name "cairo_font_type_t" :documentation "C: cairo_font_type_t")
   (:toy . 0)
   (:ft . 1)
   (:win32 . 2)
@@ -202,8 +190,8 @@ C: cairo_font_type_t")
 
 (rt:define-genum path-data-type
     (:kind :enum :gtype-name "cairo_path_data_type_t" :get-type
-     "cairo_gobject_path_data_type_get_type" :documentation "
-C: cairo_path_data_type_t")
+     "cairo_gobject_path_data_type_get_type" :c-name "cairo_path_data_type_t" :documentation
+     "C: cairo_path_data_type_t")
   (:move-to . 0)
   (:line-to . 1)
   (:curve-to . 2)
@@ -212,8 +200,7 @@ C: cairo_path_data_type_t")
 
 (rt:define-genum device-type
     (:kind :enum :gtype-name "cairo_device_type_t" :get-type "cairo_gobject_device_type_get_type"
-     :documentation "
-C: cairo_device_type_t")
+     :c-name "cairo_device_type_t" :documentation "C: cairo_device_type_t")
   (:drm . 0)
   (:gl . 1)
   (:script . 2)
@@ -227,8 +214,7 @@ C: cairo_device_type_t")
 
 (rt:define-genum surface-type
     (:kind :enum :gtype-name "cairo_surface_type_t" :get-type "cairo_gobject_surface_type_get_type"
-     :documentation "
-C: cairo_surface_type_t")
+     :c-name "cairo_surface_type_t" :documentation "C: cairo_surface_type_t")
   (:image . 0)
   (:pdf . 1)
   (:ps . 2)
@@ -257,9 +243,8 @@ C: cairo_surface_type_t")
 
 
 (rt:define-genum format
-    (:kind :enum :gtype-name "cairo_format_t" :get-type "cairo_gobject_format_get_type"
-     :documentation "
-C: cairo_format_t")
+    (:kind :enum :gtype-name "cairo_format_t" :get-type "cairo_gobject_format_get_type" :c-name
+     "cairo_format_t" :documentation "C: cairo_format_t")
   (:invalid . -1)
   (:argb32 . 0)
   (:rgb24 . 1)
@@ -271,8 +256,7 @@ C: cairo_format_t")
 
 (rt:define-genum pattern-type
     (:kind :enum :gtype-name "cairo_pattern_type_t" :get-type "cairo_gobject_pattern_type_get_type"
-     :documentation "
-C: cairo_pattern_type_t")
+     :c-name "cairo_pattern_type_t" :documentation "C: cairo_pattern_type_t")
   (:solid . 0)
   (:surface . 1)
   (:linear . 2)
@@ -282,9 +266,8 @@ C: cairo_pattern_type_t")
 
 
 (rt:define-genum extend
-    (:kind :enum :gtype-name "cairo_extend_t" :get-type "cairo_gobject_extend_get_type"
-     :documentation "
-C: cairo_extend_t")
+    (:kind :enum :gtype-name "cairo_extend_t" :get-type "cairo_gobject_extend_get_type" :c-name
+     "cairo_extend_t" :documentation "C: cairo_extend_t")
   (:none . 0)
   (:repeat . 1)
   (:reflect . 2)
@@ -292,9 +275,8 @@ C: cairo_extend_t")
 
 
 (rt:define-genum filter
-    (:kind :enum :gtype-name "cairo_filter_t" :get-type "cairo_gobject_filter_get_type"
-     :documentation "
-C: cairo_filter_t")
+    (:kind :enum :gtype-name "cairo_filter_t" :get-type "cairo_gobject_filter_get_type" :c-name
+     "cairo_filter_t" :documentation "C: cairo_filter_t")
   (:fast . 0)
   (:good . 1)
   (:best . 2)
@@ -305,8 +287,8 @@ C: cairo_filter_t")
 
 (rt:define-genum region-overlap
     (:kind :enum :gtype-name "cairo_region_overlap_t" :get-type
-     "cairo_gobject_region_overlap_get_type" :documentation "
-C: cairo_region_overlap_t")
+     "cairo_gobject_region_overlap_get_type" :c-name "cairo_region_overlap_t" :documentation
+     "C: cairo_region_overlap_t")
   (:in . 0)
   (:out . 1)
   (:part . 2))
@@ -319,63 +301,62 @@ C: cairo_region_overlap_t")
 
 
 (rt:define-grecord context
-                   (:gtype-name "CairoContext" :documentation "
-C: cairo_t"))
+                   (:gtype-name "CairoContext" :c-name "cairo_t" :documentation "C: cairo_t"))
 
 
 (rt:define-grecord device
-                   (:gtype-name "CairoDevice" :documentation "
-C: cairo_device_t"))
+                   (:gtype-name "CairoDevice" :c-name "cairo_device_t" :documentation
+                    "C: cairo_device_t"))
 
 
 (rt:define-grecord surface
-                   (:gtype-name "CairoSurface" :documentation "
-C: cairo_surface_t"))
+                   (:gtype-name "CairoSurface" :c-name "cairo_surface_t" :documentation
+                    "C: cairo_surface_t"))
 
 
 (rt:define-grecord pattern
-                   (:gtype-name "CairoPattern" :documentation "
-C: cairo_pattern_t"))
+                   (:gtype-name "CairoPattern" :c-name "cairo_pattern_t" :documentation
+                    "C: cairo_pattern_t"))
 
 
 (rt:define-grecord region
-                   (:gtype-name "CairoRegion" :documentation "
-C: cairo_region_t"))
+                   (:gtype-name "CairoRegion" :c-name "cairo_region_t" :documentation
+                    "C: cairo_region_t"))
 
 
 (rt:define-grecord font-options
-                   (:gtype-name "CairoFontOptions" :documentation "
-C: cairo_font_options_t"))
+                   (:gtype-name "CairoFontOptions" :c-name "cairo_font_options_t" :documentation
+                    "C: cairo_font_options_t"))
 
 
 (rt:define-grecord font-face
-                   (:gtype-name "CairoFontFace" :documentation "
-C: cairo_font_face_t"))
+                   (:gtype-name "CairoFontFace" :c-name "cairo_font_face_t" :documentation
+                    "C: cairo_font_face_t"))
 
 
 (rt:define-grecord scaled-font
-                   (:gtype-name "CairoScaledFont" :documentation "
-C: cairo_scaled_font_t"))
+                   (:gtype-name "CairoScaledFont" :c-name "cairo_scaled_font_t" :documentation
+                    "C: cairo_scaled_font_t"))
 
 
 (rt:define-grecord rectangle
-                   (:gtype-name "CairoRectangle" :documentation "
-C: cairo_rectangle_t"))
+                   (:gtype-name "CairoRectangle" :c-name "cairo_rectangle_t" :documentation
+                    "C: cairo_rectangle_t"))
 
 
 (rt:define-grecord rectangle-int
-                   (:gtype-name "CairoRectangleInt" :documentation "
-C: cairo_rectangle_int_t"))
+                   (:gtype-name "CairoRectangleInt" :c-name "cairo_rectangle_int_t" :documentation
+                    "C: cairo_rectangle_int_t"))
 
 
 (rt:define-grecord glyph
-                   (:gtype-name "CairoGlyph" :documentation "
-C: cairo_glyph_t"))
+                   (:gtype-name "CairoGlyph" :c-name "cairo_glyph_t" :documentation
+                    "C: cairo_glyph_t"))
 
 
 (rt:define-grecord text-cluster
-                   (:gtype-name "CairoTextCluster" :documentation "
-C: cairo_text_cluster_t"))
+                   (:gtype-name "CairoTextCluster" :c-name "cairo_text_cluster_t" :documentation
+                    "C: cairo_text_cluster_t"))
 
 ;;; Struct layouts
 
@@ -591,1417 +572,3 @@ C: cairo_text_cluster_t"))
 ;;; Properties
 
 ;;; Callback types
-
-;;; Functions, constructors and methods
-
-
-(rt:define-gfunction (create "cairo_create") :args
-                     ((target (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:boxed "CairoContext" "cairo_gobject_context_get_type") :return-transfer
-                     :full :documentation "A new drawing context targeting TARGET.
-
-C: cairo_create
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-create")
-
-
-(rt:define-gfunction (status "cairo_status") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum status) :documentation "The current error status of CR.
-
-C: cairo_status
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-status")
-
-
-(rt:define-gfunction (save "cairo_save") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Push a copy of CR's state onto its state stack.
-
-C: cairo_save
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-save")
-
-
-(rt:define-gfunction (restore "cairo_restore") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Restore the state saved by the matching save.
-
-C: cairo_restore
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-restore")
-
-
-(rt:define-gfunction (get-target "cairo_get_target") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoSurface" "cairo_gobject_surface_get_type") :documentation
-                     "The surface CR was created for.
-
-C: cairo_get_target
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-target")
-
-
-(rt:define-gfunction (push-group "cairo_push_group") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Redirect drawing to a temporary group until pop_group.
-
-C: cairo_push_group
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-push-group")
-
-
-(rt:define-gfunction (push-group-with-content "cairo_push_group_with_content") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (content (:enum content)))
-                     :documentation "Like push_group, with the group's content type given.
-
-C: cairo_push_group_with_content
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-push-group-with-content")
-
-
-(rt:define-gfunction (pop-group "cairo_pop_group") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :return-transfer
-                     :full :documentation "End the current group and return it as a pattern.
-
-C: cairo_pop_group
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-pop-group")
-
-
-(rt:define-gfunction (pop-group-to-source "cairo_pop_group_to_source") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "End the current group and make it CR's source.
-
-C: cairo_pop_group_to_source
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-pop-group-to-source")
-
-
-(rt:define-gfunction (get-group-target "cairo_get_group_target") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoSurface" "cairo_gobject_surface_get_type") :documentation
-                     "The surface of the current group.
-
-C: cairo_get_group_target
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-group-target")
-
-
-(rt:define-gfunction (set-source-rgb "cairo_set_source_rgb") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (red :double)
-                      (green :double) (blue :double))
-                     :documentation
-                     "Set the source to an opaque color; components range from 0 to 1.
-
-C: cairo_set_source_rgb
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source-rgb")
-
-
-(rt:define-gfunction (set-source-rgba "cairo_set_source_rgba") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (red :double)
-                      (green :double) (blue :double) (alpha :double))
-                     :documentation
-                     "Set the source to a translucent color; components range from 0 to 1.
-
-C: cairo_set_source_rgba
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source-rgba")
-
-
-(rt:define-gfunction (set-source "cairo_set_source") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (source (:boxed "CairoPattern" "cairo_gobject_pattern_get_type")))
-                     :documentation "Set the source pattern.
-
-C: cairo_set_source
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source")
-
-
-(rt:define-gfunction (set-source-surface "cairo_set_source_surface") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (x :double) (y :double))
-                     :documentation "Use SURFACE, placed at X, Y, as the source.
-
-C: cairo_set_source_surface
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-source-surface")
-
-
-(rt:define-gfunction (get-source "cairo_get_source") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :documentation
-                     "The current source pattern.
-
-C: cairo_get_source
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-source")
-
-
-(rt:define-gfunction (set-antialias "cairo_set_antialias") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (antialias (:enum antialias)))
-                     :documentation "Set the antialiasing mode.
-
-C: cairo_set_antialias
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-antialias")
-
-
-(rt:define-gfunction (get-antialias "cairo_get_antialias") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum antialias) :documentation "The antialiasing mode.
-
-C: cairo_get_antialias
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-antialias")
-
-
-(rt:define-gfunction (set-dash "cairo_set_dash") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (dashes (:array :double)) (num-dashes :int :length-of dashes)
-                      (offset :double))
-                     :documentation
-                     "Set the dash pattern for strokes; an empty sequence disables dashing.
-
-C: cairo_set_dash
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-dash")
-
-
-(rt:define-gfunction (get-dash-count "cairo_get_dash_count") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return :int
-                     :documentation "The number of entries in the dash pattern.
-
-C: cairo_get_dash_count
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-dash-count")
-
-
-(rt:define-gfunction (set-fill-rule "cairo_set_fill_rule") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (fill-rule (:enum fill-rule)))
-                     :documentation "Set the fill rule.
-
-C: cairo_set_fill_rule
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-fill-rule")
-
-
-(rt:define-gfunction (get-fill-rule "cairo_get_fill_rule") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum fill-rule) :documentation "The fill rule.
-
-C: cairo_get_fill_rule
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-fill-rule")
-
-
-(rt:define-gfunction (set-line-cap "cairo_set_line_cap") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (line-cap (:enum line-cap)))
-                     :documentation "Set how line ends are drawn.
-
-C: cairo_set_line_cap
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-line-cap")
-
-
-(rt:define-gfunction (get-line-cap "cairo_get_line_cap") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum line-cap) :documentation "How line ends are drawn.
-
-C: cairo_get_line_cap
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-line-cap")
-
-
-(rt:define-gfunction (set-line-join "cairo_set_line_join") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (line-join (:enum line-join)))
-                     :documentation "Set how line corners are drawn.
-
-C: cairo_set_line_join
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-line-join")
-
-
-(rt:define-gfunction (get-line-join "cairo_get_line_join") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum line-join) :documentation "How line corners are drawn.
-
-C: cairo_get_line_join
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-line-join")
-
-
-(rt:define-gfunction (set-line-width "cairo_set_line_width") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (width :double))
-                     :documentation "Set the stroke width.
-
-C: cairo_set_line_width
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-line-width")
-
-
-(rt:define-gfunction (get-line-width "cairo_get_line_width") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     :double :documentation "The stroke width.
-
-C: cairo_get_line_width
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-line-width")
-
-
-(rt:define-gfunction (set-miter-limit "cairo_set_miter_limit") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (limit :double))
-                     :documentation "Set the miter limit.
-
-C: cairo_set_miter_limit
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-miter-limit")
-
-
-(rt:define-gfunction (get-miter-limit "cairo_get_miter_limit") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     :double :documentation "The miter limit.
-
-C: cairo_get_miter_limit
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-miter-limit")
-
-
-(rt:define-gfunction (set-operator "cairo_set_operator") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (op (:enum operator)))
-                     :documentation "Set the compositing operator.
-
-C: cairo_set_operator
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-operator")
-
-
-(rt:define-gfunction (get-operator "cairo_get_operator") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:enum operator) :documentation "The compositing operator.
-
-C: cairo_get_operator
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-operator")
-
-
-(rt:define-gfunction (set-tolerance "cairo_set_tolerance") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (tolerance :double))
-                     :documentation "Set the curve flattening tolerance, in device units.
-
-C: cairo_set_tolerance
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-set-tolerance")
-
-
-(rt:define-gfunction (get-tolerance "cairo_get_tolerance") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     :double :documentation "The curve flattening tolerance.
-
-C: cairo_get_tolerance
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-get-tolerance")
-
-
-(rt:define-gfunction (clip "cairo_clip") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Intersect the clip with the current path, then clear the path.
-
-C: cairo_clip
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-clip")
-
-
-(rt:define-gfunction (clip-preserve "cairo_clip_preserve") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Intersect the clip with the current path, keeping the path.
-
-C: cairo_clip_preserve
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-clip-preserve")
-
-
-(rt:define-gfunction (clip-extents "cairo_clip_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (x1 :double :direction :out) (y1 :double :direction :out)
-                      (x2 :double :direction :out) (y2 :double :direction :out))
-                     :documentation "The clip's bounding box, as values X1 Y1 X2 Y2.
-
-C: cairo_clip_extents
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-clip-extents")
-
-
-(rt:define-gfunction (in-clip "cairo_in_clip") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double))
-                     :return :boolean :documentation "True if X, Y is inside the clip.
-
-C: cairo_in_clip
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-in-clip")
-
-
-(rt:define-gfunction (reset-clip "cairo_reset_clip") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Remove all clipping.
-
-C: cairo_reset_clip
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-reset-clip")
-
-
-(rt:define-gfunction (fill "cairo_fill") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Fill the current path, then clear it.
-
-C: cairo_fill
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-fill")
-
-
-(rt:define-gfunction (fill-preserve "cairo_fill_preserve") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Fill the current path, keeping it.
-
-C: cairo_fill_preserve
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-fill-preserve")
-
-
-(rt:define-gfunction (fill-extents "cairo_fill_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (x1 :double :direction :out) (y1 :double :direction :out)
-                      (x2 :double :direction :out) (y2 :double :direction :out))
-                     :documentation "The area a fill would cover, as values X1 Y1 X2 Y2.
-
-C: cairo_fill_extents
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-fill-extents")
-
-
-(rt:define-gfunction (in-fill "cairo_in_fill") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double))
-                     :return :boolean :documentation
-                     "True if X, Y would be inside a fill of the current path.
-
-C: cairo_in_fill
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-in-fill")
-
-
-(rt:define-gfunction (mask "cairo_mask") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type")))
-                     :documentation "Paint the source using PATTERN's alpha channel as a mask.
-
-C: cairo_mask
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-mask")
-
-
-(rt:define-gfunction (mask-surface "cairo_mask_surface") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (surface-x :double) (surface-y :double))
-                     :documentation "Paint the source using SURFACE's alpha channel as a mask.
-
-C: cairo_mask_surface
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-mask-surface")
-
-
-(rt:define-gfunction (paint "cairo_paint") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Paint the source everywhere within the clip.
-
-C: cairo_paint
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-paint")
-
-
-(rt:define-gfunction (paint-with-alpha "cairo_paint_with_alpha") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (alpha :double))
-                     :documentation
-                     "Paint the source everywhere within the clip, with constant ALPHA.
-
-C: cairo_paint_with_alpha
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-paint-with-alpha")
-
-
-(rt:define-gfunction (stroke "cairo_stroke") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Stroke the current path, then clear it.
-
-C: cairo_stroke
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-stroke")
-
-
-(rt:define-gfunction (stroke-preserve "cairo_stroke_preserve") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Stroke the current path, keeping it.
-
-C: cairo_stroke_preserve
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-stroke-preserve")
-
-
-(rt:define-gfunction (stroke-extents "cairo_stroke_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (x1 :double :direction :out) (y1 :double :direction :out)
-                      (x2 :double :direction :out) (y2 :double :direction :out))
-                     :documentation "The area a stroke would cover, as values X1 Y1 X2 Y2.
-
-C: cairo_stroke_extents
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-stroke-extents")
-
-
-(rt:define-gfunction (in-stroke "cairo_in_stroke") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double))
-                     :return :boolean :documentation
-                     "True if X, Y would be inside a stroke of the current path.
-
-C: cairo_in_stroke
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-in-stroke")
-
-
-(rt:define-gfunction (copy-page "cairo_copy_page") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Emit the current page, keeping its contents.
-
-C: cairo_copy_page
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-copy-page")
-
-
-(rt:define-gfunction (show-page "cairo_show_page") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Emit and clear the current page.
-
-C: cairo_show_page
-See: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-show-page")
-
-
-(rt:define-gfunction (new-path "cairo_new_path") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Clear the current path.
-
-C: cairo_new_path
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-new-path")
-
-
-(rt:define-gfunction (new-sub-path "cairo_new_sub_path") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Start a new sub-path without a current point.
-
-C: cairo_new_sub_path
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-new-sub-path")
-
-
-(rt:define-gfunction (close-path "cairo_close_path") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Close the current sub-path with a straight line.
-
-C: cairo_close_path
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-close-path")
-
-
-(rt:define-gfunction (move-to "cairo_move_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double))
-                     :documentation "Start a sub-path at X, Y.
-
-C: cairo_move_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-move-to")
-
-
-(rt:define-gfunction (line-to "cairo_line_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double))
-                     :documentation "Add a line to X, Y.
-
-C: cairo_line_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-line-to")
-
-
-(rt:define-gfunction (curve-to "cairo_curve_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x1 :double)
-                      (y1 :double) (x2 :double) (y2 :double) (x3 :double) (y3 :double))
-                     :documentation
-                     "Add a cubic Bézier curve to X3, Y3 with control points X1, Y1 and X2, Y2.
-
-C: cairo_curve_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-curve-to")
-
-
-(rt:define-gfunction (arc "cairo_arc") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (xc :double)
-                      (yc :double) (radius :double) (angle1 :double) (angle2 :double))
-                     :documentation
-                     "Add a circular arc around XC, YC, clockwise from ANGLE1 to ANGLE2 (radians).
-
-C: cairo_arc
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-arc")
-
-
-(rt:define-gfunction (arc-negative "cairo_arc_negative") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (xc :double)
-                      (yc :double) (radius :double) (angle1 :double) (angle2 :double))
-                     :documentation
-                     "Add a circular arc around XC, YC, counter-clockwise from ANGLE1 to ANGLE2.
-
-C: cairo_arc_negative
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-arc-negative")
-
-
-(rt:define-gfunction (rectangle "cairo_rectangle") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (x :double)
-                      (y :double) (width :double) (height :double))
-                     :documentation "Add a closed rectangle sub-path.
-
-C: cairo_rectangle
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-rectangle")
-
-
-(rt:define-gfunction (rel-move-to "cairo_rel_move_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (dx :double)
-                      (dy :double))
-                     :documentation "Start a sub-path offset from the current point.
-
-C: cairo_rel_move_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-rel-move-to")
-
-
-(rt:define-gfunction (rel-line-to "cairo_rel_line_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (dx :double)
-                      (dy :double))
-                     :documentation "Add a line offset from the current point.
-
-C: cairo_rel_line_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-rel-line-to")
-
-
-(rt:define-gfunction (rel-curve-to "cairo_rel_curve_to") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (dx1 :double)
-                      (dy1 :double) (dx2 :double) (dy2 :double) (dx3 :double) (dy3 :double))
-                     :documentation "Add a Bézier curve with points relative to the current point.
-
-C: cairo_rel_curve_to
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-rel-curve-to")
-
-
-(rt:define-gfunction (text-path "cairo_text_path") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (utf8 :string))
-                     :documentation "Add the outlines of UTF8's glyphs to the path.
-
-C: cairo_text_path
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-text-path")
-
-
-(rt:define-gfunction (path-extents "cairo_path_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (x1 :double :direction :out) (y1 :double :direction :out)
-                      (x2 :double :direction :out) (y2 :double :direction :out))
-                     :documentation "The current path's bounding box, as values X1 Y1 X2 Y2.
-
-C: cairo_path_extents
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-path-extents")
-
-
-(rt:define-gfunction (has-current-point "cairo_has_current_point") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     :boolean :documentation "True if the path has a current point.
-
-C: cairo_has_current_point
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-has-current-point")
-
-
-(rt:define-gfunction (get-current-point "cairo_get_current_point") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (x :double :direction :out) (y :double :direction :out))
-                     :documentation "The current point, as values X Y.
-
-C: cairo_get_current_point
-See: https://www.cairographics.org/manual/cairo-Paths.html#cairo-get-current-point")
-
-
-(rt:define-gfunction (translate "cairo_translate") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (tx :double)
-                      (ty :double))
-                     :documentation "Move the user-space origin by TX, TY.
-
-C: cairo_translate
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-translate")
-
-
-(rt:define-gfunction (scale "cairo_scale") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (sx :double)
-                      (sy :double))
-                     :documentation "Scale user space by SX, SY.
-
-C: cairo_scale
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-scale")
-
-
-(rt:define-gfunction (rotate "cairo_rotate") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (angle :double))
-                     :documentation "Rotate user space by ANGLE radians.
-
-C: cairo_rotate
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-rotate")
-
-
-(rt:define-gfunction (transform "cairo_transform") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (matrix (:record matrix)))
-                     :documentation "Apply MATRIX after the current transformation.
-
-C: cairo_transform
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-transform")
-
-
-(rt:define-gfunction (set-matrix "cairo_set_matrix") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (matrix (:record matrix)))
-                     :documentation "Replace the current transformation with MATRIX.
-
-C: cairo_set_matrix
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-set-matrix")
-
-
-(rt:define-gfunction (get-matrix "cairo_get_matrix") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (matrix (:record matrix) :direction :out :caller-allocates t))
-                     :documentation "The current transformation matrix.
-
-C: cairo_get_matrix
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-get-matrix")
-
-
-(rt:define-gfunction (identity-matrix "cairo_identity_matrix") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :documentation
-                     "Reset the transformation to the identity.
-
-C: cairo_identity_matrix
-See: https://www.cairographics.org/manual/cairo-Transformations.html#cairo-identity-matrix")
-
-
-(rt:define-gfunction (select-font-face "cairo_select_font_face") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (family :string) (slant (:enum font-slant)) (weight (:enum font-weight)))
-                     :documentation
-                     "Choose a font by family name, slant and weight (the simple \"toy\" text API).
-
-C: cairo_select_font_face
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-select-font-face")
-
-
-(rt:define-gfunction (set-font-size "cairo_set_font_size") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (size :double))
-                     :documentation "Set the font size, in user units.
-
-C: cairo_set_font_size
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-set-font-size")
-
-
-(rt:define-gfunction (set-font-matrix "cairo_set_font_matrix") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (matrix (:record matrix)))
-                     :documentation "Set the font matrix.
-
-C: cairo_set_font_matrix
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-set-font-matrix")
-
-
-(rt:define-gfunction (get-font-matrix "cairo_get_font_matrix") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (matrix (:record matrix) :direction :out :caller-allocates t))
-                     :documentation "The font matrix.
-
-C: cairo_get_font_matrix
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-get-font-matrix")
-
-
-(rt:define-gfunction (set-font-options "cairo_set_font_options") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :documentation "Set the font rendering options.
-
-C: cairo_set_font_options
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-set-font-options")
-
-
-(rt:define-gfunction (get-font-options "cairo_get_font_options") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :documentation "Copy CR's font options into OPTIONS.
-
-C: cairo_get_font_options
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-get-font-options")
-
-
-(rt:define-gfunction (set-font-face "cairo_set_font_face") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (font-face (:boxed "CairoFontFace" "cairo_gobject_font_face_get_type")
-                       :optional t))
-                     :documentation "Set the font face.
-
-C: cairo_set_font_face
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-set-font-face")
-
-
-(rt:define-gfunction (get-font-face "cairo_get_font_face") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoFontFace" "cairo_gobject_font_face_get_type") :documentation
-                     "The current font face.
-
-C: cairo_get_font_face
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-get-font-face")
-
-
-(rt:define-gfunction (set-scaled-font "cairo_set_scaled_font") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (scaled-font
-                       (:boxed "CairoScaledFont" "cairo_gobject_scaled_font_get_type")))
-                     :documentation "Set the scaled font.
-
-C: cairo_set_scaled_font
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-set-scaled-font")
-
-
-(rt:define-gfunction (get-scaled-font "cairo_get_scaled_font") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))) :return
-                     (:boxed "CairoScaledFont" "cairo_gobject_scaled_font_get_type") :documentation
-                     "The current scaled font.
-
-C: cairo_get_scaled_font
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-get-scaled-font")
-
-
-(rt:define-gfunction (show-text "cairo_show_text") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (utf8 :string))
-                     :documentation "Draw UTF8 at the current point with the current font.
-
-C: cairo_show_text
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-show-text")
-
-
-(rt:define-gfunction (text-extents "cairo_text_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (utf8 :string)
-                      (extents (:record text-extents) :direction :out :caller-allocates t))
-                     :documentation "The extents UTF8 would have if drawn with show_text.
-
-C: cairo_text_extents
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-text-extents")
-
-
-(rt:define-gfunction (font-extents "cairo_font_extents") :args
-                     ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (extents (:record font-extents) :direction :out :caller-allocates t))
-                     :documentation "The current font's extents.
-
-C: cairo_font_extents
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-font-extents")
-
-
-(rt:define-gfunction (toy-font-face-create "cairo_toy_font_face_create") :args
-                     ((family :string) (slant (:enum font-slant)) (weight (:enum font-weight)))
-                     :return (:boxed "CairoFontFace" "cairo_gobject_font_face_get_type")
-                     :return-transfer :full :documentation "A font face for the toy text API.
-
-C: cairo_toy_font_face_create
-See: https://www.cairographics.org/manual/cairo-text.html#cairo-toy-font-face-create")
-
-
-(rt:define-gfunction (pattern-create-rgb "cairo_pattern_create_rgb") :args
-                     ((red :double) (green :double) (blue :double)) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :return-transfer
-                     :full :documentation "A pattern of one opaque color.
-
-C: cairo_pattern_create_rgb
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-rgb")
-
-
-(rt:define-gfunction (pattern-create-rgba "cairo_pattern_create_rgba") :args
-                     ((red :double) (green :double) (blue :double) (alpha :double)) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :return-transfer
-                     :full :documentation "A pattern of one translucent color.
-
-C: cairo_pattern_create_rgba
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-rgba")
-
-
-(rt:define-gfunction (pattern-create-for-surface "cairo_pattern_create_for_surface") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :return-transfer
-                     :full :documentation "A pattern that paints SURFACE.
-
-C: cairo_pattern_create_for_surface
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-for-surface")
-
-
-(rt:define-gfunction (pattern-create-linear "cairo_pattern_create_linear") :args
-                     ((x0 :double) (y0 :double) (x1 :double) (y1 :double)) :return
-                     (:boxed "CairoPattern" "cairo_gobject_pattern_get_type") :return-transfer
-                     :full :documentation
-                     "A linear gradient from X0, Y0 to X1, Y1; add color stops to it.
-
-C: cairo_pattern_create_linear
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-linear")
-
-
-(rt:define-gfunction (pattern-create-radial "cairo_pattern_create_radial") :args
-                     ((cx0 :double) (cy0 :double) (radius0 :double) (cx1 :double) (cy1 :double)
-                      (radius1 :double))
-                     :return (:boxed "CairoPattern" "cairo_gobject_pattern_get_type")
-                     :return-transfer :full :documentation
-                     "A radial gradient between two circles; add color stops to it.
-
-C: cairo_pattern_create_radial
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-create-radial")
-
-
-(rt:define-gfunction (pattern-add-color-stop-rgb "cairo_pattern_add_color_stop_rgb") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (offset :double) (red :double) (green :double) (blue :double))
-                     :documentation "Add an opaque color stop at OFFSET (0 to 1) to a gradient.
-
-C: cairo_pattern_add_color_stop_rgb
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-add-color-stop-rgb")
-
-
-(rt:define-gfunction (pattern-add-color-stop-rgba "cairo_pattern_add_color_stop_rgba") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (offset :double) (red :double) (green :double) (blue :double)
-                      (alpha :double))
-                     :documentation "Add a translucent color stop at OFFSET (0 to 1) to a gradient.
-
-C: cairo_pattern_add_color_stop_rgba
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-add-color-stop-rgba")
-
-
-(rt:define-gfunction (pattern-get-color-stop-count "cairo_pattern_get_color_stop_count") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (count :int :direction :out))
-                     :return (:enum status) :documentation
-                     "The number of color stops, as the second value.
-
-C: cairo_pattern_get_color_stop_count
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-get-color-stop-count")
-
-
-(rt:define-gfunction (pattern-set-extend "cairo_pattern_set_extend") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (extend (:enum extend)))
-                     :documentation "Set what the pattern draws outside its area.
-
-C: cairo_pattern_set_extend
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-set-extend")
-
-
-(rt:define-gfunction (pattern-get-extend "cairo_pattern_get_extend") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))) :return
-                     (:enum extend) :documentation "What the pattern draws outside its area.
-
-C: cairo_pattern_get_extend
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-get-extend")
-
-
-(rt:define-gfunction (pattern-set-filter "cairo_pattern_set_filter") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (filter (:enum filter)))
-                     :documentation "Set the resampling filter.
-
-C: cairo_pattern_set_filter
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-set-filter")
-
-
-(rt:define-gfunction (pattern-get-filter "cairo_pattern_get_filter") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))) :return
-                     (:enum filter) :documentation "The resampling filter.
-
-C: cairo_pattern_get_filter
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-get-filter")
-
-
-(rt:define-gfunction (pattern-set-matrix "cairo_pattern_set_matrix") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (matrix (:record matrix)))
-                     :documentation "Set the pattern matrix.
-
-C: cairo_pattern_set_matrix
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-set-matrix")
-
-
-(rt:define-gfunction (pattern-get-matrix "cairo_pattern_get_matrix") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))
-                      (matrix (:record matrix) :direction :out :caller-allocates t))
-                     :documentation "The pattern matrix.
-
-C: cairo_pattern_get_matrix
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-get-matrix")
-
-
-(rt:define-gfunction (pattern-get-type "cairo_pattern_get_type") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))) :return
-                     (:enum pattern-type) :documentation "The kind of pattern.
-
-C: cairo_pattern_get_type
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-get-type")
-
-
-(rt:define-gfunction (pattern-status "cairo_pattern_status") :args
-                     ((pattern (:boxed "CairoPattern" "cairo_gobject_pattern_get_type"))) :return
-                     (:enum status) :documentation "The pattern's error status.
-
-C: cairo_pattern_status
-See: https://www.cairographics.org/manual/cairo-cairo-pattern-t.html#cairo-pattern-status")
-
-
-(rt:define-gfunction (surface-create-similar "cairo_surface_create_similar") :args
-                     ((other (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (content (:enum content)) (width :int) (height :int))
-                     :return (:boxed "CairoSurface" "cairo_gobject_surface_get_type")
-                     :return-transfer :full :documentation
-                     "A new surface as compatible as possible with OTHER.
-
-C: cairo_surface_create_similar
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-create-similar")
-
-
-(rt:define-gfunction (surface-create-similar-image "cairo_surface_create_similar_image") :args
-                     ((other (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (format (:enum format)) (width :int) (height :int))
-                     :return (:boxed "CairoSurface" "cairo_gobject_surface_get_type")
-                     :return-transfer :full :documentation
-                     "A new image surface suited to being drawn onto OTHER.
-
-C: cairo_surface_create_similar_image
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-create-similar-image")
-
-
-(rt:define-gfunction (surface-finish "cairo_surface_finish") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type")))
-                     :documentation "Finish the surface; no more drawing is possible.
-
-C: cairo_surface_finish
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-finish")
-
-
-(rt:define-gfunction (surface-flush "cairo_surface_flush") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type")))
-                     :documentation "Complete pending drawing before direct access.
-
-C: cairo_surface_flush
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-flush")
-
-
-(rt:define-gfunction (surface-mark-dirty "cairo_surface_mark_dirty") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type")))
-                     :documentation "Tell cairo the surface was changed directly.
-
-C: cairo_surface_mark_dirty
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-mark-dirty")
-
-
-(rt:define-gfunction (surface-mark-dirty-rectangle "cairo_surface_mark_dirty_rectangle") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type")) (x :int)
-                      (y :int) (width :int) (height :int))
-                     :documentation "Tell cairo an area of the surface was changed directly.
-
-C: cairo_surface_mark_dirty_rectangle
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-mark-dirty-rectangle")
-
-
-(rt:define-gfunction (surface-get-content "cairo_surface_get_content") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:enum content) :documentation "What the surface holds: color, alpha or both.
-
-C: cairo_surface_get_content
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-get-content")
-
-
-(rt:define-gfunction (surface-get-type "cairo_surface_get_type") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:enum surface-type) :documentation "The kind of surface.
-
-C: cairo_surface_get_type
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-get-type")
-
-
-(rt:define-gfunction (surface-status "cairo_surface_status") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:enum status) :documentation "The surface's error status.
-
-C: cairo_surface_status
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-status")
-
-
-(rt:define-gfunction (surface-set-device-offset "cairo_surface_set_device_offset") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (x-offset :double) (y-offset :double))
-                     :documentation "Set an offset added to device coordinates.
-
-C: cairo_surface_set_device_offset
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-set-device-offset")
-
-
-(rt:define-gfunction (surface-get-device-offset "cairo_surface_get_device_offset") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (x-offset :double :direction :out) (y-offset :double :direction :out))
-                     :documentation "The device offset, as values X Y.
-
-C: cairo_surface_get_device_offset
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-get-device-offset")
-
-
-(rt:define-gfunction (surface-set-device-scale "cairo_surface_set_device_scale") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (x-scale :double) (y-scale :double))
-                     :documentation "Set a scale applied to device coordinates.
-
-C: cairo_surface_set_device_scale
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-set-device-scale")
-
-
-(rt:define-gfunction (surface-get-device-scale "cairo_surface_get_device_scale") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (x-scale :double :direction :out) (y-scale :double :direction :out))
-                     :documentation "The device scale, as values X Y.
-
-C: cairo_surface_get_device_scale
-See: https://www.cairographics.org/manual/cairo-cairo-surface-t.html#cairo-surface-get-device-scale")
-
-
-(rt:define-gfunction (image-surface-create "cairo_image_surface_create") :args
-                     ((format (:enum format)) (width :int) (height :int)) :return
-                     (:boxed "CairoSurface" "cairo_gobject_surface_get_type") :return-transfer
-                     :full :documentation
-                     "A new image surface of FORMAT, WIDTH by HEIGHT pixels, initially transparent black.
-
-C: cairo_image_surface_create
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-create")
-
-
-(rt:define-gfunction (format-stride-for-width "cairo_format_stride_for_width") :args
-                     ((format (:enum format)) (width :int)) :return :int :documentation
-                     "The row stride an image of FORMAT and WIDTH needs.
-
-C: cairo_format_stride_for_width
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-format-stride-for-width")
-
-
-(rt:define-gfunction (image-surface-create-for-data "cairo_image_surface_create_for_data") :args
-                     ((data :pointer) (format (:enum format)) (width :int) (height :int)
-                      (stride :int))
-                     :return (:boxed "CairoSurface" "cairo_gobject_surface_get_type")
-                     :return-transfer :full :documentation
-                     "An image surface over pixel memory DATA, which must outlive the surface.
-
-C: cairo_image_surface_create_for_data
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-create-for-data")
-
-
-(rt:define-gfunction (image-surface-get-data "cairo_image_surface_get_data") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     :pointer :documentation
-                     "A pointer to the surface's pixel memory; flush before reading, mark dirty after writing.
-
-C: cairo_image_surface_get_data
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-get-data")
-
-
-(rt:define-gfunction (image-surface-get-format "cairo_image_surface_get_format") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     (:enum format) :documentation "The pixel format.
-
-C: cairo_image_surface_get_format
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-get-format")
-
-
-(rt:define-gfunction (image-surface-get-width "cairo_image_surface_get_width") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     :int :documentation "The width in pixels.
-
-C: cairo_image_surface_get_width
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-get-width")
-
-
-(rt:define-gfunction (image-surface-get-height "cairo_image_surface_get_height") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     :int :documentation "The height in pixels.
-
-C: cairo_image_surface_get_height
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-get-height")
-
-
-(rt:define-gfunction (image-surface-get-stride "cairo_image_surface_get_stride") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))) :return
-                     :int :documentation "The bytes between successive rows.
-
-C: cairo_image_surface_get_stride
-See: https://www.cairographics.org/manual/cairo-Image-Surfaces.html#cairo-image-surface-get-stride")
-
-
-(rt:define-gfunction (image-surface-create-from-png "cairo_image_surface_create_from_png") :args
-                     ((filename :string)) :return
-                     (:boxed "CairoSurface" "cairo_gobject_surface_get_type") :return-transfer
-                     :full :documentation
-                     "A new image surface loaded from a PNG file; check its status for errors.
-
-C: cairo_image_surface_create_from_png
-See: https://www.cairographics.org/manual/cairo-PNG-Support.html#cairo-image-surface-create-from-png")
-
-
-(rt:define-gfunction (surface-write-to-png "cairo_surface_write_to_png") :args
-                     ((surface (:boxed "CairoSurface" "cairo_gobject_surface_get_type"))
-                      (filename :string))
-                     :return (:enum status) :documentation "Write SURFACE to FILENAME as PNG.
-
-C: cairo_surface_write_to_png
-See: https://www.cairographics.org/manual/cairo-PNG-Support.html#cairo-surface-write-to-png")
-
-
-(rt:define-gfunction (matrix-init "cairo_matrix_init") :args
-                     ((matrix (:record matrix) :direction :out :caller-allocates t) (xx :double)
-                      (yx :double) (xy :double) (yy :double) (x0 :double) (y0 :double))
-                     :documentation "A new matrix with the given components.
-
-C: cairo_matrix_init
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-init")
-
-
-(rt:define-gfunction (matrix-init-identity "cairo_matrix_init_identity") :args
-                     ((matrix (:record matrix) :direction :out :caller-allocates t)) :documentation
-                     "A new identity matrix.
-
-C: cairo_matrix_init_identity
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-init-identity")
-
-
-(rt:define-gfunction (matrix-init-translate "cairo_matrix_init_translate") :args
-                     ((matrix (:record matrix) :direction :out :caller-allocates t) (tx :double)
-                      (ty :double))
-                     :documentation "A new translation matrix.
-
-C: cairo_matrix_init_translate
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-init-translate")
-
-
-(rt:define-gfunction (matrix-init-scale "cairo_matrix_init_scale") :args
-                     ((matrix (:record matrix) :direction :out :caller-allocates t) (sx :double)
-                      (sy :double))
-                     :documentation "A new scaling matrix.
-
-C: cairo_matrix_init_scale
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-init-scale")
-
-
-(rt:define-gfunction (matrix-init-rotate "cairo_matrix_init_rotate") :args
-                     ((matrix (:record matrix) :direction :out :caller-allocates t)
-                      (radians :double))
-                     :documentation "A new rotation matrix.
-
-C: cairo_matrix_init_rotate
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-init-rotate")
-
-
-(rt:define-gfunction (matrix-translate "cairo_matrix_translate") :args
-                     ((matrix (:record matrix)) (tx :double) (ty :double)) :documentation
-                     "Apply a translation to MATRIX, in place.
-
-C: cairo_matrix_translate
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-translate")
-
-
-(rt:define-gfunction (matrix-scale "cairo_matrix_scale") :args
-                     ((matrix (:record matrix)) (sx :double) (sy :double)) :documentation
-                     "Apply a scale to MATRIX, in place.
-
-C: cairo_matrix_scale
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-scale")
-
-
-(rt:define-gfunction (matrix-rotate "cairo_matrix_rotate") :args
-                     ((matrix (:record matrix)) (radians :double)) :documentation
-                     "Apply a rotation to MATRIX, in place.
-
-C: cairo_matrix_rotate
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-rotate")
-
-
-(rt:define-gfunction (matrix-invert "cairo_matrix_invert") :args ((matrix (:record matrix)))
-                     :return (:enum status) :documentation
-                     "Invert MATRIX in place, if it is invertible.
-
-C: cairo_matrix_invert
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-invert")
-
-
-(rt:define-gfunction (matrix-multiply "cairo_matrix_multiply") :args
-                     ((result (:record matrix) :direction :out :caller-allocates t)
-                      (a (:record matrix)) (b (:record matrix)))
-                     :documentation "A new matrix applying A, then B.
-
-C: cairo_matrix_multiply
-See: https://www.cairographics.org/manual/cairo-cairo-matrix-t.html#cairo-matrix-multiply")
-
-
-(rt:define-gfunction (font-options-create "cairo_font_options_create") :return
-                     (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")
-                     :return-transfer :full :documentation "New font options, all defaults.
-
-C: cairo_font_options_create
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-create")
-
-
-(rt:define-gfunction (font-options-set-antialias "cairo_font_options_set_antialias") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type"))
-                      (antialias (:enum antialias)))
-                     :documentation "Set the antialiasing mode.
-
-C: cairo_font_options_set_antialias
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-set-antialias")
-
-
-(rt:define-gfunction (font-options-get-antialias "cairo_font_options_get_antialias") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :return (:enum antialias) :documentation "The antialiasing mode.
-
-C: cairo_font_options_get_antialias
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-get-antialias")
-
-
-(rt:define-gfunction (font-options-set-hint-style "cairo_font_options_set_hint_style") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type"))
-                      (hint-style (:enum hint-style)))
-                     :documentation "Set how strongly outlines are hinted.
-
-C: cairo_font_options_set_hint_style
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-set-hint-style")
-
-
-(rt:define-gfunction (font-options-get-hint-style "cairo_font_options_get_hint_style") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :return (:enum hint-style) :documentation "The hint style.
-
-C: cairo_font_options_get_hint_style
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-get-hint-style")
-
-
-(rt:define-gfunction (font-options-set-hint-metrics "cairo_font_options_set_hint_metrics") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type"))
-                      (hint-metrics (:enum hint-metrics)))
-                     :documentation "Set whether font metrics are rounded.
-
-C: cairo_font_options_set_hint_metrics
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-set-hint-metrics")
-
-
-(rt:define-gfunction (font-options-get-hint-metrics "cairo_font_options_get_hint_metrics") :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :return (:enum hint-metrics) :documentation "The hint metrics setting.
-
-C: cairo_font_options_get_hint_metrics
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-get-hint-metrics")
-
-
-(rt:define-gfunction (font-options-set-subpixel-order "cairo_font_options_set_subpixel_order")
-                     :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type"))
-                      (subpixel-order (:enum subpixel-order)))
-                     :documentation "Set the subpixel order for subpixel antialiasing.
-
-C: cairo_font_options_set_subpixel_order
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-set-subpixel-order")
-
-
-(rt:define-gfunction (font-options-get-subpixel-order "cairo_font_options_get_subpixel_order")
-                     :args
-                     ((options (:boxed "CairoFontOptions" "cairo_gobject_font_options_get_type")))
-                     :return (:enum subpixel-order) :documentation "The subpixel order.
-
-C: cairo_font_options_get_subpixel_order
-See: https://www.cairographics.org/manual/cairo-cairo-font-options-t.html#cairo-font-options-get-subpixel-order")
-
-
-(rt:define-gfunction (region-create "cairo_region_create") :return
-                     (:boxed "CairoRegion" "cairo_gobject_region_get_type") :return-transfer :full
-                     :documentation "A new empty region.
-
-C: cairo_region_create
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-create")
-
-
-(rt:define-gfunction (region-create-rectangle "cairo_region_create_rectangle") :args
-                     ((rectangle
-                       (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
-                        rectangle-int)))
-                     :return (:boxed "CairoRegion" "cairo_gobject_region_get_type")
-                     :return-transfer :full :documentation "A new region covering RECTANGLE.
-
-C: cairo_region_create_rectangle
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-create-rectangle")
-
-
-(rt:define-gfunction (region-num-rectangles "cairo_region_num_rectangles") :args
-                     ((region (:boxed "CairoRegion" "cairo_gobject_region_get_type"))) :return :int
-                     :documentation "The number of rectangles in the region.
-
-C: cairo_region_num_rectangles
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-num-rectangles")
-
-
-(rt:define-gfunction (region-get-extents "cairo_region_get_extents") :args
-                     ((region (:boxed "CairoRegion" "cairo_gobject_region_get_type"))
-                      (extents
-                       (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
-                        rectangle-int)
-                       :direction :out :caller-allocates t))
-                     :documentation "The region's bounding rectangle.
-
-C: cairo_region_get_extents
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-get-extents")
-
-
-(rt:define-gfunction (region-is-empty "cairo_region_is_empty") :args
-                     ((region (:boxed "CairoRegion" "cairo_gobject_region_get_type"))) :return
-                     :boolean :documentation "True if the region is empty.
-
-C: cairo_region_is_empty
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-is-empty")
-
-
-(rt:define-gfunction (region-contains-point "cairo_region_contains_point") :args
-                     ((region (:boxed "CairoRegion" "cairo_gobject_region_get_type")) (x :int)
-                      (y :int))
-                     :return :boolean :documentation "True if X, Y is in the region.
-
-C: cairo_region_contains_point
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-contains-point")
-
-
-(rt:define-gfunction (region-translate "cairo_region_translate") :args
-                     ((region (:boxed "CairoRegion" "cairo_gobject_region_get_type")) (dx :int)
-                      (dy :int))
-                     :documentation "Move the region.
-
-C: cairo_region_translate
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-translate")
-
-
-(rt:define-gfunction (region-union-rectangle "cairo_region_union_rectangle") :args
-                     ((dst (:boxed "CairoRegion" "cairo_gobject_region_get_type"))
-                      (rectangle
-                       (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
-                        rectangle-int)))
-                     :return (:enum status) :documentation "Add RECTANGLE to DST.
-
-C: cairo_region_union_rectangle
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-union-rectangle")
-
-
-(rt:define-gfunction (region-intersect-rectangle "cairo_region_intersect_rectangle") :args
-                     ((dst (:boxed "CairoRegion" "cairo_gobject_region_get_type"))
-                      (rectangle
-                       (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
-                        rectangle-int)))
-                     :return (:enum status) :documentation "Intersect DST with RECTANGLE.
-
-C: cairo_region_intersect_rectangle
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-intersect-rectangle")
-
-
-(rt:define-gfunction (region-subtract-rectangle "cairo_region_subtract_rectangle") :args
-                     ((dst (:boxed "CairoRegion" "cairo_gobject_region_get_type"))
-                      (rectangle
-                       (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
-                        rectangle-int)))
-                     :return (:enum status) :documentation "Remove RECTANGLE from DST.
-
-C: cairo_region_subtract_rectangle
-See: https://www.cairographics.org/manual/cairo-Regions.html#cairo-region-subtract-rectangle")
-
-
-(rt:define-gfunction (status-to-string "cairo_status_to_string") :args ((status (:enum status)))
-                     :return :string :documentation "A human-readable description of STATUS.
-
-C: cairo_status_to_string
-See: https://www.cairographics.org/manual/cairo-Error-handling.html#cairo-status-to-string")
-
-
-(rt:define-gfunction (version-string "cairo_version_string") :return :string :documentation
-                     "The version of the cairo library, as a string.
-
-C: cairo_version_string
-See: https://www.cairographics.org/manual/cairo-Version-Information.html#cairo-version-string")

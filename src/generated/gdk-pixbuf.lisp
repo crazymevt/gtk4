@@ -7,7 +7,8 @@
 
 
 (rt:define-genum colorspace
-    (:kind :enum :gtype-name "GdkColorspace" :get-type "gdk_colorspace_get_type" :documentation
+    (:kind :enum :gtype-name "GdkColorspace" :get-type "gdk_colorspace_get_type" :c-name
+     "GdkColorspace" :url "https://docs.gtk.org/gdk-pixbuf/enum.Colorspace.html" :documentation
      "This enumeration defines the color spaces that are supported by
 the gdk-pixbuf library.
 
@@ -17,7 +18,8 @@ See: https://docs.gtk.org/gdk-pixbuf/enum.Colorspace.html")
 
 
 (rt:define-genum interp-type
-    (:kind :enum :gtype-name "GdkInterpType" :get-type "gdk_interp_type_get_type" :documentation
+    (:kind :enum :gtype-name "GdkInterpType" :get-type "gdk_interp_type_get_type" :c-name
+     "GdkInterpType" :url "https://docs.gtk.org/gdk-pixbuf/enum.InterpType.html" :documentation
      "Interpolation modes for scaling functions.
 
 C: GdkInterpType
@@ -30,6 +32,7 @@ See: https://docs.gtk.org/gdk-pixbuf/enum.InterpType.html")
 
 (rt:define-genum pixbuf-alpha-mode
     (:kind :enum :gtype-name "GdkPixbufAlphaMode" :get-type "gdk_pixbuf_alpha_mode_get_type"
+     :c-name "GdkPixbufAlphaMode" :url "https://docs.gtk.org/gdk-pixbuf/enum.PixbufAlphaMode.html"
      :documentation "Control the alpha channel for drawables.
 
 C: GdkPixbufAlphaMode
@@ -39,7 +42,8 @@ See: https://docs.gtk.org/gdk-pixbuf/enum.PixbufAlphaMode.html")
 
 
 (rt:define-genum pixbuf-error
-    (:kind :enum :gtype-name "GdkPixbufError" :get-type "gdk_pixbuf_error_get_type" :documentation
+    (:kind :enum :gtype-name "GdkPixbufError" :get-type "gdk_pixbuf_error_get_type" :c-name
+     "GdkPixbufError" :url "https://docs.gtk.org/gdk-pixbuf/enum.PixbufError.html" :documentation
      "An error code in the `GDK_PIXBUF_ERROR` domain.
 
 C: GdkPixbufError
@@ -54,7 +58,8 @@ See: https://docs.gtk.org/gdk-pixbuf/enum.PixbufError.html")
 
 
 (rt:define-genum pixbuf-format-flags
-    (:kind :flags :documentation
+    (:kind :flags :c-name "GdkPixbufFormatFlags" :url
+     "https://docs.gtk.org/gdk-pixbuf/flags.PixbufFormatFlags.html" :documentation
      "Flags which allow a module to specify further details about the supported
 operations.
 
@@ -66,8 +71,10 @@ See: https://docs.gtk.org/gdk-pixbuf/flags.PixbufFormatFlags.html")
 
 
 (rt:define-genum pixbuf-rotation
-    (:kind :enum :gtype-name "GdkPixbufRotation" :get-type "gdk_pixbuf_rotation_get_type"
-     :documentation "The possible rotations which can be passed to gdk_pixbuf_rotate_simple().
+    (:kind :enum :gtype-name "GdkPixbufRotation" :get-type "gdk_pixbuf_rotation_get_type" :c-name
+     "GdkPixbufRotation" :url "https://docs.gtk.org/gdk-pixbuf/enum.PixbufRotation.html"
+     :documentation
+     "The possible rotations which can be passed to `gdk-pixbuf:pixbuf-rotate-simple`.
 
 C: GdkPixbufRotation
 See: https://docs.gtk.org/gdk-pixbuf/enum.PixbufRotation.html")
@@ -109,7 +116,8 @@ See: https://docs.gtk.org/gdk-pixbuf/const.PIXBUF_VERSION.html")
 
 
 (rt:define-gclass pixbuf (rt:object gio:loadable-icon)
-                  (:gtype-name "GdkPixbuf" :get-type "gdk_pixbuf_get_type" :documentation
+                  (:gtype-name "GdkPixbuf" :get-type "gdk_pixbuf_get_type" :c-name "GdkPixbuf" :url
+                   "https://docs.gtk.org/gdk-pixbuf/class.Pixbuf.html" :documentation
                    "A pixel buffer.
 
 C: GdkPixbuf
@@ -118,7 +126,9 @@ See: https://docs.gtk.org/gdk-pixbuf/class.Pixbuf.html"))
 
 (rt:define-gclass pixbuf-animation (rt:object)
                   (:gtype-name "GdkPixbufAnimation" :get-type "gdk_pixbuf_animation_get_type"
-                   :documentation "An opaque object representing an animation.
+                   :c-name "GdkPixbufAnimation" :url
+                   "https://docs.gtk.org/gdk-pixbuf/class.PixbufAnimation.html" :documentation
+                   "An opaque object representing an animation.
 
 C: GdkPixbufAnimation
 See: https://docs.gtk.org/gdk-pixbuf/class.PixbufAnimation.html"))
@@ -126,7 +136,8 @@ See: https://docs.gtk.org/gdk-pixbuf/class.PixbufAnimation.html"))
 
 (rt:define-gclass pixbuf-animation-iter (rt:object)
                   (:gtype-name "GdkPixbufAnimationIter" :get-type
-                   "gdk_pixbuf_animation_iter_get_type" :documentation
+                   "gdk_pixbuf_animation_iter_get_type" :c-name "GdkPixbufAnimationIter" :url
+                   "https://docs.gtk.org/gdk-pixbuf/class.PixbufAnimationIter.html" :documentation
                    "An opaque object representing an iterator which points to a
 certain position in an animation.
 
@@ -135,7 +146,8 @@ See: https://docs.gtk.org/gdk-pixbuf/class.PixbufAnimationIter.html"))
 
 
 (rt:define-gclass pixbuf-loader (rt:object)
-                  (:gtype-name "GdkPixbufLoader" :get-type "gdk_pixbuf_loader_get_type"
+                  (:gtype-name "GdkPixbufLoader" :get-type "gdk_pixbuf_loader_get_type" :c-name
+                   "GdkPixbufLoader" :url "https://docs.gtk.org/gdk-pixbuf/class.PixbufLoader.html"
                    :documentation "Incremental image loader.
 
 C: GdkPixbufLoader
@@ -143,14 +155,17 @@ See: https://docs.gtk.org/gdk-pixbuf/class.PixbufLoader.html"))
 
 
 (rt:define-gclass pixbuf-non-anim (pixbuf-animation)
-                  (:gtype-name "GdkPixbufNonAnim" :get-type "gdk_pixbuf_non_anim_get_type"
+                  (:gtype-name "GdkPixbufNonAnim" :get-type "gdk_pixbuf_non_anim_get_type" :c-name
+                   nil :url "https://docs.gtk.org/gdk-pixbuf/class.PixbufNonAnim.html"
                    :documentation "
 See: https://docs.gtk.org/gdk-pixbuf/class.PixbufNonAnim.html"))
 
 
 (rt:define-gclass pixbuf-simple-anim (pixbuf-animation)
                   (:gtype-name "GdkPixbufSimpleAnim" :get-type "gdk_pixbuf_simple_anim_get_type"
-                   :documentation "An opaque struct representing a simple animation.
+                   :c-name "GdkPixbufSimpleAnim" :url
+                   "https://docs.gtk.org/gdk-pixbuf/class.PixbufSimpleAnim.html" :documentation
+                   "An opaque struct representing a simple animation.
 
 C: GdkPixbufSimpleAnim
 See: https://docs.gtk.org/gdk-pixbuf/class.PixbufSimpleAnim.html"))
@@ -158,15 +173,18 @@ See: https://docs.gtk.org/gdk-pixbuf/class.PixbufSimpleAnim.html"))
 
 (rt:define-gclass pixbuf-simple-anim-iter (pixbuf-animation-iter)
                   (:gtype-name "GdkPixbufSimpleAnimIter" :get-type
-                   "gdk_pixbuf_simple_anim_iter_get_type" :documentation "
+                   "gdk_pixbuf_simple_anim_iter_get_type" :c-name nil :url
+                   "https://docs.gtk.org/gdk-pixbuf/class.PixbufSimpleAnimIter.html" :documentation
+                   "
 See: https://docs.gtk.org/gdk-pixbuf/class.PixbufSimpleAnimIter.html"))
 
 ;;; Boxed types
 
 
 (rt:define-grecord pixbuf-format
-                   (:gtype-name "GdkPixbufFormat" :documentation
-                    "A `GdkPixbufFormat` contains information about the image format accepted
+                   (:gtype-name "GdkPixbufFormat" :c-name "GdkPixbufFormat" :url
+                    "https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html" :documentation
+                    "A `gdk-pixbuf:pixbuf-format` contains information about the image format accepted
 by a module.
 
 C: GdkPixbufFormat
@@ -190,33 +208,45 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 
 (rt:define-gfield pixbuf-format-name pixbuf-format :name :string :documentation
                   "the name of the image format
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gfield pixbuf-format-domain pixbuf-format :domain :string :documentation
                   "the message domain for the `description`
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gfield pixbuf-format-description pixbuf-format :description :string :documentation
                   "a description of the image format
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gfield pixbuf-format-flags pixbuf-format :flags :uint32 :writable t :documentation
-                  "a combination of `GdkPixbufFormatFlags`
-")
+                  "a combination of `gdk-pixbuf:pixbuf-format-flags`
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gfield pixbuf-format-disabled pixbuf-format :disabled :boolean :writable t
                   :documentation "a boolean determining whether the loader is disabled`
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gfield pixbuf-format-license pixbuf-format :license :string :documentation
                   "a string containing license information, typically set to
   shorthands like \"GPL\", \"LGPL\", etc.
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html")
 
 
 (rt:define-gstruct-constructor make-pixbuf-format
@@ -251,12 +281,16 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 (rt:define-gfield pixbuf-module-module-name pixbuf-module :module-name :string :documentation
                   "the name of the module, usually the same as the
  usual file extension for images of this type, eg. \"xpm\", \"jpeg\" or \"png\".
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufModule.html")
 
 
 (rt:define-gfield pixbuf-module-module-path pixbuf-module :module-path :string :documentation
                   "the path from which the module is loaded.
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufModule.html")
 
 
 (rt:define-gstruct pixbuf-module-pattern
@@ -268,18 +302,24 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 
 (rt:define-gfield pixbuf-module-pattern-prefix pixbuf-module-pattern :prefix :string :documentation
                   "the prefix for this pattern
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufModulePattern.html")
 
 
 (rt:define-gfield pixbuf-module-pattern-mask pixbuf-module-pattern :mask :string :documentation
                   "mask containing bytes which modify how the prefix is matched against
  test data
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufModulePattern.html")
 
 
 (rt:define-gfield pixbuf-module-pattern-relevance pixbuf-module-pattern :relevance :int :writable t
                   :documentation "relevance of this pattern
-")
+
+
+See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufModulePattern.html")
 
 
 (rt:define-gstruct-constructor make-pixbuf-module-pattern (:record pixbuf-module-pattern)
@@ -292,11 +332,13 @@ See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 (rt:define-gproperty pixbuf-bits-per-sample "bits-per-sample"
                      (:readable t :writable nil :documentation "The number of bits per sample.
 
+
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.bits-per-sample.html"))
 
 
 (rt:define-gproperty pixbuf-colorspace "colorspace"
                      (:readable t :writable nil :documentation "The color space of the pixbuf.
+
 
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.colorspace.html"))
 
@@ -305,17 +347,20 @@ See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.colorspace.html"))
                      (:readable t :writable nil :documentation
                       "Whether the pixbuf has an alpha channel.
 
+
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.has-alpha.html"))
 
 
 (rt:define-gproperty pixbuf-height "height"
                      (:readable t :writable nil :documentation "The number of rows of the pixbuf.
 
+
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.height.html"))
 
 
 (rt:define-gproperty pixbuf-n-channels "n-channels"
                      (:readable t :writable nil :documentation "The number of samples per pixel.
+
 
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.n-channels.html"))
 
@@ -329,6 +374,7 @@ See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.pixel-bytes.html"))
                      (:readable t :writable nil :documentation
                       "A pointer to the pixel data of the pixbuf.
 
+
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.pixels.html"))
 
 
@@ -337,11 +383,13 @@ See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.pixels.html"))
                       "The number of bytes between the start of a row and
 the start of the next row.
 
+
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.rowstride.html"))
 
 
 (rt:define-gproperty pixbuf-width "width"
                      (:readable t :writable nil :documentation "The number of columns of the pixbuf.
+
 
 See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.width.html"))
 
@@ -349,6 +397,7 @@ See: https://docs.gtk.org/gdk-pixbuf/property.Pixbuf.width.html"))
 (rt:define-gproperty pixbuf-simple-anim-loop "loop"
                      (:readable t :writable t :documentation
                       "Whether the animation should loop when it reaches the end.
+
 
 See: https://docs.gtk.org/gdk-pixbuf/property.PixbufSimpleAnim.loop.html"))
 
@@ -390,1039 +439,3 @@ See: https://docs.gtk.org/gdk-pixbuf/property.PixbufSimpleAnim.loop.html"))
                      (:args
                       ((pixbuf (:object pixbuf)) (x :int) (y :int) (width :int) (height :int)
                        (user-data :pointer :user-data t))))
-
-;;; Functions, constructors and methods
-
-
-(rt:define-gfunction (pixbuf-new "gdk_pixbuf_new") :args
-                     ((colorspace (:enum colorspace)) (has-alpha :boolean) (bits-per-sample :int)
-                      (width :int) (height :int))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Creates a new `GdkPixbuf` structure and allocates a buffer for it.
-
-C: gdk_pixbuf_new
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new.html")
-
-
-(rt:define-gfunction (pixbuf-new-from-bytes "gdk_pixbuf_new_from_bytes") :args
-                     ((data (:boxed "GBytes" "g_bytes_get_type")) (colorspace (:enum colorspace))
-                      (has-alpha :boolean) (bits-per-sample :int) (width :int) (height :int)
-                      (rowstride :int))
-                     :return (:object pixbuf) :return-transfer :full :version "2.32" :documentation
-                     "Creates a new #GdkPixbuf out of in-memory readonly image data.
-
-C: gdk_pixbuf_new_from_bytes
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_bytes.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-new-from-file "gdk_pixbuf_new_from_file") :args ((filename :string))
-                     :return (:object pixbuf) :return-transfer :full :throws t :documentation
-                     "Creates a new pixbuf by loading an image from a file.
-
-C: gdk_pixbuf_new_from_file
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_file.html")
-
-
-(rt:define-gfunction (pixbuf-new-from-file-at-scale "gdk_pixbuf_new_from_file_at_scale") :args
-                     ((filename :string) (width :int) (height :int)
-                      (preserve-aspect-ratio :boolean))
-                     :return (:object pixbuf) :return-transfer :full :throws t :version "2.6"
-                     :documentation "Creates a new pixbuf by loading an image from a file.
-
-C: gdk_pixbuf_new_from_file_at_scale
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_file_at_scale.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-new-from-file-at-size "gdk_pixbuf_new_from_file_at_size") :args
-                     ((filename :string) (width :int) (height :int)) :return (:object pixbuf)
-                     :return-transfer :full :throws t :version "2.4" :documentation
-                     "Creates a new pixbuf by loading an image from a file.
-
-C: gdk_pixbuf_new_from_file_at_size
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_file_at_size.html
-Since: 2.4")
-
-
-(rt:define-gfunction (pixbuf-new-from-inline "gdk_pixbuf_new_from_inline") :args
-                     ((data-length :int :length-of data) (data (:array :uint8))
-                      (copy-pixels :boolean))
-                     :return (:object pixbuf) :return-transfer :full :throws t :documentation
-                     "Creates a `GdkPixbuf` from a flat representation that is suitable for
-storing as inline data in a program.
-
-C: gdk_pixbuf_new_from_inline
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_inline.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-new-from-resource "gdk_pixbuf_new_from_resource") :args
-                     ((resource-path :string)) :return (:object pixbuf) :return-transfer :full
-                     :throws t :version "2.26" :documentation
-                     "Creates a new pixbuf by loading an image from an resource.
-
-C: gdk_pixbuf_new_from_resource
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_resource.html
-Since: 2.26")
-
-
-(rt:define-gfunction (pixbuf-new-from-resource-at-scale "gdk_pixbuf_new_from_resource_at_scale")
-                     :args
-                     ((resource-path :string) (width :int) (height :int)
-                      (preserve-aspect-ratio :boolean))
-                     :return (:object pixbuf) :return-transfer :full :throws t :version "2.26"
-                     :documentation "Creates a new pixbuf by loading an image from an resource.
-
-C: gdk_pixbuf_new_from_resource_at_scale
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_resource_at_scale.html
-Since: 2.26")
-
-
-(rt:define-gfunction (pixbuf-new-from-stream "gdk_pixbuf_new_from_stream") :args
-                     ((stream (:object gio:input-stream))
-                      (cancellable (:object gio:cancellable) :optional t))
-                     :return (:object pixbuf) :return-transfer :full :throws t :version "2.14"
-                     :documentation "Creates a new pixbuf by loading an image from an input stream.
-
-C: gdk_pixbuf_new_from_stream
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_stream.html
-Since: 2.14")
-
-
-(rt:define-gfunction (pixbuf-new-from-stream-at-scale "gdk_pixbuf_new_from_stream_at_scale") :args
-                     ((stream (:object gio:input-stream)) (width :int) (height :int)
-                      (preserve-aspect-ratio :boolean)
-                      (cancellable (:object gio:cancellable) :optional t))
-                     :return (:object pixbuf) :return-transfer :full :throws t :version "2.14"
-                     :documentation "Creates a new pixbuf by loading an image from an input stream.
-
-C: gdk_pixbuf_new_from_stream_at_scale
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_stream_at_scale.html
-Since: 2.14")
-
-
-(rt:define-gfunction (pixbuf-new-from-stream-finish "gdk_pixbuf_new_from_stream_finish") :args
-                     ((async-result (:object gio:async-result))) :return (:object pixbuf)
-                     :return-transfer :full :throws t :version "2.24" :documentation
-                     "Finishes an asynchronous pixbuf creation operation started with
-gdk_pixbuf_new_from_stream_async().
-
-C: gdk_pixbuf_new_from_stream_finish
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_stream_finish.html
-Since: 2.24")
-
-
-(rt:define-gfunction (pixbuf-new-from-xpm-data "gdk_pixbuf_new_from_xpm_data") :args ((data :strv))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Creates a new pixbuf by parsing XPM data in memory.
-
-C: gdk_pixbuf_new_from_xpm_data
-See: https://docs.gtk.org/gdk-pixbuf/ctor.Pixbuf.new_from_xpm_data.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-calculate-rowstride "gdk_pixbuf_calculate_rowstride") :args
-                     ((colorspace (:enum colorspace)) (has-alpha :boolean) (bits-per-sample :int)
-                      (width :int) (height :int))
-                     :return :int :version "2.36.8" :documentation
-                     "Calculates the rowstride that an image created with those values would
-have.
-
-C: gdk_pixbuf_calculate_rowstride
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.calculate_rowstride.html
-Since: 2.36.8")
-
-
-(rt:define-gfunction (pixbuf-get-file-info "gdk_pixbuf_get_file_info") :args
-                     ((filename :string) (width :int :direction :out :transfer :full)
-                      (height :int :direction :out :transfer :full))
-                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
-                     :version "2.4" :documentation
-                     "Parses an image file far enough to determine its format and size.
-
-C: gdk_pixbuf_get_file_info
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.get_file_info.html
-Since: 2.4")
-
-
-(rt:define-gfunction (pixbuf-get-file-info-async "gdk_pixbuf_get_file_info_async") :args
-                     ((filename :string) (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :version "2.32" :documentation
-                     "Asynchronously parses an image file far enough to determine its
-format and size.
-
-C: gdk_pixbuf_get_file_info_async
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.get_file_info_async.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-get-file-info-finish "gdk_pixbuf_get_file_info_finish") :args
-                     ((async-result (:object gio:async-result))
-                      (width :int :direction :out :transfer :full)
-                      (height :int :direction :out :transfer :full))
-                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
-                     :throws t :version "2.32" :documentation
-                     "Finishes an asynchronous pixbuf parsing operation started with
-gdk_pixbuf_get_file_info_async().
-
-C: gdk_pixbuf_get_file_info_finish
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.get_file_info_finish.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-get-formats "gdk_pixbuf_get_formats") :return
-                     (:gslist
-                      (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
-                     :return-transfer :container :version "2.2" :documentation
-                     "Obtains the available information about the image formats supported
-by GdkPixbuf.
-
-C: gdk_pixbuf_get_formats
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.get_formats.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-init-modules "gdk_pixbuf_init_modules") :args ((path :string)) :return
-                     :boolean :throws t :version "2.40" :documentation
-                     "Initalizes the gdk-pixbuf loader modules referenced by the `loaders.cache`
-file present inside that directory.
-
-C: gdk_pixbuf_init_modules
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.init_modules.html
-Since: 2.40")
-
-
-(rt:define-gfunction (pixbuf-new-from-stream-async "gdk_pixbuf_new_from_stream_async") :args
-                     ((stream (:object gio:input-stream))
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :version "2.24" :documentation
-                     "Creates a new pixbuf by asynchronously loading an image from an input stream.
-
-C: gdk_pixbuf_new_from_stream_async
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.new_from_stream_async.html
-Since: 2.24")
-
-
-(rt:define-gfunction
- (pixbuf-new-from-stream-at-scale-async "gdk_pixbuf_new_from_stream_at_scale_async") :args
- ((stream (:object gio:input-stream)) (width :int) (height :int) (preserve-aspect-ratio :boolean)
-  (cancellable (:object gio:cancellable) :optional t)
-  (callback (:callback gio:async-ready-callback :async) :optional t)
-  (user-data :pointer :user-data-of callback))
- :version "2.24" :documentation
- "Creates a new pixbuf by asynchronously loading an image from an input stream.
-
-C: gdk_pixbuf_new_from_stream_at_scale_async
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.new_from_stream_at_scale_async.html
-Since: 2.24")
-
-
-(rt:define-gfunction (pixbuf-save-to-stream-finish "gdk_pixbuf_save_to_stream_finish") :args
-                     ((async-result (:object gio:async-result))) :return :boolean :throws t
-                     :version "2.24" :documentation
-                     "Finishes an asynchronous pixbuf save operation started with
-gdk_pixbuf_save_to_stream_async().
-
-C: gdk_pixbuf_save_to_stream_finish
-See: https://docs.gtk.org/gdk-pixbuf/type_func.Pixbuf.save_to_stream_finish.html
-Since: 2.24")
-
-
-(rt:define-gfunction (pixbuf-add-alpha "gdk_pixbuf_add_alpha") :args
-                     ((pixbuf (:object pixbuf)) (substitute-color :boolean) (r :uint8) (g :uint8)
-                      (b :uint8))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Takes an existing pixbuf and adds an alpha channel to it.
-
-C: gdk_pixbuf_add_alpha
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.add_alpha.html")
-
-
-(rt:define-gfunction (pixbuf-apply-embedded-orientation "gdk_pixbuf_apply_embedded_orientation")
-                     :args ((src (:object pixbuf))) :return (:object pixbuf) :return-transfer :full
-                     :version "2.12" :documentation
-                     "Takes an existing pixbuf and checks for the presence of an
-associated \"orientation\" option.
-
-C: gdk_pixbuf_apply_embedded_orientation
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.apply_embedded_orientation.html
-Since: 2.12")
-
-
-(rt:define-gfunction (pixbuf-composite "gdk_pixbuf_composite") :args
-                     ((src (:object pixbuf)) (dest (:object pixbuf)) (dest-x :int) (dest-y :int)
-                      (dest-width :int) (dest-height :int) (offset-x :double) (offset-y :double)
-                      (scale-x :double) (scale-y :double) (interp-type (:enum interp-type))
-                      (overall-alpha :int))
-                     :documentation "Creates a transformation of the source image SRC by scaling by
-SCALE-X and SCALE-Y then translating by OFFSET-X and OFFSET-Y.
-
-C: gdk_pixbuf_composite
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.composite.html")
-
-
-(rt:define-gfunction (pixbuf-composite-color "gdk_pixbuf_composite_color") :args
-                     ((src (:object pixbuf)) (dest (:object pixbuf)) (dest-x :int) (dest-y :int)
-                      (dest-width :int) (dest-height :int) (offset-x :double) (offset-y :double)
-                      (scale-x :double) (scale-y :double) (interp-type (:enum interp-type))
-                      (overall-alpha :int) (check-x :int) (check-y :int) (check-size :int)
-                      (color1 :uint32) (color2 :uint32))
-                     :documentation "Creates a transformation of the source image SRC by scaling by
-SCALE-X and SCALE-Y then translating by OFFSET-X and OFFSET-Y,
-then alpha blends the rectangle (DEST-X ,DEST-Y, DEST-WIDTH,
-DEST-HEIGHT) of the resulting image with a checkboard of the
-colors COLOR1 and COLOR2 and renders it onto the destination
-image.
-
-C: gdk_pixbuf_composite_color
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.composite_color.html")
-
-
-(rt:define-gfunction (pixbuf-composite-color-simple "gdk_pixbuf_composite_color_simple") :args
-                     ((src (:object pixbuf)) (dest-width :int) (dest-height :int)
-                      (interp-type (:enum interp-type)) (overall-alpha :int) (check-size :int)
-                      (color1 :uint32) (color2 :uint32))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Creates a new pixbuf by scaling `src` to `dest_width` x `dest_height`
-and alpha blending the result with a checkboard of colors `color1`
-and `color2`.
-
-C: gdk_pixbuf_composite_color_simple
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.composite_color_simple.html")
-
-
-(rt:define-gfunction (pixbuf-copy "gdk_pixbuf_copy") :args ((pixbuf (:object pixbuf))) :return
-                     (:object pixbuf) :return-transfer :full :documentation
-                     "Creates a new `GdkPixbuf` with a copy of the information in the specified
-`pixbuf`.
-
-C: gdk_pixbuf_copy
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.copy.html")
-
-
-(rt:define-gfunction (pixbuf-copy-area "gdk_pixbuf_copy_area") :args
-                     ((src-pixbuf (:object pixbuf)) (src-x :int) (src-y :int) (width :int)
-                      (height :int) (dest-pixbuf (:object pixbuf)) (dest-x :int) (dest-y :int))
-                     :documentation "Copies a rectangular area from `src_pixbuf` to `dest_pixbuf`.
-
-C: gdk_pixbuf_copy_area
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.copy_area.html")
-
-
-(rt:define-gfunction (pixbuf-copy-options "gdk_pixbuf_copy_options") :args
-                     ((src-pixbuf (:object pixbuf)) (dest-pixbuf (:object pixbuf))) :return
-                     :boolean :version "2.36" :documentation
-                     "Copies the key/value pair options attached to a `GdkPixbuf` to another
-`GdkPixbuf`.
-
-C: gdk_pixbuf_copy_options
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.copy_options.html
-Since: 2.36")
-
-
-(rt:define-gfunction (pixbuf-fill "gdk_pixbuf_fill") :args
-                     ((pixbuf (:object pixbuf)) (pixel :uint32)) :documentation
-                     "Clears a pixbuf to the given RGBA value, converting the RGBA value into
-the pixbuf's pixel format.
-
-C: gdk_pixbuf_fill
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.fill.html")
-
-
-(rt:define-gfunction (pixbuf-flip "gdk_pixbuf_flip") :args
-                     ((src (:object pixbuf)) (horizontal :boolean)) :return (:object pixbuf)
-                     :return-transfer :full :version "2.6" :documentation
-                     "Flips a pixbuf horizontally or vertically and returns the
-result in a new pixbuf.
-
-C: gdk_pixbuf_flip
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.flip.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-get-bits-per-sample "gdk_pixbuf_get_bits_per_sample") :args
-                     ((pixbuf (:object pixbuf))) :return :int :documentation
-                     "Queries the number of bits per color sample in a pixbuf.
-
-C: gdk_pixbuf_get_bits_per_sample
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_bits_per_sample.html")
-
-
-(rt:define-gfunction (pixbuf-get-byte-length "gdk_pixbuf_get_byte_length") :args
-                     ((pixbuf (:object pixbuf))) :return :size :version "2.26" :documentation
-                     "Returns the length of the pixel data, in bytes.
-
-C: gdk_pixbuf_get_byte_length
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_byte_length.html
-Since: 2.26")
-
-
-(rt:define-gfunction (pixbuf-get-colorspace "gdk_pixbuf_get_colorspace") :args
-                     ((pixbuf (:object pixbuf))) :return (:enum colorspace) :documentation
-                     "Queries the color space of a pixbuf.
-
-C: gdk_pixbuf_get_colorspace
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_colorspace.html")
-
-
-(rt:define-gfunction (pixbuf-get-has-alpha "gdk_pixbuf_get_has_alpha") :args
-                     ((pixbuf (:object pixbuf))) :return :boolean :documentation
-                     "Queries whether a pixbuf has an alpha channel (opacity information).
-
-C: gdk_pixbuf_get_has_alpha
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_has_alpha.html")
-
-
-(rt:define-gfunction (pixbuf-get-height "gdk_pixbuf_get_height") :args ((pixbuf (:object pixbuf)))
-                     :return :int :documentation "Queries the height of a pixbuf.
-
-C: gdk_pixbuf_get_height
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_height.html")
-
-
-(rt:define-gfunction (pixbuf-get-n-channels "gdk_pixbuf_get_n_channels") :args
-                     ((pixbuf (:object pixbuf))) :return :int :documentation
-                     "Queries the number of channels of a pixbuf.
-
-C: gdk_pixbuf_get_n_channels
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_n_channels.html")
-
-
-(rt:define-gfunction (pixbuf-get-option "gdk_pixbuf_get_option") :args
-                     ((pixbuf (:object pixbuf)) (key :string)) :return :string :documentation
-                     "Looks up KEY in the list of options that may have been attached to the
-PIXBUF when it was loaded, or that may have been attached by another
-function using gdk_pixbuf_set_option().
-
-C: gdk_pixbuf_get_option
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_option.html")
-
-
-(rt:define-gfunction (pixbuf-get-options "gdk_pixbuf_get_options") :args
-                     ((pixbuf (:object pixbuf))) :return (:ghash :string :string) :return-transfer
-                     :container :version "2.32" :documentation
-                     "Returns a `GHashTable` with a list of all the options that may have been
-attached to the `pixbuf` when it was loaded, or that may have been
-attached by another function using GdkPixbuf.Pixbuf.set_option.
-
-C: gdk_pixbuf_get_options
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_options.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-get-pixels "gdk_pixbuf_get_pixels_with_length") :args
-                     ((pixbuf (:object pixbuf)) (length :uint :length-of :return :direction :out))
-                     :return (:array :uint8) :version "2.26" :documentation
-                     "Queries a pointer to the pixel data of a pixbuf.
-
-C: gdk_pixbuf_get_pixels_with_length
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_pixels_with_length.html
-Since: 2.26")
-
-
-(rt:define-gfunction (pixbuf-get-rowstride "gdk_pixbuf_get_rowstride") :args
-                     ((pixbuf (:object pixbuf))) :return :int :documentation
-                     "Queries the rowstride of a pixbuf, which is the number of bytes between
-the start of a row and the start of the next row.
-
-C: gdk_pixbuf_get_rowstride
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_rowstride.html")
-
-
-(rt:define-gfunction (pixbuf-get-width "gdk_pixbuf_get_width") :args ((pixbuf (:object pixbuf)))
-                     :return :int :documentation "Queries the width of a pixbuf.
-
-C: gdk_pixbuf_get_width
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.get_width.html")
-
-
-(rt:define-gfunction (pixbuf-new-subpixbuf "gdk_pixbuf_new_subpixbuf") :args
-                     ((src-pixbuf (:object pixbuf)) (src-x :int) (src-y :int) (width :int)
-                      (height :int))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Creates a new pixbuf which represents a sub-region of `src_pixbuf`.
-
-C: gdk_pixbuf_new_subpixbuf
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.new_subpixbuf.html")
-
-
-(rt:define-gfunction (pixbuf-read-pixel-bytes "gdk_pixbuf_read_pixel_bytes") :args
-                     ((pixbuf (:object pixbuf))) :return (:boxed "GBytes" "g_bytes_get_type")
-                     :return-transfer :full :version "2.32" :documentation
-                     "Provides a #GBytes buffer containing the raw pixel data; the data
-must not be modified.
-
-C: gdk_pixbuf_read_pixel_bytes
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.read_pixel_bytes.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-read-pixels "gdk_pixbuf_read_pixels") :args
-                     ((pixbuf (:object pixbuf))) :return :uint8 :version "2.32" :documentation
-                     "Provides a read-only pointer to the raw pixel data.
-
-C: gdk_pixbuf_read_pixels
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.read_pixels.html
-Since: 2.32")
-
-
-(rt:define-gfunction (pixbuf-remove-option "gdk_pixbuf_remove_option") :args
-                     ((pixbuf (:object pixbuf)) (key :string)) :return :boolean :version "2.36"
-                     :documentation "Removes the key/value pair option attached to a `GdkPixbuf`.
-
-C: gdk_pixbuf_remove_option
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.remove_option.html
-Since: 2.36")
-
-
-(rt:define-gfunction (pixbuf-rotate-simple "gdk_pixbuf_rotate_simple") :args
-                     ((src (:object pixbuf)) (angle (:enum pixbuf-rotation))) :return
-                     (:object pixbuf) :return-transfer :full :version "2.6" :documentation
-                     "Rotates a pixbuf by a multiple of 90 degrees, and returns the
-result in a new pixbuf.
-
-C: gdk_pixbuf_rotate_simple
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.rotate_simple.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-saturate-and-pixelate "gdk_pixbuf_saturate_and_pixelate") :args
-                     ((src (:object pixbuf)) (dest (:object pixbuf)) (saturation :float)
-                      (pixelate :boolean))
-                     :documentation
-                     "Modifies saturation and optionally pixelates `src`, placing the result in
-`dest`.
-
-C: gdk_pixbuf_saturate_and_pixelate
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.saturate_and_pixelate.html")
-
-
-(rt:define-gfunction (pixbuf-save-to-bufferv "gdk_pixbuf_save_to_bufferv") :args
-                     ((pixbuf (:object pixbuf))
-                      (buffer (:array :uint8) :direction :out :transfer :full)
-                      (buffer-size :size :length-of buffer :direction :out) (type :string)
-                      (option-keys :strv :optional t) (option-values :strv :optional t))
-                     :return :boolean :throws t :version "2.4" :documentation
-                     "Vector version of `gdk_pixbuf_save_to_buffer()`.
-
-C: gdk_pixbuf_save_to_bufferv
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.save_to_bufferv.html
-Since: 2.4")
-
-
-(rt:define-gfunction (pixbuf-save-to-streamv "gdk_pixbuf_save_to_streamv") :args
-                     ((pixbuf (:object pixbuf)) (stream (:object gio:output-stream)) (type :string)
-                      (option-keys :strv :optional t) (option-values :strv :optional t)
-                      (cancellable (:object gio:cancellable) :optional t))
-                     :return :boolean :throws t :version "2.36" :documentation
-                     "Saves `pixbuf` to an output stream.
-
-C: gdk_pixbuf_save_to_streamv
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.save_to_streamv.html
-Since: 2.36")
-
-
-(rt:define-gfunction (pixbuf-save-to-streamv-async "gdk_pixbuf_save_to_streamv_async") :args
-                     ((pixbuf (:object pixbuf)) (stream (:object gio:output-stream)) (type :string)
-                      (option-keys :strv :optional t) (option-values :strv :optional t)
-                      (cancellable (:object gio:cancellable) :optional t)
-                      (callback (:callback gio:async-ready-callback :async) :optional t)
-                      (user-data :pointer :user-data-of callback))
-                     :version "2.36" :documentation
-                     "Saves `pixbuf` to an output stream asynchronously.
-
-C: gdk_pixbuf_save_to_streamv_async
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.save_to_streamv_async.html
-Since: 2.36")
-
-
-(rt:define-gfunction (pixbuf-savev "gdk_pixbuf_savev") :args
-                     ((pixbuf (:object pixbuf)) (filename :string) (type :string)
-                      (option-keys :strv :optional t) (option-values :strv :optional t))
-                     :return :boolean :throws t :documentation
-                     "Vector version of `gdk_pixbuf_save()`.
-
-C: gdk_pixbuf_savev
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.savev.html")
-
-
-(rt:define-gfunction (pixbuf-scale "gdk_pixbuf_scale") :args
-                     ((src (:object pixbuf)) (dest (:object pixbuf)) (dest-x :int) (dest-y :int)
-                      (dest-width :int) (dest-height :int) (offset-x :double) (offset-y :double)
-                      (scale-x :double) (scale-y :double) (interp-type (:enum interp-type)))
-                     :documentation "Creates a transformation of the source image SRC by scaling by
-SCALE-X and SCALE-Y then translating by OFFSET-X and OFFSET-Y,
-then renders the rectangle (DEST-X, DEST-Y, DEST-WIDTH,
-DEST-HEIGHT) of the resulting image onto the destination image
-replacing the previous contents.
-
-C: gdk_pixbuf_scale
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.scale.html")
-
-
-(rt:define-gfunction (pixbuf-scale-simple "gdk_pixbuf_scale_simple") :args
-                     ((src (:object pixbuf)) (dest-width :int) (dest-height :int)
-                      (interp-type (:enum interp-type)))
-                     :return (:object pixbuf) :return-transfer :full :documentation
-                     "Create a new pixbuf containing a copy of `src` scaled to
-`dest_width` x `dest_height`.
-
-C: gdk_pixbuf_scale_simple
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.scale_simple.html")
-
-
-(rt:define-gfunction (pixbuf-set-option "gdk_pixbuf_set_option") :args
-                     ((pixbuf (:object pixbuf)) (key :string) (value :string)) :return :boolean
-                     :version "2.2" :documentation
-                     "Attaches a key/value pair as an option to a `GdkPixbuf`.
-
-C: gdk_pixbuf_set_option
-See: https://docs.gtk.org/gdk-pixbuf/method.Pixbuf.set_option.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-animation-new-from-file "gdk_pixbuf_animation_new_from_file") :args
-                     ((filename :string)) :return (:object pixbuf-animation) :return-transfer :full
-                     :throws t :documentation "Creates a new animation by loading it from a file.
-
-C: gdk_pixbuf_animation_new_from_file
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufAnimation.new_from_file.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-new-from-resource "gdk_pixbuf_animation_new_from_resource")
-                     :args ((resource-path :string)) :return (:object pixbuf-animation)
-                     :return-transfer :full :throws t :version "2.28" :documentation
-                     "Creates a new pixbuf animation by loading an image from an resource.
-
-C: gdk_pixbuf_animation_new_from_resource
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufAnimation.new_from_resource.html
-Since: 2.28
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-new-from-stream "gdk_pixbuf_animation_new_from_stream")
-                     :args
-                     ((stream (:object gio:input-stream))
-                      (cancellable (:object gio:cancellable) :optional t))
-                     :return (:object pixbuf-animation) :return-transfer :full :throws t :version
-                     "2.28" :documentation
-                     "Creates a new animation by loading it from an input stream.
-
-C: gdk_pixbuf_animation_new_from_stream
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufAnimation.new_from_stream.html
-Since: 2.28
-Deprecated.")
-
-
-(rt:define-gfunction
- (pixbuf-animation-new-from-stream-finish "gdk_pixbuf_animation_new_from_stream_finish") :args
- ((async-result (:object gio:async-result))) :return (:object pixbuf-animation) :return-transfer
- :full :throws t :version "2.28" :documentation
- "Finishes an asynchronous pixbuf animation creation operation started with
-GdkPixbuf.PixbufAnimation.new_from_stream_async.
-
-C: gdk_pixbuf_animation_new_from_stream_finish
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufAnimation.new_from_stream_finish.html
-Since: 2.28
-Deprecated.")
-
-
-(rt:define-gfunction
- (pixbuf-animation-new-from-stream-async "gdk_pixbuf_animation_new_from_stream_async") :args
- ((stream (:object gio:input-stream)) (cancellable (:object gio:cancellable) :optional t)
-  (callback (:callback gio:async-ready-callback :async) :optional t)
-  (user-data :pointer :user-data-of callback))
- :version "2.28" :documentation
- "Creates a new animation by asynchronously loading an image from an input stream.
-
-C: gdk_pixbuf_animation_new_from_stream_async
-See: https://docs.gtk.org/gdk-pixbuf/type_func.PixbufAnimation.new_from_stream_async.html
-Since: 2.28
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-get-height "gdk_pixbuf_animation_get_height") :args
-                     ((animation (:object pixbuf-animation))) :return :int :documentation
-                     "Queries the height of the bounding box of a pixbuf animation.
-
-C: gdk_pixbuf_animation_get_height
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimation.get_height.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-get-iter "gdk_pixbuf_animation_get_iter") :args
-                     ((animation (:object pixbuf-animation))
-                      (start-time (:record glib:time-val) :optional t))
-                     :return (:object pixbuf-animation-iter) :return-transfer :full :documentation
-                     "Get an iterator for displaying an animation.
-
-C: gdk_pixbuf_animation_get_iter
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimation.get_iter.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-get-static-image "gdk_pixbuf_animation_get_static_image")
-                     :args ((animation (:object pixbuf-animation))) :return (:object pixbuf)
-                     :documentation "Retrieves a static image for the animation.
-
-C: gdk_pixbuf_animation_get_static_image
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimation.get_static_image.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-get-width "gdk_pixbuf_animation_get_width") :args
-                     ((animation (:object pixbuf-animation))) :return :int :documentation
-                     "Queries the width of the bounding box of a pixbuf animation.
-
-C: gdk_pixbuf_animation_get_width
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimation.get_width.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-is-static-image "gdk_pixbuf_animation_is_static_image")
-                     :args ((animation (:object pixbuf-animation))) :return :boolean :documentation
-                     "Checks whether the animation is a static image.
-
-C: gdk_pixbuf_animation_is_static_image
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimation.is_static_image.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-iter-advance "gdk_pixbuf_animation_iter_advance") :args
-                     ((iter (:object pixbuf-animation-iter))
-                      (current-time (:record glib:time-val) :optional t))
-                     :return :boolean :documentation "Possibly advances an animation to a new frame.
-
-C: gdk_pixbuf_animation_iter_advance
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimationIter.advance.html
-Deprecated.")
-
-
-(rt:define-gfunction
- (pixbuf-animation-iter-get-delay-time "gdk_pixbuf_animation_iter_get_delay_time") :args
- ((iter (:object pixbuf-animation-iter))) :return :int :documentation
- "Gets the number of milliseconds the current pixbuf should be displayed,
-or -1 if the current pixbuf should be displayed forever.
-
-C: gdk_pixbuf_animation_iter_get_delay_time
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimationIter.get_delay_time.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-animation-iter-get-pixbuf "gdk_pixbuf_animation_iter_get_pixbuf")
-                     :args ((iter (:object pixbuf-animation-iter))) :return (:object pixbuf)
-                     :documentation "Gets the current pixbuf which should be displayed.
-
-C: gdk_pixbuf_animation_iter_get_pixbuf
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimationIter.get_pixbuf.html
-Deprecated.")
-
-
-(rt:define-gfunction
- (pixbuf-animation-iter-on-currently-loading-frame
-  "gdk_pixbuf_animation_iter_on_currently_loading_frame")
- :args ((iter (:object pixbuf-animation-iter))) :return :boolean :documentation
- "Used to determine how to respond to the area_updated signal on
-#GdkPixbufLoader when loading an animation.
-
-C: gdk_pixbuf_animation_iter_on_currently_loading_frame
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufAnimationIter.on_currently_loading_frame.html
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-format-copy "gdk_pixbuf_format_copy") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
-                     :return-transfer :full :version "2.22" :documentation
-                     "Creates a copy of `format`.
-
-C: gdk_pixbuf_format_copy
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.copy.html
-Since: 2.22")
-
-
-(rt:define-gfunction (pixbuf-format-free "gdk_pixbuf_format_free") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :version "2.22" :documentation
-                     "Frees the resources allocated when copying a `GdkPixbufFormat`
-using gdk_pixbuf_format_copy()
-
-C: gdk_pixbuf_format_free
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.free.html
-Since: 2.22")
-
-
-(rt:define-gfunction (pixbuf-format-get-description "gdk_pixbuf_format_get_description") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :string :return-transfer :full :version "2.2" :documentation
-                     "Returns a description of the format.
-
-C: gdk_pixbuf_format_get_description
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.get_description.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-format-get-extensions "gdk_pixbuf_format_get_extensions") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :strv :return-transfer :full :version "2.2" :documentation
-                     "Returns the filename extensions typically used for files in the
-given format.
-
-C: gdk_pixbuf_format_get_extensions
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.get_extensions.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-format-get-license "gdk_pixbuf_format_get_license") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :string :return-transfer :full :version "2.6" :documentation
-                     "Returns information about the license of the image loader for the format.
-
-C: gdk_pixbuf_format_get_license
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.get_license.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-format-get-mime-types "gdk_pixbuf_format_get_mime_types") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :strv :return-transfer :full :version "2.2" :documentation
-                     "Returns the mime types supported by the format.
-
-C: gdk_pixbuf_format_get_mime_types
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.get_mime_types.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-format-get-name "gdk_pixbuf_format_get_name") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :string :return-transfer :full :version "2.2" :documentation
-                     "Returns the name of the format.
-
-C: gdk_pixbuf_format_get_name
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.get_name.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-format-is-disabled "gdk_pixbuf_format_is_disabled") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :boolean :version "2.6" :documentation
-                     "Returns whether this image format is disabled.
-
-C: gdk_pixbuf_format_is_disabled
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.is_disabled.html
-Since: 2.6")
-
-
-(rt:define-gfunction
- (pixbuf-format-is-save-option-supported "gdk_pixbuf_format_is_save_option_supported") :args
- ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
-  (option-key :string))
- :return :boolean :version "2.36" :documentation
- "Returns `TRUE` if the save option specified by OPTION-KEY is supported when
-saving a pixbuf using the module implementing FORMAT.
-
-C: gdk_pixbuf_format_is_save_option_supported
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.is_save_option_supported.html
-Since: 2.36")
-
-
-(rt:define-gfunction (pixbuf-format-is-scalable "gdk_pixbuf_format_is_scalable") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :boolean :version "2.6" :documentation
-                     "Returns whether this image format is scalable.
-
-C: gdk_pixbuf_format_is_scalable
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.is_scalable.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-format-is-writable "gdk_pixbuf_format_is_writable") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
-                     :return :boolean :version "2.2" :documentation
-                     "Returns whether pixbufs can be saved in the given format.
-
-C: gdk_pixbuf_format_is_writable
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.is_writable.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-format-set-disabled "gdk_pixbuf_format_set_disabled") :args
-                     ((format
-                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
-                      (disabled :boolean))
-                     :version "2.6" :documentation "Disables or enables an image format.
-
-C: gdk_pixbuf_format_set_disabled
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.set_disabled.html
-Since: 2.6")
-
-
-(rt:define-gfunction (pixbuf-loader-new "gdk_pixbuf_loader_new") :return (:object pixbuf-loader)
-                     :return-transfer :full :documentation "Creates a new pixbuf loader object.
-
-C: gdk_pixbuf_loader_new
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufLoader.new.html")
-
-
-(rt:define-gfunction (pixbuf-loader-new-with-mime-type "gdk_pixbuf_loader_new_with_mime_type")
-                     :args ((mime-type :string)) :return (:object pixbuf-loader) :return-transfer
-                     :full :throws t :version "2.4" :documentation
-                     "Creates a new pixbuf loader object that always attempts to parse
-image data as if it were an image of MIME type MIME-TYPE, instead of
-identifying the type automatically.
-
-C: gdk_pixbuf_loader_new_with_mime_type
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufLoader.new_with_mime_type.html
-Since: 2.4")
-
-
-(rt:define-gfunction (pixbuf-loader-new-with-type "gdk_pixbuf_loader_new_with_type") :args
-                     ((image-type :string)) :return (:object pixbuf-loader) :return-transfer :full
-                     :throws t :documentation
-                     "Creates a new pixbuf loader object that always attempts to parse
-image data as if it were an image of type IMAGE-TYPE, instead of
-identifying the type automatically.
-
-C: gdk_pixbuf_loader_new_with_type
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufLoader.new_with_type.html")
-
-
-(rt:define-gfunction (pixbuf-loader-close "gdk_pixbuf_loader_close") :args
-                     ((loader (:object pixbuf-loader))) :return :boolean :throws t :documentation
-                     "Informs a pixbuf loader that no further writes with
-gdk_pixbuf_loader_write() will occur, so that it can free its
-internal loading structures.
-
-C: gdk_pixbuf_loader_close
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.close.html")
-
-
-(rt:define-gfunction (pixbuf-loader-get-animation "gdk_pixbuf_loader_get_animation") :args
-                     ((loader (:object pixbuf-loader))) :return (:object pixbuf-animation)
-                     :documentation
-                     "Queries the #GdkPixbufAnimation that a pixbuf loader is currently creating.
-
-C: gdk_pixbuf_loader_get_animation
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.get_animation.html")
-
-
-(rt:define-gfunction (pixbuf-loader-get-format "gdk_pixbuf_loader_get_format") :args
-                     ((loader (:object pixbuf-loader))) :return
-                     (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format) :version
-                     "2.2" :documentation "Obtains the available information about the format of the
-currently loading image file.
-
-C: gdk_pixbuf_loader_get_format
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.get_format.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-loader-get-pixbuf "gdk_pixbuf_loader_get_pixbuf") :args
-                     ((loader (:object pixbuf-loader))) :return (:object pixbuf) :documentation
-                     "Queries the #GdkPixbuf that a pixbuf loader is currently creating.
-
-C: gdk_pixbuf_loader_get_pixbuf
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.get_pixbuf.html")
-
-
-(rt:define-gfunction (pixbuf-loader-set-size "gdk_pixbuf_loader_set_size") :args
-                     ((loader (:object pixbuf-loader)) (width :int) (height :int)) :version "2.2"
-                     :documentation "Causes the image to be scaled while it is loaded.
-
-C: gdk_pixbuf_loader_set_size
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.set_size.html
-Since: 2.2")
-
-
-(rt:define-gfunction (pixbuf-loader-write "gdk_pixbuf_loader_write") :args
-                     ((loader (:object pixbuf-loader)) (buf (:array :uint8))
-                      (count :size :length-of buf))
-                     :return :boolean :throws t :documentation
-                     "Parses the next `count` bytes in the given image buffer.
-
-C: gdk_pixbuf_loader_write
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.write.html")
-
-
-(rt:define-gfunction (pixbuf-loader-write-bytes "gdk_pixbuf_loader_write_bytes") :args
-                     ((loader (:object pixbuf-loader))
-                      (buffer (:boxed "GBytes" "g_bytes_get_type")))
-                     :return :boolean :throws t :version "2.30" :documentation
-                     "Parses the next contents of the given image buffer.
-
-C: gdk_pixbuf_loader_write_bytes
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.write_bytes.html
-Since: 2.30")
-
-
-(rt:define-gfunction (pixbuf-non-anim-new "gdk_pixbuf_non_anim_new") :args
-                     ((pixbuf (:object pixbuf))) :return (:object pixbuf-animation)
-                     :return-transfer :full :documentation "
-C: gdk_pixbuf_non_anim_new
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufNonAnim.new.html")
-
-
-(rt:define-gfunction (pixbuf-simple-anim-new "gdk_pixbuf_simple_anim_new") :args
-                     ((width :int) (height :int) (rate :float)) :return
-                     (:object pixbuf-simple-anim) :return-transfer :full :version "2.8"
-                     :documentation "Creates a new, empty animation.
-
-C: gdk_pixbuf_simple_anim_new
-See: https://docs.gtk.org/gdk-pixbuf/ctor.PixbufSimpleAnim.new.html
-Since: 2.8
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-simple-anim-add-frame "gdk_pixbuf_simple_anim_add_frame") :args
-                     ((animation (:object pixbuf-simple-anim)) (pixbuf (:object pixbuf))) :version
-                     "2.8" :documentation "Adds a new frame to ANIMATION. The PIXBUF must
-have the dimensions specified when the animation
-was constructed.
-
-C: gdk_pixbuf_simple_anim_add_frame
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufSimpleAnim.add_frame.html
-Since: 2.8
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-simple-anim-get-loop "gdk_pixbuf_simple_anim_get_loop") :args
-                     ((animation (:object pixbuf-simple-anim))) :return :boolean :version "2.18"
-                     :documentation
-                     "Gets whether ANIMATION should loop indefinitely when it reaches the end.
-
-C: gdk_pixbuf_simple_anim_get_loop
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufSimpleAnim.get_loop.html
-Since: 2.18
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-simple-anim-set-loop "gdk_pixbuf_simple_anim_set_loop") :args
-                     ((animation (:object pixbuf-simple-anim)) (loop :boolean)) :version "2.18"
-                     :documentation
-                     "Sets whether ANIMATION should loop indefinitely when it reaches the end.
-
-C: gdk_pixbuf_simple_anim_set_loop
-See: https://docs.gtk.org/gdk-pixbuf/method.PixbufSimpleAnim.set_loop.html
-Since: 2.18
-Deprecated.")
-
-
-(rt:define-gfunction (pixbuf-error-quark "gdk_pixbuf_error_quark") :return :uint32 :documentation "
-C: gdk_pixbuf_error_quark
-See: https://docs.gtk.org/gdk-pixbuf/type_func.PixbufError.quark.html")

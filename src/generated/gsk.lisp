@@ -7,7 +7,8 @@
 
 
 (rt:define-genum blend-mode
-    (:kind :enum :gtype-name "GskBlendMode" :get-type "gsk_blend_mode_get_type" :documentation
+    (:kind :enum :gtype-name "GskBlendMode" :get-type "gsk_blend_mode_get_type" :c-name
+     "GskBlendMode" :url "https://docs.gtk.org/gsk4/enum.BlendMode.html" :documentation
      "The blend modes available for render nodes.
 
 C: GskBlendMode
@@ -31,8 +32,9 @@ See: https://docs.gtk.org/gsk4/enum.BlendMode.html")
 
 
 (rt:define-genum corner
-    (:kind :enum :gtype-name "GskCorner" :get-type "gsk_corner_get_type" :documentation
-     "The corner indices used by `GskRoundedRect`.
+    (:kind :enum :gtype-name "GskCorner" :get-type "gsk_corner_get_type" :c-name "GskCorner" :url
+     "https://docs.gtk.org/gsk4/enum.Corner.html" :documentation
+     "The corner indices used by `gsk:rounded-rect`.
 
 C: GskCorner
 See: https://docs.gtk.org/gsk4/enum.Corner.html")
@@ -43,7 +45,8 @@ See: https://docs.gtk.org/gsk4/enum.Corner.html")
 
 
 (rt:define-genum fill-rule
-    (:kind :enum :gtype-name "GskFillRule" :get-type "gsk_fill_rule_get_type" :documentation
+    (:kind :enum :gtype-name "GskFillRule" :get-type "gsk_fill_rule_get_type" :c-name "GskFillRule"
+     :url "https://docs.gtk.org/gsk4/enum.FillRule.html" :documentation
      "Specifies how paths are filled.
 
 C: GskFillRule
@@ -53,8 +56,9 @@ See: https://docs.gtk.org/gsk4/enum.FillRule.html")
 
 
 (rt:define-genum gl-uniform-type
-    (:kind :enum :gtype-name "GskGLUniformType" :get-type "gsk_gl_uniform_type_get_type"
-     :documentation "Defines the types of the uniforms that `GskGLShaders` declare.
+    (:kind :enum :gtype-name "GskGLUniformType" :get-type "gsk_gl_uniform_type_get_type" :c-name
+     "GskGLUniformType" :url "https://docs.gtk.org/gsk4/enum.GLUniformType.html" :documentation
+     "Defines the types of the uniforms that `GskGLShaders` declare.
 
 C: GskGLUniformType
 See: https://docs.gtk.org/gsk4/enum.GLUniformType.html")
@@ -69,9 +73,10 @@ See: https://docs.gtk.org/gsk4/enum.GLUniformType.html")
 
 
 (rt:define-genum isolation
-    (:kind :flags :gtype-name "GskIsolation" :get-type "gsk_isolation_get_type" :documentation
+    (:kind :flags :gtype-name "GskIsolation" :get-type "gsk_isolation_get_type" :c-name
+     "GskIsolation" :url "https://docs.gtk.org/gsk4/flags.Isolation.html" :documentation
      "These flags describe the types of isolations possible with a
-Gsk.IsolationNode.
+`gsk:isolation-node`.
 
 C: GskIsolation
 See: https://docs.gtk.org/gsk4/flags.Isolation.html")
@@ -82,7 +87,8 @@ See: https://docs.gtk.org/gsk4/flags.Isolation.html")
 
 
 (rt:define-genum line-cap
-    (:kind :enum :gtype-name "GskLineCap" :get-type "gsk_line_cap_get_type" :documentation
+    (:kind :enum :gtype-name "GskLineCap" :get-type "gsk_line_cap_get_type" :c-name "GskLineCap"
+     :url "https://docs.gtk.org/gsk4/enum.LineCap.html" :documentation
      "Specifies how to render the start and end points of contours or
 dashes when stroking.
 
@@ -94,7 +100,8 @@ See: https://docs.gtk.org/gsk4/enum.LineCap.html")
 
 
 (rt:define-genum line-join
-    (:kind :enum :gtype-name "GskLineJoin" :get-type "gsk_line_join_get_type" :documentation
+    (:kind :enum :gtype-name "GskLineJoin" :get-type "gsk_line_join_get_type" :c-name "GskLineJoin"
+     :url "https://docs.gtk.org/gsk4/enum.LineJoin.html" :documentation
      "Specifies how to render the junction of two lines when stroking.
 
 C: GskLineJoin
@@ -105,7 +112,8 @@ See: https://docs.gtk.org/gsk4/enum.LineJoin.html")
 
 
 (rt:define-genum mask-mode
-    (:kind :enum :gtype-name "GskMaskMode" :get-type "gsk_mask_mode_get_type" :documentation
+    (:kind :enum :gtype-name "GskMaskMode" :get-type "gsk_mask_mode_get_type" :c-name "GskMaskMode"
+     :url "https://docs.gtk.org/gsk4/enum.MaskMode.html" :documentation
      "The mask modes available for mask nodes.
 
 C: GskMaskMode
@@ -117,8 +125,9 @@ See: https://docs.gtk.org/gsk4/enum.MaskMode.html")
 
 
 (rt:define-genum path-direction
-    (:kind :enum :gtype-name "GskPathDirection" :get-type "gsk_path_direction_get_type"
-     :documentation "Used to pick one of the four tangents at a given point on the path.
+    (:kind :enum :gtype-name "GskPathDirection" :get-type "gsk_path_direction_get_type" :c-name
+     "GskPathDirection" :url "https://docs.gtk.org/gsk4/enum.PathDirection.html" :documentation
+     "Used to pick one of the four tangents at a given point on the path.
 
 C: GskPathDirection
 See: https://docs.gtk.org/gsk4/enum.PathDirection.html")
@@ -130,7 +139,8 @@ See: https://docs.gtk.org/gsk4/enum.PathDirection.html")
 
 (rt:define-genum path-foreach-flags
     (:kind :flags :gtype-name "GskPathForeachFlags" :get-type "gsk_path_foreach_flags_get_type"
-     :documentation "Flags that can be passed to gsk_path_foreach() to influence what
+     :c-name "GskPathForeachFlags" :url "https://docs.gtk.org/gsk4/flags.PathForeachFlags.html"
+     :documentation "Flags that can be passed to `gsk:path-foreach` to influence what
 kinds of operations the path is decomposed into.
 
 C: GskPathForeachFlags
@@ -143,6 +153,7 @@ See: https://docs.gtk.org/gsk4/flags.PathForeachFlags.html")
 
 (rt:define-genum path-intersection
     (:kind :enum :gtype-name "GskPathIntersection" :get-type "gsk_path_intersection_get_type"
+     :c-name "GskPathIntersection" :url "https://docs.gtk.org/gsk4/enum.PathIntersection.html"
      :documentation "The values of this enumeration classify intersections
 between paths.
 
@@ -155,8 +166,9 @@ See: https://docs.gtk.org/gsk4/enum.PathIntersection.html")
 
 
 (rt:define-genum path-operation
-    (:kind :enum :gtype-name "GskPathOperation" :get-type "gsk_path_operation_get_type"
-     :documentation "Describes the segments of a `GskPath`.
+    (:kind :enum :gtype-name "GskPathOperation" :get-type "gsk_path_operation_get_type" :c-name
+     "GskPathOperation" :url "https://docs.gtk.org/gsk4/enum.PathOperation.html" :documentation
+     "Describes the segments of a `gsk:path`.
 
 C: GskPathOperation
 See: https://docs.gtk.org/gsk4/enum.PathOperation.html")
@@ -169,7 +181,8 @@ See: https://docs.gtk.org/gsk4/enum.PathOperation.html")
 
 
 (rt:define-genum porter-duff
-    (:kind :enum :gtype-name "GskPorterDuff" :get-type "gsk_porter_duff_get_type" :documentation
+    (:kind :enum :gtype-name "GskPorterDuff" :get-type "gsk_porter_duff_get_type" :c-name
+     "GskPorterDuff" :url "https://docs.gtk.org/gsk4/enum.PorterDuff.html" :documentation
      "GSK_PORTER_DUFF_SOURCE:
 GSK_PORTER_DUFF_DEST:
 GSK_PORTER_DUFF_SOURCE_OVER_DEST:
@@ -202,8 +215,9 @@ See: https://docs.gtk.org/gsk4/enum.PorterDuff.html")
 
 
 (rt:define-genum render-node-type
-    (:kind :enum :gtype-name "GskRenderNodeType" :get-type "gsk_render_node_type_get_type"
-     :documentation "The type of a node determines what the node is rendering.
+    (:kind :enum :gtype-name "GskRenderNodeType" :get-type "gsk_render_node_type_get_type" :c-name
+     "GskRenderNodeType" :url "https://docs.gtk.org/gsk4/enum.RenderNodeType.html" :documentation
+     "The type of a node determines what the node is rendering.
 
 C: GskRenderNodeType
 See: https://docs.gtk.org/gsk4/enum.RenderNodeType.html")
@@ -249,8 +263,9 @@ See: https://docs.gtk.org/gsk4/enum.RenderNodeType.html")
 
 
 (rt:define-genum scaling-filter
-    (:kind :enum :gtype-name "GskScalingFilter" :get-type "gsk_scaling_filter_get_type"
-     :documentation "The filters used when scaling texture data.
+    (:kind :enum :gtype-name "GskScalingFilter" :get-type "gsk_scaling_filter_get_type" :c-name
+     "GskScalingFilter" :url "https://docs.gtk.org/gsk4/enum.ScalingFilter.html" :documentation
+     "The filters used when scaling texture data.
 
 C: GskScalingFilter
 See: https://docs.gtk.org/gsk4/enum.ScalingFilter.html")
@@ -261,6 +276,7 @@ See: https://docs.gtk.org/gsk4/enum.ScalingFilter.html")
 
 (rt:define-genum serialization-error
     (:kind :enum :gtype-name "GskSerializationError" :get-type "gsk_serialization_error_get_type"
+     :c-name "GskSerializationError" :url "https://docs.gtk.org/gsk4/enum.SerializationError.html"
      :documentation "Errors that can happen during (de)serialization.
 
 C: GskSerializationError
@@ -271,8 +287,9 @@ See: https://docs.gtk.org/gsk4/enum.SerializationError.html")
 
 
 (rt:define-genum side
-    (:kind :enum :gtype-name "GskSide" :get-type "gsk_side_get_type" :documentation
-     "The sides of a rectangle as used by `GskRectSnap` or `GskBorderNode`.
+    (:kind :enum :gtype-name "GskSide" :get-type "gsk_side_get_type" :c-name "GskSide" :url
+     "https://docs.gtk.org/gsk4/enum.Side.html" :documentation
+     "The sides of a rectangle as used by `gsk:rect-snap` or `gsk:border-node`.
 
 C: GskSide
 See: https://docs.gtk.org/gsk4/enum.Side.html")
@@ -283,8 +300,9 @@ See: https://docs.gtk.org/gsk4/enum.Side.html")
 
 
 (rt:define-genum snap-direction
-    (:kind :enum :gtype-name "GskSnapDirection" :get-type "gsk_snap_direction_get_type"
-     :documentation "Specifies how a coordinate should be snapped to the pixel grid.
+    (:kind :enum :gtype-name "GskSnapDirection" :get-type "gsk_snap_direction_get_type" :c-name
+     "GskSnapDirection" :url "https://docs.gtk.org/gsk4/enum.SnapDirection.html" :documentation
+     "Specifies how a coordinate should be snapped to the pixel grid.
 
 C: GskSnapDirection
 See: https://docs.gtk.org/gsk4/enum.SnapDirection.html")
@@ -296,6 +314,7 @@ See: https://docs.gtk.org/gsk4/enum.SnapDirection.html")
 
 (rt:define-genum transform-category
     (:kind :enum :gtype-name "GskTransformCategory" :get-type "gsk_transform_category_get_type"
+     :c-name "GskTransformCategory" :url "https://docs.gtk.org/gsk4/enum.TransformCategory.html"
      :documentation "The categories of matrices relevant for GSK and GTK.
 
 C: GskTransformCategory
@@ -339,15 +358,18 @@ See: https://docs.gtk.org/gsk4/const.RECT_SNAP_SHRINK.html")
 
 
 (rt:define-gclass renderer (rt:object)
-                  (:gtype-name "GskRenderer" :get-type "gsk_renderer_get_type" :documentation
-                   "Renders a scene graph defined via a tree of Gsk.RenderNode instances.
+                  (:gtype-name "GskRenderer" :get-type "gsk_renderer_get_type" :c-name
+                   "GskRenderer" :url "https://docs.gtk.org/gsk4/class.Renderer.html"
+                   :documentation
+                   "Renders a scene graph defined via a tree of `gsk:render-node` instances.
 
 C: GskRenderer
 See: https://docs.gtk.org/gsk4/class.Renderer.html"))
 
 
 (rt:define-gclass cairo-renderer (renderer)
-                  (:gtype-name "GskCairoRenderer" :get-type "gsk_cairo_renderer_get_type"
+                  (:gtype-name "GskCairoRenderer" :get-type "gsk_cairo_renderer_get_type" :c-name
+                   "GskCairoRenderer" :url "https://docs.gtk.org/gsk4/class.CairoRenderer.html"
                    :documentation "Renders a GSK rendernode tree with cairo.
 
 C: GskCairoRenderer
@@ -355,30 +377,35 @@ See: https://docs.gtk.org/gsk4/class.CairoRenderer.html"))
 
 
 (rt:define-gclass gl-renderer (renderer)
-                  (:gtype-name "GskGLRenderer" :get-type "gsk_gl_renderer_get_type" :documentation
-                   "Renders a GSK rendernode tree with OpenGL.
+                  (:gtype-name "GskGLRenderer" :get-type "gsk_gl_renderer_get_type" :c-name
+                   "GskGLRenderer" :url "https://docs.gtk.org/gsk4/class.GLRenderer.html"
+                   :documentation "Renders a GSK rendernode tree with OpenGL.
 
 C: GskGLRenderer
 See: https://docs.gtk.org/gsk4/class.GLRenderer.html"))
 
 
 (rt:define-gclass gl-shader (rt:object)
-                  (:gtype-name "GskGLShader" :get-type "gsk_gl_shader_get_type" :documentation
-                   "Implements a fragment shader using GLSL.
+                  (:gtype-name "GskGLShader" :get-type "gsk_gl_shader_get_type" :c-name
+                   "GskGLShader" :url "https://docs.gtk.org/gsk4/class.GLShader.html"
+                   :documentation "Implements a fragment shader using GLSL.
 
 C: GskGLShader
 See: https://docs.gtk.org/gsk4/class.GLShader.html"))
 
 
 (rt:define-gclass ngl-renderer (renderer)
-                  (:gtype-name "GskNglRenderer" :get-type "gsk_ngl_renderer_get_type"
-                   :documentation "A GL based renderer.
+                  (:gtype-name "GskNglRenderer" :get-type "gsk_ngl_renderer_get_type" :c-name nil
+                   :url "https://docs.gtk.org/gsk4/class.NglRenderer.html" :documentation
+                   "A GL based renderer.
+
 
 See: https://docs.gtk.org/gsk4/class.NglRenderer.html"))
 
 
 (rt:define-gclass vulkan-renderer (renderer)
-                  (:gtype-name "GskVulkanRenderer" :get-type "gsk_vulkan_renderer_get_type"
+                  (:gtype-name "GskVulkanRenderer" :get-type "gsk_vulkan_renderer_get_type" :c-name
+                   "GskVulkanRenderer" :url "https://docs.gtk.org/gsk4/class.VulkanRenderer.html"
                    :documentation "Renders a GSK rendernode tree with Vulkan.
 
 C: GskVulkanRenderer
@@ -388,7 +415,8 @@ See: https://docs.gtk.org/gsk4/class.VulkanRenderer.html"))
 
 
 (rt:define-grecord component-transfer
-                   (:gtype-name "GskComponentTransfer" :documentation
+                   (:gtype-name "GskComponentTransfer" :c-name "GskComponentTransfer" :url
+                    "https://docs.gtk.org/gsk4/struct.ComponentTransfer.html" :documentation
                     "Specifies a transfer function for a color component to be applied
 while rendering.
 
@@ -397,7 +425,8 @@ See: https://docs.gtk.org/gsk4/struct.ComponentTransfer.html"))
 
 
 (rt:define-grecord path
-                   (:gtype-name "GskPath" :documentation
+                   (:gtype-name "GskPath" :c-name "GskPath" :url
+                    "https://docs.gtk.org/gsk4/struct.Path.html" :documentation
                     "Describes lines and curves that are more complex than simple rectangles.
 
 C: GskPath
@@ -405,14 +434,17 @@ See: https://docs.gtk.org/gsk4/struct.Path.html"))
 
 
 (rt:define-grecord path-builder
-                   (:gtype-name "GskPathBuilder" :documentation "Constructs `GskPath` objects.
+                   (:gtype-name "GskPathBuilder" :c-name "GskPathBuilder" :url
+                    "https://docs.gtk.org/gsk4/struct.PathBuilder.html" :documentation
+                    "Constructs `gsk:path` objects.
 
 C: GskPathBuilder
 See: https://docs.gtk.org/gsk4/struct.PathBuilder.html"))
 
 
 (rt:define-grecord path-measure
-                   (:gtype-name "GskPathMeasure" :documentation
+                   (:gtype-name "GskPathMeasure" :c-name "GskPathMeasure" :url
+                    "https://docs.gtk.org/gsk4/struct.PathMeasure.html" :documentation
                     "Performs measurements on paths such as determining the length of the path.
 
 C: GskPathMeasure
@@ -420,15 +452,18 @@ See: https://docs.gtk.org/gsk4/struct.PathMeasure.html"))
 
 
 (rt:define-grecord path-point
-                   (:gtype-name "GskPathPoint" :documentation "Represents a point on a path.
+                   (:gtype-name "GskPathPoint" :c-name "GskPathPoint" :url
+                    "https://docs.gtk.org/gsk4/struct.PathPoint.html" :documentation
+                    "Represents a point on a path.
 
 C: GskPathPoint
 See: https://docs.gtk.org/gsk4/struct.PathPoint.html"))
 
 
 (rt:define-grecord render-replay
-                   (:gtype-name "GskRenderReplay" :documentation
-                    "A facility to replay a Gsk.RenderNode and its children, potentially
+                   (:gtype-name "GskRenderReplay" :c-name "GskRenderReplay" :url
+                    "https://docs.gtk.org/gsk4/struct.RenderReplay.html" :documentation
+                    "A facility to replay a `gsk:render-node` and its children, potentially
 modifying them.
 
 C: GskRenderReplay
@@ -436,15 +471,17 @@ See: https://docs.gtk.org/gsk4/struct.RenderReplay.html"))
 
 
 (rt:define-grecord shader-args-builder
-                   (:gtype-name "GskShaderArgsBuilder" :documentation
-                    "Builds the uniforms data for a `GskGLShader`.
+                   (:gtype-name "GskShaderArgsBuilder" :c-name "GskShaderArgsBuilder" :url
+                    "https://docs.gtk.org/gsk4/struct.ShaderArgsBuilder.html" :documentation
+                    "Builds the uniforms data for a `gsk:gl-shader`.
 
 C: GskShaderArgsBuilder
 See: https://docs.gtk.org/gsk4/struct.ShaderArgsBuilder.html"))
 
 
 (rt:define-grecord stroke
-                   (:gtype-name "GskStroke" :documentation
+                   (:gtype-name "GskStroke" :c-name "GskStroke" :url
+                    "https://docs.gtk.org/gsk4/struct.Stroke.html" :documentation
                     "Collects the parameters that are needed when stroking a path.
 
 C: GskStroke
@@ -452,7 +489,9 @@ See: https://docs.gtk.org/gsk4/struct.Stroke.html"))
 
 
 (rt:define-grecord transform
-                   (:gtype-name "GskTransform" :documentation "Describes a 3D transform.
+                   (:gtype-name "GskTransform" :c-name "GskTransform" :url
+                    "https://docs.gtk.org/gsk4/struct.Transform.html" :documentation
+                    "Describes a 3D transform.
 
 C: GskTransform
 See: https://docs.gtk.org/gsk4/struct.Transform.html"))
@@ -468,13 +507,17 @@ See: https://docs.gtk.org/gsk4/struct.Transform.html"))
 
 (rt:define-gfield color-stop-offset color-stop :offset :float :writable t :documentation
                   "the offset of the color stop
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ColorStop.html")
 
 
 (rt:define-gfield color-stop-color color-stop :color
                   (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :writable t :inline t
                   :documentation "the color at the given offset
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ColorStop.html")
 
 
 (rt:define-gstruct-constructor make-color-stop (:record color-stop)
@@ -496,27 +539,37 @@ See: https://docs.gtk.org/gsk4/struct.Transform.html"))
 
 (rt:define-gfield parse-location-bytes parse-location :bytes :size :writable t :documentation
                   "the offset of the location in the parse buffer, as bytes
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ParseLocation.html")
 
 
 (rt:define-gfield parse-location-chars parse-location :chars :size :writable t :documentation
                   "the offset of the location in the parse buffer, as characters
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ParseLocation.html")
 
 
 (rt:define-gfield parse-location-lines parse-location :lines :size :writable t :documentation
                   "the line of the location in the parse buffer
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ParseLocation.html")
 
 
 (rt:define-gfield parse-location-line-bytes parse-location :line-bytes :size :writable t
                   :documentation "the position in the line, as bytes
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ParseLocation.html")
 
 
 (rt:define-gfield parse-location-line-chars parse-location :line-chars :size :writable t
                   :documentation "the position in the line, as characters
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.ParseLocation.html")
 
 
 (rt:define-gstruct-constructor make-parse-location (:record parse-location)
@@ -554,7 +607,9 @@ See: https://docs.gtk.org/gsk4/struct.Transform.html"))
 (rt:define-gfield rounded-rect-bounds rounded-rect :bounds
                   (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :writable t
                   :inline t :documentation "the bounds of the rectangle
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.RoundedRect.html")
 
 
 (rt:define-gstruct-constructor make-rounded-rect (:record rounded-rect)
@@ -575,22 +630,30 @@ See: https://docs.gtk.org/gsk4/struct.Transform.html"))
 
 (rt:define-gfield shadow-color shadow :color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
                   :writable t :inline t :documentation "the color of the shadow
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.Shadow.html")
 
 
 (rt:define-gfield shadow-dx shadow :dx :float :writable t :documentation
                   "the horizontal offset of the shadow
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.Shadow.html")
 
 
 (rt:define-gfield shadow-dy shadow :dy :float :writable t :documentation
                   "the vertical offset of the shadow
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.Shadow.html")
 
 
 (rt:define-gfield shadow-radius shadow :radius :float :writable t :documentation
                   "the radius of the shadow
-")
+
+
+See: https://docs.gtk.org/gsk4/struct.Shadow.html")
 
 
 (rt:define-gstruct-constructor make-shadow (:record shadow)
@@ -607,12 +670,14 @@ See: https://docs.gtk.org/gsk4/struct.Transform.html"))
                      (:readable t :writable nil :documentation
                       "Whether the renderer has been associated with a surface or draw context.
 
+
 See: https://docs.gtk.org/gsk4/property.Renderer.realized.html"))
 
 
 (rt:define-gproperty renderer-surface "surface"
                      (:readable t :writable nil :documentation
                       "The surface associated with renderer.
+
 
 See: https://docs.gtk.org/gsk4/property.Renderer.surface.html"))
 
@@ -621,12 +686,14 @@ See: https://docs.gtk.org/gsk4/property.Renderer.surface.html"))
                      (:readable t :writable nil :documentation
                       "Resource containing the source code for the shader.
 
+
 See: https://docs.gtk.org/gsk4/property.GLShader.resource.html"))
 
 
 (rt:define-gproperty gl-shader-source "source"
                      (:readable t :writable nil :documentation
-                      "The source code for the shader, as a `GBytes`.
+                      "The source code for the shader, as a `glib:bytes`.
+
 
 See: https://docs.gtk.org/gsk4/property.GLShader.source.html"))
 
@@ -669,3385 +736,3 @@ See: https://docs.gtk.org/gsk4/property.GLShader.source.html"))
                       ((replay (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
                        (texture (:object gdk:texture)) (user-data :pointer :user-data t))
                       :return (:object gdk:texture) :return-transfer :full))
-
-;;; Functions, constructors and methods
-
-
-(rt:define-gfunction (rect-snap-get-direction "gsk_rect_snap_get_direction") :args
-                     ((snap :uint) (side (:enum side))) :return (:enum snap-direction) :version
-                     "4.24" :documentation "Queries the way a given border is snapped.
-
-C: gsk_rect_snap_get_direction
-See: https://docs.gtk.org/gsk4/func.rect_snap_get_direction.html
-Since: 4.24")
-
-
-(rt:define-gfunction (rect-snap-new "gsk_rect_snap_new") :args
-                     ((top (:enum snap-direction)) (right (:enum snap-direction))
-                      (bottom (:enum snap-direction)) (left (:enum snap-direction)))
-                     :return :uint :version "4.24" :documentation
-                     "Creates a new way to snap rectangles for the 4 given sides.
-
-C: gsk_rect_snap_new
-See: https://docs.gtk.org/gsk4/func.rect_snap_new.html
-Since: 4.24")
-
-
-(rt:define-gfunction (value-dup-render-node "gsk_value_dup_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
-                     :return-transfer :full :version "4.6" :documentation
-                     "Retrieves the render node stored inside a `GValue`,
-and acquires a reference to it.
-
-C: gsk_value_dup_render_node
-See: https://docs.gtk.org/gsk4/func.value_dup_render_node.html
-Since: 4.6")
-
-
-(rt:define-gfunction (value-get-render-node "gsk_value_get_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
-                     :version "4.6" :documentation
-                     "Retrieves the render node stored inside a `GValue`.
-
-C: gsk_value_get_render_node
-See: https://docs.gtk.org/gsk4/func.value_get_render_node.html
-Since: 4.6")
-
-
-(rt:define-gfunction (value-set-render-node "gsk_value_set_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type" gobject:value)) (node :pointer))
-                     :version "4.6" :documentation "Stores the given render node inside a `GValue`.
-
-C: gsk_value_set_render_node
-See: https://docs.gtk.org/gsk4/func.value_set_render_node.html
-Since: 4.6")
-
-
-(rt:define-gfunction (value-take-render-node "gsk_value_take_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))
-                      (node :pointer :transfer :full :optional t))
-                     :version "4.6" :documentation "Stores the given render node inside a `GValue`.
-
-C: gsk_value_take_render_node
-See: https://docs.gtk.org/gsk4/func.value_take_render_node.html
-Since: 4.6")
-
-
-(rt:define-gfunction (blend-node-new "gsk_blend_node_new") :args
-                     ((bottom :pointer) (top :pointer) (blend-mode (:enum blend-mode))) :return
-                     :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will use BLEND-MODE to blend the TOP
-node onto the BOTTOM node.
-
-C: gsk_blend_node_new
-See: https://docs.gtk.org/gsk4/ctor.BlendNode.new.html")
-
-
-(rt:define-gfunction (blend-node-get-blend-mode "gsk_blend_node_get_blend_mode") :args
-                     ((node :pointer)) :return (:enum blend-mode) :documentation
-                     "Retrieves the blend mode used by NODE.
-
-C: gsk_blend_node_get_blend_mode
-See: https://docs.gtk.org/gsk4/method.BlendNode.get_blend_mode.html")
-
-
-(rt:define-gfunction (blend-node-get-bottom-child "gsk_blend_node_get_bottom_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Retrieves the bottom `GskRenderNode` child of the NODE.
-
-C: gsk_blend_node_get_bottom_child
-See: https://docs.gtk.org/gsk4/method.BlendNode.get_bottom_child.html")
-
-
-(rt:define-gfunction (blend-node-get-top-child "gsk_blend_node_get_top_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Retrieves the top `GskRenderNode` child of the NODE.
-
-C: gsk_blend_node_get_top_child
-See: https://docs.gtk.org/gsk4/method.BlendNode.get_top_child.html")
-
-
-(rt:define-gfunction (blur-node-new "gsk_blur_node_new") :args ((child :pointer) (radius :float))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a render node that blurs the child.
-
-C: gsk_blur_node_new
-See: https://docs.gtk.org/gsk4/ctor.BlurNode.new.html")
-
-
-(rt:define-gfunction (blur-node-get-child "gsk_blur_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation
-                     "Retrieves the child `GskRenderNode` of the blur NODE.
-
-C: gsk_blur_node_get_child
-See: https://docs.gtk.org/gsk4/method.BlurNode.get_child.html")
-
-
-(rt:define-gfunction (blur-node-get-radius "gsk_blur_node_get_radius") :args ((node :pointer))
-                     :return :float :documentation "Retrieves the blur radius of the NODE.
-
-C: gsk_blur_node_get_radius
-See: https://docs.gtk.org/gsk4/method.BlurNode.get_radius.html")
-
-
-(rt:define-gfunction (border-node-new "gsk_border_node_new") :args
-                     ((outline (:record rounded-rect)) (border-width (:array :float :fixed-size 4))
-                      (border-color
-                       (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :fixed-size 4)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will stroke a border rectangle inside the
-given OUTLINE.
-
-C: gsk_border_node_new
-See: https://docs.gtk.org/gsk4/ctor.BorderNode.new.html")
-
-
-(rt:define-gfunction (border-node-get-border-snap "gsk_border_node_get_border_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for the border
-
-C: gsk_border_node_get_border_snap
-See: https://docs.gtk.org/gsk4/method.BorderNode.get_border_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (border-node-get-colors "gsk_border_node_get_colors") :args ((node :pointer))
-                     :return (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :fixed-size 4)
-                     :documentation "Retrieves the colors of the border.
-
-C: gsk_border_node_get_colors
-See: https://docs.gtk.org/gsk4/method.BorderNode.get_colors.html")
-
-
-(rt:define-gfunction (border-node-get-outline "gsk_border_node_get_outline") :args
-                     ((node :pointer)) :return (:record rounded-rect) :documentation
-                     "Retrieves the outline of the border.
-
-C: gsk_border_node_get_outline
-See: https://docs.gtk.org/gsk4/method.BorderNode.get_outline.html")
-
-
-(rt:define-gfunction (border-node-get-snap "gsk_border_node_get_snap") :args ((node :pointer))
-                     :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_border_node_get_snap
-See: https://docs.gtk.org/gsk4/method.BorderNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (border-node-get-widths "gsk_border_node_get_widths") :args ((node :pointer))
-                     :return (:array :float :fixed-size 4) :documentation
-                     "Retrieves the stroke widths of the border.
-
-C: gsk_border_node_get_widths
-See: https://docs.gtk.org/gsk4/method.BorderNode.get_widths.html")
-
-
-(rt:define-gfunction (cairo-node-new "gsk_cairo_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render a cairo surface
-into the area given by BOUNDS.
-
-C: gsk_cairo_node_new
-See: https://docs.gtk.org/gsk4/ctor.CairoNode.new.html")
-
-
-(rt:define-gfunction (cairo-node-get-draw-context "gsk_cairo_node_get_draw_context") :args
-                     ((node :pointer)) :return
-                     (:boxed "CairoContext" "cairo_gobject_context_get_type") :return-transfer
-                     :full :documentation
-                     "Creates a Cairo context for drawing using the surface associated
-to the render node.
-
-C: gsk_cairo_node_get_draw_context
-See: https://docs.gtk.org/gsk4/method.CairoNode.get_draw_context.html")
-
-
-(rt:define-gfunction (cairo-node-get-surface "gsk_cairo_node_get_surface") :args ((node :pointer))
-                     :return (:boxed "CairoSurface" "cairo_gobject_surface_get_type")
-                     :documentation "Retrieves the Cairo surface used by the render node.
-
-C: gsk_cairo_node_get_surface
-See: https://docs.gtk.org/gsk4/method.CairoNode.get_surface.html")
-
-
-(rt:define-gfunction (cairo-renderer-new "gsk_cairo_renderer_new") :return (:object renderer)
-                     :return-transfer :full :documentation "Creates a new Cairo renderer.
-
-C: gsk_cairo_renderer_new
-See: https://docs.gtk.org/gsk4/ctor.CairoRenderer.new.html")
-
-
-(rt:define-gfunction (clip-node-new "gsk_clip_node_new") :args
-                     ((child :pointer)
-                      (clip (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will clip the CHILD to the area
-given by CLIP.
-
-C: gsk_clip_node_new
-See: https://docs.gtk.org/gsk4/ctor.ClipNode.new.html")
-
-
-(rt:define-gfunction (clip-node-get-child "gsk_clip_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation
-                     "Gets the child node that is getting clipped by the given NODE.
-
-C: gsk_clip_node_get_child
-See: https://docs.gtk.org/gsk4/method.ClipNode.get_child.html")
-
-
-(rt:define-gfunction (clip-node-get-clip "gsk_clip_node_get_clip") :args ((node :pointer)) :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :documentation
-                     "Retrieves the clip rectangle for NODE.
-
-C: gsk_clip_node_get_clip
-See: https://docs.gtk.org/gsk4/method.ClipNode.get_clip.html")
-
-
-(rt:define-gfunction (clip-node-get-snap "gsk_clip_node_get_snap") :args ((node :pointer)) :return
-                     :uint :version "4.24" :documentation "Retrieves the snap value for this node
-
-C: gsk_clip_node_get_snap
-See: https://docs.gtk.org/gsk4/method.ClipNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (color-matrix-node-new "gsk_color_matrix_node_new") :args
-                     ((child :pointer)
-                      (color-matrix
-                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix))
-                      (color-offset
-                       (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will drawn the CHILD with
-COLOR-MATRIX.
-
-C: gsk_color_matrix_node_new
-See: https://docs.gtk.org/gsk4/ctor.ColorMatrixNode.new.html")
-
-
-(rt:define-gfunction (color-matrix-node-get-child "gsk_color_matrix_node_get_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Gets the child node that is getting its colors modified by the given NODE.
-
-C: gsk_color_matrix_node_get_child
-See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_child.html")
-
-
-(rt:define-gfunction (color-matrix-node-get-color-matrix "gsk_color_matrix_node_get_color_matrix")
-                     :args ((node :pointer)) :return
-                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)
-                     :documentation "Retrieves the color matrix used by the NODE.
-
-C: gsk_color_matrix_node_get_color_matrix
-See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_color_matrix.html")
-
-
-(rt:define-gfunction (color-matrix-node-get-color-offset "gsk_color_matrix_node_get_color_offset")
-                     :args ((node :pointer)) :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4) :documentation
-                     "Retrieves the color offset used by the NODE.
-
-C: gsk_color_matrix_node_get_color_offset
-See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_color_offset.html")
-
-
-(rt:define-gfunction (color-matrix-node-get-snap "gsk_color_matrix_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_color_matrix_node_get_snap
-See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (color-node-new "gsk_color_node_new") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render the color specified by RGBA into
-the area given by BOUNDS.
-
-C: gsk_color_node_new
-See: https://docs.gtk.org/gsk4/ctor.ColorNode.new.html")
-
-
-(rt:define-gfunction (color-node-get-color "gsk_color_node_get_color") :args ((node :pointer))
-                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :documentation
-                     "Retrieves the color of the given NODE.
-
-C: gsk_color_node_get_color
-See: https://docs.gtk.org/gsk4/method.ColorNode.get_color.html")
-
-
-(rt:define-gfunction (color-node-get-snap "gsk_color_node_get_snap") :args ((node :pointer))
-                     :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_color_node_get_snap
-See: https://docs.gtk.org/gsk4/method.ColorNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (component-transfer-new-discrete "gsk_component_transfer_new_discrete") :args
-                     ((n :uint :length-of values) (values (:array :float))) :return
-                     (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that applies
-a step function.
-
-C: gsk_component_transfer_new_discrete
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_discrete.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-new-gamma "gsk_component_transfer_new_gamma") :args
-                     ((amp :float) (exp :float) (ofs :float)) :return
-                     (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that applies
-a gamma transform.
-
-C: gsk_component_transfer_new_gamma
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_gamma.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-new-identity "gsk_component_transfer_new_identity")
-                     :return (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that doesn't
-change the component value.
-
-C: gsk_component_transfer_new_identity
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_identity.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-new-levels "gsk_component_transfer_new_levels") :args
-                     ((n :float)) :return
-                     (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that limits
-the values of the component to `n` levels.
-
-C: gsk_component_transfer_new_levels
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_levels.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-new-linear "gsk_component_transfer_new_linear") :args
-                     ((m :float) (b :float)) :return
-                     (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that applies
-a linear transform.
-
-C: gsk_component_transfer_new_linear
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_linear.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-new-table "gsk_component_transfer_new_table") :args
-                     ((n :uint :length-of values) (values (:array :float))) :return
-                     (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation
-                     "Creates a new component transfer that applies
-a piecewise linear function.
-
-C: gsk_component_transfer_new_table
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransfer.new_table.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-equal "gsk_component_transfer_equal") :args
-                     ((self :pointer) (other :pointer)) :return :boolean :version "4.20"
-                     :documentation "Compares two component transfers for equality.
-
-C: gsk_component_transfer_equal
-See: https://docs.gtk.org/gsk4/type_func.ComponentTransfer.equal.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-copy "gsk_component_transfer_copy") :args
-                     ((other (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")))
-                     :return (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")
-                     :return-transfer :full :version "4.20" :documentation "Creates a copy of OTHER.
-
-C: gsk_component_transfer_copy
-See: https://docs.gtk.org/gsk4/method.ComponentTransfer.copy.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-free "gsk_component_transfer_free") :args
-                     ((self (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")))
-                     :version "4.20" :documentation "Frees a component transfer.
-
-C: gsk_component_transfer_free
-See: https://docs.gtk.org/gsk4/method.ComponentTransfer.free.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-node-new "gsk_component_transfer_node_new") :args
-                     ((child :pointer)
-                      (r (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type"))
-                      (g (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type"))
-                      (b (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type"))
-                      (a (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type")))
-                     :return :pointer :return-transfer :full :version "4.20" :documentation
-                     "Creates a render node that will apply component
-transfers to a child node.
-
-C: gsk_component_transfer_node_new
-See: https://docs.gtk.org/gsk4/ctor.ComponentTransferNode.new.html
-Since: 4.20")
-
-
-(rt:define-gfunction (component-transfer-node-get-child "gsk_component_transfer_node_get_child")
-                     :args ((node :pointer)) :return :pointer :version "4.20" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_component_transfer_node_get_child
-See: https://docs.gtk.org/gsk4/method.ComponentTransferNode.get_child.html
-Since: 4.20")
-
-
-(rt:define-gfunction
- (component-transfer-node-get-transfer "gsk_component_transfer_node_get_transfer") :args
- ((node :pointer) (component (:enum gdk:color-channel))) :return
- (:boxed "GskComponentTransfer" "gsk_component_transfer_get_type") :version "4.20" :documentation
- "Gets the component transfer for one of the components.
-
-C: gsk_component_transfer_node_get_transfer
-See: https://docs.gtk.org/gsk4/method.ComponentTransferNode.get_transfer.html
-Since: 4.20")
-
-
-(rt:define-gfunction (composite-node-new "gsk_composite_node_new") :args
-                     ((child :pointer) (mask :pointer) (op (:enum porter-duff))) :return :pointer
-                     :return-transfer :full :version "4.22" :documentation
-                     "Creates a `GskRenderNode` that will composite the child onto the
-background with the given operator wherever the mask is set.
-
-C: gsk_composite_node_new
-See: https://docs.gtk.org/gsk4/ctor.CompositeNode.new.html
-Since: 4.22")
-
-
-(rt:define-gfunction (composite-node-get-child "gsk_composite_node_get_child") :args
-                     ((node :pointer)) :return :pointer :version "4.22" :documentation
-                     "Gets the child node that is getting composited by the given NODE.
-
-C: gsk_composite_node_get_child
-See: https://docs.gtk.org/gsk4/method.CompositeNode.get_child.html
-Since: 4.22")
-
-
-(rt:define-gfunction (composite-node-get-mask "gsk_composite_node_get_mask") :args
-                     ((node :pointer)) :return :pointer :version "4.22" :documentation
-                     "Gets the mask node that describes the region where the compositing
-applies.
-
-C: gsk_composite_node_get_mask
-See: https://docs.gtk.org/gsk4/method.CompositeNode.get_mask.html
-Since: 4.22")
-
-
-(rt:define-gfunction (composite-node-get-operator "gsk_composite_node_get_operator") :args
-                     ((node :pointer)) :return (:enum porter-duff) :version "4.22" :documentation
-                     "Gets the compositing operator used by this node.
-
-C: gsk_composite_node_get_operator
-See: https://docs.gtk.org/gsk4/method.CompositeNode.get_operator.html
-Since: 4.22")
-
-
-(rt:define-gfunction (conic-gradient-node-new "gsk_conic_gradient_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (rotation :float) (color-stops (:array (:record color-stop)))
-                      (n-color-stops :size :length-of color-stops))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that draws a conic gradient.
-
-C: gsk_conic_gradient_node_new
-See: https://docs.gtk.org/gsk4/ctor.ConicGradientNode.new.html")
-
-
-(rt:define-gfunction (conic-gradient-node-get-angle "gsk_conic_gradient_node_get_angle") :args
-                     ((node :pointer)) :return :float :version "4.2" :documentation
-                     "Retrieves the angle for the gradient in radians, normalized in [0, 2 * PI].
-
-C: gsk_conic_gradient_node_get_angle
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_angle.html
-Since: 4.2")
-
-
-(rt:define-gfunction (conic-gradient-node-get-center "gsk_conic_gradient_node_get_center") :args
-                     ((node :pointer)) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                     :documentation "Retrieves the center pointer for the gradient.
-
-C: gsk_conic_gradient_node_get_center
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_center.html")
-
-
-(rt:define-gfunction
- (conic-gradient-node-get-color-stops "gsk_conic_gradient_node_get_color_stops") :args
- ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
- (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
-
-C: gsk_conic_gradient_node_get_color_stops
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_color_stops.html")
-
-
-(rt:define-gfunction
- (conic-gradient-node-get-n-color-stops "gsk_conic_gradient_node_get_n_color_stops") :args
- ((node :pointer)) :return :size :documentation
- "Retrieves the number of color stops in the gradient.
-
-C: gsk_conic_gradient_node_get_n_color_stops
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_n_color_stops.html")
-
-
-(rt:define-gfunction (conic-gradient-node-get-rotation "gsk_conic_gradient_node_get_rotation")
-                     :args ((node :pointer)) :return :float :documentation
-                     "Retrieves the rotation for the gradient in degrees.
-
-C: gsk_conic_gradient_node_get_rotation
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_rotation.html")
-
-
-(rt:define-gfunction (conic-gradient-node-get-snap "gsk_conic_gradient_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_conic_gradient_node_get_snap
-See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (container-node-new "gsk_container_node_new") :args
-                     ((children (:array :pointer)) (n-children :uint :length-of children)) :return
-                     :pointer :return-transfer :full :documentation
-                     "Creates a new `GskRenderNode` instance for holding the given CHILDREN.
-
-C: gsk_container_node_new
-See: https://docs.gtk.org/gsk4/ctor.ContainerNode.new.html")
-
-
-(rt:define-gfunction (container-node-get-child "gsk_container_node_get_child") :args
-                     ((node :pointer) (idx :uint)) :return :pointer :documentation
-                     "Gets one of the children of CONTAINER.
-
-C: gsk_container_node_get_child
-See: https://docs.gtk.org/gsk4/method.ContainerNode.get_child.html")
-
-
-(rt:define-gfunction (container-node-get-n-children "gsk_container_node_get_n_children") :args
-                     ((node :pointer)) :return :uint :documentation
-                     "Retrieves the number of direct children of NODE.
-
-C: gsk_container_node_get_n_children
-See: https://docs.gtk.org/gsk4/method.ContainerNode.get_n_children.html")
-
-
-(rt:define-gfunction (copy-node-new "gsk_copy_node_new") :args ((child :pointer)) :return :pointer
-                     :return-transfer :full :version "4.22" :documentation
-                     "Creates a `GskRenderNode` that copies the current rendering
-canvas for playback by paste nodes that are part of the child.
-
-C: gsk_copy_node_new
-See: https://docs.gtk.org/gsk4/ctor.CopyNode.new.html
-Since: 4.22")
-
-
-(rt:define-gfunction (copy-node-get-child "gsk_copy_node_get_child") :args ((node :pointer))
-                     :return :pointer :version "4.22" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_copy_node_get_child
-See: https://docs.gtk.org/gsk4/method.CopyNode.get_child.html
-Since: 4.22")
-
-
-(rt:define-gfunction (cross-fade-node-new "gsk_cross_fade_node_new") :args
-                     ((start :pointer) (end :pointer) (progress :float)) :return :pointer
-                     :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will do a cross-fade between START and END.
-
-C: gsk_cross_fade_node_new
-See: https://docs.gtk.org/gsk4/ctor.CrossFadeNode.new.html")
-
-
-(rt:define-gfunction (cross-fade-node-get-end-child "gsk_cross_fade_node_get_end_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Retrieves the child `GskRenderNode` at the end of the cross-fade.
-
-C: gsk_cross_fade_node_get_end_child
-See: https://docs.gtk.org/gsk4/method.CrossFadeNode.get_end_child.html")
-
-
-(rt:define-gfunction (cross-fade-node-get-progress "gsk_cross_fade_node_get_progress") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the progress value of the cross fade.
-
-C: gsk_cross_fade_node_get_progress
-See: https://docs.gtk.org/gsk4/method.CrossFadeNode.get_progress.html")
-
-
-(rt:define-gfunction (cross-fade-node-get-start-child "gsk_cross_fade_node_get_start_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
-
-C: gsk_cross_fade_node_get_start_child
-See: https://docs.gtk.org/gsk4/method.CrossFadeNode.get_start_child.html")
-
-
-(rt:define-gfunction (debug-node-new "gsk_debug_node_new") :args
-                     ((child :pointer) (message :string :transfer :full)) :return :pointer
-                     :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will add debug information about
-the given CHILD.
-
-C: gsk_debug_node_new
-See: https://docs.gtk.org/gsk4/ctor.DebugNode.new.html")
-
-
-(rt:define-gfunction (debug-node-get-child "gsk_debug_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_debug_node_get_child
-See: https://docs.gtk.org/gsk4/method.DebugNode.get_child.html")
-
-
-(rt:define-gfunction (debug-node-get-message "gsk_debug_node_get_message") :args ((node :pointer))
-                     :return :string :documentation
-                     "Gets the debug message that was set on this node
-
-C: gsk_debug_node_get_message
-See: https://docs.gtk.org/gsk4/method.DebugNode.get_message.html")
-
-
-(rt:define-gfunction (fill-node-new "gsk_fill_node_new") :args
-                     ((child :pointer) (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (fill-rule (:enum fill-rule)))
-                     :return :pointer :version "4.14" :documentation
-                     "Creates a `GskRenderNode` that will fill the CHILD in the area
-given by PATH and FILL-RULE.
-
-C: gsk_fill_node_new
-See: https://docs.gtk.org/gsk4/ctor.FillNode.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction (fill-node-get-child "gsk_fill_node_get_child") :args ((node :pointer))
-                     :return :pointer :version "4.14" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_fill_node_get_child
-See: https://docs.gtk.org/gsk4/method.FillNode.get_child.html
-Since: 4.14")
-
-
-(rt:define-gfunction (fill-node-get-fill-rule "gsk_fill_node_get_fill_rule") :args
-                     ((node :pointer)) :return (:enum fill-rule) :version "4.14" :documentation
-                     "Retrieves the fill rule used to determine how the path is filled.
-
-C: gsk_fill_node_get_fill_rule
-See: https://docs.gtk.org/gsk4/method.FillNode.get_fill_rule.html
-Since: 4.14")
-
-
-(rt:define-gfunction (fill-node-get-path "gsk_fill_node_get_path") :args ((node :pointer)) :return
-                     (:boxed "GskPath" "gsk_path_get_type") :version "4.14" :documentation
-                     "Retrieves the path used to describe the area filled with the contents of
-the NODE.
-
-C: gsk_fill_node_get_path
-See: https://docs.gtk.org/gsk4/method.FillNode.get_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (gl-renderer-new "gsk_gl_renderer_new") :return (:object renderer)
-                     :return-transfer :full :documentation "Creates an instance of the GL renderer.
-
-C: gsk_gl_renderer_new
-See: https://docs.gtk.org/gsk4/ctor.GLRenderer.new.html")
-
-
-(rt:define-gfunction (gl-shader-new-from-bytes "gsk_gl_shader_new_from_bytes") :args
-                     ((sourcecode (:boxed "GBytes" "g_bytes_get_type"))) :return
-                     (:object gl-shader) :return-transfer :full :documentation
-                     "Creates a `GskGLShader` that will render pixels using the specified code.
-
-C: gsk_gl_shader_new_from_bytes
-See: https://docs.gtk.org/gsk4/ctor.GLShader.new_from_bytes.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-new-from-resource "gsk_gl_shader_new_from_resource") :args
-                     ((resource-path :string)) :return (:object gl-shader) :return-transfer :full
-                     :documentation
-                     "Creates a `GskGLShader` that will render pixels using the specified code.
-
-C: gsk_gl_shader_new_from_resource
-See: https://docs.gtk.org/gsk4/ctor.GLShader.new_from_resource.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-compile "gsk_gl_shader_compile") :args
-                     ((shader (:object gl-shader)) (renderer (:object renderer))) :return :boolean
-                     :throws t :documentation "Tries to compile the SHADER for the given RENDERER.
-
-C: gsk_gl_shader_compile
-See: https://docs.gtk.org/gsk4/method.GLShader.compile.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-find-uniform-by-name "gsk_gl_shader_find_uniform_by_name") :args
-                     ((shader (:object gl-shader)) (name :string)) :return :int :documentation
-                     "Looks for a uniform by the name NAME, and returns the index
-of the uniform, or -1 if it was not found.
-
-C: gsk_gl_shader_find_uniform_by_name
-See: https://docs.gtk.org/gsk4/method.GLShader.find_uniform_by_name.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-bool "gsk_gl_shader_get_arg_bool") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int))
-                     :return :boolean :documentation
-                     "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_bool
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_bool.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-float "gsk_gl_shader_get_arg_float") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int))
-                     :return :float :documentation
-                     "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_float
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_float.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-int "gsk_gl_shader_get_arg_int") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int))
-                     :return :int32 :documentation
-                     "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_int
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_int.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-uint "gsk_gl_shader_get_arg_uint") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int))
-                     :return :uint32 :documentation
-                     "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_uint
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_uint.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-vec2 "gsk_gl_shader_get_arg_vec2") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int)
-                      (out-value (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)))
-                     :documentation "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_vec2
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_vec2.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-vec3 "gsk_gl_shader_get_arg_vec3") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int)
-                      (out-value (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
-                     :documentation "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_vec3
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_vec3.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-arg-vec4 "gsk_gl_shader_get_arg_vec4") :args
-                     ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int)
-                      (out-value (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
-                     :documentation "Gets the value of the uniform IDX in the ARGS block.
-
-C: gsk_gl_shader_get_arg_vec4
-See: https://docs.gtk.org/gsk4/method.GLShader.get_arg_vec4.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-args-size "gsk_gl_shader_get_args_size") :args
-                     ((shader (:object gl-shader))) :return :size :documentation
-                     "Get the size of the data block used to specify arguments for this shader.
-
-C: gsk_gl_shader_get_args_size
-See: https://docs.gtk.org/gsk4/method.GLShader.get_args_size.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-n-textures "gsk_gl_shader_get_n_textures") :args
-                     ((shader (:object gl-shader))) :return :int :documentation
-                     "Returns the number of textures that the shader requires.
-
-C: gsk_gl_shader_get_n_textures
-See: https://docs.gtk.org/gsk4/method.GLShader.get_n_textures.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-n-uniforms "gsk_gl_shader_get_n_uniforms") :args
-                     ((shader (:object gl-shader))) :return :int :documentation
-                     "Get the number of declared uniforms for this shader.
-
-C: gsk_gl_shader_get_n_uniforms
-See: https://docs.gtk.org/gsk4/method.GLShader.get_n_uniforms.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-resource "gsk_gl_shader_get_resource") :args
-                     ((shader (:object gl-shader))) :return :string :documentation
-                     "Gets the resource path for the GLSL sourcecode being used
-to render this shader.
-
-C: gsk_gl_shader_get_resource
-See: https://docs.gtk.org/gsk4/method.GLShader.get_resource.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-source "gsk_gl_shader_get_source") :args
-                     ((shader (:object gl-shader))) :return (:boxed "GBytes" "g_bytes_get_type")
-                     :documentation "Gets the GLSL sourcecode being used to render this shader.
-
-C: gsk_gl_shader_get_source
-See: https://docs.gtk.org/gsk4/method.GLShader.get_source.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-uniform-name "gsk_gl_shader_get_uniform_name") :args
-                     ((shader (:object gl-shader)) (idx :int)) :return :string :documentation
-                     "Get the name of the declared uniform for this shader at index IDX.
-
-C: gsk_gl_shader_get_uniform_name
-See: https://docs.gtk.org/gsk4/method.GLShader.get_uniform_name.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-uniform-offset "gsk_gl_shader_get_uniform_offset") :args
-                     ((shader (:object gl-shader)) (idx :int)) :return :int :documentation
-                     "Get the offset into the data block where data for this uniforms is stored.
-
-C: gsk_gl_shader_get_uniform_offset
-See: https://docs.gtk.org/gsk4/method.GLShader.get_uniform_offset.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-get-uniform-type "gsk_gl_shader_get_uniform_type") :args
-                     ((shader (:object gl-shader)) (idx :int)) :return (:enum gl-uniform-type)
-                     :documentation
-                     "Get the type of the declared uniform for this shader at index IDX.
-
-C: gsk_gl_shader_get_uniform_type
-See: https://docs.gtk.org/gsk4/method.GLShader.get_uniform_type.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-node-new "gsk_gl_shader_node_new") :args
-                     ((shader (:object gl-shader))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (args (:boxed "GBytes" "g_bytes_get_type")) (children (:array :pointer))
-                      (n-children :uint :length-of children))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render the given SHADER into the
-area given by BOUNDS.
-
-C: gsk_gl_shader_node_new
-See: https://docs.gtk.org/gsk4/ctor.GLShaderNode.new.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-node-get-args "gsk_gl_shader_node_get_args") :args
-                     ((node :pointer)) :return (:boxed "GBytes" "g_bytes_get_type") :documentation
-                     "Gets args for the node.
-
-C: gsk_gl_shader_node_get_args
-See: https://docs.gtk.org/gsk4/method.GLShaderNode.get_args.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-node-get-child "gsk_gl_shader_node_get_child") :args
-                     ((node :pointer) (idx :uint)) :return :pointer :documentation
-                     "Gets one of the children.
-
-C: gsk_gl_shader_node_get_child
-See: https://docs.gtk.org/gsk4/method.GLShaderNode.get_child.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-node-get-n-children "gsk_gl_shader_node_get_n_children") :args
-                     ((node :pointer)) :return :uint :documentation "Returns the number of children
-
-C: gsk_gl_shader_node_get_n_children
-See: https://docs.gtk.org/gsk4/method.GLShaderNode.get_n_children.html
-Deprecated.")
-
-
-(rt:define-gfunction (gl-shader-node-get-shader "gsk_gl_shader_node_get_shader") :args
-                     ((node :pointer)) :return (:object gl-shader) :documentation
-                     "Gets shader code for the node.
-
-C: gsk_gl_shader_node_get_shader
-See: https://docs.gtk.org/gsk4/method.GLShaderNode.get_shader.html
-Deprecated.")
-
-
-(rt:define-gfunction (inset-shadow-node-new "gsk_inset_shadow_node_new") :args
-                     ((outline (:record rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
-                      (dy :float) (spread :float) (blur-radius :float))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render an inset shadow
-into the box given by OUTLINE.
-
-C: gsk_inset_shadow_node_new
-See: https://docs.gtk.org/gsk4/ctor.InsetShadowNode.new.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-blur-radius "gsk_inset_shadow_node_get_blur_radius")
-                     :args ((node :pointer)) :return :float :documentation
-                     "Retrieves the blur radius to apply to the shadow.
-
-C: gsk_inset_shadow_node_get_blur_radius
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_blur_radius.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-color "gsk_inset_shadow_node_get_color") :args
-                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
-                     :documentation "Retrieves the color of the inset shadow.
-
-C: gsk_inset_shadow_node_get_color
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_color.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-dx "gsk_inset_shadow_node_get_dx") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the horizontal offset of the inset shadow.
-
-C: gsk_inset_shadow_node_get_dx
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_dx.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-dy "gsk_inset_shadow_node_get_dy") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the vertical offset of the inset shadow.
-
-C: gsk_inset_shadow_node_get_dy
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_dy.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-outline "gsk_inset_shadow_node_get_outline") :args
-                     ((node :pointer)) :return (:record rounded-rect) :documentation
-                     "Retrieves the outline rectangle of the inset shadow.
-
-C: gsk_inset_shadow_node_get_outline
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_outline.html")
-
-
-(rt:define-gfunction (inset-shadow-node-get-snap "gsk_inset_shadow_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_inset_shadow_node_get_snap
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (inset-shadow-node-get-spread "gsk_inset_shadow_node_get_spread") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves how much the shadow spreads inwards.
-
-C: gsk_inset_shadow_node_get_spread
-See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_spread.html")
-
-
-(rt:define-gfunction (isolation-node-new "gsk_isolation_node_new") :args
-                     ((child :pointer) (isolations (:flags isolation))) :return :pointer
-                     :return-transfer :full :version "4.22" :documentation
-                     "Creates a `GskRenderNode` that isolates the drawing operations of
-the child from surrounding ones.
-
-C: gsk_isolation_node_new
-See: https://docs.gtk.org/gsk4/ctor.IsolationNode.new.html
-Since: 4.22")
-
-
-(rt:define-gfunction (isolation-node-get-child "gsk_isolation_node_get_child") :args
-                     ((node :pointer)) :return :pointer :version "4.22" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_isolation_node_get_child
-See: https://docs.gtk.org/gsk4/method.IsolationNode.get_child.html
-Since: 4.22")
-
-
-(rt:define-gfunction (isolation-node-get-isolations "gsk_isolation_node_get_isolations") :args
-                     ((node :pointer)) :return (:flags isolation) :version "4.22" :documentation
-                     "Gets the isolation features that are enforced by this node.
-
-C: gsk_isolation_node_get_isolations
-See: https://docs.gtk.org/gsk4/method.IsolationNode.get_isolations.html
-Since: 4.22")
-
-
-(rt:define-gfunction (linear-gradient-node-new "gsk_linear_gradient_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (start (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (end (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (color-stops (:array (:record color-stop)))
-                      (n-color-stops :size :length-of color-stops))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will create a linear gradient from the given
-points and color stops, and render that into the area given by BOUNDS.
-
-C: gsk_linear_gradient_node_new
-See: https://docs.gtk.org/gsk4/ctor.LinearGradientNode.new.html")
-
-
-(rt:define-gfunction
- (linear-gradient-node-get-color-stops "gsk_linear_gradient_node_get_color_stops") :args
- ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
- (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
-
-C: gsk_linear_gradient_node_get_color_stops
-See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_color_stops.html")
-
-
-(rt:define-gfunction (linear-gradient-node-get-end "gsk_linear_gradient_node_get_end") :args
-                     ((node :pointer)) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                     :documentation "Retrieves the final point of the linear gradient.
-
-C: gsk_linear_gradient_node_get_end
-See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_end.html")
-
-
-(rt:define-gfunction
- (linear-gradient-node-get-n-color-stops "gsk_linear_gradient_node_get_n_color_stops") :args
- ((node :pointer)) :return :size :documentation
- "Retrieves the number of color stops in the gradient.
-
-C: gsk_linear_gradient_node_get_n_color_stops
-See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_n_color_stops.html")
-
-
-(rt:define-gfunction (linear-gradient-node-get-snap "gsk_linear_gradient_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_linear_gradient_node_get_snap
-See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (linear-gradient-node-get-start "gsk_linear_gradient_node_get_start") :args
-                     ((node :pointer)) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                     :documentation "Retrieves the initial point of the linear gradient.
-
-C: gsk_linear_gradient_node_get_start
-See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_start.html")
-
-
-(rt:define-gfunction (mask-node-new "gsk_mask_node_new") :args
-                     ((source :pointer) (mask :pointer) (mask-mode (:enum mask-mode))) :return
-                     :pointer :return-transfer :full :version "4.10" :documentation
-                     "Creates a `GskRenderNode` that will mask a given node by another.
-
-C: gsk_mask_node_new
-See: https://docs.gtk.org/gsk4/ctor.MaskNode.new.html
-Since: 4.10")
-
-
-(rt:define-gfunction (mask-node-get-mask "gsk_mask_node_get_mask") :args ((node :pointer)) :return
-                     :pointer :version "4.10" :documentation
-                     "Retrieves the mask `GskRenderNode` child of the NODE.
-
-C: gsk_mask_node_get_mask
-See: https://docs.gtk.org/gsk4/method.MaskNode.get_mask.html
-Since: 4.10")
-
-
-(rt:define-gfunction (mask-node-get-mask-mode "gsk_mask_node_get_mask_mode") :args
-                     ((node :pointer)) :return (:enum mask-mode) :version "4.10" :documentation
-                     "Retrieves the mask mode used by NODE.
-
-C: gsk_mask_node_get_mask_mode
-See: https://docs.gtk.org/gsk4/method.MaskNode.get_mask_mode.html
-Since: 4.10")
-
-
-(rt:define-gfunction (mask-node-get-source "gsk_mask_node_get_source") :args ((node :pointer))
-                     :return :pointer :version "4.10" :documentation
-                     "Retrieves the source `GskRenderNode` child of the NODE.
-
-C: gsk_mask_node_get_source
-See: https://docs.gtk.org/gsk4/method.MaskNode.get_source.html
-Since: 4.10")
-
-
-(rt:define-gfunction (ngl-renderer-new "gsk_ngl_renderer_new") :return (:object renderer)
-                     :return-transfer :full :documentation "Same as gsk_gl_renderer_new().
-
-C: gsk_ngl_renderer_new
-See: https://docs.gtk.org/gsk4/ctor.NglRenderer.new.html
-Deprecated.")
-
-
-(rt:define-gfunction (opacity-node-new "gsk_opacity_node_new") :args
-                     ((child :pointer) (opacity :float)) :return :pointer :return-transfer :full
-                     :documentation
-                     "Creates a `GskRenderNode` that will drawn the CHILD with reduced
-OPACITY.
-
-C: gsk_opacity_node_new
-See: https://docs.gtk.org/gsk4/ctor.OpacityNode.new.html")
-
-
-(rt:define-gfunction (opacity-node-get-child "gsk_opacity_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation
-                     "Gets the child node that is getting opacityed by the given NODE.
-
-C: gsk_opacity_node_get_child
-See: https://docs.gtk.org/gsk4/method.OpacityNode.get_child.html")
-
-
-(rt:define-gfunction (opacity-node-get-opacity "gsk_opacity_node_get_opacity") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Gets the transparency factor for an opacity node.
-
-C: gsk_opacity_node_get_opacity
-See: https://docs.gtk.org/gsk4/method.OpacityNode.get_opacity.html")
-
-
-(rt:define-gfunction (outset-shadow-node-new "gsk_outset_shadow_node_new") :args
-                     ((outline (:record rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
-                      (dy :float) (spread :float) (blur-radius :float))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render an outset shadow
-around the box given by OUTLINE.
-
-C: gsk_outset_shadow_node_new
-See: https://docs.gtk.org/gsk4/ctor.OutsetShadowNode.new.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-blur-radius "gsk_outset_shadow_node_get_blur_radius")
-                     :args ((node :pointer)) :return :float :documentation
-                     "Retrieves the blur radius of the shadow.
-
-C: gsk_outset_shadow_node_get_blur_radius
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_blur_radius.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-color "gsk_outset_shadow_node_get_color") :args
-                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
-                     :documentation "Retrieves the color of the outset shadow.
-
-C: gsk_outset_shadow_node_get_color
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_color.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-dx "gsk_outset_shadow_node_get_dx") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the horizontal offset of the outset shadow.
-
-C: gsk_outset_shadow_node_get_dx
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_dx.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-dy "gsk_outset_shadow_node_get_dy") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the vertical offset of the outset shadow.
-
-C: gsk_outset_shadow_node_get_dy
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_dy.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-outline "gsk_outset_shadow_node_get_outline") :args
-                     ((node :pointer)) :return (:record rounded-rect) :documentation
-                     "Retrieves the outline rectangle of the outset shadow.
-
-C: gsk_outset_shadow_node_get_outline
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_outline.html")
-
-
-(rt:define-gfunction (outset-shadow-node-get-snap "gsk_outset_shadow_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_outset_shadow_node_get_snap
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (outset-shadow-node-get-spread "gsk_outset_shadow_node_get_spread") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves how much the shadow spreads outwards.
-
-C: gsk_outset_shadow_node_get_spread
-See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_spread.html")
-
-
-(rt:define-gfunction (paste-node-new "gsk_paste_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (depth :size))
-                     :return :pointer :return-transfer :full :version "4.22" :documentation
-                     "Creates a `GskRenderNode` that will paste copied contents.
-
-C: gsk_paste_node_new
-See: https://docs.gtk.org/gsk4/ctor.PasteNode.new.html
-Since: 4.22")
-
-
-(rt:define-gfunction (paste-node-get-depth "gsk_paste_node_get_depth") :args ((node :pointer))
-                     :return :size :version "4.22" :documentation
-                     "Retrieves the index of the copy that should be pasted.
-
-C: gsk_paste_node_get_depth
-See: https://docs.gtk.org/gsk4/method.PasteNode.get_depth.html
-Since: 4.22")
-
-
-(rt:define-gfunction (paste-node-get-snap "gsk_paste_node_get_snap") :args ((node :pointer))
-                     :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_paste_node_get_snap
-See: https://docs.gtk.org/gsk4/method.PasteNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (path-parse "gsk_path_parse") :args ((string :string)) :return
-                     (:boxed "GskPath" "gsk_path_get_type") :return-transfer :full :version "4.14"
-                     :documentation "Constructs a path from a serialized form.
-
-C: gsk_path_parse
-See: https://docs.gtk.org/gsk4/type_func.Path.parse.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-equal "gsk_path_equal") :args
-                     ((path1 (:boxed "GskPath" "gsk_path_get_type"))
-                      (path2 (:boxed "GskPath" "gsk_path_get_type")))
-                     :return :boolean :version "4.22" :documentation
-                     "Returns whether two paths have identical structure.
-
-C: gsk_path_equal
-See: https://docs.gtk.org/gsk4/method.Path.equal.html
-Since: 4.22")
-
-
-(rt:define-gfunction (path-foreach-intersection "gsk_path_foreach_intersection") :args
-                     ((path1 (:boxed "GskPath" "gsk_path_get_type"))
-                      (path2 (:boxed "GskPath" "gsk_path_get_type"))
-                      (func (:callback path-intersection-func :call))
-                      (user-data :pointer :user-data-of func))
-                     :return :boolean :version "4.20" :documentation
-                     "Finds intersections between two paths.
-
-C: gsk_path_foreach_intersection
-See: https://docs.gtk.org/gsk4/method.Path.foreach_intersection.html
-Since: 4.20")
-
-
-(rt:define-gfunction (path-get-bounds "gsk_path_get_bounds") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.14" :documentation
-                     "Computes the bounds of the given path.
-
-C: gsk_path_get_bounds
-See: https://docs.gtk.org/gsk4/method.Path.get_bounds.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-get-closest-point "gsk_path_get_closest_point") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (threshold :float)
-                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
-                       :direction :out :caller-allocates t)
-                      (distance :float :direction :out :transfer :full))
-                     :return :boolean :version "4.14" :documentation
-                     "Computes the closest point on the path to the given point.
-
-C: gsk_path_get_closest_point
-See: https://docs.gtk.org/gsk4/method.Path.get_closest_point.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-get-end-point "gsk_path_get_end_point") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.14" :documentation
-                     "Gets the end point of the path.
-
-C: gsk_path_get_end_point
-See: https://docs.gtk.org/gsk4/method.Path.get_end_point.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-get-start-point "gsk_path_get_start_point") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.14" :documentation
-                     "Gets the start point of the path.
-
-C: gsk_path_get_start_point
-See: https://docs.gtk.org/gsk4/method.Path.get_start_point.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-get-stroke-bounds "gsk_path_get_stroke_bounds") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (stroke (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.14" :documentation
-                     "Computes the bounds for stroking the given path with the
-given parameters.
-
-C: gsk_path_get_stroke_bounds
-See: https://docs.gtk.org/gsk4/method.Path.get_stroke_bounds.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-get-tight-bounds "gsk_path_get_tight_bounds") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.22" :documentation
-                     "Computes the tight bounds of the given path.
-
-C: gsk_path_get_tight_bounds
-See: https://docs.gtk.org/gsk4/method.Path.get_tight_bounds.html
-Since: 4.22")
-
-
-(rt:define-gfunction (path-in-fill "gsk_path_in_fill") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (fill-rule (:enum fill-rule)))
-                     :return :boolean :version "4.14" :documentation
-                     "Returns whether a point is inside the fill area of a path.
-
-C: gsk_path_in_fill
-See: https://docs.gtk.org/gsk4/method.Path.in_fill.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-is-closed "gsk_path_is_closed") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))) :return :boolean :version
-                     "4.14" :documentation "Returns if the path represents a single closed contour.
-
-C: gsk_path_is_closed
-See: https://docs.gtk.org/gsk4/method.Path.is_closed.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-is-empty "gsk_path_is_empty") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))) :return :boolean :version
-                     "4.14" :documentation
-                     "Checks if the path is empty, i.e. contains no lines or curves.
-
-C: gsk_path_is_empty
-See: https://docs.gtk.org/gsk4/method.Path.is_empty.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-print "gsk_path_print") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
-                     :version "4.14" :documentation
-                     "Converts the path into a human-readable representation.
-
-C: gsk_path_print
-See: https://docs.gtk.org/gsk4/method.Path.print.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-ref "gsk_path_ref") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))) :return
-                     (:boxed "GskPath" "gsk_path_get_type") :return-transfer :full :version "4.14"
-                     :documentation "Increases the reference count of a path by one.
-
-C: gsk_path_ref
-See: https://docs.gtk.org/gsk4/method.Path.ref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-to-cairo "gsk_path_to_cairo") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (cr (:boxed "CairoContext" "cairo_gobject_context_get_type")))
-                     :version "4.14" :documentation
-                     "Appends the path to a cairo context for drawing with Cairo.
-
-C: gsk_path_to_cairo
-See: https://docs.gtk.org/gsk4/method.Path.to_cairo.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-to-string "gsk_path_to_string") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))) :return :string
-                     :return-transfer :full :version "4.14" :documentation
-                     "Converts the path into a human-readable string.
-
-C: gsk_path_to_string
-See: https://docs.gtk.org/gsk4/method.Path.to_string.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-unref "gsk_path_unref") :args
-                     ((self (:boxed "GskPath" "gsk_path_get_type"))) :version "4.14" :documentation
-                     "Decreases the reference count of a path by one.
-
-C: gsk_path_unref
-See: https://docs.gtk.org/gsk4/method.Path.unref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-new "gsk_path_builder_new") :return
-                     (:boxed "GskPathBuilder" "gsk_path_builder_get_type") :return-transfer :full
-                     :version "4.14" :documentation "Create a new `GskPathBuilder` object.
-
-C: gsk_path_builder_new
-See: https://docs.gtk.org/gsk4/ctor.PathBuilder.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-cairo-path "gsk_path_builder_add_cairo_path") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (path (:record cairo:path)))
-                     :version "4.14" :documentation "Adds a Cairo path to the builder.
-
-C: gsk_path_builder_add_cairo_path
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_cairo_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-circle "gsk_path_builder_add_circle") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (radius :float))
-                     :version "4.14" :documentation "Adds a circle as a new contour.
-
-C: gsk_path_builder_add_circle
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_circle.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-layout "gsk_path_builder_add_layout") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (layout (:object pango:layout)))
-                     :version "4.14" :documentation
-                     "Adds the outlines for the glyphs in LAYOUT to the builder.
-
-C: gsk_path_builder_add_layout
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_layout.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-path "gsk_path_builder_add_path") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (path (:boxed "GskPath" "gsk_path_get_type")))
-                     :version "4.14" :documentation "Appends all of PATH to the builder.
-
-C: gsk_path_builder_add_path
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-rect "gsk_path_builder_add_rect") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :version "4.14" :documentation "Adds a rectangle as a new contour.
-
-C: gsk_path_builder_add_rect
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_rect.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-reverse-path "gsk_path_builder_add_reverse_path") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (path (:boxed "GskPath" "gsk_path_get_type")))
-                     :version "4.14" :documentation
-                     "Appends all of PATH to the builder, in reverse order.
-
-C: gsk_path_builder_add_reverse_path
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_reverse_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-rounded-rect "gsk_path_builder_add_rounded_rect") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (rect (:record rounded-rect)))
-                     :version "4.14" :documentation "Adds a rounded rectangle as a new contour.
-
-C: gsk_path_builder_add_rounded_rect
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_rounded_rect.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-add-segment "gsk_path_builder_add_segment") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (start (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (end (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
-                     :version "4.14" :documentation "Adds a segment of a path to the builder.
-
-C: gsk_path_builder_add_segment
-See: https://docs.gtk.org/gsk4/method.PathBuilder.add_segment.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-arc-to "gsk_path_builder_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float))
-                     :version "4.14" :documentation
-                     "Adds an elliptical arc from the current point to X2, Y2
-with X1, Y1 determining the tangent directions.
-
-C: gsk_path_builder_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-close "gsk_path_builder_close") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :version "4.14"
-                     :documentation "Ends the current contour with a line back to the start point.
-
-C: gsk_path_builder_close
-See: https://docs.gtk.org/gsk4/method.PathBuilder.close.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-conic-to "gsk_path_builder_conic_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (weight :float))
-                     :version "4.14" :documentation
-                     "Adds a [conic curve](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline)
-from the current point to X2, Y2 with the given WEIGHT and X1, Y1 as the
-control point.
-
-C: gsk_path_builder_conic_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.conic_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-cubic-to "gsk_path_builder_cubic_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (x3 :float) (y3 :float))
-                     :version "4.14" :documentation
-                     "Adds a [cubic Bézier curve](https://en.wikipedia.org/wiki/BC3A9zier_curve)
-from the current point to X3, Y3 with X1, Y1 and X2, Y2 as the control
-points.
-
-C: gsk_path_builder_cubic_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.cubic_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-get-current-point "gsk_path_builder_get_current_point") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point) :version
-                     "4.14" :documentation "Gets the current point.
-
-C: gsk_path_builder_get_current_point
-See: https://docs.gtk.org/gsk4/method.PathBuilder.get_current_point.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-html-arc-to "gsk_path_builder_html_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (radius :float))
-                     :version "4.14" :documentation
-                     "Implements arc-to according to the HTML Canvas spec.
-
-C: gsk_path_builder_html_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.html_arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-line-to "gsk_path_builder_line_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x :float)
-                      (y :float))
-                     :version "4.14" :documentation
-                     "Draws a line from the current point to X, Y and makes it
-the new current point.
-
-C: gsk_path_builder_line_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.line_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-move-to "gsk_path_builder_move_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x :float)
-                      (y :float))
-                     :version "4.14" :documentation
-                     "Starts a new contour by placing the pen at X, Y.
-
-C: gsk_path_builder_move_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.move_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-quad-to "gsk_path_builder_quad_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float))
-                     :version "4.14" :documentation
-                     "Adds a [quadratic Bézier curve](https://en.wikipedia.org/wiki/BC3A9zier_curve)
-from the current point to X2, Y2 with X1, Y1 as the control point.
-
-C: gsk_path_builder_quad_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.quad_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-ref "gsk_path_builder_ref") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :return
-                     (:boxed "GskPathBuilder" "gsk_path_builder_get_type") :version "4.14"
-                     :documentation "Acquires a reference on the given builder.
-
-C: gsk_path_builder_ref
-See: https://docs.gtk.org/gsk4/method.PathBuilder.ref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-arc-to "gsk_path_builder_rel_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float))
-                     :version "4.14" :documentation
-                     "Adds an elliptical arc from the current point to X2, Y2
-with X1, Y1 determining the tangent directions.
-
-C: gsk_path_builder_rel_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-conic-to "gsk_path_builder_rel_conic_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (weight :float))
-                     :version "4.14" :documentation
-                     "Adds a [conic curve](https://en.wikipedia.org/wiki/Non-uniform_rational_B-spline)
-from the current point to X2, Y2 with the given WEIGHT and X1, Y1 as the
-control point.
-
-C: gsk_path_builder_rel_conic_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_conic_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-cubic-to "gsk_path_builder_rel_cubic_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (x3 :float) (y3 :float))
-                     :version "4.14" :documentation
-                     "Adds a [cubic Bézier curve](https://en.wikipedia.org/wiki/BC3A9zier_curve)
-from the current point to X3, Y3 with X1, Y1 and X2, Y2 as the control
-points.
-
-C: gsk_path_builder_rel_cubic_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_cubic_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-html-arc-to "gsk_path_builder_rel_html_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float) (radius :float))
-                     :version "4.14" :documentation
-                     "Implements arc-to according to the HTML Canvas spec.
-
-C: gsk_path_builder_rel_html_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_html_arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-line-to "gsk_path_builder_rel_line_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x :float)
-                      (y :float))
-                     :version "4.14" :documentation
-                     "Draws a line from the current point to a point offset from it
-by X, Y and makes it the new current point.
-
-C: gsk_path_builder_rel_line_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_line_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-move-to "gsk_path_builder_rel_move_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x :float)
-                      (y :float))
-                     :version "4.14" :documentation "Starts a new contour by placing the pen at X, Y
-relative to the current point.
-
-C: gsk_path_builder_rel_move_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_move_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-quad-to "gsk_path_builder_rel_quad_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (x1 :float)
-                      (y1 :float) (x2 :float) (y2 :float))
-                     :version "4.14" :documentation
-                     "Adds a [quadratic Bézier curve](https://en.wikipedia.org/wiki/BC3A9zier_curve)
-from the current point to X2, Y2 with X1, Y1 the control point.
-
-C: gsk_path_builder_rel_quad_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_quad_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-rel-svg-arc-to "gsk_path_builder_rel_svg_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (rx :float)
-                      (ry :float) (x-axis-rotation :float) (large-arc :boolean)
-                      (positive-sweep :boolean) (x :float) (y :float))
-                     :version "4.14" :documentation "Implements arc-to according to the SVG spec.
-
-C: gsk_path_builder_rel_svg_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.rel_svg_arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-svg-arc-to "gsk_path_builder_svg_arc_to") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type")) (rx :float)
-                      (ry :float) (x-axis-rotation :float) (large-arc :boolean)
-                      (positive-sweep :boolean) (x :float) (y :float))
-                     :version "4.14" :documentation "Implements arc-to according to the SVG spec.
-
-C: gsk_path_builder_svg_arc_to
-See: https://docs.gtk.org/gsk4/method.PathBuilder.svg_arc_to.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-to-path "gsk_path_builder_to_path") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :return
-                     (:boxed "GskPath" "gsk_path_get_type") :return-transfer :full :version "4.14"
-                     :documentation "Creates a new path from the given builder.
-
-C: gsk_path_builder_to_path
-See: https://docs.gtk.org/gsk4/method.PathBuilder.to_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-builder-unref "gsk_path_builder_unref") :args
-                     ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :version "4.14"
-                     :documentation "Releases a reference on the given builder.
-
-C: gsk_path_builder_unref
-See: https://docs.gtk.org/gsk4/method.PathBuilder.unref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-new "gsk_path_measure_new") :args
-                     ((path (:boxed "GskPath" "gsk_path_get_type"))) :return
-                     (:boxed "GskPathMeasure" "gsk_path_measure_get_type") :return-transfer :full
-                     :version "4.14" :documentation
-                     "Creates a measure object for the given PATH with the
-default tolerance.
-
-C: gsk_path_measure_new
-See: https://docs.gtk.org/gsk4/ctor.PathMeasure.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-new-with-tolerance "gsk_path_measure_new_with_tolerance") :args
-                     ((path (:boxed "GskPath" "gsk_path_get_type")) (tolerance :float)) :return
-                     (:boxed "GskPathMeasure" "gsk_path_measure_get_type") :return-transfer :full
-                     :version "4.14" :documentation
-                     "Creates a measure object for the given PATH and TOLERANCE.
-
-C: gsk_path_measure_new_with_tolerance
-See: https://docs.gtk.org/gsk4/ctor.PathMeasure.new_with_tolerance.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-get-length "gsk_path_measure_get_length") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :return :float
-                     :version "4.14" :documentation "Gets the length of the path being measured.
-
-C: gsk_path_measure_get_length
-See: https://docs.gtk.org/gsk4/method.PathMeasure.get_length.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-get-path "gsk_path_measure_get_path") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :return
-                     (:boxed "GskPath" "gsk_path_get_type") :version "4.14" :documentation
-                     "Returns the path that the measure was created for.
-
-C: gsk_path_measure_get_path
-See: https://docs.gtk.org/gsk4/method.PathMeasure.get_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-get-point "gsk_path_measure_get_point") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))
-                      (distance :float)
-                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.14" :documentation
-                     "Gets the point at the given distance into the path.
-
-C: gsk_path_measure_get_point
-See: https://docs.gtk.org/gsk4/method.PathMeasure.get_point.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-get-tolerance "gsk_path_measure_get_tolerance") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :return :float
-                     :version "4.14" :documentation
-                     "Returns the tolerance that the measure was created with.
-
-C: gsk_path_measure_get_tolerance
-See: https://docs.gtk.org/gsk4/method.PathMeasure.get_tolerance.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-ref "gsk_path_measure_ref") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :return
-                     (:boxed "GskPathMeasure" "gsk_path_measure_get_type") :return-transfer :full
-                     :version "4.14" :documentation
-                     "Increases the reference count of a `GskPathMeasure` by one.
-
-C: gsk_path_measure_ref
-See: https://docs.gtk.org/gsk4/method.PathMeasure.ref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-measure-unref "gsk_path_measure_unref") :args
-                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :version "4.14"
-                     :documentation "Decreases the reference count of a `GskPathMeasure` by one.
-
-C: gsk_path_measure_unref
-See: https://docs.gtk.org/gsk4/method.PathMeasure.unref.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-compare "gsk_path_point_compare") :args
-                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
-                     :return :int :version "4.14" :documentation
-                     "Returns whether POINT1 is before or after POINT2.
-
-C: gsk_path_point_compare
-See: https://docs.gtk.org/gsk4/method.PathPoint.compare.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-copy "gsk_path_point_copy") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))) :return
-                     (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point) :return-transfer
-                     :full :version "4.14" :documentation "Copies a path point.
-
-C: gsk_path_point_copy
-See: https://docs.gtk.org/gsk4/method.PathPoint.copy.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-equal "gsk_path_point_equal") :args
-                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
-                     :return :boolean :version "4.14" :documentation
-                     "Returns whether the two path points refer to the same
-location on all paths.
-
-C: gsk_path_point_equal
-See: https://docs.gtk.org/gsk4/method.PathPoint.equal.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-free "gsk_path_point_free") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
-                     :version "4.14" :documentation
-                     "Frees a path point copied by Gsk.PathPoint.copy.
-
-C: gsk_path_point_free
-See: https://docs.gtk.org/gsk4/method.PathPoint.free.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-get-curvature "gsk_path_point_get_curvature") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (direction (:enum path-direction))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                       :direction :out :caller-allocates t))
-                     :return :float :version "4.14" :documentation
-                     "Calculates the curvature of the path at the point.
-
-C: gsk_path_point_get_curvature
-See: https://docs.gtk.org/gsk4/method.PathPoint.get_curvature.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-get-distance "gsk_path_point_get_distance") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (measure (:boxed "GskPathMeasure" "gsk_path_measure_get_type")))
-                     :return :float :version "4.14" :documentation
-                     "Returns the distance from the beginning of the path
-to the point.
-
-C: gsk_path_point_get_distance
-See: https://docs.gtk.org/gsk4/method.PathPoint.get_distance.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-get-position "gsk_path_point_get_position") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (position (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                                :direction :out :caller-allocates t))
-                     :version "4.14" :documentation "Gets the position of the point.
-
-C: gsk_path_point_get_position
-See: https://docs.gtk.org/gsk4/method.PathPoint.get_position.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-get-rotation "gsk_path_point_get_rotation") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (direction (:enum path-direction)))
-                     :return :float :version "4.14" :documentation
-                     "Gets the direction of the tangent at a given point.
-
-C: gsk_path_point_get_rotation
-See: https://docs.gtk.org/gsk4/method.PathPoint.get_rotation.html
-Since: 4.14")
-
-
-(rt:define-gfunction (path-point-get-tangent "gsk_path_point_get_tangent") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
-                      (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (direction (:enum path-direction))
-                      (tangent (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)
-                       :direction :out :caller-allocates t))
-                     :version "4.14" :documentation "Gets the tangent of the path at the point.
-
-C: gsk_path_point_get_tangent
-See: https://docs.gtk.org/gsk4/method.PathPoint.get_tangent.html
-Since: 4.14")
-
-
-(rt:define-gfunction (radial-gradient-node-new "gsk_radial_gradient_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (hradius :float) (vradius :float) (start :float) (end :float)
-                      (color-stops (:array (:record color-stop)))
-                      (n-color-stops :size :length-of color-stops))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that draws a radial gradient.
-
-C: gsk_radial_gradient_node_new
-See: https://docs.gtk.org/gsk4/ctor.RadialGradientNode.new.html")
-
-
-(rt:define-gfunction (radial-gradient-node-get-center "gsk_radial_gradient_node_get_center") :args
-                     ((node :pointer)) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                     :documentation "Retrieves the center pointer for the gradient.
-
-C: gsk_radial_gradient_node_get_center
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_center.html")
-
-
-(rt:define-gfunction
- (radial-gradient-node-get-color-stops "gsk_radial_gradient_node_get_color_stops") :args
- ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
- (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
-
-C: gsk_radial_gradient_node_get_color_stops
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_color_stops.html")
-
-
-(rt:define-gfunction (radial-gradient-node-get-end "gsk_radial_gradient_node_get_end") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the end value for the gradient.
-
-C: gsk_radial_gradient_node_get_end
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_end.html")
-
-
-(rt:define-gfunction (radial-gradient-node-get-hradius "gsk_radial_gradient_node_get_hradius")
-                     :args ((node :pointer)) :return :float :documentation
-                     "Retrieves the horizontal radius for the gradient.
-
-C: gsk_radial_gradient_node_get_hradius
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_hradius.html")
-
-
-(rt:define-gfunction
- (radial-gradient-node-get-n-color-stops "gsk_radial_gradient_node_get_n_color_stops") :args
- ((node :pointer)) :return :size :documentation
- "Retrieves the number of color stops in the gradient.
-
-C: gsk_radial_gradient_node_get_n_color_stops
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_n_color_stops.html")
-
-
-(rt:define-gfunction (radial-gradient-node-get-snap "gsk_radial_gradient_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_radial_gradient_node_get_snap
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (radial-gradient-node-get-start "gsk_radial_gradient_node_get_start") :args
-                     ((node :pointer)) :return :float :documentation
-                     "Retrieves the start value for the gradient.
-
-C: gsk_radial_gradient_node_get_start
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_start.html")
-
-
-(rt:define-gfunction (radial-gradient-node-get-vradius "gsk_radial_gradient_node_get_vradius")
-                     :args ((node :pointer)) :return :float :documentation
-                     "Retrieves the vertical radius for the gradient.
-
-C: gsk_radial_gradient_node_get_vradius
-See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_vradius.html")
-
-
-(rt:define-gfunction (render-node-deserialize "gsk_render_node_deserialize") :args
-                     ((bytes (:boxed "GBytes" "g_bytes_get_type"))
-                      (error-func (:callback parse-error-func :call) :optional t)
-                      (user-data :pointer :user-data-of error-func))
-                     :return :pointer :return-transfer :full :documentation
-                     "Loads data previously created via Gsk.RenderNode.serialize.
-
-C: gsk_render_node_deserialize
-See: https://docs.gtk.org/gsk4/type_func.RenderNode.deserialize.html")
-
-
-(rt:define-gfunction (render-node-draw "gsk_render_node_draw") :args
-                     ((node :pointer)
-                      (cr (:boxed "CairoContext" "cairo_gobject_context_get_type")))
-                     :documentation "Draws the contents of a render node on a cairo context.
-
-C: gsk_render_node_draw
-See: https://docs.gtk.org/gsk4/method.RenderNode.draw.html")
-
-
-(rt:define-gfunction (render-node-get-bounds "gsk_render_node_get_bounds") :args
-                     ((node :pointer)
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :documentation "Retrieves the boundaries of the NODE.
-
-C: gsk_render_node_get_bounds
-See: https://docs.gtk.org/gsk4/method.RenderNode.get_bounds.html")
-
-
-(rt:define-gfunction (render-node-get-children "gsk_render_node_get_children") :args
-                     ((self :pointer) (n-children :size :length-of :return :direction :out))
-                     :return (:array :pointer) :version "4.22" :documentation
-                     "Gets a list of all children nodes of the rendernode.
-
-C: gsk_render_node_get_children
-See: https://docs.gtk.org/gsk4/method.RenderNode.get_children.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-node-get-node-type "gsk_render_node_get_node_type") :args
-                     ((node :pointer)) :return (:enum render-node-type) :documentation
-                     "Returns the type of the render node.
-
-C: gsk_render_node_get_node_type
-See: https://docs.gtk.org/gsk4/method.RenderNode.get_node_type.html")
-
-
-(rt:define-gfunction (render-node-get-opaque-rect "gsk_render_node_get_opaque_rect") :args
-                     ((self :pointer)
-                      (out-opaque (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :return :boolean :version "4.16" :documentation
-                     "Gets an opaque rectangle inside the node that GTK can determine to
-be fully opaque.
-
-C: gsk_render_node_get_opaque_rect
-See: https://docs.gtk.org/gsk4/method.RenderNode.get_opaque_rect.html
-Since: 4.16")
-
-
-(rt:define-gfunction (render-node-ref "gsk_render_node_ref") :args ((node :pointer)) :return
-                     :pointer :return-transfer :full :documentation
-                     "Acquires a reference on the given `GskRenderNode`.
-
-C: gsk_render_node_ref
-See: https://docs.gtk.org/gsk4/method.RenderNode.ref.html")
-
-
-(rt:define-gfunction (render-node-serialize "gsk_render_node_serialize") :args ((node :pointer))
-                     :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full
-                     :documentation "Serializes the NODE for later deserialization via
-gsk_render_node_deserialize(). No guarantees are made about the format
-used other than that the same version of GTK will be able to deserialize
-the result of a call to gsk_render_node_serialize() and
-gsk_render_node_deserialize() will correctly reject files it cannot open
-that were created with previous versions of GTK.
-
-C: gsk_render_node_serialize
-See: https://docs.gtk.org/gsk4/method.RenderNode.serialize.html")
-
-
-(rt:define-gfunction (render-node-unref "gsk_render_node_unref") :args
-                     ((node :pointer :transfer :full)) :documentation
-                     "Releases a reference on the given `GskRenderNode`.
-
-C: gsk_render_node_unref
-See: https://docs.gtk.org/gsk4/method.RenderNode.unref.html")
-
-
-(rt:define-gfunction (render-node-write-to-file "gsk_render_node_write_to_file") :args
-                     ((node :pointer) (filename :string)) :return :boolean :throws t :documentation
-                     "This function is equivalent to calling Gsk.RenderNode.serialize
-followed by GLib.file_set_contents.
-
-C: gsk_render_node_write_to_file
-See: https://docs.gtk.org/gsk4/method.RenderNode.write_to_file.html")
-
-
-(rt:define-gfunction (render-replay-new "gsk_render_replay_new") :return
-                     (:boxed "GskRenderReplay" "gsk_render_replay_get_type") :return-transfer :full
-                     :version "4.22" :documentation "Creates a new replay object to replay nodes.
-
-C: gsk_render_replay_new
-See: https://docs.gtk.org/gsk4/ctor.RenderReplay.new.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-default "gsk_render_replay_default") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (node :pointer))
-                     :return :pointer :return-transfer :full :version "4.22" :documentation
-                     "Replays the node using the default method.
-
-C: gsk_render_replay_default
-See: https://docs.gtk.org/gsk4/method.RenderReplay.default.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-filter-font "gsk_render_replay_filter_font") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (font (:object pango:font)))
-                     :return (:object pango:font) :return-transfer :full :version "4.22"
-                     :documentation "Filters a font using the current filter function.
-
-C: gsk_render_replay_filter_font
-See: https://docs.gtk.org/gsk4/method.RenderReplay.filter_font.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-filter-node "gsk_render_replay_filter_node") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (node :pointer))
-                     :return :pointer :return-transfer :full :version "4.22" :documentation
-                     "Replays a node using the replay's filter function.
-
-C: gsk_render_replay_filter_node
-See: https://docs.gtk.org/gsk4/method.RenderReplay.filter_node.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-filter-texture "gsk_render_replay_filter_texture") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (texture (:object gdk:texture)))
-                     :return (:object gdk:texture) :return-transfer :full :version "4.22"
-                     :documentation "Filters a texture using the current filter function.
-
-C: gsk_render_replay_filter_texture
-See: https://docs.gtk.org/gsk4/method.RenderReplay.filter_texture.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-free "gsk_render_replay_free") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))) :version
-                     "4.22" :documentation "Frees a `GskRenderReplay`.
-
-C: gsk_render_replay_free
-See: https://docs.gtk.org/gsk4/method.RenderReplay.free.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-set-font-filter "gsk_render_replay_set_font_filter") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (filter (:callback render-replay-font-filter :notified) :optional t)
-                      (user-data :pointer :user-data-of filter)
-                      (user-destroy :pointer :destroy-of filter))
-                     :version "4.22" :documentation
-                     "Sets a filter function to be called by Gsk.RenderReplay.default
-for nodes that contain fonts.
-
-C: gsk_render_replay_set_font_filter
-See: https://docs.gtk.org/gsk4/method.RenderReplay.set_font_filter.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-set-node-filter "gsk_render_replay_set_node_filter") :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (filter (:callback render-replay-node-filter :notified) :optional t)
-                      (user-data :pointer :user-data-of filter)
-                      (user-destroy :pointer :destroy-of filter))
-                     :version "4.22" :documentation "Sets the function to use as a node filter.
-
-C: gsk_render_replay_set_node_filter
-See: https://docs.gtk.org/gsk4/method.RenderReplay.set_node_filter.html
-Since: 4.22")
-
-
-(rt:define-gfunction (render-replay-set-texture-filter "gsk_render_replay_set_texture_filter")
-                     :args
-                     ((self (:boxed "GskRenderReplay" "gsk_render_replay_get_type"))
-                      (filter (:callback render-replay-texture-filter :notified) :optional t)
-                      (user-data :pointer :user-data-of filter)
-                      (user-destroy :pointer :destroy-of filter))
-                     :version "4.22" :documentation
-                     "Sets a filter function to be called by Gsk.RenderReplay.default
-for nodes that contain textures.
-
-C: gsk_render_replay_set_texture_filter
-See: https://docs.gtk.org/gsk4/method.RenderReplay.set_texture_filter.html
-Since: 4.22")
-
-
-(rt:define-gfunction (renderer-new-for-surface "gsk_renderer_new_for_surface") :args
-                     ((surface (:object gdk:surface))) :return (:object renderer) :return-transfer
-                     :full :documentation
-                     "Creates an appropriate `GskRenderer` instance for the given surface.
-
-C: gsk_renderer_new_for_surface
-See: https://docs.gtk.org/gsk4/ctor.Renderer.new_for_surface.html")
-
-
-(rt:define-gfunction (renderer-get-surface "gsk_renderer_get_surface") :args
-                     ((renderer (:object renderer))) :return (:object gdk:surface) :documentation
-                     "Retrieves the surface that the renderer is associated with.
-
-C: gsk_renderer_get_surface
-See: https://docs.gtk.org/gsk4/method.Renderer.get_surface.html")
-
-
-(rt:define-gfunction (renderer-is-realized "gsk_renderer_is_realized") :args
-                     ((renderer (:object renderer))) :return :boolean :documentation
-                     "Checks whether the renderer is realized or not.
-
-C: gsk_renderer_is_realized
-See: https://docs.gtk.org/gsk4/method.Renderer.is_realized.html")
-
-
-(rt:define-gfunction (renderer-realize "gsk_renderer_realize") :args
-                     ((renderer (:object renderer)) (surface (:object gdk:surface) :optional t))
-                     :return :boolean :throws t :documentation
-                     "Creates the resources needed by the renderer.
-
-C: gsk_renderer_realize
-See: https://docs.gtk.org/gsk4/method.Renderer.realize.html")
-
-
-(rt:define-gfunction (renderer-realize-for-display "gsk_renderer_realize_for_display") :args
-                     ((renderer (:object renderer)) (display (:object gdk:display))) :return
-                     :boolean :throws t :version "4.14" :documentation
-                     "Creates the resources needed by the renderer.
-
-C: gsk_renderer_realize_for_display
-See: https://docs.gtk.org/gsk4/method.Renderer.realize_for_display.html
-Since: 4.14")
-
-
-(rt:define-gfunction (renderer-render "gsk_renderer_render") :args
-                     ((renderer (:object renderer)) (root :pointer)
-                      (region (:boxed "CairoRegion" "cairo_gobject_region_get_type") :optional t))
-                     :documentation
-                     "Renders the scene graph, described by a tree of `GskRenderNode` instances
-to the renderer's surface, ensuring that the given region gets redrawn.
-
-C: gsk_renderer_render
-See: https://docs.gtk.org/gsk4/method.Renderer.render.html")
-
-
-(rt:define-gfunction (renderer-render-texture "gsk_renderer_render_texture") :args
-                     ((renderer (:object renderer)) (root :pointer)
-                      (viewport (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :optional t))
-                     :return (:object gdk:texture) :return-transfer :full :documentation
-                     "Renders a scene graph, described by a tree of `GskRenderNode` instances,
-to a texture.
-
-C: gsk_renderer_render_texture
-See: https://docs.gtk.org/gsk4/method.Renderer.render_texture.html")
-
-
-(rt:define-gfunction (renderer-unrealize "gsk_renderer_unrealize") :args
-                     ((renderer (:object renderer))) :documentation
-                     "Releases all the resources created by Gsk.Renderer.realize.
-
-C: gsk_renderer_unrealize
-See: https://docs.gtk.org/gsk4/method.Renderer.unrealize.html")
-
-
-(rt:define-gfunction (repeat-node-new "gsk_repeat_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (child :pointer)
-                      (child-bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :optional t))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will repeat the drawing of CHILD across
-the given BOUNDS.
-
-C: gsk_repeat_node_new
-See: https://docs.gtk.org/gsk4/ctor.RepeatNode.new.html")
-
-
-(rt:define-gfunction (repeat-node-get-child "gsk_repeat_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation "Retrieves the child of NODE.
-
-C: gsk_repeat_node_get_child
-See: https://docs.gtk.org/gsk4/method.RepeatNode.get_child.html")
-
-
-(rt:define-gfunction (repeat-node-get-child-bounds "gsk_repeat_node_get_child_bounds") :args
-                     ((node :pointer)) :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :documentation
-                     "Retrieves the bounding rectangle of the child of NODE.
-
-C: gsk_repeat_node_get_child_bounds
-See: https://docs.gtk.org/gsk4/method.RepeatNode.get_child_bounds.html")
-
-
-(rt:define-gfunction (repeat-node-get-child-snap "gsk_repeat_node_get_child_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for the child's bounding
-rectangle.
-
-C: gsk_repeat_node_get_child_snap
-See: https://docs.gtk.org/gsk4/method.RepeatNode.get_child_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (repeat-node-get-snap "gsk_repeat_node_get_snap") :args ((node :pointer))
-                     :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_repeat_node_get_snap
-See: https://docs.gtk.org/gsk4/method.RepeatNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (repeating-linear-gradient-node-new "gsk_repeating_linear_gradient_node_new")
-                     :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (start (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (end (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (color-stops (:array (:record color-stop)))
-                      (n-color-stops :size :length-of color-stops))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will create a repeating linear gradient
-from the given points and color stops, and render that into the area
-given by BOUNDS.
-
-C: gsk_repeating_linear_gradient_node_new
-See: https://docs.gtk.org/gsk4/ctor.RepeatingLinearGradientNode.new.html")
-
-
-(rt:define-gfunction (repeating-radial-gradient-node-new "gsk_repeating_radial_gradient_node_new")
-                     :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (hradius :float) (vradius :float) (start :float) (end :float)
-                      (color-stops (:array (:record color-stop)))
-                      (n-color-stops :size :length-of color-stops))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that draws a repeating radial gradient.
-
-C: gsk_repeating_radial_gradient_node_new
-See: https://docs.gtk.org/gsk4/ctor.RepeatingRadialGradientNode.new.html")
-
-
-(rt:define-gfunction (rounded-clip-node-new "gsk_rounded_clip_node_new") :args
-                     ((child :pointer) (clip (:record rounded-rect))) :return :pointer
-                     :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will clip the CHILD to the area
-given by CLIP.
-
-C: gsk_rounded_clip_node_new
-See: https://docs.gtk.org/gsk4/ctor.RoundedClipNode.new.html")
-
-
-(rt:define-gfunction (rounded-clip-node-get-child "gsk_rounded_clip_node_get_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Gets the child node that is getting clipped by the given NODE.
-
-C: gsk_rounded_clip_node_get_child
-See: https://docs.gtk.org/gsk4/method.RoundedClipNode.get_child.html")
-
-
-(rt:define-gfunction (rounded-clip-node-get-clip "gsk_rounded_clip_node_get_clip") :args
-                     ((node :pointer)) :return (:record rounded-rect) :documentation
-                     "Retrieves the rounded rectangle used to clip the contents of the NODE.
-
-C: gsk_rounded_clip_node_get_clip
-See: https://docs.gtk.org/gsk4/method.RoundedClipNode.get_clip.html")
-
-
-(rt:define-gfunction (rounded-clip-node-get-snap "gsk_rounded_clip_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_rounded_clip_node_get_snap
-See: https://docs.gtk.org/gsk4/method.RoundedClipNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (rounded-rect-contains-point "gsk_rounded_rect_contains_point") :args
-                     ((self (:record rounded-rect))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
-                     :return :boolean :documentation
-                     "Checks if the given point is inside the rounded rectangle.
-
-C: gsk_rounded_rect_contains_point
-See: https://docs.gtk.org/gsk4/method.RoundedRect.contains_point.html")
-
-
-(rt:define-gfunction (rounded-rect-contains-rect "gsk_rounded_rect_contains_rect") :args
-                     ((self (:record rounded-rect))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :boolean :documentation
-                     "Checks if the given rectangle is contained inside the rounded rectangle.
-
-C: gsk_rounded_rect_contains_rect
-See: https://docs.gtk.org/gsk4/method.RoundedRect.contains_rect.html")
-
-
-(rt:define-gfunction (rounded-rect-init "gsk_rounded_rect_init") :args
-                     ((self (:record rounded-rect))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (top-left (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
-                      (top-right (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
-                      (bottom-right (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
-                      (bottom-left (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size)))
-                     :return (:record rounded-rect) :documentation
-                     "Initializes a rounded rectangle with the given values.
-
-C: gsk_rounded_rect_init
-See: https://docs.gtk.org/gsk4/method.RoundedRect.init.html")
-
-
-(rt:define-gfunction (rounded-rect-init-copy "gsk_rounded_rect_init_copy") :args
-                     ((self (:record rounded-rect)) (src (:record rounded-rect))) :return
-                     (:record rounded-rect) :documentation
-                     "Initializes a rounded rectangle with a copy.
-
-C: gsk_rounded_rect_init_copy
-See: https://docs.gtk.org/gsk4/method.RoundedRect.init_copy.html")
-
-
-(rt:define-gfunction (rounded-rect-init-from-rect "gsk_rounded_rect_init_from_rect") :args
-                     ((self (:record rounded-rect))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (radius :float))
-                     :return (:record rounded-rect) :documentation
-                     "Initializes a rounded rectangle to the given bounds
-and sets the radius of all four corners equally.
-
-C: gsk_rounded_rect_init_from_rect
-See: https://docs.gtk.org/gsk4/method.RoundedRect.init_from_rect.html")
-
-
-(rt:define-gfunction (rounded-rect-intersects-rect "gsk_rounded_rect_intersects_rect") :args
-                     ((self (:record rounded-rect))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :boolean :documentation "Checks if part a rectangle is contained
-inside the rounded rectangle.
-
-C: gsk_rounded_rect_intersects_rect
-See: https://docs.gtk.org/gsk4/method.RoundedRect.intersects_rect.html")
-
-
-(rt:define-gfunction (rounded-rect-is-rectilinear "gsk_rounded_rect_is_rectilinear") :args
-                     ((self (:record rounded-rect))) :return :boolean :documentation
-                     "Checks if all corners of a rounded rectangle are right angles
-and the rectangle covers all of its bounds.
-
-C: gsk_rounded_rect_is_rectilinear
-See: https://docs.gtk.org/gsk4/method.RoundedRect.is_rectilinear.html")
-
-
-(rt:define-gfunction (rounded-rect-normalize "gsk_rounded_rect_normalize") :args
-                     ((self (:record rounded-rect))) :return (:record rounded-rect) :documentation
-                     "Normalizes a rounded rectangle.
-
-C: gsk_rounded_rect_normalize
-See: https://docs.gtk.org/gsk4/method.RoundedRect.normalize.html")
-
-
-(rt:define-gfunction (rounded-rect-offset "gsk_rounded_rect_offset") :args
-                     ((self (:record rounded-rect)) (dx :float) (dy :float)) :return
-                     (:record rounded-rect) :documentation
-                     "Offsets the rounded rectangle's origin by DX and DY.
-
-C: gsk_rounded_rect_offset
-See: https://docs.gtk.org/gsk4/method.RoundedRect.offset.html")
-
-
-(rt:define-gfunction (rounded-rect-shrink "gsk_rounded_rect_shrink") :args
-                     ((self (:record rounded-rect)) (top :float) (right :float) (bottom :float)
-                      (left :float))
-                     :return (:record rounded-rect) :documentation
-                     "Shrinks (or grows) a rounded rectangle by moving the 4 sides
-according to the offsets given.
-
-C: gsk_rounded_rect_shrink
-See: https://docs.gtk.org/gsk4/method.RoundedRect.shrink.html")
-
-
-(rt:define-gfunction (shader-args-builder-new "gsk_shader_args_builder_new") :args
-                     ((shader (:object gl-shader))
-                      (initial-values (:boxed "GBytes" "g_bytes_get_type") :optional t))
-                     :return (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type")
-                     :return-transfer :full :documentation
-                     "Allocates a builder that can be used to construct a new uniform data
-chunk.
-
-C: gsk_shader_args_builder_new
-See: https://docs.gtk.org/gsk4/ctor.ShaderArgsBuilder.new.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-ref "gsk_shader_args_builder_ref") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type")))
-                     :return (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type")
-                     :return-transfer :full :documentation
-                     "Increases the reference count of a `GskShaderArgsBuilder` by one.
-
-C: gsk_shader_args_builder_ref
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.ref.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-bool "gsk_shader_args_builder_set_bool") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value :boolean))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_bool
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_bool.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-float "gsk_shader_args_builder_set_float") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value :float))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_float
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_float.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-int "gsk_shader_args_builder_set_int") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value :int32))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_int
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_int.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-uint "gsk_shader_args_builder_set_uint") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value :uint32))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_uint
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_uint.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-vec2 "gsk_shader_args_builder_set_vec2") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int)
-                      (value (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_vec2
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_vec2.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-vec3 "gsk_shader_args_builder_set_vec3") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int)
-                      (value (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_vec3
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_vec3.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-set-vec4 "gsk_shader_args_builder_set_vec4") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int)
-                      (value (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
-                     :documentation "Sets the value of the uniform IDX.
-
-C: gsk_shader_args_builder_set_vec4
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.set_vec4.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-to-args "gsk_shader_args_builder_to_args") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type")))
-                     :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full
-                     :documentation "Creates a new `GBytes` args from the current state of the
-given BUILDER.
-
-C: gsk_shader_args_builder_to_args
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.to_args.html
-Deprecated.")
-
-
-(rt:define-gfunction (shader-args-builder-unref "gsk_shader_args_builder_unref") :args
-                     ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type")))
-                     :documentation
-                     "Decreases the reference count of a `GskShaderArgBuilder` by one.
-
-C: gsk_shader_args_builder_unref
-See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.unref.html
-Deprecated.")
-
-
-(rt:define-gfunction (shadow-node-new "gsk_shadow_node_new") :args
-                     ((child :pointer) (shadows (:array (:record shadow)))
-                      (n-shadows :size :length-of shadows))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will draw a CHILD with the given
-SHADOWS below it.
-
-C: gsk_shadow_node_new
-See: https://docs.gtk.org/gsk4/ctor.ShadowNode.new.html")
-
-
-(rt:define-gfunction (shadow-node-get-child "gsk_shadow_node_get_child") :args ((node :pointer))
-                     :return :pointer :documentation
-                     "Retrieves the child `GskRenderNode` of the shadow NODE.
-
-C: gsk_shadow_node_get_child
-See: https://docs.gtk.org/gsk4/method.ShadowNode.get_child.html")
-
-
-(rt:define-gfunction (shadow-node-get-n-shadows "gsk_shadow_node_get_n_shadows") :args
-                     ((node :pointer)) :return :size :documentation
-                     "Retrieves the number of shadows in the NODE.
-
-C: gsk_shadow_node_get_n_shadows
-See: https://docs.gtk.org/gsk4/method.ShadowNode.get_n_shadows.html")
-
-
-(rt:define-gfunction (shadow-node-get-shadow "gsk_shadow_node_get_shadow") :args
-                     ((node :pointer) (i :size)) :return (:record shadow) :documentation
-                     "Retrieves the shadow data at the given index I.
-
-C: gsk_shadow_node_get_shadow
-See: https://docs.gtk.org/gsk4/method.ShadowNode.get_shadow.html")
-
-
-(rt:define-gfunction (stroke-new "gsk_stroke_new") :args ((line-width :float)) :return
-                     (:boxed "GskStroke" "gsk_stroke_get_type") :return-transfer :full :version
-                     "4.14" :documentation "Creates a new `GskStroke` with the given LINE-WIDTH.
-
-C: gsk_stroke_new
-See: https://docs.gtk.org/gsk4/ctor.Stroke.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-equal "gsk_stroke_equal") :args
-                     ((stroke1 :pointer) (stroke2 :pointer :optional t)) :return :boolean :version
-                     "4.14" :documentation "Checks if two strokes are identical.
-
-C: gsk_stroke_equal
-See: https://docs.gtk.org/gsk4/type_func.Stroke.equal.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-copy "gsk_stroke_copy") :args
-                     ((other (:boxed "GskStroke" "gsk_stroke_get_type"))) :return
-                     (:boxed "GskStroke" "gsk_stroke_get_type") :return-transfer :full :version
-                     "4.14" :documentation "Creates a copy of a `GskStroke`.
-
-C: gsk_stroke_copy
-See: https://docs.gtk.org/gsk4/method.Stroke.copy.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-free "gsk_stroke_free") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :version "4.14"
-                     :documentation "Frees a `GskStroke`.
-
-C: gsk_stroke_free
-See: https://docs.gtk.org/gsk4/method.Stroke.free.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-dash "gsk_stroke_get_dash") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (n-dash :size :length-of :return :direction :out))
-                     :return (:array :float) :version "4.14" :documentation
-                     "Gets the dash array in use.
-
-C: gsk_stroke_get_dash
-See: https://docs.gtk.org/gsk4/method.Stroke.get_dash.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-dash-offset "gsk_stroke_get_dash_offset") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :return :float :version
-                     "4.14" :documentation "Gets the dash offset.
-
-C: gsk_stroke_get_dash_offset
-See: https://docs.gtk.org/gsk4/method.Stroke.get_dash_offset.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-line-cap "gsk_stroke_get_line_cap") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :return (:enum line-cap)
-                     :version "4.14" :documentation "Gets the line cap used.
-
-C: gsk_stroke_get_line_cap
-See: https://docs.gtk.org/gsk4/method.Stroke.get_line_cap.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-line-join "gsk_stroke_get_line_join") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :return (:enum line-join)
-                     :version "4.14" :documentation "Gets the line join used.
-
-C: gsk_stroke_get_line_join
-See: https://docs.gtk.org/gsk4/method.Stroke.get_line_join.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-line-width "gsk_stroke_get_line_width") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :return :float :version
-                     "4.14" :documentation "Gets the line width used.
-
-C: gsk_stroke_get_line_width
-See: https://docs.gtk.org/gsk4/method.Stroke.get_line_width.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-get-miter-limit "gsk_stroke_get_miter_limit") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))) :return :float :version
-                     "4.14" :documentation "Gets the miter limit.
-
-C: gsk_stroke_get_miter_limit
-See: https://docs.gtk.org/gsk4/method.Stroke.get_miter_limit.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-dash "gsk_stroke_set_dash") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type")) (dash (:array :float))
-                      (n-dash :size :length-of dash))
-                     :version "4.14" :documentation "Sets the dash pattern to use.
-
-C: gsk_stroke_set_dash
-See: https://docs.gtk.org/gsk4/method.Stroke.set_dash.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-dash-offset "gsk_stroke_set_dash_offset") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type")) (offset :float)) :version
-                     "4.14" :documentation
-                     "Sets the offset into the dash pattern where dashing should begin.
-
-C: gsk_stroke_set_dash_offset
-See: https://docs.gtk.org/gsk4/method.Stroke.set_dash_offset.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-line-cap "gsk_stroke_set_line_cap") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (line-cap (:enum line-cap)))
-                     :version "4.14" :documentation "Sets the line cap to be used when stroking.
-
-C: gsk_stroke_set_line_cap
-See: https://docs.gtk.org/gsk4/method.Stroke.set_line_cap.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-line-join "gsk_stroke_set_line_join") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (line-join (:enum line-join)))
-                     :version "4.14" :documentation "Sets the line join to be used when stroking.
-
-C: gsk_stroke_set_line_join
-See: https://docs.gtk.org/gsk4/method.Stroke.set_line_join.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-line-width "gsk_stroke_set_line_width") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type")) (line-width :float))
-                     :version "4.14" :documentation "Sets the line width to be used when stroking.
-
-C: gsk_stroke_set_line_width
-See: https://docs.gtk.org/gsk4/method.Stroke.set_line_width.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-set-miter-limit "gsk_stroke_set_miter_limit") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type")) (limit :float)) :version
-                     "4.14" :documentation "Sets the miter limit to be used when stroking.
-
-C: gsk_stroke_set_miter_limit
-See: https://docs.gtk.org/gsk4/method.Stroke.set_miter_limit.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-to-cairo "gsk_stroke_to_cairo") :args
-                     ((self (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (cr (:boxed "CairoContext" "cairo_gobject_context_get_type")))
-                     :version "4.14" :documentation
-                     "A helper function that sets the stroke parameters
-of a cairo context from a `GskStroke`.
-
-C: gsk_stroke_to_cairo
-See: https://docs.gtk.org/gsk4/method.Stroke.to_cairo.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-node-new "gsk_stroke_node_new") :args
-                     ((child :pointer) (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (stroke (:boxed "GskStroke" "gsk_stroke_get_type")))
-                     :return :pointer :version "4.14" :documentation
-                     "Creates a #GskRenderNode that will fill the outline generated by stroking
-the given PATH using the attributes defined in STROKE.
-
-C: gsk_stroke_node_new
-See: https://docs.gtk.org/gsk4/ctor.StrokeNode.new.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-node-get-child "gsk_stroke_node_get_child") :args ((node :pointer))
-                     :return :pointer :version "4.14" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_stroke_node_get_child
-See: https://docs.gtk.org/gsk4/method.StrokeNode.get_child.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-node-get-path "gsk_stroke_node_get_path") :args ((node :pointer))
-                     :return (:boxed "GskPath" "gsk_path_get_type") :version "4.14" :documentation
-                     "Retrieves the path that will be stroked with the contents of
-the NODE.
-
-C: gsk_stroke_node_get_path
-See: https://docs.gtk.org/gsk4/method.StrokeNode.get_path.html
-Since: 4.14")
-
-
-(rt:define-gfunction (stroke-node-get-stroke "gsk_stroke_node_get_stroke") :args ((node :pointer))
-                     :return (:boxed "GskStroke" "gsk_stroke_get_type") :version "4.14"
-                     :documentation "Retrieves the stroke attributes used in this NODE.
-
-C: gsk_stroke_node_get_stroke
-See: https://docs.gtk.org/gsk4/method.StrokeNode.get_stroke.html
-Since: 4.14")
-
-
-(rt:define-gfunction (subsurface-node-get-child "gsk_subsurface_node_get_child") :args
-                     ((node :pointer)) :return :pointer :version "4.14" :documentation
-                     "Gets the child node that is getting drawn by the given NODE.
-
-C: gsk_subsurface_node_get_child
-See: https://docs.gtk.org/gsk4/method.SubsurfaceNode.get_child.html
-Since: 4.14")
-
-
-(rt:define-gfunction (text-node-new "gsk_text_node_new") :args
-                     ((font (:object pango:font))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type"
-                        pango:glyph-string))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))
-                      (offset (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a render node that renders the given glyphs.
-
-C: gsk_text_node_new
-See: https://docs.gtk.org/gsk4/ctor.TextNode.new.html")
-
-
-(rt:define-gfunction (text-node-get-color "gsk_text_node_get_color") :args ((node :pointer))
-                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :documentation
-                     "Retrieves the color used by the text NODE.
-
-C: gsk_text_node_get_color
-See: https://docs.gtk.org/gsk4/method.TextNode.get_color.html")
-
-
-(rt:define-gfunction (text-node-get-font "gsk_text_node_get_font") :args ((node :pointer)) :return
-                     (:object pango:font) :documentation "Returns the font used by the text NODE.
-
-C: gsk_text_node_get_font
-See: https://docs.gtk.org/gsk4/method.TextNode.get_font.html")
-
-
-(rt:define-gfunction (text-node-get-glyphs "gsk_text_node_get_glyphs") :args
-                     ((node :pointer) (n-glyphs :uint :length-of :return :direction :out)) :return
-                     (:array (:record pango:glyph-info)) :documentation
-                     "Retrieves the glyph information in the NODE.
-
-C: gsk_text_node_get_glyphs
-See: https://docs.gtk.org/gsk4/method.TextNode.get_glyphs.html")
-
-
-(rt:define-gfunction (text-node-get-num-glyphs "gsk_text_node_get_num_glyphs") :args
-                     ((node :pointer)) :return :uint :documentation
-                     "Retrieves the number of glyphs in the text node.
-
-C: gsk_text_node_get_num_glyphs
-See: https://docs.gtk.org/gsk4/method.TextNode.get_num_glyphs.html")
-
-
-(rt:define-gfunction (text-node-get-offset "gsk_text_node_get_offset") :args ((node :pointer))
-                     :return (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                     :documentation "Retrieves the offset applied to the text.
-
-C: gsk_text_node_get_offset
-See: https://docs.gtk.org/gsk4/method.TextNode.get_offset.html")
-
-
-(rt:define-gfunction (text-node-has-color-glyphs "gsk_text_node_has_color_glyphs") :args
-                     ((node :pointer)) :return :boolean :version "4.2" :documentation
-                     "Checks whether the text NODE has color glyphs.
-
-C: gsk_text_node_has_color_glyphs
-See: https://docs.gtk.org/gsk4/method.TextNode.has_color_glyphs.html
-Since: 4.2")
-
-
-(rt:define-gfunction (texture-node-new "gsk_texture_node_new") :args
-                     ((texture (:object gdk:texture))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will render the given
-TEXTURE into the area given by BOUNDS.
-
-C: gsk_texture_node_new
-See: https://docs.gtk.org/gsk4/ctor.TextureNode.new.html")
-
-
-(rt:define-gfunction (texture-node-get-snap "gsk_texture_node_get_snap") :args ((node :pointer))
-                     :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_texture_node_get_snap
-See: https://docs.gtk.org/gsk4/method.TextureNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (texture-node-get-texture "gsk_texture_node_get_texture") :args
-                     ((node :pointer)) :return (:object gdk:texture) :documentation
-                     "Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
-
-C: gsk_texture_node_get_texture
-See: https://docs.gtk.org/gsk4/method.TextureNode.get_texture.html")
-
-
-(rt:define-gfunction (texture-scale-node-new "gsk_texture_scale_node_new") :args
-                     ((texture (:object gdk:texture))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (filter (:enum scaling-filter)))
-                     :return :pointer :return-transfer :full :version "4.10" :documentation
-                     "Creates a node that scales the texture to the size given by the
-bounds using the filter and then places it at the bounds' position.
-
-C: gsk_texture_scale_node_new
-See: https://docs.gtk.org/gsk4/ctor.TextureScaleNode.new.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-scale-node-get-filter "gsk_texture_scale_node_get_filter") :args
-                     ((node :pointer)) :return (:enum scaling-filter) :version "4.10"
-                     :documentation
-                     "Retrieves the `GskScalingFilter` used when creating this `GskRenderNode`.
-
-C: gsk_texture_scale_node_get_filter
-See: https://docs.gtk.org/gsk4/method.TextureScaleNode.get_filter.html
-Since: 4.10")
-
-
-(rt:define-gfunction (texture-scale-node-get-snap "gsk_texture_scale_node_get_snap") :args
-                     ((node :pointer)) :return :uint :version "4.24" :documentation
-                     "Retrieves the snap value for this node
-
-C: gsk_texture_scale_node_get_snap
-See: https://docs.gtk.org/gsk4/method.TextureScaleNode.get_snap.html
-Since: 4.24")
-
-
-(rt:define-gfunction (texture-scale-node-get-texture "gsk_texture_scale_node_get_texture") :args
-                     ((node :pointer)) :return (:object gdk:texture) :version "4.10" :documentation
-                     "Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
-
-C: gsk_texture_scale_node_get_texture
-See: https://docs.gtk.org/gsk4/method.TextureScaleNode.get_texture.html
-Since: 4.10")
-
-
-(rt:define-gfunction (transform-new "gsk_transform_new") :return
-                     (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer :full
-                     :documentation "Creates a new identity transform.
-
-C: gsk_transform_new
-See: https://docs.gtk.org/gsk4/ctor.Transform.new.html")
-
-
-(rt:define-gfunction (transform-parse "gsk_transform_parse") :args
-                     ((string :string)
-                      (out-transform (:boxed "GskTransform" "gsk_transform_get_type") :direction
-                       :out :transfer :full))
-                     :return :boolean :documentation "Parses a given into a transform.
-
-C: gsk_transform_parse
-See: https://docs.gtk.org/gsk4/type_func.Transform.parse.html")
-
-
-(rt:define-gfunction (transform-equal "gsk_transform_equal") :args
-                     ((first (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (second (:boxed "GskTransform" "gsk_transform_get_type") :optional t))
-                     :return :boolean :documentation "Checks two transforms for equality.
-
-C: gsk_transform_equal
-See: https://docs.gtk.org/gsk4/method.Transform.equal.html")
-
-
-(rt:define-gfunction (transform-get-category "gsk_transform_get_category") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))) :return
-                     (:enum transform-category) :documentation
-                     "Returns the category this transform belongs to.
-
-C: gsk_transform_get_category
-See: https://docs.gtk.org/gsk4/method.Transform.get_category.html")
-
-
-(rt:define-gfunction (transform-invert "gsk_transform_invert") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Inverts the given transform.
-
-C: gsk_transform_invert
-See: https://docs.gtk.org/gsk4/method.Transform.invert.html")
-
-
-(rt:define-gfunction (transform-matrix "gsk_transform_matrix") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (matrix
-                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Multiplies NEXT with the given MATRIX.
-
-C: gsk_transform_matrix
-See: https://docs.gtk.org/gsk4/method.Transform.matrix.html")
-
-
-(rt:define-gfunction (transform-matrix-2d "gsk_transform_matrix_2d") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (xx :float) (yx :float) (xy :float) (yy :float) (dx :float) (dy :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :version "4.20" :documentation
-                     "Multiplies NEXT with the matrix [ xx yx x0; xy yy y0; 0 0 1 ].
-
-C: gsk_transform_matrix_2d
-See: https://docs.gtk.org/gsk4/method.Transform.matrix_2d.html
-Since: 4.20")
-
-
-(rt:define-gfunction (transform-perspective "gsk_transform_perspective") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (depth :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Applies a perspective projection transform.
-
-C: gsk_transform_perspective
-See: https://docs.gtk.org/gsk4/method.Transform.perspective.html")
-
-
-(rt:define-gfunction (transform-print "gsk_transform_print") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
-                     :documentation "Converts the transform into a human-readable representation.
-
-C: gsk_transform_print
-See: https://docs.gtk.org/gsk4/method.Transform.print.html")
-
-
-(rt:define-gfunction (transform-ref "gsk_transform_ref") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))) :return
-                     (:boxed "GskTransform" "gsk_transform_get_type") :documentation
-                     "Acquires a reference on the given transform.
-
-C: gsk_transform_ref
-See: https://docs.gtk.org/gsk4/method.Transform.ref.html")
-
-
-(rt:define-gfunction (transform-rotate "gsk_transform_rotate") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (angle :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Rotates NEXT by an angle around the Z axis.
-
-C: gsk_transform_rotate
-See: https://docs.gtk.org/gsk4/method.Transform.rotate.html")
-
-
-(rt:define-gfunction (transform-rotate-3d "gsk_transform_rotate_3d") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (angle :float)
-                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Rotates NEXT ANGLE degrees around AXIS.
-
-C: gsk_transform_rotate_3d
-See: https://docs.gtk.org/gsk4/method.Transform.rotate_3d.html")
-
-
-(rt:define-gfunction (transform-scale "gsk_transform_scale") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (factor-x :float) (factor-y :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Scales NEXT in 2-dimensional space by the given factors.
-
-C: gsk_transform_scale
-See: https://docs.gtk.org/gsk4/method.Transform.scale.html")
-
-
-(rt:define-gfunction (transform-scale-3d "gsk_transform_scale_3d") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (factor-x :float) (factor-y :float) (factor-z :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Scales NEXT by the given factors.
-
-C: gsk_transform_scale_3d
-See: https://docs.gtk.org/gsk4/method.Transform.scale_3d.html")
-
-
-(rt:define-gfunction (transform-skew "gsk_transform_skew") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (skew-x :float) (skew-y :float))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :version "4.6" :documentation "Applies a skew transform.
-
-C: gsk_transform_skew
-See: https://docs.gtk.org/gsk4/method.Transform.skew.html
-Since: 4.6")
-
-
-(rt:define-gfunction (transform-to-2d "gsk_transform_to_2d") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (out-xx :float :direction :out :transfer :full)
-                      (out-yx :float :direction :out :transfer :full)
-                      (out-xy :float :direction :out :transfer :full)
-                      (out-yy :float :direction :out :transfer :full)
-                      (out-dx :float :direction :out :transfer :full)
-                      (out-dy :float :direction :out :transfer :full))
-                     :documentation "Converts a transform to a 2D transformation matrix.
-
-C: gsk_transform_to_2d
-See: https://docs.gtk.org/gsk4/method.Transform.to_2d.html")
-
-
-(rt:define-gfunction (transform-to-2d-components "gsk_transform_to_2d_components") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (out-skew-x :float :direction :out :transfer :full)
-                      (out-skew-y :float :direction :out :transfer :full)
-                      (out-scale-x :float :direction :out :transfer :full)
-                      (out-scale-y :float :direction :out :transfer :full)
-                      (out-angle :float :direction :out :transfer :full)
-                      (out-dx :float :direction :out :transfer :full)
-                      (out-dy :float :direction :out :transfer :full))
-                     :version "4.6" :documentation
-                     "Converts a transform to 2D transformation factors.
-
-C: gsk_transform_to_2d_components
-See: https://docs.gtk.org/gsk4/method.Transform.to_2d_components.html
-Since: 4.6")
-
-
-(rt:define-gfunction (transform-to-affine "gsk_transform_to_affine") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (out-scale-x :float :direction :out :transfer :full)
-                      (out-scale-y :float :direction :out :transfer :full)
-                      (out-dx :float :direction :out :transfer :full)
-                      (out-dy :float :direction :out :transfer :full))
-                     :documentation "Converts a transform to 2D affine transformation factors.
-
-C: gsk_transform_to_affine
-See: https://docs.gtk.org/gsk4/method.Transform.to_affine.html")
-
-
-(rt:define-gfunction (transform-to-matrix "gsk_transform_to_matrix") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (out-matrix
-                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)
-                       :direction :out :caller-allocates t))
-                     :documentation "Computes the 4x4 matrix for the transform.
-
-C: gsk_transform_to_matrix
-See: https://docs.gtk.org/gsk4/method.Transform.to_matrix.html")
-
-
-(rt:define-gfunction (transform-to-string "gsk_transform_to_string") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))) :return :string
-                     :return-transfer :full :documentation
-                     "Converts the transform into a human-readable string.
-
-C: gsk_transform_to_string
-See: https://docs.gtk.org/gsk4/method.Transform.to_string.html")
-
-
-(rt:define-gfunction (transform-to-translate "gsk_transform_to_translate") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (out-dx :float :direction :out :transfer :full)
-                      (out-dy :float :direction :out :transfer :full))
-                     :documentation "Converts a transform to a translation operation.
-
-C: gsk_transform_to_translate
-See: https://docs.gtk.org/gsk4/method.Transform.to_translate.html")
-
-
-(rt:define-gfunction (transform-transform "gsk_transform_transform") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (other (:boxed "GskTransform" "gsk_transform_get_type") :optional t))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Applies all the operations from OTHER to NEXT.
-
-C: gsk_transform_transform
-See: https://docs.gtk.org/gsk4/method.Transform.transform.html")
-
-
-(rt:define-gfunction (transform-transform-bounds "gsk_transform_transform_bounds") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
-                      (out-rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
-                       :direction :out :caller-allocates t))
-                     :documentation "Transforms a rectangle using the given transform.
-
-C: gsk_transform_transform_bounds
-See: https://docs.gtk.org/gsk4/method.Transform.transform_bounds.html")
-
-
-(rt:define-gfunction (transform-transform-point "gsk_transform_transform_point") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
-                      (out-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
-                       :direction :out :caller-allocates t))
-                     :documentation "Transforms a point using the given transform.
-
-C: gsk_transform_transform_point
-See: https://docs.gtk.org/gsk4/method.Transform.transform_point.html")
-
-
-(rt:define-gfunction (transform-translate "gsk_transform_translate") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Translates NEXT in 2-dimensional space by POINT.
-
-C: gsk_transform_translate
-See: https://docs.gtk.org/gsk4/method.Transform.translate.html")
-
-
-(rt:define-gfunction (transform-translate-3d "gsk_transform_translate_3d") :args
-                     ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (point
-                       (:boxed "GraphenePoint3D" "graphene_point3d_get_type" graphene:point3-d)))
-                     :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
-                     :full :documentation "Translates NEXT by POINT.
-
-C: gsk_transform_translate_3d
-See: https://docs.gtk.org/gsk4/method.Transform.translate_3d.html")
-
-
-(rt:define-gfunction (transform-unref "gsk_transform_unref") :args
-                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))) :documentation
-                     "Releases a reference on the given transform.
-
-C: gsk_transform_unref
-See: https://docs.gtk.org/gsk4/method.Transform.unref.html")
-
-
-(rt:define-gfunction (transform-node-new "gsk_transform_node_new") :args
-                     ((child :pointer)
-                      (transform (:boxed "GskTransform" "gsk_transform_get_type") :optional t))
-                     :return :pointer :return-transfer :full :documentation
-                     "Creates a `GskRenderNode` that will transform the given CHILD
-with the given TRANSFORM.
-
-C: gsk_transform_node_new
-See: https://docs.gtk.org/gsk4/ctor.TransformNode.new.html")
-
-
-(rt:define-gfunction (transform-node-get-child "gsk_transform_node_get_child") :args
-                     ((node :pointer)) :return :pointer :documentation
-                     "Gets the child node that is getting transformed by the given NODE.
-
-C: gsk_transform_node_get_child
-See: https://docs.gtk.org/gsk4/method.TransformNode.get_child.html")
-
-
-(rt:define-gfunction (transform-node-get-transform "gsk_transform_node_get_transform") :args
-                     ((node :pointer)) :return (:boxed "GskTransform" "gsk_transform_get_type")
-                     :documentation "Retrieves the `GskTransform` used by the NODE.
-
-C: gsk_transform_node_get_transform
-See: https://docs.gtk.org/gsk4/method.TransformNode.get_transform.html")
-
-
-(rt:define-gfunction (vulkan-renderer-new "gsk_vulkan_renderer_new") :return (:object renderer)
-                     :return-transfer :full :documentation "Creates a new Vulkan renderer.
-
-C: gsk_vulkan_renderer_new
-See: https://docs.gtk.org/gsk4/ctor.VulkanRenderer.new.html")
-
-
-(rt:define-gfunction (serialization-error-quark "gsk_serialization_error_quark") :return :uint32
-                     :documentation "Registers an error quark for Gsk.RenderNode errors.
-
-C: gsk_serialization_error_quark
-See: https://docs.gtk.org/gsk4/type_func.SerializationError.quark.html")

@@ -80,5 +80,9 @@
    #:define-gstruct-constructor
    #:record
    #:unavailable-function
+   #:c-name
+   #:lisp-name
+   #:documentation-url
+   #:browse
    #:enum-value
    #:enum-keyword))

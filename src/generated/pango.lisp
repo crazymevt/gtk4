@@ -7,8 +7,9 @@
 
 
 (rt:define-genum alignment
-    (:kind :enum :gtype-name "PangoAlignment" :get-type "pango_alignment_get_type" :documentation
-     "`PangoAlignment` describes how to align the lines of a `PangoLayout`
+    (:kind :enum :gtype-name "PangoAlignment" :get-type "pango_alignment_get_type" :c-name
+     "PangoAlignment" :url "https://docs.gtk.org/Pango/enum.Alignment.html" :documentation
+     "`pango:alignment` describes how to align the lines of a `pango:layout`
 within the available space.
 
 C: PangoAlignment
@@ -19,8 +20,9 @@ See: https://docs.gtk.org/Pango/enum.Alignment.html")
 
 
 (rt:define-genum attr-type
-    (:kind :enum :gtype-name "PangoAttrType" :get-type "pango_attr_type_get_type" :documentation
-     "The `PangoAttrType` distinguishes between different types of attributes.
+    (:kind :enum :gtype-name "PangoAttrType" :get-type "pango_attr_type_get_type" :c-name
+     "PangoAttrType" :url "https://docs.gtk.org/Pango/enum.AttrType.html" :documentation
+     "The `pango:attr-type` distinguishes between different types of attributes.
 
 C: PangoAttrType
 See: https://docs.gtk.org/Pango/enum.AttrType.html")
@@ -66,8 +68,9 @@ See: https://docs.gtk.org/Pango/enum.AttrType.html")
 
 
 (rt:define-genum baseline-shift
-    (:kind :enum :gtype-name "PangoBaselineShift" :get-type "pango_baseline_shift_get_type"
-     :documentation "An enumeration that affects baseline shifts between runs.
+    (:kind :enum :gtype-name "PangoBaselineShift" :get-type "pango_baseline_shift_get_type" :c-name
+     "PangoBaselineShift" :url "https://docs.gtk.org/Pango/enum.BaselineShift.html" :documentation
+     "An enumeration that affects baseline shifts between runs.
 
 C: PangoBaselineShift
 See: https://docs.gtk.org/Pango/enum.BaselineShift.html")
@@ -77,8 +80,9 @@ See: https://docs.gtk.org/Pango/enum.BaselineShift.html")
 
 
 (rt:define-genum bidi-type
-    (:kind :enum :gtype-name "PangoBidiType" :get-type "pango_bidi_type_get_type" :documentation
-     "`PangoBidiType` represents the bidirectional character
+    (:kind :enum :gtype-name "PangoBidiType" :get-type "pango_bidi_type_get_type" :c-name
+     "PangoBidiType" :url "https://docs.gtk.org/Pango/enum.BidiType.html" :documentation
+     "`pango:bidi-type` represents the bidirectional character
 type of a Unicode character.
 
 C: PangoBidiType
@@ -109,8 +113,9 @@ See: https://docs.gtk.org/Pango/enum.BidiType.html")
 
 
 (rt:define-genum coverage-level
-    (:kind :enum :gtype-name "PangoCoverageLevel" :get-type "pango_coverage_level_get_type"
-     :documentation "`PangoCoverageLevel` is used to indicate how well a font can
+    (:kind :enum :gtype-name "PangoCoverageLevel" :get-type "pango_coverage_level_get_type" :c-name
+     "PangoCoverageLevel" :url "https://docs.gtk.org/Pango/enum.CoverageLevel.html" :documentation
+     "`pango:coverage-level` is used to indicate how well a font can
 represent a particular Unicode character for a particular script.
 
 C: PangoCoverageLevel
@@ -122,8 +127,9 @@ See: https://docs.gtk.org/Pango/enum.CoverageLevel.html")
 
 
 (rt:define-genum direction
-    (:kind :enum :gtype-name "PangoDirection" :get-type "pango_direction_get_type" :documentation
-     "`PangoDirection` represents a direction in the Unicode bidirectional
+    (:kind :enum :gtype-name "PangoDirection" :get-type "pango_direction_get_type" :c-name
+     "PangoDirection" :url "https://docs.gtk.org/Pango/enum.Direction.html" :documentation
+     "`pango:direction` represents a direction in the Unicode bidirectional
 algorithm.
 
 C: PangoDirection
@@ -138,8 +144,9 @@ See: https://docs.gtk.org/Pango/enum.Direction.html")
 
 
 (rt:define-genum ellipsize-mode
-    (:kind :enum :gtype-name "PangoEllipsizeMode" :get-type "pango_ellipsize_mode_get_type"
-     :documentation "`PangoEllipsizeMode` describes what sort of ellipsization
+    (:kind :enum :gtype-name "PangoEllipsizeMode" :get-type "pango_ellipsize_mode_get_type" :c-name
+     "PangoEllipsizeMode" :url "https://docs.gtk.org/Pango/enum.EllipsizeMode.html" :documentation
+     "`pango:ellipsize-mode` describes what sort of ellipsization
 should be applied to text.
 
 C: PangoEllipsizeMode
@@ -151,7 +158,8 @@ See: https://docs.gtk.org/Pango/enum.EllipsizeMode.html")
 
 
 (rt:define-genum font-color
-    (:kind :enum :gtype-name "PangoFontColor" :get-type "pango_font_color_get_type" :documentation
+    (:kind :enum :gtype-name "PangoFontColor" :get-type "pango_font_color_get_type" :c-name
+     "PangoFontColor" :url "https://docs.gtk.org/Pango/enum.FontColor.html" :documentation
      "Specifies whether a font should or should not have color glyphs.
 
 C: PangoFontColor
@@ -162,9 +170,10 @@ See: https://docs.gtk.org/Pango/enum.FontColor.html")
 
 
 (rt:define-genum font-mask
-    (:kind :flags :gtype-name "PangoFontMask" :get-type "pango_font_mask_get_type" :documentation
-     "The bits in a `PangoFontMask` correspond to the set fields in a
-`PangoFontDescription`.
+    (:kind :flags :gtype-name "PangoFontMask" :get-type "pango_font_mask_get_type" :c-name
+     "PangoFontMask" :url "https://docs.gtk.org/Pango/flags.FontMask.html" :documentation
+     "The bits in a `pango:font-mask` correspond to the set fields in a
+`pango:font-description`.
 
 C: PangoFontMask
 See: https://docs.gtk.org/Pango/flags.FontMask.html")
@@ -182,7 +191,8 @@ See: https://docs.gtk.org/Pango/flags.FontMask.html")
 
 
 (rt:define-genum font-scale
-    (:kind :enum :gtype-name "PangoFontScale" :get-type "pango_font_scale_get_type" :documentation
+    (:kind :enum :gtype-name "PangoFontScale" :get-type "pango_font_scale_get_type" :c-name
+     "PangoFontScale" :url "https://docs.gtk.org/Pango/enum.FontScale.html" :documentation
      "An enumeration that affects font sizes for superscript
 and subscript positioning and for (emulated) Small Caps.
 
@@ -195,8 +205,9 @@ See: https://docs.gtk.org/Pango/enum.FontScale.html")
 
 
 (rt:define-genum gravity
-    (:kind :enum :gtype-name "PangoGravity" :get-type "pango_gravity_get_type" :documentation
-     "`PangoGravity` represents the orientation of glyphs in a segment
+    (:kind :enum :gtype-name "PangoGravity" :get-type "pango_gravity_get_type" :c-name
+     "PangoGravity" :url "https://docs.gtk.org/Pango/enum.Gravity.html" :documentation
+     "`pango:gravity` represents the orientation of glyphs in a segment
 of text.
 
 C: PangoGravity
@@ -209,8 +220,9 @@ See: https://docs.gtk.org/Pango/enum.Gravity.html")
 
 
 (rt:define-genum gravity-hint
-    (:kind :enum :gtype-name "PangoGravityHint" :get-type "pango_gravity_hint_get_type"
-     :documentation "`PangoGravityHint` defines how horizontal scripts should behave in a
+    (:kind :enum :gtype-name "PangoGravityHint" :get-type "pango_gravity_hint_get_type" :c-name
+     "PangoGravityHint" :url "https://docs.gtk.org/Pango/enum.GravityHint.html" :documentation
+     "`pango:gravity-hint` defines how horizontal scripts should behave in a
 vertical context.
 
 C: PangoGravityHint
@@ -222,8 +234,9 @@ See: https://docs.gtk.org/Pango/enum.GravityHint.html")
 
 (rt:define-genum layout-deserialize-error
     (:kind :enum :gtype-name "PangoLayoutDeserializeError" :get-type
-     "pango_layout_deserialize_error_get_type" :documentation
-     "Errors that can be returned by Pango.Layout.deserialize.
+     "pango_layout_deserialize_error_get_type" :c-name "PangoLayoutDeserializeError" :url
+     "https://docs.gtk.org/Pango/enum.LayoutDeserializeError.html" :documentation
+     "Errors that can be returned by `pango:layout-deserialize`.
 
 C: PangoLayoutDeserializeError
 See: https://docs.gtk.org/Pango/enum.LayoutDeserializeError.html")
@@ -234,8 +247,9 @@ See: https://docs.gtk.org/Pango/enum.LayoutDeserializeError.html")
 
 (rt:define-genum layout-deserialize-flags
     (:kind :flags :gtype-name "PangoLayoutDeserializeFlags" :get-type
-     "pango_layout_deserialize_flags_get_type" :documentation
-     "Flags that influence the behavior of Pango.Layout.deserialize.
+     "pango_layout_deserialize_flags_get_type" :c-name "PangoLayoutDeserializeFlags" :url
+     "https://docs.gtk.org/Pango/flags.LayoutDeserializeFlags.html" :documentation
+     "Flags that influence the behavior of `pango:layout-deserialize`.
 
 C: PangoLayoutDeserializeFlags
 See: https://docs.gtk.org/Pango/flags.LayoutDeserializeFlags.html")
@@ -245,8 +259,9 @@ See: https://docs.gtk.org/Pango/flags.LayoutDeserializeFlags.html")
 
 (rt:define-genum layout-serialize-flags
     (:kind :flags :gtype-name "PangoLayoutSerializeFlags" :get-type
-     "pango_layout_serialize_flags_get_type" :documentation
-     "Flags that influence the behavior of Pango.Layout.serialize.
+     "pango_layout_serialize_flags_get_type" :c-name "PangoLayoutSerializeFlags" :url
+     "https://docs.gtk.org/Pango/flags.LayoutSerializeFlags.html" :documentation
+     "Flags that influence the behavior of `pango:layout-serialize`.
 
 C: PangoLayoutSerializeFlags
 See: https://docs.gtk.org/Pango/flags.LayoutSerializeFlags.html")
@@ -256,8 +271,9 @@ See: https://docs.gtk.org/Pango/flags.LayoutSerializeFlags.html")
 
 
 (rt:define-genum overline
-    (:kind :enum :gtype-name "PangoOverline" :get-type "pango_overline_get_type" :documentation
-     "The `PangoOverline` enumeration is used to specify whether text
+    (:kind :enum :gtype-name "PangoOverline" :get-type "pango_overline_get_type" :c-name
+     "PangoOverline" :url "https://docs.gtk.org/Pango/enum.Overline.html" :documentation
+     "The `pango:overline` enumeration is used to specify whether text
 should be overlined, and if so, the type of line.
 
 C: PangoOverline
@@ -268,6 +284,7 @@ See: https://docs.gtk.org/Pango/enum.Overline.html")
 
 (rt:define-genum render-component
     (:kind :flags :gtype-name "PangoRenderComponent" :get-type "pango_render_component_get_type"
+     :c-name "PangoRenderComponent" :url "https://docs.gtk.org/Pango/flags.RenderComponent.html"
      :documentation "Flags that specify which components of a layout to include
 in renderer output.
 
@@ -283,8 +300,9 @@ See: https://docs.gtk.org/Pango/flags.RenderComponent.html")
 
 
 (rt:define-genum render-part
-    (:kind :enum :gtype-name "PangoRenderPart" :get-type "pango_render_part_get_type"
-     :documentation "`PangoRenderPart` defines different items to render for such
+    (:kind :enum :gtype-name "PangoRenderPart" :get-type "pango_render_part_get_type" :c-name
+     "PangoRenderPart" :url "https://docs.gtk.org/Pango/enum.RenderPart.html" :documentation
+     "`pango:render-part` defines different items to render for such
 purposes as setting colors.
 
 C: PangoRenderPart
@@ -297,8 +315,9 @@ See: https://docs.gtk.org/Pango/enum.RenderPart.html")
 
 
 (rt:define-genum script
-    (:kind :enum :gtype-name "PangoScript" :get-type "pango_script_get_type" :documentation
-     "The `PangoScript` enumeration identifies different writing
+    (:kind :enum :gtype-name "PangoScript" :get-type "pango_script_get_type" :c-name "PangoScript"
+     :url "https://docs.gtk.org/Pango/enum.Script.html" :documentation
+     "The `pango:script` enumeration identifies different writing
 systems.
 
 C: PangoScript
@@ -424,8 +443,9 @@ See: https://docs.gtk.org/Pango/enum.Script.html")
 
 
 (rt:define-genum shape-flags
-    (:kind :flags :gtype-name "PangoShapeFlags" :get-type "pango_shape_flags_get_type"
-     :documentation "Flags influencing the shaping process.
+    (:kind :flags :gtype-name "PangoShapeFlags" :get-type "pango_shape_flags_get_type" :c-name
+     "PangoShapeFlags" :url "https://docs.gtk.org/Pango/flags.ShapeFlags.html" :documentation
+     "Flags influencing the shaping process.
 
 C: PangoShapeFlags
 See: https://docs.gtk.org/Pango/flags.ShapeFlags.html")
@@ -434,7 +454,8 @@ See: https://docs.gtk.org/Pango/flags.ShapeFlags.html")
 
 
 (rt:define-genum show-flags
-    (:kind :flags :gtype-name "PangoShowFlags" :get-type "pango_show_flags_get_type" :documentation
+    (:kind :flags :gtype-name "PangoShowFlags" :get-type "pango_show_flags_get_type" :c-name
+     "PangoShowFlags" :url "https://docs.gtk.org/Pango/flags.ShowFlags.html" :documentation
      "These flags affect how Pango treats characters that are normally
 not visible in the output.
 
@@ -447,7 +468,8 @@ See: https://docs.gtk.org/Pango/flags.ShowFlags.html")
 
 
 (rt:define-genum stretch
-    (:kind :enum :gtype-name "PangoStretch" :get-type "pango_stretch_get_type" :documentation
+    (:kind :enum :gtype-name "PangoStretch" :get-type "pango_stretch_get_type" :c-name
+     "PangoStretch" :url "https://docs.gtk.org/Pango/enum.Stretch.html" :documentation
      "An enumeration specifying the width of the font relative to other designs
 within a family.
 
@@ -465,7 +487,8 @@ See: https://docs.gtk.org/Pango/enum.Stretch.html")
 
 
 (rt:define-genum style
-    (:kind :enum :gtype-name "PangoStyle" :get-type "pango_style_get_type" :documentation
+    (:kind :enum :gtype-name "PangoStyle" :get-type "pango_style_get_type" :c-name "PangoStyle"
+     :url "https://docs.gtk.org/Pango/enum.Style.html" :documentation
      "An enumeration specifying the various slant styles possible for a font.
 
 C: PangoStyle
@@ -476,8 +499,9 @@ See: https://docs.gtk.org/Pango/enum.Style.html")
 
 
 (rt:define-genum tab-align
-    (:kind :enum :gtype-name "PangoTabAlign" :get-type "pango_tab_align_get_type" :documentation
-     "`PangoTabAlign` specifies where the text appears relative to the tab stop
+    (:kind :enum :gtype-name "PangoTabAlign" :get-type "pango_tab_align_get_type" :c-name
+     "PangoTabAlign" :url "https://docs.gtk.org/Pango/enum.TabAlign.html" :documentation
+     "`pango:tab-align` specifies where the text appears relative to the tab stop
 position.
 
 C: PangoTabAlign
@@ -489,8 +513,9 @@ See: https://docs.gtk.org/Pango/enum.TabAlign.html")
 
 
 (rt:define-genum text-transform
-    (:kind :enum :gtype-name "PangoTextTransform" :get-type "pango_text_transform_get_type"
-     :documentation "An enumeration that affects how Pango treats characters during shaping.
+    (:kind :enum :gtype-name "PangoTextTransform" :get-type "pango_text_transform_get_type" :c-name
+     "PangoTextTransform" :url "https://docs.gtk.org/Pango/enum.TextTransform.html" :documentation
+     "An enumeration that affects how Pango treats characters during shaping.
 
 C: PangoTextTransform
 See: https://docs.gtk.org/Pango/enum.TextTransform.html")
@@ -501,8 +526,9 @@ See: https://docs.gtk.org/Pango/enum.TextTransform.html")
 
 
 (rt:define-genum underline
-    (:kind :enum :gtype-name "PangoUnderline" :get-type "pango_underline_get_type" :documentation
-     "The `PangoUnderline` enumeration is used to specify whether text
+    (:kind :enum :gtype-name "PangoUnderline" :get-type "pango_underline_get_type" :c-name
+     "PangoUnderline" :url "https://docs.gtk.org/Pango/enum.Underline.html" :documentation
+     "The `pango:underline` enumeration is used to specify whether text
 should be underlined, and if so, the type of underlining.
 
 C: PangoUnderline
@@ -518,7 +544,8 @@ See: https://docs.gtk.org/Pango/enum.Underline.html")
 
 
 (rt:define-genum variant
-    (:kind :enum :gtype-name "PangoVariant" :get-type "pango_variant_get_type" :documentation
+    (:kind :enum :gtype-name "PangoVariant" :get-type "pango_variant_get_type" :c-name
+     "PangoVariant" :url "https://docs.gtk.org/Pango/enum.Variant.html" :documentation
      "An enumeration specifying capitalization variant of the font.
 
 C: PangoVariant
@@ -533,7 +560,8 @@ See: https://docs.gtk.org/Pango/enum.Variant.html")
 
 
 (rt:define-genum weight
-    (:kind :enum :gtype-name "PangoWeight" :get-type "pango_weight_get_type" :documentation
+    (:kind :enum :gtype-name "PangoWeight" :get-type "pango_weight_get_type" :c-name "PangoWeight"
+     :url "https://docs.gtk.org/Pango/enum.Weight.html" :documentation
      "An enumeration specifying the weight (boldness) of a font.
 
 C: PangoWeight
@@ -553,7 +581,8 @@ See: https://docs.gtk.org/Pango/enum.Weight.html")
 
 
 (rt:define-genum width
-    (:kind :enum :gtype-name "PangoWidth" :get-type "pango_width_get_type" :documentation
+    (:kind :enum :gtype-name "PangoWidth" :get-type "pango_width_get_type" :c-name "PangoWidth"
+     :url "https://docs.gtk.org/Pango/enum.Width.html" :documentation
      "An enumeration specifying the width of the font relative to other designs
 within a family.
 
@@ -571,8 +600,9 @@ See: https://docs.gtk.org/Pango/enum.Width.html")
 
 
 (rt:define-genum wrap-mode
-    (:kind :enum :gtype-name "PangoWrapMode" :get-type "pango_wrap_mode_get_type" :documentation
-     "`PangoWrapMode` describes how to wrap the lines of a `PangoLayout`
+    (:kind :enum :gtype-name "PangoWrapMode" :get-type "pango_wrap_mode_get_type" :c-name
+     "PangoWrapMode" :url "https://docs.gtk.org/Pango/enum.WrapMode.html" :documentation
+     "`pango:wrap-mode` describes how to wrap the lines of a `pango:layout`
 to the desired width.
 
 C: PangoWrapMode
@@ -606,7 +636,7 @@ See: https://docs.gtk.org/Pango/const.ANALYSIS_FLAG_NEED_HYPHEN.html")
 
 
 (rt:define-gconstant +attr-index-from-text-beginning+ 0
-                     "Value for START-INDEX in `PangoAttribute` that indicates
+                     "Value for START-INDEX in `pango:attribute` that indicates
 the beginning of the text.
 
 C: PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING
@@ -614,7 +644,7 @@ See: https://docs.gtk.org/Pango/const.ATTR_INDEX_FROM_TEXT_BEGINNING.html")
 
 
 (rt:define-gconstant +attr-index-to-text-end+ 4294967295
-                     "Value for END-INDEX in `PangoAttribute` that indicates
+                     "Value for END-INDEX in `pango:attribute` that indicates
 the end of the text.
 
 C: PANGO_ATTR_INDEX_TO_TEXT_END
@@ -622,28 +652,27 @@ See: https://docs.gtk.org/Pango/const.ATTR_INDEX_TO_TEXT_END.html")
 
 
 (rt:define-gconstant +glyph-empty+ "268435455"
-                     "A `PangoGlyph` value that indicates a zero-width empty glpyh.
+                     "A `pango:glyph` value that indicates a zero-width empty glpyh.
 
 C: PANGO_GLYPH_EMPTY
 See: https://docs.gtk.org/Pango/const.GLYPH_EMPTY.html")
 
 
-(rt:define-gconstant +glyph-invalid-input+ "4294967295" "A `PangoGlyph` value for invalid input.
+(rt:define-gconstant +glyph-invalid-input+ "4294967295" "A `pango:glyph` value for invalid input.
 
 C: PANGO_GLYPH_INVALID_INPUT
 See: https://docs.gtk.org/Pango/const.GLYPH_INVALID_INPUT.html")
 
 
 (rt:define-gconstant +glyph-unknown-flag+ "268435456"
-                     "Flag used in `PangoGlyph` to turn a `gunichar` value of a valid Unicode
+                     "Flag used in `pango:glyph` to turn a `gunichar` value of a valid Unicode
 character into an unknown-character glyph for that `gunichar`.
 
 C: PANGO_GLYPH_UNKNOWN_FLAG
 See: https://docs.gtk.org/Pango/const.GLYPH_UNKNOWN_FLAG.html")
 
 
-(rt:define-gconstant +render-component-all+ 62 "
-C: PANGO_RENDER_COMPONENT_ALL
+(rt:define-gconstant +render-component-all+ 62 "C: PANGO_RENDER_COMPONENT_ALL
 See: https://docs.gtk.org/Pango/const.RENDER_COMPONENT_ALL.html")
 
 
@@ -685,8 +714,9 @@ See: https://docs.gtk.org/Pango/const.VERSION_STRING.html")
 
 
 (rt:define-gclass context (rt:object)
-                  (:gtype-name "PangoContext" :get-type "pango_context_get_type" :documentation
-                   "A `PangoContext` stores global information used to control the
+                  (:gtype-name "PangoContext" :get-type "pango_context_get_type" :c-name
+                   "PangoContext" :url "https://docs.gtk.org/Pango/class.Context.html"
+                   :documentation "A `pango:context` stores global information used to control the
 itemization process.
 
 C: PangoContext
@@ -694,17 +724,19 @@ See: https://docs.gtk.org/Pango/class.Context.html"))
 
 
 (rt:define-gclass coverage (rt:object)
-                  (:gtype-name "PangoCoverage" :get-type "pango_coverage_get_type" :documentation
-                   "A `PangoCoverage` structure is a map from Unicode characters
-to Pango.CoverageLevel values.
+                  (:gtype-name "PangoCoverage" :get-type "pango_coverage_get_type" :c-name
+                   "PangoCoverage" :url "https://docs.gtk.org/Pango/class.Coverage.html"
+                   :documentation "A `pango:coverage` structure is a map from Unicode characters
+to `pango:coverage-level` values.
 
 C: PangoCoverage
 See: https://docs.gtk.org/Pango/class.Coverage.html"))
 
 
 (rt:define-gclass font (rt:object)
-                  (:gtype-name "PangoFont" :get-type "pango_font_get_type" :documentation
-                   "A `PangoFont` is used to represent a font in a
+                  (:gtype-name "PangoFont" :get-type "pango_font_get_type" :c-name "PangoFont" :url
+                   "https://docs.gtk.org/Pango/class.Font.html" :documentation
+                   "A `pango:font` is used to represent a font in a
 rendering-system-independent manner.
 
 C: PangoFont
@@ -712,8 +744,9 @@ See: https://docs.gtk.org/Pango/class.Font.html"))
 
 
 (rt:define-gclass font-face (rt:object)
-                  (:gtype-name "PangoFontFace" :get-type "pango_font_face_get_type" :documentation
-                   "A `PangoFontFace` is used to represent a group of fonts with
+                  (:gtype-name "PangoFontFace" :get-type "pango_font_face_get_type" :c-name
+                   "PangoFontFace" :url "https://docs.gtk.org/Pango/class.FontFace.html"
+                   :documentation "A `pango:font-face` is used to represent a group of fonts with
 the same family, slant, weight, and width, but varying sizes.
 
 C: PangoFontFace
@@ -721,8 +754,9 @@ See: https://docs.gtk.org/Pango/class.FontFace.html"))
 
 
 (rt:define-gclass font-family (rt:object gio:list-model)
-                  (:gtype-name "PangoFontFamily" :get-type "pango_font_family_get_type"
-                   :documentation "A `PangoFontFamily` is used to represent a family of related
+                  (:gtype-name "PangoFontFamily" :get-type "pango_font_family_get_type" :c-name
+                   "PangoFontFamily" :url "https://docs.gtk.org/Pango/class.FontFamily.html"
+                   :documentation "A `pango:font-family` is used to represent a family of related
 font faces.
 
 C: PangoFontFamily
@@ -730,8 +764,9 @@ See: https://docs.gtk.org/Pango/class.FontFamily.html"))
 
 
 (rt:define-gclass font-map (rt:object gio:list-model)
-                  (:gtype-name "PangoFontMap" :get-type "pango_font_map_get_type" :documentation
-                   "A `PangoFontMap` represents the set of fonts available for a
+                  (:gtype-name "PangoFontMap" :get-type "pango_font_map_get_type" :c-name
+                   "PangoFontMap" :url "https://docs.gtk.org/Pango/class.FontMap.html"
+                   :documentation "A `pango:font-map` represents the set of fonts available for a
 particular rendering system.
 
 C: PangoFontMap
@@ -739,8 +774,10 @@ See: https://docs.gtk.org/Pango/class.FontMap.html"))
 
 
 (rt:define-gclass fontset (rt:object)
-                  (:gtype-name "PangoFontset" :get-type "pango_fontset_get_type" :documentation
-                   "A `PangoFontset` represents a set of `PangoFont` to use when rendering text.
+                  (:gtype-name "PangoFontset" :get-type "pango_fontset_get_type" :c-name
+                   "PangoFontset" :url "https://docs.gtk.org/Pango/class.Fontset.html"
+                   :documentation
+                   "A `pango:fontset` represents a set of `pango:font` to use when rendering text.
 
 C: PangoFontset
 See: https://docs.gtk.org/Pango/class.Fontset.html"))
@@ -748,25 +785,29 @@ See: https://docs.gtk.org/Pango/class.Fontset.html"))
 
 (rt:define-gclass fontset-simple (fontset)
                   (:gtype-name "PangoFontsetSimple" :get-type "pango_fontset_simple_get_type"
-                   :documentation "`PangoFontsetSimple` is a implementation of the abstract
-`PangoFontset` base class as an array of fonts.
+                   :c-name "PangoFontsetSimple" :url
+                   "https://docs.gtk.org/Pango/class.FontsetSimple.html" :documentation
+                   "`pango:fontset-simple` is a implementation of the abstract
+`pango:fontset` base class as an array of fonts.
 
 C: PangoFontsetSimple
 See: https://docs.gtk.org/Pango/class.FontsetSimple.html"))
 
 
 (rt:define-gclass layout (rt:object)
-                  (:gtype-name "PangoLayout" :get-type "pango_layout_get_type" :documentation
-                   "A `PangoLayout` structure represents an entire paragraph of text.
+                  (:gtype-name "PangoLayout" :get-type "pango_layout_get_type" :c-name
+                   "PangoLayout" :url "https://docs.gtk.org/Pango/class.Layout.html" :documentation
+                   "A `pango:layout` structure represents an entire paragraph of text.
 
 C: PangoLayout
 See: https://docs.gtk.org/Pango/class.Layout.html"))
 
 
 (rt:define-gclass renderer (rt:object)
-                  (:gtype-name "PangoRenderer" :get-type "pango_renderer_get_type" :documentation
-                   "`PangoRenderer` is a base class for objects that can render text
-provided as `PangoGlyphString` or `PangoLayout`.
+                  (:gtype-name "PangoRenderer" :get-type "pango_renderer_get_type" :c-name
+                   "PangoRenderer" :url "https://docs.gtk.org/Pango/class.Renderer.html"
+                   :documentation "`pango:renderer` is a base class for objects that can render text
+provided as `pango:glyph-string` or `pango:layout`.
 
 C: PangoRenderer
 See: https://docs.gtk.org/Pango/class.Renderer.html"))
@@ -775,16 +816,18 @@ See: https://docs.gtk.org/Pango/class.Renderer.html"))
 
 
 (rt:define-grecord attr-iterator
-                   (:gtype-name "PangoAttrIterator" :documentation
-                    "A `PangoAttrIterator` is used to iterate through a `PangoAttrList`.
+                   (:gtype-name "PangoAttrIterator" :c-name "PangoAttrIterator" :url
+                    "https://docs.gtk.org/Pango/struct.AttrIterator.html" :documentation
+                    "A `pango:attr-iterator` is used to iterate through a `pango:attr-list`.
 
 C: PangoAttrIterator
 See: https://docs.gtk.org/Pango/struct.AttrIterator.html"))
 
 
 (rt:define-grecord attr-list
-                   (:gtype-name "PangoAttrList" :documentation
-                    "A `PangoAttrList` represents a list of attributes that apply to a section
+                   (:gtype-name "PangoAttrList" :c-name "PangoAttrList" :url
+                    "https://docs.gtk.org/Pango/struct.AttrList.html" :documentation
+                    "A `pango:attr-list` represents a list of attributes that apply to a section
 of text.
 
 C: PangoAttrList
@@ -792,8 +835,9 @@ See: https://docs.gtk.org/Pango/struct.AttrList.html"))
 
 
 (rt:define-grecord attribute
-                   (:gtype-name "PangoAttribute" :documentation
-                    "The `PangoAttribute` structure represents the common portions of all
+                   (:gtype-name "PangoAttribute" :c-name "PangoAttribute" :url
+                    "https://docs.gtk.org/Pango/struct.Attribute.html" :documentation
+                    "The `pango:attribute` structure represents the common portions of all
 attributes.
 
 C: PangoAttribute
@@ -801,7 +845,9 @@ See: https://docs.gtk.org/Pango/struct.Attribute.html"))
 
 
 (rt:define-grecord color
-                   (:gtype-name "PangoColor" :documentation "The `PangoColor` structure is used to
+                   (:gtype-name "PangoColor" :c-name "PangoColor" :url
+                    "https://docs.gtk.org/Pango/struct.Color.html" :documentation
+                    "The `pango:color` structure is used to
 represent a color in an uncalibrated RGB color-space.
 
 C: PangoColor
@@ -809,8 +855,9 @@ See: https://docs.gtk.org/Pango/struct.Color.html"))
 
 
 (rt:define-grecord font-description
-                   (:gtype-name "PangoFontDescription" :documentation
-                    "A `PangoFontDescription` describes a font in an implementation-independent
+                   (:gtype-name "PangoFontDescription" :c-name "PangoFontDescription" :url
+                    "https://docs.gtk.org/Pango/struct.FontDescription.html" :documentation
+                    "A `pango:font-description` describes a font in an implementation-independent
 manner.
 
 C: PangoFontDescription
@@ -818,8 +865,9 @@ See: https://docs.gtk.org/Pango/struct.FontDescription.html"))
 
 
 (rt:define-grecord font-metrics
-                   (:gtype-name "PangoFontMetrics" :documentation
-                    "A `PangoFontMetrics` structure holds the overall metric information
+                   (:gtype-name "PangoFontMetrics" :c-name "PangoFontMetrics" :url
+                    "https://docs.gtk.org/Pango/struct.FontMetrics.html" :documentation
+                    "A `pango:font-metrics` structure holds the overall metric information
 for a font.
 
 C: PangoFontMetrics
@@ -827,8 +875,9 @@ See: https://docs.gtk.org/Pango/struct.FontMetrics.html"))
 
 
 (rt:define-grecord glyph-item
-                   (:gtype-name "PangoGlyphItem" :documentation
-                    "A `PangoGlyphItem` is a pair of a `PangoItem` and the glyphs
+                   (:gtype-name "PangoGlyphItem" :c-name "PangoGlyphItem" :url
+                    "https://docs.gtk.org/Pango/struct.GlyphItem.html" :documentation
+                    "A `pango:glyph-item` is a pair of a `pango:item` and the glyphs
 resulting from shaping the items text.
 
 C: PangoGlyphItem
@@ -836,17 +885,19 @@ See: https://docs.gtk.org/Pango/struct.GlyphItem.html"))
 
 
 (rt:define-grecord glyph-item-iter
-                   (:gtype-name "PangoGlyphItemIter" :documentation
-                    "A `PangoGlyphItemIter` is an iterator over the clusters in a
-`PangoGlyphItem`.
+                   (:gtype-name "PangoGlyphItemIter" :c-name "PangoGlyphItemIter" :url
+                    "https://docs.gtk.org/Pango/struct.GlyphItemIter.html" :documentation
+                    "A `pango:glyph-item-iter` is an iterator over the clusters in a
+`pango:glyph-item`.
 
 C: PangoGlyphItemIter
 See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html"))
 
 
 (rt:define-grecord glyph-string
-                   (:gtype-name "PangoGlyphString" :documentation
-                    "A `PangoGlyphString` is used to store strings of glyphs with geometry
+                   (:gtype-name "PangoGlyphString" :c-name "PangoGlyphString" :url
+                    "https://docs.gtk.org/Pango/struct.GlyphString.html" :documentation
+                    "A `pango:glyph-string` is used to store strings of glyphs with geometry
 and visual attribute information.
 
 C: PangoGlyphString
@@ -854,16 +905,18 @@ See: https://docs.gtk.org/Pango/struct.GlyphString.html"))
 
 
 (rt:define-grecord item
-                   (:gtype-name "PangoItem" :documentation
-                    "The `PangoItem` structure stores information about a segment of text.
+                   (:gtype-name "PangoItem" :c-name "PangoItem" :url
+                    "https://docs.gtk.org/Pango/struct.Item.html" :documentation
+                    "The `pango:item` structure stores information about a segment of text.
 
 C: PangoItem
 See: https://docs.gtk.org/Pango/struct.Item.html"))
 
 
 (rt:define-grecord language
-                   (:gtype-name "PangoLanguage" :documentation
-                    "The `PangoLanguage` structure is used to
+                   (:gtype-name "PangoLanguage" :c-name "PangoLanguage" :url
+                    "https://docs.gtk.org/Pango/struct.Language.html" :documentation
+                    "The `pango:language` structure is used to
 represent a language.
 
 C: PangoLanguage
@@ -871,26 +924,29 @@ See: https://docs.gtk.org/Pango/struct.Language.html"))
 
 
 (rt:define-grecord layout-iter
-                   (:gtype-name "PangoLayoutIter" :documentation
-                    "A `PangoLayoutIter` can be used to iterate over the visual
-extents of a `PangoLayout`.
+                   (:gtype-name "PangoLayoutIter" :c-name "PangoLayoutIter" :url
+                    "https://docs.gtk.org/Pango/struct.LayoutIter.html" :documentation
+                    "A `pango:layout-iter` can be used to iterate over the visual
+extents of a `pango:layout`.
 
 C: PangoLayoutIter
 See: https://docs.gtk.org/Pango/struct.LayoutIter.html"))
 
 
 (rt:define-grecord layout-line
-                   (:gtype-name "PangoLayoutLine" :documentation
-                    "A `PangoLayoutLine` represents one of the lines resulting from laying
-out a paragraph via `PangoLayout`.
+                   (:gtype-name "PangoLayoutLine" :c-name "PangoLayoutLine" :url
+                    "https://docs.gtk.org/Pango/struct.LayoutLine.html" :documentation
+                    "A `pango:layout-line` represents one of the lines resulting from laying
+out a paragraph via `pango:layout`.
 
 C: PangoLayoutLine
 See: https://docs.gtk.org/Pango/struct.LayoutLine.html"))
 
 
 (rt:define-grecord matrix
-                   (:gtype-name "PangoMatrix" :documentation
-                    "A `PangoMatrix` specifies a transformation between user-space
+                   (:gtype-name "PangoMatrix" :c-name "PangoMatrix" :url
+                    "https://docs.gtk.org/Pango/struct.Matrix.html" :documentation
+                    "A `pango:matrix` specifies a transformation between user-space
 and device coordinates.
 
 C: PangoMatrix
@@ -898,8 +954,9 @@ See: https://docs.gtk.org/Pango/struct.Matrix.html"))
 
 
 (rt:define-grecord script-iter
-                   (:gtype-name "PangoScriptIter" :documentation
-                    "A `PangoScriptIter` is used to iterate through a string
+                   (:gtype-name "PangoScriptIter" :c-name "PangoScriptIter" :url
+                    "https://docs.gtk.org/Pango/struct.ScriptIter.html" :documentation
+                    "A `pango:script-iter` is used to iterate through a string
 and identify ranges in different scripts.
 
 C: PangoScriptIter
@@ -907,8 +964,9 @@ See: https://docs.gtk.org/Pango/struct.ScriptIter.html"))
 
 
 (rt:define-grecord tab-array
-                   (:gtype-name "PangoTabArray" :documentation
-                    "A `PangoTabArray` contains an array of tab stops.
+                   (:gtype-name "PangoTabArray" :c-name "PangoTabArray" :url
+                    "https://docs.gtk.org/Pango/struct.TabArray.html" :documentation
+                    "A `pango:tab-array` contains an array of tab stops.
 
 C: PangoTabArray
 See: https://docs.gtk.org/Pango/struct.TabArray.html"))
@@ -931,27 +989,37 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield analysis-font analysis :font (:object font) :documentation
                   "the font for this segment.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Analysis.html")
 
 
 (rt:define-gfield analysis-level analysis :level :uint8 :writable t :documentation
                   "the bidirectional level for this segment.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Analysis.html")
 
 
 (rt:define-gfield analysis-gravity analysis :gravity :uint8 :writable t :documentation
-                  "the glyph orientation for this segment (A `PangoGravity`).
-")
+                  "the glyph orientation for this segment (A `pango:gravity`).
+
+
+See: https://docs.gtk.org/Pango/struct.Analysis.html")
 
 
 (rt:define-gfield analysis-flags analysis :flags :uint8 :writable t :documentation
                   "boolean flags for this segment (Since: 1.16).
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Analysis.html")
 
 
 (rt:define-gfield analysis-script analysis :script :uint8 :writable t :documentation
-                  "the detected script for this segment (A `PangoScript`) (Since: 1.18).
-")
+                  "the detected script for this segment (A `pango:script`) (Since: 1.18).
+
+
+See: https://docs.gtk.org/Pango/struct.Analysis.html")
 
 
 (rt:define-gstruct-constructor make-analysis (:record analysis)
@@ -971,7 +1039,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attr-class-type attr-class :type (:enum attr-type) :writable t :documentation
                   "the type ID for this attribute
-")
+
+
+See: https://docs.gtk.org/Pango/struct.AttrClass.html")
 
 
 (rt:define-gstruct-constructor make-attr-class (:record attr-class)
@@ -987,16 +1057,22 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 
 (rt:define-gfield color-red color :red :uint16 :writable t :documentation "value of red component
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Color.html")
 
 
 (rt:define-gfield color-green color :green :uint16 :writable t :documentation
                   "value of green component
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Color.html")
 
 
 (rt:define-gfield color-blue color :blue :uint16 :writable t :documentation "value of blue component
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Color.html")
 
 
 (rt:define-gstruct-constructor make-color (:boxed "PangoColor" "pango_color_get_type" color)
@@ -1013,13 +1089,17 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attribute-start-index attribute :start-index :uint :writable t :documentation
                   "the start index of the range (in bytes).
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Attribute.html")
 
 
 (rt:define-gfield attribute-end-index attribute :end-index :uint :writable t :documentation
                   "end index of the range (in bytes). The character at this index
   is not included in the range.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Attribute.html")
 
 
 (rt:define-gstruct-constructor make-attribute
@@ -1043,7 +1123,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attr-float-value attr-float :value :double :writable t :documentation
                   "the value of the attribute
-")
+
+
+See: https://docs.gtk.org/Pango/struct.AttrFloat.html")
 
 
 (rt:define-gstruct-constructor make-attr-float (:record attr-float) ((value :value :double))
@@ -1065,7 +1147,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attr-font-features-features attr-font-features :features :string :documentation
                   "the features, as a string in CSS syntax
-")
+
+
+See: https://docs.gtk.org/Pango/struct.AttrFontFeatures.html")
 
 
 (rt:define-gstruct attr-int
@@ -1076,7 +1160,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attr-int-value attr-int :value :int :writable t :documentation
                   "the value of the attribute
-")
+
+
+See: https://docs.gtk.org/Pango/struct.AttrInt.html")
 
 
 (rt:define-gstruct-constructor make-attr-int (:record attr-int) ((value :value :int))
@@ -1100,22 +1186,30 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield rectangle-x rectangle :x :int :writable t :documentation
                   "X coordinate of the left side of the rectangle.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-y rectangle :y :int :writable t :documentation
                   "Y coordinate of the the top side of the rectangle.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-width rectangle :width :int :writable t :documentation
                   "width of the rectangle.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Rectangle.html")
 
 
 (rt:define-gfield rectangle-height rectangle :height :int :writable t :documentation
                   "height of the rectangle.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Rectangle.html")
 
 
 (rt:define-gstruct-constructor make-rectangle (:record rectangle)
@@ -1142,17 +1236,21 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 
 (rt:define-gfield attr-size-size attr-size :size :int :writable t :documentation
-                  "size of font, in units of 1/PANGO_SCALE of a point (for
-  PANGO_ATTR_SIZE) or of a device unit (for PANGO_ATTR_ABSOLUTE_SIZE)
-")
+                  "size of font, in units of 1/`pango:+scale+` of a point (for
+  :size) or of a device unit (for :absolute-size)
+
+
+See: https://docs.gtk.org/Pango/struct.AttrSize.html")
 
 
 (rt:define-gfield attr-size-absolute attr-size :bits-0 :uint :writable t :bits (1 0) :documentation
                   "whether the font size is in device units or points.
   This field is only present for compatibility with Pango-1.8.0
-  (PANGO_ATTR_ABSOLUTE_SIZE was added in 1.8.1); and always will
-  be false for PANGO_ATTR_SIZE and true for PANGO_ATTR_ABSOLUTE_SIZE.
-")
+  (:absolute-size was added in 1.8.1); and always will
+  be NIL for :size and T for :absolute-size.
+
+
+See: https://docs.gtk.org/Pango/struct.AttrSize.html")
 
 
 (rt:define-gstruct-constructor make-attr-size (:record attr-size)
@@ -1169,7 +1267,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield attr-string-value attr-string :value :string :documentation
                   "the string which is the value of the attribute
-")
+
+
+See: https://docs.gtk.org/Pango/struct.AttrString.html")
 
 
 (rt:define-gstruct font-metrics
@@ -1195,17 +1295,23 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield glyph-geometry-width glyph-geometry :width :int32 :writable t :documentation
                   "the logical width to use for the the character.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphGeometry.html")
 
 
 (rt:define-gfield glyph-geometry-x-offset glyph-geometry :x-offset :int32 :writable t
                   :documentation "horizontal offset from nominal character position.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphGeometry.html")
 
 
 (rt:define-gfield glyph-geometry-y-offset glyph-geometry :y-offset :int32 :writable t
                   :documentation "vertical offset from nominal character position.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphGeometry.html")
 
 
 (rt:define-gstruct-constructor make-glyph-geometry (:record glyph-geometry)
@@ -1222,12 +1328,16 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield glyph-vis-attr-is-cluster-start glyph-vis-attr :bits-0 :uint :writable t :bits
                   (1 0) :documentation "set for the first logical glyph in each cluster.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphVisAttr.html")
 
 
 (rt:define-gfield glyph-vis-attr-is-color glyph-vis-attr :bits-0 :uint :writable t :bits (1 1)
                   :documentation "set if the the font will render this glyph with color. Since 1.50
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphVisAttr.html")
 
 
 (rt:define-gstruct-constructor make-glyph-vis-attr (:record glyph-vis-attr)
@@ -1246,12 +1356,16 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield glyph-info-glyph glyph-info :glyph :uint32 :writable t :documentation
                   "the glyph itself.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphInfo.html")
 
 
 (rt:define-gfield glyph-info-geometry glyph-info :geometry (:record glyph-geometry) :writable t
                   :inline t :documentation "the positional information about the glyph.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphInfo.html")
 
 
 (rt:define-gstruct-constructor make-glyph-info (:record glyph-info)
@@ -1273,19 +1387,25 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 (rt:define-gfield glyph-item-y-offset glyph-item :y-offset :int :writable t :documentation
                   "shift of the baseline, relative to the baseline
   of the containing line. Positive values shift upwards
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphItem.html")
 
 
 (rt:define-gfield glyph-item-start-x-offset glyph-item :start-x-offset :int :writable t
                   :documentation "horizontal displacement to apply before the
   glyph item. Positive values shift right
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphItem.html")
 
 
 (rt:define-gfield glyph-item-end-x-offset glyph-item :end-x-offset :int :writable t :documentation
                   "horizontal displacement to apply after th
   glyph item. Positive values shift right
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphItem.html")
 
 
 (rt:define-gstruct-constructor make-glyph-item
@@ -1308,31 +1428,38 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   (:end-char :int))
 
 
-(rt:define-gfield glyph-item-iter-text glyph-item-iter :text :string :documentation "")
+(rt:define-gfield glyph-item-iter-text glyph-item-iter :text :string :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-start-glyph glyph-item-iter :start-glyph :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-start-index glyph-item-iter :start-index :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-start-char glyph-item-iter :start-char :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-end-glyph glyph-item-iter :end-glyph :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-end-index glyph-item-iter :end-index :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gfield glyph-item-iter-end-char glyph-item-iter :end-char :int :writable t
-                  :documentation "")
+                  :documentation "
+See: https://docs.gtk.org/Pango/struct.GlyphItemIter.html")
 
 
 (rt:define-gstruct-constructor make-glyph-item-iter
@@ -1355,13 +1482,17 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield glyph-string-num-glyphs glyph-string :num-glyphs :int :writable t :documentation
                   "number of glyphs in this glyph string
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphString.html")
 
 
 (rt:define-gfield glyph-string-log-clusters glyph-string :log-clusters :int :writable t
                   :documentation "logical cluster info, indexed by the byte index
   within the text corresponding to the glyph string
-")
+
+
+See: https://docs.gtk.org/Pango/struct.GlyphString.html")
 
 
 (rt:define-gstruct-constructor make-glyph-string
@@ -1382,22 +1513,30 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield item-offset item :offset :int :writable t :documentation
                   "byte offset of the start of this item in text.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Item.html")
 
 
 (rt:define-gfield item-length item :length :int :writable t :documentation
                   "length of this item in bytes.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Item.html")
 
 
 (rt:define-gfield item-num-chars item :num-chars :int :writable t :documentation
                   "number of Unicode characters in the item.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Item.html")
 
 
 (rt:define-gfield item-analysis item :analysis (:record analysis) :writable t :inline t
                   :documentation "analysis results for the item.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Item.html")
 
 
 (rt:define-gstruct-constructor make-item (:boxed "PangoItem" "pango_item_get_type" item)
@@ -1418,22 +1557,30 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield layout-line-layout layout-line :layout (:object layout) :documentation
                   "the layout this line belongs to, might be NIL
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LayoutLine.html")
 
 
 (rt:define-gfield layout-line-start-index layout-line :start-index :int :writable t :documentation
                   "start of line as byte index into layout->text
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LayoutLine.html")
 
 
 (rt:define-gfield layout-line-length layout-line :length :int :writable t :documentation
                   "length of line in bytes
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LayoutLine.html")
 
 
 (rt:define-gfield layout-line-resolved-dir layout-line :bits-0 :uint :writable t :bits (3 1)
                   :documentation "#Resolved PangoDirection of line
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LayoutLine.html")
 
 
 (rt:define-gstruct-constructor make-layout-line
@@ -1451,22 +1598,30 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield log-attr-is-line-break log-attr :bits-0 :uint :writable t :bits (1 0)
                   :documentation "if set, can break line in front of character
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-mandatory-break log-attr :bits-0 :uint :writable t :bits (1 1)
                   :documentation "if set, must break line in front of character
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-char-break log-attr :bits-0 :uint :writable t :bits (1 2)
                   :documentation "if set, can break here when doing character wrapping
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-white log-attr :bits-0 :uint :writable t :bits (1 3) :documentation
                   "is whitespace character
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-cursor-position log-attr :bits-0 :uint :writable t :bits (1 4)
@@ -1475,19 +1630,25 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   This flag implements Unicode's
   [Grapheme Cluster Boundaries](http://www.unicode.org/reports/tr29/)
   semantics.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-word-start log-attr :bits-0 :uint :writable t :bits (1 5)
                   :documentation "is first character in a word
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-word-end log-attr :bits-0 :uint :writable t :bits (1 6)
                   :documentation "is first non-word char after a word
   Note that in degenerate cases, you could have both IS-WORD-START
   and IS-WORD-END set for some character.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-sentence-boundary log-attr :bits-0 :uint :writable t :bits (1 7)
@@ -1498,12 +1659,16 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   the boundaries there. The second way doesn't assign
   between-sentence spaces, etc. to any sentence, so
   IS-SENTENCE-START/IS-SENTENCE-END mark the boundaries of those sentences.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-sentence-start log-attr :bits-0 :uint :writable t :bits (1 8)
                   :documentation "is first character in a sentence
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-sentence-end log-attr :bits-0 :uint :writable t :bits (1 9)
@@ -1511,7 +1676,9 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   Note that in degenerate cases, you could have both IS-SENTENCE-START
   and IS-SENTENCE-END set for some character. (e.g. no space after a
   period, so the next sentence starts right away)
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-backspace-deletes-character log-attr :bits-0 :uint :writable t :bits
@@ -1520,15 +1687,19 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   on grapheme boundaries (where IS-CURSOR-POSITION is set). In some languages,
   the full grapheme (e.g. letter + diacritics) is considered a unit, while in
   others, each decomposed character in the grapheme is a unit. In the default
-  implementation of break, this bit is set on all grapheme boundaries
+  implementation of `break`, this bit is set on all grapheme boundaries
   except those following Latin, Cyrillic or Greek base characters.
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-expandable-space log-attr :bits-0 :uint :writable t :bits (1 11)
                   :documentation "is a whitespace character that can possibly be
   expanded for justification purposes. (Since: 1.18)
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-is-word-boundary log-attr :bits-0 :uint :writable t :bits (1 12)
@@ -1538,23 +1709,30 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
   This flag is particularly useful when selecting text word-by-word. This flag
   implements Unicode's [Word Boundaries](http://www.unicode.org/reports/tr29/)
   semantics. (Since: 1.22)
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-break-inserts-hyphen log-attr :bits-0 :uint :writable t :bits (1 13)
                   :documentation "when breaking lines before this char, insert a hyphen.
   Since: 1.50
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-break-removes-preceding log-attr :bits-0 :uint :writable t :bits (1 14)
                   :documentation "when breaking lines before this char, remove the
   preceding char. Since 1.50
-")
+
+
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gfield log-attr-reserved log-attr :bits-0 :uint :writable t :bits (17 15) :documentation
-                  "")
+                  "
+See: https://docs.gtk.org/Pango/struct.LogAttr.html")
 
 
 (rt:define-gstruct-constructor make-log-attr (:record log-attr)
@@ -1590,30 +1768,42 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
 
 (rt:define-gfield matrix-xx matrix :xx :double :writable t :documentation
                   "1st component of the transformation matrix
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gfield matrix-xy matrix :xy :double :writable t :documentation
                   "2nd component of the transformation matrix
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gfield matrix-yx matrix :yx :double :writable t :documentation
                   "3rd component of the transformation matrix
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gfield matrix-yy matrix :yy :double :writable t :documentation
                   "4th component of the transformation matrix
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gfield matrix-x0 matrix :x0 :double :writable t :documentation "x translation
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gfield matrix-y0 matrix :y0 :double :writable t :documentation "y translation
-")
+
+
+See: https://docs.gtk.org/Pango/struct.Matrix.html")
 
 
 (rt:define-gstruct-constructor make-matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix)
@@ -1629,6 +1819,7 @@ See: https://docs.gtk.org/Pango/struct.TabArray.html"))
                      (:readable t :writable nil :documentation
                       "The type of items contained in this list.
 
+
 See: https://docs.gtk.org/Pango/property.FontFamily.item-type.html"))
 
 
@@ -1636,11 +1827,13 @@ See: https://docs.gtk.org/Pango/property.FontFamily.item-type.html"))
                      (:readable t :writable nil :documentation
                       "The number of items contained in this list.
 
+
 See: https://docs.gtk.org/Pango/property.FontFamily.n-items.html"))
 
 
 (rt:define-gproperty font-family-name "name"
                      (:readable t :writable nil :documentation "The name of the family
+
 
 See: https://docs.gtk.org/Pango/property.FontFamily.name.html"))
 
@@ -1649,12 +1842,14 @@ See: https://docs.gtk.org/Pango/property.FontFamily.name.html"))
                      (:readable t :writable nil :documentation
                       "The type of items contained in this list.
 
+
 See: https://docs.gtk.org/Pango/property.FontMap.item-type.html"))
 
 
 (rt:define-gproperty font-map-n-items "n-items"
                      (:readable t :writable nil :documentation
                       "The number of items contained in this list.
+
 
 See: https://docs.gtk.org/Pango/property.FontMap.n-items.html"))
 
@@ -1677,4263 +1872,3 @@ See: https://docs.gtk.org/Pango/property.FontMap.n-items.html"))
                       ((fontset (:object fontset)) (font (:object font))
                        (user-data :pointer :user-data t))
                       :return :boolean))
-
-;;; Functions, constructors and methods
-
-
-(rt:define-gfunction (attr-allow-breaks-new "pango_attr_allow_breaks_new") :args
-                     ((allow-breaks :boolean)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.44" :documentation
-                     "Create a new allow-breaks attribute.
-
-C: pango_attr_allow_breaks_new
-See: https://docs.gtk.org/Pango/func.attr_allow_breaks_new.html
-Since: 1.44")
-
-
-(rt:define-gfunction (attr-background-alpha-new "pango_attr_background_alpha_new") :args
-                     ((alpha :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.38" :documentation
-                     "Create a new background alpha attribute.
-
-C: pango_attr_background_alpha_new
-See: https://docs.gtk.org/Pango/func.attr_background_alpha_new.html
-Since: 1.38")
-
-
-(rt:define-gfunction (attr-background-new "pango_attr_background_new") :args
-                     ((red :uint16) (green :uint16) (blue :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new background color attribute.
-
-C: pango_attr_background_new
-See: https://docs.gtk.org/Pango/func.attr_background_new.html")
-
-
-(rt:define-gfunction (attr-baseline-shift-new "pango_attr_baseline_shift_new") :args ((shift :int))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Create a new baseline displacement attribute.
-
-C: pango_attr_baseline_shift_new
-See: https://docs.gtk.org/Pango/func.attr_baseline_shift_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-break "pango_attr_break") :args
-                     ((text :string) (length :int)
-                      (attr-list (:boxed "PangoAttrList" "pango_attr_list_get_type")) (offset :int)
-                      (attrs (:array (:record log-attr) :length attrs-len :caller-allocates t)
-                       :direction :out)
-                      (attrs-len :int))
-                     :version "1.50" :documentation
-                     "Apply customization from attributes to the breaks in ATTRS.
-
-C: pango_attr_break
-See: https://docs.gtk.org/Pango/func.attr_break.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-fallback-new "pango_attr_fallback_new") :args
-                     ((enable-fallback :boolean)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.4" :documentation
-                     "Create a new font fallback attribute.
-
-C: pango_attr_fallback_new
-See: https://docs.gtk.org/Pango/func.attr_fallback_new.html
-Since: 1.4")
-
-
-(rt:define-gfunction (attr-family-new "pango_attr_family_new") :args ((family :string)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font family attribute.
-
-C: pango_attr_family_new
-See: https://docs.gtk.org/Pango/func.attr_family_new.html")
-
-
-(rt:define-gfunction (attr-font-scale-new "pango_attr_font_scale_new") :args
-                     ((scale (:enum font-scale))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Create a new font scale attribute.
-
-C: pango_attr_font_scale_new
-See: https://docs.gtk.org/Pango/func.attr_font_scale_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-foreground-alpha-new "pango_attr_foreground_alpha_new") :args
-                     ((alpha :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.38" :documentation
-                     "Create a new foreground alpha attribute.
-
-C: pango_attr_foreground_alpha_new
-See: https://docs.gtk.org/Pango/func.attr_foreground_alpha_new.html
-Since: 1.38")
-
-
-(rt:define-gfunction (attr-foreground-new "pango_attr_foreground_new") :args
-                     ((red :uint16) (green :uint16) (blue :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new foreground color attribute.
-
-C: pango_attr_foreground_new
-See: https://docs.gtk.org/Pango/func.attr_foreground_new.html")
-
-
-(rt:define-gfunction (attr-gravity-hint-new "pango_attr_gravity_hint_new") :args
-                     ((hint (:enum gravity-hint))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.16" :documentation
-                     "Create a new gravity hint attribute.
-
-C: pango_attr_gravity_hint_new
-See: https://docs.gtk.org/Pango/func.attr_gravity_hint_new.html
-Since: 1.16")
-
-
-(rt:define-gfunction (attr-gravity-new "pango_attr_gravity_new") :args ((gravity (:enum gravity)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.16" :documentation
-                     "Create a new gravity attribute.
-
-C: pango_attr_gravity_new
-See: https://docs.gtk.org/Pango/func.attr_gravity_new.html
-Since: 1.16")
-
-
-(rt:define-gfunction (attr-insert-hyphens-new "pango_attr_insert_hyphens_new") :args
-                     ((insert-hyphens :boolean)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.44" :documentation
-                     "Create a new insert-hyphens attribute.
-
-C: pango_attr_insert_hyphens_new
-See: https://docs.gtk.org/Pango/func.attr_insert_hyphens_new.html
-Since: 1.44")
-
-
-(rt:define-gfunction (attr-letter-spacing-new "pango_attr_letter_spacing_new") :args
-                     ((letter-spacing :int)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.6" :documentation
-                     "Create a new letter-spacing attribute.
-
-C: pango_attr_letter_spacing_new
-See: https://docs.gtk.org/Pango/func.attr_letter_spacing_new.html
-Since: 1.6")
-
-
-(rt:define-gfunction (attr-line-height-new "pango_attr_line_height_new") :args ((factor :double))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Modify the height of logical line extents by a factor.
-
-C: pango_attr_line_height_new
-See: https://docs.gtk.org/Pango/func.attr_line_height_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-line-height-new-absolute "pango_attr_line_height_new_absolute") :args
-                     ((height :int)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Override the height of logical line extents to be HEIGHT.
-
-C: pango_attr_line_height_new_absolute
-See: https://docs.gtk.org/Pango/func.attr_line_height_new_absolute.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-overline-color-new "pango_attr_overline_color_new") :args
-                     ((red :uint16) (green :uint16) (blue :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.46" :documentation
-                     "Create a new overline color attribute.
-
-C: pango_attr_overline_color_new
-See: https://docs.gtk.org/Pango/func.attr_overline_color_new.html
-Since: 1.46")
-
-
-(rt:define-gfunction (attr-overline-new "pango_attr_overline_new") :args
-                     ((overline (:enum overline))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.46" :documentation
-                     "Create a new overline-style attribute.
-
-C: pango_attr_overline_new
-See: https://docs.gtk.org/Pango/func.attr_overline_new.html
-Since: 1.46")
-
-
-(rt:define-gfunction (attr-rise-new "pango_attr_rise_new") :args ((rise :int)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation
-                     "Create a new baseline displacement attribute.
-
-C: pango_attr_rise_new
-See: https://docs.gtk.org/Pango/func.attr_rise_new.html")
-
-
-(rt:define-gfunction (attr-scale-new "pango_attr_scale_new") :args ((scale-factor :double)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font size scale attribute.
-
-C: pango_attr_scale_new
-See: https://docs.gtk.org/Pango/func.attr_scale_new.html")
-
-
-(rt:define-gfunction (attr-sentence-new "pango_attr_sentence_new") :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Marks the range of the attribute as a single sentence.
-
-C: pango_attr_sentence_new
-See: https://docs.gtk.org/Pango/func.attr_sentence_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-show-new "pango_attr_show_new") :args ((flags (:flags show-flags)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.44" :documentation
-                     "Create a new attribute that influences how invisible
-characters are rendered.
-
-C: pango_attr_show_new
-See: https://docs.gtk.org/Pango/func.attr_show_new.html
-Since: 1.44")
-
-
-(rt:define-gfunction (attr-stretch-new "pango_attr_stretch_new") :args ((stretch (:enum stretch)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font stretch attribute.
-
-C: pango_attr_stretch_new
-See: https://docs.gtk.org/Pango/func.attr_stretch_new.html")
-
-
-(rt:define-gfunction (attr-strikethrough-color-new "pango_attr_strikethrough_color_new") :args
-                     ((red :uint16) (green :uint16) (blue :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.8" :documentation
-                     "Create a new strikethrough color attribute.
-
-C: pango_attr_strikethrough_color_new
-See: https://docs.gtk.org/Pango/func.attr_strikethrough_color_new.html
-Since: 1.8")
-
-
-(rt:define-gfunction (attr-strikethrough-new "pango_attr_strikethrough_new") :args
-                     ((strikethrough :boolean)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new strike-through attribute.
-
-C: pango_attr_strikethrough_new
-See: https://docs.gtk.org/Pango/func.attr_strikethrough_new.html")
-
-
-(rt:define-gfunction (attr-style-new "pango_attr_style_new") :args ((style (:enum style))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font slant style attribute.
-
-C: pango_attr_style_new
-See: https://docs.gtk.org/Pango/func.attr_style_new.html")
-
-
-(rt:define-gfunction (attr-text-transform-new "pango_attr_text_transform_new") :args
-                     ((transform (:enum text-transform))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Create a new attribute that influences how characters
-are transformed during shaping.
-
-C: pango_attr_text_transform_new
-See: https://docs.gtk.org/Pango/func.attr_text_transform_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-underline-color-new "pango_attr_underline_color_new") :args
-                     ((red :uint16) (green :uint16) (blue :uint16)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.8" :documentation
-                     "Create a new underline color attribute.
-
-C: pango_attr_underline_color_new
-See: https://docs.gtk.org/Pango/func.attr_underline_color_new.html
-Since: 1.8")
-
-
-(rt:define-gfunction (attr-underline-new "pango_attr_underline_new") :args
-                     ((underline (:enum underline))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new underline-style attribute.
-
-C: pango_attr_underline_new
-See: https://docs.gtk.org/Pango/func.attr_underline_new.html")
-
-
-(rt:define-gfunction (attr-variant-new "pango_attr_variant_new") :args ((variant (:enum variant)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation
-                     "Create a new font variant attribute (normal or small caps).
-
-C: pango_attr_variant_new
-See: https://docs.gtk.org/Pango/func.attr_variant_new.html")
-
-
-(rt:define-gfunction (attr-weight-new "pango_attr_weight_new") :args ((weight (:enum weight)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font weight attribute.
-
-C: pango_attr_weight_new
-See: https://docs.gtk.org/Pango/func.attr_weight_new.html")
-
-
-(rt:define-gfunction (attr-width-new "pango_attr_width_new") :args ((width (:enum width))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.58" :documentation
-                     "Create a new font width attribute.
-
-C: pango_attr_width_new
-See: https://docs.gtk.org/Pango/func.attr_width_new.html
-Since: 1.58")
-
-
-(rt:define-gfunction (attr-word-new "pango_attr_word_new") :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.50" :documentation
-                     "Marks the range of the attribute as a single word.
-
-C: pango_attr_word_new
-See: https://docs.gtk.org/Pango/func.attr_word_new.html
-Since: 1.50")
-
-
-(rt:define-gfunction (break "pango_break") :args
-                     ((text :string) (length :int) (analysis (:record analysis))
-                      (attrs (:array (:record log-attr) :length attrs-len :caller-allocates t)
-                       :direction :out)
-                      (attrs-len :int))
-                     :documentation "Determines possible line, word, and character breaks
-for a string of Unicode text with a single analysis.
-
-C: pango_break
-See: https://docs.gtk.org/Pango/func.break.html
-Deprecated.")
-
-
-(rt:define-gfunction (default-break "pango_default_break") :args
-                     ((text :string) (length :int) (analysis (:record analysis))
-                      (attrs (:array (:record log-attr) :length attrs-len :caller-allocates t)
-                       :direction :out)
-                      (attrs-len :int))
-                     :documentation "This is the default break algorithm.
-
-C: pango_default_break
-See: https://docs.gtk.org/Pango/func.default_break.html")
-
-
-(rt:define-gfunction (find-base-dir "pango_find_base_dir") :args ((text :string) (length :int))
-                     :return (:enum direction) :version "1.4" :documentation
-                     "Searches a string the first character that has a strong
-direction, according to the Unicode bidirectional algorithm.
-
-C: pango_find_base_dir
-See: https://docs.gtk.org/Pango/func.find_base_dir.html
-Since: 1.4")
-
-
-(rt:define-gfunction (find-paragraph-boundary "pango_find_paragraph_boundary") :args
-                     ((text :string) (length :int)
-                      (paragraph-delimiter-index :int :direction :out :transfer :full)
-                      (next-paragraph-start :int :direction :out :transfer :full))
-                     :documentation "Locates a paragraph boundary in TEXT.
-
-C: pango_find_paragraph_boundary
-See: https://docs.gtk.org/Pango/func.find_paragraph_boundary.html")
-
-
-(rt:define-gfunction (get-log-attrs "pango_get_log_attrs") :args
-                     ((text :string) (length :int) (level :int)
-                      (language (:boxed "PangoLanguage" "pango_language_get_type"))
-                      (attrs (:array (:record log-attr) :length attrs-len :caller-allocates t)
-                       :direction :out)
-                      (attrs-len :int))
-                     :documentation "Computes a `PangoLogAttr` for each character in TEXT.
-
-C: pango_get_log_attrs
-See: https://docs.gtk.org/Pango/func.get_log_attrs.html")
-
-
-(rt:define-gfunction (get-mirror-char "pango_get_mirror_char") :args
-                     ((ch :uint32) (mirrored-ch :uint32 :direction :out :transfer :full)) :return
-                     :boolean :documentation "Returns the mirrored character of a Unicode character.
-
-C: pango_get_mirror_char
-See: https://docs.gtk.org/Pango/func.get_mirror_char.html
-Deprecated.")
-
-
-(rt:define-gfunction (is-zero-width "pango_is_zero_width") :args ((ch :uint32)) :return :boolean
-                     :version "1.10" :documentation
-                     "Checks if a character that should not be normally rendered.
-
-C: pango_is_zero_width
-See: https://docs.gtk.org/Pango/func.is_zero_width.html
-Since: 1.10")
-
-
-(rt:define-gfunction (itemize "pango_itemize") :args
-                     ((context (:object context)) (text :string) (start-index :int) (length :int)
-                      (attrs (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (cached-iter (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")
-                       :optional t))
-                     :return (:glist (:boxed "PangoItem" "pango_item_get_type" item))
-                     :return-transfer :full :documentation
-                     "Breaks a piece of text into segments with consistent directional
-level and font.
-
-C: pango_itemize
-See: https://docs.gtk.org/Pango/func.itemize.html")
-
-
-(rt:define-gfunction (itemize-with-base-dir "pango_itemize_with_base_dir") :args
-                     ((context (:object context)) (base-dir (:enum direction)) (text :string)
-                      (start-index :int) (length :int)
-                      (attrs (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (cached-iter (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")
-                       :optional t))
-                     :return (:glist (:boxed "PangoItem" "pango_item_get_type" item))
-                     :return-transfer :full :version "1.4" :documentation
-                     "Like `pango_itemize()`, but with an explicitly specified base direction.
-
-C: pango_itemize_with_base_dir
-See: https://docs.gtk.org/Pango/func.itemize_with_base_dir.html
-Since: 1.4")
-
-
-(rt:define-gfunction (markup-parser-finish "pango_markup_parser_finish") :args
-                     ((context (:boxed "GMarkupParseContext" "g_markup_parse_context_get_type"))
-                      (attr-list (:boxed "PangoAttrList" "pango_attr_list_get_type") :direction
-                       :out :transfer :full)
-                      (text :string :direction :out :transfer :full)
-                      (accel-char :uint32 :direction :out :transfer :full))
-                     :return :boolean :throws t :version "1.31.0" :documentation
-                     "Finishes parsing markup.
-
-C: pango_markup_parser_finish
-See: https://docs.gtk.org/Pango/func.markup_parser_finish.html
-Since: 1.31.0")
-
-
-(rt:define-gfunction (markup-parser-new "pango_markup_parser_new") :args ((accel-marker :uint32))
-                     :return (:boxed "GMarkupParseContext" "g_markup_parse_context_get_type")
-                     :version "1.31.0" :documentation
-                     "Incrementally parses marked-up text to create a plain-text string
-and an attribute list.
-
-C: pango_markup_parser_new
-See: https://docs.gtk.org/Pango/func.markup_parser_new.html
-Since: 1.31.0")
-
-
-(rt:define-gfunction (parse-enum "pango_parse_enum") :args
-                     ((type :gtype) (str :string) (value :int :direction :out :transfer :full)
-                      (warn :boolean) (possible-values :string :direction :out :transfer :full))
-                     :return :boolean :version "1.16" :documentation
-                     "Parses an enum type and stores the result in VALUE.
-
-C: pango_parse_enum
-See: https://docs.gtk.org/Pango/func.parse_enum.html
-Since: 1.16
-Deprecated.")
-
-
-(rt:define-gfunction (parse-markup "pango_parse_markup") :args
-                     ((markup-text :string) (length :int) (accel-marker :uint32)
-                      (attr-list (:boxed "PangoAttrList" "pango_attr_list_get_type") :direction
-                       :out :transfer :full)
-                      (text :string :direction :out :transfer :full)
-                      (accel-char :uint32 :direction :out :transfer :full))
-                     :return :boolean :throws t :documentation
-                     "Parses marked-up text to create a plain-text string and an attribute list.
-
-C: pango_parse_markup
-See: https://docs.gtk.org/Pango/func.parse_markup.html")
-
-
-(rt:define-gfunction (parse-stretch "pango_parse_stretch") :args
-                     ((str :string) (stretch (:enum stretch) :direction :out :transfer :full)
-                      (warn :boolean))
-                     :return :boolean :documentation "Parses a font stretch.
-
-C: pango_parse_stretch
-See: https://docs.gtk.org/Pango/func.parse_stretch.html")
-
-
-(rt:define-gfunction (parse-style "pango_parse_style") :args
-                     ((str :string) (style (:enum style) :direction :out :transfer :full)
-                      (warn :boolean))
-                     :return :boolean :documentation "Parses a font style.
-
-C: pango_parse_style
-See: https://docs.gtk.org/Pango/func.parse_style.html")
-
-
-(rt:define-gfunction (parse-variant "pango_parse_variant") :args
-                     ((str :string) (variant (:enum variant) :direction :out :transfer :full)
-                      (warn :boolean))
-                     :return :boolean :documentation "Parses a font variant.
-
-C: pango_parse_variant
-See: https://docs.gtk.org/Pango/func.parse_variant.html")
-
-
-(rt:define-gfunction (parse-weight "pango_parse_weight") :args
-                     ((str :string) (weight (:enum weight) :direction :out :transfer :full)
-                      (warn :boolean))
-                     :return :boolean :documentation "Parses a font weight.
-
-C: pango_parse_weight
-See: https://docs.gtk.org/Pango/func.parse_weight.html")
-
-
-(rt:define-gfunction (read-line "pango_read_line") :args
-                     ((stream :pointer) (str (:boxed "GString" "g_gstring_get_type" glib:string)))
-                     :return :int :documentation "Reads an entire line from a file into a buffer.
-
-C: pango_read_line
-See: https://docs.gtk.org/Pango/func.read_line.html
-Deprecated.")
-
-
-(rt:define-gfunction (reorder-items "pango_reorder_items") :args
-                     ((items (:glist (:boxed "PangoItem" "pango_item_get_type" item)))) :return
-                     (:glist (:boxed "PangoItem" "pango_item_get_type" item)) :return-transfer
-                     :full :documentation "Reorder items from logical order to visual order.
-
-C: pango_reorder_items
-See: https://docs.gtk.org/Pango/func.reorder_items.html")
-
-
-(rt:define-gfunction (shape "pango_shape") :args
-                     ((text :string) (length :int) (analysis (:record analysis))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                       :direction :out :caller-allocates t))
-                     :documentation "Convert the characters in TEXT into glyphs.
-
-C: pango_shape
-See: https://docs.gtk.org/Pango/func.shape.html")
-
-
-(rt:define-gfunction (shape-full "pango_shape_full") :args
-                     ((item-text :string) (item-length :int) (paragraph-text :string)
-                      (paragraph-length :int) (analysis (:record analysis))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                       :direction :out :caller-allocates t))
-                     :version "1.32" :documentation "Convert the characters in TEXT into glyphs.
-
-C: pango_shape_full
-See: https://docs.gtk.org/Pango/func.shape_full.html
-Since: 1.32")
-
-
-(rt:define-gfunction (shape-item "pango_shape_item") :args
-                     ((item (:boxed "PangoItem" "pango_item_get_type" item))
-                      (paragraph-text :string) (paragraph-length :int)
-                      (log-attrs (:record log-attr))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                       :direction :out :caller-allocates t)
-                      (flags (:flags shape-flags)))
-                     :version "1.50" :documentation "Convert the characters in ITEM into glyphs.
-
-C: pango_shape_item
-See: https://docs.gtk.org/Pango/func.shape_item.html
-Since: 1.50")
-
-
-(rt:define-gfunction (shape-with-flags "pango_shape_with_flags") :args
-                     ((item-text :string) (item-length :int) (paragraph-text :string)
-                      (paragraph-length :int) (analysis (:record analysis))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                       :direction :out :caller-allocates t)
-                      (flags (:flags shape-flags)))
-                     :version "1.44" :documentation "Convert the characters in TEXT into glyphs.
-
-C: pango_shape_with_flags
-See: https://docs.gtk.org/Pango/func.shape_with_flags.html
-Since: 1.44")
-
-
-(rt:define-gfunction (split-file-list "pango_split_file_list") :args ((str :string)) :return :strv
-                     :return-transfer :full :documentation
-                     "Splits a G_SEARCHPATH_SEPARATOR-separated list of files, stripping
-white space and substituting ~/ with $HOME/.
-
-C: pango_split_file_list
-See: https://docs.gtk.org/Pango/func.split_file_list.html
-Deprecated.")
-
-
-(rt:define-gfunction (tailor-break "pango_tailor_break") :args
-                     ((text :string) (length :int) (analysis (:record analysis)) (offset :int)
-                      (attrs (:array (:record log-attr) :length attrs-len :caller-allocates t)
-                       :direction :out)
-                      (attrs-len :int))
-                     :version "1.44" :documentation
-                     "Apply language-specific tailoring to the breaks in ATTRS.
-
-C: pango_tailor_break
-See: https://docs.gtk.org/Pango/func.tailor_break.html
-Since: 1.44")
-
-
-(rt:define-gfunction (trim-string "pango_trim_string") :args ((str :string)) :return :string
-                     :return-transfer :full :documentation
-                     "Trims leading and trailing whitespace from a string.
-
-C: pango_trim_string
-See: https://docs.gtk.org/Pango/func.trim_string.html
-Deprecated.")
-
-
-(rt:define-gfunction (unichar-direction "pango_unichar_direction") :args ((ch :uint32)) :return
-                     (:enum direction) :documentation
-                     "Determines the inherent direction of a character.
-
-C: pango_unichar_direction
-See: https://docs.gtk.org/Pango/func.unichar_direction.html")
-
-
-(rt:define-gfunction (units-from-double "pango_units_from_double") :args ((d :double)) :return :int
-                     :version "1.16" :documentation
-                     "Converts a floating-point number to Pango units.
-
-C: pango_units_from_double
-See: https://docs.gtk.org/Pango/func.units_from_double.html
-Since: 1.16")
-
-
-(rt:define-gfunction (units-to-double "pango_units_to_double") :args ((i :int)) :return :double
-                     :version "1.16" :documentation
-                     "Converts a number in Pango units to floating-point.
-
-C: pango_units_to_double
-See: https://docs.gtk.org/Pango/func.units_to_double.html
-Since: 1.16")
-
-
-(rt:define-gfunction (version "pango_version") :return :int :version "1.16" :documentation
-                     "Returns the encoded version of Pango available at run-time.
-
-C: pango_version
-See: https://docs.gtk.org/Pango/func.version.html
-Since: 1.16")
-
-
-(rt:define-gfunction (version-check "pango_version_check") :args
-                     ((required-major :int) (required-minor :int) (required-micro :int)) :return
-                     :string :version "1.16" :documentation
-                     "Checks that the Pango library in use is compatible with the
-given version.
-
-C: pango_version_check
-See: https://docs.gtk.org/Pango/func.version_check.html
-Since: 1.16")
-
-
-(rt:define-gfunction (version-string "pango_version_string") :return :string :version "1.16"
-                     :documentation "Returns the version of Pango available at run-time.
-
-C: pango_version_string
-See: https://docs.gtk.org/Pango/func.version_string.html
-Since: 1.16")
-
-
-(rt:define-gfunction (attr-font-desc-new "pango_attr_font_desc_new") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new font description attribute.
-
-C: pango_attr_font_desc_new
-See: https://docs.gtk.org/Pango/type_func.AttrFontDesc.new.html")
-
-
-(rt:define-gfunction (attr-font-features-new "pango_attr_font_features_new") :args
-                     ((features :string)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.38" :documentation
-                     "Create a new font features tag attribute.
-
-C: pango_attr_font_features_new
-See: https://docs.gtk.org/Pango/type_func.AttrFontFeatures.new.html
-Since: 1.38")
-
-
-(rt:define-gfunction (attr-iterator-copy "pango_attr_iterator_copy") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")))
-                     :return (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")
-                     :return-transfer :full :documentation "Copy a `PangoAttrIterator`.
-
-C: pango_attr_iterator_copy
-See: https://docs.gtk.org/Pango/method.AttrIterator.copy.html")
-
-
-(rt:define-gfunction (attr-iterator-destroy "pango_attr_iterator_destroy") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")))
-                     :documentation "Destroy a `PangoAttrIterator` and free all associated memory.
-
-C: pango_attr_iterator_destroy
-See: https://docs.gtk.org/Pango/method.AttrIterator.destroy.html")
-
-
-(rt:define-gfunction (attr-iterator-get "pango_attr_iterator_get") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type"))
-                      (type (:enum attr-type)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :documentation "Find the current attribute of a particular type
-at the iterator location.
-
-C: pango_attr_iterator_get
-See: https://docs.gtk.org/Pango/method.AttrIterator.get.html")
-
-
-(rt:define-gfunction (attr-iterator-get-attrs "pango_attr_iterator_get_attrs") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")))
-                     :return
-                     (:gslist (:boxed "PangoAttribute" "pango_attribute_get_type" attribute))
-                     :return-transfer :full :version "1.2" :documentation
-                     "Gets a list of all attributes at the current position of the
-iterator.
-
-C: pango_attr_iterator_get_attrs
-See: https://docs.gtk.org/Pango/method.AttrIterator.get_attrs.html
-Since: 1.2")
-
-
-(rt:define-gfunction (attr-iterator-get-font "pango_attr_iterator_get_font") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type"))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type") :direction :out
-                       :transfer :full)
-                      (extra-attrs
-                       (:gslist (:boxed "PangoAttribute" "pango_attribute_get_type" attribute))
-                       :direction :out :transfer :full))
-                     :documentation "Get the font and other attributes at the current
-iterator position.
-
-C: pango_attr_iterator_get_font
-See: https://docs.gtk.org/Pango/method.AttrIterator.get_font.html")
-
-
-(rt:define-gfunction (attr-iterator-next "pango_attr_iterator_next") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")))
-                     :return :boolean :documentation
-                     "Advance the iterator until the next change of style.
-
-C: pango_attr_iterator_next
-See: https://docs.gtk.org/Pango/method.AttrIterator.next.html")
-
-
-(rt:define-gfunction (attr-iterator-range "pango_attr_iterator_range") :args
-                     ((iterator (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type"))
-                      (start :int :direction :out :transfer :full)
-                      (end :int :direction :out :transfer :full))
-                     :documentation "Get the range of the current segment.
-
-C: pango_attr_iterator_range
-See: https://docs.gtk.org/Pango/method.AttrIterator.range.html")
-
-
-(rt:define-gfunction (attr-language-new "pango_attr_language_new") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new language tag attribute.
-
-C: pango_attr_language_new
-See: https://docs.gtk.org/Pango/type_func.AttrLanguage.new.html")
-
-
-(rt:define-gfunction (attr-list-new "pango_attr_list_new") :return
-                     (:boxed "PangoAttrList" "pango_attr_list_get_type") :return-transfer :full
-                     :documentation "Create a new empty attribute list with a reference
-count of one.
-
-C: pango_attr_list_new
-See: https://docs.gtk.org/Pango/ctor.AttrList.new.html")
-
-
-(rt:define-gfunction (attr-list-from-string "pango_attr_list_from_string") :args ((text :string))
-                     :return (:boxed "PangoAttrList" "pango_attr_list_get_type") :return-transfer
-                     :full :version "1.50" :documentation
-                     "Deserializes a `PangoAttrList` from a string.
-
-C: pango_attr_list_from_string
-See: https://docs.gtk.org/Pango/type_func.AttrList.from_string.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-list-change "pango_attr_list_change") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                       :transfer :full))
-                     :documentation "Insert the given attribute into the `PangoAttrList`.
-
-C: pango_attr_list_change
-See: https://docs.gtk.org/Pango/method.AttrList.change.html")
-
-
-(rt:define-gfunction (attr-list-copy "pango_attr_list_copy") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :return
-                     (:boxed "PangoAttrList" "pango_attr_list_get_type") :return-transfer :full
-                     :documentation "Copy LIST and return an identical new list.
-
-C: pango_attr_list_copy
-See: https://docs.gtk.org/Pango/method.AttrList.copy.html")
-
-
-(rt:define-gfunction (attr-list-equal "pango_attr_list_equal") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (other-list (:boxed "PangoAttrList" "pango_attr_list_get_type")))
-                     :return :boolean :version "1.46" :documentation
-                     "Checks whether LIST and OTHER-LIST contain the same
-attributes and whether those attributes apply to the
-same ranges.
-
-C: pango_attr_list_equal
-See: https://docs.gtk.org/Pango/method.AttrList.equal.html
-Since: 1.46")
-
-
-(rt:define-gfunction (attr-list-filter "pango_attr_list_filter") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (func (:callback attr-filter-func :call)) (data :pointer :user-data-of func))
-                     :return (:boxed "PangoAttrList" "pango_attr_list_get_type") :return-transfer
-                     :full :version "1.2" :documentation
-                     "Given a `PangoAttrList` and callback function, removes
-any elements of LIST for which FUNC returns true and
-inserts them into a new list.
-
-C: pango_attr_list_filter
-See: https://docs.gtk.org/Pango/method.AttrList.filter.html
-Since: 1.2")
-
-
-(rt:define-gfunction (attr-list-get-attributes "pango_attr_list_get_attributes") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :return
-                     (:gslist (:boxed "PangoAttribute" "pango_attribute_get_type" attribute))
-                     :return-transfer :full :version "1.44" :documentation
-                     "Gets a list of all attributes in LIST.
-
-C: pango_attr_list_get_attributes
-See: https://docs.gtk.org/Pango/method.AttrList.get_attributes.html
-Since: 1.44")
-
-
-(rt:define-gfunction (attr-list-get-iterator "pango_attr_list_get_iterator") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :return
-                     (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type") :return-transfer
-                     :full :documentation
-                     "Create a iterator initialized to the beginning of the list.
-
-C: pango_attr_list_get_iterator
-See: https://docs.gtk.org/Pango/method.AttrList.get_iterator.html")
-
-
-(rt:define-gfunction (attr-list-insert "pango_attr_list_insert") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                       :transfer :full))
-                     :documentation "Insert the given attribute into the `PangoAttrList`.
-
-C: pango_attr_list_insert
-See: https://docs.gtk.org/Pango/method.AttrList.insert.html")
-
-
-(rt:define-gfunction (attr-list-insert-before "pango_attr_list_insert_before") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                       :transfer :full))
-                     :documentation "Insert the given attribute into the `PangoAttrList`.
-
-C: pango_attr_list_insert_before
-See: https://docs.gtk.org/Pango/method.AttrList.insert_before.html")
-
-
-(rt:define-gfunction (attr-list-ref "pango_attr_list_ref") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :return
-                     (:boxed "PangoAttrList" "pango_attr_list_get_type") :return-transfer :full
-                     :version "1.10" :documentation
-                     "Increase the reference count of the given attribute
-list by one.
-
-C: pango_attr_list_ref
-See: https://docs.gtk.org/Pango/method.AttrList.ref.html
-Since: 1.10")
-
-
-(rt:define-gfunction (attr-list-splice "pango_attr_list_splice") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))
-                      (other (:boxed "PangoAttrList" "pango_attr_list_get_type")) (pos :int)
-                      (len :int))
-                     :documentation "This function opens up a hole in LIST, fills it
-in with attributes from the left, and then merges
-OTHER on top of the hole.
-
-C: pango_attr_list_splice
-See: https://docs.gtk.org/Pango/method.AttrList.splice.html")
-
-
-(rt:define-gfunction (attr-list-to-string "pango_attr_list_to_string") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :return :string
-                     :return-transfer :full :version "1.50" :documentation
-                     "Serializes a `PangoAttrList` to a string.
-
-C: pango_attr_list_to_string
-See: https://docs.gtk.org/Pango/method.AttrList.to_string.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-list-unref "pango_attr_list_unref") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type"))) :documentation
-                     "Decrease the reference count of the given attribute
-list by one.
-
-C: pango_attr_list_unref
-See: https://docs.gtk.org/Pango/method.AttrList.unref.html")
-
-
-(rt:define-gfunction (attr-list-update "pango_attr_list_update") :args
-                     ((list (:boxed "PangoAttrList" "pango_attr_list_get_type")) (pos :int)
-                      (remove :int) (add :int))
-                     :version "1.44" :documentation
-                     "Update indices of attributes in LIST for a change in the
-text they refer to.
-
-C: pango_attr_list_update
-See: https://docs.gtk.org/Pango/method.AttrList.update.html
-Since: 1.44")
-
-
-(rt:define-gfunction (attr-shape-new "pango_attr_shape_new") :args
-                     ((ink-rect (:record rectangle)) (logical-rect (:record rectangle))) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Create a new shape attribute.
-
-C: pango_attr_shape_new
-See: https://docs.gtk.org/Pango/type_func.AttrShape.new.html")
-
-
-(rt:define-gfunction (attr-size-new "pango_attr_size_new") :args ((size :int)) :return
-                     (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation
-                     "Create a new font-size attribute in fractional points.
-
-C: pango_attr_size_new
-See: https://docs.gtk.org/Pango/type_func.AttrSize.new.html")
-
-
-(rt:define-gfunction (attr-size-new-absolute "pango_attr_size_new_absolute") :args ((size :int))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :version "1.8" :documentation
-                     "Create a new font-size attribute in device units.
-
-C: pango_attr_size_new_absolute
-See: https://docs.gtk.org/Pango/type_func.AttrSize.new_absolute.html
-Since: 1.8")
-
-
-(rt:define-gfunction (attribute-as-color "pango_attribute_as_color") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-color) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrColor`.
-
-C: pango_attribute_as_color
-See: https://docs.gtk.org/Pango/method.Attribute.as_color.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-float "pango_attribute_as_float") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-float) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrFloat`.
-
-C: pango_attribute_as_float
-See: https://docs.gtk.org/Pango/method.Attribute.as_float.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-font-desc "pango_attribute_as_font_desc") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-font-desc) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrFontDesc`.
-
-C: pango_attribute_as_font_desc
-See: https://docs.gtk.org/Pango/method.Attribute.as_font_desc.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-font-features "pango_attribute_as_font_features") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-font-features) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrFontFeatures`.
-
-C: pango_attribute_as_font_features
-See: https://docs.gtk.org/Pango/method.Attribute.as_font_features.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-int "pango_attribute_as_int") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-int) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrInt`.
-
-C: pango_attribute_as_int
-See: https://docs.gtk.org/Pango/method.Attribute.as_int.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-language "pango_attribute_as_language") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-language) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrLanguage`.
-
-C: pango_attribute_as_language
-See: https://docs.gtk.org/Pango/method.Attribute.as_language.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-shape "pango_attribute_as_shape") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-shape) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrShape`.
-
-C: pango_attribute_as_shape
-See: https://docs.gtk.org/Pango/method.Attribute.as_shape.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-size "pango_attribute_as_size") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-size) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrSize`.
-
-C: pango_attribute_as_size
-See: https://docs.gtk.org/Pango/method.Attribute.as_size.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-as-string "pango_attribute_as_string") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:record attr-string) :version "1.50" :documentation
-                     "Returns the attribute cast to `PangoAttrString`.
-
-C: pango_attribute_as_string
-See: https://docs.gtk.org/Pango/method.Attribute.as_string.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attribute-copy "pango_attribute_copy") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)
-                     :return-transfer :full :documentation "Make a copy of an attribute.
-
-C: pango_attribute_copy
-See: https://docs.gtk.org/Pango/method.Attribute.copy.html")
-
-
-(rt:define-gfunction (attribute-destroy "pango_attribute_destroy") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :documentation "Destroy a `PangoAttribute` and free all associated memory.
-
-C: pango_attribute_destroy
-See: https://docs.gtk.org/Pango/method.Attribute.destroy.html")
-
-
-(rt:define-gfunction (attribute-equal "pango_attribute_equal") :args
-                     ((attr1 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute))
-                      (attr2 (:boxed "PangoAttribute" "pango_attribute_get_type" attribute)))
-                     :return :boolean :documentation "Compare two attributes for equality.
-
-C: pango_attribute_equal
-See: https://docs.gtk.org/Pango/method.Attribute.equal.html")
-
-
-(rt:define-gfunction (attribute-init "pango_attribute_init") :args
-                     ((attr (:boxed "PangoAttribute" "pango_attribute_get_type" attribute))
-                      (klass (:record attr-class)))
-                     :version "1.20" :documentation
-                     "Initializes ATTR's klass to KLASS, it's start_index to
-PANGO_ATTR_INDEX_FROM_TEXT_BEGINNING and end_index to
-PANGO_ATTR_INDEX_TO_TEXT_END such that the attribute applies
-to the entire text by default.
-
-C: pango_attribute_init
-See: https://docs.gtk.org/Pango/method.Attribute.init.html
-Since: 1.20")
-
-
-(rt:define-gfunction (color-copy "pango_color_copy") :args
-                     ((src (:boxed "PangoColor" "pango_color_get_type" color))) :return
-                     (:boxed "PangoColor" "pango_color_get_type" color) :return-transfer :full
-                     :documentation "Creates a copy of SRC.
-
-C: pango_color_copy
-See: https://docs.gtk.org/Pango/method.Color.copy.html")
-
-
-(rt:define-gfunction (color-free "pango_color_free") :args
-                     ((color (:boxed "PangoColor" "pango_color_get_type" color))) :documentation
-                     "Frees a color allocated by Pango.Color.copy.
-
-C: pango_color_free
-See: https://docs.gtk.org/Pango/method.Color.free.html")
-
-
-(rt:define-gfunction (color-parse "pango_color_parse") :args
-                     ((color (:boxed "PangoColor" "pango_color_get_type" color)) (spec :string))
-                     :return :boolean :documentation
-                     "Fill in the fields of a color from a string specification.
-
-C: pango_color_parse
-See: https://docs.gtk.org/Pango/method.Color.parse.html")
-
-
-(rt:define-gfunction (color-parse-with-alpha "pango_color_parse_with_alpha") :args
-                     ((color (:boxed "PangoColor" "pango_color_get_type" color))
-                      (alpha :uint16 :direction :out :transfer :full) (spec :string))
-                     :return :boolean :version "1.46" :documentation
-                     "Fill in the fields of a color from a string specification.
-
-C: pango_color_parse_with_alpha
-See: https://docs.gtk.org/Pango/method.Color.parse_with_alpha.html
-Since: 1.46")
-
-
-(rt:define-gfunction (color-to-string "pango_color_to_string") :args
-                     ((color (:boxed "PangoColor" "pango_color_get_type" color))) :return :string
-                     :return-transfer :full :version "1.16" :documentation
-                     "Returns a textual specification of COLOR.
-
-C: pango_color_to_string
-See: https://docs.gtk.org/Pango/method.Color.to_string.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-new "pango_context_new") :return (:object context) :return-transfer
-                     :full :documentation
-                     "Creates a new `PangoContext` initialized to default values.
-
-C: pango_context_new
-See: https://docs.gtk.org/Pango/ctor.Context.new.html")
-
-
-(rt:define-gfunction (context-changed "pango_context_changed") :args ((context (:object context)))
-                     :version "1.32.4" :documentation
-                     "Forces a change in the context, which will cause any `PangoLayout`
-using this context to re-layout.
-
-C: pango_context_changed
-See: https://docs.gtk.org/Pango/method.Context.changed.html
-Since: 1.32.4")
-
-
-(rt:define-gfunction (context-get-base-dir "pango_context_get_base_dir") :args
-                     ((context (:object context))) :return (:enum direction) :documentation
-                     "Retrieves the base direction for the context.
-
-C: pango_context_get_base_dir
-See: https://docs.gtk.org/Pango/method.Context.get_base_dir.html")
-
-
-(rt:define-gfunction (context-get-base-gravity "pango_context_get_base_gravity") :args
-                     ((context (:object context))) :return (:enum gravity) :version "1.16"
-                     :documentation "Retrieves the base gravity for the context.
-
-C: pango_context_get_base_gravity
-See: https://docs.gtk.org/Pango/method.Context.get_base_gravity.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-get-font-description "pango_context_get_font_description") :args
-                     ((context (:object context))) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :documentation "Retrieve the default font description for the context.
-
-C: pango_context_get_font_description
-See: https://docs.gtk.org/Pango/method.Context.get_font_description.html")
-
-
-(rt:define-gfunction (context-get-font-map "pango_context_get_font_map") :args
-                     ((context (:object context))) :return (:object font-map) :version "1.6"
-                     :documentation "Gets the `PangoFontMap` used to look up fonts for this context.
-
-C: pango_context_get_font_map
-See: https://docs.gtk.org/Pango/method.Context.get_font_map.html
-Since: 1.6")
-
-
-(rt:define-gfunction (context-get-gravity "pango_context_get_gravity") :args
-                     ((context (:object context))) :return (:enum gravity) :version "1.16"
-                     :documentation "Retrieves the gravity for the context.
-
-C: pango_context_get_gravity
-See: https://docs.gtk.org/Pango/method.Context.get_gravity.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-get-gravity-hint "pango_context_get_gravity_hint") :args
-                     ((context (:object context))) :return (:enum gravity-hint) :version "1.16"
-                     :documentation "Retrieves the gravity hint for the context.
-
-C: pango_context_get_gravity_hint
-See: https://docs.gtk.org/Pango/method.Context.get_gravity_hint.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-get-language "pango_context_get_language") :args
-                     ((context (:object context))) :return
-                     (:boxed "PangoLanguage" "pango_language_get_type") :documentation
-                     "Retrieves the global language tag for the context.
-
-C: pango_context_get_language
-See: https://docs.gtk.org/Pango/method.Context.get_language.html")
-
-
-(rt:define-gfunction (context-get-matrix "pango_context_get_matrix") :args
-                     ((context (:object context))) :return
-                     (:boxed "PangoMatrix" "pango_matrix_get_type" matrix) :version "1.6"
-                     :documentation "Gets the transformation matrix that will be applied when
-rendering with this context.
-
-C: pango_context_get_matrix
-See: https://docs.gtk.org/Pango/method.Context.get_matrix.html
-Since: 1.6")
-
-
-(rt:define-gfunction (context-get-metrics "pango_context_get_metrics") :args
-                     ((context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                       :optional t)
-                      (language (:boxed "PangoLanguage" "pango_language_get_type") :optional t))
-                     :return (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
-                     :return-transfer :full :documentation
-                     "Get overall metric information for a particular font description.
-
-C: pango_context_get_metrics
-See: https://docs.gtk.org/Pango/method.Context.get_metrics.html")
-
-
-(rt:define-gfunction (context-get-round-glyph-positions "pango_context_get_round_glyph_positions")
-                     :args ((context (:object context))) :return :boolean :version "1.44"
-                     :documentation "Returns whether font rendering with this context should
-round glyph positions and widths.
-
-C: pango_context_get_round_glyph_positions
-See: https://docs.gtk.org/Pango/method.Context.get_round_glyph_positions.html
-Since: 1.44")
-
-
-(rt:define-gfunction (context-get-serial "pango_context_get_serial") :args
-                     ((context (:object context))) :return :uint :version "1.32.4" :documentation
-                     "Returns the current serial number of CONTEXT.
-
-C: pango_context_get_serial
-See: https://docs.gtk.org/Pango/method.Context.get_serial.html
-Since: 1.32.4")
-
-
-(rt:define-gfunction (context-list-families "pango_context_list_families") :args
-                     ((context (:object context))
-                      (families (:array (:object font-family)) :direction :out :transfer
-                       :container)
-                      (n-families :int :length-of families :direction :out))
-                     :documentation "List all families for a context.
-
-C: pango_context_list_families
-See: https://docs.gtk.org/Pango/method.Context.list_families.html")
-
-
-(rt:define-gfunction (context-load-font "pango_context_load_font") :args
-                     ((context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:object font) :return-transfer :full :documentation
-                     "Loads the font in one of the fontmaps in the context
-that is the closest match for DESC.
-
-C: pango_context_load_font
-See: https://docs.gtk.org/Pango/method.Context.load_font.html")
-
-
-(rt:define-gfunction (context-load-fontset "pango_context_load_fontset") :args
-                     ((context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type")))
-                     :return (:object fontset) :return-transfer :full :documentation
-                     "Load a set of fonts in the context that can be used to render
-a font matching DESC.
-
-C: pango_context_load_fontset
-See: https://docs.gtk.org/Pango/method.Context.load_fontset.html")
-
-
-(rt:define-gfunction (context-set-base-dir "pango_context_set_base_dir") :args
-                     ((context (:object context)) (direction (:enum direction))) :documentation
-                     "Sets the base direction for the context.
-
-C: pango_context_set_base_dir
-See: https://docs.gtk.org/Pango/method.Context.set_base_dir.html")
-
-
-(rt:define-gfunction (context-set-base-gravity "pango_context_set_base_gravity") :args
-                     ((context (:object context)) (gravity (:enum gravity))) :version "1.16"
-                     :documentation "Sets the base gravity for the context.
-
-C: pango_context_set_base_gravity
-See: https://docs.gtk.org/Pango/method.Context.set_base_gravity.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-set-font-description "pango_context_set_font_description") :args
-                     ((context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :documentation "Set the default font description for the context
-
-C: pango_context_set_font_description
-See: https://docs.gtk.org/Pango/method.Context.set_font_description.html")
-
-
-(rt:define-gfunction (context-set-font-map "pango_context_set_font_map") :args
-                     ((context (:object context)) (font-map (:object font-map) :optional t))
-                     :documentation "Sets the font map to be searched when fonts are looked-up
-in this context.
-
-C: pango_context_set_font_map
-See: https://docs.gtk.org/Pango/method.Context.set_font_map.html")
-
-
-(rt:define-gfunction (context-set-gravity-hint "pango_context_set_gravity_hint") :args
-                     ((context (:object context)) (hint (:enum gravity-hint))) :version "1.16"
-                     :documentation "Sets the gravity hint for the context.
-
-C: pango_context_set_gravity_hint
-See: https://docs.gtk.org/Pango/method.Context.set_gravity_hint.html
-Since: 1.16")
-
-
-(rt:define-gfunction (context-set-language "pango_context_set_language") :args
-                     ((context (:object context))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type") :optional t))
-                     :documentation "Sets the global language tag for the context.
-
-C: pango_context_set_language
-See: https://docs.gtk.org/Pango/method.Context.set_language.html")
-
-
-(rt:define-gfunction (context-set-matrix "pango_context_set_matrix") :args
-                     ((context (:object context))
-                      (matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix) :optional t))
-                     :version "1.6" :documentation
-                     "Sets the transformation matrix that will be applied when rendering
-with this context.
-
-C: pango_context_set_matrix
-See: https://docs.gtk.org/Pango/method.Context.set_matrix.html
-Since: 1.6")
-
-
-(rt:define-gfunction (context-set-round-glyph-positions "pango_context_set_round_glyph_positions")
-                     :args ((context (:object context)) (round-positions :boolean)) :version "1.44"
-                     :documentation "Sets whether font rendering with this context should
-round glyph positions and widths to integral positions,
-in device units.
-
-C: pango_context_set_round_glyph_positions
-See: https://docs.gtk.org/Pango/method.Context.set_round_glyph_positions.html
-Since: 1.44")
-
-
-(rt:define-gfunction (coverage-new "pango_coverage_new") :return (:object coverage)
-                     :return-transfer :full :documentation "Create a new `PangoCoverage`
-
-C: pango_coverage_new
-See: https://docs.gtk.org/Pango/ctor.Coverage.new.html")
-
-
-(rt:define-gfunction (coverage-from-bytes "pango_coverage_from_bytes") :args
-                     ((bytes (:array :uint8)) (n-bytes :int :length-of bytes)) :return
-                     (:object coverage) :return-transfer :full :documentation
-                     "Convert data generated from Pango.Coverage.to_bytes
-back to a `PangoCoverage`.
-
-C: pango_coverage_from_bytes
-See: https://docs.gtk.org/Pango/type_func.Coverage.from_bytes.html
-Deprecated.")
-
-
-(rt:define-gfunction (coverage-copy "pango_coverage_copy") :args ((coverage (:object coverage)))
-                     :return (:object coverage) :return-transfer :full :documentation
-                     "Copy an existing `PangoCoverage`.
-
-C: pango_coverage_copy
-See: https://docs.gtk.org/Pango/method.Coverage.copy.html")
-
-
-(rt:define-gfunction (coverage-get "pango_coverage_get") :args
-                     ((coverage (:object coverage)) (index- :int)) :return (:enum coverage-level)
-                     :documentation "Determine whether a particular index is covered by COVERAGE.
-
-C: pango_coverage_get
-See: https://docs.gtk.org/Pango/method.Coverage.get.html")
-
-
-(rt:define-gfunction (coverage-max "pango_coverage_max") :args
-                     ((coverage (:object coverage)) (other (:object coverage))) :documentation
-                     "Set the coverage for each index in COVERAGE to be the max (better)
-value of the current coverage for the index and the coverage for
-the corresponding index in OTHER.
-
-C: pango_coverage_max
-See: https://docs.gtk.org/Pango/method.Coverage.max.html
-Deprecated.")
-
-
-(rt:define-gfunction (coverage-ref "pango_coverage_ref") :args ((coverage (:object coverage)))
-                     :return (:object coverage) :return-transfer :full :documentation
-                     "Increase the reference count on the `PangoCoverage` by one.
-
-C: pango_coverage_ref
-See: https://docs.gtk.org/Pango/method.Coverage.ref.html
-Deprecated.")
-
-
-(rt:define-gfunction (coverage-set "pango_coverage_set") :args
-                     ((coverage (:object coverage)) (index- :int) (level (:enum coverage-level)))
-                     :documentation "Modify a particular index within COVERAGE
-
-C: pango_coverage_set
-See: https://docs.gtk.org/Pango/method.Coverage.set.html")
-
-
-(rt:define-gfunction (coverage-to-bytes "pango_coverage_to_bytes") :args
-                     ((coverage (:object coverage))
-                      (bytes (:array :uint8) :direction :out :transfer :full)
-                      (n-bytes :int :length-of bytes :direction :out))
-                     :documentation "Convert a `PangoCoverage` structure into a flat binary format.
-
-C: pango_coverage_to_bytes
-See: https://docs.gtk.org/Pango/method.Coverage.to_bytes.html
-Deprecated.")
-
-
-(rt:define-gfunction (coverage-unref "pango_coverage_unref") :args
-                     ((coverage (:object coverage) :transfer :full)) :documentation
-                     "Decrease the reference count on the `PangoCoverage` by one.
-
-C: pango_coverage_unref
-See: https://docs.gtk.org/Pango/method.Coverage.unref.html
-Deprecated.")
-
-
-(rt:define-gfunction (font-deserialize "pango_font_deserialize") :args
-                     ((context (:object context)) (bytes (:boxed "GBytes" "g_bytes_get_type")))
-                     :return (:object font) :return-transfer :full :throws t :version "1.50"
-                     :documentation "Loads data previously created via Pango.Font.serialize.
-
-C: pango_font_deserialize
-See: https://docs.gtk.org/Pango/type_func.Font.deserialize.html
-Since: 1.50")
-
-
-(rt:define-gfunction (font-describe "pango_font_describe") :args ((font (:object font))) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation
-                     "Returns a description of the font, with font size set in points.
-
-C: pango_font_describe
-See: https://docs.gtk.org/Pango/method.Font.describe.html")
-
-
-(rt:define-gfunction (font-describe-with-absolute-size "pango_font_describe_with_absolute_size")
-                     :args ((font (:object font))) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :version "1.14" :documentation
-                     "Returns a description of the font, with absolute font size set
-in device units.
-
-C: pango_font_describe_with_absolute_size
-See: https://docs.gtk.org/Pango/method.Font.describe_with_absolute_size.html
-Since: 1.14")
-
-
-(rt:define-gfunction (font-get-coverage "pango_font_get_coverage") :args
-                     ((font (:object font))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type")))
-                     :return (:object coverage) :return-transfer :full :documentation
-                     "Computes the coverage map for a given font and language tag.
-
-C: pango_font_get_coverage
-See: https://docs.gtk.org/Pango/method.Font.get_coverage.html")
-
-
-(rt:define-gfunction (font-get-face "pango_font_get_face") :args ((font (:object font))) :return
-                     (:object font-face) :version "1.46" :documentation
-                     "Gets the `PangoFontFace` to which FONT belongs.
-
-C: pango_font_get_face
-See: https://docs.gtk.org/Pango/method.Font.get_face.html
-Since: 1.46")
-
-
-(rt:define-gfunction (font-get-font-map "pango_font_get_font_map") :args ((font (:object font)))
-                     :return (:object font-map) :version "1.10" :documentation
-                     "Gets the font map for which the font was created.
-
-C: pango_font_get_font_map
-See: https://docs.gtk.org/Pango/method.Font.get_font_map.html
-Since: 1.10")
-
-
-(rt:define-gfunction (font-get-glyph-extents "pango_font_get_glyph_extents") :args
-                     ((font (:object font)) (glyph :uint32)
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Gets the logical and ink extents of a glyph within a font.
-
-C: pango_font_get_glyph_extents
-See: https://docs.gtk.org/Pango/method.Font.get_glyph_extents.html")
-
-
-(rt:define-gfunction (font-get-languages "pango_font_get_languages") :args ((font (:object font)))
-                     :return (:array :pointer :zero-terminated t) :version "1.50" :documentation
-                     "Returns the languages that are supported by FONT.
-
-C: pango_font_get_languages
-See: https://docs.gtk.org/Pango/method.Font.get_languages.html
-Since: 1.50")
-
-
-(rt:define-gfunction (font-get-metrics "pango_font_get_metrics") :args
-                     ((font (:object font))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type") :optional t))
-                     :return (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
-                     :return-transfer :full :documentation
-                     "Gets overall metric information for a font.
-
-C: pango_font_get_metrics
-See: https://docs.gtk.org/Pango/method.Font.get_metrics.html")
-
-
-(rt:define-gfunction (font-has-char "pango_font_has_char") :args
-                     ((font (:object font)) (wc :uint32)) :return :boolean :version "1.44"
-                     :documentation "Returns whether the font provides a glyph for this character.
-
-C: pango_font_has_char
-See: https://docs.gtk.org/Pango/method.Font.has_char.html
-Since: 1.44")
-
-
-(rt:define-gfunction (font-serialize "pango_font_serialize") :args ((font (:object font))) :return
-                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "1.50"
-                     :documentation "Serializes the FONT in a way that can be uniquely identified.
-
-C: pango_font_serialize
-See: https://docs.gtk.org/Pango/method.Font.serialize.html
-Since: 1.50")
-
-
-(rt:define-gfunction (font-description-new "pango_font_description_new") :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation
-                     "Creates a new font description structure with all fields unset.
-
-C: pango_font_description_new
-See: https://docs.gtk.org/Pango/ctor.FontDescription.new.html")
-
-
-(rt:define-gfunction (font-description-from-string "pango_font_description_from_string") :args
-                     ((str :string)) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation
-                     "Creates a new font description from a string representation.
-
-C: pango_font_description_from_string
-See: https://docs.gtk.org/Pango/type_func.FontDescription.from_string.html")
-
-
-(rt:define-gfunction (font-description-better-match "pango_font_description_better_match") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (old-match (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (new-match
-                       (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :boolean :documentation
-                     "Determines if the style attributes of NEW-MATCH are a closer match
-for DESC than those of OLD-MATCH are, or if OLD-MATCH is NIL,
-determines if NEW-MATCH is a match at all.
-
-C: pango_font_description_better_match
-See: https://docs.gtk.org/Pango/method.FontDescription.better_match.html")
-
-
-(rt:define-gfunction (font-description-copy "pango_font_description_copy") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation "Make a copy of a `PangoFontDescription`.
-
-C: pango_font_description_copy
-See: https://docs.gtk.org/Pango/method.FontDescription.copy.html")
-
-
-(rt:define-gfunction (font-description-copy-static "pango_font_description_copy_static") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation
-                     "Make a copy of a `PangoFontDescription`, but don't duplicate
-allocated fields.
-
-C: pango_font_description_copy_static
-See: https://docs.gtk.org/Pango/method.FontDescription.copy_static.html")
-
-
-(rt:define-gfunction (font-description-equal "pango_font_description_equal") :args
-                     ((desc1 (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (desc2 (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :boolean :documentation "Compares two font descriptions for equality.
-
-C: pango_font_description_equal
-See: https://docs.gtk.org/Pango/method.FontDescription.equal.html")
-
-
-(rt:define-gfunction (font-description-free "pango_font_description_free") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :documentation "Frees a font description.
-
-C: pango_font_description_free
-See: https://docs.gtk.org/Pango/method.FontDescription.free.html")
-
-
-(rt:define-gfunction (font-description-get-color "pango_font_description_get_color") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum font-color) :version "1.57" :documentation
-                     "Returns the color field of the font description.
-
-C: pango_font_description_get_color
-See: https://docs.gtk.org/Pango/method.FontDescription.get_color.html
-Since: 1.57")
-
-
-(rt:define-gfunction (font-description-get-family "pango_font_description_get_family") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :string :documentation
-                     "Gets the family name field of a font description.
-
-C: pango_font_description_get_family
-See: https://docs.gtk.org/Pango/method.FontDescription.get_family.html")
-
-
-(rt:define-gfunction (font-description-get-features "pango_font_description_get_features") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :string :version "1.56" :documentation
-                     "Gets the features field of a font description.
-
-C: pango_font_description_get_features
-See: https://docs.gtk.org/Pango/method.FontDescription.get_features.html
-Since: 1.56")
-
-
-(rt:define-gfunction (font-description-get-gravity "pango_font_description_get_gravity") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum gravity) :version "1.16" :documentation
-                     "Gets the gravity field of a font description.
-
-C: pango_font_description_get_gravity
-See: https://docs.gtk.org/Pango/method.FontDescription.get_gravity.html
-Since: 1.16")
-
-
-(rt:define-gfunction (font-description-get-set-fields "pango_font_description_get_set_fields")
-                     :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:flags font-mask) :documentation
-                     "Determines which fields in a font description have been set.
-
-C: pango_font_description_get_set_fields
-See: https://docs.gtk.org/Pango/method.FontDescription.get_set_fields.html")
-
-
-(rt:define-gfunction (font-description-get-size "pango_font_description_get_size") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :int :documentation "Gets the size field of a font description.
-
-C: pango_font_description_get_size
-See: https://docs.gtk.org/Pango/method.FontDescription.get_size.html")
-
-
-(rt:define-gfunction
- (font-description-get-size-is-absolute "pango_font_description_get_size_is_absolute") :args
- ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))) :return :boolean
- :version "1.8" :documentation "Determines whether the size of the font is in points (not absolute)
-or device units (absolute).
-
-C: pango_font_description_get_size_is_absolute
-See: https://docs.gtk.org/Pango/method.FontDescription.get_size_is_absolute.html
-Since: 1.8")
-
-
-(rt:define-gfunction (font-description-get-stretch "pango_font_description_get_stretch") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum stretch) :documentation
-                     "Gets the stretch field of a font description.
-
-C: pango_font_description_get_stretch
-See: https://docs.gtk.org/Pango/method.FontDescription.get_stretch.html")
-
-
-(rt:define-gfunction (font-description-get-style "pango_font_description_get_style") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum style) :documentation
-                     "Gets the style field of a `PangoFontDescription`.
-
-C: pango_font_description_get_style
-See: https://docs.gtk.org/Pango/method.FontDescription.get_style.html")
-
-
-(rt:define-gfunction (font-description-get-variant "pango_font_description_get_variant") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum variant) :documentation
-                     "Gets the variant field of a `PangoFontDescription`.
-
-C: pango_font_description_get_variant
-See: https://docs.gtk.org/Pango/method.FontDescription.get_variant.html")
-
-
-(rt:define-gfunction (font-description-get-variations "pango_font_description_get_variations")
-                     :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :string :version "1.42" :documentation
-                     "Gets the variations field of a font description.
-
-C: pango_font_description_get_variations
-See: https://docs.gtk.org/Pango/method.FontDescription.get_variations.html
-Since: 1.42")
-
-
-(rt:define-gfunction (font-description-get-weight "pango_font_description_get_weight") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum weight) :documentation
-                     "Gets the weight field of a font description.
-
-C: pango_font_description_get_weight
-See: https://docs.gtk.org/Pango/method.FontDescription.get_weight.html")
-
-
-(rt:define-gfunction (font-description-get-width "pango_font_description_get_width") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:enum width) :version "1.58" :documentation
-                     "Gets the width field of a font description.
-
-C: pango_font_description_get_width
-See: https://docs.gtk.org/Pango/method.FontDescription.get_width.html
-Since: 1.58")
-
-
-(rt:define-gfunction (font-description-hash "pango_font_description_hash") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :uint :documentation
-                     "Computes a hash of a `PangoFontDescription` structure.
-
-C: pango_font_description_hash
-See: https://docs.gtk.org/Pango/method.FontDescription.hash.html")
-
-
-(rt:define-gfunction (font-description-merge "pango_font_description_merge") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (desc-to-merge
-                       (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (replace-existing :boolean))
-                     :documentation
-                     "Merges the fields that are set in DESC-TO-MERGE into the fields in
-DESC.
-
-C: pango_font_description_merge
-See: https://docs.gtk.org/Pango/method.FontDescription.merge.html")
-
-
-(rt:define-gfunction (font-description-merge-static "pango_font_description_merge_static") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (desc-to-merge
-                       (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (replace-existing :boolean))
-                     :documentation
-                     "Merges the fields that are set in DESC-TO-MERGE into the fields in
-DESC, without copying allocated fields.
-
-C: pango_font_description_merge_static
-See: https://docs.gtk.org/Pango/method.FontDescription.merge_static.html")
-
-
-(rt:define-gfunction
- (font-description-set-absolute-size "pango_font_description_set_absolute_size") :args
- ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")) (size :double)) :version
- "1.8" :documentation "Sets the size field of a font description, in device units.
-
-C: pango_font_description_set_absolute_size
-See: https://docs.gtk.org/Pango/method.FontDescription.set_absolute_size.html
-Since: 1.8")
-
-
-(rt:define-gfunction (font-description-set-color "pango_font_description_set_color") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (color (:enum font-color)))
-                     :version "1.57" :documentation "Sets the color field of a font description.
-
-C: pango_font_description_set_color
-See: https://docs.gtk.org/Pango/method.FontDescription.set_color.html
-Since: 1.57")
-
-
-(rt:define-gfunction (font-description-set-family "pango_font_description_set_family") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (family :string))
-                     :documentation "Sets the family name field of a font description.
-
-C: pango_font_description_set_family
-See: https://docs.gtk.org/Pango/method.FontDescription.set_family.html")
-
-
-(rt:define-gfunction
- (font-description-set-family-static "pango_font_description_set_family_static") :args
- ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")) (family :string))
- :documentation "Sets the family name field of a font description, without copying the string.
-
-C: pango_font_description_set_family_static
-See: https://docs.gtk.org/Pango/method.FontDescription.set_family_static.html")
-
-
-(rt:define-gfunction (font-description-set-features "pango_font_description_set_features") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (features :string :optional t))
-                     :version "1.56" :documentation "Sets the features field of a font description.
-
-C: pango_font_description_set_features
-See: https://docs.gtk.org/Pango/method.FontDescription.set_features.html
-Since: 1.56")
-
-
-(rt:define-gfunction
- (font-description-set-features-static "pango_font_description_set_features_static") :args
- ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")) (features :string))
- :version "1.56" :documentation "Sets the features field of a font description.
-
-C: pango_font_description_set_features_static
-See: https://docs.gtk.org/Pango/method.FontDescription.set_features_static.html
-Since: 1.56")
-
-
-(rt:define-gfunction (font-description-set-gravity "pango_font_description_set_gravity") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (gravity (:enum gravity)))
-                     :version "1.16" :documentation "Sets the gravity field of a font description.
-
-C: pango_font_description_set_gravity
-See: https://docs.gtk.org/Pango/method.FontDescription.set_gravity.html
-Since: 1.16")
-
-
-(rt:define-gfunction (font-description-set-size "pango_font_description_set_size") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (size :int))
-                     :documentation "Sets the size field of a font description in fractional points.
-
-C: pango_font_description_set_size
-See: https://docs.gtk.org/Pango/method.FontDescription.set_size.html")
-
-
-(rt:define-gfunction (font-description-set-stretch "pango_font_description_set_stretch") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (stretch (:enum stretch)))
-                     :documentation "Sets the stretch field of a font description.
-
-C: pango_font_description_set_stretch
-See: https://docs.gtk.org/Pango/method.FontDescription.set_stretch.html")
-
-
-(rt:define-gfunction (font-description-set-style "pango_font_description_set_style") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (style (:enum style)))
-                     :documentation "Sets the style field of a `PangoFontDescription`.
-
-C: pango_font_description_set_style
-See: https://docs.gtk.org/Pango/method.FontDescription.set_style.html")
-
-
-(rt:define-gfunction (font-description-set-variant "pango_font_description_set_variant") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (variant (:enum variant)))
-                     :documentation "Sets the variant field of a font description.
-
-C: pango_font_description_set_variant
-See: https://docs.gtk.org/Pango/method.FontDescription.set_variant.html")
-
-
-(rt:define-gfunction (font-description-set-variations "pango_font_description_set_variations")
-                     :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (variations :string :optional t))
-                     :version "1.42" :documentation
-                     "Sets the variations field of a font description.
-
-C: pango_font_description_set_variations
-See: https://docs.gtk.org/Pango/method.FontDescription.set_variations.html
-Since: 1.42")
-
-
-(rt:define-gfunction
- (font-description-set-variations-static "pango_font_description_set_variations_static") :args
- ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")) (variations :string))
- :version "1.42" :documentation "Sets the variations field of a font description.
-
-C: pango_font_description_set_variations_static
-See: https://docs.gtk.org/Pango/method.FontDescription.set_variations_static.html
-Since: 1.42")
-
-
-(rt:define-gfunction (font-description-set-weight "pango_font_description_set_weight") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (weight (:enum weight)))
-                     :documentation "Sets the weight field of a font description.
-
-C: pango_font_description_set_weight
-See: https://docs.gtk.org/Pango/method.FontDescription.set_weight.html")
-
-
-(rt:define-gfunction (font-description-set-width "pango_font_description_set_width") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (width (:enum width)))
-                     :version "1.58" :documentation "Sets the width field of a font description.
-
-C: pango_font_description_set_width
-See: https://docs.gtk.org/Pango/method.FontDescription.set_width.html
-Since: 1.58")
-
-
-(rt:define-gfunction (font-description-to-filename "pango_font_description_to_filename") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :string :return-transfer :full :documentation
-                     "Creates a filename representation of a font description.
-
-C: pango_font_description_to_filename
-See: https://docs.gtk.org/Pango/method.FontDescription.to_filename.html")
-
-
-(rt:define-gfunction (font-description-to-string "pango_font_description_to_string") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return :string :return-transfer :full :documentation
-                     "Creates a string representation of a font description.
-
-C: pango_font_description_to_string
-See: https://docs.gtk.org/Pango/method.FontDescription.to_string.html")
-
-
-(rt:define-gfunction (font-description-unset-fields "pango_font_description_unset_fields") :args
-                     ((desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (to-unset (:flags font-mask)))
-                     :documentation "Unsets some of the fields in a `PangoFontDescription`.
-
-C: pango_font_description_unset_fields
-See: https://docs.gtk.org/Pango/method.FontDescription.unset_fields.html")
-
-
-(rt:define-gfunction (font-face-describe "pango_font_face_describe") :args
-                     ((face (:object font-face))) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                     :return-transfer :full :documentation
-                     "Returns a font description that matches the face.
-
-C: pango_font_face_describe
-See: https://docs.gtk.org/Pango/method.FontFace.describe.html")
-
-
-(rt:define-gfunction (font-face-get-face-name "pango_font_face_get_face_name") :args
-                     ((face (:object font-face))) :return :string :documentation
-                     "Gets a name representing the style of this face.
-
-C: pango_font_face_get_face_name
-See: https://docs.gtk.org/Pango/method.FontFace.get_face_name.html")
-
-
-(rt:define-gfunction (font-face-get-family "pango_font_face_get_family") :args
-                     ((face (:object font-face))) :return (:object font-family) :version "1.46"
-                     :documentation "Gets the `PangoFontFamily` that FACE belongs to.
-
-C: pango_font_face_get_family
-See: https://docs.gtk.org/Pango/method.FontFace.get_family.html
-Since: 1.46")
-
-
-(rt:define-gfunction (font-face-is-synthesized "pango_font_face_is_synthesized") :args
-                     ((face (:object font-face))) :return :boolean :version "1.18" :documentation
-                     "Returns whether a `PangoFontFace` is synthesized.
-
-C: pango_font_face_is_synthesized
-See: https://docs.gtk.org/Pango/method.FontFace.is_synthesized.html
-Since: 1.18")
-
-
-(rt:define-gfunction (font-face-list-sizes "pango_font_face_list_sizes") :args
-                     ((face (:object font-face))
-                      (sizes (:array :int) :direction :out :transfer :full)
-                      (n-sizes :int :length-of sizes :direction :out))
-                     :version "1.4" :documentation "List the available sizes for a font.
-
-C: pango_font_face_list_sizes
-See: https://docs.gtk.org/Pango/method.FontFace.list_sizes.html
-Since: 1.4")
-
-
-(rt:define-gfunction (font-family-get-face "pango_font_family_get_face") :args
-                     ((family (:object font-family)) (name :string :optional t)) :return
-                     (:object font-face) :version "1.46" :documentation
-                     "Gets the `PangoFontFace` of FAMILY with the given name.
-
-C: pango_font_family_get_face
-See: https://docs.gtk.org/Pango/method.FontFamily.get_face.html
-Since: 1.46")
-
-
-(rt:define-gfunction (font-family-get-name "pango_font_family_get_name") :args
-                     ((family (:object font-family))) :return :string :documentation
-                     "Gets the name of the family.
-
-C: pango_font_family_get_name
-See: https://docs.gtk.org/Pango/method.FontFamily.get_name.html")
-
-
-(rt:define-gfunction (font-family-is-monospace "pango_font_family_is_monospace") :args
-                     ((family (:object font-family))) :return :boolean :version "1.4"
-                     :documentation
-                     "A monospace font is a font designed for text display where the the
-characters form a regular grid.
-
-C: pango_font_family_is_monospace
-See: https://docs.gtk.org/Pango/method.FontFamily.is_monospace.html
-Since: 1.4")
-
-
-(rt:define-gfunction (font-family-is-variable "pango_font_family_is_variable") :args
-                     ((family (:object font-family))) :return :boolean :version "1.44"
-                     :documentation
-                     "A variable font is a font which has axes that can be modified to
-produce different faces.
-
-C: pango_font_family_is_variable
-See: https://docs.gtk.org/Pango/method.FontFamily.is_variable.html
-Since: 1.44")
-
-
-(rt:define-gfunction (font-family-list-faces "pango_font_family_list_faces") :args
-                     ((family (:object font-family))
-                      (faces (:array (:object font-face)) :direction :out :transfer :container)
-                      (n-faces :int :length-of faces :direction :out))
-                     :documentation "Lists the different font faces that make up FAMILY.
-
-C: pango_font_family_list_faces
-See: https://docs.gtk.org/Pango/method.FontFamily.list_faces.html")
-
-
-(rt:define-gfunction (font-map-add-font-file "pango_font_map_add_font_file") :args
-                     ((fontmap (:object font-map)) (filename :string)) :return :boolean :throws t
-                     :version "1.56" :documentation
-                     "Loads a font file with one or more fonts into the `PangoFontMap`.
-
-C: pango_font_map_add_font_file
-See: https://docs.gtk.org/Pango/method.FontMap.add_font_file.html
-Since: 1.56")
-
-
-(rt:define-gfunction (font-map-changed "pango_font_map_changed") :args
-                     ((fontmap (:object font-map))) :version "1.34" :documentation
-                     "Forces a change in the fontmap, which will cause any `PangoContext`
-using this fontmap to change.
-
-C: pango_font_map_changed
-See: https://docs.gtk.org/Pango/method.FontMap.changed.html
-Since: 1.34")
-
-
-(rt:define-gfunction (font-map-create-context "pango_font_map_create_context") :args
-                     ((fontmap (:object font-map))) :return (:object context) :return-transfer
-                     :full :version "1.22" :documentation
-                     "Creates a `PangoContext` connected to FONTMAP.
-
-C: pango_font_map_create_context
-See: https://docs.gtk.org/Pango/method.FontMap.create_context.html
-Since: 1.22")
-
-
-(rt:define-gfunction (font-map-get-family "pango_font_map_get_family") :args
-                     ((fontmap (:object font-map)) (name :string)) :return (:object font-family)
-                     :version "1.46" :documentation "Gets a font family by name.
-
-C: pango_font_map_get_family
-See: https://docs.gtk.org/Pango/method.FontMap.get_family.html
-Since: 1.46")
-
-
-(rt:define-gfunction (font-map-get-serial "pango_font_map_get_serial") :args
-                     ((fontmap (:object font-map))) :return :uint :version "1.32.4" :documentation
-                     "Returns the current serial number of FONTMAP.
-
-C: pango_font_map_get_serial
-See: https://docs.gtk.org/Pango/method.FontMap.get_serial.html
-Since: 1.32.4")
-
-
-(rt:define-gfunction (font-map-list-families "pango_font_map_list_families") :args
-                     ((fontmap (:object font-map))
-                      (families (:array (:object font-family)) :direction :out :transfer
-                       :container)
-                      (n-families :int :length-of families :direction :out))
-                     :documentation "List all families for a fontmap.
-
-C: pango_font_map_list_families
-See: https://docs.gtk.org/Pango/method.FontMap.list_families.html")
-
-
-(rt:define-gfunction (font-map-load-font "pango_font_map_load_font") :args
-                     ((fontmap (:object font-map)) (context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")))
-                     :return (:object font) :return-transfer :full :documentation
-                     "Load the font in the fontmap that is the closest match for DESC.
-
-C: pango_font_map_load_font
-See: https://docs.gtk.org/Pango/method.FontMap.load_font.html")
-
-
-(rt:define-gfunction (font-map-load-fontset "pango_font_map_load_fontset") :args
-                     ((fontmap (:object font-map)) (context (:object context))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type"))
-                      (language (:boxed "PangoLanguage" "pango_language_get_type")))
-                     :return (:object fontset) :return-transfer :full :documentation
-                     "Load a set of fonts in the fontmap that can be used to render
-a font matching DESC.
-
-C: pango_font_map_load_fontset
-See: https://docs.gtk.org/Pango/method.FontMap.load_fontset.html")
-
-
-(rt:define-gfunction (font-map-reload-font "pango_font_map_reload_font") :args
-                     ((fontmap (:object font-map)) (font (:object font)) (scale :double)
-                      (context (:object context) :optional t) (variations :string :optional t))
-                     :return (:object font) :return-transfer :full :version "1.52" :documentation
-                     "Returns a new font that is like FONT, except that it is scaled
-by SCALE, its backend-dependent configuration (e.g. cairo font options)
-is replaced by the one in CONTEXT, and its variations are replaced
-by VARIATIONS.
-
-C: pango_font_map_reload_font
-See: https://docs.gtk.org/Pango/method.FontMap.reload_font.html
-Since: 1.52")
-
-
-(rt:define-gfunction
- (font-metrics-get-approximate-char-width "pango_font_metrics_get_approximate_char_width") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :documentation "Gets the approximate character width for a font metrics structure.
-
-C: pango_font_metrics_get_approximate_char_width
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_approximate_char_width.html")
-
-
-(rt:define-gfunction
- (font-metrics-get-approximate-digit-width "pango_font_metrics_get_approximate_digit_width") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :documentation "Gets the approximate digit width for a font metrics structure.
-
-C: pango_font_metrics_get_approximate_digit_width
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_approximate_digit_width.html")
-
-
-(rt:define-gfunction (font-metrics-get-ascent "pango_font_metrics_get_ascent") :args
-                     ((metrics
-                       (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)))
-                     :return :int :documentation "Gets the ascent from a font metrics structure.
-
-C: pango_font_metrics_get_ascent
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_ascent.html")
-
-
-(rt:define-gfunction (font-metrics-get-descent "pango_font_metrics_get_descent") :args
-                     ((metrics
-                       (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)))
-                     :return :int :documentation "Gets the descent from a font metrics structure.
-
-C: pango_font_metrics_get_descent
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_descent.html")
-
-
-(rt:define-gfunction (font-metrics-get-height "pango_font_metrics_get_height") :args
-                     ((metrics
-                       (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)))
-                     :return :int :version "1.44" :documentation
-                     "Gets the line height from a font metrics structure.
-
-C: pango_font_metrics_get_height
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_height.html
-Since: 1.44")
-
-
-(rt:define-gfunction
- (font-metrics-get-strikethrough-position "pango_font_metrics_get_strikethrough_position") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :version "1.6" :documentation "Gets the suggested position to draw the strikethrough.
-
-C: pango_font_metrics_get_strikethrough_position
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_strikethrough_position.html
-Since: 1.6")
-
-
-(rt:define-gfunction
- (font-metrics-get-strikethrough-thickness "pango_font_metrics_get_strikethrough_thickness") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :version "1.6" :documentation "Gets the suggested thickness to draw for the strikethrough.
-
-C: pango_font_metrics_get_strikethrough_thickness
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_strikethrough_thickness.html
-Since: 1.6")
-
-
-(rt:define-gfunction
- (font-metrics-get-underline-position "pango_font_metrics_get_underline_position") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :version "1.6" :documentation "Gets the suggested position to draw the underline.
-
-C: pango_font_metrics_get_underline_position
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_underline_position.html
-Since: 1.6")
-
-
-(rt:define-gfunction
- (font-metrics-get-underline-thickness "pango_font_metrics_get_underline_thickness") :args
- ((metrics (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics))) :return :int
- :version "1.6" :documentation "Gets the suggested thickness to draw for the underline.
-
-C: pango_font_metrics_get_underline_thickness
-See: https://docs.gtk.org/Pango/method.FontMetrics.get_underline_thickness.html
-Since: 1.6")
-
-
-(rt:define-gfunction (font-metrics-ref "pango_font_metrics_ref") :args
-                     ((metrics
-                       (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)))
-                     :return (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
-                     :return-transfer :full :documentation
-                     "Increase the reference count of a font metrics structure by one.
-
-C: pango_font_metrics_ref
-See: https://docs.gtk.org/Pango/method.FontMetrics.ref.html")
-
-
-(rt:define-gfunction (font-metrics-unref "pango_font_metrics_unref") :args
-                     ((metrics
-                       (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)))
-                     :documentation
-                     "Decrease the reference count of a font metrics structure by one.
-
-C: pango_font_metrics_unref
-See: https://docs.gtk.org/Pango/method.FontMetrics.unref.html")
-
-
-(rt:define-gfunction (fontset-foreach "pango_fontset_foreach") :args
-                     ((fontset (:object fontset)) (func (:callback fontset-foreach-func :call))
-                      (data :pointer :user-data-of func))
-                     :version "1.4" :documentation
-                     "Iterates through all the fonts in a fontset, calling FUNC for
-each one.
-
-C: pango_fontset_foreach
-See: https://docs.gtk.org/Pango/method.Fontset.foreach.html
-Since: 1.4")
-
-
-(rt:define-gfunction (fontset-get-font "pango_fontset_get_font") :args
-                     ((fontset (:object fontset)) (wc :uint)) :return (:object font)
-                     :return-transfer :full :documentation
-                     "Returns the font in the fontset that contains the best
-glyph for a Unicode character.
-
-C: pango_fontset_get_font
-See: https://docs.gtk.org/Pango/method.Fontset.get_font.html")
-
-
-(rt:define-gfunction (fontset-get-metrics "pango_fontset_get_metrics") :args
-                     ((fontset (:object fontset))) :return
-                     (:boxed "PangoFontMetrics" "pango_font_metrics_get_type" font-metrics)
-                     :return-transfer :full :documentation
-                     "Get overall metric information for the fonts in the fontset.
-
-C: pango_fontset_get_metrics
-See: https://docs.gtk.org/Pango/method.Fontset.get_metrics.html")
-
-
-(rt:define-gfunction (fontset-simple-new "pango_fontset_simple_new") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))) :return
-                     (:object fontset-simple) :return-transfer :full :documentation
-                     "Creates a new `PangoFontsetSimple` for the given language.
-
-C: pango_fontset_simple_new
-See: https://docs.gtk.org/Pango/ctor.FontsetSimple.new.html")
-
-
-(rt:define-gfunction (fontset-simple-append "pango_fontset_simple_append") :args
-                     ((fontset (:object fontset-simple)) (font (:object font) :transfer :full))
-                     :documentation "Adds a font to the fontset.
-
-C: pango_fontset_simple_append
-See: https://docs.gtk.org/Pango/method.FontsetSimple.append.html")
-
-
-(rt:define-gfunction (fontset-simple-size "pango_fontset_simple_size") :args
-                     ((fontset (:object fontset-simple))) :return :int :documentation
-                     "Returns the number of fonts in the fontset.
-
-C: pango_fontset_simple_size
-See: https://docs.gtk.org/Pango/method.FontsetSimple.size.html")
-
-
-(rt:define-gfunction (glyph-item-apply-attrs "pango_glyph_item_apply_attrs") :args
-                     ((glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)
-                       :transfer :full)
-                      (text :string) (list (:boxed "PangoAttrList" "pango_attr_list_get_type")))
-                     :return
-                     (:gslist (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
-                     :return-transfer :full :version "1.2" :documentation
-                     "Splits a shaped item (`PangoGlyphItem`) into multiple items based
-on an attribute list.
-
-C: pango_glyph_item_apply_attrs
-See: https://docs.gtk.org/Pango/method.GlyphItem.apply_attrs.html
-Since: 1.2")
-
-
-(rt:define-gfunction (glyph-item-copy "pango_glyph_item_copy") :args
-                     ((orig (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)))
-                     :return (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)
-                     :return-transfer :full :version "1.20" :documentation
-                     "Make a deep copy of an existing `PangoGlyphItem` structure.
-
-C: pango_glyph_item_copy
-See: https://docs.gtk.org/Pango/method.GlyphItem.copy.html
-Since: 1.20")
-
-
-(rt:define-gfunction (glyph-item-free "pango_glyph_item_free") :args
-                     ((glyph-item
-                       (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)))
-                     :version "1.6" :documentation
-                     "Frees a `PangoGlyphItem` and resources to which it points.
-
-C: pango_glyph_item_free
-See: https://docs.gtk.org/Pango/method.GlyphItem.free.html
-Since: 1.6")
-
-
-(rt:define-gfunction (glyph-item-split "pango_glyph_item_split") :args
-                     ((orig (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
-                      (text :string) (split-index :int))
-                     :return (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)
-                     :return-transfer :full :version "1.2" :documentation
-                     "Modifies ORIG to cover only the text after SPLIT-INDEX, and
-returns a new item that covers the text before SPLIT-INDEX that
-used to be in ORIG.
-
-C: pango_glyph_item_split
-See: https://docs.gtk.org/Pango/method.GlyphItem.split.html
-Since: 1.2")
-
-
-(rt:define-gfunction (glyph-item-iter-copy "pango_glyph_item_iter_copy") :args
-                     ((orig
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter)))
-                     :return
-                     (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type" glyph-item-iter)
-                     :return-transfer :full :version "1.22" :documentation
-                     "Make a shallow copy of an existing `PangoGlyphItemIter` structure.
-
-C: pango_glyph_item_iter_copy
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.copy.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-item-iter-free "pango_glyph_item_iter_free") :args
-                     ((iter
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter)))
-                     :version "1.22" :documentation "Frees a `PangoGlyphItem`Iter.
-
-C: pango_glyph_item_iter_free
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.free.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-item-iter-init-end "pango_glyph_item_iter_init_end") :args
-                     ((iter
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter))
-                      (glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
-                      (text :string))
-                     :return :boolean :version "1.22" :documentation
-                     "Initializes a `PangoGlyphItemIter` structure to point to the
-last cluster in a glyph item.
-
-C: pango_glyph_item_iter_init_end
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.init_end.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-item-iter-init-start "pango_glyph_item_iter_init_start") :args
-                     ((iter
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter))
-                      (glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
-                      (text :string))
-                     :return :boolean :version "1.22" :documentation
-                     "Initializes a `PangoGlyphItemIter` structure to point to the
-first cluster in a glyph item.
-
-C: pango_glyph_item_iter_init_start
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.init_start.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-item-iter-next-cluster "pango_glyph_item_iter_next_cluster") :args
-                     ((iter
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter)))
-                     :return :boolean :version "1.22" :documentation
-                     "Advances the iterator to the next cluster in the glyph item.
-
-C: pango_glyph_item_iter_next_cluster
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.next_cluster.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-item-iter-prev-cluster "pango_glyph_item_iter_prev_cluster") :args
-                     ((iter
-                       (:boxed "PangoGlyphItemIter" "pango_glyph_item_iter_get_type"
-                        glyph-item-iter)))
-                     :return :boolean :version "1.22" :documentation
-                     "Moves the iterator to the preceding cluster in the glyph item.
-See `PangoGlyphItemIter` for details of cluster orders.
-
-C: pango_glyph_item_iter_prev_cluster
-See: https://docs.gtk.org/Pango/method.GlyphItemIter.prev_cluster.html
-Since: 1.22")
-
-
-(rt:define-gfunction (glyph-string-new "pango_glyph_string_new") :return
-                     (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                     :return-transfer :full :documentation "Create a new `PangoGlyphString`.
-
-C: pango_glyph_string_new
-See: https://docs.gtk.org/Pango/ctor.GlyphString.new.html")
-
-
-(rt:define-gfunction (glyph-string-copy "pango_glyph_string_copy") :args
-                     ((string
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)))
-                     :return (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)
-                     :return-transfer :full :documentation
-                     "Copy a glyph string and associated storage.
-
-C: pango_glyph_string_copy
-See: https://docs.gtk.org/Pango/method.GlyphString.copy.html")
-
-
-(rt:define-gfunction (glyph-string-extents "pango_glyph_string_extents") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (font (:object font))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Compute the logical and ink extents of a glyph string.
-
-C: pango_glyph_string_extents
-See: https://docs.gtk.org/Pango/method.GlyphString.extents.html")
-
-
-(rt:define-gfunction (glyph-string-extents-range "pango_glyph_string_extents_range") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (start :int) (end :int) (font (:object font))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Computes the extents of a sub-portion of a glyph string.
-
-C: pango_glyph_string_extents_range
-See: https://docs.gtk.org/Pango/method.GlyphString.extents_range.html")
-
-
-(rt:define-gfunction (glyph-string-free "pango_glyph_string_free") :args
-                     ((string
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)))
-                     :documentation "Free a glyph string and associated storage.
-
-C: pango_glyph_string_free
-See: https://docs.gtk.org/Pango/method.GlyphString.free.html")
-
-
-(rt:define-gfunction (glyph-string-get-width "pango_glyph_string_get_width") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string)))
-                     :return :int :version "1.14" :documentation
-                     "Computes the logical width of the glyph string.
-
-C: pango_glyph_string_get_width
-See: https://docs.gtk.org/Pango/method.GlyphString.get_width.html
-Since: 1.14")
-
-
-(rt:define-gfunction (glyph-string-index-to-x "pango_glyph_string_index_to_x") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (text :string) (length :int) (analysis (:record analysis)) (index- :int)
-                      (trailing :boolean) (x-pos :int :direction :out :transfer :full))
-                     :documentation "Converts from character position to x position.
-
-C: pango_glyph_string_index_to_x
-See: https://docs.gtk.org/Pango/method.GlyphString.index_to_x.html")
-
-
-(rt:define-gfunction (glyph-string-index-to-x-full "pango_glyph_string_index_to_x_full") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (text :string) (length :int) (analysis (:record analysis))
-                      (attrs (:record log-attr)) (index- :int) (trailing :boolean)
-                      (x-pos :int :direction :out :transfer :full))
-                     :version "1.50" :documentation "Converts from character position to x position.
-
-C: pango_glyph_string_index_to_x_full
-See: https://docs.gtk.org/Pango/method.GlyphString.index_to_x_full.html
-Since: 1.50")
-
-
-(rt:define-gfunction (glyph-string-set-size "pango_glyph_string_set_size") :args
-                     ((string
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (new-len :int))
-                     :documentation "Resize a glyph string to the given length.
-
-C: pango_glyph_string_set_size
-See: https://docs.gtk.org/Pango/method.GlyphString.set_size.html")
-
-
-(rt:define-gfunction (glyph-string-x-to-index "pango_glyph_string_x_to_index") :args
-                     ((glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (text :string) (length :int) (analysis (:record analysis)) (x-pos :int)
-                      (index- :int :direction :out :transfer :full)
-                      (trailing :int :direction :out :transfer :full))
-                     :documentation "Convert from x offset to character position.
-
-C: pango_glyph_string_x_to_index
-See: https://docs.gtk.org/Pango/method.GlyphString.x_to_index.html")
-
-
-(rt:define-gfunction (item-new "pango_item_new") :return
-                     (:boxed "PangoItem" "pango_item_get_type" item) :return-transfer :full
-                     :documentation
-                     "Creates a new `PangoItem` structure initialized to default values.
-
-C: pango_item_new
-See: https://docs.gtk.org/Pango/ctor.Item.new.html")
-
-
-(rt:define-gfunction (item-apply-attrs "pango_item_apply_attrs") :args
-                     ((item (:boxed "PangoItem" "pango_item_get_type" item))
-                      (iter (:boxed "PangoAttrIterator" "pango_attr_iterator_get_type")))
-                     :version "1.44" :documentation "Add attributes to a `PangoItem`.
-
-C: pango_item_apply_attrs
-See: https://docs.gtk.org/Pango/method.Item.apply_attrs.html
-Since: 1.44")
-
-
-(rt:define-gfunction (item-copy "pango_item_copy") :args
-                     ((item (:boxed "PangoItem" "pango_item_get_type" item))) :return
-                     (:boxed "PangoItem" "pango_item_get_type" item) :return-transfer :full
-                     :documentation "Copy an existing `PangoItem` structure.
-
-C: pango_item_copy
-See: https://docs.gtk.org/Pango/method.Item.copy.html")
-
-
-(rt:define-gfunction (item-free "pango_item_free") :args
-                     ((item (:boxed "PangoItem" "pango_item_get_type" item))) :documentation
-                     "Free a `PangoItem` and all associated memory.
-
-C: pango_item_free
-See: https://docs.gtk.org/Pango/method.Item.free.html")
-
-
-(rt:define-gfunction (item-get-char-offset "pango_item_get_char_offset") :args
-                     ((item (:boxed "PangoItem" "pango_item_get_type" item))) :return :int :version
-                     "1.54" :documentation
-                     "Returns the character offset of the item from the beginning
-of the itemized text.
-
-C: pango_item_get_char_offset
-See: https://docs.gtk.org/Pango/method.Item.get_char_offset.html
-Since: 1.54")
-
-
-(rt:define-gfunction (item-split "pango_item_split") :args
-                     ((orig (:boxed "PangoItem" "pango_item_get_type" item)) (split-index :int)
-                      (split-offset :int))
-                     :return (:boxed "PangoItem" "pango_item_get_type" item) :return-transfer :full
-                     :documentation "Modifies ORIG to cover only the text after SPLIT-INDEX, and
-returns a new item that covers the text before SPLIT-INDEX that
-used to be in ORIG.
-
-C: pango_item_split
-See: https://docs.gtk.org/Pango/method.Item.split.html")
-
-
-(rt:define-gfunction (language-from-string "pango_language_from_string") :args ((language :string))
-                     :return (:boxed "PangoLanguage" "pango_language_get_type") :documentation
-                     "Convert a language tag to a `PangoLanguage`.
-
-C: pango_language_from_string
-See: https://docs.gtk.org/Pango/type_func.Language.from_string.html")
-
-
-(rt:define-gfunction (language-get-default "pango_language_get_default") :return
-                     (:boxed "PangoLanguage" "pango_language_get_type") :version "1.16"
-                     :documentation
-                     "Returns the `PangoLanguage` for the current locale of the process.
-
-C: pango_language_get_default
-See: https://docs.gtk.org/Pango/type_func.Language.get_default.html
-Since: 1.16")
-
-
-(rt:define-gfunction (language-get-preferred "pango_language_get_preferred") :return
-                     (:array :pointer :zero-terminated t) :version "1.48" :documentation
-                     "Returns the list of languages that the user prefers.
-
-C: pango_language_get_preferred
-See: https://docs.gtk.org/Pango/type_func.Language.get_preferred.html
-Since: 1.48")
-
-
-(rt:define-gfunction (language-get-sample-string "pango_language_get_sample_string") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))) :return
-                     :string :documentation
-                     "Get a string that is representative of the characters needed to
-render a particular language.
-
-C: pango_language_get_sample_string
-See: https://docs.gtk.org/Pango/method.Language.get_sample_string.html")
-
-
-(rt:define-gfunction (language-get-scripts "pango_language_get_scripts") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))
-                      (num-scripts :int :length-of :return :direction :out))
-                     :return (:array (:enum script)) :version "1.22" :documentation
-                     "Determines the scripts used to to write LANGUAGE.
-
-C: pango_language_get_scripts
-See: https://docs.gtk.org/Pango/method.Language.get_scripts.html
-Since: 1.22")
-
-
-(rt:define-gfunction (language-includes-script "pango_language_includes_script") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))
-                      (script (:enum script)))
-                     :return :boolean :version "1.4" :documentation
-                     "Determines if SCRIPT is one of the scripts used to
-write LANGUAGE.
-
-C: pango_language_includes_script
-See: https://docs.gtk.org/Pango/method.Language.includes_script.html
-Since: 1.4")
-
-
-(rt:define-gfunction (language-matches "pango_language_matches") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))
-                      (range-list :string))
-                     :return :boolean :documentation
-                     "Checks if a language tag matches one of the elements in a list of
-language ranges.
-
-C: pango_language_matches
-See: https://docs.gtk.org/Pango/method.Language.matches.html")
-
-
-(rt:define-gfunction (language-to-string "pango_language_to_string") :args
-                     ((language (:boxed "PangoLanguage" "pango_language_get_type"))) :return
-                     :string :documentation
-                     "Gets the RFC-3066 format string representing the given language tag.
-
-C: pango_language_to_string
-See: https://docs.gtk.org/Pango/method.Language.to_string.html")
-
-
-(rt:define-gfunction (layout-new "pango_layout_new") :args ((context (:object context))) :return
-                     (:object layout) :return-transfer :full :documentation
-                     "Create a new `PangoLayout` object with attributes initialized to
-default values for a particular `PangoContext`.
-
-C: pango_layout_new
-See: https://docs.gtk.org/Pango/ctor.Layout.new.html")
-
-
-(rt:define-gfunction (layout-deserialize "pango_layout_deserialize") :args
-                     ((context (:object context)) (bytes (:boxed "GBytes" "g_bytes_get_type"))
-                      (flags (:flags layout-deserialize-flags)))
-                     :return (:object layout) :return-transfer :full :throws t :version "1.50"
-                     :documentation "Loads data previously created via Pango.Layout.serialize.
-
-C: pango_layout_deserialize
-See: https://docs.gtk.org/Pango/type_func.Layout.deserialize.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-context-changed "pango_layout_context_changed") :args
-                     ((layout (:object layout))) :documentation
-                     "Forces recomputation of any state in the `PangoLayout` that
-might depend on the layout's context.
-
-C: pango_layout_context_changed
-See: https://docs.gtk.org/Pango/method.Layout.context_changed.html")
-
-
-(rt:define-gfunction (layout-copy "pango_layout_copy") :args ((src (:object layout))) :return
-                     (:object layout) :return-transfer :full :documentation
-                     "Creates a deep copy-by-value of the layout.
-
-C: pango_layout_copy
-See: https://docs.gtk.org/Pango/method.Layout.copy.html")
-
-
-(rt:define-gfunction (layout-get-alignment "pango_layout_get_alignment") :args
-                     ((layout (:object layout))) :return (:enum alignment) :documentation
-                     "Gets the alignment for the layout: how partial lines are
-positioned within the horizontal space available.
-
-C: pango_layout_get_alignment
-See: https://docs.gtk.org/Pango/method.Layout.get_alignment.html")
-
-
-(rt:define-gfunction (layout-get-attributes "pango_layout_get_attributes") :args
-                     ((layout (:object layout))) :return
-                     (:boxed "PangoAttrList" "pango_attr_list_get_type") :documentation
-                     "Gets the attribute list for the layout, if any.
-
-C: pango_layout_get_attributes
-See: https://docs.gtk.org/Pango/method.Layout.get_attributes.html")
-
-
-(rt:define-gfunction (layout-get-auto-dir "pango_layout_get_auto_dir") :args
-                     ((layout (:object layout))) :return :boolean :version "1.4" :documentation
-                     "Gets whether to calculate the base direction for the layout
-according to its contents.
-
-C: pango_layout_get_auto_dir
-See: https://docs.gtk.org/Pango/method.Layout.get_auto_dir.html
-Since: 1.4")
-
-
-(rt:define-gfunction (layout-get-baseline "pango_layout_get_baseline") :args
-                     ((layout (:object layout))) :return :int :version "1.22" :documentation
-                     "Gets the Y position of baseline of the first line in LAYOUT.
-
-C: pango_layout_get_baseline
-See: https://docs.gtk.org/Pango/method.Layout.get_baseline.html
-Since: 1.22")
-
-
-(rt:define-gfunction (layout-get-caret-pos "pango_layout_get_caret_pos") :args
-                     ((layout (:object layout)) (index- :int)
-                      (strong-pos (:record rectangle) :direction :out :caller-allocates t)
-                      (weak-pos (:record rectangle) :direction :out :caller-allocates t))
-                     :version "1.50" :documentation
-                     "Given an index within a layout, determines the positions that of the
-strong and weak cursors if the insertion point is at that index.
-
-C: pango_layout_get_caret_pos
-See: https://docs.gtk.org/Pango/method.Layout.get_caret_pos.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-get-character-count "pango_layout_get_character_count") :args
-                     ((layout (:object layout))) :return :int :version "1.30" :documentation
-                     "Returns the number of Unicode characters in the
-the text of LAYOUT.
-
-C: pango_layout_get_character_count
-See: https://docs.gtk.org/Pango/method.Layout.get_character_count.html
-Since: 1.30")
-
-
-(rt:define-gfunction (layout-get-context "pango_layout_get_context") :args
-                     ((layout (:object layout))) :return (:object context) :documentation
-                     "Retrieves the `PangoContext` used for this layout.
-
-C: pango_layout_get_context
-See: https://docs.gtk.org/Pango/method.Layout.get_context.html")
-
-
-(rt:define-gfunction (layout-get-cursor-pos "pango_layout_get_cursor_pos") :args
-                     ((layout (:object layout)) (index- :int)
-                      (strong-pos (:record rectangle) :direction :out :caller-allocates t)
-                      (weak-pos (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation
-                     "Given an index within a layout, determines the positions that of the
-strong and weak cursors if the insertion point is at that index.
-
-C: pango_layout_get_cursor_pos
-See: https://docs.gtk.org/Pango/method.Layout.get_cursor_pos.html")
-
-
-(rt:define-gfunction (layout-get-direction "pango_layout_get_direction") :args
-                     ((layout (:object layout)) (index :int)) :return (:enum direction) :version
-                     "1.46" :documentation
-                     "Gets the text direction at the given character position in LAYOUT.
-
-C: pango_layout_get_direction
-See: https://docs.gtk.org/Pango/method.Layout.get_direction.html
-Since: 1.46")
-
-
-(rt:define-gfunction (layout-get-ellipsize "pango_layout_get_ellipsize") :args
-                     ((layout (:object layout))) :return (:enum ellipsize-mode) :version "1.6"
-                     :documentation "Gets the type of ellipsization being performed for LAYOUT.
-
-C: pango_layout_get_ellipsize
-See: https://docs.gtk.org/Pango/method.Layout.get_ellipsize.html
-Since: 1.6")
-
-
-(rt:define-gfunction (layout-get-extents "pango_layout_get_extents") :args
-                     ((layout (:object layout))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Computes the logical and ink extents of LAYOUT.
-
-C: pango_layout_get_extents
-See: https://docs.gtk.org/Pango/method.Layout.get_extents.html")
-
-
-(rt:define-gfunction (layout-get-font-description "pango_layout_get_font_description") :args
-                     ((layout (:object layout))) :return
-                     (:boxed "PangoFontDescription" "pango_font_description_get_type") :version
-                     "1.8" :documentation "Gets the font description for the layout, if any.
-
-C: pango_layout_get_font_description
-See: https://docs.gtk.org/Pango/method.Layout.get_font_description.html
-Since: 1.8")
-
-
-(rt:define-gfunction (layout-get-height "pango_layout_get_height") :args
-                     ((layout (:object layout))) :return :int :version "1.20" :documentation
-                     "Gets the height of layout used for ellipsization.
-
-C: pango_layout_get_height
-See: https://docs.gtk.org/Pango/method.Layout.get_height.html
-Since: 1.20")
-
-
-(rt:define-gfunction (layout-get-indent "pango_layout_get_indent") :args
-                     ((layout (:object layout))) :return :int :documentation
-                     "Gets the paragraph indent width in Pango units.
-
-C: pango_layout_get_indent
-See: https://docs.gtk.org/Pango/method.Layout.get_indent.html")
-
-
-(rt:define-gfunction (layout-get-iter "pango_layout_get_iter") :args ((layout (:object layout)))
-                     :return (:boxed "PangoLayoutIter" "pango_layout_iter_get_type")
-                     :return-transfer :full :documentation
-                     "Returns an iterator to iterate over the visual extents of the layout.
-
-C: pango_layout_get_iter
-See: https://docs.gtk.org/Pango/method.Layout.get_iter.html")
-
-
-(rt:define-gfunction (layout-get-justify "pango_layout_get_justify") :args
-                     ((layout (:object layout))) :return :boolean :documentation
-                     "Gets whether each complete line should be stretched to fill the entire
-width of the layout.
-
-C: pango_layout_get_justify
-See: https://docs.gtk.org/Pango/method.Layout.get_justify.html")
-
-
-(rt:define-gfunction (layout-get-justify-last-line "pango_layout_get_justify_last_line") :args
-                     ((layout (:object layout))) :return :boolean :version "1.50" :documentation
-                     "Gets whether the last line should be stretched
-to fill the entire width of the layout.
-
-C: pango_layout_get_justify_last_line
-See: https://docs.gtk.org/Pango/method.Layout.get_justify_last_line.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-get-line "pango_layout_get_line") :args
-                     ((layout (:object layout)) (line :int)) :return
-                     (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)
-                     :documentation "Retrieves a particular line from a `PangoLayout`.
-
-C: pango_layout_get_line
-See: https://docs.gtk.org/Pango/method.Layout.get_line.html")
-
-
-(rt:define-gfunction (layout-get-line-count "pango_layout_get_line_count") :args
-                     ((layout (:object layout))) :return :int :documentation
-                     "Retrieves the count of lines for the LAYOUT.
-
-C: pango_layout_get_line_count
-See: https://docs.gtk.org/Pango/method.Layout.get_line_count.html")
-
-
-(rt:define-gfunction (layout-get-line-readonly "pango_layout_get_line_readonly") :args
-                     ((layout (:object layout)) (line :int)) :return
-                     (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line) :version
-                     "1.16" :documentation "Retrieves a particular line from a `PangoLayout`.
-
-C: pango_layout_get_line_readonly
-See: https://docs.gtk.org/Pango/method.Layout.get_line_readonly.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-get-line-spacing "pango_layout_get_line_spacing") :args
-                     ((layout (:object layout))) :return :float :version "1.44" :documentation
-                     "Gets the line spacing factor of LAYOUT.
-
-C: pango_layout_get_line_spacing
-See: https://docs.gtk.org/Pango/method.Layout.get_line_spacing.html
-Since: 1.44")
-
-
-(rt:define-gfunction (layout-get-lines "pango_layout_get_lines") :args ((layout (:object layout)))
-                     :return
-                     (:gslist (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                     :documentation "Returns the lines of the LAYOUT as a list.
-
-C: pango_layout_get_lines
-See: https://docs.gtk.org/Pango/method.Layout.get_lines.html")
-
-
-(rt:define-gfunction (layout-get-lines-readonly "pango_layout_get_lines_readonly") :args
-                     ((layout (:object layout))) :return
-                     (:gslist (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                     :version "1.16" :documentation "Returns the lines of the LAYOUT as a list.
-
-C: pango_layout_get_lines_readonly
-See: https://docs.gtk.org/Pango/method.Layout.get_lines_readonly.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-get-log-attrs "pango_layout_get_log_attrs") :args
-                     ((layout (:object layout))
-                      (attrs (:array :pointer) :direction :out :transfer :container)
-                      (n-attrs :int :length-of attrs :direction :out))
-                     :documentation "Retrieves an array of logical attributes for each character in
-the LAYOUT.
-
-C: pango_layout_get_log_attrs
-See: https://docs.gtk.org/Pango/method.Layout.get_log_attrs.html")
-
-
-(rt:define-gfunction (layout-get-log-attrs-readonly "pango_layout_get_log_attrs_readonly") :args
-                     ((layout (:object layout)) (n-attrs :int :length-of :return :direction :out))
-                     :return (:array (:record log-attr)) :version "1.30" :documentation
-                     "Retrieves an array of logical attributes for each character in
-the LAYOUT.
-
-C: pango_layout_get_log_attrs_readonly
-See: https://docs.gtk.org/Pango/method.Layout.get_log_attrs_readonly.html
-Since: 1.30")
-
-
-(rt:define-gfunction (layout-get-pixel-extents "pango_layout_get_pixel_extents") :args
-                     ((layout (:object layout))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Computes the logical and ink extents of LAYOUT in device units.
-
-C: pango_layout_get_pixel_extents
-See: https://docs.gtk.org/Pango/method.Layout.get_pixel_extents.html")
-
-
-(rt:define-gfunction (layout-get-pixel-size "pango_layout_get_pixel_size") :args
-                     ((layout (:object layout)) (width :int :direction :out :transfer :full)
-                      (height :int :direction :out :transfer :full))
-                     :documentation
-                     "Determines the logical width and height of a `PangoLayout` in device
-units.
-
-C: pango_layout_get_pixel_size
-See: https://docs.gtk.org/Pango/method.Layout.get_pixel_size.html")
-
-
-(rt:define-gfunction (layout-get-serial "pango_layout_get_serial") :args
-                     ((layout (:object layout))) :return :uint :version "1.32.4" :documentation
-                     "Returns the current serial number of LAYOUT.
-
-C: pango_layout_get_serial
-See: https://docs.gtk.org/Pango/method.Layout.get_serial.html
-Since: 1.32.4")
-
-
-(rt:define-gfunction (layout-get-single-paragraph-mode "pango_layout_get_single_paragraph_mode")
-                     :args ((layout (:object layout))) :return :boolean :documentation
-                     "Obtains whether LAYOUT is in single paragraph mode.
-
-C: pango_layout_get_single_paragraph_mode
-See: https://docs.gtk.org/Pango/method.Layout.get_single_paragraph_mode.html")
-
-
-(rt:define-gfunction (layout-get-size "pango_layout_get_size") :args
-                     ((layout (:object layout)) (width :int :direction :out :transfer :full)
-                      (height :int :direction :out :transfer :full))
-                     :documentation
-                     "Determines the logical width and height of a `PangoLayout` in Pango
-units.
-
-C: pango_layout_get_size
-See: https://docs.gtk.org/Pango/method.Layout.get_size.html")
-
-
-(rt:define-gfunction (layout-get-spacing "pango_layout_get_spacing") :args
-                     ((layout (:object layout))) :return :int :documentation
-                     "Gets the amount of spacing between the lines of the layout.
-
-C: pango_layout_get_spacing
-See: https://docs.gtk.org/Pango/method.Layout.get_spacing.html")
-
-
-(rt:define-gfunction (layout-get-tabs "pango_layout_get_tabs") :args ((layout (:object layout)))
-                     :return (:boxed "PangoTabArray" "pango_tab_array_get_type") :return-transfer
-                     :full :documentation "Gets the current `PangoTabArray` used by this layout.
-
-C: pango_layout_get_tabs
-See: https://docs.gtk.org/Pango/method.Layout.get_tabs.html")
-
-
-(rt:define-gfunction (layout-get-text "pango_layout_get_text") :args ((layout (:object layout)))
-                     :return :string :documentation "Gets the text in the layout.
-
-C: pango_layout_get_text
-See: https://docs.gtk.org/Pango/method.Layout.get_text.html")
-
-
-(rt:define-gfunction (layout-get-unknown-glyphs-count "pango_layout_get_unknown_glyphs_count")
-                     :args ((layout (:object layout))) :return :int :version "1.16" :documentation
-                     "Counts the number of unknown glyphs in LAYOUT.
-
-C: pango_layout_get_unknown_glyphs_count
-See: https://docs.gtk.org/Pango/method.Layout.get_unknown_glyphs_count.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-get-width "pango_layout_get_width") :args ((layout (:object layout)))
-                     :return :int :documentation
-                     "Gets the width to which the lines of the `PangoLayout` should wrap.
-
-C: pango_layout_get_width
-See: https://docs.gtk.org/Pango/method.Layout.get_width.html")
-
-
-(rt:define-gfunction (layout-get-wrap "pango_layout_get_wrap") :args ((layout (:object layout)))
-                     :return (:enum wrap-mode) :documentation "Gets the wrap mode for the layout.
-
-C: pango_layout_get_wrap
-See: https://docs.gtk.org/Pango/method.Layout.get_wrap.html")
-
-
-(rt:define-gfunction (layout-index-to-line-x "pango_layout_index_to_line_x") :args
-                     ((layout (:object layout)) (index- :int) (trailing :boolean)
-                      (line :int :direction :out :transfer :full)
-                      (x-pos :int :direction :out :transfer :full))
-                     :documentation
-                     "Converts from byte INDEX- within the LAYOUT to line and X position.
-
-C: pango_layout_index_to_line_x
-See: https://docs.gtk.org/Pango/method.Layout.index_to_line_x.html")
-
-
-(rt:define-gfunction (layout-index-to-pos "pango_layout_index_to_pos") :args
-                     ((layout (:object layout)) (index- :int)
-                      (pos (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation
-                     "Converts from an index within a `PangoLayout` to the onscreen position
-corresponding to the grapheme at that index.
-
-C: pango_layout_index_to_pos
-See: https://docs.gtk.org/Pango/method.Layout.index_to_pos.html")
-
-
-(rt:define-gfunction (layout-is-ellipsized "pango_layout_is_ellipsized") :args
-                     ((layout (:object layout))) :return :boolean :version "1.16" :documentation
-                     "Queries whether the layout had to ellipsize any paragraphs.
-
-C: pango_layout_is_ellipsized
-See: https://docs.gtk.org/Pango/method.Layout.is_ellipsized.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-is-wrapped "pango_layout_is_wrapped") :args
-                     ((layout (:object layout))) :return :boolean :version "1.16" :documentation
-                     "Queries whether the layout had to wrap any paragraphs.
-
-C: pango_layout_is_wrapped
-See: https://docs.gtk.org/Pango/method.Layout.is_wrapped.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-move-cursor-visually "pango_layout_move_cursor_visually") :args
-                     ((layout (:object layout)) (strong :boolean) (old-index :int)
-                      (old-trailing :int) (direction :int)
-                      (new-index :int :direction :out :transfer :full)
-                      (new-trailing :int :direction :out :transfer :full))
-                     :documentation
-                     "Computes a new cursor position from an old position and a direction.
-
-C: pango_layout_move_cursor_visually
-See: https://docs.gtk.org/Pango/method.Layout.move_cursor_visually.html")
-
-
-(rt:define-gfunction (layout-serialize "pango_layout_serialize") :args
-                     ((layout (:object layout)) (flags (:flags layout-serialize-flags))) :return
-                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "1.50"
-                     :documentation
-                     "Serializes the LAYOUT for later deserialization via Pango.Layout.deserialize.
-
-C: pango_layout_serialize
-See: https://docs.gtk.org/Pango/method.Layout.serialize.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-set-alignment "pango_layout_set_alignment") :args
-                     ((layout (:object layout)) (alignment (:enum alignment))) :documentation
-                     "Sets the alignment for the layout: how partial lines are
-positioned within the horizontal space available.
-
-C: pango_layout_set_alignment
-See: https://docs.gtk.org/Pango/method.Layout.set_alignment.html")
-
-
-(rt:define-gfunction (layout-set-attributes "pango_layout_set_attributes") :args
-                     ((layout (:object layout))
-                      (attrs (:boxed "PangoAttrList" "pango_attr_list_get_type") :optional t))
-                     :documentation "Sets the text attributes for a layout object.
-
-C: pango_layout_set_attributes
-See: https://docs.gtk.org/Pango/method.Layout.set_attributes.html")
-
-
-(rt:define-gfunction (layout-set-auto-dir "pango_layout_set_auto_dir") :args
-                     ((layout (:object layout)) (auto-dir :boolean)) :version "1.4" :documentation
-                     "Sets whether to calculate the base direction
-for the layout according to its contents.
-
-C: pango_layout_set_auto_dir
-See: https://docs.gtk.org/Pango/method.Layout.set_auto_dir.html
-Since: 1.4")
-
-
-(rt:define-gfunction (layout-set-ellipsize "pango_layout_set_ellipsize") :args
-                     ((layout (:object layout)) (ellipsize (:enum ellipsize-mode))) :version "1.6"
-                     :documentation "Sets the type of ellipsization being performed for LAYOUT.
-
-C: pango_layout_set_ellipsize
-See: https://docs.gtk.org/Pango/method.Layout.set_ellipsize.html
-Since: 1.6")
-
-
-(rt:define-gfunction (layout-set-font-description "pango_layout_set_font_description") :args
-                     ((layout (:object layout))
-                      (desc (:boxed "PangoFontDescription" "pango_font_description_get_type")
-                       :optional t))
-                     :documentation "Sets the default font description for the layout.
-
-C: pango_layout_set_font_description
-See: https://docs.gtk.org/Pango/method.Layout.set_font_description.html")
-
-
-(rt:define-gfunction (layout-set-height "pango_layout_set_height") :args
-                     ((layout (:object layout)) (height :int)) :version "1.20" :documentation
-                     "Sets the height to which the `PangoLayout` should be ellipsized at.
-
-C: pango_layout_set_height
-See: https://docs.gtk.org/Pango/method.Layout.set_height.html
-Since: 1.20")
-
-
-(rt:define-gfunction (layout-set-indent "pango_layout_set_indent") :args
-                     ((layout (:object layout)) (indent :int)) :documentation
-                     "Sets the width in Pango units to indent each paragraph.
-
-C: pango_layout_set_indent
-See: https://docs.gtk.org/Pango/method.Layout.set_indent.html")
-
-
-(rt:define-gfunction (layout-set-justify "pango_layout_set_justify") :args
-                     ((layout (:object layout)) (justify :boolean)) :documentation
-                     "Sets whether each complete line should be stretched to fill the
-entire width of the layout.
-
-C: pango_layout_set_justify
-See: https://docs.gtk.org/Pango/method.Layout.set_justify.html")
-
-
-(rt:define-gfunction (layout-set-justify-last-line "pango_layout_set_justify_last_line") :args
-                     ((layout (:object layout)) (justify :boolean)) :version "1.50" :documentation
-                     "Sets whether the last line should be stretched to fill the
-entire width of the layout.
-
-C: pango_layout_set_justify_last_line
-See: https://docs.gtk.org/Pango/method.Layout.set_justify_last_line.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-set-line-spacing "pango_layout_set_line_spacing") :args
-                     ((layout (:object layout)) (factor :float)) :version "1.44" :documentation
-                     "Sets a factor for line spacing.
-
-C: pango_layout_set_line_spacing
-See: https://docs.gtk.org/Pango/method.Layout.set_line_spacing.html
-Since: 1.44")
-
-
-(rt:define-gfunction (layout-set-markup "pango_layout_set_markup") :args
-                     ((layout (:object layout)) (markup :string) (length :int)) :documentation
-                     "Sets the layout text and attribute list from marked-up text.
-
-C: pango_layout_set_markup
-See: https://docs.gtk.org/Pango/method.Layout.set_markup.html")
-
-
-(rt:define-gfunction (layout-set-markup-with-accel "pango_layout_set_markup_with_accel") :args
-                     ((layout (:object layout)) (markup :string) (length :int)
-                      (accel-marker :uint32) (accel-char :uint32 :direction :out :transfer :full))
-                     :documentation "Sets the layout text and attribute list from marked-up text.
-
-C: pango_layout_set_markup_with_accel
-See: https://docs.gtk.org/Pango/method.Layout.set_markup_with_accel.html")
-
-
-(rt:define-gfunction (layout-set-single-paragraph-mode "pango_layout_set_single_paragraph_mode")
-                     :args ((layout (:object layout)) (setting :boolean)) :documentation
-                     "Sets the single paragraph mode of LAYOUT.
-
-C: pango_layout_set_single_paragraph_mode
-See: https://docs.gtk.org/Pango/method.Layout.set_single_paragraph_mode.html")
-
-
-(rt:define-gfunction (layout-set-spacing "pango_layout_set_spacing") :args
-                     ((layout (:object layout)) (spacing :int)) :documentation
-                     "Sets the amount of spacing in Pango units between
-the lines of the layout.
-
-C: pango_layout_set_spacing
-See: https://docs.gtk.org/Pango/method.Layout.set_spacing.html")
-
-
-(rt:define-gfunction (layout-set-tabs "pango_layout_set_tabs") :args
-                     ((layout (:object layout))
-                      (tabs (:boxed "PangoTabArray" "pango_tab_array_get_type") :optional t))
-                     :documentation "Sets the tabs to use for LAYOUT, overriding the default tabs.
-
-C: pango_layout_set_tabs
-See: https://docs.gtk.org/Pango/method.Layout.set_tabs.html")
-
-
-(rt:define-gfunction (layout-set-text "pango_layout_set_text") :args
-                     ((layout (:object layout)) (text :string) (length :int)) :documentation
-                     "Sets the text of the layout.
-
-C: pango_layout_set_text
-See: https://docs.gtk.org/Pango/method.Layout.set_text.html")
-
-
-(rt:define-gfunction (layout-set-width "pango_layout_set_width") :args
-                     ((layout (:object layout)) (width :int)) :documentation
-                     "Sets the width to which the lines of the `PangoLayout` should wrap or
-get ellipsized.
-
-C: pango_layout_set_width
-See: https://docs.gtk.org/Pango/method.Layout.set_width.html")
-
-
-(rt:define-gfunction (layout-set-wrap "pango_layout_set_wrap") :args
-                     ((layout (:object layout)) (wrap (:enum wrap-mode))) :documentation
-                     "Sets the wrap mode.
-
-C: pango_layout_set_wrap
-See: https://docs.gtk.org/Pango/method.Layout.set_wrap.html")
-
-
-(rt:define-gfunction (layout-write-to-file "pango_layout_write_to_file") :args
-                     ((layout (:object layout)) (flags (:flags layout-serialize-flags))
-                      (filename :string))
-                     :return :boolean :throws t :version "1.50" :documentation
-                     "A convenience method to serialize a layout to a file.
-
-C: pango_layout_write_to_file
-See: https://docs.gtk.org/Pango/method.Layout.write_to_file.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-xy-to-index "pango_layout_xy_to_index") :args
-                     ((layout (:object layout)) (x :int) (y :int)
-                      (index- :int :direction :out :transfer :full)
-                      (trailing :int :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Converts from X and Y position within a layout to the byte index to the
-character at that logical position.
-
-C: pango_layout_xy_to_index
-See: https://docs.gtk.org/Pango/method.Layout.xy_to_index.html")
-
-
-(rt:define-gfunction (layout-iter-at-last-line "pango_layout_iter_at_last_line") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     :boolean :documentation
-                     "Determines whether ITER is on the last line of the layout.
-
-C: pango_layout_iter_at_last_line
-See: https://docs.gtk.org/Pango/method.LayoutIter.at_last_line.html")
-
-
-(rt:define-gfunction (layout-iter-copy "pango_layout_iter_copy") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:boxed "PangoLayoutIter" "pango_layout_iter_get_type") :return-transfer :full
-                     :version "1.20" :documentation "Copies a `PangoLayoutIter`.
-
-C: pango_layout_iter_copy
-See: https://docs.gtk.org/Pango/method.LayoutIter.copy.html
-Since: 1.20")
-
-
-(rt:define-gfunction (layout-iter-free "pango_layout_iter_free") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type")))
-                     :documentation "Frees an iterator that's no longer in use.
-
-C: pango_layout_iter_free
-See: https://docs.gtk.org/Pango/method.LayoutIter.free.html")
-
-
-(rt:define-gfunction (layout-iter-get-baseline "pango_layout_iter_get_baseline") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return :int
-                     :documentation "Gets the Y position of the current line's baseline, in layout
-coordinates.
-
-C: pango_layout_iter_get_baseline
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_baseline.html")
-
-
-(rt:define-gfunction (layout-iter-get-char-extents "pango_layout_iter_get_char_extents") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation
-                     "Gets the extents of the current character, in layout coordinates.
-
-C: pango_layout_iter_get_char_extents
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_char_extents.html")
-
-
-(rt:define-gfunction (layout-iter-get-cluster-extents "pango_layout_iter_get_cluster_extents")
-                     :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Gets the extents of the current cluster, in layout coordinates.
-
-C: pango_layout_iter_get_cluster_extents
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_cluster_extents.html")
-
-
-(rt:define-gfunction (layout-iter-get-index "pango_layout_iter_get_index") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return :int
-                     :documentation "Gets the current byte index.
-
-C: pango_layout_iter_get_index
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_index.html")
-
-
-(rt:define-gfunction (layout-iter-get-layout "pango_layout_iter_get_layout") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:object layout) :version "1.20" :documentation
-                     "Gets the layout associated with a `PangoLayoutIter`.
-
-C: pango_layout_iter_get_layout
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_layout.html
-Since: 1.20")
-
-
-(rt:define-gfunction (layout-iter-get-layout-extents "pango_layout_iter_get_layout_extents") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Obtains the extents of the `PangoLayout` being iterated over.
-
-C: pango_layout_iter_get_layout_extents
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_layout_extents.html")
-
-
-(rt:define-gfunction (layout-iter-get-line "pango_layout_iter_get_line") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)
-                     :documentation "Gets the current line.
-
-C: pango_layout_iter_get_line
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_line.html")
-
-
-(rt:define-gfunction (layout-iter-get-line-extents "pango_layout_iter_get_line_extents") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Obtains the extents of the current line.
-
-C: pango_layout_iter_get_line_extents
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_line_extents.html")
-
-
-(rt:define-gfunction (layout-iter-get-line-readonly "pango_layout_iter_get_line_readonly") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line) :version
-                     "1.16" :documentation "Gets the current line for read-only access.
-
-C: pango_layout_iter_get_line_readonly
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_line_readonly.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-iter-get-line-yrange "pango_layout_iter_get_line_yrange") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (y0- :int :direction :out :transfer :full)
-                      (y1- :int :direction :out :transfer :full))
-                     :documentation
-                     "Divides the vertical space in the `PangoLayout` being iterated over
-between the lines in the layout, and returns the space belonging to
-the current line.
-
-C: pango_layout_iter_get_line_yrange
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_line_yrange.html")
-
-
-(rt:define-gfunction (layout-iter-get-run "pango_layout_iter_get_run") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item)
-                     :documentation "Gets the current run.
-
-C: pango_layout_iter_get_run
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_run.html")
-
-
-(rt:define-gfunction (layout-iter-get-run-baseline "pango_layout_iter_get_run_baseline") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return :int
-                     :version "1.50" :documentation
-                     "Gets the Y position of the current run's baseline, in layout
-coordinates.
-
-C: pango_layout_iter_get_run_baseline
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_run_baseline.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-iter-get-run-extents "pango_layout_iter_get_run_extents") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Gets the extents of the current run in layout coordinates.
-
-C: pango_layout_iter_get_run_extents
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_run_extents.html")
-
-
-(rt:define-gfunction (layout-iter-get-run-readonly "pango_layout_iter_get_run_readonly") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item) :version
-                     "1.16" :documentation "Gets the current run for read-only access.
-
-C: pango_layout_iter_get_run_readonly
-See: https://docs.gtk.org/Pango/method.LayoutIter.get_run_readonly.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-iter-next-char "pango_layout_iter_next_char") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     :boolean :documentation
-                     "Moves ITER forward to the next character in visual order.
-
-C: pango_layout_iter_next_char
-See: https://docs.gtk.org/Pango/method.LayoutIter.next_char.html")
-
-
-(rt:define-gfunction (layout-iter-next-cluster "pango_layout_iter_next_cluster") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     :boolean :documentation
-                     "Moves ITER forward to the next cluster in visual order.
-
-C: pango_layout_iter_next_cluster
-See: https://docs.gtk.org/Pango/method.LayoutIter.next_cluster.html")
-
-
-(rt:define-gfunction (layout-iter-next-line "pango_layout_iter_next_line") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     :boolean :documentation "Moves ITER forward to the start of the next line.
-
-C: pango_layout_iter_next_line
-See: https://docs.gtk.org/Pango/method.LayoutIter.next_line.html")
-
-
-(rt:define-gfunction (layout-iter-next-run "pango_layout_iter_next_run") :args
-                     ((iter (:boxed "PangoLayoutIter" "pango_layout_iter_get_type"))) :return
-                     :boolean :documentation "Moves ITER forward to the next run in visual order.
-
-C: pango_layout_iter_next_run
-See: https://docs.gtk.org/Pango/method.LayoutIter.next_run.html")
-
-
-(rt:define-gfunction (layout-line-get-extents "pango_layout_line_get_extents") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation "Computes the logical and ink extents of a layout line.
-
-C: pango_layout_line_get_extents
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_extents.html")
-
-
-(rt:define-gfunction (layout-line-get-height "pango_layout_line_get_height") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (height :int :direction :out :transfer :full))
-                     :version "1.44" :documentation
-                     "Computes the height of the line, as the maximum of the heights
-of fonts used in this line.
-
-C: pango_layout_line_get_height
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_height.html
-Since: 1.44")
-
-
-(rt:define-gfunction (layout-line-get-length "pango_layout_line_get_length") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)))
-                     :return :int :version "1.50" :documentation
-                     "Returns the length of the line, in bytes.
-
-C: pango_layout_line_get_length
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_length.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-line-get-pixel-extents "pango_layout_line_get_pixel_extents") :args
-                     ((layout-line
-                       (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (ink-rect (:record rectangle) :direction :out :caller-allocates t)
-                      (logical-rect (:record rectangle) :direction :out :caller-allocates t))
-                     :documentation
-                     "Computes the logical and ink extents of LAYOUT-LINE in device units.
-
-C: pango_layout_line_get_pixel_extents
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_pixel_extents.html")
-
-
-(rt:define-gfunction
- (layout-line-get-resolved-direction "pango_layout_line_get_resolved_direction") :args
- ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))) :return
- (:enum direction) :version "1.50" :documentation "Returns the resolved direction of the line.
-
-C: pango_layout_line_get_resolved_direction
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_resolved_direction.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-line-get-start-index "pango_layout_line_get_start_index") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)))
-                     :return :int :version "1.50" :documentation
-                     "Returns the start index of the line, as byte index
-into the text of the layout.
-
-C: pango_layout_line_get_start_index
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_start_index.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-line-get-x-ranges "pango_layout_line_get_x_ranges") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (start-index :int) (end-index :int)
-                      (ranges (:array :int) :direction :out :transfer :full)
-                      (n-ranges :int :length-of ranges :direction :out))
-                     :documentation
-                     "Gets a list of visual ranges corresponding to a given logical range.
-
-C: pango_layout_line_get_x_ranges
-See: https://docs.gtk.org/Pango/method.LayoutLine.get_x_ranges.html")
-
-
-(rt:define-gfunction (layout-line-index-to-x "pango_layout_line_index_to_x") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (index- :int) (trailing :boolean)
-                      (x-pos :int :direction :out :transfer :full))
-                     :documentation "Converts an index within a line to a X position.
-
-C: pango_layout_line_index_to_x
-See: https://docs.gtk.org/Pango/method.LayoutLine.index_to_x.html")
-
-
-(rt:define-gfunction (layout-line-is-paragraph-start "pango_layout_line_is_paragraph_start") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)))
-                     :return :boolean :version "1.50" :documentation
-                     "Returns whether this is the first line of the paragraph.
-
-C: pango_layout_line_is_paragraph_start
-See: https://docs.gtk.org/Pango/method.LayoutLine.is_paragraph_start.html
-Since: 1.50")
-
-
-(rt:define-gfunction (layout-line-ref "pango_layout_line_ref") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)))
-                     :return (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)
-                     :return-transfer :full :version "1.10" :documentation
-                     "Increase the reference count of a `PangoLayoutLine` by one.
-
-C: pango_layout_line_ref
-See: https://docs.gtk.org/Pango/method.LayoutLine.ref.html
-Since: 1.10")
-
-
-(rt:define-gfunction (layout-line-unref "pango_layout_line_unref") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line)))
-                     :documentation "Decrease the reference count of a `PangoLayoutLine` by one.
-
-C: pango_layout_line_unref
-See: https://docs.gtk.org/Pango/method.LayoutLine.unref.html")
-
-
-(rt:define-gfunction (layout-line-x-to-index "pango_layout_line_x_to_index") :args
-                     ((line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (x-pos :int) (index- :int :direction :out :transfer :full)
-                      (trailing :int :direction :out :transfer :full))
-                     :return :boolean :documentation
-                     "Converts from x offset to the byte index of the corresponding character
-within the text of the layout.
-
-C: pango_layout_line_x_to_index
-See: https://docs.gtk.org/Pango/method.LayoutLine.x_to_index.html")
-
-
-(rt:define-gfunction (matrix-concat "pango_matrix_concat") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))
-                      (new-matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix)))
-                     :version "1.6" :documentation
-                     "Changes the transformation represented by MATRIX to be the
-transformation given by first applying transformation
-given by NEW-MATRIX then applying the original transformation.
-
-C: pango_matrix_concat
-See: https://docs.gtk.org/Pango/method.Matrix.concat.html
-Since: 1.6")
-
-
-(rt:define-gfunction (matrix-copy "pango_matrix_copy") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))) :return
-                     (:boxed "PangoMatrix" "pango_matrix_get_type" matrix) :return-transfer :full
-                     :version "1.6" :documentation "Copies a `PangoMatrix`.
-
-C: pango_matrix_copy
-See: https://docs.gtk.org/Pango/method.Matrix.copy.html
-Since: 1.6")
-
-
-(rt:define-gfunction (matrix-free "pango_matrix_free") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))) :version
-                     "1.6" :documentation "Free a `PangoMatrix`.
-
-C: pango_matrix_free
-See: https://docs.gtk.org/Pango/method.Matrix.free.html
-Since: 1.6")
-
-
-(rt:define-gfunction (matrix-get-font-scale-factor "pango_matrix_get_font_scale_factor") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))) :return
-                     :double :version "1.12" :documentation
-                     "Returns the scale factor of a matrix on the height of the font.
-
-C: pango_matrix_get_font_scale_factor
-See: https://docs.gtk.org/Pango/method.Matrix.get_font_scale_factor.html
-Since: 1.12")
-
-
-(rt:define-gfunction (matrix-get-font-scale-factors "pango_matrix_get_font_scale_factors") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))
-                      (xscale :double :direction :out :transfer :full)
-                      (yscale :double :direction :out :transfer :full))
-                     :version "1.38" :documentation
-                     "Calculates the scale factor of a matrix on the width and height of the font.
-
-C: pango_matrix_get_font_scale_factors
-See: https://docs.gtk.org/Pango/method.Matrix.get_font_scale_factors.html
-Since: 1.38")
-
-
-(rt:define-gfunction (matrix-get-slant-ratio "pango_matrix_get_slant_ratio") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))) :return
-                     :double :version "1.50" :documentation "Gets the slant ratio of a matrix.
-
-C: pango_matrix_get_slant_ratio
-See: https://docs.gtk.org/Pango/method.Matrix.get_slant_ratio.html
-Since: 1.50")
-
-
-(rt:define-gfunction (matrix-rotate "pango_matrix_rotate") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))
-                      (degrees :double))
-                     :version "1.6" :documentation
-                     "Changes the transformation represented by MATRIX to be the
-transformation given by first rotating by DEGREES degrees
-counter-clockwise then applying the original transformation.
-
-C: pango_matrix_rotate
-See: https://docs.gtk.org/Pango/method.Matrix.rotate.html
-Since: 1.6")
-
-
-(rt:define-gfunction (matrix-scale "pango_matrix_scale") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))
-                      (scale-x :double) (scale-y :double))
-                     :version "1.6" :documentation
-                     "Changes the transformation represented by MATRIX to be the
-transformation given by first scaling by SX in the X direction
-and SY in the Y direction then applying the original
-transformation.
-
-C: pango_matrix_scale
-See: https://docs.gtk.org/Pango/method.Matrix.scale.html
-Since: 1.6")
-
-
-(rt:define-gfunction (matrix-translate "pango_matrix_translate") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix)) (tx :double)
-                      (ty :double))
-                     :version "1.6" :documentation
-                     "Changes the transformation represented by MATRIX to be the
-transformation given by first translating by (TX, TY)
-then applying the original transformation.
-
-C: pango_matrix_translate
-See: https://docs.gtk.org/Pango/method.Matrix.translate.html
-Since: 1.6")
-
-
-(rt:define-gfunction (renderer-activate "pango_renderer_activate") :args
-                     ((renderer (:object renderer))) :version "1.8" :documentation
-                     "Does initial setup before rendering operations on RENDERER.
-
-C: pango_renderer_activate
-See: https://docs.gtk.org/Pango/method.Renderer.activate.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-deactivate "pango_renderer_deactivate") :args
-                     ((renderer (:object renderer))) :version "1.8" :documentation
-                     "Cleans up after rendering operations on RENDERER.
-
-C: pango_renderer_deactivate
-See: https://docs.gtk.org/Pango/method.Renderer.deactivate.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-error-underline "pango_renderer_draw_error_underline") :args
-                     ((renderer (:object renderer)) (x :int) (y :int) (width :int) (height :int))
-                     :version "1.8" :documentation
-                     "Draw a squiggly line that approximately covers the given rectangle
-in the style of an underline used to indicate a spelling error.
-
-C: pango_renderer_draw_error_underline
-See: https://docs.gtk.org/Pango/method.Renderer.draw_error_underline.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-glyph "pango_renderer_draw_glyph") :args
-                     ((renderer (:object renderer)) (font (:object font)) (glyph :uint32)
-                      (x :double) (y :double))
-                     :version "1.8" :documentation
-                     "Draws a single glyph with coordinates in device space.
-
-C: pango_renderer_draw_glyph
-See: https://docs.gtk.org/Pango/method.Renderer.draw_glyph.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-glyph-item "pango_renderer_draw_glyph_item") :args
-                     ((renderer (:object renderer)) (text :string)
-                      (glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" glyph-item))
-                      (x :int) (y :int))
-                     :version "1.22" :documentation
-                     "Draws the glyphs in GLYPH-ITEM with the specified `PangoRenderer`,
-embedding the text associated with the glyphs in the output if the
-output format supports it.
-
-C: pango_renderer_draw_glyph_item
-See: https://docs.gtk.org/Pango/method.Renderer.draw_glyph_item.html
-Since: 1.22")
-
-
-(rt:define-gfunction (renderer-draw-glyphs "pango_renderer_draw_glyphs") :args
-                     ((renderer (:object renderer)) (font (:object font))
-                      (glyphs
-                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type" glyph-string))
-                      (x :int) (y :int))
-                     :version "1.8" :documentation
-                     "Draws the glyphs in GLYPHS with the specified `PangoRenderer`.
-
-C: pango_renderer_draw_glyphs
-See: https://docs.gtk.org/Pango/method.Renderer.draw_glyphs.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-layout "pango_renderer_draw_layout") :args
-                     ((renderer (:object renderer)) (layout (:object layout)) (x :int) (y :int))
-                     :version "1.8" :documentation "Draws LAYOUT with the specified `PangoRenderer`.
-
-C: pango_renderer_draw_layout
-See: https://docs.gtk.org/Pango/method.Renderer.draw_layout.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-layout-line "pango_renderer_draw_layout_line") :args
-                     ((renderer (:object renderer))
-                      (line (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line))
-                      (x :int) (y :int))
-                     :version "1.8" :documentation "Draws LINE with the specified `PangoRenderer`.
-
-C: pango_renderer_draw_layout_line
-See: https://docs.gtk.org/Pango/method.Renderer.draw_layout_line.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-rectangle "pango_renderer_draw_rectangle") :args
-                     ((renderer (:object renderer)) (part (:enum render-part)) (x :int) (y :int)
-                      (width :int) (height :int))
-                     :version "1.8" :documentation
-                     "Draws an axis-aligned rectangle in user space coordinates with the
-specified `PangoRenderer`.
-
-C: pango_renderer_draw_rectangle
-See: https://docs.gtk.org/Pango/method.Renderer.draw_rectangle.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-draw-trapezoid "pango_renderer_draw_trapezoid") :args
-                     ((renderer (:object renderer)) (part (:enum render-part)) (y1- :double)
-                      (x11 :double) (x21 :double) (y2 :double) (x12 :double) (x22 :double))
-                     :version "1.8" :documentation
-                     "Draws a trapezoid with the parallel sides aligned with the X axis
-using the given `PangoRenderer`; coordinates are in device space.
-
-C: pango_renderer_draw_trapezoid
-See: https://docs.gtk.org/Pango/method.Renderer.draw_trapezoid.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-get-alpha "pango_renderer_get_alpha") :args
-                     ((renderer (:object renderer)) (part (:enum render-part))) :return :uint16
-                     :version "1.38" :documentation "Gets the current alpha for the specified part.
-
-C: pango_renderer_get_alpha
-See: https://docs.gtk.org/Pango/method.Renderer.get_alpha.html
-Since: 1.38")
-
-
-(rt:define-gfunction (renderer-get-color "pango_renderer_get_color") :args
-                     ((renderer (:object renderer)) (part (:enum render-part))) :return
-                     (:boxed "PangoColor" "pango_color_get_type" color) :version "1.8"
-                     :documentation "Gets the current rendering color for the specified part.
-
-C: pango_renderer_get_color
-See: https://docs.gtk.org/Pango/method.Renderer.get_color.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-get-components "pango_renderer_get_components") :args
-                     ((renderer (:object renderer))) :return (:flags render-component) :version
-                     "1.58" :documentation
-                     "Gets the components that are included in the output of the renderer.
-
-C: pango_renderer_get_components
-See: https://docs.gtk.org/Pango/method.Renderer.get_components.html
-Since: 1.58")
-
-
-(rt:define-gfunction (renderer-get-layout "pango_renderer_get_layout") :args
-                     ((renderer (:object renderer))) :return (:object layout) :version "1.20"
-                     :documentation "Gets the layout currently being rendered using RENDERER.
-
-C: pango_renderer_get_layout
-See: https://docs.gtk.org/Pango/method.Renderer.get_layout.html
-Since: 1.20")
-
-
-(rt:define-gfunction (renderer-get-layout-line "pango_renderer_get_layout_line") :args
-                     ((renderer (:object renderer))) :return
-                     (:boxed "PangoLayoutLine" "pango_layout_line_get_type" layout-line) :version
-                     "1.20" :documentation
-                     "Gets the layout line currently being rendered using RENDERER.
-
-C: pango_renderer_get_layout_line
-See: https://docs.gtk.org/Pango/method.Renderer.get_layout_line.html
-Since: 1.20")
-
-
-(rt:define-gfunction (renderer-get-matrix "pango_renderer_get_matrix") :args
-                     ((renderer (:object renderer))) :return
-                     (:boxed "PangoMatrix" "pango_matrix_get_type" matrix) :version "1.8"
-                     :documentation "Gets the transformation matrix that will be applied when
-rendering.
-
-C: pango_renderer_get_matrix
-See: https://docs.gtk.org/Pango/method.Renderer.get_matrix.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-part-changed "pango_renderer_part_changed") :args
-                     ((renderer (:object renderer)) (part (:enum render-part))) :version "1.8"
-                     :documentation "Informs Pango that the way that the rendering is done
-for PART has changed.
-
-C: pango_renderer_part_changed
-See: https://docs.gtk.org/Pango/method.Renderer.part_changed.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-set-alpha "pango_renderer_set_alpha") :args
-                     ((renderer (:object renderer)) (part (:enum render-part)) (alpha :uint16))
-                     :version "1.38" :documentation "Sets the alpha for part of the rendering.
-
-C: pango_renderer_set_alpha
-See: https://docs.gtk.org/Pango/method.Renderer.set_alpha.html
-Since: 1.38")
-
-
-(rt:define-gfunction (renderer-set-color "pango_renderer_set_color") :args
-                     ((renderer (:object renderer)) (part (:enum render-part))
-                      (color (:boxed "PangoColor" "pango_color_get_type" color) :optional t))
-                     :version "1.8" :documentation "Sets the color for part of the rendering.
-
-C: pango_renderer_set_color
-See: https://docs.gtk.org/Pango/method.Renderer.set_color.html
-Since: 1.8")
-
-
-(rt:define-gfunction (renderer-set-components "pango_renderer_set_components") :args
-                     ((renderer (:object renderer)) (components (:flags render-component)))
-                     :version "1.58" :documentation
-                     "Sets the components to include in the output of the renderer.
-
-C: pango_renderer_set_components
-See: https://docs.gtk.org/Pango/method.Renderer.set_components.html
-Since: 1.58")
-
-
-(rt:define-gfunction (renderer-set-matrix "pango_renderer_set_matrix") :args
-                     ((renderer (:object renderer))
-                      (matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix) :optional t))
-                     :version "1.8" :documentation
-                     "Sets the transformation matrix that will be applied when rendering.
-
-C: pango_renderer_set_matrix
-See: https://docs.gtk.org/Pango/method.Renderer.set_matrix.html
-Since: 1.8")
-
-
-(rt:define-gfunction (script-iter-new "pango_script_iter_new") :args ((text :string) (length :int))
-                     :return (:boxed "PangoScriptIter" "pango_script_iter_get_type")
-                     :return-transfer :full :version "1.4" :documentation
-                     "Create a new `PangoScriptIter`, used to break a string of
-Unicode text into runs by Unicode script.
-
-C: pango_script_iter_new
-See: https://docs.gtk.org/Pango/ctor.ScriptIter.new.html
-Since: 1.4")
-
-
-(rt:define-gfunction (script-iter-free "pango_script_iter_free") :args
-                     ((iter (:boxed "PangoScriptIter" "pango_script_iter_get_type"))) :version
-                     "1.4" :documentation "Frees a `PangoScriptIter`.
-
-C: pango_script_iter_free
-See: https://docs.gtk.org/Pango/method.ScriptIter.free.html
-Since: 1.4")
-
-
-(rt:define-gfunction (script-iter-get-range "pango_script_iter_get_range") :args
-                     ((iter (:boxed "PangoScriptIter" "pango_script_iter_get_type"))
-                      (start :string :direction :out) (end :string :direction :out)
-                      (script (:enum script) :direction :out :transfer :full))
-                     :version "1.4" :documentation
-                     "Gets information about the range to which ITER currently points.
-
-C: pango_script_iter_get_range
-See: https://docs.gtk.org/Pango/method.ScriptIter.get_range.html
-Since: 1.4")
-
-
-(rt:define-gfunction (script-iter-next "pango_script_iter_next") :args
-                     ((iter (:boxed "PangoScriptIter" "pango_script_iter_get_type"))) :return
-                     :boolean :version "1.4" :documentation
-                     "Advances a `PangoScriptIter` to the next range.
-
-C: pango_script_iter_next
-See: https://docs.gtk.org/Pango/method.ScriptIter.next.html
-Since: 1.4")
-
-
-(rt:define-gfunction (tab-array-new "pango_tab_array_new") :args
-                     ((initial-size :int) (positions-in-pixels :boolean)) :return
-                     (:boxed "PangoTabArray" "pango_tab_array_get_type") :return-transfer :full
-                     :documentation "Creates an array of INITIAL-SIZE tab stops.
-
-C: pango_tab_array_new
-See: https://docs.gtk.org/Pango/ctor.TabArray.new.html")
-
-
-(rt:define-gfunction (tab-array-from-string "pango_tab_array_from_string") :args ((text :string))
-                     :return (:boxed "PangoTabArray" "pango_tab_array_get_type") :return-transfer
-                     :full :version "1.50" :documentation
-                     "Deserializes a `PangoTabArray` from a string.
-
-C: pango_tab_array_from_string
-See: https://docs.gtk.org/Pango/type_func.TabArray.from_string.html
-Since: 1.50")
-
-
-(rt:define-gfunction (tab-array-copy "pango_tab_array_copy") :args
-                     ((src (:boxed "PangoTabArray" "pango_tab_array_get_type"))) :return
-                     (:boxed "PangoTabArray" "pango_tab_array_get_type") :return-transfer :full
-                     :documentation "Copies a `PangoTabArray`.
-
-C: pango_tab_array_copy
-See: https://docs.gtk.org/Pango/method.TabArray.copy.html")
-
-
-(rt:define-gfunction (tab-array-free "pango_tab_array_free") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type")))
-                     :documentation "Frees a tab array and associated resources.
-
-C: pango_tab_array_free
-See: https://docs.gtk.org/Pango/method.TabArray.free.html")
-
-
-(rt:define-gfunction (tab-array-get-decimal-point "pango_tab_array_get_decimal_point") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (tab-index :int))
-                     :return :uint32 :version "1.50" :documentation
-                     "Gets the Unicode character to use as decimal point.
-
-C: pango_tab_array_get_decimal_point
-See: https://docs.gtk.org/Pango/method.TabArray.get_decimal_point.html
-Since: 1.50")
-
-
-(rt:define-gfunction (tab-array-get-positions-in-pixels "pango_tab_array_get_positions_in_pixels")
-                     :args ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type")))
-                     :return :boolean :documentation
-                     "Returns true if the tab positions are in pixels,
-false if they are in Pango units.
-
-C: pango_tab_array_get_positions_in_pixels
-See: https://docs.gtk.org/Pango/method.TabArray.get_positions_in_pixels.html")
-
-
-(rt:define-gfunction (tab-array-get-size "pango_tab_array_get_size") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))) :return :int
-                     :documentation "Gets the number of tab stops in TAB-ARRAY.
-
-C: pango_tab_array_get_size
-See: https://docs.gtk.org/Pango/method.TabArray.get_size.html")
-
-
-(rt:define-gfunction (tab-array-get-tab "pango_tab_array_get_tab") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (tab-index :int)
-                      (alignment (:enum tab-align) :direction :out :transfer :full)
-                      (location :int :direction :out :transfer :full))
-                     :documentation "Gets the alignment and position of a tab stop.
-
-C: pango_tab_array_get_tab
-See: https://docs.gtk.org/Pango/method.TabArray.get_tab.html")
-
-
-(rt:define-gfunction (tab-array-resize "pango_tab_array_resize") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (new-size :int))
-                     :documentation "Resizes a tab array.
-
-C: pango_tab_array_resize
-See: https://docs.gtk.org/Pango/method.TabArray.resize.html")
-
-
-(rt:define-gfunction (tab-array-set-decimal-point "pango_tab_array_set_decimal_point") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (tab-index :int) (decimal-point :uint32))
-                     :version "1.50" :documentation
-                     "Sets the Unicode character to use as decimal point.
-
-C: pango_tab_array_set_decimal_point
-See: https://docs.gtk.org/Pango/method.TabArray.set_decimal_point.html
-Since: 1.50")
-
-
-(rt:define-gfunction (tab-array-set-positions-in-pixels "pango_tab_array_set_positions_in_pixels")
-                     :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (positions-in-pixels :boolean))
-                     :version "1.50" :documentation
-                     "Sets whether positions in this array are specified in
-pixels.
-
-C: pango_tab_array_set_positions_in_pixels
-See: https://docs.gtk.org/Pango/method.TabArray.set_positions_in_pixels.html
-Since: 1.50")
-
-
-(rt:define-gfunction (tab-array-set-tab "pango_tab_array_set_tab") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))
-                      (tab-index :int) (alignment (:enum tab-align)) (location :int))
-                     :documentation "Sets the alignment and location of a tab stop.
-
-C: pango_tab_array_set_tab
-See: https://docs.gtk.org/Pango/method.TabArray.set_tab.html")
-
-
-(rt:define-gfunction (tab-array-sort "pango_tab_array_sort") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))) :version
-                     "1.50" :documentation
-                     "Utility function to ensure that the tab stops are in increasing order.
-
-C: pango_tab_array_sort
-See: https://docs.gtk.org/Pango/method.TabArray.sort.html
-Since: 1.50")
-
-
-(rt:define-gfunction (tab-array-to-string "pango_tab_array_to_string") :args
-                     ((tab-array (:boxed "PangoTabArray" "pango_tab_array_get_type"))) :return
-                     :string :return-transfer :full :version "1.50" :documentation
-                     "Serializes a `PangoTabArray` to a string.
-
-C: pango_tab_array_to_string
-See: https://docs.gtk.org/Pango/method.TabArray.to_string.html
-Since: 1.50")
-
-
-(rt:define-gfunction (attr-type-get-name "pango_attr_type_get_name") :args
-                     ((type (:enum attr-type))) :return :string :version "1.22" :documentation
-                     "Fetches the attribute type name.
-
-C: pango_attr_type_get_name
-See: https://docs.gtk.org/Pango/type_func.AttrType.get_name.html
-Since: 1.22")
-
-
-(rt:define-gfunction (attr-type-register "pango_attr_type_register") :args ((name :string)) :return
-                     (:enum attr-type) :documentation "Allocate a new attribute type ID.
-
-C: pango_attr_type_register
-See: https://docs.gtk.org/Pango/type_func.AttrType.register.html")
-
-
-(rt:define-gfunction (bidi-type-for-unichar "pango_bidi_type_for_unichar") :args ((ch :uint32))
-                     :return (:enum bidi-type) :version "1.22" :documentation
-                     "Determines the bidirectional type of a character.
-
-C: pango_bidi_type_for_unichar
-See: https://docs.gtk.org/Pango/type_func.BidiType.for_unichar.html
-Since: 1.22")
-
-
-(rt:define-gfunction (gravity-get-for-matrix "pango_gravity_get_for_matrix") :args
-                     ((matrix (:boxed "PangoMatrix" "pango_matrix_get_type" matrix))) :return
-                     (:enum gravity) :version "1.16" :documentation
-                     "Finds the gravity that best matches the rotation component
-in a `PangoMatrix`.
-
-C: pango_gravity_get_for_matrix
-See: https://docs.gtk.org/Pango/type_func.Gravity.get_for_matrix.html
-Since: 1.16")
-
-
-(rt:define-gfunction (gravity-get-for-script "pango_gravity_get_for_script") :args
-                     ((script (:enum script)) (base-gravity (:enum gravity))
-                      (hint (:enum gravity-hint)))
-                     :return (:enum gravity) :version "1.16" :documentation
-                     "Returns the gravity to use in laying out a `PangoItem`.
-
-C: pango_gravity_get_for_script
-See: https://docs.gtk.org/Pango/type_func.Gravity.get_for_script.html
-Since: 1.16")
-
-
-(rt:define-gfunction (gravity-get-for-script-and-width "pango_gravity_get_for_script_and_width")
-                     :args
-                     ((script (:enum script)) (wide :boolean) (base-gravity (:enum gravity))
-                      (hint (:enum gravity-hint)))
-                     :return (:enum gravity) :version "1.26" :documentation
-                     "Returns the gravity to use in laying out a single character
-or `PangoItem`.
-
-C: pango_gravity_get_for_script_and_width
-See: https://docs.gtk.org/Pango/type_func.Gravity.get_for_script_and_width.html
-Since: 1.26")
-
-
-(rt:define-gfunction (gravity-to-rotation "pango_gravity_to_rotation") :args
-                     ((gravity (:enum gravity))) :return :double :version "1.16" :documentation
-                     "Converts a `PangoGravity` value to its natural rotation in radians.
-
-C: pango_gravity_to_rotation
-See: https://docs.gtk.org/Pango/type_func.Gravity.to_rotation.html
-Since: 1.16")
-
-
-(rt:define-gfunction (layout-deserialize-error-quark "pango_layout_deserialize_error_quark")
-                     :return :uint32 :documentation "
-C: pango_layout_deserialize_error_quark
-See: https://docs.gtk.org/Pango/type_func.LayoutDeserializeError.quark.html")
-
-
-(rt:define-gfunction (script-for-unichar "pango_script_for_unichar") :args ((ch :uint32)) :return
-                     (:enum script) :version "1.4" :documentation
-                     "Looks up the script for a particular character.
-
-C: pango_script_for_unichar
-See: https://docs.gtk.org/Pango/type_func.Script.for_unichar.html
-Since: 1.4
-Deprecated.")
-
-
-(rt:define-gfunction (script-get-sample-language "pango_script_get_sample_language") :args
-                     ((script (:enum script))) :return
-                     (:boxed "PangoLanguage" "pango_language_get_type") :return-transfer :full
-                     :version "1.4" :documentation
-                     "Finds a language tag that is reasonably representative of SCRIPT.
-
-C: pango_script_get_sample_language
-See: https://docs.gtk.org/Pango/type_func.Script.get_sample_language.html
-Since: 1.4")

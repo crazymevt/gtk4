@@ -3,9 +3,8 @@
 Complete GTK 4 bindings for SBCL, generated ahead of time from GObject
 Introspection data, with an idiomatic CLOS layer on top.
 
-**Status:** milestones M0 and M1 are complete. The GLib, GObject, GModule and Gio
-bindings are generated, committed and tested (97% of bindable functions); GDK, GSK
-and GTK generate and work but are not committed until M2.
+**Status:** M0 and M1 are complete; M2 is in progress. The whole stack, GLib through
+GTK plus cairo, is generated, committed and tested: 98% of bindable functions.
 
 Design document: <https://claude.ai/code/artifact/893d30d2-ba38-4d3e-a255-35532f0ea5da>
 
@@ -39,7 +38,8 @@ brew install sbcl gtk4 gobject-introspection
 make test               # run the test suite
 make stress             # run the leak/stress suite (the M1 gate)
 make generate           # regenerate src/generated/ (run after changing the generator)
-make full-stack         # generate all namespaces into build/ and time compile and load
+make docs               # build the reference site and manual into build/docs/
+make full-stack         # time a clean compile and a cached load of everything
 make summary            # parse every target .gir file and print what it contains
 make hello              # open the hello-world window
 make hello QUIT_AFTER=3 # same, quitting after 3 seconds
