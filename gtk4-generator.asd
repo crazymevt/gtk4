@@ -12,6 +12,7 @@
                (:file "parse")
                (:file "overrides")
                (:file "overrides/cairo")
+               (:file "overrides/gdk")
                (:file "repository")
                (:file "naming")
                (:file "plan")

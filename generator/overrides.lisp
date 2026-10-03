@@ -76,6 +76,14 @@ anchor is the C name with underscores turned into hyphens."
         (remove-if (lambda (f) (member (gir-item-name f) names :test #'string=))
                    (gir-namespace-functions ns))))
 
+(defun mark-introspectable (ns &rest c-identifiers)
+  "Mark callables in NS bindable although GIR says otherwise: plain C
+functions GIR flags only because they are convenience wrappers."
+  (dolist (c (gir-namespace-classes ns))
+    (dolist (f (append (gir-class-constructors c) (gir-class-functions c) (gir-class-methods c)))
+      (when (member (gir-callable-c-identifier f) c-identifiers :test #'string=)
+        (setf (gir-item-introspectable f) t)))))
+
 (defun spec-fields (fields)
   (mapcar (lambda (f)
             (destructuring-bind (name type &key (writable t)) f

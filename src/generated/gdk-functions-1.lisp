@@ -687,6 +687,15 @@ C: gdk_clipboard_set_content
 See: https://docs.gtk.org/gdk4/method.Clipboard.set_content.html")
 
 
+(rt:define-gfunction (clipboard-set-text "gdk_clipboard_set_text") :args
+                     ((clipboard (:object clipboard)) (text :string)) :url
+                     "https://docs.gtk.org/gdk4/method.Clipboard.set_text.html" :documentation
+                     "Puts the given TEXT into the clipboard.
+
+C: gdk_clipboard_set_text
+See: https://docs.gtk.org/gdk4/method.Clipboard.set_text.html")
+
+
 (rt:define-gfunction (clipboard-set "gdk_clipboard_set_value") :args
                      ((clipboard (:object clipboard))
                       (value (:boxed "GValue" "g_value_get_type" gobject:value)))
@@ -4784,15 +4793,3 @@ Returns a float.
 
 C: gdk_paintable_get_intrinsic_aspect_ratio
 See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_aspect_ratio.html")
-
-
-(rt:define-gfunction (paintable-get-intrinsic-height "gdk_paintable_get_intrinsic_height") :args
-                     ((paintable (:object paintable))) :return :int :url
-                     "https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_height.html"
-                     :documentation
-                     "Gets the preferred height the PAINTABLE would like to be displayed at.
-
-Returns an integer.
-
-C: gdk_paintable_get_intrinsic_height
-See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_height.html")

@@ -6,6 +6,18 @@
 ;;; Functions, constructors and methods (part 2)
 
 
+(rt:define-gfunction (paintable-get-intrinsic-height "gdk_paintable_get_intrinsic_height") :args
+                     ((paintable (:object paintable))) :return :int :url
+                     "https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_height.html"
+                     :documentation
+                     "Gets the preferred height the PAINTABLE would like to be displayed at.
+
+Returns an integer.
+
+C: gdk_paintable_get_intrinsic_height
+See: https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_height.html")
+
+
 (rt:define-gfunction (paintable-get-intrinsic-width "gdk_paintable_get_intrinsic_width") :args
                      ((paintable (:object paintable))) :return :int :url
                      "https://docs.gtk.org/gdk4/method.Paintable.get_intrinsic_width.html"
