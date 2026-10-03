@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+**Fixes**
+- A callback whose Lisp function returns a value C cannot take, such as a keyword from a sort function where C expects a `gint`, no longer crashes the process. The error goes to `*callback-error-handler*` like any other error in a callback, and C receives 0. Integer return values are checked against the C type's range.
+
 ## 1.0.0 (2026-10-03)
 
 The first release.

@@ -68,6 +68,29 @@
     (true (iterate-until (lambda () ran)))
     (is = 1 (length caught))))
 
+(define-test callback-return-errors-are-contained :parent callbacks
+  ;; A return value C cannot take (here a keyword where GCompareDataFunc
+  ;; returns gint) is reported like any other error in the callback, and C
+  ;; gets 0, instead of the conversion failing outside the protection.
+  (let* ((caught '())
+         (rt:*callback-error-handler* (lambda (c where) (push (list c where) caught)))
+         (store (gio:list-store-new (rt:class-gtype 'gio:simple-action))))
+    (dolist (name '("b" "a"))
+      (gio:list-store-append store (make-instance 'gio:simple-action :name name)))
+    (gio:list-store-sort store (lambda (a b) (declare (ignore a b)) :larger))
+    (true caught)
+    (true (every (lambda (entry) (typep (first entry) 'type-error)) caught))
+    (is eq 'glib::compare-data-func (second (first caught)))
+    (is = 2 (gio:list-model-get-n-items store))))
+
+(define-test callback-integer-returns-are-range-checked :parent callbacks
+  (is = 5 (rt::foreign-integer-value 5 :int nil))
+  (is = -1 (rt::foreign-integer-value -1 :int nil))
+  (fail (rt::foreign-integer-value -1 :uint t) 'type-error)
+  (fail (rt::foreign-integer-value (expt 2 31) :int nil) 'type-error)
+  (fail (rt::foreign-integer-value :larger :int nil) 'type-error)
+  (is = (1- (expt 2 32)) (rt::foreign-integer-value (1- (expt 2 32)) :uint32 t)))
+
 (defvar *redefinable-callback-log* '())
 (defun redefinable-idle () (push :original *redefinable-callback-log*) nil)
 

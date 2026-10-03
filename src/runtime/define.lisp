@@ -288,6 +288,20 @@ callback argument) to Lisp."
                                ,(and (member transfer '(:full :container)) t)))
     ((:enum :flags) `(enum-keyword ',(second spec) ,form))))
 
+(defparameter *unsigned-kinds*
+  '(:uint8 :uint16 :uint32 :uint64 :ushort :uint :ulong :size :uintptr :gtype))
+
+(defun foreign-integer-value (value foreign-type unsigned)
+  "VALUE, if it fits FOREIGN-TYPE (signed unless UNSIGNED); else signal a
+type-error naming the range."
+  (let* ((bits (* 8 (cffi:foreign-type-size foreign-type)))
+         (type (if unsigned
+                   `(integer 0 ,(1- (ash 1 bits)))
+                   `(integer ,(- (ash 1 (1- bits))) ,(1- (ash 1 (1- bits)))))))
+    (if (typep value type)
+        value
+        (error 'type-error :datum value :expected-type type))))
+
 (defun convert-to-foreign (form spec transfer)
   "Code converting the Lisp value FORM to a foreign value that C keeps after
 the call returns (a callback's return value)."
@@ -295,7 +309,10 @@ the call returns (a callback's return value)."
     (:boolean `(and ,form t))
     ((:int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64
       :short :ushort :int :uint :long :ulong :size :ssize :intptr :uintptr :gtype)
-     `(or ,form 0))
+     ;; Checked here, inside the callback's error protection: a value C
+     ;; cannot take would otherwise fail in the foreign-call layer, outside it.
+     `(foreign-integer-value (or ,form 0) ',(spec-foreign-type spec)
+                             ,(and (member (spec-kind spec) *unsigned-kinds*) t)))
     (:float `(float (or ,form 0) 1f0))
     (:double `(float (or ,form 0) 1d0))
     (:string `(let ((s ,form))
