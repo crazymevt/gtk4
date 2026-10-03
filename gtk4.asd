@@ -4,7 +4,15 @@
   :description "Complete GTK 4 bindings for SBCL, generated from GObject Introspection."
   :author "Jessie Hughart"
   :license "MIT"
-  :version "0.0.1"
+  :version "1.0.0"
+  :homepage "https://github.com/crazymevt/gtk4"
+  :source-control (:git "https://github.com/crazymevt/gtk4.git")
+  :bug-tracker "https://github.com/crazymevt/gtk4/issues"
+  :long-description "Bindings for the whole GTK 4 stack (GLib, GObject, GIO, Pango, cairo,
+Graphene, GDK, GSK, GTK), generated from GObject Introspection data, with
+docstrings linking every function to its upstream documentation; Lisp-defined
+GObject classes with virtual functions, properties, signals and templates;
+and a Lisp layer for list models, widget trees, CSS and asynchronous calls."
   :depends-on ("gtk4/gtk")
   :pathname "src/gtk4/"
   :serial t

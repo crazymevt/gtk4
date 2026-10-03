@@ -3,9 +3,10 @@
 Complete GTK 4 bindings for SBCL, generated ahead of time from GObject
 Introspection data, with an idiomatic CLOS layer on top.
 
-**Status:** M0 through M2 are complete; M3 (subclassing and the Lisp layer) is in
-review. The whole stack, GLib through GTK plus cairo, is generated, committed and
-tested: 98% of bindable functions, and 750 virtual functions Lisp classes can override.
+**Status:** 1.0 release candidate. The whole stack, GLib through GTK plus cairo and
+libadwaita, is generated, committed and tested on Linux, macOS and Windows: 98% of
+bindable functions, and 762 virtual functions Lisp classes can override. See
+[CHANGELOG.md](CHANGELOG.md).
 
 ## A taste
 
@@ -39,7 +40,7 @@ Design document: <https://claude.ai/code/artifact/893d30d2-ba38-4d3e-a255-35532f
 
 ## Requirements
 
-- SBCL 2.4 or newer, with Quicklisp
+- SBCL 2.2.9 or newer, with Quicklisp
 - GTK 4.14 or newer
 - Optionally, libadwaita 1.5 or newer, for the `gtk4-adwaita` system
 - For the generator only: the `.gir` files for GTK and its dependencies
