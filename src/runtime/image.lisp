@@ -41,8 +41,25 @@
   (dolist (name (reverse *loaded-libraries*))
     (cffi:close-foreign-library name)))
 
+(defun use-bundled-data ()
+  "When the program runs from a bundle with GTK's data in Resources/share
+(see scripts/macos-app.sh), point GLib and GTK at it."
+  (let* ((exe (and sb-ext:*runtime-pathname*
+                   (uiop:pathname-directory-pathname sb-ext:*runtime-pathname*)))
+         (share (and exe (probe-file (merge-pathnames "../Resources/share/" exe)))))
+    (when share
+      (flet ((setenv (name value)
+               (cffi:foreign-funcall "setenv" :string name :string value :int 1 :int)))
+        (let ((dir (namestring share))
+              (old (uiop:getenv "XDG_DATA_DIRS")))
+          (setenv "XDG_DATA_DIRS" (if (and old (plusp (length old)))
+                                      (format nil "~a:~a" dir old)
+                                      dir))
+          (setenv "GSETTINGS_SCHEMA_DIR" (format nil "~aglib-2.0/schemas" dir)))))))
+
 (defun restore-process-state ()
   "Load the libraries and register enum GTypes again; on SB-EXT:*INIT-HOOKS*."
+  (use-bundled-data)
   (setf *gui-thread* (sb-thread:main-thread)
         *library-directories* (default-library-directories))
   (load-libraries :libraries *loaded-libraries*)
