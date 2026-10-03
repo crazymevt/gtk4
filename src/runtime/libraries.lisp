@@ -33,6 +33,8 @@ Initialized from the GTK4_LISP_LIBRARY_PATH environment variable.")
   :darwin "libgio-2.0.0.dylib" :linux "libgio-2.0.so.0" :windows "libgio-2.0-0.dll")
 (define-gtk-library cairo
   :darwin "libcairo.2.dylib" :linux "libcairo.so.2" :windows "libcairo-2.dll")
+(define-gtk-library cairo-gobject
+  :darwin "libcairo-gobject.2.dylib" :linux "libcairo-gobject.so.2" :windows "libcairo-gobject-2.dll")
 (define-gtk-library harfbuzz
   :darwin "libharfbuzz.0.dylib" :linux "libharfbuzz.so.0" :windows "libharfbuzz-0.dll")
 (define-gtk-library harfbuzz-gobject
@@ -51,7 +53,7 @@ Initialized from the GTK4_LISP_LIBRARY_PATH environment variable.")
   :darwin "libadwaita-1.0.dylib" :linux "libadwaita-1.so.0" :windows "libadwaita-1-0.dll")
 
 (defparameter *core-libraries*
-  '(glib gobject gmodule gio cairo harfbuzz harfbuzz-gobject pango pangocairo graphene gdk-pixbuf gtk)
+  '(glib gobject gmodule gio cairo cairo-gobject harfbuzz harfbuzz-gobject pango pangocairo graphene gdk-pixbuf gtk)
   "Libraries every gtk4 program needs, in load order.")
 
 (defun library-loaded-p (name)

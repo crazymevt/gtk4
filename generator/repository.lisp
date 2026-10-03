@@ -58,7 +58,7 @@ recorded as :MISSING. Returns TABLE."
            (warn 'missing-gir :name name :version version)
            (setf (gethash key table) :missing))
           (t
-           (let ((ns (parse-gir-file path)))
+           (let ((ns (apply-overrides (parse-gir-file path))))
              (setf (gethash key table) ns)
              (loop for (iname iversion) in (gir-namespace-includes ns)
                    do (load-repository iname iversion table)))))))

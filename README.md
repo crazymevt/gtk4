@@ -43,6 +43,7 @@ make full-stack         # generate all namespaces into build/ and time compile a
 make summary            # parse every target .gir file and print what it contains
 make hello              # open the hello-world window
 make hello QUIT_AFTER=3 # same, quitting after 3 seconds
+make example NAME=drawing   # run examples/drawing.lisp (cairo in a GtkDrawingArea)
 ```
 
 ## License

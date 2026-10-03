@@ -10,6 +10,8 @@
   :components ((:file "package")
                (:file "model")
                (:file "parse")
+               (:file "overrides")
+               (:file "overrides/cairo")
                (:file "repository")
                (:file "naming")
                (:file "plan")

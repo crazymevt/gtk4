@@ -51,3 +51,10 @@
         (data (format nil "[g]~%a=1~%b=2~%")))
     (glib:key-file-load-from-data kf data (length data) nil)
     (is equal '("a" "b") (glib:key-file-get-keys kf "g"))))
+
+(define-test float-out-parameters :parent arrays
+  ;; Regression: out parameters of type double used to be initialized with
+  ;; the integer 0, which SBCL cannot store as a double.
+  (let ((cr (cairo:create (cairo:image-surface-create :argb32 10 10))))
+    (cairo:move-to cr 1.5 2.5)
+    (is equal '(1.5d0 2.5d0) (multiple-value-list (cairo:get-current-point cr)))))

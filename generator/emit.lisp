@@ -232,7 +232,8 @@ same-namespace class or interface it inherits from."
      ,@(when (plan-version plan) `(:version ,(plan-version plan)))
      :documentation ,(docstring (plan-doc plan)
                                 :c-name (plan-c-name plan)
-                                :url (doc-url nsname (callable-fragment plan))
+                                :url (or (gethash (plan-source plan) *override-urls*)
+                                          (doc-url nsname (callable-fragment plan)))
                                 :version (plan-version plan)
                                 :deprecated (plan-deprecated plan))))
 

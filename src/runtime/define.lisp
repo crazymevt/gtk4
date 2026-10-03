@@ -715,7 +715,13 @@ carries the handle. The Lisp function receives the other arguments in order."
     ((:enum :flags) `(let ((,place (enum-value ',(second spec) ,var))) ,body))))
 
 (defun out-initial-value (spec)
-  (if (eq (spec-foreign-type spec) :pointer) '(cffi:null-pointer) 0))
+  "A zero of the right Lisp type for SPEC's foreign type."
+  (case (spec-foreign-type spec)
+    (:pointer '(cffi:null-pointer))
+    (:double 0d0)
+    (:float 0f0)
+    (:boolean nil)
+    (t 0)))
 
 (defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
                                                 throws version documentation)

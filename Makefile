@@ -2,7 +2,7 @@ SBCL ?= sbcl
 LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test stress summary generate full-stack hello
+.PHONY: test stress summary generate full-stack hello example
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -29,3 +29,9 @@ hello:
 	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \
 	        --load examples/hello-world.lisp \
 	        --eval '(gtk4-examples.hello-world:main :quit-after $(QUIT_AFTER))'
+
+# Run any example: make example NAME=drawing [QUIT_AFTER=3]
+example:
+	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \
+	        --load examples/$(NAME).lisp \
+	        --eval '(gtk4-examples.$(NAME):main :quit-after $(QUIT_AFTER))'
