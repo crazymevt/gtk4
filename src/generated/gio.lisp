@@ -3755,6 +3755,451 @@ See: https://docs.gtk.org/gio/struct.SettingsSchemaSource.html"))
 C: GSrvTarget
 See: https://docs.gtk.org/gio/struct.SrvTarget.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct action-entry
+    nil
+  (:name :pointer)
+  (:activate :pointer)
+  (:parameter-type :pointer)
+  (:state :pointer)
+  (:change-state :pointer)
+  (:padding :size :count 3))
+
+
+(rt:define-gfield action-entry-name action-entry :name :string :documentation
+                  "the name of the action
+")
+
+
+(rt:define-gfield action-entry-parameter-type action-entry :parameter-type :string :documentation
+                  "the type of the parameter that must be passed to the
+  activate function for this action, given as a single GVariant type string
+  (or `NULL` for no parameter)
+")
+
+
+(rt:define-gfield action-entry-state action-entry :state :string :documentation
+                  "the initial state for this action, given in
+  [GVariant text format](../glib/gvariant-text-format.html).  The state is parsed
+  with no extra type information, so type tags must be added to the string
+  if they are necessary.  Stateless actions should give `NULL` here.
+")
+
+
+(rt:define-gstruct dbus-annotation-info
+    (:gtype-name "GDBusAnnotationInfo")
+  (:ref-count :int)
+  (:key :pointer)
+  (:value :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-annotation-info-ref-count dbus-annotation-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-annotation-info-key dbus-annotation-info :key :string :documentation
+                  "The name of the annotation, e.g. \"org.freedesktop.DBus.Deprecated\".
+")
+
+
+(rt:define-gfield dbus-annotation-info-value dbus-annotation-info :value :string :documentation
+                  "The value of the annotation.
+")
+
+
+(rt:define-gstruct-constructor make-dbus-annotation-info
+                               (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type"
+                                dbus-annotation-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusAnnotationInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-arg-info
+    (:gtype-name "GDBusArgInfo")
+  (:ref-count :int)
+  (:name :pointer)
+  (:signature :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-arg-info-ref-count dbus-arg-info :ref-count :int :writable t :documentation
+                  "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-arg-info-name dbus-arg-info :name :string :documentation
+                  "Name of the argument, e.g. UNIX-USER-ID.
+")
+
+
+(rt:define-gfield dbus-arg-info-signature dbus-arg-info :signature :string :documentation
+                  "D-Bus signature of the argument (a single complete type).
+")
+
+
+(rt:define-gstruct-constructor make-dbus-arg-info
+                               (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type" dbus-arg-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusArgInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-error-entry
+    nil
+  (:error-code :int)
+  (:dbus-error-name :pointer))
+
+
+(rt:define-gfield dbus-error-entry-error-code dbus-error-entry :error-code :int :writable t
+                  :documentation "an error code
+")
+
+
+(rt:define-gfield dbus-error-entry-dbus-error-name dbus-error-entry :dbus-error-name :string
+                  :documentation "the D-Bus error name to associate with ERROR-CODE
+")
+
+
+(rt:define-gstruct-constructor make-dbus-error-entry (:record dbus-error-entry)
+                               ((error-code :error-code :int)) :documentation
+                               "A new DBusErrorEntry with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-interface-info
+    (:gtype-name "GDBusInterfaceInfo")
+  (:ref-count :int)
+  (:name :pointer)
+  (:methods :pointer)
+  (:signals :pointer)
+  (:properties :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-interface-info-ref-count dbus-interface-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-interface-info-name dbus-interface-info :name :string :documentation
+                  "The name of the D-Bus interface, e.g. \"org.freedesktop.DBus.Properties\".
+")
+
+
+(rt:define-gstruct-constructor make-dbus-interface-info
+                               (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                                dbus-interface-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusInterfaceInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-interface-v-table
+    nil
+  (:method-call :pointer)
+  (:get-property :pointer)
+  (:set-property :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct dbus-method-info
+    (:gtype-name "GDBusMethodInfo")
+  (:ref-count :int)
+  (:name :pointer)
+  (:in-args :pointer)
+  (:out-args :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-method-info-ref-count dbus-method-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-method-info-name dbus-method-info :name :string :documentation
+                  "The name of the D-Bus method, e.g. REQUESTNAME.
+")
+
+
+(rt:define-gstruct-constructor make-dbus-method-info
+                               (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type"
+                                dbus-method-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusMethodInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-node-info
+    (:gtype-name "GDBusNodeInfo")
+  (:ref-count :int)
+  (:path :pointer)
+  (:interfaces :pointer)
+  (:nodes :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-node-info-ref-count dbus-node-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-node-info-path dbus-node-info :path :string :documentation
+                  "The path of the node or NIL if omitted. Note that this may be a relative path. See the D-Bus specification for more details.
+")
+
+
+(rt:define-gstruct-constructor make-dbus-node-info
+                               (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusNodeInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-property-info
+    (:gtype-name "GDBusPropertyInfo")
+  (:ref-count :int)
+  (:name :pointer)
+  (:signature :pointer)
+  (:flags :uint)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-property-info-ref-count dbus-property-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-property-info-name dbus-property-info :name :string :documentation
+                  "The name of the D-Bus property, e.g. \"SupportedFilesystems\".
+")
+
+
+(rt:define-gfield dbus-property-info-signature dbus-property-info :signature :string :documentation
+                  "The D-Bus signature of the property (a single complete type).
+")
+
+
+(rt:define-gfield dbus-property-info-flags dbus-property-info :flags
+                  (:flags dbus-property-info-flags) :writable t :documentation
+                  "Access control flags for the property.
+")
+
+
+(rt:define-gstruct-constructor make-dbus-property-info
+                               (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"
+                                dbus-property-info)
+                               ((ref-count :ref-count :int)
+                                (flags :flags (:flags dbus-property-info-flags)))
+                               :documentation
+                               "A new DBusPropertyInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-signal-info
+    (:gtype-name "GDBusSignalInfo")
+  (:ref-count :int)
+  (:name :pointer)
+  (:args :pointer)
+  (:annotations :pointer))
+
+
+(rt:define-gfield dbus-signal-info-ref-count dbus-signal-info :ref-count :int :writable t
+                  :documentation "The reference count or -1 if statically allocated.
+")
+
+
+(rt:define-gfield dbus-signal-info-name dbus-signal-info :name :string :documentation
+                  "The name of the D-Bus signal, e.g. \"NameOwnerChanged\".
+")
+
+
+(rt:define-gstruct-constructor make-dbus-signal-info
+                               (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type"
+                                dbus-signal-info)
+                               ((ref-count :ref-count :int)) :documentation
+                               "A new DBusSignalInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct dbus-subtree-v-table
+    nil
+  (:enumerate :pointer)
+  (:introspect :pointer)
+  (:dispatch :pointer)
+  (:padding :pointer :count 8))
+
+
+(rt:define-gstruct file-attribute-info
+    nil
+  (:name :pointer)
+  (:type :int)
+  (:flags :uint))
+
+
+(rt:define-gfield file-attribute-info-name file-attribute-info :name :string :documentation
+                  "the name of the attribute.
+")
+
+
+(rt:define-gfield file-attribute-info-type file-attribute-info :type (:enum file-attribute-type)
+                  :writable t :documentation "the #GFileAttributeType type of the attribute.
+")
+
+
+(rt:define-gfield file-attribute-info-flags file-attribute-info :flags
+                  (:flags file-attribute-info-flags) :writable t :documentation
+                  "a set of #GFileAttributeInfoFlags.
+")
+
+
+(rt:define-gstruct-constructor make-file-attribute-info (:record file-attribute-info)
+                               ((type :type (:enum file-attribute-type))
+                                (flags :flags (:flags file-attribute-info-flags)))
+                               :documentation
+                               "A new FileAttributeInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct file-attribute-info-list
+    (:gtype-name "GFileAttributeInfoList")
+  (:infos :pointer)
+  (:n-infos :int))
+
+
+(rt:define-gfield file-attribute-info-list-n-infos file-attribute-info-list :n-infos :int :writable
+                  t :documentation "the number of values in the array.
+")
+
+
+(rt:define-gstruct-constructor make-file-attribute-info-list
+                               (:boxed "GFileAttributeInfoList"
+                                "g_file_attribute_info_list_get_type" file-attribute-info-list)
+                               ((n-infos :n-infos :int)) :documentation
+                               "A new FileAttributeInfoList with the given fields; others are zero.")
+
+
+(rt:define-gstruct input-message
+    nil
+  (:address :pointer)
+  (:vectors :pointer)
+  (:num-vectors :uint)
+  (:bytes-received :size)
+  (:flags :int)
+  (:control-messages :pointer)
+  (:num-control-messages :uint))
+
+
+(rt:define-gfield input-message-address input-message :address (:object socket-address)
+                  :documentation "return location
+  for a #GSocketAddress, or NIL
+")
+
+
+(rt:define-gfield input-message-num-vectors input-message :num-vectors :uint :writable t
+                  :documentation "the number of input vectors pointed to by VECTORS
+")
+
+
+(rt:define-gfield input-message-bytes-received input-message :bytes-received :size :writable t
+                  :documentation "will be set to the number of bytes that have been
+  received
+")
+
+
+(rt:define-gfield input-message-flags input-message :flags :int :writable t :documentation
+                  "collection of #GSocketMsgFlags for the received message,
+  outputted by the call
+")
+
+
+(rt:define-gfield input-message-num-control-messages input-message :num-control-messages :uint
+                  :writable t :documentation "return location for the number of
+  elements in CONTROL-MESSAGES
+")
+
+
+(rt:define-gstruct-constructor make-input-message (:record input-message)
+                               ((num-vectors :num-vectors :uint)
+                                (bytes-received :bytes-received :size) (flags :flags :int)
+                                (num-control-messages :num-control-messages :uint))
+                               :documentation
+                               "A new InputMessage with the given fields; others are zero.")
+
+
+(rt:define-gstruct input-vector
+    nil
+  (:buffer :pointer)
+  (:size :size))
+
+
+(rt:define-gfield input-vector-size input-vector :size :size :writable t :documentation
+                  "the available size in BUFFER.
+")
+
+
+(rt:define-gstruct-constructor make-input-vector (:record input-vector) ((size :size :size))
+                               :documentation
+                               "A new InputVector with the given fields; others are zero.")
+
+
+(rt:define-gstruct output-message
+    nil
+  (:address :pointer)
+  (:vectors :pointer)
+  (:num-vectors :uint)
+  (:bytes-sent :uint)
+  (:control-messages :pointer)
+  (:num-control-messages :uint))
+
+
+(rt:define-gfield output-message-address output-message :address (:object socket-address)
+                  :documentation "a #GSocketAddress, or NIL
+")
+
+
+(rt:define-gfield output-message-num-vectors output-message :num-vectors :uint :writable t
+                  :documentation "the number of output vectors pointed to by VECTORS.
+")
+
+
+(rt:define-gfield output-message-bytes-sent output-message :bytes-sent :uint :writable t
+                  :documentation "initialize to 0. Will be set to the number of bytes
+    that have been sent
+")
+
+
+(rt:define-gfield output-message-num-control-messages output-message :num-control-messages :uint
+                  :writable t :documentation "number of elements in CONTROL-MESSAGES.
+")
+
+
+(rt:define-gstruct-constructor make-output-message (:record output-message)
+                               ((num-vectors :num-vectors :uint) (bytes-sent :bytes-sent :uint)
+                                (num-control-messages :num-control-messages :uint))
+                               :documentation
+                               "A new OutputMessage with the given fields; others are zero.")
+
+
+(rt:define-gstruct output-vector
+    nil
+  (:buffer :pointer)
+  (:size :size))
+
+
+(rt:define-gfield output-vector-size output-vector :size :size :writable t :documentation
+                  "the size of BUFFER.
+")
+
+
+(rt:define-gstruct-constructor make-output-vector (:record output-vector) ((size :size :size))
+                               :documentation
+                               "A new OutputVector with the given fields; others are zero.")
+
+
+(rt:define-gstruct static-resource
+    nil
+  (:data :uint8)
+  (:data-len :size)
+  (:resource :pointer)
+  (:next :pointer)
+  (:padding :pointer))
+
 ;;; Properties
 
 
@@ -5827,7 +6272,7 @@ See: https://docs.gtk.org/gio/property.ZlibDecompressor.format.html"))
                      (:args
                       ((connection (:object dbus-connection)) (sender :string)
                        (object-path :string) (interface-name :string) (property-name :string)
-                       (error (:boxed "GError" "g_error_get_type"))
+                       (error (:boxed "GError" "g_error_get_type" glib:error))
                        (user-data :pointer :user-data t))
                       :return :pointer :return-transfer :full))
 
@@ -5845,7 +6290,7 @@ See: https://docs.gtk.org/gio/property.ZlibDecompressor.format.html"))
                      (:args
                       ((connection (:object dbus-connection)) (sender :string)
                        (object-path :string) (interface-name :string) (property-name :string)
-                       (value :pointer) (error (:boxed "GError" "g_error_get_type"))
+                       (value :pointer) (error (:boxed "GError" "g_error_get_type" glib:error))
                        (user-data :pointer :user-data t))
                       :return :boolean))
 
@@ -5927,15 +6372,15 @@ See: https://docs.gtk.org/gio/property.ZlibDecompressor.format.html"))
 
 (rt:define-gcallback settings-bind-get-mapping
                      (:args
-                      ((value (:boxed "GValue" "g_value_get_type")) (variant :pointer)
-                       (user-data :pointer :user-data t))
+                      ((value (:boxed "GValue" "g_value_get_type" gobject:value))
+                       (variant :pointer) (user-data :pointer :user-data t))
                       :return :boolean))
 
 
 (rt:define-gcallback settings-bind-set-mapping
                      (:args
-                      ((value (:boxed "GValue" "g_value_get_type")) (expected-type :pointer)
-                       (user-data :pointer :user-data t))
+                      ((value (:boxed "GValue" "g_value_get_type" gobject:value))
+                       (expected-type :pointer) (user-data :pointer :user-data t))
                       :return :pointer :return-transfer :full))
 
 
@@ -5993,8 +6438,10 @@ Since: 2.26")
                      :args
                      ((connection (:object dbus-connection)) (name :string)
                       (flags (:flags bus-name-owner-flags))
-                      (name-acquired-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (name-lost-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (name-acquired-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+                      (name-lost-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure)
+                       :optional t))
                      :return :uint :version "2.26" :documentation
                      "Version of Gio.bus_own_name_on_connection using closures instead of
 callbacks for easier binding in other languages.
@@ -6007,9 +6454,12 @@ Since: 2.26")
 (rt:define-gfunction (bus-own-name "g_bus_own_name_with_closures") :args
                      ((bus-type (:enum bus-type)) (name :string)
                       (flags (:flags bus-name-owner-flags))
-                      (bus-acquired-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (name-acquired-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (name-lost-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (bus-acquired-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+                      (name-acquired-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+                      (name-lost-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure)
+                       :optional t))
                      :return :uint :version "2.26" :documentation
                      "Version of [funcGIO.bus_own_name using closures instead of callbacks for
 easier binding in other languages.
@@ -6039,8 +6489,10 @@ Since: 2.26")
                      :args
                      ((connection (:object dbus-connection)) (name :string)
                       (flags (:flags bus-name-watcher-flags))
-                      (name-appeared-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (name-vanished-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (name-appeared-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+                      (name-vanished-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t))
                      :return :uint :version "2.26" :documentation
                      "Version of g_bus_watch_name_on_connection() using closures instead of callbacks for
 easier binding in other languages.
@@ -6053,8 +6505,10 @@ Since: 2.26")
 (rt:define-gfunction (bus-watch-name "g_bus_watch_name_with_closures") :args
                      ((bus-type (:enum bus-type)) (name :string)
                       (flags (:flags bus-name-watcher-flags))
-                      (name-appeared-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (name-vanished-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (name-appeared-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+                      (name-vanished-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t))
                      :return :uint :version "2.26" :documentation
                      "Version of g_bus_watch_name() using closures instead of callbacks for
 easier binding in other languages.
@@ -6310,13 +6764,23 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-gvalue-to-gvariant "g_dbus_gvalue_to_gvariant") :args
-                     ((gvalue (:boxed "GValue" "g_value_get_type")) (type :pointer)) :return
-                     :pointer :return-transfer :full :version "2.30" :documentation
+                     ((gvalue (:boxed "GValue" "g_value_get_type" gobject:value)) (type :pointer))
+                     :return :pointer :return-transfer :full :version "2.30" :documentation
                      "Converts a #GValue to a #GVariant of the type indicated by the TYPE
 parameter.
 
 C: g_dbus_gvalue_to_gvariant
 See: https://docs.gtk.org/gio/func.dbus_gvalue_to_gvariant.html
+Since: 2.30")
+
+
+(rt:define-gfunction (dbus-gvariant-to-gvalue "g_dbus_gvariant_to_gvalue") :args
+                     ((value :pointer) (out-gvalue :gvalue :direction :out :caller-allocates t))
+                     :version "2.30" :documentation
+                     "Converts a #GVariant to a #GValue. If VALUE is floating, it is consumed.
+
+C: g_dbus_gvariant_to_gvalue
+See: https://docs.gtk.org/gio/func.dbus_gvariant_to_gvalue.html
 Since: 2.30")
 
 
@@ -6530,8 +6994,8 @@ Since: 2.28")
 
 (rt:define-gfunction (pollable-source-new "g_pollable_source_new") :args
                      ((pollable-stream (:object rt:object))) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :version "2.28"
-                     :documentation
+                     (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer :full
+                     :version "2.28" :documentation
                      "Utility method for #GPollableInputStream and #GPollableOutputStream
 implementations. Creates a new #GSource that expects a callback of
 type #GPollableSourceFunc. The new source does not actually do
@@ -6545,10 +7009,10 @@ Since: 2.28")
 
 (rt:define-gfunction (pollable-source-new-full "g_pollable_source_new_full") :args
                      ((pollable-stream (:object rt:object))
-                      (child-source (:boxed "GSource" "g_source_get_type") :optional t)
+                      (child-source (:boxed "GSource" "g_source_get_type" glib:source) :optional t)
                       (cancellable (:object cancellable) :optional t))
-                     :return (:boxed "GSource" "g_source_get_type") :return-transfer :full :version
-                     "2.34" :documentation
+                     :return (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer
+                     :full :version "2.34" :documentation
                      "Utility method for #GPollableInputStream and #GPollableOutputStream
 implementations. Creates a new #GSource, as with
 g_pollable_source_new(), but also attaching CHILD-SOURCE (with a
@@ -6687,7 +7151,7 @@ Since: 2.32")
                      ((object (:object rt:object))
                       (callback (:callback async-ready-callback :async))
                       (user-data :pointer :user-data-of callback)
-                      (error (:boxed "GError" "g_error_get_type")))
+                      (error (:boxed "GError" "g_error_get_type" glib:error)))
                      :documentation "Reports an error in an idle function. Similar to
 g_simple_async_report_error_in_idle(), but takes a #GError rather
 than building a new one.
@@ -6962,6 +7426,18 @@ See: https://docs.gtk.org/gio/method.ActionMap.add_action.html
 Since: 2.32")
 
 
+(rt:define-gfunction (action-map-add-action-entries "g_action_map_add_action_entries") :args
+                     ((action-map (:object action-map)) (entries (:array (:record action-entry)))
+                      (n-entries :int :length-of entries) (user-data :pointer :optional t))
+                     :version "2.32" :documentation
+                     "A convenience function for creating multiple Gio.SimpleAction
+instances and adding them to a Gio.ActionMap.
+
+C: g_action_map_add_action_entries
+See: https://docs.gtk.org/gio/method.ActionMap.add_action_entries.html
+Since: 2.32")
+
+
 (rt:define-gfunction (action-map-lookup-action "g_action_map_lookup_action") :args
                      ((action-map (:object action-map)) (action-name :string)) :return
                      (:object action) :version "2.32" :documentation
@@ -6979,6 +7455,18 @@ Since: 2.32")
 C: g_action_map_remove_action
 See: https://docs.gtk.org/gio/method.ActionMap.remove_action.html
 Since: 2.32")
+
+
+(rt:define-gfunction (action-map-remove-action-entries "g_action_map_remove_action_entries") :args
+                     ((action-map (:object action-map)) (entries (:array (:record action-entry)))
+                      (n-entries :int :length-of entries))
+                     :version "2.78" :documentation
+                     "Remove actions from a Gio.ActionMap. This is meant as the reverse of
+Gio.ActionMap.add_action_entries.
+
+C: g_action_map_remove_action_entries
+See: https://docs.gtk.org/gio/method.ActionMap.remove_action_entries.html
+Since: 2.78")
 
 
 (rt:define-gfunction (app-info-create-from-commandline "g_app_info_create_from_commandline") :args
@@ -7525,6 +8013,18 @@ See: https://docs.gtk.org/gio/method.Application.add_main_option.html
 Since: 2.42")
 
 
+(rt:define-gfunction (application-add-main-option-entries "g_application_add_main_option_entries")
+                     :args
+                     ((application (:object application))
+                      (entries (:array (:record glib:option-entry) :zero-terminated t)))
+                     :version "2.40" :documentation
+                     "Adds main option entries to be handled by APPLICATION.
+
+C: g_application_add_main_option_entries
+See: https://docs.gtk.org/gio/method.Application.add_main_option_entries.html
+Since: 2.40")
+
+
 (rt:define-gfunction (application-add-option-group "g_application_add_option_group") :args
                      ((application (:object application))
                       (group (:boxed "GOptionGroup" "g_option_group_get_type") :transfer :full))
@@ -7934,7 +8434,7 @@ Since: 2.28")
 (rt:define-gfunction
  (application-command-line-get-options-dict "g_application_command_line_get_options_dict") :args
  ((cmdline (:object application-command-line))) :return
- (:boxed "GVariantDict" "g_variant_dict_get_type") :version "2.40" :documentation
+ (:boxed "GVariantDict" "g_variant_dict_get_type" glib:variant-dict) :version "2.40" :documentation
  "Gets the options that were passed to g_application_command_line().
 
 C: g_application_command_line_get_options_dict
@@ -8351,7 +8851,7 @@ See: https://docs.gtk.org/gio/method.Cancellable.is_cancelled.html")
 
 (rt:define-gfunction (cancellable-make-pollfd "g_cancellable_make_pollfd") :args
                      ((cancellable (:object cancellable))
-                      (pollfd (:boxed "GPollFD" "g_pollfd_get_type")))
+                      (pollfd (:boxed "GPollFD" "g_pollfd_get_type" glib:poll-fd)))
                      :return :boolean :version "2.22" :documentation
                      "Creates a #GPollFD corresponding to CANCELLABLE; this can be passed
 to g_poll() and used to poll for cancellation. This is useful both
@@ -8410,8 +8910,9 @@ See: https://docs.gtk.org/gio/method.Cancellable.set_error_if_cancelled.html")
 
 (rt:define-gfunction (cancellable-source-new "g_cancellable_source_new") :args
                      ((cancellable (:object cancellable))) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :version "2.28"
-                     :documentation "Creates a source that triggers if CANCELLABLE is cancelled and
+                     (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer :full
+                     :version "2.28" :documentation
+                     "Creates a source that triggers if CANCELLABLE is cancelled and
 calls its callback of type #GCancellableSourceFunc. This is
 primarily useful for attaching to another (non-cancellable) source
 with g_source_add_child_source() to add cancellability to it.
@@ -8634,8 +9135,12 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-annotation-info-ref "g_dbus_annotation_info_ref") :args
-                     ((info (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type")))
-                     :return (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type")
+                     ((info
+                       (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type"
+                        dbus-annotation-info)))
+                     :return
+                     (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type"
+                      dbus-annotation-info)
                      :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
@@ -8646,7 +9151,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-annotation-info-unref "g_dbus_annotation_info_unref") :args
-                     ((info (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type")))
+                     ((info
+                       (:boxed "GDBusAnnotationInfo" "g_dbus_annotation_info_get_type"
+                        dbus-annotation-info)))
                      :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
@@ -8658,9 +9165,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-arg-info-ref "g_dbus_arg_info_ref") :args
-                     ((info (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type"))) :return
-                     (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type") :return-transfer :full
-                     :version "2.26" :documentation
+                     ((info (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type" dbus-arg-info)))
+                     :return (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type" dbus-arg-info)
+                     :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
 
@@ -8670,8 +9177,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-arg-info-unref "g_dbus_arg_info_unref") :args
-                     ((info (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type"))) :version "2.26"
-                     :documentation
+                     ((info (:boxed "GDBusArgInfo" "g_dbus_arg_info_get_type" dbus-arg-info)))
+                     :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
 the memory used is freed.
@@ -9124,10 +9631,11 @@ Since: 2.26")
 (rt:define-gfunction
  (dbus-connection-register-object "g_dbus_connection_register_object_with_closures") :args
  ((connection (:object dbus-connection)) (object-path :string)
-  (interface-info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
-  (method-call-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-  (get-property-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-  (set-property-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+  (interface-info
+   (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type" dbus-interface-info))
+  (method-call-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+  (get-property-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+  (set-property-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t))
  :return :uint :throws t :version "2.46" :documentation
  "Version of g_dbus_connection_register_object() using closures instead of a
 #GDBusInterfaceVTable for easier binding in other languages.
@@ -9143,10 +9651,11 @@ Deprecated.")
   "g_dbus_connection_register_object_with_closures2")
  :args
  ((connection (:object dbus-connection)) (object-path :string)
-  (interface-info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
-  (method-call-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-  (get-property-closure (:boxed "GClosure" "g_closure_get_type") :optional t)
-  (set-property-closure (:boxed "GClosure" "g_closure_get_type") :optional t))
+  (interface-info
+   (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type" dbus-interface-info))
+  (method-call-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+  (get-property-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t)
+  (set-property-closure (:boxed "GClosure" "g_closure_get_type" gobject:closure) :optional t))
  :return :uint :throws t :version "2.84" :documentation
  "Version of Gio.DBusConnection.register_object using closures instead
 of a Gio.DBusInterfaceVTable for easier binding in other languages.
@@ -9325,8 +9834,10 @@ Since: 2.32")
 
 (rt:define-gfunction (dbus-interface-get-info "g_dbus_interface_get_info") :args
                      ((interface- (:object dbus-interface))) :return
-                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type") :version "2.30"
-                     :documentation "Gets D-Bus introspection information for the D-Bus interface
+                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                      dbus-interface-info)
+                     :version "2.30" :documentation
+                     "Gets D-Bus introspection information for the D-Bus interface
 implemented by INTERFACE-.
 
 C: g_dbus_interface_get_info
@@ -9345,7 +9856,9 @@ Since: 2.30")
 
 
 (rt:define-gfunction (dbus-interface-info-cache-build "g_dbus_interface_info_cache_build") :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info)))
                      :version "2.30" :documentation "Builds a lookup-cache to speed up
 g_dbus_interface_info_lookup_method(),
 g_dbus_interface_info_lookup_signal() and
@@ -9357,7 +9870,10 @@ Since: 2.30")
 
 
 (rt:define-gfunction (dbus-interface-info-cache-release "g_dbus_interface_info_cache_release")
-                     :args ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")))
+                     :args
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info)))
                      :version "2.30" :documentation
                      "Decrements the usage count for the cache for INFO built by
 g_dbus_interface_info_cache_build() (if any) and frees the
@@ -9369,8 +9885,11 @@ Since: 2.30")
 
 
 (rt:define-gfunction (dbus-interface-info-generate-xml "g_dbus_interface_info_generate_xml") :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
-                      (indent :uint) (string-builder (:boxed "GString" "g_gstring_get_type")))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
+                      (indent :uint)
+                      (string-builder (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :version "2.26" :documentation
                      "Appends an XML representation of INFO (and its children) to STRING-BUILDER.
 
@@ -9381,10 +9900,13 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-interface-info-lookup-method "g_dbus_interface_info_lookup_method")
                      :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string))
-                     :return (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type") :version
-                     "2.26" :documentation "Looks up information about a method.
+                     :return
+                     (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type" dbus-method-info)
+                     :version "2.26" :documentation "Looks up information about a method.
 
 C: g_dbus_interface_info_lookup_method
 See: https://docs.gtk.org/gio/method.DBusInterfaceInfo.lookup_method.html
@@ -9393,10 +9915,14 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-interface-info-lookup-property "g_dbus_interface_info_lookup_property")
                      :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string))
-                     :return (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type") :version
-                     "2.26" :documentation "Looks up information about a property.
+                     :return
+                     (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"
+                      dbus-property-info)
+                     :version "2.26" :documentation "Looks up information about a property.
 
 C: g_dbus_interface_info_lookup_property
 See: https://docs.gtk.org/gio/method.DBusInterfaceInfo.lookup_property.html
@@ -9405,10 +9931,13 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-interface-info-lookup-signal "g_dbus_interface_info_lookup_signal")
                      :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string))
-                     :return (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type") :version
-                     "2.26" :documentation "Looks up information about a signal.
+                     :return
+                     (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type" dbus-signal-info)
+                     :version "2.26" :documentation "Looks up information about a signal.
 
 C: g_dbus_interface_info_lookup_signal
 See: https://docs.gtk.org/gio/method.DBusInterfaceInfo.lookup_signal.html
@@ -9416,8 +9945,12 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-interface-info-ref "g_dbus_interface_info_ref") :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")))
-                     :return (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info)))
+                     :return
+                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                      dbus-interface-info)
                      :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
@@ -9428,7 +9961,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-interface-info-unref "g_dbus_interface_info_unref") :args
-                     ((info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")))
+                     ((info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info)))
                      :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
@@ -9495,8 +10030,10 @@ Since: 2.30")
 
 (rt:define-gfunction (dbus-interface-skeleton-get-info "g_dbus_interface_skeleton_get_info") :args
                      ((interface- (:object dbus-interface-skeleton))) :return
-                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type") :version "2.30"
-                     :documentation "Gets D-Bus introspection information for the D-Bus interface
+                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                      dbus-interface-info)
+                     :version "2.30" :documentation
+                     "Gets D-Bus introspection information for the D-Bus interface
 implemented by INTERFACE-.
 
 C: g_dbus_interface_skeleton_get_info
@@ -10082,9 +10619,11 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-method-info-ref "g_dbus_method_info_ref") :args
-                     ((info (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type"))) :return
-                     (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type") :return-transfer
-                     :full :version "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type" dbus-method-info)))
+                     :return
+                     (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type" dbus-method-info)
+                     :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
 
@@ -10094,8 +10633,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-method-info-unref "g_dbus_method_info_unref") :args
-                     ((info (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type"))) :version
-                     "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type" dbus-method-info)))
+                     :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
 the memory used is freed.
@@ -10141,8 +10681,8 @@ Since: 2.26")
 (rt:define-gfunction
  (dbus-method-invocation-get-method-info "g_dbus_method_invocation_get_method_info") :args
  ((invocation (:object dbus-method-invocation))) :return
- (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type") :version "2.26" :documentation
- "Gets information about the method call, if any.
+ (:boxed "GDBusMethodInfo" "g_dbus_method_info_get_type" dbus-method-info) :version "2.26"
+ :documentation "Gets information about the method call, if any.
 
 C: g_dbus_method_invocation_get_method_info
 See: https://docs.gtk.org/gio/method.DBusMethodInvocation.get_method_info.html
@@ -10183,8 +10723,8 @@ Since: 2.26")
 (rt:define-gfunction
  (dbus-method-invocation-get-property-info "g_dbus_method_invocation_get_property_info") :args
  ((invocation (:object dbus-method-invocation))) :return
- (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type") :version "2.38" :documentation
- "Gets information about the property that this method call is for, if
+ (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type" dbus-property-info) :version "2.38"
+ :documentation "Gets information about the property that this method call is for, if
 any.
 
 C: g_dbus_method_invocation_get_property_info
@@ -10228,7 +10768,7 @@ Since: 2.26")
 (rt:define-gfunction
  (dbus-method-invocation-return-gerror "g_dbus_method_invocation_return_gerror") :args
  ((invocation (:object dbus-method-invocation) :transfer :full)
-  (error (:boxed "GError" "g_error_get_type")))
+  (error (:boxed "GError" "g_error_get_type" glib:error)))
  :version "2.26" :documentation "Like g_dbus_method_invocation_return_error() but takes a #GError
 instead of the error domain, error code and message.
 
@@ -10266,8 +10806,8 @@ Since: 2.30")
 
 (rt:define-gfunction (dbus-node-info-new-for-xml "g_dbus_node_info_new_for_xml") :args
                      ((xml-data :string)) :return
-                     (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type") :return-transfer :full
-                     :throws t :version "2.26" :documentation
+                     (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info)
+                     :return-transfer :full :throws t :version "2.26" :documentation
                      "Parses XML-DATA and returns a #GDBusNodeInfo representing the data.
 
 C: g_dbus_node_info_new_for_xml
@@ -10276,8 +10816,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-node-info-generate-xml "g_dbus_node_info_generate_xml") :args
-                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type")) (indent :uint)
-                      (string-builder (:boxed "GString" "g_gstring_get_type")))
+                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info))
+                      (indent :uint)
+                      (string-builder (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :version "2.26" :documentation
                      "Appends an XML representation of INFO (and its children) to STRING-BUILDER.
 
@@ -10287,8 +10828,11 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-node-info-lookup-interface "g_dbus_node_info_lookup_interface") :args
-                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type")) (name :string))
-                     :return (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")
+                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info))
+                      (name :string))
+                     :return
+                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                      dbus-interface-info)
                      :version "2.26" :documentation "Looks up information about an interface.
 
 C: g_dbus_node_info_lookup_interface
@@ -10297,9 +10841,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-node-info-ref "g_dbus_node_info_ref") :args
-                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type"))) :return
-                     (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type") :return-transfer :full
-                     :version "2.26" :documentation
+                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info)))
+                     :return (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info)
+                     :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
 
@@ -10309,8 +10853,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-node-info-unref "g_dbus_node_info_unref") :args
-                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type"))) :version "2.26"
-                     :documentation
+                     ((info (:boxed "GDBusNodeInfo" "g_dbus_node_info_get_type" dbus-node-info)))
+                     :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
 the memory used is freed.
@@ -10689,9 +11233,13 @@ Since: 2.30")
 
 
 (rt:define-gfunction (dbus-property-info-ref "g_dbus_property_info_ref") :args
-                     ((info (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"))) :return
-                     (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type") :return-transfer
-                     :full :version "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"
+                        dbus-property-info)))
+                     :return
+                     (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"
+                      dbus-property-info)
+                     :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
 
@@ -10701,8 +11249,10 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-property-info-unref "g_dbus_property_info_unref") :args
-                     ((info (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"))) :version
-                     "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusPropertyInfo" "g_dbus_property_info_get_type"
+                        dbus-property-info)))
+                     :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
 the memory used is freed.
@@ -10734,7 +11284,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-new-for-bus-sync "g_dbus_proxy_new_for_bus_sync") :args
                      ((bus-type (:enum bus-type)) (flags (:flags dbus-proxy-flags))
-                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string) (object-path :string) (interface-name :string)
                       (cancellable (:object cancellable) :optional t))
                      :return (:object dbus-proxy) :return-transfer :full :throws t :version "2.26"
@@ -10748,7 +11300,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-new-sync "g_dbus_proxy_new_sync") :args
                      ((connection (:object dbus-connection)) (flags (:flags dbus-proxy-flags))
-                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string) (object-path :string) (interface-name :string)
                       (cancellable (:object cancellable) :optional t))
                      :return (:object dbus-proxy) :return-transfer :full :throws t :version "2.26"
@@ -10765,7 +11319,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-new "g_dbus_proxy_new") :args
                      ((connection (:object dbus-connection)) (flags (:flags dbus-proxy-flags))
-                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string) (object-path :string) (interface-name :string)
                       (cancellable (:object cancellable) :optional t)
                       (callback (:callback async-ready-callback :async) :optional t)
@@ -10785,7 +11341,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-new-for-bus "g_dbus_proxy_new_for_bus") :args
                      ((bus-type (:enum bus-type)) (flags (:flags dbus-proxy-flags))
-                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"))
+                      (info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info))
                       (name :string) (object-path :string) (interface-name :string)
                       (cancellable (:object cancellable) :optional t)
                       (callback (:callback async-ready-callback :async) :optional t)
@@ -10928,8 +11486,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-get-interface-info "g_dbus_proxy_get_interface_info") :args
                      ((proxy (:object dbus-proxy))) :return
-                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type") :version "2.26"
-                     :documentation
+                     (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                      dbus-interface-info)
+                     :version "2.26" :documentation
                      "Returns the #GDBusInterfaceInfo, if any, specifying the interface
 that PROXY conforms to. See the #GDBusProxy:g-interface-info
 property for more details.
@@ -11004,7 +11563,9 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-proxy-set-interface-info "g_dbus_proxy_set_interface_info") :args
                      ((proxy (:object dbus-proxy))
-                      (info (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type")
+                      (info
+                       (:boxed "GDBusInterfaceInfo" "g_dbus_interface_info_get_type"
+                        dbus-interface-info)
                        :optional t))
                      :version "2.26" :documentation
                      "Ensure that interactions with PROXY conform to the given
@@ -11085,9 +11646,11 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-signal-info-ref "g_dbus_signal_info_ref") :args
-                     ((info (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type"))) :return
-                     (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type") :return-transfer
-                     :full :version "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type" dbus-signal-info)))
+                     :return
+                     (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type" dbus-signal-info)
+                     :return-transfer :full :version "2.26" :documentation
                      "If INFO is statically allocated does nothing. Otherwise increases
 the reference count.
 
@@ -11097,8 +11660,9 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-signal-info-unref "g_dbus_signal_info_unref") :args
-                     ((info (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type"))) :version
-                     "2.26" :documentation
+                     ((info
+                       (:boxed "GDBusSignalInfo" "g_dbus_signal_info_get_type" dbus-signal-info)))
+                     :version "2.26" :documentation
                      "If INFO is statically allocated, does nothing. Otherwise decreases
 the reference count of INFO. When its reference count drops to 0,
 the memory used is freed.
@@ -11512,14 +12076,40 @@ Since: 2.48")
                      ((datagram-based (:object datagram-based))
                       (condition (:flags glib:io-condition))
                       (cancellable (:object cancellable) :optional t))
-                     :return (:boxed "GSource" "g_source_get_type") :return-transfer :full :version
-                     "2.48" :documentation
+                     :return (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer
+                     :full :version "2.48" :documentation
                      "Creates a #GSource that can be attached to a #GMainContext to monitor for
 the availability of the specified CONDITION on the #GDatagramBased. The
 #GSource keeps a reference to the DATAGRAM-BASED.
 
 C: g_datagram_based_create_source
 See: https://docs.gtk.org/gio/method.DatagramBased.create_source.html
+Since: 2.48")
+
+
+(rt:define-gfunction (datagram-based-receive-messages "g_datagram_based_receive_messages") :args
+                     ((datagram-based (:object datagram-based))
+                      (messages (:array (:record input-message)))
+                      (num-messages :uint :length-of messages) (flags :int) (timeout :int64)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :int :throws t :version "2.48" :documentation
+                     "Receive one or more data messages from DATAGRAM-BASED in one go.
+
+C: g_datagram_based_receive_messages
+See: https://docs.gtk.org/gio/method.DatagramBased.receive_messages.html
+Since: 2.48")
+
+
+(rt:define-gfunction (datagram-based-send-messages "g_datagram_based_send_messages") :args
+                     ((datagram-based (:object datagram-based))
+                      (messages (:array (:record output-message)))
+                      (num-messages :uint :length-of messages) (flags :int) (timeout :int64)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :int :throws t :version "2.48" :documentation
+                     "Send one or more data messages from DATAGRAM-BASED in one go.
+
+C: g_datagram_based_send_messages
+See: https://docs.gtk.org/gio/method.DatagramBased.send_messages.html
 Since: 2.48")
 
 
@@ -12516,8 +13106,10 @@ See: https://docs.gtk.org/gio/method.File.copy.html")
                      ((source (:object file)) (destination (:object file))
                       (flags (:flags file-copy-flags)) (io-priority :int)
                       (cancellable (:object cancellable))
-                      (progress-callback-closure (:boxed "GClosure" "g_closure_get_type"))
-                      (ready-callback-closure (:boxed "GClosure" "g_closure_get_type")))
+                      (progress-callback-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure))
+                      (ready-callback-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure)))
                      :version "2.82" :documentation
                      "Version of Gio.File.copy_async using closures instead of callbacks for
 easier binding in other languages.
@@ -13226,8 +13818,10 @@ See: https://docs.gtk.org/gio/method.File.move.html")
                      ((source (:object file)) (destination (:object file))
                       (flags (:flags file-copy-flags)) (io-priority :int)
                       (cancellable (:object cancellable))
-                      (progress-callback-closure (:boxed "GClosure" "g_closure_get_type"))
-                      (ready-callback-closure (:boxed "GClosure" "g_closure_get_type")))
+                      (progress-callback-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure))
+                      (ready-callback-closure
+                       (:boxed "GClosure" "g_closure_get_type" gobject:closure)))
                      :version "2.82" :documentation
                      "Version of Gio.File.move_async using closures instead of callbacks for
 easier binding in other languages.
@@ -13450,7 +14044,8 @@ See: https://docs.gtk.org/gio/method.File.query_info_finish.html")
 (rt:define-gfunction (file-query-settable-attributes "g_file_query_settable_attributes") :args
                      ((file (:object file)) (cancellable (:object cancellable) :optional t))
                      :return
-                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")
+                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                      file-attribute-info-list)
                      :return-transfer :full :throws t :documentation
                      "Obtain the list of settable attributes for the file.
 
@@ -13461,7 +14056,8 @@ See: https://docs.gtk.org/gio/method.File.query_settable_attributes.html")
 (rt:define-gfunction (file-query-writable-namespaces "g_file_query_writable_namespaces") :args
                      ((file (:object file)) (cancellable (:object cancellable) :optional t))
                      :return
-                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")
+                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                      file-attribute-info-list)
                      :return-transfer :full :throws t :documentation
                      "Obtain the list of attribute namespaces where new attributes
 can be created by a user. An example of this is extended
@@ -13946,7 +14542,8 @@ Since: 2.22")
 
 
 (rt:define-gfunction (file-attribute-info-list-new "g_file_attribute_info_list_new") :return
-                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")
+                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                      file-attribute-info-list)
                      :return-transfer :full :documentation "Creates a new file attribute info list.
 
 C: g_file_attribute_info_list_new
@@ -13955,7 +14552,8 @@ See: https://docs.gtk.org/gio/ctor.FileAttributeInfoList.new.html")
 
 (rt:define-gfunction (file-attribute-info-list-add "g_file_attribute_info_list_add") :args
                      ((list
-                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"))
+                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                        file-attribute-info-list))
                       (name :string) (type (:enum file-attribute-type))
                       (flags (:flags file-attribute-info-flags)))
                      :documentation "Adds a new attribute with NAME to the LIST, setting
@@ -13967,9 +14565,11 @@ See: https://docs.gtk.org/gio/method.FileAttributeInfoList.add.html")
 
 (rt:define-gfunction (file-attribute-info-list-dup "g_file_attribute_info_list_dup") :args
                      ((list
-                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")))
+                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                        file-attribute-info-list)))
                      :return
-                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")
+                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                      file-attribute-info-list)
                      :return-transfer :full :documentation
                      "Makes a duplicate of a file attribute info list.
 
@@ -13979,7 +14579,8 @@ See: https://docs.gtk.org/gio/method.FileAttributeInfoList.dup.html")
 
 (rt:define-gfunction (file-attribute-info-list-lookup "g_file_attribute_info_list_lookup") :args
                      ((list
-                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"))
+                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                        file-attribute-info-list))
                       (name :string))
                      :return (:record file-attribute-info) :documentation
                      "Gets the file attribute with the name NAME from LIST.
@@ -13990,9 +14591,11 @@ See: https://docs.gtk.org/gio/method.FileAttributeInfoList.lookup.html")
 
 (rt:define-gfunction (file-attribute-info-list-ref "g_file_attribute_info_list_ref") :args
                      ((list
-                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")))
+                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                        file-attribute-info-list)))
                      :return
-                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")
+                     (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                      file-attribute-info-list)
                      :return-transfer :full :documentation "References a file attribute info list.
 
 C: g_file_attribute_info_list_ref
@@ -14001,7 +14604,8 @@ See: https://docs.gtk.org/gio/method.FileAttributeInfoList.ref.html")
 
 (rt:define-gfunction (file-attribute-info-list-unref "g_file_attribute_info_list_unref") :args
                      ((list
-                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type")))
+                       (:boxed "GFileAttributeInfoList" "g_file_attribute_info_list_get_type"
+                        file-attribute-info-list)))
                      :documentation "Removes a reference from the given LIST. If the reference count
 falls to zero, the LIST is deleted.
 
@@ -14611,6 +15215,17 @@ See: https://docs.gtk.org/gio/method.FileInfo.get_is_symlink.html")
 C: g_file_info_get_modification_date_time
 See: https://docs.gtk.org/gio/method.FileInfo.get_modification_date_time.html
 Since: 2.62")
+
+
+(rt:define-gfunction (file-info-get-modification-time "g_file_info_get_modification_time") :args
+                     ((info (:object file-info))
+                      (result (:record glib:time-val) :direction :out :caller-allocates t))
+                     :documentation "Gets the modification time of the current INFO and sets it
+in RESULT.
+
+C: g_file_info_get_modification_time
+See: https://docs.gtk.org/gio/method.FileInfo.get_modification_time.html
+Deprecated.")
 
 
 (rt:define-gfunction (file-info-get-name "g_file_info_get_name") :args ((info (:object file-info)))
@@ -15915,6 +16530,21 @@ which must be an IPv6 address.
 C: g_inet_socket_address_get_scope_id
 See: https://docs.gtk.org/gio/method.InetSocketAddress.get_scope_id.html
 Since: 2.32")
+
+
+(rt:define-gfunction (initable-newv "g_initable_newv") :args
+                     ((object-type :gtype) (n-parameters :uint :length-of parameters)
+                      (parameters (:array (:record gobject:parameter)))
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:object rt:object) :return-transfer :full :throws t :version "2.22"
+                     :documentation "Helper function for constructing #GInitable object. This is
+similar to g_object_newv() but also initializes the object
+and returns NIL, setting an error on failure.
+
+C: g_initable_newv
+See: https://docs.gtk.org/gio/type_func.Initable.newv.html
+Since: 2.22
+Deprecated.")
 
 
 (rt:define-gfunction (initable-init "g_initable_init") :args
@@ -17998,6 +18628,51 @@ C: g_output_stream_write_finish
 See: https://docs.gtk.org/gio/method.OutputStream.write_finish.html")
 
 
+(rt:define-gfunction (output-stream-writev "g_output_stream_writev") :args
+                     ((stream (:object output-stream)) (vectors (:array (:record output-vector)))
+                      (n-vectors :size :length-of vectors)
+                      (bytes-written :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :version "2.60" :documentation
+                     "Tries to write the bytes contained in the N-VECTORS VECTORS into the
+stream. Will block during the operation.
+
+C: g_output_stream_writev
+See: https://docs.gtk.org/gio/method.OutputStream.writev.html
+Since: 2.60")
+
+
+(rt:define-gfunction (output-stream-writev-all "g_output_stream_writev_all") :args
+                     ((stream (:object output-stream)) (vectors (:array (:record output-vector)))
+                      (n-vectors :size :length-of vectors)
+                      (bytes-written :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :boolean :throws t :version "2.60" :documentation
+                     "Tries to write the bytes contained in the N-VECTORS VECTORS into the
+stream. Will block during the operation.
+
+C: g_output_stream_writev_all
+See: https://docs.gtk.org/gio/method.OutputStream.writev_all.html
+Since: 2.60")
+
+
+(rt:define-gfunction (output-stream-writev-all-async "g_output_stream_writev_all_async") :args
+                     ((stream (:object output-stream)) (vectors (:array (:record output-vector)))
+                      (n-vectors :size :length-of vectors) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.60" :documentation
+                     "Request an asynchronous write of the bytes contained in the N-VECTORS VECTORS into
+the stream. When the operation is finished CALLBACK will be called.
+You can then call g_output_stream_writev_all_finish() to get the result of the
+operation.
+
+C: g_output_stream_writev_all_async
+See: https://docs.gtk.org/gio/method.OutputStream.writev_all_async.html
+Since: 2.60")
+
+
 (rt:define-gfunction (output-stream-writev-all-finish "g_output_stream_writev_all_finish") :args
                      ((stream (:object output-stream)) (result (:object async-result))
                       (bytes-written :size :direction :out :transfer :full))
@@ -18007,6 +18682,23 @@ g_output_stream_writev_all_async().
 
 C: g_output_stream_writev_all_finish
 See: https://docs.gtk.org/gio/method.OutputStream.writev_all_finish.html
+Since: 2.60")
+
+
+(rt:define-gfunction (output-stream-writev-async "g_output_stream_writev_async") :args
+                     ((stream (:object output-stream)) (vectors (:array (:record output-vector)))
+                      (n-vectors :size :length-of vectors) (io-priority :int)
+                      (cancellable (:object cancellable) :optional t)
+                      (callback (:callback async-ready-callback :async) :optional t)
+                      (user-data :pointer :user-data-of callback))
+                     :version "2.60" :documentation
+                     "Request an asynchronous write of the bytes contained in N-VECTORS VECTORS into
+the stream. When the operation is finished CALLBACK will be called.
+You can then call g_output_stream_writev_finish() to get the result of the
+operation.
+
+C: g_output_stream_writev_async
+See: https://docs.gtk.org/gio/method.OutputStream.writev_async.html
 Since: 2.60")
 
 
@@ -18157,8 +18849,8 @@ Since: 2.28")
                      :args
                      ((stream (:object pollable-input-stream))
                       (cancellable (:object cancellable) :optional t))
-                     :return (:boxed "GSource" "g_source_get_type") :return-transfer :full :version
-                     "2.28" :documentation
+                     :return (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer
+                     :full :version "2.28" :documentation
                      "Creates a #GSource that triggers when STREAM can be read, or
 CANCELLABLE is triggered or an error occurs. The callback on the
 source is of the #GPollableSourceFunc type.
@@ -18209,7 +18901,7 @@ Since: 2.28")
 (rt:define-gfunction
  (pollable-output-stream-create-source "g_pollable_output_stream_create_source") :args
  ((stream (:object pollable-output-stream)) (cancellable (:object cancellable) :optional t))
- :return (:boxed "GSource" "g_source_get_type") :return-transfer :full :version "2.28"
+ :return (:boxed "GSource" "g_source_get_type" glib:source) :return-transfer :full :version "2.28"
  :documentation "Creates a #GSource that triggers when STREAM can be written, or
 CANCELLABLE is triggered or an error occurs. The callback on the
 source is of the #GPollableSourceFunc type.
@@ -18241,6 +18933,24 @@ that will be triggered when STREAM is writable.
 
 C: g_pollable_output_stream_write_nonblocking
 See: https://docs.gtk.org/gio/method.PollableOutputStream.write_nonblocking.html")
+
+
+(rt:define-gfunction
+ (pollable-output-stream-writev-nonblocking "g_pollable_output_stream_writev_nonblocking") :args
+ ((stream (:object pollable-output-stream)) (vectors (:array (:record output-vector)))
+  (n-vectors :size :length-of vectors) (bytes-written :size :direction :out :transfer :full)
+  (cancellable (:object cancellable) :optional t))
+ :return (:enum pollable-return) :throws t :version "2.60" :documentation
+ "Attempts to write the bytes contained in the N-VECTORS VECTORS to STREAM,
+as with g_output_stream_writev(). If STREAM is not currently writable,
+this will immediately return %G-POLLABLE-RETURN-WOULD-BLOCK, and you can
+use g_pollable_output_stream_create_source() to create a #GSource
+that will be triggered when STREAM is writable. ERROR will *not* be
+set in that case.
+
+C: g_pollable_output_stream_writev_nonblocking
+See: https://docs.gtk.org/gio/method.PollableOutputStream.writev_nonblocking.html
+Since: 2.60")
 
 
 (rt:define-gfunction (power-profile-monitor-dup-default "g_power_profile_monitor_dup_default")
@@ -19025,8 +19735,10 @@ Since: 2.26")
 (rt:define-gfunction (settings-bind-with-mapping "g_settings_bind_with_mapping_closures") :args
                      ((settings (:object settings)) (key :string) (object (:object rt:object))
                       (property :string) (flags (:flags settings-bind-flags))
-                      (get-mapping (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (set-mapping (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (get-mapping (:boxed "GClosure" "g_closure_get_type" gobject:closure)
+                       :optional t)
+                      (set-mapping (:boxed "GClosure" "g_closure_get_type" gobject:closure)
+                       :optional t))
                      :version "2.82" :documentation
                      "Version of Gio.Settings.bind_with_mapping using closures instead of
 callbacks for easier binding in other languages.
@@ -19779,6 +20491,20 @@ See: https://docs.gtk.org/gio/ctor.SimpleActionGroup.new.html
 Since: 2.28")
 
 
+(rt:define-gfunction (simple-action-group-add-entries "g_simple_action_group_add_entries") :args
+                     ((simple (:object simple-action-group))
+                      (entries (:array (:record action-entry))) (n-entries :int :length-of entries)
+                      (user-data :pointer :optional t))
+                     :version "2.30" :documentation
+                     "A convenience function for creating multiple #GSimpleAction instances
+and adding them to the action group.
+
+C: g_simple_action_group_add_entries
+See: https://docs.gtk.org/gio/method.SimpleActionGroup.add_entries.html
+Since: 2.30
+Deprecated.")
+
+
 (rt:define-gfunction (simple-action-group-insert "g_simple_action_group_insert") :args
                      ((simple (:object simple-action-group)) (action (:object action))) :version
                      "2.28" :documentation "Adds an action to the action group.
@@ -19828,7 +20554,7 @@ Deprecated.")
                      ((source-object (:object rt:object))
                       (callback (:callback async-ready-callback :async))
                       (user-data :pointer :user-data-of callback)
-                      (error (:boxed "GError" "g_error_get_type")))
+                      (error (:boxed "GError" "g_error_get_type" glib:error)))
                      :return (:object simple-async-result) :return-transfer :full :documentation
                      "Creates a #GSimpleAsyncResult from an error condition.
 
@@ -19920,7 +20646,7 @@ Deprecated.")
 (rt:define-gfunction (simple-async-result-set-from-error "g_simple_async_result_set_from_error")
                      :args
                      ((simple (:object simple-async-result))
-                      (error (:boxed "GError" "g_error_get_type")))
+                      (error (:boxed "GError" "g_error_get_type" glib:error)))
                      :documentation "Sets the result from a #GError.
 
 C: g_simple_async_result_set_from_error
@@ -20472,6 +21198,20 @@ See: https://docs.gtk.org/gio/method.Socket.receive_from.html
 Since: 2.22")
 
 
+(rt:define-gfunction (socket-receive-messages "g_socket_receive_messages") :args
+                     ((socket (:object socket)) (messages (:array (:record input-message)))
+                      (num-messages :uint :length-of messages) (flags :int)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :int :throws t :version "2.48" :documentation
+                     "Receive multiple data messages from SOCKET in one go.  This is the most
+complicated and fully-featured version of this call. For easier use, see
+g_socket_receive(), g_socket_receive_from(), and g_socket_receive_message().
+
+C: g_socket_receive_messages
+See: https://docs.gtk.org/gio/method.Socket.receive_messages.html
+Since: 2.48")
+
+
 (rt:define-gfunction (socket-receive-with-blocking "g_socket_receive_with_blocking") :args
                      ((socket (:object socket))
                       (buffer (:array :uint8 :length size :caller-allocates t) :direction :out)
@@ -20499,6 +21239,55 @@ g_socket_send_to() with ADDRESS set to NIL.
 C: g_socket_send
 See: https://docs.gtk.org/gio/method.Socket.send.html
 Since: 2.22")
+
+
+(rt:define-gfunction (socket-send-message "g_socket_send_message") :args
+                     ((socket (:object socket)) (address (:object socket-address))
+                      (vectors (:array (:record output-vector)))
+                      (num-vectors :int :length-of vectors)
+                      (messages (:array (:object socket-control-message)))
+                      (num-messages :int :length-of messages) (flags :int)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :ssize :throws t :version "2.22" :documentation
+                     "Send data to ADDRESS on SOCKET.  For sending multiple messages see
+g_socket_send_messages(); for easier use, see
+g_socket_send() and g_socket_send_to().
+
+C: g_socket_send_message
+See: https://docs.gtk.org/gio/method.Socket.send_message.html
+Since: 2.22")
+
+
+(rt:define-gfunction (socket-send-message-with-timeout "g_socket_send_message_with_timeout") :args
+                     ((socket (:object socket)) (address (:object socket-address))
+                      (vectors (:array (:record output-vector)))
+                      (num-vectors :int :length-of vectors)
+                      (messages (:array (:object socket-control-message)))
+                      (num-messages :int :length-of messages) (flags :int) (timeout-us :int64)
+                      (bytes-written :size :direction :out :transfer :full)
+                      (cancellable (:object cancellable) :optional t))
+                     :return (:enum pollable-return) :throws t :version "2.60" :documentation
+                     "This behaves exactly the same as g_socket_send_message(), except that
+the choice of timeout behavior is determined by the TIMEOUT-US argument
+rather than by SOCKET's properties.
+
+C: g_socket_send_message_with_timeout
+See: https://docs.gtk.org/gio/method.Socket.send_message_with_timeout.html
+Since: 2.60")
+
+
+(rt:define-gfunction (socket-send-messages "g_socket_send_messages") :args
+                     ((socket (:object socket)) (messages (:array (:record output-message)))
+                      (num-messages :uint :length-of messages) (flags :int)
+                      (cancellable (:object cancellable) :optional t))
+                     :return :int :throws t :version "2.44" :documentation
+                     "Send multiple data messages from SOCKET in one go.  This is the most
+complicated and fully-featured version of this call. For easier use, see
+g_socket_send(), g_socket_send_to(), and g_socket_send_message().
+
+C: g_socket_send_messages
+See: https://docs.gtk.org/gio/method.Socket.send_messages.html
+Since: 2.44")
 
 
 (rt:define-gfunction (socket-send-to "g_socket_send_to") :args
@@ -22097,7 +22886,7 @@ Since: 2.36")
                      ((source-object (:object rt:object))
                       (callback (:callback async-ready-callback :async))
                       (callback-data :pointer :user-data-of callback) (source-tag :pointer)
-                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
                      :version "2.36" :documentation
                      "Creates a #GTask and then immediately calls g_task_return_error()
 on it. Use this in the wrapper function of an asynchronous method
@@ -22245,6 +23034,19 @@ See: https://docs.gtk.org/gio/method.Task.propagate_pointer.html
 Since: 2.36")
 
 
+(rt:define-gfunction (task-propagate-value "g_task_propagate_value") :args
+                     ((task (:object task)) (value :gvalue :direction :out :caller-allocates t))
+                     :return :boolean :throws t :version "2.64" :documentation
+                     "Gets the result of TASK as a #GValue, and transfers ownership of
+that value to the caller. As with g_task_return_value(), this is
+a generic low-level method; g_task_propagate_pointer() and the like
+will usually be more useful for C code.
+
+C: g_task_propagate_value
+See: https://docs.gtk.org/gio/method.Task.propagate_value.html
+Since: 2.64")
+
+
 (rt:define-gfunction (task-return-boolean "g_task_return_boolean") :args
                      ((task (:object task)) (result :boolean)) :version "2.36" :documentation
                      "Sets TASK's result to RESULT and completes the task (see
@@ -22258,7 +23060,7 @@ Since: 2.36")
 
 (rt:define-gfunction (task-return-error "g_task_return_error") :args
                      ((task (:object task))
-                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
                      :version "2.36" :documentation
                      "Sets TASK's result to ERROR (which TASK assumes ownership of)
 and completes the task (see g_task_return_pointer() for more
@@ -22305,7 +23107,7 @@ Since: 2.80")
 
 (rt:define-gfunction (task-return-value "g_task_return_value") :args
                      ((task (:object task))
-                      (result (:boxed "GValue" "g_value_get_type") :optional t))
+                      (result (:boxed "GValue" "g_value_get_type" gobject:value) :optional t))
                      :version "2.64" :documentation
                      "Sets TASK's result to RESULT (by copying it) and completes the task.
 
@@ -24412,7 +25214,7 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-error-encode-gerror "g_dbus_error_encode_gerror") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :string
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :string
                      :return-transfer :full :version "2.26" :documentation
                      "Creates a D-Bus error name to use for ERROR.
 
@@ -24422,7 +25224,7 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-error-get-remote-error "g_dbus_error_get_remote_error") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :string
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :string
                      :return-transfer :full :version "2.26" :documentation
                      "Gets the D-Bus error name used for ERROR, if any.
 
@@ -24432,8 +25234,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (dbus-error-is-remote-error "g_dbus_error_is_remote_error") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :boolean :version
-                     "2.26" :documentation
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :boolean
+                     :version "2.26" :documentation
                      "Checks if ERROR represents an error received via D-Bus from a remote peer.
 
 C: g_dbus_error_is_remote_error
@@ -24443,8 +25245,8 @@ Since: 2.26")
 
 (rt:define-gfunction (dbus-error-new-for-dbus-error "g_dbus_error_new_for_dbus_error") :args
                      ((dbus-error-name :string) (dbus-error-message :string)) :return
-                     (:boxed "GError" "g_error_get_type") :return-transfer :full :version "2.26"
-                     :documentation
+                     (:boxed "GError" "g_error_get_type" glib:error) :return-transfer :full
+                     :version "2.26" :documentation
                      "Creates a GLib.Error based on the contents of DBUS-ERROR-NAME and
 DBUS-ERROR-MESSAGE.
 
@@ -24469,9 +25271,23 @@ See: https://docs.gtk.org/gio/type_func.DBusError.register_error.html
 Since: 2.26")
 
 
+(rt:define-gfunction (dbus-error-register-error-domain "g_dbus_error_register_error_domain") :args
+                     ((error-domain-quark-name :string)
+                      (quark-volatile :size :direction :out :transfer :full)
+                      (entries (:array (:record dbus-error-entry)))
+                      (num-entries :uint :length-of entries))
+                     :version "2.26" :documentation
+                     "Helper function for associating a GLib.Error error domain with D-Bus
+error names.
+
+C: g_dbus_error_register_error_domain
+See: https://docs.gtk.org/gio/type_func.DBusError.register_error_domain.html
+Since: 2.26")
+
+
 (rt:define-gfunction (dbus-error-strip-remote-error "g_dbus_error_strip_remote_error") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :boolean :version
-                     "2.26" :documentation
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :boolean
+                     :version "2.26" :documentation
                      "Looks for extra information in the error message used to recover
 the D-Bus error name and strips it if found.
 

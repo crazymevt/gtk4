@@ -496,6 +496,561 @@ See: https://docs.gtk.org/gobject/struct.VariantDict.html"))
                    (:gtype-name "GVariantType" :documentation "
 See: https://docs.gtk.org/gobject/struct.VariantType.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct closure
+    (:gtype-name "GClosure")
+  (:bits-0 :uint)
+  (:marshal :pointer)
+  (:data :pointer)
+  (:notifiers :pointer))
+
+
+(rt:define-gfield closure-in-marshal closure :bits-0 :uint :writable t :bits (1 30) :documentation
+                  "Indicates whether the closure is currently being invoked with
+  g_closure_invoke()
+")
+
+
+(rt:define-gfield closure-is-invalid closure :bits-0 :uint :writable t :bits (1 31) :documentation
+                  "Indicates whether the closure has been invalidated by
+  g_closure_invalidate()
+")
+
+
+(rt:define-gstruct-constructor make-closure (:boxed "GClosure" "g_closure_get_type" closure)
+                               ((in-marshal :bits-0 :uint :bits (1 30))
+                                (is-invalid :bits-0 :uint :bits (1 31)))
+                               :documentation
+                               "A new Closure with the given fields; others are zero.")
+
+
+(rt:define-gstruct c-closure
+    nil
+  (:closure (:struct closure))
+  (:callback :pointer))
+
+
+(rt:define-gstruct closure-notify-data
+    nil
+  (:data :pointer)
+  (:notify :pointer))
+
+
+(rt:define-gstruct type-class
+    nil
+  (:g-type rt:gtype))
+
+
+(rt:define-gstruct enum-class
+    nil
+  (:g-type-class (:struct type-class))
+  (:minimum :int)
+  (:maximum :int)
+  (:n-values :uint)
+  (:values :pointer))
+
+
+(rt:define-gfield enum-class-minimum enum-class :minimum :int :writable t :documentation
+                  "the smallest possible value.
+")
+
+
+(rt:define-gfield enum-class-maximum enum-class :maximum :int :writable t :documentation
+                  "the largest possible value.
+")
+
+
+(rt:define-gfield enum-class-n-values enum-class :n-values :uint :writable t :documentation
+                  "the number of possible values.
+")
+
+
+(rt:define-gstruct-constructor make-enum-class (:record enum-class)
+                               ((minimum :minimum :int) (maximum :maximum :int)
+                                (n-values :n-values :uint))
+                               :documentation
+                               "A new EnumClass with the given fields; others are zero.")
+
+
+(rt:define-gstruct enum-value
+    nil
+  (:value :int)
+  (:value-name :pointer)
+  (:value-nick :pointer))
+
+
+(rt:define-gfield enum-value-value enum-value :value :int :writable t :documentation "the enum value
+")
+
+
+(rt:define-gfield enum-value-value-name enum-value :value-name :string :documentation
+                  "the name of the value
+")
+
+
+(rt:define-gfield enum-value-value-nick enum-value :value-nick :string :documentation
+                  "the nickname of the value
+")
+
+
+(rt:define-gstruct-constructor make-enum-value (:record enum-value) ((value :value :int))
+                               :documentation
+                               "A new EnumValue with the given fields; others are zero.")
+
+
+(rt:define-gstruct flags-class
+    nil
+  (:g-type-class (:struct type-class))
+  (:mask :uint)
+  (:n-values :uint)
+  (:values :pointer))
+
+
+(rt:define-gfield flags-class-mask flags-class :mask :uint :writable t :documentation
+                  "a mask covering all possible values.
+")
+
+
+(rt:define-gfield flags-class-n-values flags-class :n-values :uint :writable t :documentation
+                  "the number of possible values.
+")
+
+
+(rt:define-gstruct-constructor make-flags-class (:record flags-class)
+                               ((mask :mask :uint) (n-values :n-values :uint)) :documentation
+                               "A new FlagsClass with the given fields; others are zero.")
+
+
+(rt:define-gstruct flags-value
+    nil
+  (:value :uint)
+  (:value-name :pointer)
+  (:value-nick :pointer))
+
+
+(rt:define-gfield flags-value-value flags-value :value :uint :writable t :documentation
+                  "the flags value
+")
+
+
+(rt:define-gfield flags-value-value-name flags-value :value-name :string :documentation
+                  "the name of the value
+")
+
+
+(rt:define-gfield flags-value-value-nick flags-value :value-nick :string :documentation
+                  "the nickname of the value
+")
+
+
+(rt:define-gstruct-constructor make-flags-value (:record flags-value) ((value :value :uint))
+                               :documentation
+                               "A new FlagsValue with the given fields; others are zero.")
+
+
+(rt:define-gstruct interface-info
+    nil
+  (:interface-init :pointer)
+  (:interface-finalize :pointer)
+  (:interface-data :pointer))
+
+
+(rt:define-gstruct object-construct-param
+    nil
+  (:pspec :pointer)
+  (:value :pointer))
+
+
+(rt:define-gstruct param-spec-type-info
+    nil
+  (:instance-size :uint16)
+  (:n-preallocs :uint16)
+  (:instance-init :pointer)
+  (:value-type rt:gtype)
+  (:finalize :pointer)
+  (:value-set-default :pointer)
+  (:value-validate :pointer)
+  (:values-cmp :pointer))
+
+
+(rt:define-gfield param-spec-type-info-instance-size param-spec-type-info :instance-size :uint16
+                  :writable t :documentation "Size of the instance (object) structure.
+")
+
+
+(rt:define-gfield param-spec-type-info-n-preallocs param-spec-type-info :n-preallocs :uint16
+                  :writable t :documentation
+                  "Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10, it is ignored, since instances are allocated with the [slice allocator][glib-Memory-Slices] now.
+")
+
+
+(rt:define-gfield param-spec-type-info-value-type param-spec-type-info :value-type :gtype :writable
+                  t :documentation "The #GType of values conforming to this #GParamSpec
+")
+
+
+(rt:define-gstruct-constructor make-param-spec-type-info (:record param-spec-type-info)
+                               ((instance-size :instance-size :uint16)
+                                (n-preallocs :n-preallocs :uint16) (value-type :value-type :gtype))
+                               :documentation
+                               "A new ParamSpecTypeInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct value-data-union
+    (:union t)
+  (:v-int :int)
+  (:v-uint :uint)
+  (:v-long :long)
+  (:v-ulong :ulong)
+  (:v-int64 :int64)
+  (:v-uint64 :uint64)
+  (:v-float :float)
+  (:v-double :double)
+  (:v-pointer :pointer))
+
+
+(rt:define-gfield value-data-union-v-int value-data-union :v-int :int :writable t :documentation "")
+
+
+(rt:define-gfield value-data-union-v-uint value-data-union :v-uint :uint :writable t :documentation
+                  "")
+
+
+(rt:define-gfield value-data-union-v-long value-data-union :v-long :long :writable t :documentation
+                  "")
+
+
+(rt:define-gfield value-data-union-v-ulong value-data-union :v-ulong :ulong :writable t
+                  :documentation "")
+
+
+(rt:define-gfield value-data-union-v-int64 value-data-union :v-int64 :int64 :writable t
+                  :documentation "")
+
+
+(rt:define-gfield value-data-union-v-uint64 value-data-union :v-uint64 :uint64 :writable t
+                  :documentation "")
+
+
+(rt:define-gfield value-data-union-v-float value-data-union :v-float :float :writable t
+                  :documentation "")
+
+
+(rt:define-gfield value-data-union-v-double value-data-union :v-double :double :writable t
+                  :documentation "")
+
+
+(rt:define-gstruct-constructor make-value-data-union (:record value-data-union)
+                               ((v-int :v-int :int) (v-uint :v-uint :uint) (v-long :v-long :long)
+                                (v-ulong :v-ulong :ulong) (v-int64 :v-int64 :int64)
+                                (v-uint64 :v-uint64 :uint64) (v-float :v-float :float)
+                                (v-double :v-double :double))
+                               :documentation
+                               "A new _Value__data__union with the given fields; others are zero.")
+
+
+(rt:define-gstruct value
+    (:gtype-name "GValue")
+  (:g-type rt:gtype)
+  (:data (:union value-data-union) :count 2))
+
+
+(rt:define-gstruct parameter
+    nil
+  (:name :pointer)
+  (:value (:struct value)))
+
+
+(rt:define-gfield parameter-name parameter :name :string :documentation "the parameter name
+")
+
+
+(rt:define-gstruct signal-invocation-hint
+    nil
+  (:signal-id :uint)
+  (:detail :uint32)
+  (:run-type :uint))
+
+
+(rt:define-gfield signal-invocation-hint-signal-id signal-invocation-hint :signal-id :uint
+                  :writable t :documentation "The signal id of the signal invoking the callback
+")
+
+
+(rt:define-gfield signal-invocation-hint-detail signal-invocation-hint :detail :uint32 :writable t
+                  :documentation "The detail passed on for this emission
+")
+
+
+(rt:define-gfield signal-invocation-hint-run-type signal-invocation-hint :run-type
+                  (:flags signal-flags) :writable t :documentation
+                  "The stage the signal emission is currently in, this
+ field will contain one of G_SIGNAL_RUN_FIRST,
+ G_SIGNAL_RUN_LAST or G_SIGNAL_RUN_CLEANUP and G_SIGNAL_ACCUMULATOR_FIRST_RUN.
+ G_SIGNAL_ACCUMULATOR_FIRST_RUN is only set for the first run of the accumulator
+ function for a signal emission.
+")
+
+
+(rt:define-gstruct-constructor make-signal-invocation-hint (:record signal-invocation-hint)
+                               ((signal-id :signal-id :uint) (detail :detail :uint32)
+                                (run-type :run-type (:flags signal-flags)))
+                               :documentation
+                               "A new SignalInvocationHint with the given fields; others are zero.")
+
+
+(rt:define-gstruct signal-query
+    nil
+  (:signal-id :uint)
+  (:signal-name :pointer)
+  (:itype rt:gtype)
+  (:signal-flags :uint)
+  (:return-type rt:gtype)
+  (:n-params :uint)
+  (:param-types :pointer))
+
+
+(rt:define-gfield signal-query-signal-id signal-query :signal-id :uint :writable t :documentation
+                  "The signal id of the signal being queried, or 0 if the
+ signal to be queried was unknown.
+")
+
+
+(rt:define-gfield signal-query-signal-name signal-query :signal-name :string :documentation
+                  "The signal name.
+")
+
+
+(rt:define-gfield signal-query-itype signal-query :itype :gtype :writable t :documentation
+                  "The interface/instance type that this signal can be emitted for.
+")
+
+
+(rt:define-gfield signal-query-signal-flags signal-query :signal-flags (:flags signal-flags)
+                  :writable t :documentation "The signal flags as passed in to g_signal_new().
+")
+
+
+(rt:define-gfield signal-query-return-type signal-query :return-type :gtype :writable t
+                  :documentation "The return type for user callbacks.
+")
+
+
+(rt:define-gfield signal-query-n-params signal-query :n-params :uint :writable t :documentation
+                  "The number of parameters that user callbacks take.
+")
+
+
+(rt:define-gstruct-constructor make-signal-query (:record signal-query)
+                               ((signal-id :signal-id :uint) (itype :itype :gtype)
+                                (signal-flags :signal-flags (:flags signal-flags))
+                                (return-type :return-type :gtype) (n-params :n-params :uint))
+                               :documentation
+                               "A new SignalQuery with the given fields; others are zero.")
+
+
+(rt:define-gstruct type-c-value
+    (:union t)
+  (:v-int :int)
+  (:v-long :long)
+  (:v-int64 :int64)
+  (:v-double :double)
+  (:v-pointer :pointer))
+
+
+(rt:define-gfield type-c-value-v-int type-c-value :v-int :int :writable t :documentation
+                  "the field for holding integer values
+")
+
+
+(rt:define-gfield type-c-value-v-long type-c-value :v-long :long :writable t :documentation
+                  "the field for holding long integer values
+")
+
+
+(rt:define-gfield type-c-value-v-int64 type-c-value :v-int64 :int64 :writable t :documentation
+                  "the field for holding 64 bit integer values
+")
+
+
+(rt:define-gfield type-c-value-v-double type-c-value :v-double :double :writable t :documentation
+                  "the field for holding floating point values
+")
+
+
+(rt:define-gstruct-constructor make-type-c-value (:record type-c-value)
+                               ((v-int :v-int :int) (v-long :v-long :long)
+                                (v-int64 :v-int64 :int64) (v-double :v-double :double))
+                               :documentation
+                               "A new TypeCValue with the given fields; others are zero.")
+
+
+(rt:define-gstruct type-fundamental-info
+    nil
+  (:type-flags :uint))
+
+
+(rt:define-gfield type-fundamental-info-type-flags type-fundamental-info :type-flags
+                  (:flags type-fundamental-flags) :writable t :documentation
+                  "#GTypeFundamentalFlags describing the characteristics of the fundamental type
+")
+
+
+(rt:define-gstruct-constructor make-type-fundamental-info (:record type-fundamental-info)
+                               ((type-flags :type-flags (:flags type-fundamental-flags)))
+                               :documentation
+                               "A new TypeFundamentalInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct type-info
+    nil
+  (:class-size :uint16)
+  (:base-init :pointer)
+  (:base-finalize :pointer)
+  (:class-init :pointer)
+  (:class-finalize :pointer)
+  (:class-data :pointer)
+  (:instance-size :uint16)
+  (:n-preallocs :uint16)
+  (:instance-init :pointer)
+  (:value-table :pointer))
+
+
+(rt:define-gfield type-info-class-size type-info :class-size :uint16 :writable t :documentation
+                  "Size of the class structure (required for interface, classed and instantiatable types)
+")
+
+
+(rt:define-gfield type-info-instance-size type-info :instance-size :uint16 :writable t
+                  :documentation
+                  "Size of the instance (object) structure (required for instantiatable types only)
+")
+
+
+(rt:define-gfield type-info-n-preallocs type-info :n-preallocs :uint16 :writable t :documentation
+                  "Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10 this field is ignored.
+")
+
+
+(rt:define-gstruct-constructor make-type-info (:record type-info)
+                               ((class-size :class-size :uint16)
+                                (instance-size :instance-size :uint16)
+                                (n-preallocs :n-preallocs :uint16))
+                               :documentation
+                               "A new TypeInfo with the given fields; others are zero.")
+
+
+(rt:define-gstruct type-instance
+    nil
+  (:g-class :pointer))
+
+
+(rt:define-gstruct type-interface
+    nil
+  (:g-type rt:gtype)
+  (:g-instance-type rt:gtype))
+
+
+(rt:define-gstruct type-plugin-class
+    nil
+  (:base-iface (:struct type-interface))
+  (:use-plugin :pointer)
+  (:unuse-plugin :pointer)
+  (:complete-type-info :pointer)
+  (:complete-interface-info :pointer))
+
+
+(rt:define-gstruct type-query
+    nil
+  (:type rt:gtype)
+  (:type-name :pointer)
+  (:class-size :uint)
+  (:instance-size :uint))
+
+
+(rt:define-gfield type-query-type type-query :type :gtype :writable t :documentation
+                  "the #GType value of the type
+")
+
+
+(rt:define-gfield type-query-type-name type-query :type-name :string :documentation
+                  "the name of the type
+")
+
+
+(rt:define-gfield type-query-class-size type-query :class-size :uint :writable t :documentation
+                  "the size of the class structure
+")
+
+
+(rt:define-gfield type-query-instance-size type-query :instance-size :uint :writable t
+                  :documentation "the size of the instance structure
+")
+
+
+(rt:define-gstruct-constructor make-type-query (:record type-query)
+                               ((type :type :gtype) (class-size :class-size :uint)
+                                (instance-size :instance-size :uint))
+                               :documentation
+                               "A new TypeQuery with the given fields; others are zero.")
+
+
+(rt:define-gstruct type-value-table
+    nil
+  (:value-init :pointer)
+  (:value-free :pointer)
+  (:value-copy :pointer)
+  (:value-peek-pointer :pointer)
+  (:collect-format :pointer)
+  (:collect-value :pointer)
+  (:lcopy-format :pointer)
+  (:lcopy-value :pointer))
+
+
+(rt:define-gfield type-value-table-collect-format type-value-table :collect-format :string
+                  :documentation "A string format describing how to collect the contents of
+  this value bit-by-bit. Each character in the format represents
+  an argument to be collected, and the characters themselves indicate
+  the type of the argument. Currently supported arguments are:
+")
+
+
+(rt:define-gfield type-value-table-lcopy-format type-value-table :lcopy-format :string
+                  :documentation "Format description of the arguments to collect for LCOPY-VALUE,
+  analogous to COLLECT-FORMAT. Usually, LCOPY-FORMAT string consists
+  only of `'p'`s to provide lcopy_value() with pointers to storage locations.
+")
+
+
+(rt:define-gstruct value-array
+    (:gtype-name "GValueArray")
+  (:n-values :uint)
+  (:values :pointer)
+  (:n-prealloced :uint))
+
+
+(rt:define-gfield value-array-n-values value-array :n-values :uint :writable t :documentation
+                  "number of values contained in the array
+")
+
+
+(rt:define-gstruct-constructor make-value-array
+                               (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                               ((n-values :n-values :uint)) :documentation
+                               "A new ValueArray with the given fields; others are zero.")
+
+
+(rt:define-gstruct weak-ref-priv-0
+    (:union t)
+  (:p :pointer))
+
+
+(rt:define-gstruct weak-ref
+    nil
+  (:priv (:union weak-ref-priv-0)))
+
 ;;; Properties
 
 
@@ -561,8 +1116,8 @@ See: https://docs.gtk.org/gobject/property.SignalGroup.target-type.html"))
 (rt:define-gcallback binding-transform-func
                      (:args
                       ((binding (:object binding))
-                       (from-value (:boxed "GValue" "g_value_get_type"))
-                       (to-value (:boxed "GValue" "g_value_get_type"))
+                       (from-value (:boxed "GValue" "g_value_get_type" value))
+                       (to-value (:boxed "GValue" "g_value_get_type" value))
                        (user-data :pointer :user-data t))
                       :return :boolean))
 
@@ -594,8 +1149,8 @@ See: https://docs.gtk.org/gobject/property.SignalGroup.target-type.html"))
 (rt:define-gcallback signal-accumulator
                      (:args
                       ((ihint (:record signal-invocation-hint))
-                       (return-accu (:boxed "GValue" "g_value_get_type"))
-                       (handler-return (:boxed "GValue" "g_value_get_type"))
+                       (return-accu (:boxed "GValue" "g_value_get_type" value))
+                       (handler-return (:boxed "GValue" "g_value_get_type" value))
                        (data :pointer :user-data t))
                       :return :boolean))
 
@@ -629,6 +1184,19 @@ See: https://docs.gtk.org/gobject/func.clear_signal_handler.html
 Since: 2.62")
 
 
+(rt:define-gfunction (enum-complete-type-info "g_enum_complete_type_info") :args
+                     ((g-enum-type :gtype)
+                      (info (:record type-info) :direction :out :transfer :full)
+                      (const-values (:array (:record enum-value) :zero-terminated t)))
+                     :documentation
+                     "This function is meant to be called from the `complete_type_info`
+function of a #GTypePlugin implementation, as in the following
+example:
+
+C: g_enum_complete_type_info
+See: https://docs.gtk.org/gobject/func.enum_complete_type_info.html")
+
+
 (rt:define-gfunction (enum-get-value "g_enum_get_value") :args
                      ((enum-class (:record enum-class)) (value :int)) :return (:record enum-value)
                      :documentation "Returns the #GEnumValue for a value.
@@ -653,6 +1221,16 @@ C: g_enum_get_value_by_nick
 See: https://docs.gtk.org/gobject/func.enum_get_value_by_nick.html")
 
 
+(rt:define-gfunction (enum-register-static "g_enum_register_static") :args
+                     ((name :string)
+                      (const-static-values (:array (:record enum-value) :zero-terminated t)))
+                     :return :gtype :documentation
+                     "Registers a new static enumeration type with the name NAME.
+
+C: g_enum_register_static
+See: https://docs.gtk.org/gobject/func.enum_register_static.html")
+
+
 (rt:define-gfunction (enum-to-string "g_enum_to_string") :args ((g-enum-type :gtype) (value :int))
                      :return :string :return-transfer :full :version "2.54" :documentation
                      "Pretty-prints VALUE in the form of the enum’s name.
@@ -660,6 +1238,19 @@ See: https://docs.gtk.org/gobject/func.enum_get_value_by_nick.html")
 C: g_enum_to_string
 See: https://docs.gtk.org/gobject/func.enum_to_string.html
 Since: 2.54")
+
+
+(rt:define-gfunction (flags-complete-type-info "g_flags_complete_type_info") :args
+                     ((g-flags-type :gtype)
+                      (info (:record type-info) :direction :out :transfer :full)
+                      (const-values (:array (:record flags-value) :zero-terminated t)))
+                     :documentation
+                     "This function is meant to be called from the complete_type_info()
+function of a #GTypePlugin implementation, see the example for
+g_enum_complete_type_info() above.
+
+C: g_flags_complete_type_info
+See: https://docs.gtk.org/gobject/func.flags_complete_type_info.html")
 
 
 (rt:define-gfunction (flags-get-first-value "g_flags_get_first_value") :args
@@ -685,6 +1276,16 @@ See: https://docs.gtk.org/gobject/func.flags_get_value_by_name.html")
 
 C: g_flags_get_value_by_nick
 See: https://docs.gtk.org/gobject/func.flags_get_value_by_nick.html")
+
+
+(rt:define-gfunction (flags-register-static "g_flags_register_static") :args
+                     ((name :string)
+                      (const-static-values (:array (:record flags-value) :zero-terminated t)))
+                     :return :gtype :documentation
+                     "Registers a new static flags type with the name NAME.
+
+C: g_flags_register_static
+See: https://docs.gtk.org/gobject/func.flags_register_static.html")
 
 
 (rt:define-gfunction (flags-to-string "g_flags_to_string") :args
@@ -942,8 +1543,8 @@ See: https://docs.gtk.org/gobject/func.param_type_register_static.html")
 
 
 (rt:define-gfunction (param-value-convert "g_param_value_convert") :args
-                     ((pspec :pointer) (src-value (:boxed "GValue" "g_value_get_type"))
-                      (dest-value (:boxed "GValue" "g_value_get_type"))
+                     ((pspec :pointer) (src-value (:boxed "GValue" "g_value_get_type" value))
+                      (dest-value (:boxed "GValue" "g_value_get_type" value))
                       (strict-validation :boolean))
                      :return :boolean :documentation
                      "Transforms SRC-VALUE into DEST-VALUE if possible, and then
@@ -956,7 +1557,7 @@ See: https://docs.gtk.org/gobject/func.param_value_convert.html")
 
 
 (rt:define-gfunction (param-value-defaults "g_param_value_defaults") :args
-                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type"))) :return
+                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type" value))) :return
                      :boolean :documentation
                      "Checks whether VALUE contains the default value as specified in PSPEC.
 
@@ -965,7 +1566,7 @@ See: https://docs.gtk.org/gobject/func.param_value_defaults.html")
 
 
 (rt:define-gfunction (param-value-is-valid "g_param_value_is_valid") :args
-                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type"))) :return
+                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type" value))) :return
                      :boolean :version "2.74" :documentation
                      "Return whether the contents of VALUE comply with the specifications
 set out by PSPEC.
@@ -976,15 +1577,15 @@ Since: 2.74")
 
 
 (rt:define-gfunction (param-value-set-default "g_param_value_set_default") :args
-                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type"))) :documentation
-                     "Sets VALUE to its default value as specified in PSPEC.
+                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type" value)))
+                     :documentation "Sets VALUE to its default value as specified in PSPEC.
 
 C: g_param_value_set_default
 See: https://docs.gtk.org/gobject/func.param_value_set_default.html")
 
 
 (rt:define-gfunction (param-value-validate "g_param_value_validate") :args
-                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type"))) :return
+                     ((pspec :pointer) (value (:boxed "GValue" "g_value_get_type" value))) :return
                      :boolean :documentation
                      "Ensures that the contents of VALUE comply with the specifications
 set out by PSPEC. For example, a #GParamSpecInt might require
@@ -998,8 +1599,8 @@ See: https://docs.gtk.org/gobject/func.param_value_validate.html")
 
 
 (rt:define-gfunction (param-values-cmp "g_param_values_cmp") :args
-                     ((pspec :pointer) (value1 (:boxed "GValue" "g_value_get_type"))
-                      (value2 (:boxed "GValue" "g_value_get_type")))
+                     ((pspec :pointer) (value1 (:boxed "GValue" "g_value_get_type" value))
+                      (value2 (:boxed "GValue" "g_value_get_type" value)))
                      :return :int :documentation
                      "Compares VALUE1 with VALUE2 according to PSPEC, and return -1, 0 or +1,
 if VALUE1 is found to be less than, equal to or greater than VALUE2,
@@ -1020,8 +1621,8 @@ See: https://docs.gtk.org/gobject/func.pointer_type_register_static.html")
 
 (rt:define-gfunction (signal-accumulator-first-wins "g_signal_accumulator_first_wins") :args
                      ((ihint (:record signal-invocation-hint))
-                      (return-accu (:boxed "GValue" "g_value_get_type"))
-                      (handler-return (:boxed "GValue" "g_value_get_type"))
+                      (return-accu (:boxed "GValue" "g_value_get_type" value))
+                      (handler-return (:boxed "GValue" "g_value_get_type" value))
                       (dummy :pointer :optional t))
                      :return :boolean :version "2.28" :documentation
                      "A predefined #GSignalAccumulator for signals intended to be used as a
@@ -1038,8 +1639,8 @@ Since: 2.28")
 
 (rt:define-gfunction (signal-accumulator-true-handled "g_signal_accumulator_true_handled") :args
                      ((ihint (:record signal-invocation-hint))
-                      (return-accu (:boxed "GValue" "g_value_get_type"))
-                      (handler-return (:boxed "GValue" "g_value_get_type"))
+                      (return-accu (:boxed "GValue" "g_value_get_type" value))
+                      (handler-return (:boxed "GValue" "g_value_get_type" value))
                       (dummy :pointer :optional t))
                      :return :boolean :version "2.4" :documentation
                      "A predefined #GSignalAccumulator for signals that return a
@@ -1057,7 +1658,7 @@ Since: 2.4")
 
 (rt:define-gfunction (signal-connect-closure "g_signal_connect_closure") :args
                      ((instance (:object object)) (detailed-signal :string)
-                      (closure (:boxed "GClosure" "g_closure_get_type")) (after :boolean))
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure)) (after :boolean))
                      :return :ulong :documentation
                      "Connects a closure to a signal for a particular object.
 
@@ -1067,7 +1668,7 @@ See: https://docs.gtk.org/gobject/func.signal_connect_closure.html")
 
 (rt:define-gfunction (signal-connect-closure-by-id "g_signal_connect_closure_by_id") :args
                      ((instance (:object object)) (signal-id :uint) (detail :uint32)
-                      (closure (:boxed "GClosure" "g_closure_get_type")) (after :boolean))
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure)) (after :boolean))
                      :return :ulong :documentation
                      "Connects a closure to a signal for a particular object.
 
@@ -1109,7 +1710,7 @@ See: https://docs.gtk.org/gobject/func.signal_handler_disconnect.html")
 (rt:define-gfunction (signal-handler-find "g_signal_handler_find") :args
                      ((instance (:object object)) (mask (:flags signal-match-type))
                       (signal-id :uint) (detail :uint32)
-                      (closure (:boxed "GClosure" "g_closure_get_type") :optional t)
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure) :optional t)
                       (func :pointer :optional t) (data :pointer :optional t))
                      :return :ulong :documentation
                      "Finds the first signal handler that matches certain selection criteria.
@@ -1151,7 +1752,7 @@ See: https://docs.gtk.org/gobject/func.signal_handler_unblock.html")
 (rt:define-gfunction (signal-handlers-block-matched "g_signal_handlers_block_matched") :args
                      ((instance (:object object)) (mask (:flags signal-match-type))
                       (signal-id :uint) (detail :uint32)
-                      (closure (:boxed "GClosure" "g_closure_get_type") :optional t)
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure) :optional t)
                       (func :pointer :optional t) (data :pointer :optional t))
                      :return :uint :documentation
                      "Blocks all handlers on an instance that match a certain selection criteria.
@@ -1174,7 +1775,7 @@ See: https://docs.gtk.org/gobject/func.signal_handlers_destroy.html")
                      :args
                      ((instance (:object object)) (mask (:flags signal-match-type))
                       (signal-id :uint) (detail :uint32)
-                      (closure (:boxed "GClosure" "g_closure_get_type") :optional t)
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure) :optional t)
                       (func :pointer :optional t) (data :pointer :optional t))
                      :return :uint :documentation
                      "Disconnects all handlers on an instance that match a certain
@@ -1187,7 +1788,7 @@ See: https://docs.gtk.org/gobject/func.signal_handlers_disconnect_matched.html")
 (rt:define-gfunction (signal-handlers-unblock-matched "g_signal_handlers_unblock_matched") :args
                      ((instance (:object object)) (mask (:flags signal-match-type))
                       (signal-id :uint) (detail :uint32)
-                      (closure (:boxed "GClosure" "g_closure_get_type") :optional t)
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure) :optional t)
                       (func :pointer :optional t) (data :pointer :optional t))
                      :return :uint :documentation
                      "Unblocks all handlers on an instance that match a certain selection
@@ -1248,7 +1849,7 @@ See: https://docs.gtk.org/gobject/func.signal_name.html")
 
 (rt:define-gfunction (signal-override-class-closure "g_signal_override_class_closure") :args
                      ((signal-id :uint) (instance-type :gtype)
-                      (class-closure (:boxed "GClosure" "g_closure_get_type")))
+                      (class-closure (:boxed "GClosure" "g_closure_get_type" closure)))
                      :documentation
                      "Overrides the class closure (i.e. the default handler) for the given signal
 for emissions on instances of INSTANCE-TYPE. INSTANCE-TYPE must be derived
@@ -1269,6 +1870,20 @@ and DETAIL quark.
 
 C: g_signal_parse_name
 See: https://docs.gtk.org/gobject/func.signal_parse_name.html")
+
+
+(rt:define-gfunction (signal-query "g_signal_query") :args
+                     ((signal-id :uint)
+                      (query (:record signal-query) :direction :out :caller-allocates t))
+                     :documentation "Queries the signal system for in-depth information about a
+specific signal. This function will fill in a user-provided
+structure to hold signal-specific information. If an invalid
+signal id is passed in, the SIGNAL-ID member of the #GSignalQuery
+is 0. All members filled into the #GSignalQuery structure should
+be considered constant and have to be left untouched.
+
+C: g_signal_query
+See: https://docs.gtk.org/gobject/func.signal_query.html")
 
 
 (rt:define-gfunction (signal-remove-emission-hook "g_signal_remove_emission_hook") :args
@@ -1296,7 +1911,7 @@ See: https://docs.gtk.org/gobject/func.signal_stop_emission_by_name.html")
 
 (rt:define-gfunction (signal-type-cclosure-new "g_signal_type_cclosure_new") :args
                      ((itype :gtype) (struct-offset :uint)) :return
-                     (:boxed "GClosure" "g_closure_get_type") :documentation
+                     (:boxed "GClosure" "g_closure_get_type" closure) :documentation
                      "Creates a new closure which invokes the function found at the offset
 STRUCT-OFFSET in the class structure of the interface or classed type
 identified by ITYPE.
@@ -1306,7 +1921,7 @@ See: https://docs.gtk.org/gobject/func.signal_type_cclosure_new.html")
 
 
 (rt:define-gfunction (strdup-value-contents "g_strdup_value_contents") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :string
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :string
                      :return-transfer :full :documentation
                      "Return a newly allocated string, which describes the contents of a
 #GValue.  The main purpose of this function is to describe #GValue
@@ -1396,15 +2011,15 @@ See: https://docs.gtk.org/gobject/func.type_check_is_value_type.html")
 
 
 (rt:define-gfunction (type-check-value "g_type_check_value") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :boolean :documentation
-                     "
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :boolean
+                     :documentation "
 C: g_type_check_value
 See: https://docs.gtk.org/gobject/func.type_check_value.html")
 
 
 (rt:define-gfunction (type-check-value-holds "g_type_check_value_holds") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (type :gtype)) :return :boolean
-                     :documentation "
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (type :gtype)) :return
+                     :boolean :documentation "
 C: g_type_check_value_holds
 See: https://docs.gtk.org/gobject/func.type_check_value_holds.html")
 
@@ -1648,6 +2263,15 @@ C: g_type_qname
 See: https://docs.gtk.org/gobject/func.type_qname.html")
 
 
+(rt:define-gfunction (type-query "g_type_query") :args
+                     ((type :gtype)
+                      (query (:record type-query) :direction :out :caller-allocates t))
+                     :documentation "Queries the type system for information about a specific type.
+
+C: g_type_query
+See: https://docs.gtk.org/gobject/func.type_query.html")
+
+
 (rt:define-gfunction (type-register-dynamic "g_type_register_dynamic") :args
                      ((parent-type :gtype) (type-name :string) (plugin (:object type-plugin))
                       (flags (:flags type-flags)))
@@ -1820,8 +2444,9 @@ Since: 2.72")
                      ((self (:object binding-group)) (source-property :string)
                       (target (:object object)) (target-property :string)
                       (flags (:flags binding-flags))
-                      (transform-to (:boxed "GClosure" "g_closure_get_type") :optional t)
-                      (transform-from (:boxed "GClosure" "g_closure_get_type") :optional t))
+                      (transform-to (:boxed "GClosure" "g_closure_get_type" closure) :optional t)
+                      (transform-from (:boxed "GClosure" "g_closure_get_type" closure) :optional
+                       t))
                      :version "2.72" :documentation
                      "Creates a binding between SOURCE-PROPERTY on the source object and
 TARGET-PROPERTY on TARGET, allowing you to set the transformation
@@ -1856,9 +2481,9 @@ Since: 2.72")
 
 (rt:define-gfunction
  (c-closure-marshal-boolean--boxed-boxed "g_cclosure_marshal_BOOLEAN__BOXED_BOXED") :args
- ((closure (:boxed "GClosure" "g_closure_get_type"))
-  (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-  (param-values (:boxed "GValue" "g_value_get_type")) (invocation-hint :pointer :optional t)
+ ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+  (return-value (:boxed "GValue" "g_value_get_type" value)) (n-param-values :uint)
+  (param-values (:boxed "GValue" "g_value_get_type" value)) (invocation-hint :pointer :optional t)
   (marshal-data :pointer :optional t))
  :documentation "A #GClosureMarshal function for use with signals with handlers that
 take two boxed pointers as arguments and return a boolean.  If you
@@ -1870,9 +2495,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_BOOLEAN__BOXED_BOXE
 
 
 (rt:define-gfunction (c-closure-marshal-boolean--flags "g_cclosure_marshal_BOOLEAN__FLAGS") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with handlers that
@@ -1886,9 +2512,9 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_BOOLEAN__FLAGS.html
 
 (rt:define-gfunction
  (c-closure-marshal-string--object-pointer "g_cclosure_marshal_STRING__OBJECT_POINTER") :args
- ((closure (:boxed "GClosure" "g_closure_get_type"))
-  (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-  (param-values (:boxed "GValue" "g_value_get_type")) (invocation-hint :pointer :optional t)
+ ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+  (return-value (:boxed "GValue" "g_value_get_type" value)) (n-param-values :uint)
+  (param-values (:boxed "GValue" "g_value_get_type" value)) (invocation-hint :pointer :optional t)
   (marshal-data :pointer :optional t))
  :documentation "A #GClosureMarshal function for use with signals with handlers that
 take a #GObject and a pointer and produce a string.  It is highly
@@ -1899,9 +2525,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_STRING__OBJECT_POIN
 
 
 (rt:define-gfunction (c-closure-marshal-void--boolean "g_cclosure_marshal_VOID__BOOLEAN") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 boolean argument.
@@ -1911,9 +2538,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__BOOLEAN.html"
 
 
 (rt:define-gfunction (c-closure-marshal-void--boxed "g_cclosure_marshal_VOID__BOXED") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 argument which is any boxed pointer type.
@@ -1923,9 +2551,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__BOXED.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--char "g_cclosure_marshal_VOID__CHAR") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 character argument.
@@ -1935,9 +2564,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__CHAR.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--double "g_cclosure_marshal_VOID__DOUBLE") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with one
 double-precision floating point argument.
@@ -1947,9 +2577,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__DOUBLE.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--enum "g_cclosure_marshal_VOID__ENUM") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 argument with an enumerated type.
@@ -1959,9 +2590,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__ENUM.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--flags "g_cclosure_marshal_VOID__FLAGS") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 argument with a flags types.
@@ -1971,9 +2603,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__FLAGS.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--float "g_cclosure_marshal_VOID__FLOAT") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with one
 single-precision floating point argument.
@@ -1983,9 +2616,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__FLOAT.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--int "g_cclosure_marshal_VOID__INT") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 integer argument.
@@ -1995,9 +2629,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__INT.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--long "g_cclosure_marshal_VOID__LONG") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with with a single
@@ -2008,9 +2643,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__LONG.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--object "g_cclosure_marshal_VOID__OBJECT") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 #GObject argument.
@@ -2020,9 +2656,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__OBJECT.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--param "g_cclosure_marshal_VOID__PARAM") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 argument of type #GParamSpec.
@@ -2032,9 +2669,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__PARAM.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--pointer "g_cclosure_marshal_VOID__POINTER") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with a single raw
@@ -2045,9 +2683,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__POINTER.html"
 
 
 (rt:define-gfunction (c-closure-marshal-void--string "g_cclosure_marshal_VOID__STRING") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with a single string
@@ -2058,9 +2697,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__STRING.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--uchar "g_cclosure_marshal_VOID__UCHAR") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 unsigned character argument.
@@ -2070,9 +2710,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__UCHAR.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--uint "g_cclosure_marshal_VOID__UINT") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with with a single
@@ -2084,9 +2725,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__UINT.html")
 
 (rt:define-gfunction (c-closure-marshal-void--uint-pointer "g_cclosure_marshal_VOID__UINT_POINTER")
                      :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with an unsigned int
@@ -2097,9 +2739,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__UINT_POINTER.
 
 
 (rt:define-gfunction (c-closure-marshal-void--ulong "g_cclosure_marshal_VOID__ULONG") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 unsigned long integer argument.
@@ -2109,9 +2752,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__ULONG.html")
 
 
 (rt:define-gfunction (c-closure-marshal-void--variant "g_cclosure_marshal_VOID__VARIANT") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation "A #GClosureMarshal function for use with signals with a single
 #GVariant argument.
@@ -2121,9 +2765,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__VARIANT.html"
 
 
 (rt:define-gfunction (c-closure-marshal-void--void "g_cclosure_marshal_VOID__VOID") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-value (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :documentation
                      "A #GClosureMarshal function for use with signals with no arguments.
@@ -2133,9 +2778,10 @@ See: https://docs.gtk.org/gobject/type_func.CClosure.marshal_VOID__VOID.html")
 
 
 (rt:define-gfunction (c-closure-marshal-generic "g_cclosure_marshal_generic") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))
-                      (return-gvalue (:boxed "GValue" "g_value_get_type")) (n-param-values :uint)
-                      (param-values (:boxed "GValue" "g_value_get_type"))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-gvalue (:boxed "GValue" "g_value_get_type" value))
+                      (n-param-values :uint)
+                      (param-values (:boxed "GValue" "g_value_get_type" value))
                       (invocation-hint :pointer :optional t) (marshal-data :pointer :optional t))
                      :version "2.30" :documentation "A generic marshaller function implemented via
 [libffi](http://sourceware.org/libffi/).
@@ -2147,7 +2793,7 @@ Since: 2.30")
 
 (rt:define-gfunction (closure-new-object "g_closure_new_object") :args
                      ((sizeof-closure :uint) (object (:object object))) :return
-                     (:boxed "GClosure" "g_closure_get_type") :documentation
+                     (:boxed "GClosure" "g_closure_get_type" closure) :documentation
                      "A variant of g_closure_new_simple() which stores OBJECT in the
 DATA field of the closure and calls g_object_watch_closure() on
 OBJECT and the created closure. This function is mainly useful
@@ -2159,7 +2805,7 @@ See: https://docs.gtk.org/gobject/ctor.Closure.new_object.html")
 
 (rt:define-gfunction (closure-new-simple "g_closure_new_simple") :args
                      ((sizeof-closure :uint) (data :pointer :optional t)) :return
-                     (:boxed "GClosure" "g_closure_get_type") :documentation
+                     (:boxed "GClosure" "g_closure_get_type" closure) :documentation
                      "Allocates a struct of the given size and initializes the initial
 part as a #GClosure.
 
@@ -2168,7 +2814,7 @@ See: https://docs.gtk.org/gobject/ctor.Closure.new_simple.html")
 
 
 (rt:define-gfunction (closure-invalidate "g_closure_invalidate") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))) :documentation
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))) :documentation
                      "Sets a flag on the closure to indicate that its calling
 environment has become invalid, and thus causes any future
 invocations of g_closure_invoke() on this CLOSURE to be
@@ -2178,10 +2824,24 @@ C: g_closure_invalidate
 See: https://docs.gtk.org/gobject/method.Closure.invalidate.html")
 
 
+(rt:define-gfunction (closure-invoke "g_closure_invoke") :args
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))
+                      (return-value (:boxed "GValue" "g_value_get_type" value) :direction :out
+                       :caller-allocates t)
+                      (n-param-values :uint :length-of param-values)
+                      (param-values (:array (:boxed "GValue" "g_value_get_type" value)))
+                      (invocation-hint :pointer :optional t))
+                     :documentation
+                     "Invokes the closure, i.e. executes the callback represented by the CLOSURE.
+
+C: g_closure_invoke
+See: https://docs.gtk.org/gobject/method.Closure.invoke.html")
+
+
 (rt:define-gfunction (closure-ref "g_closure_ref") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))) :return
-                     (:boxed "GClosure" "g_closure_get_type") :return-transfer :full :documentation
-                     "Increments the reference count on a closure to force it staying
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))) :return
+                     (:boxed "GClosure" "g_closure_get_type" closure) :return-transfer :full
+                     :documentation "Increments the reference count on a closure to force it staying
 alive while the caller holds a pointer to it.
 
 C: g_closure_ref
@@ -2189,7 +2849,7 @@ See: https://docs.gtk.org/gobject/method.Closure.ref.html")
 
 
 (rt:define-gfunction (closure-sink "g_closure_sink") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type"))) :documentation
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure))) :documentation
                      "Takes over the initial ownership of a closure.
 
 C: g_closure_sink
@@ -2197,13 +2857,24 @@ See: https://docs.gtk.org/gobject/method.Closure.sink.html")
 
 
 (rt:define-gfunction (closure-unref "g_closure_unref") :args
-                     ((closure (:boxed "GClosure" "g_closure_get_type") :transfer :full))
+                     ((closure (:boxed "GClosure" "g_closure_get_type" closure) :transfer :full))
                      :documentation
                      "Decrements the reference count of a closure after it was previously
 incremented by the same caller.
 
 C: g_closure_unref
 See: https://docs.gtk.org/gobject/method.Closure.unref.html")
+
+
+(rt:define-gfunction (object-newv "g_object_newv") :args
+                     ((object-type :gtype) (n-parameters :uint :length-of parameters)
+                      (parameters (:array (:record parameter))))
+                     :return (:object object) :return-transfer :full :documentation
+                     "Creates a new instance of a #GObject subtype and sets its properties.
+
+C: g_object_newv
+See: https://docs.gtk.org/gobject/ctor.Object.newv.html
+Deprecated.")
 
 
 (rt:define-gfunction (object-compat-control "g_object_compat_control") :args
@@ -2272,8 +2943,8 @@ Since: 2.26")
 (rt:define-gfunction (object-bind-property-full "g_object_bind_property_with_closures") :args
                      ((source (:object object)) (source-property :string) (target (:object object))
                       (target-property :string) (flags (:flags binding-flags))
-                      (transform-to (:boxed "GClosure" "g_closure_get_type"))
-                      (transform-from (:boxed "GClosure" "g_closure_get_type")))
+                      (transform-to (:boxed "GClosure" "g_closure_get_type" closure))
+                      (transform-from (:boxed "GClosure" "g_closure_get_type" closure)))
                      :return (:object binding) :version "2.26" :documentation
                      "Creates a binding between SOURCE-PROPERTY on SOURCE and TARGET-PROPERTY
 on TARGET, allowing you to set the transformation functions to be used by
@@ -2319,7 +2990,7 @@ See: https://docs.gtk.org/gobject/method.Object.get_data.html")
 
 (rt:define-gfunction (object-get-property "g_object_get_property") :args
                      ((object (:object object)) (property-name :string)
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" value)))
                      :documentation "Gets a property of an object.
 
 C: g_object_get_property
@@ -2399,7 +3070,7 @@ See: https://docs.gtk.org/gobject/method.Object.set_data.html")
 
 (rt:define-gfunction (object-set-property "g_object_set_property") :args
                      ((object (:object object)) (property-name :string)
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" value)))
                      :documentation "Sets a property on an object.
 
 C: g_object_set_property
@@ -2457,7 +3128,8 @@ See: https://docs.gtk.org/gobject/method.Object.unref.html")
 
 
 (rt:define-gfunction (object-watch-closure "g_object_watch_closure") :args
-                     ((object (:object object)) (closure (:boxed "GClosure" "g_closure_get_type")))
+                     ((object (:object object))
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure)))
                      :documentation
                      "This function essentially limits the life time of the CLOSURE to
 the life time of the object. That is, when the object is finalized,
@@ -2543,7 +3215,7 @@ See: https://docs.gtk.org/gobject/method.ParamSpec.get_blurb.html")
 
 
 (rt:define-gfunction (param-spec-get-default-value "g_param_spec_get_default_value") :args
-                     ((pspec :pointer)) :return (:boxed "GValue" "g_value_get_type") :version
+                     ((pspec :pointer)) :return (:boxed "GValue" "g_value_get_type" value) :version
                      "2.38" :documentation
                      "Gets the default value of PSPEC as a pointer to a #GValue.
 
@@ -2712,7 +3384,7 @@ Since: 2.72")
 
 (rt:define-gfunction (signal-group-connect-closure "g_signal_group_connect_closure") :args
                      ((self (:object signal-group)) (detailed-signal :string)
-                      (closure (:boxed "GClosure" "g_closure_get_type")) (after :boolean))
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure)) (after :boolean))
                      :version "2.74" :documentation
                      "Connects CLOSURE to the signal DETAILED-SIGNAL on #GSignalGroup:target.
 
@@ -2756,8 +3428,8 @@ Since: 2.72")
 
 
 (rt:define-gfunction (source-set-closure "g_source_set_closure") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
-                      (closure (:boxed "GClosure" "g_closure_get_type")))
+                     ((source (:boxed "GSource" "g_source_get_type" glib:source))
+                      (closure (:boxed "GClosure" "g_closure_get_type" closure)))
                      :documentation "Set the callback for a source as a #GClosure.
 
 C: g_source_set_closure
@@ -2765,7 +3437,7 @@ See: https://docs.gtk.org/gobject/type_func.Source.set_closure.html")
 
 
 (rt:define-gfunction (source-set-dummy-callback "g_source_set_dummy_callback") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" glib:source))) :documentation
                      "Sets a dummy callback for SOURCE. The callback will do nothing, and
 if the source expects a #gboolean return value, it will return true.
 (If the source expects any other type of return value, it will return
@@ -2938,6 +3610,34 @@ C: g_type_module_add_interface
 See: https://docs.gtk.org/gobject/method.TypeModule.add_interface.html")
 
 
+(rt:define-gfunction (type-module-register-enum "g_type_module_register_enum") :args
+                     ((module (:object type-module)) (name :string)
+                      (const-static-values (:array (:record enum-value) :zero-terminated t)))
+                     :return :gtype :version "2.6" :documentation
+                     "Looks up or registers an enumeration that is implemented with a particular
+type plugin. If a type with name TYPE-NAME was previously registered,
+the #GType identifier for the type is returned, otherwise the type
+is newly registered, and the resulting #GType identifier returned.
+
+C: g_type_module_register_enum
+See: https://docs.gtk.org/gobject/method.TypeModule.register_enum.html
+Since: 2.6")
+
+
+(rt:define-gfunction (type-module-register-flags "g_type_module_register_flags") :args
+                     ((module (:object type-module)) (name :string)
+                      (const-static-values (:array (:record flags-value) :zero-terminated t)))
+                     :return :gtype :version "2.6" :documentation
+                     "Looks up or registers a flags type that is implemented with a particular
+type plugin. If a type with name TYPE-NAME was previously registered,
+the #GType identifier for the type is returned, otherwise the type
+is newly registered, and the resulting #GType identifier returned.
+
+C: g_type_module_register_flags
+See: https://docs.gtk.org/gobject/method.TypeModule.register_flags.html
+Since: 2.6")
+
+
 (rt:define-gfunction (type-module-register-type "g_type_module_register_type") :args
                      ((module (:object type-module)) (parent-type :gtype) (type-name :string)
                       (type-info (:record type-info)) (flags (:flags type-flags)))
@@ -3044,8 +3744,8 @@ See: https://docs.gtk.org/gobject/type_func.Value.type_transformable.html")
 
 
 (rt:define-gfunction (value-copy "g_value_copy") :args
-                     ((src-value (:boxed "GValue" "g_value_get_type"))
-                      (dest-value (:boxed "GValue" "g_value_get_type")))
+                     ((src-value (:boxed "GValue" "g_value_get_type" value))
+                      (dest-value (:boxed "GValue" "g_value_get_type" value)))
                      :documentation "Copies the value of SRC-VALUE into DEST-VALUE.
 
 C: g_value_copy
@@ -3053,7 +3753,7 @@ See: https://docs.gtk.org/gobject/method.Value.copy.html")
 
 
 (rt:define-gfunction (value-dup-object "g_value_dup_object") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return (:object object)
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return (:object object)
                      :return-transfer :full :documentation
                      "Get the contents of a G_TYPE_OBJECT derived #GValue, increasing
 its reference count. If the contents of the #GValue are NIL, then
@@ -3064,7 +3764,7 @@ See: https://docs.gtk.org/gobject/method.Value.dup_object.html")
 
 
 (rt:define-gfunction (value-dup-string "g_value_dup_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :string
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :string
                      :return-transfer :full :documentation
                      "Get a copy the contents of a G_TYPE_STRING #GValue.
 
@@ -3073,7 +3773,7 @@ See: https://docs.gtk.org/gobject/method.Value.dup_string.html")
 
 
 (rt:define-gfunction (value-dup-variant "g_value_dup_variant") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer
                      :return-transfer :full :version "2.26" :documentation
                      "Get the contents of a variant #GValue, increasing its refcount. The returned
 #GVariant is never floating.
@@ -3084,7 +3784,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (value-fits-pointer "g_value_fits_pointer") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :boolean :documentation
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :boolean
+                     :documentation
                      "Determines if VALUE will fit inside the size of a pointer value.
 
 C: g_value_fits_pointer
@@ -3092,23 +3793,24 @@ See: https://docs.gtk.org/gobject/method.Value.fits_pointer.html")
 
 
 (rt:define-gfunction (value-get-boolean "g_value_get_boolean") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :boolean :documentation
-                     "Get the contents of a G_TYPE_BOOLEAN #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :boolean
+                     :documentation "Get the contents of a G_TYPE_BOOLEAN #GValue.
 
 C: g_value_get_boolean
 See: https://docs.gtk.org/gobject/method.Value.get_boolean.html")
 
 
 (rt:define-gfunction (value-get-boxed "g_value_get_boxed") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :documentation
-                     "Get the contents of a G_TYPE_BOXED derived #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer
+                     :documentation "Get the contents of a G_TYPE_BOXED derived #GValue.
 
 C: g_value_get_boxed
 See: https://docs.gtk.org/gobject/method.Value.get_boxed.html")
 
 
 (rt:define-gfunction (value-get-char "g_value_get_char") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :int8 :documentation
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :int8
+                     :documentation
                      "Do not use this function; it is broken on platforms where the %char
 type is unsigned, such as ARM and PowerPC.  See g_value_get_schar().
 
@@ -3118,40 +3820,40 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-get-double "g_value_get_double") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :double :documentation
-                     "Get the contents of a G_TYPE_DOUBLE #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :double
+                     :documentation "Get the contents of a G_TYPE_DOUBLE #GValue.
 
 C: g_value_get_double
 See: https://docs.gtk.org/gobject/method.Value.get_double.html")
 
 
 (rt:define-gfunction (value-get-enum "g_value_get_enum") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :int :documentation
-                     "Get the contents of a G_TYPE_ENUM #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :int
+                     :documentation "Get the contents of a G_TYPE_ENUM #GValue.
 
 C: g_value_get_enum
 See: https://docs.gtk.org/gobject/method.Value.get_enum.html")
 
 
 (rt:define-gfunction (value-get-flags "g_value_get_flags") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :uint :documentation
-                     "Get the contents of a G_TYPE_FLAGS #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :uint
+                     :documentation "Get the contents of a G_TYPE_FLAGS #GValue.
 
 C: g_value_get_flags
 See: https://docs.gtk.org/gobject/method.Value.get_flags.html")
 
 
 (rt:define-gfunction (value-get-float "g_value_get_float") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :float :documentation
-                     "Get the contents of a G_TYPE_FLOAT #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :float
+                     :documentation "Get the contents of a G_TYPE_FLOAT #GValue.
 
 C: g_value_get_float
 See: https://docs.gtk.org/gobject/method.Value.get_float.html")
 
 
 (rt:define-gfunction (value-get-gtype "g_value_get_gtype") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :gtype :version "2.12"
-                     :documentation "Get the contents of a G_TYPE_GTYPE #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :gtype :version
+                     "2.12" :documentation "Get the contents of a G_TYPE_GTYPE #GValue.
 
 C: g_value_get_gtype
 See: https://docs.gtk.org/gobject/method.Value.get_gtype.html
@@ -3159,31 +3861,31 @@ Since: 2.12")
 
 
 (rt:define-gfunction (value-get-int "g_value_get_int") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :int :documentation
-                     "Get the contents of a G_TYPE_INT #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :int
+                     :documentation "Get the contents of a G_TYPE_INT #GValue.
 
 C: g_value_get_int
 See: https://docs.gtk.org/gobject/method.Value.get_int.html")
 
 
 (rt:define-gfunction (value-get-int64 "g_value_get_int64") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :int64 :documentation
-                     "Get the contents of a G_TYPE_INT64 #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :int64
+                     :documentation "Get the contents of a G_TYPE_INT64 #GValue.
 
 C: g_value_get_int64
 See: https://docs.gtk.org/gobject/method.Value.get_int64.html")
 
 
 (rt:define-gfunction (value-get-long "g_value_get_long") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :long :documentation
-                     "Get the contents of a G_TYPE_LONG #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :long
+                     :documentation "Get the contents of a G_TYPE_LONG #GValue.
 
 C: g_value_get_long
 See: https://docs.gtk.org/gobject/method.Value.get_long.html")
 
 
 (rt:define-gfunction (value-get-object "g_value_get_object") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return (:object object)
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return (:object object)
                      :documentation "Get the contents of a G_TYPE_OBJECT derived #GValue.
 
 C: g_value_get_object
@@ -3191,24 +3893,24 @@ See: https://docs.gtk.org/gobject/method.Value.get_object.html")
 
 
 (rt:define-gfunction (value-get-param "g_value_get_param") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :documentation
-                     "Get the contents of a G_TYPE_PARAM #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer
+                     :documentation "Get the contents of a G_TYPE_PARAM #GValue.
 
 C: g_value_get_param
 See: https://docs.gtk.org/gobject/method.Value.get_param.html")
 
 
 (rt:define-gfunction (value-get-pointer "g_value_get_pointer") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :documentation
-                     "Get the contents of a pointer #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer
+                     :documentation "Get the contents of a pointer #GValue.
 
 C: g_value_get_pointer
 See: https://docs.gtk.org/gobject/method.Value.get_pointer.html")
 
 
 (rt:define-gfunction (value-get-schar "g_value_get_schar") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :int8 :version "2.32"
-                     :documentation "Get the contents of a G_TYPE_CHAR #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :int8 :version
+                     "2.32" :documentation "Get the contents of a G_TYPE_CHAR #GValue.
 
 C: g_value_get_schar
 See: https://docs.gtk.org/gobject/method.Value.get_schar.html
@@ -3216,47 +3918,47 @@ Since: 2.32")
 
 
 (rt:define-gfunction (value-get-string "g_value_get_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :string :documentation
-                     "Get the contents of a G_TYPE_STRING #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :string
+                     :documentation "Get the contents of a G_TYPE_STRING #GValue.
 
 C: g_value_get_string
 See: https://docs.gtk.org/gobject/method.Value.get_string.html")
 
 
 (rt:define-gfunction (value-get-uchar "g_value_get_uchar") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :uint8 :documentation
-                     "Get the contents of a G_TYPE_UCHAR #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :uint8
+                     :documentation "Get the contents of a G_TYPE_UCHAR #GValue.
 
 C: g_value_get_uchar
 See: https://docs.gtk.org/gobject/method.Value.get_uchar.html")
 
 
 (rt:define-gfunction (value-get-uint "g_value_get_uint") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :uint :documentation
-                     "Get the contents of a G_TYPE_UINT #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :uint
+                     :documentation "Get the contents of a G_TYPE_UINT #GValue.
 
 C: g_value_get_uint
 See: https://docs.gtk.org/gobject/method.Value.get_uint.html")
 
 
 (rt:define-gfunction (value-get-uint64 "g_value_get_uint64") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :uint64 :documentation
-                     "Get the contents of a G_TYPE_UINT64 #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :uint64
+                     :documentation "Get the contents of a G_TYPE_UINT64 #GValue.
 
 C: g_value_get_uint64
 See: https://docs.gtk.org/gobject/method.Value.get_uint64.html")
 
 
 (rt:define-gfunction (value-get-ulong "g_value_get_ulong") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :ulong :documentation
-                     "Get the contents of a G_TYPE_ULONG #GValue.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :ulong
+                     :documentation "Get the contents of a G_TYPE_ULONG #GValue.
 
 C: g_value_get_ulong
 See: https://docs.gtk.org/gobject/method.Value.get_ulong.html")
 
 
 (rt:define-gfunction (value-get-variant "g_value_get_variant") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :version
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer :version
                      "2.26" :documentation "Get the contents of a variant #GValue.
 
 C: g_value_get_variant
@@ -3265,8 +3967,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (value-init "g_value_init") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (g-type :gtype)) :return
-                     (:boxed "GValue" "g_value_get_type") :documentation
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (g-type :gtype)) :return
+                     (:boxed "GValue" "g_value_get_type" value) :documentation
                      "Initializes VALUE to store values of the given TYPE, and sets its value
 to the initial value for TYPE.
 
@@ -3275,7 +3977,7 @@ See: https://docs.gtk.org/gobject/method.Value.init.html")
 
 
 (rt:define-gfunction (value-init-from-instance "g_value_init_from_instance") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
                       (instance (:record type-instance)))
                      :version "2.42" :documentation
                      "Initializes and sets VALUE from an instantiatable type.
@@ -3286,16 +3988,17 @@ Since: 2.42")
 
 
 (rt:define-gfunction (value-peek-pointer "g_value_peek_pointer") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :documentation
-                     "Returns the value contents as a pointer.
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :pointer
+                     :documentation "Returns the value contents as a pointer.
 
 C: g_value_peek_pointer
 See: https://docs.gtk.org/gobject/method.Value.peek_pointer.html")
 
 
 (rt:define-gfunction (value-reset "g_value_reset") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return
-                     (:boxed "GValue" "g_value_get_type") :return-transfer :full :documentation
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return
+                     (:boxed "GValue" "g_value_get_type" value) :return-transfer :full
+                     :documentation
                      "Clears the current value in VALUE and resets it to the initial value
 (as if the value had just been initialized using
 GObject.Value.init).
@@ -3305,7 +4008,7 @@ See: https://docs.gtk.org/gobject/method.Value.reset.html")
 
 
 (rt:define-gfunction (value-set-boolean "g_value_set_boolean") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-boolean :boolean))
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-boolean :boolean))
                      :documentation "Set the contents of a G_TYPE_BOOLEAN #GValue to V-BOOLEAN.
 
 C: g_value_set_boolean
@@ -3313,7 +4016,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_boolean.html")
 
 
 (rt:define-gfunction (value-set-boxed "g_value_set_boxed") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-boxed :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-boxed :pointer :optional t))
                      :documentation "Set the contents of a G_TYPE_BOXED derived #GValue to V-BOXED.
 
 C: g_value_set_boxed
@@ -3321,7 +4025,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_boxed.html")
 
 
 (rt:define-gfunction (value-set-boxed-take-ownership "g_value_set_boxed_take_ownership") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-boxed :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-boxed :pointer :optional t))
                      :documentation
                      "This is an internal function introduced mainly for C marshallers.
 
@@ -3331,8 +4036,8 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-set-char "g_value_set_char") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-char :int8)) :documentation
-                     "Set the contents of a G_TYPE_CHAR #GValue to V-CHAR.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-char :int8))
+                     :documentation "Set the contents of a G_TYPE_CHAR #GValue to V-CHAR.
 
 C: g_value_set_char
 See: https://docs.gtk.org/gobject/method.Value.set_char.html
@@ -3340,7 +4045,7 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-set-double "g_value_set_double") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-double :double))
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-double :double))
                      :documentation "Set the contents of a G_TYPE_DOUBLE #GValue to V-DOUBLE.
 
 C: g_value_set_double
@@ -3348,31 +4053,31 @@ See: https://docs.gtk.org/gobject/method.Value.set_double.html")
 
 
 (rt:define-gfunction (value-set-enum "g_value_set_enum") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-enum :int)) :documentation
-                     "Set the contents of a G_TYPE_ENUM #GValue to V-ENUM.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-enum :int))
+                     :documentation "Set the contents of a G_TYPE_ENUM #GValue to V-ENUM.
 
 C: g_value_set_enum
 See: https://docs.gtk.org/gobject/method.Value.set_enum.html")
 
 
 (rt:define-gfunction (value-set-flags "g_value_set_flags") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-flags :uint)) :documentation
-                     "Set the contents of a G_TYPE_FLAGS #GValue to V-FLAGS.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-flags :uint))
+                     :documentation "Set the contents of a G_TYPE_FLAGS #GValue to V-FLAGS.
 
 C: g_value_set_flags
 See: https://docs.gtk.org/gobject/method.Value.set_flags.html")
 
 
 (rt:define-gfunction (value-set-float "g_value_set_float") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-float :float)) :documentation
-                     "Set the contents of a G_TYPE_FLOAT #GValue to V-FLOAT.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-float :float))
+                     :documentation "Set the contents of a G_TYPE_FLOAT #GValue to V-FLOAT.
 
 C: g_value_set_float
 See: https://docs.gtk.org/gobject/method.Value.set_float.html")
 
 
 (rt:define-gfunction (value-set-gtype "g_value_set_gtype") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-gtype :gtype)) :version
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-gtype :gtype)) :version
                      "2.12" :documentation "Set the contents of a G_TYPE_GTYPE #GValue to V-GTYPE.
 
 C: g_value_set_gtype
@@ -3381,7 +4086,8 @@ Since: 2.12")
 
 
 (rt:define-gfunction (value-set-instance "g_value_set_instance") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (instance :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (instance :pointer :optional t))
                      :documentation "Sets VALUE from an instantiatable type.
 
 C: g_value_set_instance
@@ -3389,23 +4095,24 @@ See: https://docs.gtk.org/gobject/method.Value.set_instance.html")
 
 
 (rt:define-gfunction (value-set-int "g_value_set_int") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-int :int)) :documentation
-                     "Set the contents of a G_TYPE_INT #GValue to V-INT.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-int :int))
+                     :documentation "Set the contents of a G_TYPE_INT #GValue to V-INT.
 
 C: g_value_set_int
 See: https://docs.gtk.org/gobject/method.Value.set_int.html")
 
 
 (rt:define-gfunction (value-set-int64 "g_value_set_int64") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-int64 :int64)) :documentation
-                     "Set the contents of a G_TYPE_INT64 #GValue to V-INT64.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-int64 :int64))
+                     :documentation "Set the contents of a G_TYPE_INT64 #GValue to V-INT64.
 
 C: g_value_set_int64
 See: https://docs.gtk.org/gobject/method.Value.set_int64.html")
 
 
 (rt:define-gfunction (value-set-interned-string "g_value_set_interned_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-string :string :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-string :string :optional t))
                      :version "2.66" :documentation
                      "Set the contents of a G_TYPE_STRING #GValue to V-STRING.  The string is
 assumed to be static and interned (canonical, for example from
@@ -3417,15 +4124,15 @@ Since: 2.66")
 
 
 (rt:define-gfunction (value-set-long "g_value_set_long") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-long :long)) :documentation
-                     "Set the contents of a G_TYPE_LONG #GValue to V-LONG.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-long :long))
+                     :documentation "Set the contents of a G_TYPE_LONG #GValue to V-LONG.
 
 C: g_value_set_long
 See: https://docs.gtk.org/gobject/method.Value.set_long.html")
 
 
 (rt:define-gfunction (value-set-object "g_value_set_object") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
                       (v-object (:object object) :optional t))
                      :documentation
                      "Set the contents of a G_TYPE_OBJECT derived #GValue to V-OBJECT.
@@ -3435,7 +4142,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_object.html")
 
 
 (rt:define-gfunction (value-set-param "g_value_set_param") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (param :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (param :pointer :optional t))
                      :documentation "Set the contents of a G_TYPE_PARAM #GValue to PARAM.
 
 C: g_value_set_param
@@ -3443,7 +4151,7 @@ See: https://docs.gtk.org/gobject/method.Value.set_param.html")
 
 
 (rt:define-gfunction (value-set-pointer "g_value_set_pointer") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
                       (v-pointer :pointer :optional t))
                      :documentation "Set the contents of a pointer #GValue to V-POINTER.
 
@@ -3452,8 +4160,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_pointer.html")
 
 
 (rt:define-gfunction (value-set-schar "g_value_set_schar") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-char :int8)) :version "2.32"
-                     :documentation "Set the contents of a G_TYPE_CHAR #GValue to V-CHAR.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-char :int8)) :version
+                     "2.32" :documentation "Set the contents of a G_TYPE_CHAR #GValue to V-CHAR.
 
 C: g_value_set_schar
 See: https://docs.gtk.org/gobject/method.Value.set_schar.html
@@ -3461,7 +4169,8 @@ Since: 2.32")
 
 
 (rt:define-gfunction (value-set-static-boxed "g_value_set_static_boxed") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-boxed :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-boxed :pointer :optional t))
                      :documentation "Set the contents of a G_TYPE_BOXED derived #GValue to V-BOXED.
 
 C: g_value_set_static_boxed
@@ -3469,7 +4178,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_static_boxed.html")
 
 
 (rt:define-gfunction (value-set-static-string "g_value_set_static_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-string :string :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-string :string :optional t))
                      :documentation "Set the contents of a G_TYPE_STRING #GValue to V-STRING.
 The string is assumed to be static, and is thus not duplicated
 when setting the #GValue.
@@ -3479,7 +4189,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_static_string.html")
 
 
 (rt:define-gfunction (value-set-string "g_value_set_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-string :string :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-string :string :optional t))
                      :documentation
                      "Set the contents of a G_TYPE_STRING #GValue to a copy of V-STRING.
 
@@ -3488,7 +4199,8 @@ See: https://docs.gtk.org/gobject/method.Value.set_string.html")
 
 
 (rt:define-gfunction (value-set-string-take-ownership "g_value_set_string_take_ownership") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-string :string :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-string :string :optional t))
                      :documentation
                      "This is an internal function introduced mainly for C marshallers.
 
@@ -3498,23 +4210,23 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-set-uchar "g_value_set_uchar") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-uchar :uint8)) :documentation
-                     "Set the contents of a G_TYPE_UCHAR #GValue to V-UCHAR.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-uchar :uint8))
+                     :documentation "Set the contents of a G_TYPE_UCHAR #GValue to V-UCHAR.
 
 C: g_value_set_uchar
 See: https://docs.gtk.org/gobject/method.Value.set_uchar.html")
 
 
 (rt:define-gfunction (value-set-uint "g_value_set_uint") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-uint :uint)) :documentation
-                     "Set the contents of a G_TYPE_UINT #GValue to V-UINT.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-uint :uint))
+                     :documentation "Set the contents of a G_TYPE_UINT #GValue to V-UINT.
 
 C: g_value_set_uint
 See: https://docs.gtk.org/gobject/method.Value.set_uint.html")
 
 
 (rt:define-gfunction (value-set-uint64 "g_value_set_uint64") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-uint64 :uint64))
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-uint64 :uint64))
                      :documentation "Set the contents of a G_TYPE_UINT64 #GValue to V-UINT64.
 
 C: g_value_set_uint64
@@ -3522,15 +4234,16 @@ See: https://docs.gtk.org/gobject/method.Value.set_uint64.html")
 
 
 (rt:define-gfunction (value-set-ulong "g_value_set_ulong") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-ulong :ulong)) :documentation
-                     "Set the contents of a G_TYPE_ULONG #GValue to V-ULONG.
+                     ((value (:boxed "GValue" "g_value_get_type" value)) (v-ulong :ulong))
+                     :documentation "Set the contents of a G_TYPE_ULONG #GValue to V-ULONG.
 
 C: g_value_set_ulong
 See: https://docs.gtk.org/gobject/method.Value.set_ulong.html")
 
 
 (rt:define-gfunction (value-set-variant "g_value_set_variant") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (variant :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (variant :pointer :optional t))
                      :version "2.26" :documentation
                      "Set the contents of a variant #GValue to VARIANT.
 If the variant is floating, it is consumed.
@@ -3541,7 +4254,7 @@ Since: 2.26")
 
 
 (rt:define-gfunction (value-steal-string "g_value_steal_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :string
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :return :string
                      :return-transfer :full :version "2.80" :documentation
                      "Steal ownership on contents of a G_TYPE_STRING #GValue.
 As a result of this operation the value's contents will be reset to NIL.
@@ -3552,7 +4265,8 @@ Since: 2.80")
 
 
 (rt:define-gfunction (value-take-boxed "g_value_take_boxed") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (v-boxed :pointer :optional t))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
+                      (v-boxed :pointer :optional t))
                      :version "2.4" :documentation
                      "Sets the contents of a G_TYPE_BOXED derived #GValue to V-BOXED
 and takes over the ownership of the caller’s reference to V-BOXED;
@@ -3564,7 +4278,7 @@ Since: 2.4")
 
 
 (rt:define-gfunction (value-take-string "g_value_take_string") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
                       (v-string :string :transfer :full :optional t))
                      :version "2.4" :documentation
                      "Sets the contents of a G_TYPE_STRING #GValue to V-STRING.
@@ -3575,7 +4289,7 @@ Since: 2.4")
 
 
 (rt:define-gfunction (value-take-variant "g_value_take_variant") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" value))
                       (variant :pointer :transfer :full :optional t))
                      :version "2.26" :documentation
                      "Set the contents of a variant #GValue to VARIANT, and takes over
@@ -3589,8 +4303,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (value-transform "g_value_transform") :args
-                     ((src-value (:boxed "GValue" "g_value_get_type"))
-                      (dest-value (:boxed "GValue" "g_value_get_type")))
+                     ((src-value (:boxed "GValue" "g_value_get_type" value))
+                      (dest-value (:boxed "GValue" "g_value_get_type" value)))
                      :return :boolean :documentation
                      "Tries to cast the contents of SRC-VALUE into a type appropriate
 to store in DEST-VALUE.
@@ -3600,7 +4314,7 @@ See: https://docs.gtk.org/gobject/method.Value.transform.html")
 
 
 (rt:define-gfunction (value-unset "g_value_unset") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :documentation
+                     ((value (:boxed "GValue" "g_value_get_type" value))) :documentation
                      "Clears the current value in VALUE (if any) and ‘unsets’ the type.
 
 C: g_value_unset
@@ -3608,8 +4322,8 @@ See: https://docs.gtk.org/gobject/method.Value.unset.html")
 
 
 (rt:define-gfunction (value-array-new "g_value_array_new") :args ((n-prealloced :uint)) :return
-                     (:boxed "GValueArray" "g_value_array_get_type") :return-transfer :full
-                     :documentation
+                     (:boxed "GValueArray" "g_value_array_get_type" value-array) :return-transfer
+                     :full :documentation
                      "Allocate and initialize a new #GValueArray, optionally preserve space
 for N-PREALLOCED elements. New arrays always contain 0 elements,
 regardless of the value of N-PREALLOCED.
@@ -3620,9 +4334,10 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-append "g_value_array_append") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type"))
-                      (value (:boxed "GValue" "g_value_get_type") :optional t))
-                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
+                      (value (:boxed "GValue" "g_value_get_type" value) :optional t))
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :documentation
                      "Insert a copy of VALUE as last element of VALUE-ARRAY. If VALUE is
 NIL, an uninitialized value is appended.
 
@@ -3632,9 +4347,9 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-copy "g_value_array_copy") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type"))) :return
-                     (:boxed "GValueArray" "g_value_array_get_type") :return-transfer :full
-                     :documentation
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array)))
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :return-transfer :full :documentation
                      "Construct an exact copy of a #GValueArray by duplicating all its
 contents.
 
@@ -3644,8 +4359,9 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-get-nth "g_value_array_get_nth") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type")) (index- :uint))
-                     :return (:boxed "GValue" "g_value_get_type") :documentation
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
+                      (index- :uint))
+                     :return (:boxed "GValue" "g_value_get_type" value) :documentation
                      "Return a pointer to the value at INDEX- contained in VALUE-ARRAY.
 
 C: g_value_array_get_nth
@@ -3654,9 +4370,11 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-insert "g_value_array_insert") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type")) (index- :uint)
-                      (value (:boxed "GValue" "g_value_get_type") :optional t))
-                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
+                      (index- :uint)
+                      (value (:boxed "GValue" "g_value_get_type" value) :optional t))
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :documentation
                      "Insert a copy of VALUE at specified position into VALUE-ARRAY. If VALUE
 is NIL, an uninitialized value is inserted.
 
@@ -3666,9 +4384,10 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-prepend "g_value_array_prepend") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type"))
-                      (value (:boxed "GValue" "g_value_get_type") :optional t))
-                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
+                      (value (:boxed "GValue" "g_value_get_type" value) :optional t))
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :documentation
                      "Insert a copy of VALUE as first element of VALUE-ARRAY. If VALUE is
 NIL, an uninitialized value is prepended.
 
@@ -3678,9 +4397,10 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-remove "g_value_array_remove") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type")) (index- :uint))
-                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
-                     "Remove the value at position INDEX- from VALUE-ARRAY.
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
+                      (index- :uint))
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :documentation "Remove the value at position INDEX- from VALUE-ARRAY.
 
 C: g_value_array_remove
 See: https://docs.gtk.org/gobject/method.ValueArray.remove.html
@@ -3688,10 +4408,11 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-array-sort "g_value_array_sort_with_data") :args
-                     ((value-array (:boxed "GValueArray" "g_value_array_get_type"))
+                     ((value-array (:boxed "GValueArray" "g_value_array_get_type" value-array))
                       (compare-func (:callback glib:compare-data-func :call))
                       (user-data :pointer :user-data-of compare-func))
-                     :return (:boxed "GValueArray" "g_value_array_get_type") :documentation
+                     :return (:boxed "GValueArray" "g_value_array_get_type" value-array)
+                     :documentation
                      "Sort VALUE-ARRAY using COMPARE-FUNC to compare the elements according
 to the semantics of #GCompareDataFunc.
 

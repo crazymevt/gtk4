@@ -5202,6 +5202,341 @@ new GtkTreeRowReference with gtk_tree_row_reference_new().
 C: GtkTreeRowReference
 See: https://docs.gtk.org/gtk4/struct.TreeRowReference.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct accessible-text-range
+    nil
+  (:start :size)
+  (:length :size))
+
+
+(rt:define-gfield accessible-text-range-start accessible-text-range :start :size :writable t
+                  :documentation "the start of the range, in characters
+")
+
+
+(rt:define-gfield accessible-text-range-length accessible-text-range :length :size :writable t
+                  :documentation "the length of the range, in characters
+")
+
+
+(rt:define-gstruct-constructor make-accessible-text-range (:record accessible-text-range)
+                               ((start :start :size) (length :length :size)) :documentation
+                               "A new AccessibleTextRange with the given fields; others are zero.")
+
+
+(rt:define-gstruct bitset-iter
+    (:gtype-name "GtkBitsetIter")
+  (:private-data :pointer :count 10))
+
+
+(rt:define-gstruct border
+    (:gtype-name "GtkBorder")
+  (:left :int16)
+  (:right :int16)
+  (:top :int16)
+  (:bottom :int16))
+
+
+(rt:define-gfield border-left border :left :int16 :writable t :documentation
+                  "The width of the left border
+")
+
+
+(rt:define-gfield border-right border :right :int16 :writable t :documentation
+                  "The width of the right border
+")
+
+
+(rt:define-gfield border-top border :top :int16 :writable t :documentation
+                  "The width of the top border
+")
+
+
+(rt:define-gfield border-bottom border :bottom :int16 :writable t :documentation
+                  "The width of the bottom border
+")
+
+
+(rt:define-gstruct-constructor make-border (:boxed "GtkBorder" "gtk_border_get_type" border)
+                               ((left :left :int16) (right :right :int16) (top :top :int16)
+                                (bottom :bottom :int16))
+                               :documentation
+                               "A new Border with the given fields; others are zero.")
+
+
+(rt:define-gstruct buildable-parser
+    nil
+  (:start-element :pointer)
+  (:end-element :pointer)
+  (:text :pointer)
+  (:error :pointer)
+  (:padding :pointer :count 4))
+
+
+(rt:define-gstruct css-location
+    nil
+  (:bytes :size)
+  (:chars :size)
+  (:lines :size)
+  (:line-bytes :size)
+  (:line-chars :size))
+
+
+(rt:define-gfield css-location-bytes css-location :bytes :size :writable t :documentation "")
+
+
+(rt:define-gfield css-location-chars css-location :chars :size :writable t :documentation "")
+
+
+(rt:define-gfield css-location-lines css-location :lines :size :writable t :documentation "")
+
+
+(rt:define-gfield css-location-line-bytes css-location :line-bytes :size :writable t :documentation
+                  "")
+
+
+(rt:define-gfield css-location-line-chars css-location :line-chars :size :writable t :documentation
+                  "")
+
+
+(rt:define-gstruct-constructor make-css-location (:record css-location)
+                               ((bytes :bytes :size) (chars :chars :size) (lines :lines :size)
+                                (line-bytes :line-bytes :size) (line-chars :line-chars :size))
+                               :documentation
+                               "A new CssLocation with the given fields; others are zero.")
+
+
+(rt:define-gstruct pad-action-entry
+    nil
+  (:type :int)
+  (:index :int)
+  (:mode :int)
+  (:label :pointer)
+  (:action-name :pointer))
+
+
+(rt:define-gfield pad-action-entry-type pad-action-entry :type (:enum pad-action-type) :writable t
+                  :documentation "the type of pad feature that will trigger this action entry.
+")
+
+
+(rt:define-gfield pad-action-entry-index pad-action-entry :index :int :writable t :documentation
+                  "the 0-indexed button/ring/strip/dial number that will trigger this action
+  entry.
+")
+
+
+(rt:define-gfield pad-action-entry-mode pad-action-entry :mode :int :writable t :documentation
+                  "the mode that will trigger this action entry, or -1 for all modes.
+")
+
+
+(rt:define-gfield pad-action-entry-label pad-action-entry :label :string :documentation
+                  "Human readable description of this action entry, this string should
+  be deemed user-visible.
+")
+
+
+(rt:define-gfield pad-action-entry-action-name pad-action-entry :action-name :string :documentation
+                  "action name that will be activated in the `GActionGroup`.
+")
+
+
+(rt:define-gstruct-constructor make-pad-action-entry (:record pad-action-entry)
+                               ((type :type (:enum pad-action-type)) (index :index :int)
+                                (mode :mode :int))
+                               :documentation
+                               "A new PadActionEntry with the given fields; others are zero.")
+
+
+(rt:define-gstruct page-range
+    nil
+  (:start :int)
+  (:end :int))
+
+
+(rt:define-gfield page-range-start page-range :start :int :writable t :documentation
+                  "start of page range.
+")
+
+
+(rt:define-gfield page-range-end page-range :end :int :writable t :documentation "end of page range.
+")
+
+
+(rt:define-gstruct-constructor make-page-range (:record page-range)
+                               ((start :start :int) (end :end :int)) :documentation
+                               "A new PageRange with the given fields; others are zero.")
+
+
+(rt:define-gstruct recent-data
+    nil
+  (:display-name :pointer)
+  (:description :pointer)
+  (:mime-type :pointer)
+  (:app-name :pointer)
+  (:app-exec :pointer)
+  (:groups :pointer)
+  (:is-private :boolean))
+
+
+(rt:define-gfield recent-data-display-name recent-data :display-name :string :documentation
+                  "a UTF-8 encoded string, containing the name of the recently
+  used resource to be displayed, or NIL;
+")
+
+
+(rt:define-gfield recent-data-description recent-data :description :string :documentation
+                  "a UTF-8 encoded string, containing a short description of
+  the resource, or NIL;
+")
+
+
+(rt:define-gfield recent-data-mime-type recent-data :mime-type :string :documentation
+                  "the MIME type of the resource;
+")
+
+
+(rt:define-gfield recent-data-app-name recent-data :app-name :string :documentation
+                  "the name of the application that is registering this recently
+  used resource;
+")
+
+
+(rt:define-gfield recent-data-app-exec recent-data :app-exec :string :documentation
+                  "command line used to launch this resource; may contain the
+  “\\%f” and “\\%u” escape characters which will be expanded
+  to the resource file path and URI respectively when the command line
+  is retrieved;
+")
+
+
+(rt:define-gfield recent-data-is-private recent-data :is-private :boolean :writable t
+                  :documentation "whether this resource should be displayed only by the
+  applications that have registered it or not.
+")
+
+
+(rt:define-gstruct-constructor make-recent-data (:record recent-data)
+                               ((is-private :is-private :boolean)) :documentation
+                               "A new RecentData with the given fields; others are zero.")
+
+
+(rt:define-gstruct requested-size
+    nil
+  (:data :pointer)
+  (:minimum-size :int)
+  (:natural-size :int))
+
+
+(rt:define-gfield requested-size-minimum-size requested-size :minimum-size :int :writable t
+                  :documentation "The minimum size needed for allocation in a given orientation
+")
+
+
+(rt:define-gfield requested-size-natural-size requested-size :natural-size :int :writable t
+                  :documentation "The natural size for allocation in a given orientation
+")
+
+
+(rt:define-gstruct-constructor make-requested-size (:record requested-size)
+                               ((minimum-size :minimum-size :int)
+                                (natural-size :natural-size :int))
+                               :documentation
+                               "A new RequestedSize with the given fields; others are zero.")
+
+
+(rt:define-gstruct requisition
+    (:gtype-name "GtkRequisition")
+  (:width :int)
+  (:height :int))
+
+
+(rt:define-gfield requisition-width requisition :width :int :writable t :documentation
+                  "the widget’s desired width
+")
+
+
+(rt:define-gfield requisition-height requisition :height :int :writable t :documentation
+                  "the widget’s desired height
+")
+
+
+(rt:define-gstruct-constructor make-requisition
+                               (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition)
+                               ((width :width :int) (height :height :int)) :documentation
+                               "A new Requisition with the given fields; others are zero.")
+
+
+(rt:define-gstruct svg-location
+    nil
+  (:bytes :size)
+  (:lines :size)
+  (:line-chars :size))
+
+
+(rt:define-gfield svg-location-bytes svg-location :bytes :size :writable t :documentation
+                  "the byte index in document. If unknown, this will
+  be zero (which is also a valid value, but only if all
+  three values are zero)
+")
+
+
+(rt:define-gfield svg-location-lines svg-location :lines :size :writable t :documentation
+                  "the line index in the document, 0-based
+")
+
+
+(rt:define-gfield svg-location-line-chars svg-location :line-chars :size :writable t :documentation
+                  "the char index in the line, 0-based
+")
+
+
+(rt:define-gstruct-constructor make-svg-location (:record svg-location)
+                               ((bytes :bytes :size) (lines :lines :size)
+                                (line-chars :line-chars :size))
+                               :documentation
+                               "A new SvgLocation with the given fields; others are zero.")
+
+
+(rt:define-gstruct text-iter
+    (:gtype-name "GtkTextIter")
+  (:dummy1 :pointer)
+  (:dummy2 :pointer)
+  (:dummy3 :int)
+  (:dummy4 :int)
+  (:dummy5 :int)
+  (:dummy6 :int)
+  (:dummy7 :int)
+  (:dummy8 :int)
+  (:dummy9 :pointer)
+  (:dummy10 :pointer)
+  (:dummy11 :int)
+  (:dummy12 :int)
+  (:dummy13 :int)
+  (:dummy14 :pointer))
+
+
+(rt:define-gstruct tree-iter
+    (:gtype-name "GtkTreeIter")
+  (:stamp :int)
+  (:user-data :pointer)
+  (:user-data2 :pointer)
+  (:user-data3 :pointer))
+
+
+(rt:define-gfield tree-iter-stamp tree-iter :stamp :int :writable t :documentation
+                  "a unique stamp to catch invalid iterators
+")
+
+
+(rt:define-gstruct-constructor make-tree-iter
+                               (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)
+                               ((stamp :stamp :int)) :documentation
+                               "A new TreeIter with the given fields; others are zero.")
+
 ;;; Properties
 
 
@@ -14020,8 +14355,9 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback cell-alloc-callback
                      (:args
                       ((renderer (:object cell-renderer))
-                       (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                       (cell-background (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                       (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                       (cell-background
+                        (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                        (data :pointer :user-data t))
                       :return :boolean))
 
@@ -14035,7 +14371,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
                      (:args
                       ((cell-layout (:object cell-layout)) (cell (:object cell-renderer))
                        (tree-model (:object tree-model))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))))
 
 
@@ -14054,7 +14390,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback entry-completion-match-func
                      (:args
                       ((completion (:object entry-completion)) (key :string)
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (user-data :pointer :user-data t))
                       :return :boolean))
 
@@ -14147,7 +14483,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback print-job-complete-func
                      (:args
                       ((print-job (:object print-job)) (user-data :pointer :user-data t)
-                       (error (:boxed "GError" "g_error_get_type")))))
+                       (error (:boxed "GError" "g_error_get_type" glib:error)))))
 
 
 (rt:define-gcallback print-settings-func
@@ -14196,15 +14532,15 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
                      (:args
                       ((tree-column (:object tree-view-column)) (cell (:object cell-renderer))
                        (tree-model (:object tree-model))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))))
 
 
 (rt:define-gcallback tree-iter-compare-func
                      (:args
                       ((model (:object tree-model))
-                       (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                       (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                       (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (user-data :pointer :user-data t))
                       :return :int))
 
@@ -14217,7 +14553,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback tree-model-filter-visible-func
                      (:args
                       ((model (:object tree-model))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))
                       :return :boolean))
 
@@ -14226,7 +14562,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
                      (:args
                       ((model (:object tree-model))
                        (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))
                       :return :boolean))
 
@@ -14235,7 +14571,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
                      (:args
                       ((model (:object tree-model))
                        (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))))
 
 
@@ -14265,7 +14601,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback tree-view-row-separator-func
                      (:args
                       ((model (:object tree-model))
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (data :pointer :user-data t))
                       :return :boolean))
 
@@ -14273,7 +14609,7 @@ See: https://docs.gtk.org/gtk4/property.WindowHandle.child.html"))
 (rt:define-gcallback tree-view-search-equal-func
                      (:args
                       ((model (:object tree-model)) (column :int) (key :string)
-                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                       (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                        (search-data :pointer :user-data t))
                       :return :boolean))
 
@@ -14418,6 +14754,17 @@ Since: 4.18")
 
 C: gtk_disable_setlocale
 See: https://docs.gtk.org/gtk4/func.disable_setlocale.html")
+
+
+(rt:define-gfunction (distribute-natural-allocation "gtk_distribute_natural_allocation") :args
+                     ((extra-space :int) (n-requested-sizes :uint :length-of sizes)
+                      (sizes (:array (:record requested-size))))
+                     :return :int :documentation
+                     "Distributes EXTRA-SPACE to child SIZES by bringing smaller
+children up to natural size first.
+
+C: gtk_distribute_natural_allocation
+See: https://docs.gtk.org/gtk4/func.distribute_natural_allocation.html")
 
 
 (rt:define-gfunction (enumerate-printers "gtk_enumerate_printers") :args
@@ -14830,7 +15177,7 @@ Deprecated.")
 
 
 (rt:define-gfunction (tree-get-row-drag-data "gtk_tree_get_row_drag_data") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))
                       (tree-model (:object tree-model) :direction :out)
                       (path (:boxed "GtkTreePath" "gtk_tree_path_get_type") :direction :out
                        :transfer :full))
@@ -14844,7 +15191,7 @@ Deprecated.")
 
 
 (rt:define-gfunction (value-dup-expression "gtk_value_dup_expression") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
                      :return-transfer :full :documentation
                      "Retrieves the `GtkExpression` stored inside the given `value`, and acquires
 a reference to it.
@@ -14854,15 +15201,16 @@ See: https://docs.gtk.org/gtk4/func.value_dup_expression.html")
 
 
 (rt:define-gfunction (value-get-expression "gtk_value_get_expression") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :documentation
-                     "Retrieves the `GtkExpression` stored inside the given `value`.
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
+                     :documentation "Retrieves the `GtkExpression` stored inside the given `value`.
 
 C: gtk_value_get_expression
 See: https://docs.gtk.org/gtk4/func.value_get_expression.html")
 
 
 (rt:define-gfunction (value-set-expression "gtk_value_set_expression") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (expression :pointer))
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))
+                      (expression :pointer))
                      :documentation "Stores the given `GtkExpression` inside `value`.
 
 C: gtk_value_set_expression
@@ -14870,7 +15218,7 @@ See: https://docs.gtk.org/gtk4/func.value_set_expression.html")
 
 
 (rt:define-gfunction (value-take-expression "gtk_value_take_expression") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))
                       (expression :pointer :transfer :full :optional t))
                      :documentation "Stores the given `GtkExpression` inside `value`.
 
@@ -16969,24 +17317,61 @@ C: gtk_bitset_unref
 See: https://docs.gtk.org/gtk4/method.Bitset.unref.html")
 
 
+(rt:define-gfunction (bitset-iter-init-at "gtk_bitset_iter_init_at") :args
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter)
+                       :direction :out :caller-allocates t)
+                      (set (:boxed "GtkBitset" "gtk_bitset_get_type")) (target :uint)
+                      (value :uint :direction :out :transfer :full))
+                     :return :boolean :documentation "Initializes ITER to point to TARGET.
+
+C: gtk_bitset_iter_init_at
+See: https://docs.gtk.org/gtk4/type_func.BitsetIter.init_at.html")
+
+
+(rt:define-gfunction (bitset-iter-init-first "gtk_bitset_iter_init_first") :args
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter)
+                       :direction :out :caller-allocates t)
+                      (set (:boxed "GtkBitset" "gtk_bitset_get_type"))
+                      (value :uint :direction :out :transfer :full))
+                     :return :boolean :documentation
+                     "Initializes an iterator for SET and points it to the first
+value in SET.
+
+C: gtk_bitset_iter_init_first
+See: https://docs.gtk.org/gtk4/type_func.BitsetIter.init_first.html")
+
+
+(rt:define-gfunction (bitset-iter-init-last "gtk_bitset_iter_init_last") :args
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter)
+                       :direction :out :caller-allocates t)
+                      (set (:boxed "GtkBitset" "gtk_bitset_get_type"))
+                      (value :uint :direction :out :transfer :full))
+                     :return :boolean :documentation
+                     "Initializes an iterator for SET and points it to the last
+value in SET.
+
+C: gtk_bitset_iter_init_last
+See: https://docs.gtk.org/gtk4/type_func.BitsetIter.init_last.html")
+
+
 (rt:define-gfunction (bitset-iter-get-value "gtk_bitset_iter_get_value") :args
-                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type"))) :return :uint
-                     :documentation "Gets the current value that ITER points to.
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter)))
+                     :return :uint :documentation "Gets the current value that ITER points to.
 
 C: gtk_bitset_iter_get_value
 See: https://docs.gtk.org/gtk4/method.BitsetIter.get_value.html")
 
 
 (rt:define-gfunction (bitset-iter-is-valid "gtk_bitset_iter_is_valid") :args
-                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type"))) :return :boolean
-                     :documentation "Checks if ITER points to a valid value.
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter)))
+                     :return :boolean :documentation "Checks if ITER points to a valid value.
 
 C: gtk_bitset_iter_is_valid
 See: https://docs.gtk.org/gtk4/method.BitsetIter.is_valid.html")
 
 
 (rt:define-gfunction (bitset-iter-next "gtk_bitset_iter_next") :args
-                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type"))
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter))
                       (value :uint :direction :out :transfer :full))
                      :return :boolean :documentation "Moves ITER to the next value in the set.
 
@@ -16995,7 +17380,7 @@ See: https://docs.gtk.org/gtk4/method.BitsetIter.next.html")
 
 
 (rt:define-gfunction (bitset-iter-previous "gtk_bitset_iter_previous") :args
-                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type"))
+                     ((iter (:boxed "GtkBitsetIter" "gtk_bitset_iter_get_type" bitset-iter))
                       (value :uint :direction :out :transfer :full))
                      :return :boolean :documentation "Moves ITER to the previous value in the set.
 
@@ -17105,7 +17490,7 @@ See: https://docs.gtk.org/gtk4/method.BoolFilter.set_invert.html")
 
 
 (rt:define-gfunction (border-new "gtk_border_new") :return
-                     (:boxed "GtkBorder" "gtk_border_get_type") :return-transfer :full
+                     (:boxed "GtkBorder" "gtk_border_get_type" border) :return-transfer :full
                      :documentation
                      "Allocates a new `GtkBorder` struct and initializes its elements to zero.
 
@@ -17114,8 +17499,8 @@ See: https://docs.gtk.org/gtk4/ctor.Border.new.html")
 
 
 (rt:define-gfunction (border-copy "gtk_border_copy") :args
-                     ((border- (:boxed "GtkBorder" "gtk_border_get_type"))) :return
-                     (:boxed "GtkBorder" "gtk_border_get_type") :return-transfer :full
+                     ((border- (:boxed "GtkBorder" "gtk_border_get_type" border))) :return
+                     (:boxed "GtkBorder" "gtk_border_get_type" border) :return-transfer :full
                      :documentation "Copies a `GtkBorder`.
 
 C: gtk_border_copy
@@ -17123,7 +17508,7 @@ See: https://docs.gtk.org/gtk4/method.Border.copy.html")
 
 
 (rt:define-gfunction (border-free "gtk_border_free") :args
-                     ((border- (:boxed "GtkBorder" "gtk_border_get_type"))) :documentation
+                     ((border- (:boxed "GtkBorder" "gtk_border_get_type" border))) :documentation
                      "Frees a `GtkBorder`.
 
 C: gtk_border_free
@@ -17474,8 +17859,8 @@ See: https://docs.gtk.org/gtk4/method.Builder.add_objects_from_string.html")
                      ((builder (:object builder)) (function-name :string)
                       (flags (:flags builder-closure-flags))
                       (object (:object rt:object) :optional t))
-                     :return (:boxed "GClosure" "g_closure_get_type") :throws t :documentation
-                     "Creates a closure to invoke the function called FUNCTION-NAME.
+                     :return (:boxed "GClosure" "g_closure_get_type" gobject:closure) :throws t
+                     :documentation "Creates a closure to invoke the function called FUNCTION-NAME.
 
 C: gtk_builder_create_closure
 See: https://docs.gtk.org/gtk4/method.Builder.create_closure.html")
@@ -17572,6 +17957,24 @@ See: https://docs.gtk.org/gtk4/method.Builder.set_scope.html")
 
 C: gtk_builder_set_translation_domain
 See: https://docs.gtk.org/gtk4/method.Builder.set_translation_domain.html")
+
+
+(rt:define-gfunction (builder-value-from-string "gtk_builder_value_from_string") :args
+                     ((builder (:object builder)) (pspec :pointer) (string :string)
+                      (value :gvalue :direction :out :caller-allocates t))
+                     :return :boolean :throws t :documentation "Demarshals a value from a string.
+
+C: gtk_builder_value_from_string
+See: https://docs.gtk.org/gtk4/method.Builder.value_from_string.html")
+
+
+(rt:define-gfunction (builder-value-from-string-type "gtk_builder_value_from_string_type") :args
+                     ((builder (:object builder)) (type :gtype) (string :string)
+                      (value :gvalue :direction :out :caller-allocates t))
+                     :return :boolean :throws t :documentation "Demarshals a value from a string.
+
+C: gtk_builder_value_from_string_type
+See: https://docs.gtk.org/gtk4/method.Builder.value_from_string_type.html")
 
 
 (rt:define-gfunction (builder-c-scope-new "gtk_builder_cscope_new") :return
@@ -17947,7 +18350,7 @@ See: https://docs.gtk.org/gtk4/ctor.CallbackAction.new.html")
 (rt:define-gfunction (cell-area-activate "gtk_cell_area_activate") :args
                      ((area (:object cell-area)) (context (:object cell-area-context))
                       (widget (:object widget))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)) (edit-only :boolean))
                      :return :boolean :documentation
                      "Activates AREA, usually by activating the currently focused
@@ -17962,7 +18365,7 @@ Deprecated.")
 (rt:define-gfunction (cell-area-activate-cell "gtk_cell_area_activate_cell") :args
                      ((area (:object cell-area)) (widget (:object widget))
                       (renderer (:object cell-renderer)) (event :pointer)
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)))
                      :return :boolean :documentation
                      "This is used by `GtkCellArea` subclasses when handling events
@@ -17998,8 +18401,8 @@ Deprecated.")
 
 (rt:define-gfunction (cell-area-apply-attributes "gtk_cell_area_apply_attributes") :args
                      ((area (:object cell-area)) (tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")) (is-expander :boolean)
-                      (is-expanded :boolean))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (is-expander :boolean) (is-expanded :boolean))
                      :documentation "Applies any connected attributes to the renderers in
 AREA by pulling the values from TREE-MODEL.
 
@@ -18045,7 +18448,8 @@ Deprecated.")
 
 (rt:define-gfunction (cell-area-cell-get-property "gtk_cell_area_cell_get_property") :args
                      ((area (:object cell-area)) (renderer (:object cell-renderer))
-                      (property-name :string) (value (:boxed "GValue" "g_value_get_type")))
+                      (property-name :string)
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Gets the value of a cell property for RENDERER in AREA.
 
 C: gtk_cell_area_cell_get_property
@@ -18055,7 +18459,8 @@ Deprecated.")
 
 (rt:define-gfunction (cell-area-cell-set-property "gtk_cell_area_cell_set_property") :args
                      ((area (:object cell-area)) (renderer (:object cell-renderer))
-                      (property-name :string) (value (:boxed "GValue" "g_value_get_type")))
+                      (property-name :string)
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Sets a cell property for RENDERER in AREA.
 
 C: gtk_cell_area_cell_set_property
@@ -18093,7 +18498,7 @@ Deprecated.")
 (rt:define-gfunction (cell-area-event "gtk_cell_area_event") :args
                      ((area (:object cell-area)) (context (:object cell-area-context))
                       (widget (:object widget)) (event :pointer)
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)))
                      :return :int :documentation "Delegates event handling to a `GtkCellArea`.
 
@@ -18127,8 +18532,9 @@ Deprecated.")
 (rt:define-gfunction (cell-area-foreach-alloc "gtk_cell_area_foreach_alloc") :args
                      ((area (:object cell-area)) (context (:object cell-area-context))
                       (widget (:object widget))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (background-area
+                       (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (callback (:callback cell-alloc-callback :call))
                       (callback-data :pointer :user-data-of callback))
                      :documentation "Calls CALLBACK for every `GtkCellRenderer` in AREA with the
@@ -18136,6 +18542,36 @@ allocated rectangle inside CELL-AREA.
 
 C: gtk_cell_area_foreach_alloc
 See: https://docs.gtk.org/gtk4/method.CellArea.foreach_alloc.html
+Deprecated.")
+
+
+(rt:define-gfunction (cell-area-get-cell-allocation "gtk_cell_area_get_cell_allocation") :args
+                     ((area (:object cell-area)) (context (:object cell-area-context))
+                      (widget (:object widget)) (renderer (:object cell-renderer))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (allocation (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Derives the allocation of RENDERER inside AREA if AREA
+were to be rendered in CELL-AREA.
+
+C: gtk_cell_area_get_cell_allocation
+See: https://docs.gtk.org/gtk4/method.CellArea.get_cell_allocation.html
+Deprecated.")
+
+
+(rt:define-gfunction (cell-area-get-cell-at-position "gtk_cell_area_get_cell_at_position") :args
+                     ((area (:object cell-area)) (context (:object cell-area-context))
+                      (widget (:object widget))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (x :int) (y :int)
+                      (alloc-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :return (:object cell-renderer) :documentation
+                     "Gets the `GtkCellRenderer` at X and Y coordinates inside AREA and optionally
+returns the full cell allocation for it inside CELL-AREA.
+
+C: gtk_cell_area_get_cell_at_position
+See: https://docs.gtk.org/gtk4/method.CellArea.get_cell_at_position.html
 Deprecated.")
 
 
@@ -18271,6 +18707,21 @@ See: https://docs.gtk.org/gtk4/method.CellArea.has_renderer.html
 Deprecated.")
 
 
+(rt:define-gfunction (cell-area-inner-cell-area "gtk_cell_area_inner_cell_area") :args
+                     ((area (:object cell-area)) (widget (:object widget))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (inner-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation
+                     "This is a convenience function for `GtkCellArea` implementations
+to get the inner area where a given `GtkCellRenderer` will be
+rendered. It removes any padding previously added by gtk_cell_area_request_renderer().
+
+C: gtk_cell_area_inner_cell_area
+See: https://docs.gtk.org/gtk4/method.CellArea.inner_cell_area.html
+Deprecated.")
+
+
 (rt:define-gfunction (cell-area-is-activatable "gtk_cell_area_is_activatable") :args
                      ((area (:object cell-area))) :return :boolean :documentation
                      "Returns whether the area can do anything when activated,
@@ -18342,8 +18793,9 @@ Deprecated.")
 (rt:define-gfunction (cell-area-snapshot "gtk_cell_area_snapshot") :args
                      ((area (:object cell-area)) (context (:object cell-area-context))
                       (widget (:object widget)) (snapshot (:object snapshot))
-                      (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (background-area
+                       (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)) (paint-focus :boolean))
                      :documentation "Snapshots AREA’s cells according to AREA’s layout onto at
 the given coordinates.
@@ -18684,8 +19136,9 @@ Deprecated.")
 (rt:define-gfunction (cell-renderer-activate "gtk_cell_renderer_activate") :args
                      ((cell (:object cell-renderer)) (event :pointer) (widget (:object widget))
                       (path :string)
-                      (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (background-area
+                       (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)))
                      :return :boolean :documentation
                      "Passes an activate event to the cell renderer for possible processing.
@@ -18694,6 +19147,21 @@ toggles when it gets a mouse click.
 
 C: gtk_cell_renderer_activate
 See: https://docs.gtk.org/gtk4/method.CellRenderer.activate.html
+Deprecated.")
+
+
+(rt:define-gfunction (cell-renderer-get-aligned-area "gtk_cell_renderer_get_aligned_area") :args
+                     ((cell (:object cell-renderer)) (widget (:object widget))
+                      (flags (:flags cell-renderer-state))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (aligned-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation
+                     "Gets the aligned area used by CELL inside CELL-AREA. Used for finding
+the appropriate edit and focus rectangle.
+
+C: gtk_cell_renderer_get_aligned_area
+See: https://docs.gtk.org/gtk4/method.CellRenderer.get_aligned_area.html
 Deprecated.")
 
 
@@ -18769,6 +19237,23 @@ WIDGET with the specified WIDTH.
 
 C: gtk_cell_renderer_get_preferred_height_for_width
 See: https://docs.gtk.org/gtk4/method.CellRenderer.get_preferred_height_for_width.html
+Deprecated.")
+
+
+(rt:define-gfunction (cell-renderer-get-preferred-size "gtk_cell_renderer_get_preferred_size")
+                     :args
+                     ((cell (:object cell-renderer)) (widget (:object widget))
+                      (minimum-size
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition) :direction
+                       :out :caller-allocates t)
+                      (natural-size
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition) :direction
+                       :out :caller-allocates t))
+                     :documentation "Retrieves the minimum and natural size of a cell taking
+into account the widget’s preference for height-for-width management.
+
+C: gtk_cell_renderer_get_preferred_size
+See: https://docs.gtk.org/gtk4/method.CellRenderer.get_preferred_size.html
 Deprecated.")
 
 
@@ -18915,8 +19400,9 @@ Deprecated.")
 (rt:define-gfunction (cell-renderer-snapshot "gtk_cell_renderer_snapshot") :args
                      ((cell (:object cell-renderer)) (snapshot (:object snapshot))
                       (widget (:object widget))
-                      (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (background-area
+                       (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)))
                      :documentation
                      "Invokes the virtual render function of the `GtkCellRenderer`. The three
@@ -18935,8 +19421,9 @@ Deprecated.")
 (rt:define-gfunction (cell-renderer-start-editing "gtk_cell_renderer_start_editing") :args
                      ((cell (:object cell-renderer)) (event :pointer) (widget (:object widget))
                       (path :string)
-                      (background-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (background-area
+                       (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
+                      (cell-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (flags (:flags cell-renderer-state)))
                      :return (:object cell-editable) :documentation
                      "Starts editing the contents of this CELL, through a new `GtkCellEditable`
@@ -19594,8 +20081,9 @@ Deprecated.")
 
 
 (rt:define-gfunction (color-button-new-with-rgba "gtk_color_button_new_with_rgba") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :return (:object widget)
-                     :documentation "Creates a new color button showing the given color.
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))) :return
+                     (:object widget) :documentation
+                     "Creates a new color button showing the given color.
 
 C: gtk_color_button_new_with_rgba
 See: https://docs.gtk.org/gtk4/ctor.ColorButton.new_with_rgba.html
@@ -19638,6 +20126,29 @@ See: https://docs.gtk.org/gtk4/method.ColorButton.set_title.html
 Deprecated.")
 
 
+(rt:define-gfunction (color-chooser-add-palette "gtk_color_chooser_add_palette") :args
+                     ((chooser (:object color-chooser)) (orientation (:enum orientation))
+                      (colors-per-line :int) (n-colors :int :length-of colors)
+                      (colors (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) :optional
+                       t))
+                     :documentation "Adds a palette to the color chooser.
+
+C: gtk_color_chooser_add_palette
+See: https://docs.gtk.org/gtk4/method.ColorChooser.add_palette.html
+Deprecated.")
+
+
+(rt:define-gfunction (color-chooser-get-rgba "gtk_color_chooser_get_rgba") :args
+                     ((chooser (:object color-chooser))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :direction :out
+                       :caller-allocates t))
+                     :documentation "Gets the currently-selected color.
+
+C: gtk_color_chooser_get_rgba
+See: https://docs.gtk.org/gtk4/method.ColorChooser.get_rgba.html
+Deprecated.")
+
+
 (rt:define-gfunction (color-chooser-get-use-alpha "gtk_color_chooser_get_use_alpha") :args
                      ((chooser (:object color-chooser))) :return :boolean :documentation
                      "Returns whether the color chooser shows the alpha channel.
@@ -19649,7 +20160,7 @@ Deprecated.")
 
 (rt:define-gfunction (color-chooser-set-rgba "gtk_color_chooser_set_rgba") :args
                      ((chooser (:object color-chooser))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
                      :documentation "Sets the color.
 
 C: gtk_color_chooser_set_rgba
@@ -19694,7 +20205,7 @@ Since: 4.10")
 
 (rt:define-gfunction (color-dialog-choose-rgba "gtk_color_dialog_choose_rgba") :args
                      ((self (:object color-dialog)) (parent (:object window) :optional t)
-                      (initial-color (:boxed "GdkRGBA" "gdk_rgba_get_type") :optional t)
+                      (initial-color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :optional t)
                       (cancellable (:object gio:cancellable) :optional t)
                       (callback (:callback gio:async-ready-callback :async) :optional t)
                       (user-data :pointer :user-data-of callback))
@@ -19707,8 +20218,8 @@ Since: 4.10")
 
 (rt:define-gfunction (color-dialog-choose-rgba-finish "gtk_color_dialog_choose_rgba_finish") :args
                      ((self (:object color-dialog)) (result (:object gio:async-result))) :return
-                     (:boxed "GdkRGBA" "gdk_rgba_get_type") :return-transfer :full :throws t
-                     :version "4.10" :documentation "Finishes the Gtk.ColorDialog.choose_rgba call
+                     (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :return-transfer :full :throws
+                     t :version "4.10" :documentation "Finishes the Gtk.ColorDialog.choose_rgba call
 
 C: gtk_color_dialog_choose_rgba_finish
 See: https://docs.gtk.org/gtk4/method.ColorDialog.choose_rgba_finish.html
@@ -19796,7 +20307,7 @@ Since: 4.10")
 
 (rt:define-gfunction (color-dialog-button-get-rgba "gtk_color_dialog_button_get_rgba") :args
                      ((self (:object color-dialog-button))) :return
-                     (:boxed "GdkRGBA" "gdk_rgba_get_type") :version "4.10" :documentation
+                     (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :version "4.10" :documentation
                      "Returns the color of the button.
 
 C: gtk_color_dialog_button_get_rgba
@@ -19817,7 +20328,7 @@ Since: 4.10")
 
 (rt:define-gfunction (color-dialog-button-set-rgba "gtk_color_dialog_button_set_rgba") :args
                      ((self (:object color-dialog-button))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
                      :version "4.10" :documentation "Sets the color of the button.
 
 C: gtk_color_dialog_button_set_rgba
@@ -20521,6 +21032,18 @@ See: https://docs.gtk.org/gtk4/method.ComboBox.get_active_id.html
 Deprecated.")
 
 
+(rt:define-gfunction (combo-box-get-active-iter "gtk_combo_box_get_active_iter") :args
+                     ((combo-box (:object combo-box))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Sets ITER to point to the currently active item.
+
+C: gtk_combo_box_get_active_iter
+See: https://docs.gtk.org/gtk4/method.ComboBox.get_active_iter.html
+Deprecated.")
+
+
 (rt:define-gfunction (combo-box-get-button-sensitivity "gtk_combo_box_get_button_sensitivity")
                      :args ((combo-box (:object combo-box))) :return (:enum sensitivity-type)
                      :documentation "Returns whether the combo box sets the dropdown button
@@ -20636,7 +21159,7 @@ Deprecated.")
 
 (rt:define-gfunction (combo-box-set-active-iter "gtk_combo_box_set_active_iter") :args
                      ((combo-box (:object combo-box))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional t))
                      :documentation "Sets the current active item to be the one referenced by ITER.
 
 C: gtk_combo_box_set_active_iter
@@ -20815,8 +21338,8 @@ Deprecated.")
 
 
 (rt:define-gfunction (constant-expression-new-for-value "gtk_constant_expression_new_for_value")
-                     :args ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer
-                     :return-transfer :full :documentation
+                     :args ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return
+                     :pointer :return-transfer :full :documentation
                      "Creates an expression that always evaluates to the given `value`.
 
 C: gtk_constant_expression_new_for_value
@@ -20824,8 +21347,9 @@ See: https://docs.gtk.org/gtk4/ctor.ConstantExpression.new_for_value.html")
 
 
 (rt:define-gfunction (constant-expression-get-value "gtk_constant_expression_get_value") :args
-                     ((expression :pointer)) :return (:boxed "GValue" "g_value_get_type")
-                     :documentation "Gets the value that a constant expression evaluates to.
+                     ((expression :pointer)) :return
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
+                     "Gets the value that a constant expression evaluates to.
 
 C: gtk_constant_expression_get_value
 See: https://docs.gtk.org/gtk4/method.ConstantExpression.get_value.html")
@@ -21290,7 +21814,7 @@ See: https://docs.gtk.org/gtk4/method.CssSection.get_start_location.html")
 
 (rt:define-gfunction (css-section-print "gtk_css_section_print") :args
                      ((section (:boxed "GtkCssSection" "gtk_css_section_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :documentation "Prints the `section` into `string` in a human-readable form.
 
 C: gtk_css_section_print
@@ -21481,8 +22005,9 @@ See: https://docs.gtk.org/gtk4/method.DirectoryList.get_attributes.html")
 
 
 (rt:define-gfunction (directory-list-get-error "gtk_directory_list_get_error") :args
-                     ((self (:object directory-list))) :return (:boxed "GError" "g_error_get_type")
-                     :documentation "Gets the loading error, if any.
+                     ((self (:object directory-list))) :return
+                     (:boxed "GError" "g_error_get_type" glib:error) :documentation
+                     "Gets the loading error, if any.
 
 C: gtk_directory_list_get_error
 See: https://docs.gtk.org/gtk4/method.DirectoryList.get_error.html")
@@ -21565,8 +22090,8 @@ See: https://docs.gtk.org/gtk4/ctor.DragIcon.get_for_drag.html")
 
 
 (rt:define-gfunction (drag-icon-create-widget-for-value "gtk_drag_icon_create_widget_for_value")
-                     :args ((value (:boxed "GValue" "g_value_get_type"))) :return (:object widget)
-                     :return-transfer :full :documentation
+                     :args ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return
+                     (:object widget) :return-transfer :full :documentation
                      "Creates a widget that can be used as a drag icon for the given
 VALUE.
 
@@ -21999,8 +22524,9 @@ See: https://docs.gtk.org/gtk4/method.DropTarget.get_preload.html")
 
 
 (rt:define-gfunction (drop-target-get-value "gtk_drop_target_get_value") :args
-                     ((self (:object drop-target))) :return (:boxed "GValue" "g_value_get_type")
-                     :documentation "Gets the current drop data, as a `GValue`.
+                     ((self (:object drop-target))) :return
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
+                     "Gets the current drop data, as a `GValue`.
 
 C: gtk_drop_target_get_value
 See: https://docs.gtk.org/gtk4/method.DropTarget.get_value.html")
@@ -22095,7 +22621,7 @@ See: https://docs.gtk.org/gtk4/method.DropTargetAsync.set_formats.html")
 
 (rt:define-gfunction (editable-delegate-get-property "gtk_editable_delegate_get_property") :args
                      ((object (:object rt:object)) (prop-id :uint)
-                      (value (:boxed "GValue" "g_value_get_type")) (pspec :pointer))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)) (pspec :pointer))
                      :return :boolean :documentation
                      "Gets a property of the `GtkEditable` delegate for OBJECT.
 
@@ -22105,7 +22631,7 @@ See: https://docs.gtk.org/gtk4/type_func.Editable.delegate_get_property.html")
 
 (rt:define-gfunction (editable-delegate-set-property "gtk_editable_delegate_set_property") :args
                      ((object (:object rt:object)) (prop-id :uint)
-                      (value (:boxed "GValue" "g_value_get_type")) (pspec :pointer))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)) (pspec :pointer))
                      :return :boolean :documentation
                      "Sets a property on the `GtkEditable` delegate for OBJECT.
 
@@ -22476,6 +23002,16 @@ See: https://docs.gtk.org/gtk4/method.Entry.get_has_frame.html")
 
 C: gtk_entry_get_icon_activatable
 See: https://docs.gtk.org/gtk4/method.Entry.get_icon_activatable.html")
+
+
+(rt:define-gfunction (entry-get-icon-area "gtk_entry_get_icon_area") :args
+                     ((entry (:object entry)) (icon-pos (:enum entry-icon-position))
+                      (icon-area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Gets the area where entry’s icon at ICON-POS is drawn.
+
+C: gtk_entry_get_icon_area
+See: https://docs.gtk.org/gtk4/method.Entry.get_icon_area.html")
 
 
 (rt:define-gfunction (entry-get-icon-at-pos "gtk_entry_get_icon_at_pos") :args
@@ -23732,7 +24268,7 @@ See: https://docs.gtk.org/gtk4/method.Expression.bind.html")
 
 (rt:define-gfunction (expression-evaluate "gtk_expression_evaluate") :args
                      ((self :pointer) (this- (:object rt:object))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :return :boolean :documentation
                      "Evaluates the given expression and on success stores the result
 in VALUE.
@@ -23786,7 +24322,7 @@ See: https://docs.gtk.org/gtk4/method.Expression.watch.html")
 
 (rt:define-gfunction (expression-watch-evaluate "gtk_expression_watch_evaluate") :args
                      ((watch (:boxed "GtkExpressionWatch" "gtk_expression_watch_get_type"))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :return :boolean :documentation
                      "Evaluates the watched expression and on success stores the result
 in `value`.
@@ -26051,7 +26587,7 @@ See: https://docs.gtk.org/gtk4/method.GLArea.get_context.html")
 
 
 (rt:define-gfunction (gl-area-get-error "gtk_gl_area_get_error") :args ((area (:object gl-area)))
-                     :return (:boxed "GError" "g_error_get_type") :documentation
+                     :return (:boxed "GError" "g_error_get_type" glib:error) :documentation
                      "Gets the current error set on the AREA.
 
 C: gtk_gl_area_get_error
@@ -26129,7 +26665,7 @@ See: https://docs.gtk.org/gtk4/method.GLArea.set_auto_render.html")
 
 (rt:define-gfunction (gl-area-set-error "gtk_gl_area_set_error") :args
                      ((area (:object gl-area))
-                      (error (:boxed "GError" "g_error_get_type") :optional t))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :optional t))
                      :documentation "Sets an error on the area which will be shown instead of the
 GL rendering.
 
@@ -26169,6 +26705,19 @@ See: https://docs.gtk.org/gtk4/method.GLArea.set_required_version.html")
 C: gtk_gl_area_set_use_es
 See: https://docs.gtk.org/gtk4/method.GLArea.set_use_es.html
 Deprecated.")
+
+
+(rt:define-gfunction (gesture-get-bounding-box "gtk_gesture_get_bounding_box") :args
+                     ((gesture (:object gesture))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "If there are touch sequences being currently handled by GESTURE,
+returns true and fills in RECT with the bounding box containing
+all active touches.
+
+C: gtk_gesture_get_bounding_box
+See: https://docs.gtk.org/gtk4/method.Gesture.get_bounding_box.html")
 
 
 (rt:define-gfunction (gesture-get-bounding-box-center "gtk_gesture_get_bounding_box_center") :args
@@ -27384,7 +27933,7 @@ See: https://docs.gtk.org/gtk4/method.IMContext.set_client_widget.html")
 
 (rt:define-gfunction (im-context-set-cursor-location "gtk_im_context_set_cursor_location") :args
                      ((context (:object im-context))
-                      (area (:boxed "GdkRectangle" "gdk_rectangle_get_type")))
+                      (area (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)))
                      :documentation "Notify the input method that a change in cursor
 position has been made.
 
@@ -27727,6 +28276,21 @@ See: https://docs.gtk.org/gtk4/method.IconView.get_activate_on_single_click.html
 Deprecated.")
 
 
+(rt:define-gfunction (icon-view-get-cell-rect "gtk_icon_view_get_cell_rect") :args
+                     ((icon-view (:object icon-view))
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                      (cell (:object cell-renderer))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Fills the bounding rectangle in widget coordinates for the cell specified by
+PATH and CELL. If CELL is NIL the main cell area is used.
+
+C: gtk_icon_view_get_cell_rect
+See: https://docs.gtk.org/gtk4/method.IconView.get_cell_rect.html
+Deprecated.")
+
+
 (rt:define-gfunction (icon-view-get-column-spacing "gtk_icon_view_get_column_spacing") :args
                      ((icon-view (:object icon-view))) :return :int :documentation
                      "Returns the value of the ::column-spacing property.
@@ -27964,6 +28528,24 @@ displaying tooltips on ICON-VIEW’s rows.
 
 C: gtk_icon_view_get_tooltip_column
 See: https://docs.gtk.org/gtk4/method.IconView.get_tooltip_column.html
+Deprecated.")
+
+
+(rt:define-gfunction (icon-view-get-tooltip-context "gtk_icon_view_get_tooltip_context") :args
+                     ((icon-view (:object icon-view)) (x :int) (y :int) (keyboard-tip :boolean)
+                      (model (:object tree-model) :direction :out)
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type") :direction :out
+                       :transfer :full)
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "This function is supposed to be used in a `GtkWidget::query-tooltip`
+signal handler for `GtkIconView`. The X, Y and KEYBOARD-TIP values
+which are received in the signal handler, should be passed to this
+function without modification.
+
+C: gtk_icon_view_get_tooltip_context
+See: https://docs.gtk.org/gtk4/method.IconView.get_tooltip_context.html
 Deprecated.")
 
 
@@ -30127,6 +30709,20 @@ See: https://docs.gtk.org/gtk4/ctor.ListStore.newv.html
 Deprecated.")
 
 
+(rt:define-gfunction (list-store-append "gtk_list_store_append") :args
+                     ((list-store (:object list-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :documentation
+                     "Appends a new row to LIST-STORE.  ITER will be changed to point to this new
+row.  The row will be empty after this function is called.  To fill in
+values, you need to call gtk_list_store_set() or gtk_list_store_set_value().
+
+C: gtk_list_store_append
+See: https://docs.gtk.org/gtk4/method.ListStore.append.html
+Deprecated.")
+
+
 (rt:define-gfunction (list-store-clear "gtk_list_store_clear") :args
                      ((list-store (:object list-store))) :documentation
                      "Removes all rows from the list store.
@@ -30136,9 +30732,60 @@ See: https://docs.gtk.org/gtk4/method.ListStore.clear.html
 Deprecated.")
 
 
+(rt:define-gfunction (list-store-insert "gtk_list_store_insert") :args
+                     ((list-store (:object list-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (position :int))
+                     :documentation
+                     "Creates a new row at POSITION.  ITER will be changed to point to this new
+row.  If POSITION is -1 or is larger than the number of rows on the list,
+then the new row will be appended to the list. The row will be empty after
+this function is called.  To fill in values, you need to call
+gtk_list_store_set() or gtk_list_store_set_value().
+
+C: gtk_list_store_insert
+See: https://docs.gtk.org/gtk4/method.ListStore.insert.html
+Deprecated.")
+
+
+(rt:define-gfunction (list-store-insert-after "gtk_list_store_insert_after") :args
+                     ((list-store (:object list-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (sibling (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation
+                     "Inserts a new row after SIBLING. If SIBLING is NIL, then the row will be
+prepended to the beginning of the list. ITER will be changed to point to
+this new row. The row will be empty after this function is called. To fill
+in values, you need to call gtk_list_store_set() or gtk_list_store_set_value().
+
+C: gtk_list_store_insert_after
+See: https://docs.gtk.org/gtk4/method.ListStore.insert_after.html
+Deprecated.")
+
+
+(rt:define-gfunction (list-store-insert-before "gtk_list_store_insert_before") :args
+                     ((list-store (:object list-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (sibling (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation
+                     "Inserts a new row before SIBLING. If SIBLING is NIL, then the row will
+be appended to the end of the list. ITER will be changed to point to this
+new row. The row will be empty after this function is called. To fill in
+values, you need to call gtk_list_store_set() or gtk_list_store_set_value().
+
+C: gtk_list_store_insert_before
+See: https://docs.gtk.org/gtk4/method.ListStore.insert_before.html
+Deprecated.")
+
+
 (rt:define-gfunction (list-store-iter-is-valid "gtk_list_store_iter_is_valid") :args
                      ((list-store (:object list-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Checks if the given iter is a valid iter for this `GtkListStore`.
 
@@ -30149,8 +30796,9 @@ Deprecated.")
 
 (rt:define-gfunction (list-store-move-after "gtk_list_store_move_after") :args
                      ((store (:object list-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                                t))
                      :documentation
                      "Moves ITER in STORE to the position after POSITION. Note that this
 function only works with unsorted stores. If POSITION is NIL, ITER
@@ -30163,8 +30811,9 @@ Deprecated.")
 
 (rt:define-gfunction (list-store-move-before "gtk_list_store_move_before") :args
                      ((store (:object list-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                                t))
                      :documentation
                      "Moves ITER in STORE to the position before POSITION. Note that this
 function only works with unsorted stores. If POSITION is NIL, ITER
@@ -30175,9 +30824,23 @@ See: https://docs.gtk.org/gtk4/method.ListStore.move_before.html
 Deprecated.")
 
 
+(rt:define-gfunction (list-store-prepend "gtk_list_store_prepend") :args
+                     ((list-store (:object list-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :documentation
+                     "Prepends a new row to LIST-STORE. ITER will be changed to point to this new
+row. The row will be empty after this function is called. To fill in
+values, you need to call gtk_list_store_set() or gtk_list_store_set_value().
+
+C: gtk_list_store_prepend
+See: https://docs.gtk.org/gtk4/method.ListStore.prepend.html
+Deprecated.")
+
+
 (rt:define-gfunction (list-store-remove "gtk_list_store_remove") :args
                      ((list-store (:object list-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Removes the given row from the list store.  After being removed,
 ITER is set to be the next valid row, or invalidated if it pointed
@@ -30211,8 +30874,8 @@ Deprecated.")
 
 (rt:define-gfunction (list-store-set-value "gtk_list_store_set_value") :args
                      ((list-store (:object list-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")) (column :int)
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (column :int) (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Sets the data in the cell specified by ITER and COLUMN.
 The type of VALUE must be convertible to the type of the
 column.
@@ -30224,8 +30887,8 @@ Deprecated.")
 
 (rt:define-gfunction (list-store-swap "gtk_list_store_swap") :args
                      ((store (:object list-store))
-                      (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Swaps A and B in STORE. Note that this function only works with
 unsorted stores.
 
@@ -30579,7 +31242,7 @@ See: https://docs.gtk.org/gtk4/method.MediaFile.set_resource.html")
 
 (rt:define-gfunction (media-stream-gerror "gtk_media_stream_gerror") :args
                      ((self (:object media-stream))
-                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
                      :documentation "Sets SELF into an error state.
 
 C: gtk_media_stream_gerror
@@ -30603,8 +31266,9 @@ See: https://docs.gtk.org/gtk4/method.MediaStream.get_ended.html")
 
 
 (rt:define-gfunction (media-stream-get-error "gtk_media_stream_get_error") :args
-                     ((self (:object media-stream))) :return (:boxed "GError" "g_error_get_type")
-                     :documentation "If the stream is in an error state, returns the `GError`
+                     ((self (:object media-stream))) :return
+                     (:boxed "GError" "g_error_get_type" glib:error) :documentation
+                     "If the stream is in an error state, returns the `GError`
 explaining that state.
 
 C: gtk_media_stream_get_error
@@ -32010,6 +32674,18 @@ C: gtk_pad_controller_set_action
 See: https://docs.gtk.org/gtk4/method.PadController.set_action.html")
 
 
+(rt:define-gfunction (pad-controller-set-action-entries "gtk_pad_controller_set_action_entries")
+                     :args
+                     ((controller (:object pad-controller))
+                      (entries (:array (:record pad-action-entry)))
+                      (n-entries :int :length-of entries))
+                     :documentation "A convenience function to add a group of action entries on
+CONTROLLER.
+
+C: gtk_pad_controller_set_action_entries
+See: https://docs.gtk.org/gtk4/method.PadController.set_action_entries.html")
+
+
 (rt:define-gfunction (page-setup-new "gtk_page_setup_new") :return (:object page-setup)
                      :return-transfer :full :documentation "Creates a new `GtkPageSetup`.
 
@@ -32954,6 +33630,16 @@ C: gtk_popover_get_offset
 See: https://docs.gtk.org/gtk4/method.Popover.get_offset.html")
 
 
+(rt:define-gfunction (popover-get-pointing-to "gtk_popover_get_pointing_to") :args
+                     ((popover (:object popover))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation "Gets the rectangle that the popover points to.
+
+C: gtk_popover_get_pointing_to
+See: https://docs.gtk.org/gtk4/method.Popover.get_pointing_to.html")
+
+
 (rt:define-gfunction (popover-get-position "gtk_popover_get_position") :args
                      ((popover (:object popover))) :return (:enum position-type) :documentation
                      "Returns the preferred position of POPOVER.
@@ -33044,7 +33730,8 @@ See: https://docs.gtk.org/gtk4/method.Popover.set_offset.html")
 
 (rt:define-gfunction (popover-set-pointing-to "gtk_popover_set_pointing_to") :args
                      ((popover (:object popover))
-                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type") :optional t))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :optional t))
                      :documentation "Sets the rectangle that POPOVER points to.
 
 C: gtk_popover_set_pointing_to
@@ -33600,6 +34287,15 @@ See: https://docs.gtk.org/gtk4/method.PrintJob.get_n_up_layout.html")
 
 C: gtk_print_job_get_num_copies
 See: https://docs.gtk.org/gtk4/method.PrintJob.get_num_copies.html")
+
+
+(rt:define-gfunction (print-job-get-page-ranges "gtk_print_job_get_page_ranges") :args
+                     ((job (:object print-job)) (n-ranges :int :length-of :return :direction :out))
+                     :return (:array (:record page-range)) :documentation
+                     "Gets the page ranges for this job.
+
+C: gtk_print_job_get_page_ranges
+See: https://docs.gtk.org/gtk4/method.PrintJob.get_page_ranges.html")
 
 
 (rt:define-gfunction (print-job-get-page-set "gtk_print_job_get_page_set") :args
@@ -34300,6 +34996,16 @@ C: gtk_print_settings_get_output_bin
 See: https://docs.gtk.org/gtk4/method.PrintSettings.get_output_bin.html")
 
 
+(rt:define-gfunction (print-settings-get-page-ranges "gtk_print_settings_get_page_ranges") :args
+                     ((settings (:object print-settings))
+                      (num-ranges :int :length-of :return :direction :out))
+                     :return (:array (:record page-range)) :return-transfer :full :documentation
+                     "Gets the value of GTK_PRINT_SETTINGS_PAGE_RANGES.
+
+C: gtk_print_settings_get_page_ranges
+See: https://docs.gtk.org/gtk4/method.PrintSettings.get_page_ranges.html")
+
+
 (rt:define-gfunction (print-settings-get-page-set "gtk_print_settings_get_page_set") :args
                      ((settings (:object print-settings))) :return (:enum page-set) :documentation
                      "Gets the value of GTK_PRINT_SETTINGS_PAGE_SET.
@@ -34573,6 +35279,16 @@ See: https://docs.gtk.org/gtk4/method.PrintSettings.set_orientation.html")
 
 C: gtk_print_settings_set_output_bin
 See: https://docs.gtk.org/gtk4/method.PrintSettings.set_output_bin.html")
+
+
+(rt:define-gfunction (print-settings-set-page-ranges "gtk_print_settings_set_page_ranges") :args
+                     ((settings (:object print-settings))
+                      (page-ranges (:array (:record page-range)))
+                      (num-ranges :int :length-of page-ranges))
+                     :documentation "Sets the value of GTK_PRINT_SETTINGS_PAGE_RANGES.
+
+C: gtk_print_settings_set_page_ranges
+See: https://docs.gtk.org/gtk4/method.PrintSettings.set_page_ranges.html")
 
 
 (rt:define-gfunction (print-settings-set-page-set "gtk_print_settings_set_page_set") :args
@@ -35300,6 +36016,18 @@ C: gtk_range_get_inverted
 See: https://docs.gtk.org/gtk4/method.Range.get_inverted.html")
 
 
+(rt:define-gfunction (range-get-range-rect "gtk_range_get_range_rect") :args
+                     ((range (:object range))
+                      (range-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation
+                     "This function returns the area that contains the range’s trough,
+in coordinates relative to RANGE's origin.
+
+C: gtk_range_get_range_rect
+See: https://docs.gtk.org/gtk4/method.Range.get_range_rect.html")
+
+
 (rt:define-gfunction (range-get-restrict-to-fill-level "gtk_range_get_restrict_to_fill_level")
                      :args ((range (:object range))) :return :boolean :documentation
                      "Gets whether the range is restricted to the fill level.
@@ -35765,24 +36493,26 @@ See: https://docs.gtk.org/gtk4/method.RecentManager.remove_item.html")
 
 
 (rt:define-gfunction (requisition-new "gtk_requisition_new") :return
-                     (:boxed "GtkRequisition" "gtk_requisition_get_type") :return-transfer :full
-                     :documentation "Allocates a new `GtkRequisition`.
+                     (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition)
+                     :return-transfer :full :documentation "Allocates a new `GtkRequisition`.
 
 C: gtk_requisition_new
 See: https://docs.gtk.org/gtk4/ctor.Requisition.new.html")
 
 
 (rt:define-gfunction (requisition-copy "gtk_requisition_copy") :args
-                     ((requisition (:boxed "GtkRequisition" "gtk_requisition_get_type"))) :return
-                     (:boxed "GtkRequisition" "gtk_requisition_get_type") :return-transfer :full
-                     :documentation "Copies a `GtkRequisition`.
+                     ((requisition
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition)))
+                     :return (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition)
+                     :return-transfer :full :documentation "Copies a `GtkRequisition`.
 
 C: gtk_requisition_copy
 See: https://docs.gtk.org/gtk4/method.Requisition.copy.html")
 
 
 (rt:define-gfunction (requisition-free "gtk_requisition_free") :args
-                     ((requisition (:boxed "GtkRequisition" "gtk_requisition_get_type")))
+                     ((requisition
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition)))
                      :documentation "Frees a `GtkRequisition`.
 
 C: gtk_requisition_free
@@ -36193,6 +36923,18 @@ Since: 4.12")
 C: gtk_scroll_info_unref
 See: https://docs.gtk.org/gtk4/method.ScrollInfo.unref.html
 Since: 4.12")
+
+
+(rt:define-gfunction (scrollable-get-border "gtk_scrollable_get_border") :args
+                     ((scrollable (:object scrollable))
+                      (border (:boxed "GtkBorder" "gtk_border_get_type" border) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :documentation
+                     "Returns the size of a non-scrolling border around the
+outside of the scrollable.
+
+C: gtk_scrollable_get_border
+See: https://docs.gtk.org/gtk4/method.Scrollable.get_border.html")
 
 
 (rt:define-gfunction (scrollable-get-hadjustment "gtk_scrollable_get_hadjustment") :args
@@ -37020,7 +37762,7 @@ See: https://docs.gtk.org/gtk4/method.ShortcutAction.activate.html")
 
 (rt:define-gfunction (shortcut-action-print "gtk_shortcut_action_print") :args
                      ((self (:object shortcut-action))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :documentation "Prints the given action into a string for the developer.
 
 C: gtk_shortcut_action_print
@@ -37213,7 +37955,7 @@ See: https://docs.gtk.org/gtk4/method.ShortcutTrigger.hash.html")
 
 (rt:define-gfunction (shortcut-trigger-print "gtk_shortcut_trigger_print") :args
                      ((self (:object shortcut-trigger))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :documentation "Prints the given trigger into a string for the developer.
 This is meant for debugging and logging.
 
@@ -37223,7 +37965,7 @@ See: https://docs.gtk.org/gtk4/method.ShortcutTrigger.print.html")
 
 (rt:define-gfunction (shortcut-trigger-print-label "gtk_shortcut_trigger_print_label") :args
                      ((self (:object shortcut-trigger)) (display (:object gdk:display))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :return :boolean :documentation "Prints the given trigger into a string.
 
 C: gtk_shortcut_trigger_print_label
@@ -37511,9 +38253,20 @@ C: gtk_snapshot_new
 See: https://docs.gtk.org/gtk4/ctor.Snapshot.new.html")
 
 
+(rt:define-gfunction (snapshot-append-border "gtk_snapshot_append_border") :args
+                     ((snapshot (:object snapshot)) (outline (:record gsk:rounded-rect))
+                      (border-width (:array :float :fixed-size 4))
+                      (border-color
+                       (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :fixed-size 4)))
+                     :documentation "Appends a stroked border rectangle inside the given OUTLINE.
+
+C: gtk_snapshot_append_border
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_border.html")
+
+
 (rt:define-gfunction (snapshot-append-cairo "gtk_snapshot_append_cairo") :args
                      ((snapshot (:object snapshot))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return (:boxed "CairoContext" "cairo_gobject_context_get_type")
                      :return-transfer :full :documentation
                      "Creates a new Gsk.CairoNode and appends it to the current
@@ -37524,8 +38277,9 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.append_cairo.html")
 
 
 (rt:define-gfunction (snapshot-append-color "gtk_snapshot_append_color") :args
-                     ((snapshot (:object snapshot)) (color (:boxed "GdkRGBA" "gdk_rgba_get_type"))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                     ((snapshot (:object snapshot))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :documentation "Creates a new render node drawing the COLOR into the
 given BOUNDS and appends it to the current render node
 of SNAPSHOT.
@@ -37534,10 +38288,22 @@ C: gtk_snapshot_append_color
 See: https://docs.gtk.org/gtk4/method.Snapshot.append_color.html")
 
 
+(rt:define-gfunction (snapshot-append-conic-gradient "gtk_snapshot_append_conic_gradient") :args
+                     ((snapshot (:object snapshot))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (rotation :float) (stops (:array (:record gsk:color-stop)))
+                      (n-stops :size :length-of stops))
+                     :documentation "Appends a conic gradient node with the given stops to SNAPSHOT.
+
+C: gtk_snapshot_append_conic_gradient
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_conic_gradient.html")
+
+
 (rt:define-gfunction (snapshot-append-fill "gtk_snapshot_append_fill") :args
                      ((snapshot (:object snapshot)) (path (:boxed "GskPath" "gsk_path_get_type"))
                       (fill-rule (:enum gsk:fill-rule))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
                      :version "4.14" :documentation
                      "A convenience method to fill a path with a color.
 
@@ -37548,8 +38314,8 @@ Since: 4.14")
 
 (rt:define-gfunction (snapshot-append-inset-shadow "gtk_snapshot_append_inset_shadow") :args
                      ((snapshot (:object snapshot)) (outline (:record gsk:rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")) (dx :float) (dy :float)
-                      (spread :float) (blur-radius :float))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
+                      (dy :float) (spread :float) (blur-radius :float))
                      :documentation "Appends an inset shadow into the box given by OUTLINE.
 
 C: gtk_snapshot_append_inset_shadow
@@ -37558,7 +38324,7 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.append_inset_shadow.html")
 
 (rt:define-gfunction (snapshot-append-layout "gtk_snapshot_append_layout") :args
                      ((snapshot (:object snapshot)) (layout (:object pango:layout))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
                      :documentation
                      "Creates render nodes for rendering LAYOUT in the given foregound COLOR
 and appends them to the current node of SNAPSHOT without changing the
@@ -37567,6 +38333,20 @@ obtained with Gtk.Widget.get_color.
 
 C: gtk_snapshot_append_layout
 See: https://docs.gtk.org/gtk4/method.Snapshot.append_layout.html")
+
+
+(rt:define-gfunction (snapshot-append-linear-gradient "gtk_snapshot_append_linear_gradient") :args
+                     ((snapshot (:object snapshot))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (start-point
+                       (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (end-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (stops (:array (:record gsk:color-stop))) (n-stops :size :length-of stops))
+                     :documentation
+                     "Appends a linear gradient node with the given stops to SNAPSHOT.
+
+C: gtk_snapshot_append_linear_gradient
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_linear_gradient.html")
 
 
 (rt:define-gfunction (snapshot-append-node "gtk_snapshot_append_node") :args
@@ -37580,8 +38360,8 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.append_node.html")
 
 (rt:define-gfunction (snapshot-append-outset-shadow "gtk_snapshot_append_outset_shadow") :args
                      ((snapshot (:object snapshot)) (outline (:record gsk:rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")) (dx :float) (dy :float)
-                      (spread :float) (blur-radius :float))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
+                      (dy :float) (spread :float) (blur-radius :float))
                      :documentation "Appends an outset shadow node around the box given by OUTLINE.
 
 C: gtk_snapshot_append_outset_shadow
@@ -37590,7 +38370,8 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.append_outset_shadow.html")
 
 (rt:define-gfunction (snapshot-append-paste "gtk_snapshot_append_paste") :args
                      ((snapshot (:object snapshot))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")) (nth :size))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (nth :size))
                      :version "4.22" :documentation
                      "Creates a new render node that pastes the contents
 copied by a previous call to Gtk.Snapshot.push_copy
@@ -37600,10 +38381,49 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.append_paste.html
 Since: 4.22")
 
 
+(rt:define-gfunction (snapshot-append-radial-gradient "gtk_snapshot_append_radial_gradient") :args
+                     ((snapshot (:object snapshot))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (hradius :float) (vradius :float) (start :float) (end :float)
+                      (stops (:array (:record gsk:color-stop))) (n-stops :size :length-of stops))
+                     :documentation
+                     "Appends a radial gradient node with the given stops to SNAPSHOT.
+
+C: gtk_snapshot_append_radial_gradient
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_radial_gradient.html")
+
+
+(rt:define-gfunction
+ (snapshot-append-repeating-linear-gradient "gtk_snapshot_append_repeating_linear_gradient") :args
+ ((snapshot (:object snapshot))
+  (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+  (start-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+  (end-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+  (stops (:array (:record gsk:color-stop))) (n-stops :size :length-of stops))
+ :documentation "Appends a repeating linear gradient node with the given stops to SNAPSHOT.
+
+C: gtk_snapshot_append_repeating_linear_gradient
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_repeating_linear_gradient.html")
+
+
+(rt:define-gfunction
+ (snapshot-append-repeating-radial-gradient "gtk_snapshot_append_repeating_radial_gradient") :args
+ ((snapshot (:object snapshot))
+  (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+  (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)) (hradius :float)
+  (vradius :float) (start :float) (end :float) (stops (:array (:record gsk:color-stop)))
+  (n-stops :size :length-of stops))
+ :documentation "Appends a repeating radial gradient node with the given stops to SNAPSHOT.
+
+C: gtk_snapshot_append_repeating_radial_gradient
+See: https://docs.gtk.org/gtk4/method.Snapshot.append_repeating_radial_gradient.html")
+
+
 (rt:define-gfunction (snapshot-append-scaled-texture "gtk_snapshot_append_scaled_texture") :args
                      ((snapshot (:object snapshot)) (texture (:object gdk:texture))
                       (filter (:enum gsk:scaling-filter))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :version "4.10" :documentation "Creates a new render node drawing the TEXTURE
 into the given BOUNDS and appends it to the
 current render node of SNAPSHOT.
@@ -37616,7 +38436,7 @@ Since: 4.10")
 (rt:define-gfunction (snapshot-append-stroke "gtk_snapshot_append_stroke") :args
                      ((snapshot (:object snapshot)) (path (:boxed "GskPath" "gsk_path_get_type"))
                       (stroke (:boxed "GskStroke" "gsk_stroke_get_type"))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
                      :version "4.14" :documentation
                      "A convenience method to stroke a path with a color.
 
@@ -37627,7 +38447,7 @@ Since: 4.14")
 
 (rt:define-gfunction (snapshot-append-texture "gtk_snapshot_append_texture") :args
                      ((snapshot (:object snapshot)) (texture (:object gdk:texture))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :documentation "Creates a new render node drawing the TEXTURE
 into the given BOUNDS and appends it to the
 current render node of SNAPSHOT.
@@ -37680,7 +38500,7 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.push_blur.html")
 
 (rt:define-gfunction (snapshot-push-clip "gtk_snapshot_push_clip") :args
                      ((snapshot (:object snapshot))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :documentation "Clips an image to a rectangle.
 
 C: gtk_snapshot_push_clip
@@ -37689,8 +38509,10 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.push_clip.html")
 
 (rt:define-gfunction (snapshot-push-color-matrix "gtk_snapshot_push_color_matrix") :args
                      ((snapshot (:object snapshot))
-                      (color-matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (color-offset (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                      (color-matrix
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix))
+                      (color-offset
+                       (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
                      :documentation
                      "Modifies the colors of an image by applying an affine transformation
 in RGB space.
@@ -37758,7 +38580,7 @@ Since: 4.14")
 
 (rt:define-gfunction (snapshot-push-gl-shader "gtk_snapshot_push_gl_shader") :args
                      ((snapshot (:object snapshot)) (shader (:object gsk:gl-shader))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
                       (take-args (:boxed "GBytes" "g_bytes_get_type") :transfer :full))
                      :documentation "Push a Gsk.GLShaderNode.
 
@@ -37797,8 +38619,9 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.push_opacity.html")
 
 (rt:define-gfunction (snapshot-push-repeat "gtk_snapshot_push_repeat") :args
                      ((snapshot (:object snapshot))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (child-bounds (:boxed "GrapheneRect" "graphene_rect_get_type") :optional t))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (child-bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :optional t))
                      :documentation "Creates a node that repeats the child node.
 
 C: gtk_snapshot_push_repeat
@@ -37811,6 +38634,15 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.push_repeat.html")
 
 C: gtk_snapshot_push_rounded_clip
 See: https://docs.gtk.org/gtk4/method.Snapshot.push_rounded_clip.html")
+
+
+(rt:define-gfunction (snapshot-push-shadow "gtk_snapshot_push_shadow") :args
+                     ((snapshot (:object snapshot)) (shadow (:array (:record gsk:shadow)))
+                      (n-shadows :size :length-of shadow))
+                     :documentation "Applies a shadow to an image.
+
+C: gtk_snapshot_push_shadow
+See: https://docs.gtk.org/gtk4/method.Snapshot.push_shadow.html")
 
 
 (rt:define-gfunction (snapshot-push-stroke "gtk_snapshot_push_stroke") :args
@@ -37911,7 +38743,7 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.rotate.html")
 
 (rt:define-gfunction (snapshot-rotate-3d "gtk_snapshot_rotate_3d") :args
                      ((snapshot (:object snapshot)) (angle :float)
-                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
                      :documentation
                      "Rotates SNAPSHOT's coordinate system by ANGLE degrees around AXIS.
 
@@ -37966,7 +38798,8 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.to_node.html")
 
 (rt:define-gfunction (snapshot-to-paintable "gtk_snapshot_to_paintable") :args
                      ((snapshot (:object snapshot))
-                      (size (:boxed "GrapheneSize" "graphene_size_get_type") :optional t))
+                      (size (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size)
+                       :optional t))
                      :return (:object gdk:paintable) :return-transfer :full :documentation
                      "Returns a paintable encapsulating the render node
 that was constructed by SNAPSHOT.
@@ -37987,7 +38820,8 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.transform.html")
 
 (rt:define-gfunction (snapshot-transform-matrix "gtk_snapshot_transform_matrix") :args
                      ((snapshot (:object snapshot))
-                      (matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
+                      (matrix
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)))
                      :documentation "Transforms SNAPSHOT's coordinate system with the given MATRIX.
 
 C: gtk_snapshot_transform_matrix
@@ -37996,7 +38830,7 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.transform_matrix.html")
 
 (rt:define-gfunction (snapshot-translate "gtk_snapshot_translate") :args
                      ((snapshot (:object snapshot))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type")))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
                      :documentation
                      "Translates SNAPSHOT's coordinate system by POINT in 2-dimensional space.
 
@@ -38006,7 +38840,8 @@ See: https://docs.gtk.org/gtk4/method.Snapshot.translate.html")
 
 (rt:define-gfunction (snapshot-translate-3d "gtk_snapshot_translate_3d") :args
                      ((snapshot (:object snapshot))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                      (point
+                       (:boxed "GraphenePoint3D" "graphene_point3d_get_type" graphene:point3-d)))
                      :documentation "Translates SNAPSHOT's coordinate system by POINT.
 
 C: gtk_snapshot_translate_3d
@@ -39071,12 +39906,56 @@ See: https://docs.gtk.org/gtk4/method.StyleContext.add_provider.html
 Deprecated.")
 
 
+(rt:define-gfunction (style-context-get-border "gtk_style_context_get_border") :args
+                     ((context (:object style-context))
+                      (border (:boxed "GtkBorder" "gtk_border_get_type" border) :direction :out
+                       :caller-allocates t))
+                     :documentation "Gets the border for a given state as a `GtkBorder`.
+
+C: gtk_style_context_get_border
+See: https://docs.gtk.org/gtk4/method.StyleContext.get_border.html
+Deprecated.")
+
+
+(rt:define-gfunction (style-context-get-color "gtk_style_context_get_color") :args
+                     ((context (:object style-context))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :direction :out
+                       :caller-allocates t))
+                     :documentation "Gets the foreground color for a given state.
+
+C: gtk_style_context_get_color
+See: https://docs.gtk.org/gtk4/method.StyleContext.get_color.html
+Deprecated.")
+
+
 (rt:define-gfunction (style-context-get-display "gtk_style_context_get_display") :args
                      ((context (:object style-context))) :return (:object gdk:display)
                      :documentation "Returns the `GdkDisplay` to which CONTEXT is attached.
 
 C: gtk_style_context_get_display
 See: https://docs.gtk.org/gtk4/method.StyleContext.get_display.html
+Deprecated.")
+
+
+(rt:define-gfunction (style-context-get-margin "gtk_style_context_get_margin") :args
+                     ((context (:object style-context))
+                      (margin (:boxed "GtkBorder" "gtk_border_get_type" border) :direction :out
+                       :caller-allocates t))
+                     :documentation "Gets the margin for a given state as a `GtkBorder`.
+
+C: gtk_style_context_get_margin
+See: https://docs.gtk.org/gtk4/method.StyleContext.get_margin.html
+Deprecated.")
+
+
+(rt:define-gfunction (style-context-get-padding "gtk_style_context_get_padding") :args
+                     ((context (:object style-context))
+                      (padding (:boxed "GtkBorder" "gtk_border_get_type" border) :direction :out
+                       :caller-allocates t))
+                     :documentation "Gets the padding for a given state as a `GtkBorder`.
+
+C: gtk_style_context_get_padding
+See: https://docs.gtk.org/gtk4/method.StyleContext.get_padding.html
 Deprecated.")
 
 
@@ -39105,6 +39984,18 @@ given class name.
 
 C: gtk_style_context_has_class
 See: https://docs.gtk.org/gtk4/method.StyleContext.has_class.html
+Deprecated.")
+
+
+(rt:define-gfunction (style-context-lookup-color "gtk_style_context_lookup_color") :args
+                     ((context (:object style-context)) (color-name :string)
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :documentation
+                     "Looks up and resolves a color name in the CONTEXT color map.
+
+C: gtk_style_context_lookup_color
+See: https://docs.gtk.org/gtk4/method.StyleContext.lookup_color.html
 Deprecated.")
 
 
@@ -39471,6 +40362,30 @@ C: gtk_switch_set_state
 See: https://docs.gtk.org/gtk4/method.Switch.set_state.html")
 
 
+(rt:define-gfunction
+ (symbolic-paintable-snapshot-symbolic "gtk_symbolic_paintable_snapshot_symbolic") :args
+ ((paintable (:object symbolic-paintable)) (snapshot (:object gdk:snapshot)) (width :double)
+  (height :double) (colors (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
+  (n-colors :size :length-of colors))
+ :version "4.6" :documentation "Snapshots the paintable with the given colors.
+
+C: gtk_symbolic_paintable_snapshot_symbolic
+See: https://docs.gtk.org/gtk4/method.SymbolicPaintable.snapshot_symbolic.html
+Since: 4.6")
+
+
+(rt:define-gfunction
+ (symbolic-paintable-snapshot-with-weight "gtk_symbolic_paintable_snapshot_with_weight") :args
+ ((paintable (:object symbolic-paintable)) (snapshot (:object gdk:snapshot)) (width :double)
+  (height :double) (colors (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)))
+  (n-colors :size :length-of colors) (weight :double))
+ :version "4.22" :documentation "Snapshots the paintable with the given colors and weight.
+
+C: gtk_symbolic_paintable_snapshot_with_weight
+See: https://docs.gtk.org/gtk4/method.SymbolicPaintable.snapshot_with_weight.html
+Since: 4.22")
+
+
 (rt:define-gfunction (text-new "gtk_text_new") :return (:object widget) :documentation
                      "Creates a new `GtkText`.
 
@@ -39484,6 +40399,21 @@ See: https://docs.gtk.org/gtk4/ctor.Text.new.html")
 
 C: gtk_text_new_with_buffer
 See: https://docs.gtk.org/gtk4/ctor.Text.new_with_buffer.html")
+
+
+(rt:define-gfunction (text-compute-cursor-extents "gtk_text_compute_cursor_extents") :args
+                     ((self (:object text)) (position :size)
+                      (strong (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t)
+                      (weak (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :version "4.4" :documentation
+                     "Determines the positions of the strong and weak cursors for a
+given character position.
+
+C: gtk_text_compute_cursor_extents
+See: https://docs.gtk.org/gtk4/method.Text.compute_cursor_extents.html
+Since: 4.4")
 
 
 (rt:define-gfunction (text-get-activates-default "gtk_text_get_activates_default") :args
@@ -39782,7 +40712,7 @@ Since: 4.16")
 
 (rt:define-gfunction (text-buffer-add-mark "gtk_text_buffer_add_mark") :args
                      ((buffer (:object text-buffer)) (mark (:object text-mark))
-                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Adds the mark at position WHERE.
 
 C: gtk_text_buffer_add_mark
@@ -39801,8 +40731,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.add_selection_clipboard.html")
 
 (rt:define-gfunction (text-buffer-apply-tag "gtk_text_buffer_apply_tag") :args
                      ((buffer (:object text-buffer)) (tag (:object text-tag))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Emits the “apply-tag” signal on BUFFER.
 
 C: gtk_text_buffer_apply_tag
@@ -39811,8 +40741,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.apply_tag.html")
 
 (rt:define-gfunction (text-buffer-apply-tag-by-name "gtk_text_buffer_apply_tag_by_name") :args
                      ((buffer (:object text-buffer)) (name :string)
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Emits the “apply-tag” signal on BUFFER.
 
 C: gtk_text_buffer_apply_tag_by_name
@@ -39821,8 +40751,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.apply_tag_by_name.html")
 
 (rt:define-gfunction (text-buffer-backspace "gtk_text_buffer_backspace") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (interactive :boolean)
-                      (default-editable :boolean))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (interactive :boolean) (default-editable :boolean))
                      :return :boolean :documentation
                      "Performs the appropriate action as if the user hit the delete
 key with the cursor at the position specified by ITER.
@@ -39860,7 +40790,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.copy_clipboard.html")
 
 (rt:define-gfunction (text-buffer-create-child-anchor "gtk_text_buffer_create_child_anchor") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return (:object text-child-anchor) :documentation
                      "Creates and inserts a child anchor.
 
@@ -39870,7 +40800,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.create_child_anchor.html")
 
 (rt:define-gfunction (text-buffer-create-mark "gtk_text_buffer_create_mark") :args
                      ((buffer (:object text-buffer)) (mark-name :string)
-                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (left-gravity :boolean))
                      :return (:object text-mark) :documentation "Creates a mark at position WHERE.
 
@@ -39890,8 +40820,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.cut_clipboard.html")
 
 (rt:define-gfunction (text-buffer-delete "gtk_text_buffer_delete") :args
                      ((buffer (:object text-buffer))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Deletes text between START and END.
 
 C: gtk_text_buffer_delete
@@ -39900,8 +40830,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.delete.html")
 
 (rt:define-gfunction (text-buffer-delete-interactive "gtk_text_buffer_delete_interactive") :args
                      ((buffer (:object text-buffer))
-                      (start-iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end-iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (start-iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end-iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (default-editable :boolean))
                      :return :boolean :documentation "Deletes all editable text in the given range.
 
@@ -39953,6 +40883,19 @@ C: gtk_text_buffer_end_user_action
 See: https://docs.gtk.org/gtk4/method.TextBuffer.end_user_action.html")
 
 
+(rt:define-gfunction (text-buffer-get-bounds "gtk_text_buffer_get_bounds") :args
+                     ((buffer (:object text-buffer))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t))
+                     :documentation "Retrieves the first and last iterators in the buffer, i.e. the
+entire buffer lies within the range [START,END).
+
+C: gtk_text_buffer_get_bounds
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_bounds.html")
+
+
 (rt:define-gfunction (text-buffer-get-can-redo "gtk_text_buffer_get_can_redo") :args
                      ((buffer (:object text-buffer))) :return :boolean :documentation
                      "Gets whether there is a redoable action in the history.
@@ -39986,6 +40929,18 @@ C: gtk_text_buffer_get_enable_undo
 See: https://docs.gtk.org/gtk4/method.TextBuffer.get_enable_undo.html")
 
 
+(rt:define-gfunction (text-buffer-get-end-iter "gtk_text_buffer_get_end_iter") :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t))
+                     :documentation
+                     "Initializes ITER with the “end iterator,” one past the last valid
+character in the text buffer.
+
+C: gtk_text_buffer_get_end_iter
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_end_iter.html")
+
+
 (rt:define-gfunction (text-buffer-get-has-selection "gtk_text_buffer_get_has_selection") :args
                      ((buffer (:object text-buffer))) :return :boolean :documentation
                      "Indicates whether the buffer has some text currently selected.
@@ -40000,6 +40955,78 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.get_has_selection.html")
 
 C: gtk_text_buffer_get_insert
 See: https://docs.gtk.org/gtk4/method.TextBuffer.get_insert.html")
+
+
+(rt:define-gfunction
+ (text-buffer-get-iter-at-child-anchor "gtk_text_buffer_get_iter_at_child_anchor") :args
+ ((buffer (:object text-buffer))
+  (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction :out :caller-allocates
+   t)
+  (anchor (:object text-child-anchor)))
+ :documentation "Obtains the location of ANCHOR within BUFFER.
+
+C: gtk_text_buffer_get_iter_at_child_anchor
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_child_anchor.html")
+
+
+(rt:define-gfunction (text-buffer-get-iter-at-line "gtk_text_buffer_get_iter_at_line") :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (line-number :int))
+                     :return :boolean :documentation
+                     "Initializes ITER to the start of the given line.
+
+C: gtk_text_buffer_get_iter_at_line
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_line.html")
+
+
+(rt:define-gfunction (text-buffer-get-iter-at-line-index "gtk_text_buffer_get_iter_at_line_index")
+                     :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (line-number :int) (byte-index :int))
+                     :return :boolean :documentation
+                     "Obtains an iterator pointing to BYTE-INDEX within the given line.
+
+C: gtk_text_buffer_get_iter_at_line_index
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_line_index.html")
+
+
+(rt:define-gfunction
+ (text-buffer-get-iter-at-line-offset "gtk_text_buffer_get_iter_at_line_offset") :args
+ ((buffer (:object text-buffer))
+  (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction :out :caller-allocates
+   t)
+  (line-number :int) (char-offset :int))
+ :return :boolean :documentation "Obtains an iterator pointing to CHAR-OFFSET within the given line.
+
+C: gtk_text_buffer_get_iter_at_line_offset
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_line_offset.html")
+
+
+(rt:define-gfunction (text-buffer-get-iter-at-mark "gtk_text_buffer_get_iter_at_mark") :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (mark (:object text-mark)))
+                     :documentation "Initializes ITER with the current position of MARK.
+
+C: gtk_text_buffer_get_iter_at_mark
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_mark.html")
+
+
+(rt:define-gfunction (text-buffer-get-iter-at-offset "gtk_text_buffer_get_iter_at_offset") :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (char-offset :int))
+                     :documentation "Initializes ITER to a position CHAR-OFFSET chars from the start
+of the entire buffer.
+
+C: gtk_text_buffer_get_iter_at_offset
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_iter_at_offset.html")
 
 
 (rt:define-gfunction (text-buffer-get-line-count "gtk_text_buffer_get_line_count") :args
@@ -40045,6 +41072,21 @@ C: gtk_text_buffer_get_selection_bound
 See: https://docs.gtk.org/gtk4/method.TextBuffer.get_selection_bound.html")
 
 
+(rt:define-gfunction (text-buffer-get-selection-bounds "gtk_text_buffer_get_selection_bounds")
+                     :args
+                     ((buffer (:object text-buffer))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Returns true if some text is selected; places the bounds
+of the selection in START and END.
+
+C: gtk_text_buffer_get_selection_bounds
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_selection_bounds.html")
+
+
 (rt:define-gfunction (text-buffer-get-selection-content "gtk_text_buffer_get_selection_content")
                      :args ((buffer (:object text-buffer))) :return (:object gdk:content-provider)
                      :return-transfer :full :documentation "Get a content provider for this buffer.
@@ -40055,14 +41097,24 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.get_selection_content.html")
 
 (rt:define-gfunction (text-buffer-get-slice "gtk_text_buffer_get_slice") :args
                      ((buffer (:object text-buffer))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (include-hidden-chars :boolean))
                      :return :string :return-transfer :full :documentation
                      "Returns the text in the range [START,END).
 
 C: gtk_text_buffer_get_slice
 See: https://docs.gtk.org/gtk4/method.TextBuffer.get_slice.html")
+
+
+(rt:define-gfunction (text-buffer-get-start-iter "gtk_text_buffer_get_start_iter") :args
+                     ((buffer (:object text-buffer))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t))
+                     :documentation "Initialized ITER with the first position in the text buffer.
+
+C: gtk_text_buffer_get_start_iter
+See: https://docs.gtk.org/gtk4/method.TextBuffer.get_start_iter.html")
 
 
 (rt:define-gfunction (text-buffer-get-tag-table "gtk_text_buffer_get_tag_table") :args
@@ -40075,8 +41127,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.get_tag_table.html")
 
 (rt:define-gfunction (text-buffer-get-text "gtk_text_buffer_get_text") :args
                      ((buffer (:object text-buffer))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (include-hidden-chars :boolean))
                      :return :string :return-transfer :full :documentation
                      "Returns the text in the range [START,END).
@@ -40087,8 +41139,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.get_text.html")
 
 (rt:define-gfunction (text-buffer-insert "gtk_text_buffer_insert") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (text :string)
-                      (len :int))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (text :string) (len :int))
                      :documentation "Inserts LEN bytes of TEXT at position ITER.
 
 C: gtk_text_buffer_insert
@@ -40105,7 +41157,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_at_cursor.html")
 
 (rt:define-gfunction (text-buffer-insert-child-anchor "gtk_text_buffer_insert_child_anchor") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (anchor (:object text-child-anchor)))
                      :documentation "Inserts a child widget anchor into the text buffer at ITER.
 
@@ -40115,8 +41167,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_child_anchor.html")
 
 (rt:define-gfunction (text-buffer-insert-interactive "gtk_text_buffer_insert_interactive") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (text :string)
-                      (len :int) (default-editable :boolean))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (text :string) (len :int) (default-editable :boolean))
                      :return :boolean :documentation "Inserts TEXT in BUFFER.
 
 C: gtk_text_buffer_insert_interactive
@@ -40134,8 +41186,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_interactive_at_cursor.ht
 
 (rt:define-gfunction (text-buffer-insert-markup "gtk_text_buffer_insert_markup") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (markup :string)
-                      (len :int))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (markup :string) (len :int))
                      :documentation "Inserts the text in MARKUP at position ITER.
 
 C: gtk_text_buffer_insert_markup
@@ -40144,7 +41196,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_markup.html")
 
 (rt:define-gfunction (text-buffer-insert-paintable "gtk_text_buffer_insert_paintable") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (paintable (:object gdk:paintable)))
                      :documentation "Inserts an image into the text buffer at ITER.
 
@@ -40154,9 +41206,9 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_paintable.html")
 
 (rt:define-gfunction (text-buffer-insert-range "gtk_text_buffer_insert_range") :args
                      ((buffer (:object text-buffer))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Copies text, tags, and paintables between START and END
 and inserts the copy at ITER.
 
@@ -40166,9 +41218,9 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_range.html")
 
 (rt:define-gfunction
  (text-buffer-insert-range-interactive "gtk_text_buffer_insert_range_interactive") :args
- ((buffer (:object text-buffer)) (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-  (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-  (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (default-editable :boolean))
+ ((buffer (:object text-buffer)) (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+  (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+  (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (default-editable :boolean))
  :return :boolean :documentation "Copies text, tags, and paintables between START and END
 and inserts the copy at ITER.
 
@@ -40178,7 +41230,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.insert_range_interactive.html")
 
 (rt:define-gfunction (text-buffer-move-mark "gtk_text_buffer_move_mark") :args
                      ((buffer (:object text-buffer)) (mark (:object text-mark))
-                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Moves MARK to the new location WHERE.
 
 C: gtk_text_buffer_move_mark
@@ -40187,7 +41239,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.move_mark.html")
 
 (rt:define-gfunction (text-buffer-move-mark-by-name "gtk_text_buffer_move_mark_by_name") :args
                      ((buffer (:object text-buffer)) (name :string)
-                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Moves the mark named NAME (which must exist) to location WHERE.
 
 C: gtk_text_buffer_move_mark_by_name
@@ -40196,7 +41248,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.move_mark_by_name.html")
 
 (rt:define-gfunction (text-buffer-paste-clipboard "gtk_text_buffer_paste_clipboard") :args
                      ((buffer (:object text-buffer)) (clipboard (:object gdk:clipboard))
-                      (override-location (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (override-location (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (default-editable :boolean))
                      :documentation "Pastes the contents of a clipboard.
 
@@ -40206,7 +41258,7 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.paste_clipboard.html")
 
 (rt:define-gfunction (text-buffer-place-cursor "gtk_text_buffer_place_cursor") :args
                      ((buffer (:object text-buffer))
-                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (where (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "This function moves the “insert” and “selection_bound” marks
 simultaneously.
 
@@ -40224,8 +41276,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.redo.html")
 
 (rt:define-gfunction (text-buffer-remove-all-tags "gtk_text_buffer_remove_all_tags") :args
                      ((buffer (:object text-buffer))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Removes all tags in the range between START and END.
 
 C: gtk_text_buffer_remove_all_tags
@@ -40255,8 +41307,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.remove_selection_clipboard.html
 
 (rt:define-gfunction (text-buffer-remove-tag "gtk_text_buffer_remove_tag") :args
                      ((buffer (:object text-buffer)) (tag (:object text-tag))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Emits the “remove-tag” signal.
 
 C: gtk_text_buffer_remove_tag
@@ -40265,8 +41317,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.remove_tag.html")
 
 (rt:define-gfunction (text-buffer-remove-tag-by-name "gtk_text_buffer_remove_tag_by_name") :args
                      ((buffer (:object text-buffer)) (name :string)
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Emits the “remove-tag” signal.
 
 C: gtk_text_buffer_remove_tag_by_name
@@ -40275,8 +41327,8 @@ See: https://docs.gtk.org/gtk4/method.TextBuffer.remove_tag_by_name.html")
 
 (rt:define-gfunction (text-buffer-select-range "gtk_text_buffer_select_range") :args
                      ((buffer (:object text-buffer))
-                      (ins (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (bound (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (ins (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (bound (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "This function moves the “insert” and “selection_bound” marks
 simultaneously.
 
@@ -40366,8 +41418,8 @@ See: https://docs.gtk.org/gtk4/method.TextChildAnchor.get_widgets.html")
 
 
 (rt:define-gfunction (text-iter-assign "gtk_text_iter_assign") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (other (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (other (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Assigns the value of OTHER to ITER.
 
 C: gtk_text_iter_assign
@@ -40375,24 +41427,25 @@ See: https://docs.gtk.org/gtk4/method.TextIter.assign.html")
 
 
 (rt:define-gfunction (text-iter-backward-char "gtk_text_iter_backward_char") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves backward by one character offset.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves backward by one character offset.
 
 C: gtk_text_iter_backward_char
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_char.html")
 
 
 (rt:define-gfunction (text-iter-backward-chars "gtk_text_iter_backward_chars") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Moves COUNT characters backward, if possible.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation "Moves COUNT characters backward, if possible.
 
 C: gtk_text_iter_backward_chars
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_chars.html")
 
 
 (rt:define-gfunction (text-iter-backward-cursor-position "gtk_text_iter_backward_cursor_position")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
-                     :boolean :documentation
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :boolean :documentation
                      "Like Gtk.TextIter.forward_cursor_position, but moves backward.
 
 C: gtk_text_iter_backward_cursor_position
@@ -40401,7 +41454,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_cursor_position.html")
 
 (rt:define-gfunction
  (text-iter-backward-cursor-positions "gtk_text_iter_backward_cursor_positions") :args
- ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return :boolean
+ ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (count :int)) :return :boolean
  :documentation "Moves up to COUNT cursor positions.
 
 C: gtk_text_iter_backward_cursor_positions
@@ -40409,10 +41462,11 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_cursor_positions.html")
 
 
 (rt:define-gfunction (text-iter-backward-find-char "gtk_text_iter_backward_find_char") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (pred (:callback text-char-predicate :call))
                       (user-data :pointer :user-data-of pred)
-                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type") :optional t))
+                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :optional
+                       t))
                      :return :boolean :documentation "Same as Gtk.TextIter.forward_find_char,
 but goes backward from ITER.
 
@@ -40421,31 +41475,50 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_find_char.html")
 
 
 (rt:define-gfunction (text-iter-backward-line "gtk_text_iter_backward_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves ITER to the start of the previous line.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves ITER to the start of the previous line.
 
 C: gtk_text_iter_backward_line
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_line.html")
 
 
 (rt:define-gfunction (text-iter-backward-lines "gtk_text_iter_backward_lines") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Moves COUNT lines backward, if possible.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation "Moves COUNT lines backward, if possible.
 
 C: gtk_text_iter_backward_lines
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_lines.html")
 
 
+(rt:define-gfunction (text-iter-backward-search "gtk_text_iter_backward_search") :args
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (str :string) (flags (:flags text-search-flags))
+                      (match-start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)
+                       :direction :out :caller-allocates t)
+                      (match-end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)
+                       :direction :out :caller-allocates t)
+                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :optional
+                       t))
+                     :return :boolean :documentation
+                     "Same as Gtk.TextIter.forward_search, but moves backward.
+
+C: gtk_text_iter_backward_search
+See: https://docs.gtk.org/gtk4/method.TextIter.backward_search.html")
+
+
 (rt:define-gfunction (text-iter-backward-sentence-start "gtk_text_iter_backward_sentence_start")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
-                     :boolean :documentation "Moves backward to the previous sentence start.
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :boolean :documentation "Moves backward to the previous sentence start.
 
 C: gtk_text_iter_backward_sentence_start
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_sentence_start.html")
 
 
 (rt:define-gfunction (text-iter-backward-sentence-starts "gtk_text_iter_backward_sentence_starts")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int))
+                     :args
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
                      :return :boolean :documentation
                      "Calls Gtk.TextIter.backward_sentence_start up to COUNT times.
 
@@ -40455,7 +41528,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_sentence_starts.html")
 
 (rt:define-gfunction (text-iter-backward-to-tag-toggle "gtk_text_iter_backward_to_tag_toggle")
                      :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag) :optional t))
                      :return :boolean :documentation
                      "Moves backward to the next toggle (on or off) of the
@@ -40468,8 +41541,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_to_tag_toggle.html")
 
 (rt:define-gfunction
  (text-iter-backward-visible-cursor-position "gtk_text_iter_backward_visible_cursor_position")
- :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean :documentation
- "Moves ITER backward to the previous visible cursor position.
+ :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return :boolean
+ :documentation "Moves ITER backward to the previous visible cursor position.
 
 C: gtk_text_iter_backward_visible_cursor_position
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_cursor_position.html")
@@ -40477,23 +41550,25 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_cursor_position.
 
 (rt:define-gfunction
  (text-iter-backward-visible-cursor-positions "gtk_text_iter_backward_visible_cursor_positions")
- :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return :boolean
- :documentation "Moves up to COUNT visible cursor positions.
+ :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (count :int)) :return
+ :boolean :documentation "Moves up to COUNT visible cursor positions.
 
 C: gtk_text_iter_backward_visible_cursor_positions
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_cursor_positions.html")
 
 
 (rt:define-gfunction (text-iter-backward-visible-line "gtk_text_iter_backward_visible_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves ITER to the start of the previous visible line.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves ITER to the start of the previous visible line.
 
 C: gtk_text_iter_backward_visible_line
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_line.html")
 
 
 (rt:define-gfunction (text-iter-backward-visible-lines "gtk_text_iter_backward_visible_lines")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int))
+                     :args
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
                      :return :boolean :documentation
                      "Moves COUNT visible lines backward, if possible.
 
@@ -40503,7 +41578,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_lines.html")
 
 (rt:define-gfunction
  (text-iter-backward-visible-word-start "gtk_text_iter_backward_visible_word_start") :args
- ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean :documentation
+ ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return :boolean :documentation
  "Moves backward to the previous visible word start.
 
 C: gtk_text_iter_backward_visible_word_start
@@ -40512,7 +41587,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_word_start.html"
 
 (rt:define-gfunction
  (text-iter-backward-visible-word-starts "gtk_text_iter_backward_visible_word_starts") :args
- ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return :boolean
+ ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (count :int)) :return :boolean
  :documentation "Calls Gtk.TextIter.backward_visible_word_start up to COUNT times.
 
 C: gtk_text_iter_backward_visible_word_starts
@@ -40520,16 +41595,17 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_visible_word_starts.html
 
 
 (rt:define-gfunction (text-iter-backward-word-start "gtk_text_iter_backward_word_start") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves backward to the previous word start.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves backward to the previous word start.
 
 C: gtk_text_iter_backward_word_start
 See: https://docs.gtk.org/gtk4/method.TextIter.backward_word_start.html")
 
 
 (rt:define-gfunction (text-iter-backward-word-starts "gtk_text_iter_backward_word_starts") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation
                      "Calls Gtk.TextIter.backward_word_start up to COUNT times.
 
 C: gtk_text_iter_backward_word_starts
@@ -40537,7 +41613,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.backward_word_starts.html")
 
 
 (rt:define-gfunction (text-iter-can-insert "gtk_text_iter_can_insert") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (default-editability :boolean))
                      :return :boolean :documentation
                      "Considering the default editability of the buffer, and tags that
@@ -40549,8 +41625,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.can_insert.html")
 
 
 (rt:define-gfunction (text-iter-compare "gtk_text_iter_compare") :args
-                     ((lhs (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (rhs (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((lhs (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (rhs (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :int :documentation
                      "A qsort()-style function that returns negative if LHS is less than
 RHS, positive if LHS is greater than RHS, and 0 if they’re equal.
@@ -40560,16 +41636,16 @@ See: https://docs.gtk.org/gtk4/method.TextIter.compare.html")
 
 
 (rt:define-gfunction (text-iter-copy "gtk_text_iter_copy") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
-                     (:boxed "GtkTextIter" "gtk_text_iter_get_type") :return-transfer :full
-                     :documentation "Creates a dynamically-allocated copy of an iterator.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :return-transfer
+                     :full :documentation "Creates a dynamically-allocated copy of an iterator.
 
 C: gtk_text_iter_copy
 See: https://docs.gtk.org/gtk4/method.TextIter.copy.html")
 
 
 (rt:define-gfunction (text-iter-editable "gtk_text_iter_editable") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (default-setting :boolean))
                      :return :boolean :documentation
                      "Returns whether the character at ITER is within an editable region
@@ -40580,8 +41656,9 @@ See: https://docs.gtk.org/gtk4/method.TextIter.editable.html")
 
 
 (rt:define-gfunction (text-iter-ends-line "gtk_text_iter_ends_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Returns true if ITER points to the start of the paragraph
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
+                     "Returns true if ITER points to the start of the paragraph
 delimiter characters for a line.
 
 C: gtk_text_iter_ends_line
@@ -40589,15 +41666,15 @@ See: https://docs.gtk.org/gtk4/method.TextIter.ends_line.html")
 
 
 (rt:define-gfunction (text-iter-ends-sentence "gtk_text_iter_ends_sentence") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether ITER ends a sentence.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Determines whether ITER ends a sentence.
 
 C: gtk_text_iter_ends_sentence
 See: https://docs.gtk.org/gtk4/method.TextIter.ends_sentence.html")
 
 
 (rt:define-gfunction (text-iter-ends-tag "gtk_text_iter_ends_tag") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag) :optional t))
                      :return :boolean :documentation
                      "Returns true if TAG is toggled off at exactly this point.
@@ -40607,16 +41684,16 @@ See: https://docs.gtk.org/gtk4/method.TextIter.ends_tag.html")
 
 
 (rt:define-gfunction (text-iter-ends-word "gtk_text_iter_ends_word") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether ITER ends a natural-language word.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Determines whether ITER ends a natural-language word.
 
 C: gtk_text_iter_ends_word
 See: https://docs.gtk.org/gtk4/method.TextIter.ends_word.html")
 
 
 (rt:define-gfunction (text-iter-equal "gtk_text_iter_equal") :args
-                     ((lhs (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (rhs (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((lhs (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (rhs (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Tests whether two iterators are equal, using the fastest possible
 mechanism.
@@ -40626,31 +41703,35 @@ See: https://docs.gtk.org/gtk4/method.TextIter.equal.html")
 
 
 (rt:define-gfunction (text-iter-forward-char "gtk_text_iter_forward_char") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves ITER forward by one character offset.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves ITER forward by one character offset.
 
 C: gtk_text_iter_forward_char
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_char.html")
 
 
 (rt:define-gfunction (text-iter-forward-chars "gtk_text_iter_forward_chars") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Moves COUNT characters if possible.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation "Moves COUNT characters if possible.
 
 C: gtk_text_iter_forward_chars
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_chars.html")
 
 
 (rt:define-gfunction (text-iter-forward-cursor-position "gtk_text_iter_forward_cursor_position")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
-                     :boolean :documentation "Moves ITER forward by a single cursor position.
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :boolean :documentation
+                     "Moves ITER forward by a single cursor position.
 
 C: gtk_text_iter_forward_cursor_position
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_cursor_position.html")
 
 
 (rt:define-gfunction (text-iter-forward-cursor-positions "gtk_text_iter_forward_cursor_positions")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int))
+                     :args
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
                      :return :boolean :documentation "Moves up to COUNT cursor positions.
 
 C: gtk_text_iter_forward_cursor_positions
@@ -40658,10 +41739,11 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_cursor_positions.html")
 
 
 (rt:define-gfunction (text-iter-forward-find-char "gtk_text_iter_forward_find_char") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (pred (:callback text-char-predicate :call))
                       (user-data :pointer :user-data-of pred)
-                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type") :optional t))
+                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :optional
+                       t))
                      :return :boolean :documentation "Advances ITER, calling PRED on each character.
 
 C: gtk_text_iter_forward_find_char
@@ -40669,40 +41751,58 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_find_char.html")
 
 
 (rt:define-gfunction (text-iter-forward-line "gtk_text_iter_forward_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves ITER to the start of the next line.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves ITER to the start of the next line.
 
 C: gtk_text_iter_forward_line
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_line.html")
 
 
 (rt:define-gfunction (text-iter-forward-lines "gtk_text_iter_forward_lines") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Moves COUNT lines forward, if possible.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation "Moves COUNT lines forward, if possible.
 
 C: gtk_text_iter_forward_lines
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_lines.html")
 
 
+(rt:define-gfunction (text-iter-forward-search "gtk_text_iter_forward_search") :args
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (str :string) (flags (:flags text-search-flags))
+                      (match-start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)
+                       :direction :out :caller-allocates t)
+                      (match-end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)
+                       :direction :out :caller-allocates t)
+                      (limit (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :optional
+                       t))
+                     :return :boolean :documentation "Searches forward for STR.
+
+C: gtk_text_iter_forward_search
+See: https://docs.gtk.org/gtk4/method.TextIter.forward_search.html")
+
+
 (rt:define-gfunction (text-iter-forward-sentence-end "gtk_text_iter_forward_sentence_end") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves forward to the next sentence end.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves forward to the next sentence end.
 
 C: gtk_text_iter_forward_sentence_end
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_sentence_end.html")
 
 
 (rt:define-gfunction (text-iter-forward-sentence-ends "gtk_text_iter_forward_sentence_ends") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Calls Gtk.TextIter.forward_sentence_end COUNT times.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation
+                     "Calls Gtk.TextIter.forward_sentence_end COUNT times.
 
 C: gtk_text_iter_forward_sentence_ends
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_sentence_ends.html")
 
 
 (rt:define-gfunction (text-iter-forward-to-end "gtk_text_iter_forward_to_end") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :documentation
-                     "Moves ITER forward to the “end iterator”, which points
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :documentation "Moves ITER forward to the “end iterator”, which points
 one past the last valid character in the buffer.
 
 C: gtk_text_iter_forward_to_end
@@ -40710,8 +41810,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_to_end.html")
 
 
 (rt:define-gfunction (text-iter-forward-to-line-end "gtk_text_iter_forward_to_line_end") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
                      "Moves the iterator to point to the paragraph delimiter characters.
 
 C: gtk_text_iter_forward_to_line_end
@@ -40719,7 +41819,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_to_line_end.html")
 
 
 (rt:define-gfunction (text-iter-forward-to-tag-toggle "gtk_text_iter_forward_to_tag_toggle") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag) :optional t))
                      :return :boolean :documentation
                      "Moves forward to the next toggle (on or off) of the
@@ -40732,7 +41832,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_to_tag_toggle.html")
 
 (rt:define-gfunction
  (text-iter-forward-visible-cursor-position "gtk_text_iter_forward_visible_cursor_position") :args
- ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean :documentation
+ ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return :boolean :documentation
  "Moves ITER forward to the next visible cursor position.
 
 C: gtk_text_iter_forward_visible_cursor_position
@@ -40741,32 +41841,34 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_cursor_position.h
 
 (rt:define-gfunction
  (text-iter-forward-visible-cursor-positions "gtk_text_iter_forward_visible_cursor_positions")
- :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return :boolean
- :documentation "Moves up to COUNT visible cursor positions.
+ :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (count :int)) :return
+ :boolean :documentation "Moves up to COUNT visible cursor positions.
 
 C: gtk_text_iter_forward_visible_cursor_positions
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_cursor_positions.html")
 
 
 (rt:define-gfunction (text-iter-forward-visible-line "gtk_text_iter_forward_visible_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves ITER to the start of the next visible line.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves ITER to the start of the next visible line.
 
 C: gtk_text_iter_forward_visible_line
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_line.html")
 
 
 (rt:define-gfunction (text-iter-forward-visible-lines "gtk_text_iter_forward_visible_lines") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Moves COUNT visible lines forward, if possible.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation
+                     "Moves COUNT visible lines forward, if possible.
 
 C: gtk_text_iter_forward_visible_lines
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_lines.html")
 
 
 (rt:define-gfunction (text-iter-forward-visible-word-end "gtk_text_iter_forward_visible_word_end")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
-                     :boolean :documentation "Moves forward to the next visible word end.
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :boolean :documentation "Moves forward to the next visible word end.
 
 C: gtk_text_iter_forward_visible_word_end
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_word_end.html")
@@ -40774,7 +41876,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_word_end.html")
 
 (rt:define-gfunction
  (text-iter-forward-visible-word-ends "gtk_text_iter_forward_visible_word_ends") :args
- ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return :boolean
+ ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)) (count :int)) :return :boolean
  :documentation "Calls Gtk.TextIter.forward_visible_word_end up to COUNT times.
 
 C: gtk_text_iter_forward_visible_word_ends
@@ -40782,31 +41884,33 @@ See: https://docs.gtk.org/gtk4/method.TextIter.forward_visible_word_ends.html")
 
 
 (rt:define-gfunction (text-iter-forward-word-end "gtk_text_iter_forward_word_end") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Moves forward to the next word end.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Moves forward to the next word end.
 
 C: gtk_text_iter_forward_word_end
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_word_end.html")
 
 
 (rt:define-gfunction (text-iter-forward-word-ends "gtk_text_iter_forward_word_ends") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int)) :return
-                     :boolean :documentation "Calls Gtk.TextIter.forward_word_end up to COUNT times.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
+                     :return :boolean :documentation
+                     "Calls Gtk.TextIter.forward_word_end up to COUNT times.
 
 C: gtk_text_iter_forward_word_ends
 See: https://docs.gtk.org/gtk4/method.TextIter.forward_word_ends.html")
 
 
 (rt:define-gfunction (text-iter-free "gtk_text_iter_free") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :documentation
-                     "Free an iterator allocated on the heap.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :documentation "Free an iterator allocated on the heap.
 
 C: gtk_text_iter_free
 See: https://docs.gtk.org/gtk4/method.TextIter.free.html")
 
 
 (rt:define-gfunction (text-iter-get-buffer "gtk_text_iter_get_buffer") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:object text-buffer) :documentation
                      "Returns the `GtkTextBuffer` this iterator is associated with.
 
@@ -40815,8 +41919,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_buffer.html")
 
 
 (rt:define-gfunction (text-iter-get-bytes-in-line "gtk_text_iter_get_bytes_in_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the number of bytes in the line containing ITER,
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation "Returns the number of bytes in the line containing ITER,
 including the paragraph delimiters.
 
 C: gtk_text_iter_get_bytes_in_line
@@ -40824,16 +41928,17 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_bytes_in_line.html")
 
 
 (rt:define-gfunction (text-iter-get-char "gtk_text_iter_get_char") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :uint32
-                     :documentation "The Unicode character at this iterator is returned.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :uint32 :documentation "The Unicode character at this iterator is returned.
 
 C: gtk_text_iter_get_char
 See: https://docs.gtk.org/gtk4/method.TextIter.get_char.html")
 
 
 (rt:define-gfunction (text-iter-get-chars-in-line "gtk_text_iter_get_chars_in_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the number of characters in the line containing ITER,
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation
+                     "Returns the number of characters in the line containing ITER,
 including the paragraph delimiters.
 
 C: gtk_text_iter_get_chars_in_line
@@ -40841,7 +41946,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_chars_in_line.html")
 
 
 (rt:define-gfunction (text-iter-get-child-anchor "gtk_text_iter_get_child_anchor") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:object text-child-anchor) :documentation
                      "If the location at ITER contains a child anchor, the
 anchor is returned.
@@ -40851,7 +41956,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_child_anchor.html")
 
 
 (rt:define-gfunction (text-iter-get-language "gtk_text_iter_get_language") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:boxed "PangoLanguage" "pango_language_get_type") :return-transfer :full
                      :documentation "Returns the language in effect at ITER.
 
@@ -40860,16 +41965,16 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_language.html")
 
 
 (rt:define-gfunction (text-iter-get-line "gtk_text_iter_get_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the line number containing the iterator.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation "Returns the line number containing the iterator.
 
 C: gtk_text_iter_get_line
 See: https://docs.gtk.org/gtk4/method.TextIter.get_line.html")
 
 
 (rt:define-gfunction (text-iter-get-line-index "gtk_text_iter_get_line_index") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the byte index of the iterator, counting
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation "Returns the byte index of the iterator, counting
 from the start of a newline-terminated line.
 
 C: gtk_text_iter_get_line_index
@@ -40877,8 +41982,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_line_index.html")
 
 
 (rt:define-gfunction (text-iter-get-line-offset "gtk_text_iter_get_line_offset") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the character offset of the iterator,
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation "Returns the character offset of the iterator,
 counting from the start of a newline-terminated line.
 
 C: gtk_text_iter_get_line_offset
@@ -40886,7 +41991,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_line_offset.html")
 
 
 (rt:define-gfunction (text-iter-get-marks "gtk_text_iter_get_marks") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:gslist (:object text-mark)) :return-transfer :container :documentation
                      "Returns a list of all `GtkTextMark` at this location.
 
@@ -40895,15 +42000,15 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_marks.html")
 
 
 (rt:define-gfunction (text-iter-get-offset "gtk_text_iter_get_offset") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the character offset of an iterator.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :int :documentation "Returns the character offset of an iterator.
 
 C: gtk_text_iter_get_offset
 See: https://docs.gtk.org/gtk4/method.TextIter.get_offset.html")
 
 
 (rt:define-gfunction (text-iter-get-paintable "gtk_text_iter_get_paintable") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:object gdk:paintable) :documentation
                      "If the element at ITER is a paintable, the paintable is returned.
 
@@ -40912,8 +42017,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_paintable.html")
 
 
 (rt:define-gfunction (text-iter-get-slice "gtk_text_iter_get_slice") :args
-                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :string :return-transfer :full :documentation
                      "Returns the text in the given range.
 
@@ -40922,7 +42027,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_slice.html")
 
 
 (rt:define-gfunction (text-iter-get-tags "gtk_text_iter_get_tags") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
                      (:gslist (:object text-tag)) :return-transfer :container :documentation
                      "Returns a list of tags that apply to ITER, in ascending order of
 priority.
@@ -40932,8 +42037,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_tags.html")
 
 
 (rt:define-gfunction (text-iter-get-text "gtk_text_iter_get_text") :args
-                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :string :return-transfer :full :documentation
                      "Returns text in the given range.
 
@@ -40942,7 +42047,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_text.html")
 
 
 (rt:define-gfunction (text-iter-get-toggled-tags "gtk_text_iter_get_toggled_tags") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (toggled-on :boolean))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (toggled-on :boolean))
                      :return (:gslist (:object text-tag)) :return-transfer :container
                      :documentation
                      "Returns a list of `GtkTextTag` that are toggled on or off at this
@@ -40953,8 +42059,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_toggled_tags.html")
 
 
 (rt:define-gfunction (text-iter-get-visible-line-index "gtk_text_iter_get_visible_line_index")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the number of bytes from the start of the
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :int :documentation "Returns the number of bytes from the start of the
 line to the given ITER, not counting bytes that
 are invisible due to tags with the “invisible” flag
 toggled on.
@@ -40964,8 +42070,9 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_visible_line_index.html")
 
 
 (rt:define-gfunction (text-iter-get-visible-line-offset "gtk_text_iter_get_visible_line_offset")
-                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :int
-                     :documentation "Returns the offset in characters from the start of the
+                     :args ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+                     :return :int :documentation
+                     "Returns the offset in characters from the start of the
 line to the given ITER, not counting characters that
 are invisible due to tags with the “invisible” flag
 toggled on.
@@ -40975,8 +42082,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_visible_line_offset.html")
 
 
 (rt:define-gfunction (text-iter-get-visible-slice "gtk_text_iter_get_visible_slice") :args
-                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :string :return-transfer :full :documentation
                      "Returns visible text in the given range.
 
@@ -40985,8 +42092,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_visible_slice.html")
 
 
 (rt:define-gfunction (text-iter-get-visible-text "gtk_text_iter_get_visible_text") :args
-                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :string :return-transfer :full :documentation
                      "Returns visible text in the given range.
 
@@ -40995,7 +42102,7 @@ See: https://docs.gtk.org/gtk4/method.TextIter.get_visible_text.html")
 
 
 (rt:define-gfunction (text-iter-has-tag "gtk_text_iter_has_tag") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag)))
                      :return :boolean :documentation
                      "Returns true if ITER points to a character that is part
@@ -41006,9 +42113,9 @@ See: https://docs.gtk.org/gtk4/method.TextIter.has_tag.html")
 
 
 (rt:define-gfunction (text-iter-in-range "gtk_text_iter_in_range") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (start (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (end (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Checks whether ITER falls in the range [START, END).
 
@@ -41017,8 +42124,9 @@ See: https://docs.gtk.org/gtk4/method.TextIter.in_range.html")
 
 
 (rt:define-gfunction (text-iter-inside-sentence "gtk_text_iter_inside_sentence") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether ITER is inside a sentence (as opposed to in
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
+                     "Determines whether ITER is inside a sentence (as opposed to in
 between two sentences, e.g. after a period and before the first
 letter of the next sentence).
 
@@ -41027,8 +42135,9 @@ See: https://docs.gtk.org/gtk4/method.TextIter.inside_sentence.html")
 
 
 (rt:define-gfunction (text-iter-inside-word "gtk_text_iter_inside_word") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether the character pointed by ITER is part of a
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
+                     "Determines whether the character pointed by ITER is part of a
 natural-language word (as opposed to say inside some whitespace).
 
 C: gtk_text_iter_inside_word
@@ -41036,32 +42145,33 @@ See: https://docs.gtk.org/gtk4/method.TextIter.inside_word.html")
 
 
 (rt:define-gfunction (text-iter-is-cursor-position "gtk_text_iter_is_cursor_position") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determine if ITER is at a cursor position.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Determine if ITER is at a cursor position.
 
 C: gtk_text_iter_is_cursor_position
 See: https://docs.gtk.org/gtk4/method.TextIter.is_cursor_position.html")
 
 
 (rt:define-gfunction (text-iter-is-end "gtk_text_iter_is_end") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Returns true if ITER is the end iterator.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Returns true if ITER is the end iterator.
 
 C: gtk_text_iter_is_end
 See: https://docs.gtk.org/gtk4/method.TextIter.is_end.html")
 
 
 (rt:define-gfunction (text-iter-is-start "gtk_text_iter_is_start") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Returns true if ITER is the first iterator in the buffer.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
+                     "Returns true if ITER is the first iterator in the buffer.
 
 C: gtk_text_iter_is_start
 See: https://docs.gtk.org/gtk4/method.TextIter.is_start.html")
 
 
 (rt:define-gfunction (text-iter-order "gtk_text_iter_order") :args
-                     ((first (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
-                      (second (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                     ((first (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (second (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :documentation "Swaps the value of FIRST and SECOND if SECOND comes before
 FIRST in the buffer.
 
@@ -41070,7 +42180,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.order.html")
 
 
 (rt:define-gfunction (text-iter-set-line "gtk_text_iter_set_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (line-number :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (line-number :int))
                      :documentation "Moves iterator ITER to the start of the line LINE-NUMBER.
 
 C: gtk_text_iter_set_line
@@ -41078,7 +42189,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_line.html")
 
 
 (rt:define-gfunction (text-iter-set-line-index "gtk_text_iter_set_line_index") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (byte-on-line :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (byte-on-line :int))
                      :documentation "Same as Gtk.TextIter.set_line_offset, but works with a
 byte index. The given byte index must be at
 the start of a character, it can’t be in the middle of a UTF-8
@@ -41089,7 +42201,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_line_index.html")
 
 
 (rt:define-gfunction (text-iter-set-line-offset "gtk_text_iter_set_line_offset") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (char-on-line :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (char-on-line :int))
                      :documentation "Moves ITER within a line, to a new character (not byte) offset.
 
 C: gtk_text_iter_set_line_offset
@@ -41097,7 +42210,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_line_offset.html")
 
 
 (rt:define-gfunction (text-iter-set-offset "gtk_text_iter_set_offset") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (char-offset :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (char-offset :int))
                      :documentation "Sets ITER to point to CHAR-OFFSET.
 
 C: gtk_text_iter_set_offset
@@ -41106,7 +42220,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_offset.html")
 
 (rt:define-gfunction (text-iter-set-visible-line-index "gtk_text_iter_set_visible_line_index")
                      :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (byte-on-line :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (byte-on-line :int))
                      :documentation "Like Gtk.TextIter.set_line_index, but the index is in visible
 bytes, i.e. text with a tag making it invisible is not counted
 in the index.
@@ -41117,7 +42232,8 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_visible_line_index.html")
 
 (rt:define-gfunction (text-iter-set-visible-line-offset "gtk_text_iter_set_visible_line_offset")
                      :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (char-on-line :int))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (char-on-line :int))
                      :documentation "Like Gtk.TextIter.set_line_offset, but the offset is in visible
 characters, i.e. text with a tag making it invisible is not
 counted in the offset.
@@ -41127,23 +42243,23 @@ See: https://docs.gtk.org/gtk4/method.TextIter.set_visible_line_offset.html")
 
 
 (rt:define-gfunction (text-iter-starts-line "gtk_text_iter_starts_line") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Returns true if ITER begins a paragraph.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Returns true if ITER begins a paragraph.
 
 C: gtk_text_iter_starts_line
 See: https://docs.gtk.org/gtk4/method.TextIter.starts_line.html")
 
 
 (rt:define-gfunction (text-iter-starts-sentence "gtk_text_iter_starts_sentence") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether ITER begins a sentence.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation "Determines whether ITER begins a sentence.
 
 C: gtk_text_iter_starts_sentence
 See: https://docs.gtk.org/gtk4/method.TextIter.starts_sentence.html")
 
 
 (rt:define-gfunction (text-iter-starts-tag "gtk_text_iter_starts_tag") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag) :optional t))
                      :return :boolean :documentation
                      "Returns true if TAG is toggled on at exactly this point.
@@ -41153,15 +42269,16 @@ See: https://docs.gtk.org/gtk4/method.TextIter.starts_tag.html")
 
 
 (rt:define-gfunction (text-iter-starts-word "gtk_text_iter_starts_word") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return :boolean
-                     :documentation "Determines whether ITER begins a natural-language word.
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))) :return
+                     :boolean :documentation
+                     "Determines whether ITER begins a natural-language word.
 
 C: gtk_text_iter_starts_word
 See: https://docs.gtk.org/gtk4/method.TextIter.starts_word.html")
 
 
 (rt:define-gfunction (text-iter-toggles-tag "gtk_text_iter_toggles_tag") :args
-                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                     ((iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (tag (:object text-tag) :optional t))
                      :return :boolean :documentation
                      "Gets whether a range with TAG applied to it begins
@@ -41344,7 +42461,7 @@ See: https://docs.gtk.org/gtk4/method.TextView.add_overlay.html")
 
 (rt:define-gfunction (text-view-backward-display-line "gtk_text_view_backward_display_line") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Moves the given ITER backward by one display (wrapped) line.
 
@@ -41354,8 +42471,8 @@ See: https://docs.gtk.org/gtk4/method.TextView.backward_display_line.html")
 
 (rt:define-gfunction
  (text-view-backward-display-line-start "gtk_text_view_backward_display_line_start") :args
- ((text-view (:object text-view)) (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))) :return
- :boolean :documentation "Moves the given ITER backward to the next display line start.
+ ((text-view (:object text-view)) (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
+ :return :boolean :documentation "Moves the given ITER backward to the next display line start.
 
 C: gtk_text_view_backward_display_line_start
 See: https://docs.gtk.org/gtk4/method.TextView.backward_display_line_start.html")
@@ -41375,7 +42492,7 @@ See: https://docs.gtk.org/gtk4/method.TextView.buffer_to_window_coords.html")
 
 (rt:define-gfunction (text-view-forward-display-line "gtk_text_view_forward_display_line") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Moves the given ITER forward by one display (wrapped) line.
 
@@ -41386,7 +42503,7 @@ See: https://docs.gtk.org/gtk4/method.TextView.forward_display_line.html")
 (rt:define-gfunction (text-view-forward-display-line-end "gtk_text_view_forward_display_line_end")
                      :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Moves the given ITER forward to the next display line end.
 
@@ -41416,6 +42533,20 @@ See: https://docs.gtk.org/gtk4/method.TextView.get_bottom_margin.html")
 
 C: gtk_text_view_get_buffer
 See: https://docs.gtk.org/gtk4/method.TextView.get_buffer.html")
+
+
+(rt:define-gfunction (text-view-get-cursor-locations "gtk_text_view_get_cursor_locations") :args
+                     ((text-view (:object text-view))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (strong (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t)
+                      (weak (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Determine the positions of the strong and weak cursors if the
+insertion point is at ITER.
+
+C: gtk_text_view_get_cursor_locations
+See: https://docs.gtk.org/gtk4/method.TextView.get_cursor_locations.html")
 
 
 (rt:define-gfunction (text-view-get-cursor-visible "gtk_text_view_get_cursor_visible") :args
@@ -41476,6 +42607,42 @@ C: gtk_text_view_get_input_purpose
 See: https://docs.gtk.org/gtk4/method.TextView.get_input_purpose.html")
 
 
+(rt:define-gfunction (text-view-get-iter-at-location "gtk_text_view_get_iter_at_location") :args
+                     ((text-view (:object text-view))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (x :int) (y :int))
+                     :return :boolean :documentation
+                     "Retrieves the iterator at buffer coordinates X and Y.
+
+C: gtk_text_view_get_iter_at_location
+See: https://docs.gtk.org/gtk4/method.TextView.get_iter_at_location.html")
+
+
+(rt:define-gfunction (text-view-get-iter-at-position "gtk_text_view_get_iter_at_position") :args
+                     ((text-view (:object text-view))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter) :direction
+                       :out :caller-allocates t)
+                      (trailing :int :direction :out :transfer :full) (x :int) (y :int))
+                     :return :boolean :documentation
+                     "Retrieves the iterator pointing to the character at buffer
+coordinates X and Y.
+
+C: gtk_text_view_get_iter_at_position
+See: https://docs.gtk.org/gtk4/method.TextView.get_iter_at_position.html")
+
+
+(rt:define-gfunction (text-view-get-iter-location "gtk_text_view_get_iter_location") :args
+                     ((text-view (:object text-view))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (location (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Gets a rectangle which roughly contains the character at ITER.
+
+C: gtk_text_view_get_iter_location
+See: https://docs.gtk.org/gtk4/method.TextView.get_iter_location.html")
+
+
 (rt:define-gfunction (text-view-get-justification "gtk_text_view_get_justification") :args
                      ((text-view (:object text-view))) :return (:enum justification) :documentation
                      "Gets the default justification of paragraphs in TEXT-VIEW.
@@ -41492,9 +42659,21 @@ C: gtk_text_view_get_left_margin
 See: https://docs.gtk.org/gtk4/method.TextView.get_left_margin.html")
 
 
+(rt:define-gfunction (text-view-get-line-at-y "gtk_text_view_get_line_at_y") :args
+                     ((text-view (:object text-view))
+                      (target-iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)
+                       :direction :out :caller-allocates t)
+                      (y :int) (line-top :int :direction :out :transfer :full))
+                     :documentation "Gets the `GtkTextIter` at the start of the line containing
+the coordinate Y.
+
+C: gtk_text_view_get_line_at_y
+See: https://docs.gtk.org/gtk4/method.TextView.get_line_at_y.html")
+
+
 (rt:define-gfunction (text-view-get-line-yrange "gtk_text_view_get_line_yrange") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (y :int :direction :out :transfer :full)
                       (height :int :direction :out :transfer :full))
                      :documentation "Gets the y coordinate of the top of the line containing ITER,
@@ -41605,6 +42784,17 @@ See: https://docs.gtk.org/gtk4/method.TextView.get_visible_offset.html
 Since: 4.18")
 
 
+(rt:define-gfunction (text-view-get-visible-rect "gtk_text_view_get_visible_rect") :args
+                     ((text-view (:object text-view))
+                      (visible-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Fills VISIBLE-RECT with the currently-visible
+region of the buffer, in buffer coordinates.
+
+C: gtk_text_view_get_visible_rect
+See: https://docs.gtk.org/gtk4/method.TextView.get_visible_rect.html")
+
+
 (rt:define-gfunction (text-view-get-wrap-mode "gtk_text_view_get_wrap_mode") :args
                      ((text-view (:object text-view))) :return (:enum wrap-mode) :documentation
                      "Gets the line wrapping for the view.
@@ -41643,7 +42833,8 @@ See: https://docs.gtk.org/gtk4/method.TextView.move_overlay.html")
 
 (rt:define-gfunction (text-view-move-visually "gtk_text_view_move_visually") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")) (count :int))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
+                      (count :int))
                      :return :boolean :documentation
                      "Move the iterator a given number of characters visually, treating
 it as the strong cursor position.
@@ -41696,7 +42887,7 @@ See: https://docs.gtk.org/gtk4/method.TextView.scroll_mark_onscreen.html")
 
 (rt:define-gfunction (text-view-scroll-to-iter "gtk_text_view_scroll_to_iter") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type"))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter))
                       (within-margin :double) (use-align :boolean) (xalign :double)
                       (yalign :double))
                      :return :boolean :documentation
@@ -41896,7 +43087,7 @@ See: https://docs.gtk.org/gtk4/method.TextView.set_wrap_mode.html")
 
 (rt:define-gfunction (text-view-starts-display-line "gtk_text_view_starts_display_line") :args
                      ((text-view (:object text-view))
-                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type")))
+                      (iter (:boxed "GtkTextIter" "gtk_text_iter_get_type" text-iter)))
                      :return :boolean :documentation
                      "Determines whether ITER is at the start of a display line.
 
@@ -42035,7 +43226,7 @@ See: https://docs.gtk.org/gtk4/method.Tooltip.set_text.html")
 
 (rt:define-gfunction (tooltip-set-tip-area "gtk_tooltip_set_tip_area") :args
                      ((tooltip (:object tooltip))
-                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type")))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)))
                      :documentation
                      "Sets the area of the widget, where the contents of this tooltip apply,
 to be RECT (in widget coordinates).  This is especially useful for
@@ -42050,7 +43241,7 @@ See: https://docs.gtk.org/gtk4/method.Tooltip.set_tip_area.html")
                      :args
                      ((drag-dest (:object tree-drag-dest))
                       (dest (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :return :boolean :documentation
                      "Asks the `GtkTreeDragDest` to insert a row before the path DEST,
 deriving the contents of the row from VALUE. If DEST is
@@ -42068,7 +43259,7 @@ Deprecated.")
                      :args
                      ((drag-dest (:object tree-drag-dest))
                       (dest-path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :return :boolean :documentation
                      "Determines whether a drop is possible before the given DEST-PATH,
 at the same depth as DEST-PATH. i.e., can we drop the data in
@@ -42233,9 +43424,9 @@ See: https://docs.gtk.org/gtk4/method.TreeExpander.set_list_row.html")
 
 
 (rt:define-gfunction (tree-iter-copy "gtk_tree_iter_copy") :args
-                     ((iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))) :return
-                     (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :return-transfer :full
-                     :documentation
+                     ((iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))) :return
+                     (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :return-transfer
+                     :full :documentation
                      "Creates a dynamically allocated tree iterator as a copy of ITER.
 
 C: gtk_tree_iter_copy
@@ -42244,7 +43435,8 @@ Deprecated.")
 
 
 (rt:define-gfunction (tree-iter-free "gtk_tree_iter_free") :args
-                     ((iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))) :documentation
+                     ((iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                     :documentation
                      "Frees an iterator that has been allocated by gtk_tree_iter_copy().
 
 C: gtk_tree_iter_free
@@ -42461,6 +43653,46 @@ See: https://docs.gtk.org/gtk4/method.TreeModel.get_flags.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-model-get-iter "gtk_tree_model_get_iter") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type")))
+                     :return :boolean :documentation
+                     "Sets ITER to a valid iterator pointing to PATH.
+
+C: gtk_tree_model_get_iter
+See: https://docs.gtk.org/gtk4/method.TreeModel.get_iter.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-model-get-iter-first "gtk_tree_model_get_iter_first") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Initializes ITER with the first iterator in the tree
+(the one at the path \"0\").
+
+C: gtk_tree_model_get_iter_first
+See: https://docs.gtk.org/gtk4/method.TreeModel.get_iter_first.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-model-get-iter-from-string "gtk_tree_model_get_iter_from_string") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (path-string :string))
+                     :return :boolean :documentation
+                     "Sets ITER to a valid iterator pointing to PATH-STRING, if it
+exists.
+
+C: gtk_tree_model_get_iter_from_string
+See: https://docs.gtk.org/gtk4/method.TreeModel.get_iter_from_string.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-model-get-n-columns "gtk_tree_model_get_n_columns") :args
                      ((tree-model (:object tree-model))) :return :int :documentation
                      "Returns the number of columns supported by TREE-MODEL.
@@ -42472,7 +43704,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-get-path "gtk_tree_model_get_path") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return (:boxed "GtkTreePath" "gtk_tree_path_get_type") :return-transfer :full
                      :documentation "Returns a newly-created `GtkTreePath` referenced by ITER.
 
@@ -42483,7 +43715,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-get-string-from-iter "gtk_tree_model_get_string_from_iter") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :string :return-transfer :full :documentation
                      "Generates a string representation of the iter.
 
@@ -42492,9 +43724,34 @@ See: https://docs.gtk.org/gtk4/method.TreeModel.get_string_from_iter.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-model-get-value "gtk_tree_model_get_value") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (column :int) (value :gvalue :direction :out :caller-allocates t))
+                     :documentation "Initializes and sets VALUE to that at COLUMN.
+
+C: gtk_tree_model_get_value
+See: https://docs.gtk.org/gtk4/method.TreeModel.get_value.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-model-iter-children "gtk_tree_model_iter_children") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :return :boolean :documentation
+                     "Sets ITER to point to the first child of PARENT.
+
+C: gtk_tree_model_iter_children
+See: https://docs.gtk.org/gtk4/method.TreeModel.iter_children.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-model-iter-has-child "gtk_tree_model_iter_has_child") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Returns true if ITER has children, false otherwise.
 
@@ -42505,7 +43762,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-iter-n-children "gtk_tree_model_iter_n_children") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional t))
                      :return :int :documentation "Returns the number of children that ITER has.
 
 C: gtk_tree_model_iter_n_children
@@ -42515,7 +43772,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-iter-next "gtk_tree_model_iter_next") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Sets ITER to point to the node following it at the current level.
 
@@ -42524,9 +43781,34 @@ See: https://docs.gtk.org/gtk4/method.TreeModel.iter_next.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-model-iter-nth-child "gtk_tree_model_iter_nth_child") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)) (n :int))
+                     :return :boolean :documentation
+                     "Sets ITER to be the child of PARENT, using the given index.
+
+C: gtk_tree_model_iter_nth_child
+See: https://docs.gtk.org/gtk4/method.TreeModel.iter_nth_child.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-model-iter-parent "gtk_tree_model_iter_parent") :args
+                     ((tree-model (:object tree-model))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (child (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+                     :return :boolean :documentation "Sets ITER to be the parent of CHILD.
+
+C: gtk_tree_model_iter_parent
+See: https://docs.gtk.org/gtk4/method.TreeModel.iter_parent.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-model-iter-previous "gtk_tree_model_iter_previous") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Sets ITER to point to the previous node at the current level.
 
@@ -42537,7 +43819,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-ref-node "gtk_tree_model_ref_node") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Lets the tree ref the node.
 
 C: gtk_tree_model_ref_node
@@ -42548,7 +43830,7 @@ Deprecated.")
 (rt:define-gfunction (tree-model-row-changed "gtk_tree_model_row_changed") :args
                      ((tree-model (:object tree-model))
                       (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Emits the ::row-changed signal on TREE-MODEL.
 
 C: gtk_tree_model_row_changed
@@ -42570,7 +43852,7 @@ Deprecated.")
                      :args
                      ((tree-model (:object tree-model))
                       (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Emits the ::row-has-child-toggled signal on TREE-MODEL.
 
 C: gtk_tree_model_row_has_child_toggled
@@ -42581,7 +43863,7 @@ Deprecated.")
 (rt:define-gfunction (tree-model-row-inserted "gtk_tree_model_row_inserted") :args
                      ((tree-model (:object tree-model))
                       (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Emits the ::row-inserted signal on TREE-MODEL.
 
 C: gtk_tree_model_row_inserted
@@ -42592,7 +43874,7 @@ Deprecated.")
 (rt:define-gfunction (tree-model-rows-reordered "gtk_tree_model_rows_reordered_with_length") :args
                      ((tree-model (:object tree-model))
                       (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
                       (new-order (:array :int)) (length :int :length-of new-order))
                      :documentation "Emits the ::rows-reordered signal on TREE-MODEL.
 
@@ -42603,7 +43885,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-unref-node "gtk_tree_model_unref_node") :args
                      ((tree-model (:object tree-model))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Lets the tree unref the node.
 
 C: gtk_tree_model_unref_node
@@ -42626,6 +43908,23 @@ Deprecated.")
 
 
 (rt:define-gfunction
+ (tree-model-filter-convert-child-iter-to-iter "gtk_tree_model_filter_convert_child_iter_to_iter")
+ :args
+ ((filter (:object tree-model-filter))
+  (filter-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction :out
+   :caller-allocates t)
+  (child-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+ :return :boolean :documentation
+ "Sets FILTER-ITER to point to the row in FILTER that corresponds to the
+row pointed at by CHILD-ITER.  If FILTER-ITER was not set, false is
+returned.
+
+C: gtk_tree_model_filter_convert_child_iter_to_iter
+See: https://docs.gtk.org/gtk4/method.TreeModelFilter.convert_child_iter_to_iter.html
+Deprecated.")
+
+
+(rt:define-gfunction
  (tree-model-filter-convert-child-path-to-path "gtk_tree_model_filter_convert_child_path_to_path")
  :args
  ((filter (:object tree-model-filter))
@@ -42639,6 +43938,20 @@ is returned.
 
 C: gtk_tree_model_filter_convert_child_path_to_path
 See: https://docs.gtk.org/gtk4/method.TreeModelFilter.convert_child_path_to_path.html
+Deprecated.")
+
+
+(rt:define-gfunction
+ (tree-model-filter-convert-iter-to-child-iter "gtk_tree_model_filter_convert_iter_to_child_iter")
+ :args
+ ((filter (:object tree-model-filter))
+  (child-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction :out
+   :caller-allocates t)
+  (filter-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+ :documentation "Sets CHILD-ITER to point to the row pointed to by FILTER-ITER.
+
+C: gtk_tree_model_filter_convert_iter_to_child_iter
+See: https://docs.gtk.org/gtk4/method.TreeModelFilter.convert_iter_to_child_iter.html
 Deprecated.")
 
 
@@ -42730,6 +44043,23 @@ Deprecated.")
 
 
 (rt:define-gfunction
+ (tree-model-sort-convert-child-iter-to-iter "gtk_tree_model_sort_convert_child_iter_to_iter")
+ :args
+ ((tree-model-sort (:object tree-model-sort))
+  (sort-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction :out
+   :caller-allocates t)
+  (child-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+ :return :boolean :documentation
+ "Sets SORT-ITER to point to the row in TREE-MODEL-SORT that corresponds to
+the row pointed at by CHILD-ITER.  If SORT-ITER was not set, false
+is returned.  Note: a boolean is only returned since 2.14.
+
+C: gtk_tree_model_sort_convert_child_iter_to_iter
+See: https://docs.gtk.org/gtk4/method.TreeModelSort.convert_child_iter_to_iter.html
+Deprecated.")
+
+
+(rt:define-gfunction
  (tree-model-sort-convert-child-path-to-path "gtk_tree_model_sort_convert_child_path_to_path")
  :args
  ((tree-model-sort (:object tree-model-sort))
@@ -42742,6 +44072,20 @@ path on the child model, then NIL is returned.
 
 C: gtk_tree_model_sort_convert_child_path_to_path
 See: https://docs.gtk.org/gtk4/method.TreeModelSort.convert_child_path_to_path.html
+Deprecated.")
+
+
+(rt:define-gfunction
+ (tree-model-sort-convert-iter-to-child-iter "gtk_tree_model_sort_convert_iter_to_child_iter")
+ :args
+ ((tree-model-sort (:object tree-model-sort))
+  (child-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction :out
+   :caller-allocates t)
+  (sorted-iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
+ :documentation "Sets CHILD-ITER to point to the row pointed to by SORTED-ITER.
+
+C: gtk_tree_model_sort_convert_iter_to_child_iter
+See: https://docs.gtk.org/gtk4/method.TreeModelSort.convert_iter_to_child_iter.html
 Deprecated.")
 
 
@@ -42773,7 +44117,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-model-sort-iter-is-valid "gtk_tree_model_sort_iter_is_valid") :args
                      ((tree-model-sort (:object tree-model-sort))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "> This function is slow. Only use it for debugging and/or testing
 > purposes.
@@ -43086,6 +44430,23 @@ See: https://docs.gtk.org/gtk4/method.TreeSelection.get_mode.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-selection-get-selected "gtk_tree_selection_get_selected") :args
+                     ((selection (:object tree-selection))
+                      (model (:object tree-model) :direction :out)
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Sets ITER to the currently selected node if SELECTION is set to
+GTK_SELECTION_SINGLE or GTK_SELECTION_BROWSE.  ITER may be NULL if you
+just want to test if SELECTION has any selected nodes.  MODEL is filled
+with the current model as a convenience.  This function will not work if you
+use SELECTION is GTK_SELECTION_MULTIPLE.
+
+C: gtk_tree_selection_get_selected
+See: https://docs.gtk.org/gtk4/method.TreeSelection.get_selected.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-selection-get-selected-rows "gtk_tree_selection_get_selected_rows")
                      :args
                      ((selection (:object tree-selection))
@@ -43113,7 +44474,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-selection-iter-is-selected "gtk_tree_selection_iter_is_selected") :args
                      ((selection (:object tree-selection))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Returns true if the row at ITER is currently selected.
 
@@ -43146,7 +44507,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-selection-select-iter "gtk_tree_selection_select_iter") :args
                      ((selection (:object tree-selection))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Selects the specified iterator.
 
 C: gtk_tree_selection_select_iter
@@ -43225,7 +44586,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-selection-unselect-iter "gtk_tree_selection_unselect_iter") :args
                      ((selection (:object tree-selection))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Unselects the specified iterator.
 
 C: gtk_tree_selection_unselect_iter
@@ -43347,6 +44708,19 @@ See: https://docs.gtk.org/gtk4/ctor.TreeStore.newv.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-store-append "gtk_tree_store_append") :args
+                     ((tree-store (:object tree-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation "Appends a new row to TREE-STORE.
+
+C: gtk_tree_store_append
+See: https://docs.gtk.org/gtk4/method.TreeStore.append.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-store-clear "gtk_tree_store_clear") :args
                      ((tree-store (:object tree-store))) :documentation
                      "Removes all rows from TREE-STORE
@@ -43356,10 +44730,53 @@ See: https://docs.gtk.org/gtk4/method.TreeStore.clear.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-store-insert "gtk_tree_store_insert") :args
+                     ((tree-store (:object tree-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (position :int))
+                     :documentation "Creates a new row at POSITION.
+
+C: gtk_tree_store_insert
+See: https://docs.gtk.org/gtk4/method.TreeStore.insert.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-store-insert-after "gtk_tree_store_insert_after") :args
+                     ((tree-store (:object tree-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t)
+                      (sibling (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation "Inserts a new row after SIBLING.
+
+C: gtk_tree_store_insert_after
+See: https://docs.gtk.org/gtk4/method.TreeStore.insert_after.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-store-insert-before "gtk_tree_store_insert_before") :args
+                     ((tree-store (:object tree-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t)
+                      (sibling (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation "Inserts a new row before SIBLING.
+
+C: gtk_tree_store_insert_before
+See: https://docs.gtk.org/gtk4/method.TreeStore.insert_before.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-store-is-ancestor "gtk_tree_store_is_ancestor") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (descendant (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (descendant (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation "Checks if ITER is an ancestor of DESCENDANT.
 
 C: gtk_tree_store_is_ancestor
@@ -43369,7 +44786,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-iter-depth "gtk_tree_store_iter_depth") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :int :documentation
                      "Returns the depth of the position pointed by the iterator
 
@@ -43380,7 +44797,7 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-iter-is-valid "gtk_tree_store_iter_is_valid") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation
                      "Checks if the given iter is a valid iter for this `GtkTreeStore`.
 
@@ -43391,8 +44808,9 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-move-after "gtk_tree_store_move_after") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                                t))
                      :documentation "Moves ITER in TREE-STORE to the position after POSITION.
 
 C: gtk_tree_store_move_after
@@ -43402,8 +44820,9 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-move-before "gtk_tree_store_move_before") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type") :optional t))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (position (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                                t))
                      :documentation "Moves ITER in TREE-STORE to the position before POSITION.
 
 C: gtk_tree_store_move_before
@@ -43411,9 +44830,22 @@ See: https://docs.gtk.org/gtk4/method.TreeStore.move_before.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-store-prepend "gtk_tree_store_prepend") :args
+                     ((tree-store (:object tree-store))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t)
+                      (parent (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :optional
+                       t))
+                     :documentation "Prepends a new row to TREE-STORE.
+
+C: gtk_tree_store_prepend
+See: https://docs.gtk.org/gtk4/method.TreeStore.prepend.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-store-remove "gtk_tree_store_remove") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :return :boolean :documentation "Removes ITER from TREE-STORE.
 
 C: gtk_tree_store_remove
@@ -43433,8 +44865,8 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-set-value "gtk_tree_store_set_value") :args
                      ((tree-store (:object tree-store))
-                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")) (column :int)
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (column :int) (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Sets the data in the cell specified by ITER and COLUMN.
 
 C: gtk_tree_store_set_value
@@ -43444,8 +44876,8 @@ Deprecated.")
 
 (rt:define-gfunction (tree-store-swap "gtk_tree_store_swap") :args
                      ((tree-store (:object tree-store))
-                      (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type"))
-                      (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")))
+                      (a (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter))
+                      (b (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)))
                      :documentation "Swaps A and B in the same level of TREE-STORE.
 
 C: gtk_tree_store_swap
@@ -43667,6 +45099,50 @@ Deprecated.")
 
 C: gtk_tree_view_get_activate_on_single_click
 See: https://docs.gtk.org/gtk4/method.TreeView.get_activate_on_single_click.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-view-get-background-area "gtk_tree_view_get_background_area") :args
+                     ((tree-view (:object tree-view))
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                      (column (:object tree-view-column))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation
+                     "Fills the bounding rectangle in bin_window coordinates for the cell at the
+row specified by PATH and the column specified by COLUMN.  If PATH is
+NIL, or points to a node not found in the tree, the Y and HEIGHT fields of
+the rectangle will be filled with 0. If COLUMN is NIL, the X and WIDTH
+fields will be filled with 0.  The returned rectangle is equivalent to the
+BACKGROUND-AREA passed to gtk_cell_renderer_render().  These background
+areas tile to cover the entire bin window.  Contrast with the CELL-AREA,
+returned by gtk_tree_view_get_cell_area(), which returns only the cell
+itself, excluding surrounding borders and the tree expander area.
+
+C: gtk_tree_view_get_background_area
+See: https://docs.gtk.org/gtk4/method.TreeView.get_background_area.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-view-get-cell-area "gtk_tree_view_get_cell_area") :args
+                     ((tree-view (:object tree-view))
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type"))
+                      (column (:object tree-view-column))
+                      (rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation
+                     "Fills the bounding rectangle in bin_window coordinates for the cell at the
+row specified by PATH and the column specified by COLUMN.  If PATH is
+NIL, or points to a path not currently displayed, the Y and HEIGHT fields
+of the rectangle will be filled with 0. If COLUMN is NIL, the X and WIDTH
+fields will be filled with 0.  The sum of all cell rects does not cover the
+entire tree; there are extra pixels in between rows, for example. The
+returned rectangle is equivalent to the CELL-AREA passed to
+gtk_cell_renderer_render().  This function is only valid if TREE-VIEW is
+realized.
+
+C: gtk_tree_view_get_cell_area
+See: https://docs.gtk.org/gtk4/method.TreeView.get_cell_area.html
 Deprecated.")
 
 
@@ -43943,6 +45419,24 @@ See: https://docs.gtk.org/gtk4/method.TreeView.get_tooltip_column.html
 Deprecated.")
 
 
+(rt:define-gfunction (tree-view-get-tooltip-context "gtk_tree_view_get_tooltip_context") :args
+                     ((tree-view (:object tree-view)) (x :int) (y :int) (keyboard-tip :boolean)
+                      (model (:object tree-model) :direction :out)
+                      (path (:boxed "GtkTreePath" "gtk_tree_path_get_type") :direction :out
+                       :transfer :full)
+                      (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "This function is supposed to be used in a ::query-tooltip
+signal handler for `GtkTreeView`. The X, Y and KEYBOARD-TIP values
+which are received in the signal handler, should be passed to this
+function without modification.
+
+C: gtk_tree_view_get_tooltip_context
+See: https://docs.gtk.org/gtk4/method.TreeView.get_tooltip_context.html
+Deprecated.")
+
+
 (rt:define-gfunction (tree-view-get-visible-range "gtk_tree_view_get_visible_range") :args
                      ((tree-view (:object tree-view))
                       (start-path (:boxed "GtkTreePath" "gtk_tree_path_get_type") :direction :out
@@ -43955,6 +45449,21 @@ Note that there may be invisible paths in between.
 
 C: gtk_tree_view_get_visible_range
 See: https://docs.gtk.org/gtk4/method.TreeView.get_visible_range.html
+Deprecated.")
+
+
+(rt:define-gfunction (tree-view-get-visible-rect "gtk_tree_view_get_visible_rect") :args
+                     ((tree-view (:object tree-view))
+                      (visible-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Fills VISIBLE-RECT with the currently-visible region of the
+buffer, in tree coordinates. Convert to bin_window coordinates with
+gtk_tree_view_convert_tree_to_bin_window_coords().
+Tree coordinates start at 0,0 for row 0 of the tree, and cover the entire
+scrollable area of the tree.
+
+C: gtk_tree_view_get_visible_rect
+See: https://docs.gtk.org/gtk4/method.TreeView.get_visible_rect.html
 Deprecated.")
 
 
@@ -44540,7 +46049,7 @@ Deprecated.")
 (rt:define-gfunction
  (tree-view-column-cell-set-cell-data "gtk_tree_view_column_cell_set_cell_data") :args
  ((tree-column (:object tree-view-column)) (tree-model (:object tree-model))
-  (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type")) (is-expander :boolean)
+  (iter (:boxed "GtkTreeIter" "gtk_tree_iter_get_type" tree-iter)) (is-expander :boolean)
   (is-expanded :boolean))
  :documentation "Sets the cell renderer based on the TREE-MODEL and ITER.  That is, for
 every attribute mapping in TREE-COLUMN, it will get a value from the set
@@ -45376,6 +46885,17 @@ C: gtk_widget_child_focus
 See: https://docs.gtk.org/gtk4/method.Widget.child_focus.html")
 
 
+(rt:define-gfunction (widget-compute-bounds "gtk_widget_compute_bounds") :args
+                     ((widget (:object widget)) (target (:object widget))
+                      (out-bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Computes the bounds for WIDGET in the coordinate space of TARGET.
+
+C: gtk_widget_compute_bounds
+See: https://docs.gtk.org/gtk4/method.Widget.compute_bounds.html")
+
+
 (rt:define-gfunction (widget-compute-expand "gtk_widget_compute_expand") :args
                      ((widget (:object widget)) (orientation (:enum orientation))) :return :boolean
                      :documentation "Computes whether a parent widget should give this widget
@@ -45383,6 +46903,32 @@ extra space when possible.
 
 C: gtk_widget_compute_expand
 See: https://docs.gtk.org/gtk4/method.Widget.compute_expand.html")
+
+
+(rt:define-gfunction (widget-compute-point "gtk_widget_compute_point") :args
+                     ((widget (:object widget)) (target (:object widget))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (out-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Translates the given POINT in WIDGET's coordinates to coordinates
+in TARGET’s coordinate system.
+
+C: gtk_widget_compute_point
+See: https://docs.gtk.org/gtk4/method.Widget.compute_point.html")
+
+
+(rt:define-gfunction (widget-compute-transform "gtk_widget_compute_transform") :args
+                     ((widget (:object widget)) (target (:object widget))
+                      (out-transform
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Computes a matrix suitable to describe a transformation from
+WIDGET's coordinate system into TARGET's coordinate system.
+
+C: gtk_widget_compute_transform
+See: https://docs.gtk.org/gtk4/method.Widget.compute_transform.html")
 
 
 (rt:define-gfunction (widget-contains "gtk_widget_contains") :args
@@ -45512,6 +47058,18 @@ See: https://docs.gtk.org/gtk4/method.Widget.get_child_visible.html")
 
 C: gtk_widget_get_clipboard
 See: https://docs.gtk.org/gtk4/method.Widget.get_clipboard.html")
+
+
+(rt:define-gfunction (widget-get-color "gtk_widget_get_color") :args
+                     ((widget (:object widget))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :direction :out
+                       :caller-allocates t))
+                     :version "4.10" :documentation
+                     "Gets the current foreground color for the widget’s style.
+
+C: gtk_widget_get_color
+See: https://docs.gtk.org/gtk4/method.Widget.get_color.html
+Since: 4.10")
 
 
 (rt:define-gfunction (widget-get-css-classes "gtk_widget_get_css_classes") :args
@@ -45769,6 +47327,21 @@ See: https://docs.gtk.org/gtk4/method.Widget.get_pango_context.html")
 
 C: gtk_widget_get_parent
 See: https://docs.gtk.org/gtk4/method.Widget.get_parent.html")
+
+
+(rt:define-gfunction (widget-get-preferred-size "gtk_widget_get_preferred_size") :args
+                     ((widget (:object widget))
+                      (minimum-size
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition) :direction
+                       :out :caller-allocates t)
+                      (natural-size
+                       (:boxed "GtkRequisition" "gtk_requisition_get_type" requisition) :direction
+                       :out :caller-allocates t))
+                     :documentation "Retrieves the minimum and natural size of a widget, taking
+into account the widget’s preference for height-for-width management.
+
+C: gtk_widget_get_preferred_size
+See: https://docs.gtk.org/gtk4/method.Widget.get_preferred_size.html")
 
 
 (rt:define-gfunction (widget-get-prev-sibling "gtk_widget_get_prev_sibling") :args
@@ -46546,7 +48119,7 @@ Deprecated.")
 
 (rt:define-gfunction (widget-size-allocate "gtk_widget_size_allocate") :args
                      ((widget (:object widget))
-                      (allocation (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                      (allocation (:boxed "GdkRectangle" "gdk_rectangle_get_type" gdk:rectangle))
                       (baseline :int))
                      :documentation
                      "Allocates widget with a transformation that translates the origin to
@@ -47432,7 +49005,7 @@ See: https://docs.gtk.org/gtk4/method.WindowHandle.set_child.html")
 
 (rt:define-gfunction (accessible-property-init-value "gtk_accessible_property_init_value") :args
                      ((property (:enum accessible-property))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Initializes VALUE with the appropriate type for the PROPERTY.
 
 C: gtk_accessible_property_init_value
@@ -47441,7 +49014,7 @@ See: https://docs.gtk.org/gtk4/type_func.AccessibleProperty.init_value.html")
 
 (rt:define-gfunction (accessible-relation-init-value "gtk_accessible_relation_init_value") :args
                      ((relation (:enum accessible-relation))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Initializes VALUE with the appropriate type for the RELATION.
 
 C: gtk_accessible_relation_init_value
@@ -47450,7 +49023,7 @@ See: https://docs.gtk.org/gtk4/type_func.AccessibleRelation.init_value.html")
 
 (rt:define-gfunction (accessible-state-init-value "gtk_accessible_state_init_value") :args
                      ((state (:enum accessible-state))
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Initializes VALUE with the appropriate type for the STATE.
 
 C: gtk_accessible_state_init_value
@@ -47508,8 +49081,9 @@ See: https://docs.gtk.org/gtk4/type_func.RecentManagerError.quark.html")
 
 
 (rt:define-gfunction (svg-error-get-attribute "gtk_svg_error_get_attribute") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :string :version "4.22"
-                     :documentation "Returns context information about what XML attribute
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :string
+                     :version "4.22" :documentation
+                     "Returns context information about what XML attribute
 the parsing error occurred in.
 
 C: gtk_svg_error_get_attribute
@@ -47518,8 +49092,9 @@ Since: 4.22")
 
 
 (rt:define-gfunction (svg-error-get-element "gtk_svg_error_get_element") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :string :version "4.22"
-                     :documentation "Returns context information about what XML element
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :string
+                     :version "4.22" :documentation
+                     "Returns context information about what XML element
 the parsing error occurred in.
 
 C: gtk_svg_error_get_element
@@ -47528,8 +49103,8 @@ Since: 4.22")
 
 
 (rt:define-gfunction (svg-error-get-end "gtk_svg_error_get_end") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return (:record svg-location)
-                     :version "4.22" :documentation
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return
+                     (:record svg-location) :version "4.22" :documentation
                      "Returns context information about the end position
 in the document where the parsing error occurred.
 
@@ -47539,8 +49114,9 @@ Since: 4.22")
 
 
 (rt:define-gfunction (svg-error-get-input "gtk_svg_error_get_input") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return :string :version "4.24"
-                     :documentation "Returns a string describing the input source that
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return :string
+                     :version "4.24" :documentation
+                     "Returns a string describing the input source that
 the parsing error occurred in.
 
 C: gtk_svg_error_get_input
@@ -47549,8 +49125,8 @@ Since: 4.24")
 
 
 (rt:define-gfunction (svg-error-get-start "gtk_svg_error_get_start") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return (:record svg-location)
-                     :version "4.22" :documentation
+                     ((error (:boxed "GError" "g_error_get_type" glib:error))) :return
+                     (:record svg-location) :version "4.22" :documentation
                      "Returns context information about the start position
 in the document where the parsing error occurred.
 

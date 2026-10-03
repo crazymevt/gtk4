@@ -2456,6 +2456,1195 @@ See: https://docs.gtk.org/glib/struct.VariantBuilder.html"))
 C: GVariantDict
 See: https://docs.gtk.org/glib/struct.VariantDict.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct array
+    (:gtype-name "GArray")
+  (:data :pointer)
+  (:len :uint))
+
+
+(rt:define-gfield array-data array :data :string :documentation
+                  "a pointer to the element data. The data may be moved as
+    elements are added to the `GArray`.
+")
+
+
+(rt:define-gfield array-len array :len :uint :writable t :documentation
+                  "the number of elements in the `GArray` not including the
+    possible terminating zero element
+")
+
+
+(rt:define-gstruct-constructor make-array (:boxed "GArray" "g_array_get_type" array)
+                               ((len :len :uint)) :documentation
+                               "A new Array with the given fields; others are zero.")
+
+
+(rt:define-gstruct byte-array
+    (:gtype-name "GByteArray")
+  (:data :uint8)
+  (:len :uint))
+
+
+(rt:define-gfield byte-array-data byte-array :data :uint8 :writable t :documentation
+                  "a pointer to the element data. The data may be moved as
+    elements are added to the `GByteArray`
+")
+
+
+(rt:define-gfield byte-array-len byte-array :len :uint :writable t :documentation
+                  "the number of elements in the `GByteArray`
+")
+
+
+(rt:define-gstruct-constructor make-byte-array
+                               (:boxed "GByteArray" "g_byte_array_get_type" byte-array)
+                               ((data :data :uint8) (len :len :uint)) :documentation
+                               "A new ByteArray with the given fields; others are zero.")
+
+
+(rt:define-gstruct completion
+    nil
+  (:items :pointer)
+  (:func :pointer)
+  (:prefix :pointer)
+  (:cache :pointer)
+  (:strncmp-func :pointer))
+
+
+(rt:define-gfield completion-prefix completion :prefix :string :documentation
+                  "the last prefix passed to g_completion_complete() or
+         g_completion_complete_utf8().
+")
+
+
+(rt:define-gstruct cond
+    nil
+  (:p :pointer)
+  (:i :uint :count 2))
+
+
+(rt:define-gstruct date
+    (:gtype-name "GDate")
+  (:bits-0 :uint)
+  (:bits-1 :uint))
+
+
+(rt:define-gfield date-julian-days date :bits-0 :uint :writable t :bits (32 0) :documentation
+                  "the Julian representation of the date
+")
+
+
+(rt:define-gfield date-julian date :bits-1 :uint :writable t :bits (1 0) :documentation
+                  "this bit is set if JULIAN-DAYS is valid
+")
+
+
+(rt:define-gfield date-dmy date :bits-1 :uint :writable t :bits (1 1) :documentation
+                  "this is set if DAY, MONTH and YEAR are valid
+")
+
+
+(rt:define-gfield date-day date :bits-1 :uint :writable t :bits (6 2) :documentation
+                  "the day of the day-month-year representation of the date,
+  as a number between 1 and 31
+")
+
+
+(rt:define-gfield date-month date :bits-1 :uint :writable t :bits (4 8) :documentation
+                  "the month of the day-month-year representation of the date,
+  as a number between 1 and 12
+")
+
+
+(rt:define-gfield date-year date :bits-1 :uint :writable t :bits (16 12) :documentation
+                  "the year of the day-month-year representation of the date
+")
+
+
+(rt:define-gstruct-constructor make-date (:boxed "GDate" "g_date_get_type" date)
+                               ((julian-days :bits-0 :uint :bits (32 0))
+                                (julian :bits-1 :uint :bits (1 0)) (dmy :bits-1 :uint :bits (1 1))
+                                (day :bits-1 :uint :bits (6 2)) (month :bits-1 :uint :bits (4 8))
+                                (year :bits-1 :uint :bits (16 12)))
+                               :documentation "A new Date with the given fields; others are zero.")
+
+
+(rt:define-gstruct debug-key
+    nil
+  (:key :pointer)
+  (:value :uint))
+
+
+(rt:define-gfield debug-key-key debug-key :key :string :documentation "the string
+")
+
+
+(rt:define-gfield debug-key-value debug-key :value :uint :writable t :documentation "the flag
+")
+
+
+(rt:define-gstruct-constructor make-debug-key (:record debug-key) ((value :value :uint))
+                               :documentation
+                               "A new DebugKey with the given fields; others are zero.")
+
+
+(rt:define-gstruct double-ieee754-mpn-1
+    nil
+  (:bits-0 :uint)
+  (:bits-1 :uint))
+
+
+(rt:define-gstruct double-ieee754
+    (:union t)
+  (:v-double :double)
+  (:mpn (:struct double-ieee754-mpn-1)))
+
+
+(rt:define-gfield double-ieee754-v-double double-ieee754 :v-double :double :writable t
+                  :documentation "the double value
+")
+
+
+(rt:define-gstruct-constructor make-double-ieee754 (:record double-ieee754)
+                               ((v-double :v-double :double)) :documentation
+                               "A new DoubleIEEE754 with the given fields; others are zero.")
+
+
+(rt:define-gstruct error
+    (:gtype-name "GError")
+  (:domain :uint32)
+  (:code :int)
+  (:message :pointer))
+
+
+(rt:define-gfield error-domain error :domain :uint32 :writable t :documentation
+                  "error domain, e.g. G_FILE_ERROR
+")
+
+
+(rt:define-gfield error-code error :code :int :writable t :documentation
+                  "error code, e.g. G_FILE_ERROR_NOENT
+")
+
+
+(rt:define-gfield error-message error :message :string :documentation
+                  "human-readable informative error message
+")
+
+
+(rt:define-gstruct-constructor make-error (:boxed "GError" "g_error_get_type" error)
+                               ((domain :domain :uint32) (code :code :int)) :documentation
+                               "A new Error with the given fields; others are zero.")
+
+
+(rt:define-gstruct float-ieee754-mpn-1
+    nil
+  (:bits-0 :uint))
+
+
+(rt:define-gstruct float-ieee754
+    (:union t)
+  (:v-float :float)
+  (:mpn (:struct float-ieee754-mpn-1)))
+
+
+(rt:define-gfield float-ieee754-v-float float-ieee754 :v-float :float :writable t :documentation
+                  "the double value
+")
+
+
+(rt:define-gstruct-constructor make-float-ieee754 (:record float-ieee754)
+                               ((v-float :v-float :float)) :documentation
+                               "A new FloatIEEE754 with the given fields; others are zero.")
+
+
+(rt:define-gstruct hash-table-iter
+    nil
+  (:dummy1 :pointer)
+  (:dummy2 :pointer)
+  (:dummy3 :pointer)
+  (:dummy4 :int)
+  (:dummy5 :boolean)
+  (:dummy6 :pointer))
+
+
+(rt:define-gstruct hook
+    nil
+  (:data :pointer)
+  (:next :pointer)
+  (:prev :pointer)
+  (:ref-count :uint)
+  (:hook-id :ulong)
+  (:flags :uint)
+  (:func :pointer)
+  (:destroy :pointer))
+
+
+(rt:define-gfield hook-ref-count hook :ref-count :uint :writable t :documentation
+                  "the reference count of this hook
+")
+
+
+(rt:define-gfield hook-hook-id hook :hook-id :ulong :writable t :documentation
+                  "the id of this hook, which is unique within its list
+")
+
+
+(rt:define-gfield hook-flags hook :flags :uint :writable t :documentation
+                  "flags which are set for this hook. See #GHookFlagMask for
+    predefined flags
+")
+
+
+(rt:define-gstruct-constructor make-hook (:record hook)
+                               ((ref-count :ref-count :uint) (hook-id :hook-id :ulong)
+                                (flags :flags :uint))
+                               :documentation "A new Hook with the given fields; others are zero.")
+
+
+(rt:define-gstruct hook-list
+    nil
+  (:seq-id :ulong)
+  (:bits-0 :uint)
+  (:hooks :pointer)
+  (:dummy3 :pointer)
+  (:finalize-hook :pointer)
+  (:dummy :pointer :count 2))
+
+
+(rt:define-gfield hook-list-seq-id hook-list :seq-id :ulong :writable t :documentation
+                  "the next free #GHook id
+")
+
+
+(rt:define-gfield hook-list-hook-size hook-list :bits-0 :uint :writable t :bits (16 0)
+                  :documentation "the size of the #GHookList elements, in bytes
+")
+
+
+(rt:define-gfield hook-list-is-setup hook-list :bits-0 :uint :writable t :bits (1 16)
+                  :documentation "1 if the #GHookList has been initialized
+")
+
+
+(rt:define-gstruct-constructor make-hook-list (:record hook-list)
+                               ((seq-id :seq-id :ulong) (hook-size :bits-0 :uint :bits (16 0))
+                                (is-setup :bits-0 :uint :bits (1 16)))
+                               :documentation
+                               "A new HookList with the given fields; others are zero.")
+
+
+(rt:define-gstruct io-funcs
+    nil
+  (:io-read :pointer)
+  (:io-write :pointer)
+  (:io-seek :pointer)
+  (:io-close :pointer)
+  (:io-create-watch :pointer)
+  (:io-free :pointer)
+  (:io-set-flags :pointer)
+  (:io-get-flags :pointer))
+
+
+(rt:define-gstruct list
+    nil
+  (:data :pointer)
+  (:next :pointer)
+  (:prev :pointer))
+
+
+(rt:define-gstruct log-field
+    nil
+  (:key :pointer)
+  (:value :pointer)
+  (:length :ssize))
+
+
+(rt:define-gfield log-field-key log-field :key :string :documentation "field name (UTF-8 string)
+")
+
+
+(rt:define-gfield log-field-length log-field :length :ssize :writable t :documentation
+                  "length of VALUE, in bytes, or -1 if it is nul-terminated
+")
+
+
+(rt:define-gstruct-constructor make-log-field (:record log-field) ((length :length :ssize))
+                               :documentation
+                               "A new LogField with the given fields; others are zero.")
+
+
+(rt:define-gstruct markup-parser
+    nil
+  (:start-element :pointer)
+  (:end-element :pointer)
+  (:text :pointer)
+  (:passthrough :pointer)
+  (:error :pointer))
+
+
+(rt:define-gstruct mem-v-table
+    nil
+  (:malloc :pointer)
+  (:realloc :pointer)
+  (:free :pointer)
+  (:calloc :pointer)
+  (:try-malloc :pointer)
+  (:try-realloc :pointer))
+
+
+(rt:define-gstruct mutex
+    (:union t)
+  (:p :pointer)
+  (:i :uint :count 2))
+
+
+(rt:define-gstruct node
+    nil
+  (:data :pointer)
+  (:next :pointer)
+  (:prev :pointer)
+  (:parent :pointer)
+  (:children :pointer))
+
+
+(rt:define-gstruct once
+    nil
+  (:status :int)
+  (:retval :pointer))
+
+
+(rt:define-gfield once-status once :status (:enum once-status) :writable t :documentation
+                  "the status of the #GOnce
+")
+
+
+(rt:define-gstruct-constructor make-once (:record once) ((status :status (:enum once-status)))
+                               :documentation "A new Once with the given fields; others are zero.")
+
+
+(rt:define-gstruct option-entry
+    nil
+  (:long-name :pointer)
+  (:short-name :char)
+  (:flags :int)
+  (:arg :int)
+  (:arg-data :pointer)
+  (:description :pointer)
+  (:arg-description :pointer))
+
+
+(rt:define-gfield option-entry-long-name option-entry :long-name :string :documentation
+                  "The long name of an option can be used to specify it
+    in a commandline as `--long_name`. Every option must have a
+    long name. To resolve conflicts if multiple option groups contain
+    the same long name, it is also possible to specify the option as
+    `--groupname-long_name`.
+")
+
+
+(rt:define-gfield option-entry-short-name option-entry :short-name :int8 :writable t :documentation
+                  "If an option has a short name, it can be specified
+    `-short_name` in a commandline. SHORT-NAME must be  a printable
+    ASCII character different from '-', or zero if the option has no
+    short name.
+")
+
+
+(rt:define-gfield option-entry-flags option-entry :flags :int :writable t :documentation
+                  "Flags from #GOptionFlags
+")
+
+
+(rt:define-gfield option-entry-arg option-entry :arg (:enum option-arg) :writable t :documentation
+                  "The type of the option, as a #GOptionArg
+")
+
+
+(rt:define-gfield option-entry-description option-entry :description :string :documentation
+                  "the description for the option in `--help`
+    output. The DESCRIPTION is translated using the TRANSLATE-FUNC
+    of the group, see g_option_group_set_translation_domain().
+")
+
+
+(rt:define-gfield option-entry-arg-description option-entry :arg-description :string :documentation
+                  "The placeholder to use for the extra argument parsed
+    by the option in `--help` output. The ARG-DESCRIPTION is translated
+    using the TRANSLATE-FUNC of the group, see
+    g_option_group_set_translation_domain().
+")
+
+
+(rt:define-gstruct-constructor make-option-entry (:record option-entry)
+                               ((short-name :short-name :int8) (flags :flags :int)
+                                (arg :arg (:enum option-arg)))
+                               :documentation
+                               "A new OptionEntry with the given fields; others are zero.")
+
+
+(rt:define-gstruct path-buf
+    nil
+  (:dummy :pointer :count 8))
+
+
+(rt:define-gstruct poll-fd
+    (:gtype-name "GPollFD")
+  (:fd :int)
+  (:events :ushort)
+  (:revents :ushort))
+
+
+(rt:define-gfield poll-fd-fd poll-fd :fd :int :writable t :documentation
+                  "the file descriptor to poll (or a HANDLE on Win32)
+")
+
+
+(rt:define-gfield poll-fd-events poll-fd :events :ushort :writable t :documentation
+                  "a bitwise combination from #GIOCondition, specifying which
+    events should be polled for. Typically for reading from a file
+    descriptor you would use G_IO_IN | G_IO_HUP | G_IO_ERR, and
+    for writing you would use G_IO_OUT | G_IO_ERR.
+")
+
+
+(rt:define-gfield poll-fd-revents poll-fd :revents :ushort :writable t :documentation
+                  "a bitwise combination of flags from #GIOCondition, returned
+    from the poll() function to indicate which events occurred.
+")
+
+
+(rt:define-gstruct-constructor make-poll-fd (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)
+                               ((fd :fd :int) (events :events :ushort) (revents :revents :ushort))
+                               :documentation
+                               "A new PollFD with the given fields; others are zero.")
+
+
+(rt:define-gstruct private
+    nil
+  (:p :pointer)
+  (:notify :pointer)
+  (:future :pointer :count 2))
+
+
+(rt:define-gstruct ptr-array
+    (:gtype-name "GPtrArray")
+  (:pdata :pointer)
+  (:len :uint))
+
+
+(rt:define-gfield ptr-array-len ptr-array :len :uint :writable t :documentation
+                  "the number of pointers in the array
+")
+
+
+(rt:define-gstruct-constructor make-ptr-array (:boxed "GPtrArray" "g_ptr_array_get_type" ptr-array)
+                               ((len :len :uint)) :documentation
+                               "A new PtrArray with the given fields; others are zero.")
+
+
+(rt:define-gstruct queue
+    nil
+  (:head :pointer)
+  (:tail :pointer)
+  (:length :uint))
+
+
+(rt:define-gfield queue-length queue :length :uint :writable t :documentation
+                  "the number of elements in the queue
+")
+
+
+(rt:define-gstruct-constructor make-queue (:record queue) ((length :length :uint)) :documentation
+                               "A new Queue with the given fields; others are zero.")
+
+
+(rt:define-gstruct rw-lock
+    nil
+  (:p :pointer)
+  (:i :uint :count 2))
+
+
+(rt:define-gstruct rec-mutex
+    nil
+  (:p :pointer)
+  (:i :uint :count 2))
+
+
+(rt:define-gstruct s-list
+    nil
+  (:data :pointer)
+  (:next :pointer))
+
+
+(rt:define-gstruct token-value
+    (:union t)
+  (:v-symbol :pointer)
+  (:v-identifier :pointer)
+  (:v-binary :ulong)
+  (:v-octal :ulong)
+  (:v-int :ulong)
+  (:v-int64 :uint64)
+  (:v-float :double)
+  (:v-hex :ulong)
+  (:v-string :pointer)
+  (:v-comment :pointer)
+  (:v-char :uint8)
+  (:v-error :uint))
+
+
+(rt:define-gfield token-value-v-identifier token-value :v-identifier :string :documentation
+                  "token identifier value
+")
+
+
+(rt:define-gfield token-value-v-binary token-value :v-binary :ulong :writable t :documentation
+                  "token binary integer value
+")
+
+
+(rt:define-gfield token-value-v-octal token-value :v-octal :ulong :writable t :documentation
+                  "octal integer value
+")
+
+
+(rt:define-gfield token-value-v-int token-value :v-int :ulong :writable t :documentation
+                  "integer value
+")
+
+
+(rt:define-gfield token-value-v-int64 token-value :v-int64 :uint64 :writable t :documentation
+                  "64-bit integer value
+")
+
+
+(rt:define-gfield token-value-v-float token-value :v-float :double :writable t :documentation
+                  "floating point value
+")
+
+
+(rt:define-gfield token-value-v-hex token-value :v-hex :ulong :writable t :documentation
+                  "hex integer value
+")
+
+
+(rt:define-gfield token-value-v-string token-value :v-string :string :documentation "string value
+")
+
+
+(rt:define-gfield token-value-v-comment token-value :v-comment :string :documentation "comment value
+")
+
+
+(rt:define-gfield token-value-v-char token-value :v-char :uint8 :writable t :documentation
+                  "character value
+")
+
+
+(rt:define-gfield token-value-v-error token-value :v-error :uint :writable t :documentation
+                  "error value
+")
+
+
+(rt:define-gstruct-constructor make-token-value (:record token-value)
+                               ((v-binary :v-binary :ulong) (v-octal :v-octal :ulong)
+                                (v-int :v-int :ulong) (v-int64 :v-int64 :uint64)
+                                (v-float :v-float :double) (v-hex :v-hex :ulong)
+                                (v-char :v-char :uint8) (v-error :v-error :uint))
+                               :documentation
+                               "A new TokenValue with the given fields; others are zero.")
+
+
+(rt:define-gstruct scanner
+    nil
+  (:user-data :pointer)
+  (:max-parse-errors :uint)
+  (:parse-errors :uint)
+  (:input-name :pointer)
+  (:qdata :pointer)
+  (:config :pointer)
+  (:token :int)
+  (:value (:union token-value))
+  (:line :uint)
+  (:position :uint)
+  (:next-token :int)
+  (:next-value (:union token-value))
+  (:next-line :uint)
+  (:next-position :uint)
+  (:symbol-table :pointer)
+  (:input-fd :int)
+  (:text :pointer)
+  (:text-end :pointer)
+  (:buffer :pointer)
+  (:scope-id :uint)
+  (:msg-handler :pointer))
+
+
+(rt:define-gfield scanner-max-parse-errors scanner :max-parse-errors :uint :writable t
+                  :documentation "unused
+")
+
+
+(rt:define-gfield scanner-parse-errors scanner :parse-errors :uint :writable t :documentation
+                  "g_scanner_error() increments this field
+")
+
+
+(rt:define-gfield scanner-input-name scanner :input-name :string :documentation
+                  "name of input stream, featured by the default message handler
+")
+
+
+(rt:define-gfield scanner-token scanner :token (:enum token-type) :writable t :documentation
+                  "token parsed by the last g_scanner_get_next_token()
+")
+
+
+(rt:define-gfield scanner-line scanner :line :uint :writable t :documentation
+                  "line number of the last token from g_scanner_get_next_token()
+")
+
+
+(rt:define-gfield scanner-position scanner :position :uint :writable t :documentation
+                  "char number of the last token from g_scanner_get_next_token()
+")
+
+
+(rt:define-gfield scanner-next-token scanner :next-token (:enum token-type) :writable t
+                  :documentation "token parsed by the last g_scanner_peek_next_token()
+")
+
+
+(rt:define-gfield scanner-next-line scanner :next-line :uint :writable t :documentation
+                  "line number of the last token from g_scanner_peek_next_token()
+")
+
+
+(rt:define-gfield scanner-next-position scanner :next-position :uint :writable t :documentation
+                  "char number of the last token from g_scanner_peek_next_token()
+")
+
+
+(rt:define-gstruct-constructor make-scanner (:record scanner)
+                               ((max-parse-errors :max-parse-errors :uint)
+                                (parse-errors :parse-errors :uint)
+                                (token :token (:enum token-type)) (line :line :uint)
+                                (position :position :uint)
+                                (next-token :next-token (:enum token-type))
+                                (next-line :next-line :uint) (next-position :next-position :uint))
+                               :documentation
+                               "A new Scanner with the given fields; others are zero.")
+
+
+(rt:define-gstruct scanner-config
+    nil
+  (:cset-skip-characters :pointer)
+  (:cset-identifier-first :pointer)
+  (:cset-identifier-nth :pointer)
+  (:cpair-comment-single :pointer)
+  (:bits-0 :uint)
+  (:padding-dummy :uint))
+
+
+(rt:define-gfield scanner-config-cset-skip-characters scanner-config :cset-skip-characters :string
+                  :documentation "specifies which characters should be skipped
+    by the scanner (the default is the whitespace characters: space,
+    tab, carriage-return and line-feed).
+")
+
+
+(rt:define-gfield scanner-config-cset-identifier-first scanner-config :cset-identifier-first
+                  :string :documentation "specifies the characters which can start
+    identifiers (the default is G_CSET_a_2_z, \"_\", and G_CSET_A_2_Z).
+")
+
+
+(rt:define-gfield scanner-config-cset-identifier-nth scanner-config :cset-identifier-nth :string
+                  :documentation "specifies the characters which can be used
+    in identifiers, after the first character (the default is
+    G_CSET_a_2_z, \"_0123456789\", G_CSET_A_2_Z, G_CSET_LATINS,
+    G_CSET_LATINC).
+")
+
+
+(rt:define-gfield scanner-config-cpair-comment-single scanner-config :cpair-comment-single :string
+                  :documentation "specifies the characters at the start and
+    end of single-line comments. The default is \"#\\n\" which means
+    that single-line comments start with a '#' and continue until
+    a '\\n' (end of line).
+")
+
+
+(rt:define-gfield scanner-config-case-sensitive scanner-config :bits-0 :uint :writable t :bits
+                  (1 0) :documentation "specifies if symbols are case sensitive (the
+    default is false).
+")
+
+
+(rt:define-gfield scanner-config-skip-comment-multi scanner-config :bits-0 :uint :writable t :bits
+                  (1 1) :documentation "specifies if multi-line comments are skipped
+    and not returned as tokens (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-skip-comment-single scanner-config :bits-0 :uint :writable t :bits
+                  (1 2) :documentation "specifies if single-line comments are skipped
+    and not returned as tokens (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-comment-multi scanner-config :bits-0 :uint :writable t :bits
+                  (1 3) :documentation "specifies if multi-line comments are recognized
+    (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-identifier scanner-config :bits-0 :uint :writable t :bits
+                  (1 4) :documentation "specifies if identifiers are recognized (the
+    default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-identifier-1char scanner-config :bits-0 :uint :writable t
+                  :bits (1 5) :documentation "specifies if single-character
+    identifiers are recognized (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-scan-identifier-null scanner-config :bits-0 :uint :writable t
+                  :bits (1 6) :documentation "specifies if NIL is reported as
+    G_TOKEN_IDENTIFIER_NULL (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-scan-symbols scanner-config :bits-0 :uint :writable t :bits (1 7)
+                  :documentation "specifies if symbols are recognized (the default
+    is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-binary scanner-config :bits-0 :uint :writable t :bits (1 8)
+                  :documentation "specifies if binary numbers are recognized (the
+    default is false).
+")
+
+
+(rt:define-gfield scanner-config-scan-octal scanner-config :bits-0 :uint :writable t :bits (1 9)
+                  :documentation "specifies if octal numbers are recognized (the
+    default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-float scanner-config :bits-0 :uint :writable t :bits (1 10)
+                  :documentation "specifies if floating point numbers are recognized
+    (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-hex scanner-config :bits-0 :uint :writable t :bits (1 11)
+                  :documentation "specifies if hexadecimal numbers are recognized (the
+    default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-hex-dollar scanner-config :bits-0 :uint :writable t :bits
+                  (1 12) :documentation "specifies if '$' is recognized as a prefix for
+    hexadecimal numbers (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-scan-string-sq scanner-config :bits-0 :uint :writable t :bits
+                  (1 13) :documentation "specifies if strings can be enclosed in single
+    quotes (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-scan-string-dq scanner-config :bits-0 :uint :writable t :bits
+                  (1 14) :documentation "specifies if strings can be enclosed in double
+    quotes (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-numbers-2-int scanner-config :bits-0 :uint :writable t :bits
+                  (1 15) :documentation "specifies if binary, octal and hexadecimal numbers
+    are reported as G_TOKEN_INT (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-int-2-float scanner-config :bits-0 :uint :writable t :bits (1 16)
+                  :documentation "specifies if all numbers are reported as G_TOKEN_FLOAT
+    (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-identifier-2-string scanner-config :bits-0 :uint :writable t :bits
+                  (1 17) :documentation "specifies if identifiers are reported as strings
+    (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-char-2-token scanner-config :bits-0 :uint :writable t :bits (1 18)
+                  :documentation "specifies if characters are reported by setting
+    `token = ch` or as G_TOKEN_CHAR (the default is true).
+")
+
+
+(rt:define-gfield scanner-config-symbol-2-token scanner-config :bits-0 :uint :writable t :bits
+                  (1 19) :documentation "specifies if symbols are reported by setting
+    `token = v_symbol` or as G_TOKEN_SYMBOL (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-scope-0-fallback scanner-config :bits-0 :uint :writable t :bits
+                  (1 20) :documentation "specifies if a symbol is searched for in the
+    default scope in addition to the current scope (the default is false).
+")
+
+
+(rt:define-gfield scanner-config-store-int64 scanner-config :bits-0 :uint :writable t :bits (1 21)
+                  :documentation "use value.v_int64 rather than v_int
+")
+
+
+(rt:define-gstruct-constructor make-scanner-config (:record scanner-config)
+                               ((case-sensitive :bits-0 :uint :bits (1 0))
+                                (skip-comment-multi :bits-0 :uint :bits (1 1))
+                                (skip-comment-single :bits-0 :uint :bits (1 2))
+                                (scan-comment-multi :bits-0 :uint :bits (1 3))
+                                (scan-identifier :bits-0 :uint :bits (1 4))
+                                (scan-identifier-1char :bits-0 :uint :bits (1 5))
+                                (scan-identifier-null :bits-0 :uint :bits (1 6))
+                                (scan-symbols :bits-0 :uint :bits (1 7))
+                                (scan-binary :bits-0 :uint :bits (1 8))
+                                (scan-octal :bits-0 :uint :bits (1 9))
+                                (scan-float :bits-0 :uint :bits (1 10))
+                                (scan-hex :bits-0 :uint :bits (1 11))
+                                (scan-hex-dollar :bits-0 :uint :bits (1 12))
+                                (scan-string-sq :bits-0 :uint :bits (1 13))
+                                (scan-string-dq :bits-0 :uint :bits (1 14))
+                                (numbers-2-int :bits-0 :uint :bits (1 15))
+                                (int-2-float :bits-0 :uint :bits (1 16))
+                                (identifier-2-string :bits-0 :uint :bits (1 17))
+                                (char-2-token :bits-0 :uint :bits (1 18))
+                                (symbol-2-token :bits-0 :uint :bits (1 19))
+                                (scope-0-fallback :bits-0 :uint :bits (1 20))
+                                (store-int64 :bits-0 :uint :bits (1 21)))
+                               :documentation
+                               "A new ScannerConfig with the given fields; others are zero.")
+
+
+(rt:define-gstruct source
+    (:gtype-name "GSource")
+  (:callback-data :pointer)
+  (:callback-funcs :pointer)
+  (:source-funcs :pointer)
+  (:ref-count :uint)
+  (:context :pointer)
+  (:priority :int)
+  (:flags :uint)
+  (:source-id :uint)
+  (:poll-fds :pointer)
+  (:prev :pointer)
+  (:next :pointer)
+  (:name :pointer)
+  (:priv :pointer))
+
+
+(rt:define-gstruct source-callback-funcs
+    nil
+  (:ref :pointer)
+  (:unref :pointer)
+  (:get :pointer))
+
+
+(rt:define-gstruct source-funcs
+    nil
+  (:prepare :pointer)
+  (:check :pointer)
+  (:dispatch :pointer)
+  (:finalize :pointer)
+  (:closure-callback :pointer)
+  (:closure-marshal :pointer))
+
+
+(rt:define-gstruct static-mutex
+    nil
+  (:mutex :pointer))
+
+
+(rt:define-gstruct static-private
+    nil
+  (:index :uint))
+
+
+(rt:define-gstruct static-rw-lock
+    nil
+  (:mutex (:struct static-mutex))
+  (:read-cond :pointer)
+  (:write-cond :pointer)
+  (:read-counter :uint)
+  (:have-writer :boolean)
+  (:want-to-read :uint)
+  (:want-to-write :uint))
+
+
+(rt:define-gstruct static-rec-mutex
+    nil
+  (:mutex (:struct static-mutex))
+  (:depth :uint))
+
+
+(rt:define-gstruct string
+    (:gtype-name "GString")
+  (:str :pointer)
+  (:len :size)
+  (:allocated-len :size))
+
+
+(rt:define-gfield string-str string :str :string :documentation
+                  "points to the character data. It may move as text is added.
+  The STR field is null-terminated and so
+  can be used as an ordinary C string.
+")
+
+
+(rt:define-gfield string-len string :len :size :writable t :documentation
+                  "contains the length of the string, not including the
+  terminating nul byte.
+")
+
+
+(rt:define-gfield string-allocated-len string :allocated-len :size :writable t :documentation
+                  "the number of bytes that can be stored in the
+  string before it needs to be reallocated. May be larger than LEN.
+")
+
+
+(rt:define-gstruct-constructor make-string (:boxed "GString" "g_gstring_get_type" string)
+                               ((len :len :size) (allocated-len :allocated-len :size))
+                               :documentation
+                               "A new String with the given fields; others are zero.")
+
+
+(rt:define-gstruct test-config
+    nil
+  (:test-initialized :boolean)
+  (:test-quick :boolean)
+  (:test-perf :boolean)
+  (:test-verbose :boolean)
+  (:test-quiet :boolean)
+  (:test-undefined :boolean))
+
+
+(rt:define-gfield test-config-test-initialized test-config :test-initialized :boolean :writable t
+                  :documentation "")
+
+
+(rt:define-gfield test-config-test-quick test-config :test-quick :boolean :writable t
+                  :documentation "")
+
+
+(rt:define-gfield test-config-test-perf test-config :test-perf :boolean :writable t :documentation
+                  "")
+
+
+(rt:define-gfield test-config-test-verbose test-config :test-verbose :boolean :writable t
+                  :documentation "")
+
+
+(rt:define-gfield test-config-test-quiet test-config :test-quiet :boolean :writable t
+                  :documentation "")
+
+
+(rt:define-gfield test-config-test-undefined test-config :test-undefined :boolean :writable t
+                  :documentation "")
+
+
+(rt:define-gstruct-constructor make-test-config (:record test-config)
+                               ((test-initialized :test-initialized :boolean)
+                                (test-quick :test-quick :boolean) (test-perf :test-perf :boolean)
+                                (test-verbose :test-verbose :boolean)
+                                (test-quiet :test-quiet :boolean)
+                                (test-undefined :test-undefined :boolean))
+                               :documentation
+                               "A new TestConfig with the given fields; others are zero.")
+
+
+(rt:define-gstruct test-log-buffer
+    nil
+  (:data :pointer)
+  (:msgs :pointer))
+
+
+(rt:define-gstruct test-log-msg
+    nil
+  (:log-type :int)
+  (:n-strings :uint)
+  (:strings :pointer)
+  (:n-nums :uint)
+  (:nums :pointer))
+
+
+(rt:define-gfield test-log-msg-log-type test-log-msg :log-type (:enum test-log-type) :writable t
+                  :documentation "")
+
+
+(rt:define-gfield test-log-msg-n-strings test-log-msg :n-strings :uint :writable t :documentation
+                  "")
+
+
+(rt:define-gfield test-log-msg-strings test-log-msg :strings :string :documentation "")
+
+
+(rt:define-gfield test-log-msg-n-nums test-log-msg :n-nums :uint :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-test-log-msg (:record test-log-msg)
+                               ((log-type :log-type (:enum test-log-type))
+                                (n-strings :n-strings :uint) (n-nums :n-nums :uint))
+                               :documentation
+                               "A new TestLogMsg with the given fields; others are zero.")
+
+
+(rt:define-gstruct thread
+    (:gtype-name "GThread")
+  (:func :pointer)
+  (:data :pointer)
+  (:joinable :boolean)
+  (:priority :int))
+
+
+(rt:define-gstruct thread-functions
+    nil
+  (:mutex-new :pointer)
+  (:mutex-lock :pointer)
+  (:mutex-trylock :pointer)
+  (:mutex-unlock :pointer)
+  (:mutex-free :pointer)
+  (:cond-new :pointer)
+  (:cond-signal :pointer)
+  (:cond-broadcast :pointer)
+  (:cond-wait :pointer)
+  (:cond-timed-wait :pointer)
+  (:cond-free :pointer)
+  (:private-new :pointer)
+  (:private-get :pointer)
+  (:private-set :pointer)
+  (:thread-create :pointer)
+  (:thread-yield :pointer)
+  (:thread-join :pointer)
+  (:thread-exit :pointer)
+  (:thread-set-priority :pointer)
+  (:thread-self :pointer)
+  (:thread-equal :pointer))
+
+
+(rt:define-gstruct thread-pool
+    nil
+  (:func :pointer)
+  (:user-data :pointer)
+  (:exclusive :boolean))
+
+
+(rt:define-gfield thread-pool-exclusive thread-pool :exclusive :boolean :writable t :documentation
+                  "are all threads exclusive to this pool
+")
+
+
+(rt:define-gstruct-constructor make-thread-pool (:record thread-pool)
+                               ((exclusive :exclusive :boolean)) :documentation
+                               "A new ThreadPool with the given fields; others are zero.")
+
+
+(rt:define-gstruct time-val
+    nil
+  (:tv-sec :long)
+  (:tv-usec :long))
+
+
+(rt:define-gfield time-val-tv-sec time-val :tv-sec :long :writable t :documentation "seconds
+")
+
+
+(rt:define-gfield time-val-tv-usec time-val :tv-usec :long :writable t :documentation "microseconds
+")
+
+
+(rt:define-gstruct-constructor make-time-val (:record time-val)
+                               ((tv-sec :tv-sec :long) (tv-usec :tv-usec :long)) :documentation
+                               "A new TimeVal with the given fields; others are zero.")
+
+
+(rt:define-gstruct trash-stack
+    nil
+  (:next :pointer))
+
+
+(rt:define-gstruct tuples
+    nil
+  (:len :uint))
+
+
+(rt:define-gfield tuples-len tuples :len :uint :writable t :documentation
+                  "the number of records that matched.
+")
+
+
+(rt:define-gstruct-constructor make-tuples (:record tuples) ((len :len :uint)) :documentation
+                               "A new Tuples with the given fields; others are zero.")
+
+
+(rt:define-gstruct uri-params-iter
+    nil
+  (:dummy0 :int)
+  (:dummy1 :pointer)
+  (:dummy2 :pointer)
+  (:dummy3 :uint8 :count 256))
+
+
+(rt:define-gstruct variant-builder-u-0-s-0
+    nil
+  (:partial-magic :size)
+  (:type :pointer)
+  (:y :uintptr :count 14))
+
+
+(rt:define-gstruct variant-builder-u-0
+    (:union t)
+  (:s (:struct variant-builder-u-0-s-0))
+  (:x :uintptr :count 16))
+
+
+(rt:define-gstruct variant-builder
+    (:gtype-name "GVariantBuilder")
+  (:u (:union variant-builder-u-0)))
+
+
+(rt:define-gstruct variant-dict-u-0-s-0
+    nil
+  (:asv :pointer)
+  (:partial-magic :size)
+  (:y :uintptr :count 14))
+
+
+(rt:define-gstruct variant-dict-u-0
+    (:union t)
+  (:s (:struct variant-dict-u-0-s-0))
+  (:x :uintptr :count 16))
+
+
+(rt:define-gstruct variant-dict
+    (:gtype-name "GVariantDict")
+  (:u (:union variant-dict-u-0)))
+
+
+(rt:define-gstruct variant-iter
+    nil
+  (:x :uintptr :count 16))
+
 ;;; Properties
 
 ;;; Callback types
@@ -2589,7 +3778,7 @@ See: https://docs.gtk.org/glib/struct.VariantDict.html"))
 (rt:define-gcallback regex-eval-callback
                      (:args
                       ((match-info (:boxed "GMatchInfo" "g_match_info_get_type"))
-                       (result (:boxed "GString" "g_gstring_get_type"))
+                       (result (:boxed "GString" "g_gstring_get_type" string))
                        (user-data :pointer :user-data t))
                       :return :boolean))
 
@@ -2606,7 +3795,7 @@ See: https://docs.gtk.org/glib/struct.VariantDict.html"))
 
 (rt:define-gcallback source-funcs-dispatch-func
                      (:args
-                      ((source (:boxed "GSource" "g_source_get_type"))
+                      ((source (:boxed "GSource" "g_source_get_type" source))
                        (callback :pointer :user-data t) (user-data :pointer))
                       :return :boolean))
 
@@ -2884,7 +4073,7 @@ See: https://docs.gtk.org/glib/func.assertion_message_cmpstrv.html")
 
 (rt:define-gfunction (assertion-message-error "g_assertion_message_error") :args
                      ((domain :string) (file :string) (line :int) (func :string) (expr :string)
-                      (error (:boxed "GError" "g_error_get_type")) (error-domain :uint32)
+                      (error (:boxed "GError" "g_error_get_type" error)) (error-domain :uint32)
                       (error-code :int))
                      :documentation "
 C: g_assertion_message_error
@@ -3386,8 +4575,8 @@ Since: 2.4")
 
 
 (rt:define-gfunction (child-watch-source-new "g_child_watch_source_new") :args ((pid :int)) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :version "2.4"
-                     :documentation "Creates a new child watch source.
+                     (:boxed "GSource" "g_source_get_type" source) :return-transfer :full :version
+                     "2.4" :documentation "Creates a new child watch source.
 
 C: g_child_watch_source_new
 See: https://docs.gtk.org/glib/func.child_watch_source_new.html
@@ -4424,8 +5613,8 @@ See: https://docs.gtk.org/glib/func.idle_remove_by_data.html")
 
 
 (rt:define-gfunction (idle-source-new "g_idle_source_new") :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :documentation
-                     "Creates a new idle source.
+                     (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
+                     :documentation "Creates a new idle source.
 
 C: g_idle_source_new
 See: https://docs.gtk.org/glib/func.idle_source_new.html")
@@ -4510,7 +5699,7 @@ See: https://docs.gtk.org/glib/func.io_add_watch_full.html")
 (rt:define-gfunction (io-create-watch "g_io_create_watch") :args
                      ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
                       (condition (:flags io-condition)))
-                     :return (:boxed "GSource" "g_source_get_type") :return-transfer :full
+                     :return (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
                      :documentation
                      "Creates a #GSource that's dispatched when CONDITION is met for the
 given CHANNEL. For example, if condition is G_IO_IN, the source will
@@ -4632,6 +5821,16 @@ See: https://docs.gtk.org/glib/func.log_set_handler_full.html
 Since: 2.46")
 
 
+(rt:define-gfunction (log-structured-array "g_log_structured_array") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields))
+                     :version "2.50" :documentation "Log a message with structured data.
+
+C: g_log_structured_array
+See: https://docs.gtk.org/glib/func.log_structured_array.html
+Since: 2.50")
+
+
 (rt:define-gfunction (log-variant "g_log_variant") :args
                      ((log-domain :string) (log-level (:flags log-level-flags)) (fields :pointer))
                      :version "2.50" :documentation
@@ -4639,6 +5838,18 @@ Since: 2.46")
 
 C: g_log_variant
 See: https://docs.gtk.org/glib/func.log_variant.html
+Since: 2.50")
+
+
+(rt:define-gfunction (log-writer-default "g_log_writer_default") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields) (user-data :pointer :optional t))
+                     :return (:enum log-writer-output) :version "2.50" :documentation
+                     "Format a structured log message and output it to the default log destination
+for the platform.
+
+C: g_log_writer_default
+See: https://docs.gtk.org/glib/func.log_writer_default.html
 Since: 2.50")
 
 
@@ -4674,6 +5885,18 @@ See: https://docs.gtk.org/glib/func.log_writer_default_would_drop.html
 Since: 2.68")
 
 
+(rt:define-gfunction (log-writer-format-fields "g_log_writer_format_fields") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields) (use-color :boolean))
+                     :return :string :return-transfer :full :version "2.50" :documentation
+                     "Format a structured log message as a string suitable for outputting to the
+terminal (or elsewhere).
+
+C: g_log_writer_format_fields
+See: https://docs.gtk.org/glib/func.log_writer_format_fields.html
+Since: 2.50")
+
+
 (rt:define-gfunction (log-writer-is-journald "g_log_writer_is_journald") :args ((output-fd :int))
                      :return :boolean :version "2.50" :documentation
                      "Check whether the given OUTPUT-FD file descriptor is a connection to the
@@ -4685,6 +5908,30 @@ See: https://docs.gtk.org/glib/func.log_writer_is_journald.html
 Since: 2.50")
 
 
+(rt:define-gfunction (log-writer-journald "g_log_writer_journald") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields) (user-data :pointer :optional t))
+                     :return (:enum log-writer-output) :version "2.50" :documentation
+                     "Format a structured log message and send it to the systemd journal as a set
+of key–value pairs.
+
+C: g_log_writer_journald
+See: https://docs.gtk.org/glib/func.log_writer_journald.html
+Since: 2.50")
+
+
+(rt:define-gfunction (log-writer-standard-streams "g_log_writer_standard_streams") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields) (user-data :pointer :optional t))
+                     :return (:enum log-writer-output) :version "2.50" :documentation
+                     "Format a structured log message and print it to either `stdout` or `stderr`,
+depending on its log level.
+
+C: g_log_writer_standard_streams
+See: https://docs.gtk.org/glib/func.log_writer_standard_streams.html
+Since: 2.50")
+
+
 (rt:define-gfunction (log-writer-supports-color "g_log_writer_supports_color") :args
                      ((output-fd :int)) :return :boolean :version "2.50" :documentation
                      "Check whether the given OUTPUT-FD file descriptor supports
@@ -4693,6 +5940,19 @@ Since: 2.50")
 C: g_log_writer_supports_color
 See: https://docs.gtk.org/glib/func.log_writer_supports_color.html
 Since: 2.50")
+
+
+(rt:define-gfunction (log-writer-syslog "g_log_writer_syslog") :args
+                     ((log-level (:flags log-level-flags)) (fields (:array (:record log-field)))
+                      (n-fields :size :length-of fields) (user-data :pointer :optional t))
+                     :return (:enum log-writer-output) :version "2.80" :documentation
+                     "Format a structured log message and send it to the syslog daemon. Only fields
+which are understood by this function are included in the formatted string
+which is printed.
+
+C: g_log_writer_syslog
+See: https://docs.gtk.org/glib/func.log_writer_syslog.html
+Since: 2.80")
 
 
 (rt:define-gfunction (lstat "g_lstat") :args ((filename :string) (buf (:record stat-buf))) :return
@@ -4709,7 +5969,7 @@ Since: 2.6")
 
 
 (rt:define-gfunction (main-current-source "g_main_current_source") :return
-                     (:boxed "GSource" "g_source_get_type") :version "2.12" :documentation
+                     (:boxed "GSource" "g_source_get_type" source) :version "2.12" :documentation
                      "Returns the currently firing source for this thread.
 
 C: g_main_current_source
@@ -4902,6 +6162,18 @@ C: g_option_error_quark
 See: https://docs.gtk.org/glib/func.option_error_quark.html")
 
 
+(rt:define-gfunction (parse-debug-string "g_parse_debug_string") :args
+                     ((string :string) (keys (:array (:record debug-key)))
+                      (nkeys :uint :length-of keys))
+                     :return :uint :documentation "Parses a string containing debugging options
+into a %guint containing bit flags. This is used
+within GDK and GTK to parse the debug options passed on the
+command line or through environment variables.
+
+C: g_parse_debug_string
+See: https://docs.gtk.org/glib/func.parse_debug_string.html")
+
+
 (rt:define-gfunction (path-get-basename "g_path_get_basename") :args ((file-name :string)) :return
                      :string :return-transfer :full :documentation
                      "Gets the last component of the filename.
@@ -5014,7 +6286,8 @@ Since: 2.80")
 
 
 (rt:define-gfunction (poll "g_poll") :args
-                     ((fds (:boxed "GPollFD" "g_pollfd_get_type")) (nfds :uint) (timeout :int))
+                     ((fds (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)) (nfds :uint)
+                      (timeout :int))
                      :return :int :version "2.20" :documentation
                      "Polls FDS, as with the poll() system call, but portably. (On
 systems that don't have poll(), it is emulated using select().)
@@ -5028,8 +6301,9 @@ Since: 2.20")
 
 
 (rt:define-gfunction (propagate-error "g_propagate_error") :args
-                     ((dest (:boxed "GError" "g_error_get_type") :direction :out :transfer :full)
-                      (src (:boxed "GError" "g_error_get_type") :transfer :full))
+                     ((dest (:boxed "GError" "g_error_get_type" error) :direction :out :transfer
+                       :full)
+                      (src (:boxed "GError" "g_error_get_type" error) :transfer :full))
                      :documentation "If DEST is NIL, free SRC; otherwise, moves SRC into `*dest`.
 The error variable DEST points to must be NIL.
 
@@ -5346,7 +6620,8 @@ Since: 2.2")
 
 
 (rt:define-gfunction (set-error-literal "g_set_error_literal") :args
-                     ((err (:boxed "GError" "g_error_get_type") :direction :out :transfer :full)
+                     ((err (:boxed "GError" "g_error_get_type" error) :direction :out :transfer
+                       :full)
                       (domain :uint32) (code :int) (message :string))
                      :version "2.18" :documentation
                      "Does nothing if ERR is NIL; if ERR is non-NIL, then `*err`
@@ -6333,16 +7608,16 @@ Since: 2.14")
 
 
 (rt:define-gfunction (timeout-source-new "g_timeout_source_new") :args ((interval :uint)) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :documentation
-                     "Creates a new timeout source.
+                     (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
+                     :documentation "Creates a new timeout source.
 
 C: g_timeout_source_new
 See: https://docs.gtk.org/glib/func.timeout_source_new.html")
 
 
 (rt:define-gfunction (timeout-source-new-ns "g_timeout_source_new_ns") :args ((interval :uint64))
-                     :return (:boxed "GSource" "g_source_get_type") :return-transfer :full :version
-                     "2.90" :documentation "Creates a new timeout source.
+                     :return (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
+                     :version "2.90" :documentation "Creates a new timeout source.
 
 C: g_timeout_source_new_ns
 See: https://docs.gtk.org/glib/func.timeout_source_new_ns.html
@@ -6350,7 +7625,7 @@ Since: 2.90")
 
 
 (rt:define-gfunction (timeout-source-new-seconds "g_timeout_source_new_seconds") :args
-                     ((interval :uint)) :return (:boxed "GSource" "g_source_get_type")
+                     ((interval :uint)) :return (:boxed "GSource" "g_source_get_type" source)
                      :return-transfer :full :version "2.14" :documentation
                      "Creates a new timeout source.
 
@@ -8289,7 +9564,7 @@ See: https://docs.gtk.org/glib/method.Cond.wait_until.html
 Since: 2.32")
 
 
-(rt:define-gfunction (date-new "g_date_new") :return (:boxed "GDate" "g_date_get_type")
+(rt:define-gfunction (date-new "g_date_new") :return (:boxed "GDate" "g_date_get_type" date)
                      :return-transfer :full :documentation "Allocates a #GDate and initializes
 it to a safe state. The new date will
 be cleared (as if you'd called g_date_clear()) but invalid (it won't
@@ -8301,7 +9576,7 @@ See: https://docs.gtk.org/glib/ctor.Date.new.html")
 
 (rt:define-gfunction (date-new-dmy "g_date_new_dmy") :args
                      ((day :uint8) (month (:enum date-month)) (year :uint16)) :return
-                     (:boxed "GDate" "g_date_get_type") :return-transfer :full :documentation
+                     (:boxed "GDate" "g_date_get_type" date) :return-transfer :full :documentation
                      "Create a new #GDate representing the given day-month-year triplet.
 
 C: g_date_new_dmy
@@ -8309,7 +9584,7 @@ See: https://docs.gtk.org/glib/ctor.Date.new_dmy.html")
 
 
 (rt:define-gfunction (date-new-julian "g_date_new_julian") :args ((julian-day :uint32)) :return
-                     (:boxed "GDate" "g_date_get_type") :return-transfer :full :documentation
+                     (:boxed "GDate" "g_date_get_type" date) :return-transfer :full :documentation
                      "Create a new #GDate representing the given Julian date.
 
 C: g_date_new_julian
@@ -8371,7 +9646,7 @@ See: https://docs.gtk.org/glib/type_func.Date.is_leap_year.html")
 
 (rt:define-gfunction (date-strftime "g_date_strftime") :args
                      ((s :string) (slen :size) (format :string)
-                      (date (:boxed "GDate" "g_date_get_type")))
+                      (date (:boxed "GDate" "g_date_get_type" date)))
                      :return :size :documentation
                      "Generates a printed representation of the date, in a
 [locale](running.html#locale)-specific way.
@@ -8442,7 +9717,7 @@ See: https://docs.gtk.org/glib/type_func.Date.valid_year.html")
 
 
 (rt:define-gfunction (date-add-days "g_date_add_days") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-days :uint)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-days :uint)) :documentation
                      "Increments a date some number of days.
 To move forward by weeks, add weeks*7 days.
 The date must be valid.
@@ -8452,8 +9727,8 @@ See: https://docs.gtk.org/glib/method.Date.add_days.html")
 
 
 (rt:define-gfunction (date-add-months "g_date_add_months") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-months :uint)) :documentation
-                     "Increments a date by some number of months.
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-months :uint))
+                     :documentation "Increments a date by some number of months.
 If the day of the month is greater than 28,
 this routine may change the day of the month
 (because the destination month may not have
@@ -8464,8 +9739,8 @@ See: https://docs.gtk.org/glib/method.Date.add_months.html")
 
 
 (rt:define-gfunction (date-add-years "g_date_add_years") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-years :uint)) :documentation
-                     "Increments a date by some number of years.
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-years :uint))
+                     :documentation "Increments a date by some number of years.
 If the date is February 29, and the destination
 year is not a leap year, the date will be changed
 to February 28. The date must be valid.
@@ -8475,9 +9750,9 @@ See: https://docs.gtk.org/glib/method.Date.add_years.html")
 
 
 (rt:define-gfunction (date-clamp "g_date_clamp") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))
-                      (min-date (:boxed "GDate" "g_date_get_type"))
-                      (max-date (:boxed "GDate" "g_date_get_type")))
+                     ((date (:boxed "GDate" "g_date_get_type" date))
+                      (min-date (:boxed "GDate" "g_date_get_type" date))
+                      (max-date (:boxed "GDate" "g_date_get_type" date)))
                      :documentation "If DATE is prior to MIN-DATE, sets DATE equal to MIN-DATE.
 If DATE falls after MAX-DATE, sets DATE equal to MAX-DATE.
 Otherwise, DATE is unchanged.
@@ -8489,8 +9764,8 @@ See: https://docs.gtk.org/glib/method.Date.clamp.html")
 
 
 (rt:define-gfunction (date-clear "g_date_clear") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-dates :uint)) :documentation
-                     "Initializes one or more #GDate structs to a safe but invalid
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-dates :uint))
+                     :documentation "Initializes one or more #GDate structs to a safe but invalid
 state. The cleared dates will not represent an existing date, but will
 not contain garbage. Useful to init a date declared on the stack.
 Validity can be tested with g_date_valid().
@@ -8500,8 +9775,8 @@ See: https://docs.gtk.org/glib/method.Date.clear.html")
 
 
 (rt:define-gfunction (date-compare "g_date_compare") :args
-                     ((lhs (:boxed "GDate" "g_date_get_type"))
-                      (rhs (:boxed "GDate" "g_date_get_type")))
+                     ((lhs (:boxed "GDate" "g_date_get_type" date))
+                      (rhs (:boxed "GDate" "g_date_get_type" date)))
                      :return :int :documentation "qsort()-style comparison function for dates.
 Both dates must be valid.
 
@@ -8509,9 +9784,10 @@ C: g_date_compare
 See: https://docs.gtk.org/glib/method.Date.compare.html")
 
 
-(rt:define-gfunction (date-copy "g_date_copy") :args ((date (:boxed "GDate" "g_date_get_type")))
-                     :return (:boxed "GDate" "g_date_get_type") :return-transfer :full :version
-                     "2.56" :documentation
+(rt:define-gfunction (date-copy "g_date_copy") :args
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return
+                     (:boxed "GDate" "g_date_get_type" date) :return-transfer :full :version "2.56"
+                     :documentation
                      "Copies a GDate to a newly-allocated GDate. If the input was invalid
 (as determined by g_date_valid()), the invalid state will be copied
 as is into the new object.
@@ -8522,8 +9798,8 @@ Since: 2.56")
 
 
 (rt:define-gfunction (date-days-between "g_date_days_between") :args
-                     ((date1 (:boxed "GDate" "g_date_get_type"))
-                      (date2 (:boxed "GDate" "g_date_get_type")))
+                     ((date1 (:boxed "GDate" "g_date_get_type" date))
+                      (date2 (:boxed "GDate" "g_date_get_type" date)))
                      :return :int :documentation "Computes the number of days between two dates.
 If DATE2 is prior to DATE1, the returned value is negative.
 Both dates must be valid.
@@ -8532,15 +9808,16 @@ C: g_date_days_between
 See: https://docs.gtk.org/glib/method.Date.days_between.html")
 
 
-(rt:define-gfunction (date-free "g_date_free") :args ((date (:boxed "GDate" "g_date_get_type")))
-                     :documentation "Frees a #GDate returned from g_date_new().
+(rt:define-gfunction (date-free "g_date_free") :args
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :documentation
+                     "Frees a #GDate returned from g_date_new().
 
 C: g_date_free
 See: https://docs.gtk.org/glib/method.Date.free.html")
 
 
 (rt:define-gfunction (date-get-day "g_date_get_day") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint8 :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint8 :documentation
                      "Returns the day of the month. The date must be valid.
 
 C: g_date_get_day
@@ -8548,7 +9825,7 @@ See: https://docs.gtk.org/glib/method.Date.get_day.html")
 
 
 (rt:define-gfunction (date-get-day-of-year "g_date_get_day_of_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint :documentation
                      "Returns the day of the year, where Jan 1 is the first day of the
 year. The date must be valid.
 
@@ -8557,7 +9834,7 @@ See: https://docs.gtk.org/glib/method.Date.get_day_of_year.html")
 
 
 (rt:define-gfunction (date-get-iso8601-week-of-year "g_date_get_iso8601_week_of_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint :version "2.6"
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint :version "2.6"
                      :documentation
                      "Returns the week of the year, where weeks are interpreted according
 to ISO 8601.
@@ -8568,8 +9845,8 @@ Since: 2.6")
 
 
 (rt:define-gfunction (date-get-julian "g_date_get_julian") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint32 :documentation
-                     "Returns the Julian day or \"serial number\" of the #GDate. The
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint32
+                     :documentation "Returns the Julian day or \"serial number\" of the #GDate. The
 Julian day is simply the number of days since January 1, Year 1; i.e.,
 January 1, Year 1 is Julian day 1; January 2, Year 1 is Julian day 2,
 etc. The date must be valid.
@@ -8579,7 +9856,7 @@ See: https://docs.gtk.org/glib/method.Date.get_julian.html")
 
 
 (rt:define-gfunction (date-get-monday-week-of-year "g_date_get_monday_week_of_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint :documentation
                      "Returns the week of the year, where weeks are understood to start on
 Monday. If the date is before the first Monday of the year, return 0.
 The date must be valid.
@@ -8589,7 +9866,7 @@ See: https://docs.gtk.org/glib/method.Date.get_monday_week_of_year.html")
 
 
 (rt:define-gfunction (date-get-month "g_date_get_month") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return (:enum date-month)
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return (:enum date-month)
                      :documentation "Returns the month of the year. The date must be valid.
 
 C: g_date_get_month
@@ -8597,7 +9874,7 @@ See: https://docs.gtk.org/glib/method.Date.get_month.html")
 
 
 (rt:define-gfunction (date-get-sunday-week-of-year "g_date_get_sunday_week_of_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint :documentation
                      "Returns the week of the year during which this date falls, if
 weeks are understood to begin on Sunday. The date must be valid.
 Can return 0 if the day is before the first Sunday of the year.
@@ -8607,7 +9884,7 @@ See: https://docs.gtk.org/glib/method.Date.get_sunday_week_of_year.html")
 
 
 (rt:define-gfunction (date-get-week-of-year "g_date_get_week_of_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))
+                     ((date (:boxed "GDate" "g_date_get_type" date))
                       (first-day-of-week (:enum date-weekday)))
                      :return :uint :version "2.86" :documentation
                      "Calculates the week of the year during which this date falls.
@@ -8618,7 +9895,7 @@ Since: 2.86")
 
 
 (rt:define-gfunction (date-get-weekday "g_date_get_weekday") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return (:enum date-weekday)
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return (:enum date-weekday)
                      :documentation
                      "Returns the day of the week for a #GDate. The date must be valid.
 
@@ -8627,16 +9904,16 @@ See: https://docs.gtk.org/glib/method.Date.get_weekday.html")
 
 
 (rt:define-gfunction (date-get-year "g_date_get_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :uint16 :documentation
-                     "Returns the year of a #GDate. The date must be valid.
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :uint16
+                     :documentation "Returns the year of a #GDate. The date must be valid.
 
 C: g_date_get_year
 See: https://docs.gtk.org/glib/method.Date.get_year.html")
 
 
 (rt:define-gfunction (date-is-first-of-month "g_date_is_first_of_month") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :boolean :documentation
-                     "Returns true if the date is on the first of a month.
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :boolean
+                     :documentation "Returns true if the date is on the first of a month.
 The date must be valid.
 
 C: g_date_is_first_of_month
@@ -8644,8 +9921,8 @@ See: https://docs.gtk.org/glib/method.Date.is_first_of_month.html")
 
 
 (rt:define-gfunction (date-is-last-of-month "g_date_is_last_of_month") :args
-                     ((date (:boxed "GDate" "g_date_get_type"))) :return :boolean :documentation
-                     "Returns true if the date is the last day of the month.
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :boolean
+                     :documentation "Returns true if the date is the last day of the month.
 The date must be valid.
 
 C: g_date_is_last_of_month
@@ -8653,8 +9930,8 @@ See: https://docs.gtk.org/glib/method.Date.is_last_of_month.html")
 
 
 (rt:define-gfunction (date-order "g_date_order") :args
-                     ((date1 (:boxed "GDate" "g_date_get_type"))
-                      (date2 (:boxed "GDate" "g_date_get_type")))
+                     ((date1 (:boxed "GDate" "g_date_get_type" date))
+                      (date2 (:boxed "GDate" "g_date_get_type" date)))
                      :documentation "Checks if DATE1 is less than or equal to DATE2,
 and swap the values if this is not the case.
 
@@ -8663,7 +9940,7 @@ See: https://docs.gtk.org/glib/method.Date.order.html")
 
 
 (rt:define-gfunction (date-set-day "g_date_set_day") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (day :uint8)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (day :uint8)) :documentation
                      "Sets the day of the month for a #GDate. If the resulting
 day-month-year triplet is invalid, the date will be invalid.
 
@@ -8672,7 +9949,7 @@ See: https://docs.gtk.org/glib/method.Date.set_day.html")
 
 
 (rt:define-gfunction (date-set-dmy "g_date_set_dmy") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (day :uint8)
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (day :uint8)
                       (month (:enum date-month)) (y :uint16))
                      :documentation "Sets the value of a #GDate from a day, month, and year.
 The day-month-year triplet must be valid; if you aren't
@@ -8684,7 +9961,7 @@ See: https://docs.gtk.org/glib/method.Date.set_dmy.html")
 
 
 (rt:define-gfunction (date-set-julian "g_date_set_julian") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (julian-date :uint32))
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (julian-date :uint32))
                      :documentation "Sets the value of a #GDate from a Julian day number.
 
 C: g_date_set_julian
@@ -8692,7 +9969,7 @@ See: https://docs.gtk.org/glib/method.Date.set_julian.html")
 
 
 (rt:define-gfunction (date-set-month "g_date_set_month") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (month (:enum date-month)))
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (month (:enum date-month)))
                      :documentation "Sets the month of the year for a #GDate.  If the resulting
 day-month-year triplet is invalid, the date will be invalid.
 
@@ -8701,7 +9978,7 @@ See: https://docs.gtk.org/glib/method.Date.set_month.html")
 
 
 (rt:define-gfunction (date-set-parse "g_date_set_parse") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (str :string)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (str :string)) :documentation
                      "Parses a user-inputted string STR, and try to figure out what date it
 represents, taking the [current locale](running.html#locale)
 into account. If the string is successfully parsed, the date will be
@@ -8713,7 +9990,7 @@ See: https://docs.gtk.org/glib/method.Date.set_parse.html")
 
 
 (rt:define-gfunction (date-set-time "g_date_set_time") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (time- :int32)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (time- :int32)) :documentation
                      "Sets the value of a date from a #GTime value.
 The time to date conversion is done using the user's current timezone.
 
@@ -8723,7 +10000,7 @@ Deprecated.")
 
 
 (rt:define-gfunction (date-set-time-t "g_date_set_time_t") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (timet :long)) :version "2.10"
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (timet :long)) :version "2.10"
                      :documentation "Sets the value of a date to the date corresponding to a time
 specified as a time_t. The time to date conversion is done using
 the user's current timezone.
@@ -8734,7 +10011,7 @@ Since: 2.10")
 
 
 (rt:define-gfunction (date-set-time-val "g_date_set_time_val") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (timeval (:record time-val)))
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (timeval (:record time-val)))
                      :version "2.10" :documentation
                      "Sets the value of a date from a #GTimeVal value.  Note that the
 TV-USEC member is ignored, because #GDate can't make use of the
@@ -8747,7 +10024,7 @@ Deprecated.")
 
 
 (rt:define-gfunction (date-set-year "g_date_set_year") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (year :uint16)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (year :uint16)) :documentation
                      "Sets the year for a #GDate. If the resulting day-month-year
 triplet is invalid, the date will be invalid.
 
@@ -8756,7 +10033,7 @@ See: https://docs.gtk.org/glib/method.Date.set_year.html")
 
 
 (rt:define-gfunction (date-subtract-days "g_date_subtract_days") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-days :uint)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-days :uint)) :documentation
                      "Moves a date some number of days into the past.
 To move by weeks, just move by weeks*7 days.
 The date must be valid.
@@ -8766,8 +10043,8 @@ See: https://docs.gtk.org/glib/method.Date.subtract_days.html")
 
 
 (rt:define-gfunction (date-subtract-months "g_date_subtract_months") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-months :uint)) :documentation
-                     "Moves a date some number of months into the past.
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-months :uint))
+                     :documentation "Moves a date some number of months into the past.
 If the current day of the month doesn't exist in
 the destination month, the day of the month
 may change. The date must be valid.
@@ -8777,8 +10054,8 @@ See: https://docs.gtk.org/glib/method.Date.subtract_months.html")
 
 
 (rt:define-gfunction (date-subtract-years "g_date_subtract_years") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (n-years :uint)) :documentation
-                     "Moves a date some number of years into the past.
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (n-years :uint))
+                     :documentation "Moves a date some number of years into the past.
 If the current day doesn't exist in the destination
 year (i.e. it's February 29 and you move to a non-leap-year)
 then the day is changed to February 29. The date
@@ -8789,7 +10066,7 @@ See: https://docs.gtk.org/glib/method.Date.subtract_years.html")
 
 
 (rt:define-gfunction (date-to-struct-tm "g_date_to_struct_tm") :args
-                     ((date (:boxed "GDate" "g_date_get_type")) (tm :pointer)) :documentation
+                     ((date (:boxed "GDate" "g_date_get_type" date)) (tm :pointer)) :documentation
                      "Fills in the date-related bits of a struct tm using the DATE value.
 Initializes the non-date parts with something safe but meaningless.
 
@@ -8797,8 +10074,9 @@ C: g_date_to_struct_tm
 See: https://docs.gtk.org/glib/method.Date.to_struct_tm.html")
 
 
-(rt:define-gfunction (date-valid "g_date_valid") :args ((date (:boxed "GDate" "g_date_get_type")))
-                     :return :boolean :documentation
+(rt:define-gfunction (date-valid "g_date_valid") :args
+                     ((date (:boxed "GDate" "g_date_get_type" date))) :return :boolean
+                     :documentation
                      "Returns true if the #GDate represents an existing day. The date must not
 contain garbage; it should have been initialized with g_date_clear()
 if it wasn't allocated by one of the g_date_new() variants.
@@ -9474,8 +10752,8 @@ Since: 2.80")
 
 (rt:define-gfunction (error-new-literal "g_error_new_literal") :args
                      ((domain :uint32) (code :int) (message :string)) :return
-                     (:boxed "GError" "g_error_get_type") :return-transfer :full :documentation
-                     "Creates a new #GError; unlike g_error_new(), MESSAGE is
+                     (:boxed "GError" "g_error_get_type" error) :return-transfer :full
+                     :documentation "Creates a new #GError; unlike g_error_new(), MESSAGE is
 not a printf()-style format string. Use this function if
 MESSAGE contains text you don't have control over,
 that could include printf() escape sequences.
@@ -9485,16 +10763,16 @@ See: https://docs.gtk.org/glib/ctor.Error.new_literal.html")
 
 
 (rt:define-gfunction (error-copy "g_error_copy") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :return
-                     (:boxed "GError" "g_error_get_type") :return-transfer :full :documentation
-                     "Makes a copy of ERROR.
+                     ((error (:boxed "GError" "g_error_get_type" error))) :return
+                     (:boxed "GError" "g_error_get_type" error) :return-transfer :full
+                     :documentation "Makes a copy of ERROR.
 
 C: g_error_copy
 See: https://docs.gtk.org/glib/method.Error.copy.html")
 
 
 (rt:define-gfunction (error-free "g_error_free") :args
-                     ((error (:boxed "GError" "g_error_get_type"))) :documentation
+                     ((error (:boxed "GError" "g_error_get_type" error))) :documentation
                      "Frees a #GError and associated resources.
 
 C: g_error_free
@@ -9502,7 +10780,8 @@ See: https://docs.gtk.org/glib/method.Error.free.html")
 
 
 (rt:define-gfunction (error-matches "g_error_matches") :args
-                     ((error (:boxed "GError" "g_error_get_type")) (domain :uint32) (code :int))
+                     ((error (:boxed "GError" "g_error_get_type" error)) (domain :uint32)
+                      (code :int))
                      :return :boolean :documentation
                      "Returns true if ERROR matches DOMAIN and CODE, false
 otherwise. In particular, when ERROR is NIL, false will
@@ -9939,7 +11218,7 @@ See: https://docs.gtk.org/glib/method.IOChannel.read_line.html")
 
 (rt:define-gfunction (io-channel-read-line-string "g_io_channel_read_line_string") :args
                      ((channel (:boxed "GIOChannel" "g_io_channel_get_type"))
-                      (buffer (:boxed "GString" "g_gstring_get_type"))
+                      (buffer (:boxed "GString" "g_gstring_get_type" string))
                       (terminator-pos :size :optional t))
                      :return (:enum io-status) :throws t :documentation
                      "Reads a line from a #GIOChannel, using a #GString as a buffer.
@@ -10705,13 +11984,25 @@ See: https://docs.gtk.org/glib/method.MainContext.acquire.html")
 
 (rt:define-gfunction (main-context-add-poll "g_main_context_add_poll") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))
-                      (fd (:boxed "GPollFD" "g_pollfd_get_type")) (priority :int))
+                      (fd (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)) (priority :int))
                      :documentation
                      "Adds a file descriptor to the set of file descriptors polled for
 this context.
 
 C: g_main_context_add_poll
 See: https://docs.gtk.org/glib/method.MainContext.add_poll.html")
+
+
+(rt:define-gfunction (main-context-check "g_main_context_check") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
+                      (max-priority :int)
+                      (fds (:array (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)))
+                      (n-fds :int :length-of fds))
+                     :return :boolean :documentation
+                     "Passes the results of polling back to the main loop.
+
+C: g_main_context_check
+See: https://docs.gtk.org/glib/method.MainContext.check.html")
 
 
 (rt:define-gfunction (main-context-dispatch "g_main_context_dispatch") :args
@@ -10727,7 +12018,7 @@ See: https://docs.gtk.org/glib/method.MainContext.dispatch.html")
  :args
  ((context (:boxed "GMainContext" "g_main_context_get_type")) (funcs (:record source-funcs))
   (user-data :pointer :optional t))
- :return (:boxed "GSource" "g_source_get_type") :documentation
+ :return (:boxed "GSource" "g_source_get_type" source) :documentation
  "Finds a source with the given source functions and user data.
 
 C: g_main_context_find_source_by_funcs_user_data
@@ -10737,7 +12028,7 @@ See: https://docs.gtk.org/glib/method.MainContext.find_source_by_funcs_user_data
 (rt:define-gfunction (main-context-find-source-by-id "g_main_context_find_source_by_id") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))
                       (source-id :uint))
-                     :return (:boxed "GSource" "g_source_get_type") :documentation
+                     :return (:boxed "GSource" "g_source_get_type" source) :documentation
                      "Finds a GLib.Source given a pair of context and ID.
 
 C: g_main_context_find_source_by_id
@@ -10747,7 +12038,7 @@ See: https://docs.gtk.org/glib/method.MainContext.find_source_by_id.html")
 (rt:define-gfunction
  (main-context-find-source-by-user-data "g_main_context_find_source_by_user_data") :args
  ((context (:boxed "GMainContext" "g_main_context_get_type")) (user-data :pointer :optional t))
- :return (:boxed "GSource" "g_source_get_type") :documentation
+ :return (:boxed "GSource" "g_source_get_type" source) :documentation
  "Finds a source with the given user data for the callback.
 
 C: g_main_context_find_source_by_user_data
@@ -10850,6 +12141,21 @@ See: https://docs.gtk.org/glib/method.MainContext.pusher_new.html
 Since: 2.64")
 
 
+(rt:define-gfunction (main-context-query "g_main_context_query") :args
+                     ((context (:boxed "GMainContext" "g_main_context_get_type"))
+                      (max-priority :int) (timeout- :int :direction :out :transfer :full)
+                      (fds
+                       (:array (:boxed "GPollFD" "g_pollfd_get_type" poll-fd) :length n-fds
+                        :caller-allocates t)
+                       :direction :out)
+                      (n-fds :int))
+                     :return :int :documentation
+                     "Determines information necessary to poll this main loop.
+
+C: g_main_context_query
+See: https://docs.gtk.org/glib/method.MainContext.query.html")
+
+
 (rt:define-gfunction (main-context-ref "g_main_context_ref") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))) :return
                      (:boxed "GMainContext" "g_main_context_get_type") :return-transfer :full
@@ -10871,7 +12177,7 @@ See: https://docs.gtk.org/glib/method.MainContext.release.html")
 
 (rt:define-gfunction (main-context-remove-poll "g_main_context_remove_poll") :args
                      ((context (:boxed "GMainContext" "g_main_context_get_type"))
-                      (fd (:boxed "GPollFD" "g_pollfd_get_type")))
+                      (fd (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)))
                      :documentation "Removes file descriptor from the set of file descriptors to be
 polled for a particular context.
 
@@ -11662,6 +12968,19 @@ See: https://docs.gtk.org/glib/method.OptionContext.add_group.html
 Since: 2.6")
 
 
+(rt:define-gfunction (option-context-add-main-entries "g_option_context_add_main_entries") :args
+                     ((context (:record option-context))
+                      (entries (:array (:record option-entry) :zero-terminated t))
+                      (translation-domain :string :optional t))
+                     :version "2.6" :documentation
+                     "A convenience function which creates a main group if it doesn't
+exist, adds the ENTRIES to it and sets the translation domain.
+
+C: g_option_context_add_main_entries
+See: https://docs.gtk.org/glib/method.OptionContext.add_main_entries.html
+Since: 2.6")
+
+
 (rt:define-gfunction (option-context-free "g_option_context_free") :args
                      ((context (:record option-context) :transfer :full)) :version "2.6"
                      :documentation "Frees context and all the groups which have been
@@ -11826,6 +13145,16 @@ user-visible strings.
 C: g_option_context_set_translation_domain
 See: https://docs.gtk.org/glib/method.OptionContext.set_translation_domain.html
 Since: 2.12")
+
+
+(rt:define-gfunction (option-group-add-entries "g_option_group_add_entries") :args
+                     ((group (:boxed "GOptionGroup" "g_option_group_get_type"))
+                      (entries (:array (:record option-entry) :zero-terminated t)))
+                     :version "2.6" :documentation "Adds the options specified in ENTRIES to GROUP.
+
+C: g_option_group_add_entries
+See: https://docs.gtk.org/glib/method.OptionGroup.add_entries.html
+Since: 2.6")
 
 
 (rt:define-gfunction (option-group-free "g_option_group_free") :args
@@ -13463,8 +14792,8 @@ Since: 2.14")
 
 (rt:define-gfunction (source-new "g_source_new") :args
                      ((source-funcs (:record source-funcs)) (struct-size :uint)) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :documentation
-                     "Creates a new GLib.Source structure.
+                     (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
+                     :documentation "Creates a new GLib.Source structure.
 
 C: g_source_new
 See: https://docs.gtk.org/glib/ctor.Source.new.html")
@@ -13507,8 +14836,8 @@ Since: 2.26")
 
 
 (rt:define-gfunction (source-add-child-source "g_source_add_child_source") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
-                      (child-source (:boxed "GSource" "g_source_get_type")))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (child-source (:boxed "GSource" "g_source_get_type" source)))
                      :version "2.28" :documentation
                      "Adds CHILD-SOURCE to SOURCE as a ‘polled’ source.
 
@@ -13518,8 +14847,8 @@ Since: 2.28")
 
 
 (rt:define-gfunction (source-add-poll "g_source_add_poll") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
-                      (fd (:boxed "GPollFD" "g_pollfd_get_type")))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (fd (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)))
                      :documentation
                      "Adds a file descriptor to the set of file descriptors polled for
 this source.
@@ -13529,7 +14858,7 @@ See: https://docs.gtk.org/glib/method.Source.add_poll.html")
 
 
 (rt:define-gfunction (source-add-unix-fd "g_source_add_unix_fd") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (fd :int)
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (fd :int)
                       (events (:flags io-condition)))
                      :return :pointer :version "2.36" :documentation
                      "Monitors FD for the IO events in EVENTS.
@@ -13540,7 +14869,7 @@ Since: 2.36")
 
 
 (rt:define-gfunction (source-attach "g_source_attach") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
                       (context (:boxed "GMainContext" "g_main_context_get_type") :optional t))
                      :return :uint :documentation
                      "Adds a GLib.Source to a CONTEXT so that it will be executed within
@@ -13551,7 +14880,7 @@ See: https://docs.gtk.org/glib/method.Source.attach.html")
 
 
 (rt:define-gfunction (source-clear-ready-time "g_source_clear_ready_time") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :version "2.90"
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :version "2.90"
                      :documentation "Unsets any previously set ready time.
 
 C: g_source_clear_ready_time
@@ -13560,7 +14889,7 @@ Since: 2.90")
 
 
 (rt:define-gfunction (source-destroy "g_source_destroy") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :documentation
                      "Removes a source from its GLib.MainContext, if any, and marks it as
 destroyed.
 
@@ -13569,7 +14898,7 @@ See: https://docs.gtk.org/glib/method.Source.destroy.html")
 
 
 (rt:define-gfunction (source-dup-context "g_source_dup_context") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return
                      (:boxed "GMainContext" "g_main_context_get_type") :return-transfer :full
                      :version "2.86" :documentation
                      "Gets a reference to the GLib.MainContext with which the source is
@@ -13581,7 +14910,7 @@ Since: 2.86")
 
 
 (rt:define-gfunction (source-get-can-recurse "g_source_get_can_recurse") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :boolean
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :boolean
                      :documentation "Checks whether a source is allowed to be called recursively.
 
 C: g_source_get_can_recurse
@@ -13589,7 +14918,7 @@ See: https://docs.gtk.org/glib/method.Source.get_can_recurse.html")
 
 
 (rt:define-gfunction (source-get-context "g_source_get_context") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return
                      (:boxed "GMainContext" "g_main_context_get_type") :documentation
                      "Gets the GLib.MainContext with which the source is associated.
 
@@ -13598,7 +14927,8 @@ See: https://docs.gtk.org/glib/method.Source.get_context.html")
 
 
 (rt:define-gfunction (source-get-current-time "g_source_get_current_time") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (timeval (:record time-val)))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (timeval (:record time-val)))
                      :documentation "This function ignores SOURCE and is otherwise the same as
 GLib.get_current_time.
 
@@ -13608,16 +14938,16 @@ Deprecated.")
 
 
 (rt:define-gfunction (source-get-id "g_source_get_id") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :uint :documentation
-                     "Returns the numeric ID for a particular source.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :uint
+                     :documentation "Returns the numeric ID for a particular source.
 
 C: g_source_get_id
 See: https://docs.gtk.org/glib/method.Source.get_id.html")
 
 
 (rt:define-gfunction (source-get-name "g_source_get_name") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :string :version
-                     "2.26" :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :string
+                     :version "2.26" :documentation
                      "Gets a name for the source, used in debugging and profiling.
 
 C: g_source_get_name
@@ -13626,15 +14956,15 @@ Since: 2.26")
 
 
 (rt:define-gfunction (source-get-priority "g_source_get_priority") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :int :documentation
-                     "Gets the priority of a source.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :int
+                     :documentation "Gets the priority of a source.
 
 C: g_source_get_priority
 See: https://docs.gtk.org/glib/method.Source.get_priority.html")
 
 
 (rt:define-gfunction (source-get-ready-time "g_source_get_ready_time") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :int64
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :int64
                      :documentation "Gets the ‘ready time’ of SOURCE, as set by
 GLib.Source.set_ready_time.
 
@@ -13643,8 +14973,9 @@ See: https://docs.gtk.org/glib/method.Source.get_ready_time.html")
 
 
 (rt:define-gfunction (source-get-time "g_source_get_time") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :int64 :version
-                     "2.28" :documentation "Gets the time to be used when checking this source.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :int64
+                     :version "2.28" :documentation
+                     "Gets the time to be used when checking this source.
 
 C: g_source_get_time
 See: https://docs.gtk.org/glib/method.Source.get_time.html
@@ -13652,8 +14983,9 @@ Since: 2.28")
 
 
 (rt:define-gfunction (source-get-time-ns "g_source_get_time_ns") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :uint64 :version
-                     "2.90" :documentation "Gets the time to be used when checking this source.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :uint64
+                     :version "2.90" :documentation
+                     "Gets the time to be used when checking this source.
 
 C: g_source_get_time_ns
 See: https://docs.gtk.org/glib/method.Source.get_time_ns.html
@@ -13661,8 +14993,8 @@ Since: 2.90")
 
 
 (rt:define-gfunction (source-is-destroyed "g_source_is_destroyed") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return :boolean :version
-                     "2.12" :documentation "Returns whether SOURCE has been destroyed.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return :boolean
+                     :version "2.12" :documentation "Returns whether SOURCE has been destroyed.
 
 C: g_source_is_destroyed
 See: https://docs.gtk.org/glib/method.Source.is_destroyed.html
@@ -13670,7 +15002,7 @@ Since: 2.12")
 
 
 (rt:define-gfunction (source-modify-unix-fd "g_source_modify_unix_fd") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (tag :pointer)
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (tag :pointer)
                       (new-events (:flags io-condition)))
                      :version "2.36" :documentation
                      "Updates the event mask to watch for the file descriptor identified by TAG.
@@ -13681,8 +15013,8 @@ Since: 2.36")
 
 
 (rt:define-gfunction (source-query-unix-fd "g_source_query_unix_fd") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (tag :pointer)) :return
-                     (:flags io-condition) :version "2.36" :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (tag :pointer))
+                     :return (:flags io-condition) :version "2.36" :documentation
                      "Queries the events reported for the file descriptor corresponding to TAG
 on SOURCE during the last poll.
 
@@ -13692,17 +15024,17 @@ Since: 2.36")
 
 
 (rt:define-gfunction (source-ref "g_source_ref") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :return
-                     (:boxed "GSource" "g_source_get_type") :return-transfer :full :documentation
-                     "Increases the reference count on a source by one.
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :return
+                     (:boxed "GSource" "g_source_get_type" source) :return-transfer :full
+                     :documentation "Increases the reference count on a source by one.
 
 C: g_source_ref
 See: https://docs.gtk.org/glib/method.Source.ref.html")
 
 
 (rt:define-gfunction (source-remove-child-source "g_source_remove_child_source") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
-                      (child-source (:boxed "GSource" "g_source_get_type")))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (child-source (:boxed "GSource" "g_source_get_type" source)))
                      :version "2.28" :documentation
                      "Detaches CHILD-SOURCE from SOURCE and destroys it.
 
@@ -13712,8 +15044,8 @@ Since: 2.28")
 
 
 (rt:define-gfunction (source-remove-poll "g_source_remove_poll") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
-                      (fd (:boxed "GPollFD" "g_pollfd_get_type")))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (fd (:boxed "GPollFD" "g_pollfd_get_type" poll-fd)))
                      :documentation
                      "Removes a file descriptor from the set of file descriptors polled for
 this source.
@@ -13723,8 +15055,8 @@ See: https://docs.gtk.org/glib/method.Source.remove_poll.html")
 
 
 (rt:define-gfunction (source-remove-unix-fd "g_source_remove_unix_fd") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (tag :pointer)) :version
-                     "2.36" :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (tag :pointer))
+                     :version "2.36" :documentation
                      "Reverses the effect of a previous call to GLib.Source.add_unix_fd.
 
 C: g_source_remove_unix_fd
@@ -13733,7 +15065,7 @@ Since: 2.36")
 
 
 (rt:define-gfunction (source-set-callback "g_source_set_callback") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
                       (func (:callback source-func :notified)) (data :pointer :user-data-of func)
                       (notify :pointer :destroy-of func))
                      :documentation
@@ -13745,8 +15077,8 @@ See: https://docs.gtk.org/glib/method.Source.set_callback.html")
 
 
 (rt:define-gfunction (source-set-callback-indirect "g_source_set_callback_indirect") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (callback-data :pointer)
-                      (callback-funcs (:record source-callback-funcs)))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (callback-data :pointer) (callback-funcs (:record source-callback-funcs)))
                      :documentation
                      "Sets the callback function storing the data as a reference counted callback
 ‘object’.
@@ -13756,7 +15088,8 @@ See: https://docs.gtk.org/glib/method.Source.set_callback_indirect.html")
 
 
 (rt:define-gfunction (source-set-can-recurse "g_source_set_can_recurse") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (can-recurse :boolean))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
+                      (can-recurse :boolean))
                      :documentation "Sets whether a source can be called recursively.
 
 C: g_source_set_can_recurse
@@ -13764,7 +15097,7 @@ See: https://docs.gtk.org/glib/method.Source.set_can_recurse.html")
 
 
 (rt:define-gfunction (source-set-funcs "g_source_set_funcs") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))
+                     ((source (:boxed "GSource" "g_source_get_type" source))
                       (funcs (:record source-funcs)))
                      :version "2.12" :documentation
                      "Sets the source functions of an unattached source.
@@ -13775,8 +15108,8 @@ Since: 2.12")
 
 
 (rt:define-gfunction (source-set-name "g_source_set_name") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (name :string)) :version
-                     "2.26" :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (name :string))
+                     :version "2.26" :documentation
                      "Sets a name for the source, used in debugging and profiling.
 
 C: g_source_set_name
@@ -13785,7 +15118,7 @@ Since: 2.26")
 
 
 (rt:define-gfunction (source-set-priority "g_source_set_priority") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (priority :int))
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (priority :int))
                      :documentation "Sets the priority of a source.
 
 C: g_source_set_priority
@@ -13793,8 +15126,8 @@ See: https://docs.gtk.org/glib/method.Source.set_priority.html")
 
 
 (rt:define-gfunction (source-set-ready-time "g_source_set_ready_time") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (ready-time :int64)) :version
-                     "2.36" :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (ready-time :int64))
+                     :version "2.36" :documentation
                      "Sets a source to be dispatched when the given monotonic time is
 reached (or passed).
 
@@ -13804,7 +15137,7 @@ Since: 2.36")
 
 
 (rt:define-gfunction (source-set-ready-time-ns "g_source_set_ready_time_ns") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (ready-time :uint64))
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (ready-time :uint64))
                      :version "2.90" :documentation
                      "Sets a source to be dispatched when the given monotonic time is
 reached (or passed).
@@ -13815,8 +15148,8 @@ Since: 2.90")
 
 
 (rt:define-gfunction (source-set-static-name "g_source_set_static_name") :args
-                     ((source (:boxed "GSource" "g_source_get_type")) (name :string)) :version
-                     "2.70" :documentation "A variant of GLib.Source.set_name that does not
+                     ((source (:boxed "GSource" "g_source_get_type" source)) (name :string))
+                     :version "2.70" :documentation "A variant of GLib.Source.set_name that does not
 duplicate the NAME, and can only be used with
 string literals.
 
@@ -13826,7 +15159,7 @@ Since: 2.70")
 
 
 (rt:define-gfunction (source-unref "g_source_unref") :args
-                     ((source (:boxed "GSource" "g_source_get_type"))) :documentation
+                     ((source (:boxed "GSource" "g_source_get_type" source))) :documentation
                      "Decreases the reference count of a source by one.
 
 C: g_source_unref
@@ -13840,15 +15173,15 @@ See: https://docs.gtk.org/glib/method.StaticMutex.get_mutex_impl.html")
 
 
 (rt:define-gfunction (string-new "g_string_new") :args ((init :string)) :return
-                     (:boxed "GString" "g_gstring_get_type") :return-transfer :full :documentation
-                     "Creates a new #GString, initialized with the given string.
+                     (:boxed "GString" "g_gstring_get_type" string) :return-transfer :full
+                     :documentation "Creates a new #GString, initialized with the given string.
 
 C: g_string_new
 See: https://docs.gtk.org/glib/ctor.String.new.html")
 
 
 (rt:define-gfunction (string-new-len "g_string_new_len") :args ((init :string) (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :return-transfer :full
+                     :return (:boxed "GString" "g_gstring_get_type" string) :return-transfer :full
                      :documentation "Creates a new #GString with LEN bytes of the INIT buffer.
 Because a length is provided, INIT need not be nul-terminated,
 and can contain embedded nul bytes.
@@ -13858,7 +15191,7 @@ See: https://docs.gtk.org/glib/ctor.String.new_len.html")
 
 
 (rt:define-gfunction (string-new-take "g_string_new_take") :args ((init :string :transfer :full))
-                     :return (:boxed "GString" "g_gstring_get_type") :return-transfer :full
+                     :return (:boxed "GString" "g_gstring_get_type" string) :return-transfer :full
                      :version "2.78" :documentation
                      "Creates a new #GString, initialized with the given string.
 
@@ -13868,8 +15201,8 @@ Since: 2.78")
 
 
 (rt:define-gfunction (string-sized-new "g_string_sized_new") :args ((dfl-size :size)) :return
-                     (:boxed "GString" "g_gstring_get_type") :return-transfer :full :documentation
-                     "Creates a new #GString, with enough space for DFL-SIZE
+                     (:boxed "GString" "g_gstring_get_type" string) :return-transfer :full
+                     :documentation "Creates a new #GString, with enough space for DFL-SIZE
 bytes. This is useful if you are going to add a lot of
 text to the string and don't want it to be reallocated
 too often.
@@ -13879,8 +15212,8 @@ See: https://docs.gtk.org/glib/ctor.String.sized_new.html")
 
 
 (rt:define-gfunction (string-append "g_string_append") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (val :string)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (val :string))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Adds a string onto the end of a #GString, expanding
 it if necessary.
 
@@ -13889,8 +15222,8 @@ See: https://docs.gtk.org/glib/method.String.append.html")
 
 
 (rt:define-gfunction (string-append-c "g_string_append_c") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (c :int8)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (c :int8)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Adds a byte onto the end of a #GString, expanding
 it if necessary.
 
@@ -13899,8 +15232,9 @@ See: https://docs.gtk.org/glib/method.String.append_c.html")
 
 
 (rt:define-gfunction (string-append-len "g_string_append_len") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (val :string) (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (val :string)
+                      (len :ssize))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Appends LEN bytes of VAL to STRING.
 
 C: g_string_append_len
@@ -13908,8 +15242,8 @@ See: https://docs.gtk.org/glib/method.String.append_len.html")
 
 
 (rt:define-gfunction (string-append-unichar "g_string_append_unichar") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (wc :uint32)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (wc :uint32)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts a Unicode character into UTF-8, and appends it
 to the string.
 
@@ -13918,10 +15252,10 @@ See: https://docs.gtk.org/glib/method.String.append_unichar.html")
 
 
 (rt:define-gfunction (string-append-uri-escaped "g_string_append_uri_escaped") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (unescaped :string)
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (unescaped :string)
                       (reserved-chars-allowed :string) (allow-utf8 :boolean))
-                     :return (:boxed "GString" "g_gstring_get_type") :version "2.16" :documentation
-                     "Appends UNESCAPED to STRING, escaping any characters that
+                     :return (:boxed "GString" "g_gstring_get_type" string) :version "2.16"
+                     :documentation "Appends UNESCAPED to STRING, escaping any characters that
 are reserved in URIs using URI-style escape sequences.
 
 C: g_string_append_uri_escaped
@@ -13930,8 +15264,8 @@ Since: 2.16")
 
 
 (rt:define-gfunction (string-ascii-down "g_string_ascii_down") :args
-                     ((string (:boxed "GString" "g_gstring_get_type"))) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string))) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts all uppercase ASCII letters to lowercase ASCII letters.
 
 C: g_string_ascii_down
@@ -13939,8 +15273,8 @@ See: https://docs.gtk.org/glib/method.String.ascii_down.html")
 
 
 (rt:define-gfunction (string-ascii-up "g_string_ascii_up") :args
-                     ((string (:boxed "GString" "g_gstring_get_type"))) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string))) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts all lowercase ASCII letters to uppercase ASCII letters.
 
 C: g_string_ascii_up
@@ -13948,8 +15282,8 @@ See: https://docs.gtk.org/glib/method.String.ascii_up.html")
 
 
 (rt:define-gfunction (string-assign "g_string_assign") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (rval :string)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (rval :string))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Copies the bytes from a string into a #GString,
 destroying any previous contents. It is rather like
 the standard strcpy() function, except that you do not
@@ -13960,9 +15294,9 @@ See: https://docs.gtk.org/glib/method.String.assign.html")
 
 
 (rt:define-gfunction (string-copy "g_string_copy") :args
-                     ((string (:boxed "GString" "g_gstring_get_type"))) :return
-                     (:boxed "GString" "g_gstring_get_type") :return-transfer :full :version "2.86"
-                     :documentation "Copies the GLib.String instance and its contents.
+                     ((string (:boxed "GString" "g_gstring_get_type" string))) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :return-transfer :full :version
+                     "2.86" :documentation "Copies the GLib.String instance and its contents.
 
 C: g_string_copy
 See: https://docs.gtk.org/glib/method.String.copy.html
@@ -13970,8 +15304,8 @@ Since: 2.86")
 
 
 (rt:define-gfunction (string-down "g_string_down") :args
-                     ((string (:boxed "GString" "g_gstring_get_type"))) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string))) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts a #GString to lowercase.
 
 C: g_string_down
@@ -13980,8 +15314,8 @@ Deprecated.")
 
 
 (rt:define-gfunction (string-equal "g_string_equal") :args
-                     ((v (:boxed "GString" "g_gstring_get_type"))
-                      (v2 (:boxed "GString" "g_gstring_get_type")))
+                     ((v (:boxed "GString" "g_gstring_get_type" string))
+                      (v2 (:boxed "GString" "g_gstring_get_type" string)))
                      :return :boolean :documentation
                      "Compares two strings for equality, returning true if they are equal.
 For use with #GHashTable.
@@ -13991,8 +15325,9 @@ See: https://docs.gtk.org/glib/method.String.equal.html")
 
 
 (rt:define-gfunction (string-erase "g_string_erase") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :ssize) (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :ssize)
+                      (len :ssize))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Removes LEN bytes from a #GString, starting at position POS.
 The rest of the #GString is shifted down to fill the gap.
 
@@ -14001,7 +15336,7 @@ See: https://docs.gtk.org/glib/method.String.erase.html")
 
 
 (rt:define-gfunction (string-free "g_string_free") :args
-                     ((string (:boxed "GString" "g_gstring_get_type") :transfer :full)
+                     ((string (:boxed "GString" "g_gstring_get_type" string) :transfer :full)
                       (free-segment :boolean))
                      :return :string :return-transfer :full :documentation
                      "Frees the memory allocated for the #GString.
@@ -14014,8 +15349,8 @@ See: https://docs.gtk.org/glib/method.String.free.html")
 
 
 (rt:define-gfunction (string-free-and-steal "g_string_free_and_steal") :args
-                     ((string (:boxed "GString" "g_gstring_get_type") :transfer :full)) :return
-                     :string :return-transfer :full :version "2.76" :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string) :transfer :full))
+                     :return :string :return-transfer :full :version "2.76" :documentation
                      "Frees the memory allocated for the #GString.
 
 C: g_string_free_and_steal
@@ -14024,8 +15359,8 @@ Since: 2.76")
 
 
 (rt:define-gfunction (string-free-deep "g_string_free_deep") :args
-                     ((string (:boxed "GString" "g_gstring_get_type") :transfer :full)) :version
-                     "2.90" :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string) :transfer :full))
+                     :version "2.90" :documentation
                      "Frees the memory allocated for the GLib.String together with its
 character data.
 
@@ -14035,9 +15370,9 @@ Since: 2.90")
 
 
 (rt:define-gfunction (string-free-to-bytes "g_string_free_to_bytes") :args
-                     ((string (:boxed "GString" "g_gstring_get_type") :transfer :full)) :return
-                     (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version "2.34"
-                     :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string) :transfer :full))
+                     :return (:boxed "GBytes" "g_bytes_get_type") :return-transfer :full :version
+                     "2.34" :documentation
                      "Transfers ownership of the contents of STRING to a newly allocated
 #GBytes.  The #GString structure itself is deallocated, and it is
 therefore invalid to use STRING after invoking this function.
@@ -14048,16 +15383,17 @@ Since: 2.34")
 
 
 (rt:define-gfunction (string-hash "g_string_hash") :args
-                     ((str (:boxed "GString" "g_gstring_get_type"))) :return :uint :documentation
-                     "Creates a hash code for STR; for use with #GHashTable.
+                     ((str (:boxed "GString" "g_gstring_get_type" string))) :return :uint
+                     :documentation "Creates a hash code for STR; for use with #GHashTable.
 
 C: g_string_hash
 See: https://docs.gtk.org/glib/method.String.hash.html")
 
 
 (rt:define-gfunction (string-insert "g_string_insert") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :ssize) (val :string))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :ssize)
+                      (val :string))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Inserts a copy of a string into a #GString,
 expanding it if necessary.
 
@@ -14066,8 +15402,9 @@ See: https://docs.gtk.org/glib/method.String.insert.html")
 
 
 (rt:define-gfunction (string-insert-c "g_string_insert_c") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :ssize) (c :int8))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :ssize)
+                      (c :int8))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Inserts a byte into a #GString, expanding it if necessary.
 
 C: g_string_insert_c
@@ -14075,9 +15412,9 @@ See: https://docs.gtk.org/glib/method.String.insert_c.html")
 
 
 (rt:define-gfunction (string-insert-len "g_string_insert_len") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :ssize) (val :string)
-                      (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :ssize)
+                      (val :string) (len :ssize))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Inserts LEN bytes of VAL into STRING at POS.
 
 C: g_string_insert_len
@@ -14085,8 +15422,9 @@ See: https://docs.gtk.org/glib/method.String.insert_len.html")
 
 
 (rt:define-gfunction (string-insert-unichar "g_string_insert_unichar") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :ssize) (wc :uint32))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :ssize)
+                      (wc :uint32))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts a Unicode character into UTF-8, and insert it
 into the string at the given position.
 
@@ -14095,9 +15433,10 @@ See: https://docs.gtk.org/glib/method.String.insert_unichar.html")
 
 
 (rt:define-gfunction (string-overwrite "g_string_overwrite") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :size) (val :string))
-                     :return (:boxed "GString" "g_gstring_get_type") :version "2.14" :documentation
-                     "Overwrites part of a string, lengthening it if necessary.
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :size)
+                      (val :string))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :version "2.14"
+                     :documentation "Overwrites part of a string, lengthening it if necessary.
 
 C: g_string_overwrite
 See: https://docs.gtk.org/glib/method.String.overwrite.html
@@ -14105,10 +15444,10 @@ Since: 2.14")
 
 
 (rt:define-gfunction (string-overwrite-len "g_string_overwrite_len") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (pos :size) (val :string)
-                      (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :version "2.14" :documentation
-                     "Overwrites part of a string, lengthening it if necessary.
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (pos :size)
+                      (val :string) (len :ssize))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :version "2.14"
+                     :documentation "Overwrites part of a string, lengthening it if necessary.
 This function will work with embedded nuls.
 
 C: g_string_overwrite_len
@@ -14117,8 +15456,8 @@ Since: 2.14")
 
 
 (rt:define-gfunction (string-prepend "g_string_prepend") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (val :string)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (val :string))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Adds a string on to the start of a #GString,
 expanding it if necessary.
 
@@ -14127,8 +15466,8 @@ See: https://docs.gtk.org/glib/method.String.prepend.html")
 
 
 (rt:define-gfunction (string-prepend-c "g_string_prepend_c") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (c :int8)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (c :int8)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Adds a byte onto the start of a #GString,
 expanding it if necessary.
 
@@ -14137,8 +15476,9 @@ See: https://docs.gtk.org/glib/method.String.prepend_c.html")
 
 
 (rt:define-gfunction (string-prepend-len "g_string_prepend_len") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (val :string) (len :ssize))
-                     :return (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (val :string)
+                      (len :ssize))
+                     :return (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Prepends LEN bytes of VAL to STRING.
 
 C: g_string_prepend_len
@@ -14146,8 +15486,8 @@ See: https://docs.gtk.org/glib/method.String.prepend_len.html")
 
 
 (rt:define-gfunction (string-prepend-unichar "g_string_prepend_unichar") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (wc :uint32)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (wc :uint32)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts a Unicode character into UTF-8, and prepends it
 to the string.
 
@@ -14156,7 +15496,7 @@ See: https://docs.gtk.org/glib/method.String.prepend_unichar.html")
 
 
 (rt:define-gfunction (string-replace "g_string_replace") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (find :string)
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (find :string)
                       (replace :string) (limit :uint))
                      :return :uint :version "2.68" :documentation
                      "Replaces the string FIND with the string REPLACE in a #GString up to
@@ -14170,8 +15510,8 @@ Since: 2.68")
 
 
 (rt:define-gfunction (string-set-size "g_string_set_size") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (len :size)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (len :size)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Sets the length of a #GString. If the length is less than
 the current length, the string will be truncated. If the
 length is greater than the current length, the contents
@@ -14183,8 +15523,8 @@ See: https://docs.gtk.org/glib/method.String.set_size.html")
 
 
 (rt:define-gfunction (string-truncate "g_string_truncate") :args
-                     ((string (:boxed "GString" "g_gstring_get_type")) (len :size)) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string)) (len :size)) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Cuts off the end of the GString, leaving the first LEN bytes.
 
 C: g_string_truncate
@@ -14192,8 +15532,8 @@ See: https://docs.gtk.org/glib/method.String.truncate.html")
 
 
 (rt:define-gfunction (string-up "g_string_up") :args
-                     ((string (:boxed "GString" "g_gstring_get_type"))) :return
-                     (:boxed "GString" "g_gstring_get_type") :documentation
+                     ((string (:boxed "GString" "g_gstring_get_type" string))) :return
+                     (:boxed "GString" "g_gstring_get_type" string) :documentation
                      "Converts a #GString to uppercase.
 
 C: g_string_up
@@ -14400,8 +15740,8 @@ Since: 2.70")
 (rt:define-gfunction (thread-new "g_thread_new") :args
                      ((name :string) (func (:callback thread-func :async))
                       (data :pointer :user-data-of func))
-                     :return (:boxed "GThread" "g_thread_get_type") :return-transfer :full :version
-                     "2.32" :documentation
+                     :return (:boxed "GThread" "g_thread_get_type" thread) :return-transfer :full
+                     :version "2.32" :documentation
                      "This function creates a new thread. The new thread starts by invoking
 FUNC with the argument data. The thread will run until FUNC returns
 or until g_thread_exit() is called from the new thread. The return value
@@ -14416,8 +15756,8 @@ Since: 2.32")
 (rt:define-gfunction (thread-try-new "g_thread_try_new") :args
                      ((name :string) (func (:callback thread-func :async))
                       (data :pointer :user-data-of func))
-                     :return (:boxed "GThread" "g_thread_get_type") :return-transfer :full :throws
-                     t :version "2.32" :documentation
+                     :return (:boxed "GThread" "g_thread_get_type" thread) :return-transfer :full
+                     :throws t :version "2.32" :documentation
                      "This function is the same as g_thread_new() except that
 it allows for the possibility of failure.
 
@@ -14438,8 +15778,9 @@ C: g_thread_exit
 See: https://docs.gtk.org/glib/type_func.Thread.exit.html")
 
 
-(rt:define-gfunction (thread-self "g_thread_self") :return (:boxed "GThread" "g_thread_get_type")
-                     :documentation "This function returns the #GThread corresponding to the
+(rt:define-gfunction (thread-self "g_thread_self") :return
+                     (:boxed "GThread" "g_thread_get_type" thread) :documentation
+                     "This function returns the #GThread corresponding to the
 current thread. Note that this function does not increase
 the reference count of the returned struct.
 
@@ -14456,8 +15797,8 @@ See: https://docs.gtk.org/glib/type_func.Thread.yield.html")
 
 
 (rt:define-gfunction (thread-get-name "g_thread_get_name") :args
-                     ((thread (:boxed "GThread" "g_thread_get_type"))) :return :string :version
-                     "2.84" :documentation "Gets the name of the thread.
+                     ((thread (:boxed "GThread" "g_thread_get_type" thread))) :return :string
+                     :version "2.84" :documentation "Gets the name of the thread.
 
 C: g_thread_get_name
 See: https://docs.gtk.org/glib/method.Thread.get_name.html
@@ -14465,8 +15806,8 @@ Since: 2.84")
 
 
 (rt:define-gfunction (thread-join "g_thread_join") :args
-                     ((thread (:boxed "GThread" "g_thread_get_type") :transfer :full)) :return
-                     :pointer :return-transfer :full :documentation
+                     ((thread (:boxed "GThread" "g_thread_get_type" thread) :transfer :full))
+                     :return :pointer :return-transfer :full :documentation
                      "Waits until THREAD finishes, i.e. the function FUNC, as
 given to g_thread_new(), returns or g_thread_exit() is called.
 If THREAD has already terminated, then g_thread_join()
@@ -14477,9 +15818,9 @@ See: https://docs.gtk.org/glib/method.Thread.join.html")
 
 
 (rt:define-gfunction (thread-ref "g_thread_ref") :args
-                     ((thread (:boxed "GThread" "g_thread_get_type"))) :return
-                     (:boxed "GThread" "g_thread_get_type") :return-transfer :full :version "2.32"
-                     :documentation "Increase the reference count on THREAD.
+                     ((thread (:boxed "GThread" "g_thread_get_type" thread))) :return
+                     (:boxed "GThread" "g_thread_get_type" thread) :return-transfer :full :version
+                     "2.32" :documentation "Increase the reference count on THREAD.
 
 C: g_thread_ref
 See: https://docs.gtk.org/glib/method.Thread.ref.html
@@ -14487,8 +15828,8 @@ Since: 2.32")
 
 
 (rt:define-gfunction (thread-unref "g_thread_unref") :args
-                     ((thread (:boxed "GThread" "g_thread_get_type") :transfer :full)) :version
-                     "2.32" :documentation
+                     ((thread (:boxed "GThread" "g_thread_get_type" thread) :transfer :full))
+                     :version "2.32" :documentation
                      "Decrease the reference count on THREAD, possibly freeing all
 resources associated with it.
 
@@ -14616,6 +15957,19 @@ See: https://docs.gtk.org/glib/method.ThreadPool.set_max_threads.html")
 
 C: g_thread_pool_unprocessed
 See: https://docs.gtk.org/glib/method.ThreadPool.unprocessed.html")
+
+
+(rt:define-gfunction (time-val-from-iso8601 "g_time_val_from_iso8601") :args
+                     ((iso-date :string)
+                      (time- (:record time-val) :direction :out :caller-allocates t))
+                     :return :boolean :version "2.12" :documentation
+                     "Converts a string containing an ISO 8601 encoded date and time
+to a #GTimeVal and puts it into TIME-.
+
+C: g_time_val_from_iso8601
+See: https://docs.gtk.org/glib/type_func.TimeVal.from_iso8601.html
+Since: 2.12
+Deprecated.")
 
 
 (rt:define-gfunction (time-val-add "g_time_val_add") :args
@@ -15933,7 +17287,8 @@ See: https://docs.gtk.org/glib/type_func.Variant.parse.html")
 
 
 (rt:define-gfunction (variant-parse-error-print-context "g_variant_parse_error_print_context")
-                     :args ((error (:boxed "GError" "g_error_get_type")) (source-str :string))
+                     :args
+                     ((error (:boxed "GError" "g_error_get_type" error)) (source-str :string))
                      :return :string :return-transfer :full :version "2.40" :documentation
                      "Pretty-prints a message showing the context of a #GVariant parse
 error within the string for which parsing was attempted.
@@ -16438,8 +17793,8 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-new "g_variant_builder_new") :args ((type :pointer)) :return
-                     (:boxed "GVariantBuilder" "g_variant_builder_get_type") :return-transfer :full
-                     :version "2.24" :documentation
+                     (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)
+                     :return-transfer :full :version "2.24" :documentation
                      "Allocates and initialises a new #GVariantBuilder.
 
 C: g_variant_builder_new
@@ -16448,7 +17803,8 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-add-value "g_variant_builder_add_value") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type"))
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder))
                       (value :pointer))
                      :version "2.24" :documentation "Adds VALUE to BUILDER.
 
@@ -16458,8 +17814,9 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-close "g_variant_builder_close") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type"))) :version
-                     "2.24" :documentation
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)))
+                     :version "2.24" :documentation
                      "Closes the subcontainer inside the given BUILDER that was opened by
 the most recent call to g_variant_builder_open().
 
@@ -16469,8 +17826,9 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-end "g_variant_builder_end") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type"))) :return
-                     :pointer :version "2.24" :documentation
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)))
+                     :return :pointer :version "2.24" :documentation
                      "Ends the builder process and returns the constructed value.
 
 C: g_variant_builder_end
@@ -16479,7 +17837,8 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-open "g_variant_builder_open") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type"))
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder))
                       (type :pointer))
                      :version "2.24" :documentation
                      "Opens a subcontainer inside the given BUILDER.  When done adding
@@ -16493,9 +17852,12 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-ref "g_variant_builder_ref") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type"))) :return
-                     (:boxed "GVariantBuilder" "g_variant_builder_get_type") :return-transfer :full
-                     :version "2.24" :documentation "Increases the reference count on BUILDER.
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)))
+                     :return
+                     (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)
+                     :return-transfer :full :version "2.24" :documentation
+                     "Increases the reference count on BUILDER.
 
 C: g_variant_builder_ref
 See: https://docs.gtk.org/glib/method.VariantBuilder.ref.html
@@ -16503,8 +17865,9 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-builder-unref "g_variant_builder_unref") :args
-                     ((builder (:boxed "GVariantBuilder" "g_variant_builder_get_type") :transfer
-                       :full))
+                     ((builder
+                       (:boxed "GVariantBuilder" "g_variant_builder_get_type" variant-builder)
+                       :transfer :full))
                      :version "2.24" :documentation "Decreases the reference count on BUILDER.
 
 C: g_variant_builder_unref
@@ -16513,8 +17876,9 @@ Since: 2.24")
 
 
 (rt:define-gfunction (variant-dict-new "g_variant_dict_new") :args ((from-asv :pointer)) :return
-                     (:boxed "GVariantDict" "g_variant_dict_get_type") :return-transfer :full
-                     :version "2.40" :documentation "Allocates and initialises a new #GVariantDict.
+                     (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)
+                     :return-transfer :full :version "2.40" :documentation
+                     "Allocates and initialises a new #GVariantDict.
 
 C: g_variant_dict_new
 See: https://docs.gtk.org/glib/ctor.VariantDict.new.html
@@ -16522,8 +17886,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-clear "g_variant_dict_clear") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type"))) :version "2.40"
-                     :documentation
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)))
+                     :version "2.40" :documentation
                      "Releases all memory associated with a #GVariantDict without freeing
 the #GVariantDict structure itself.
 
@@ -16533,7 +17897,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-contains "g_variant_dict_contains") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type")) (key :string))
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict))
+                      (key :string))
                      :return :boolean :version "2.40" :documentation "Checks if KEY exists in DICT.
 
 C: g_variant_dict_contains
@@ -16542,8 +17907,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-end "g_variant_dict_end") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type"))) :return :pointer
-                     :version "2.40" :documentation
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)))
+                     :return :pointer :version "2.40" :documentation
                      "Returns the current value of DICT as a #GVariant of type
 G_VARIANT_TYPE_VARDICT, clearing it in the process.
 
@@ -16553,8 +17918,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-insert-value "g_variant_dict_insert_value") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type")) (key :string)
-                      (value :pointer))
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict))
+                      (key :string) (value :pointer))
                      :version "2.40" :documentation "Inserts (or replaces) a key in a #GVariantDict.
 
 C: g_variant_dict_insert_value
@@ -16563,8 +17928,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-lookup-value "g_variant_dict_lookup_value") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type")) (key :string)
-                      (expected-type :pointer :optional t))
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict))
+                      (key :string) (expected-type :pointer :optional t))
                      :return :pointer :return-transfer :full :version "2.40" :documentation
                      "Looks up a value in a #GVariantDict.
 
@@ -16574,9 +17939,10 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-ref "g_variant_dict_ref") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type"))) :return
-                     (:boxed "GVariantDict" "g_variant_dict_get_type") :return-transfer :full
-                     :version "2.40" :documentation "Increases the reference count on DICT.
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)))
+                     :return (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)
+                     :return-transfer :full :version "2.40" :documentation
+                     "Increases the reference count on DICT.
 
 C: g_variant_dict_ref
 See: https://docs.gtk.org/glib/method.VariantDict.ref.html
@@ -16584,7 +17950,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-remove "g_variant_dict_remove") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type")) (key :string))
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict))
+                      (key :string))
                      :return :boolean :version "2.40" :documentation
                      "Removes a key and its associated value from a #GVariantDict.
 
@@ -16594,7 +17961,8 @@ Since: 2.40")
 
 
 (rt:define-gfunction (variant-dict-unref "g_variant_dict_unref") :args
-                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type") :transfer :full))
+                     ((dict (:boxed "GVariantDict" "g_variant_dict_get_type" variant-dict)
+                       :transfer :full))
                      :version "2.40" :documentation "Decreases the reference count on DICT.
 
 C: g_variant_dict_unref

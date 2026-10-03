@@ -1347,6 +1347,624 @@ C: hb_unicode_funcs_t"))
 
 C: hb_user_data_key_t"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct aat-layout-feature-selector-info-t
+    nil
+  (:name-id :uint)
+  (:enable :int)
+  (:disable :int)
+  (:reserved :uint))
+
+
+(rt:define-gfield aat-layout-feature-selector-info-t-name-id aat-layout-feature-selector-info-t
+                  :name-id :uint :writable t :documentation "The selector's name identifier
+")
+
+
+(rt:define-gfield aat-layout-feature-selector-info-t-enable aat-layout-feature-selector-info-t
+                  :enable (:enum aat-layout-feature-selector-t) :writable t :documentation
+                  "The value to turn the selector on
+")
+
+
+(rt:define-gfield aat-layout-feature-selector-info-t-disable aat-layout-feature-selector-info-t
+                  :disable (:enum aat-layout-feature-selector-t) :writable t :documentation
+                  "The value to turn the selector off
+")
+
+
+(rt:define-gstruct-constructor make-aat-layout-feature-selector-info-t
+                               (:record aat-layout-feature-selector-info-t)
+                               ((name-id :name-id :uint)
+                                (enable :enable (:enum aat-layout-feature-selector-t))
+                                (disable :disable (:enum aat-layout-feature-selector-t)))
+                               :documentation
+                               "A new aat_layout_feature_selector_info_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct color-line-t
+    (:gtype-name "hb_color_line_t")
+  (:data :pointer)
+  (:get-color-stops :pointer)
+  (:get-color-stops-user-data :pointer)
+  (:get-extend :pointer)
+  (:get-extend-user-data :pointer)
+  (:reserved0 :pointer)
+  (:reserved1 :pointer)
+  (:reserved2 :pointer)
+  (:reserved3 :pointer)
+  (:reserved5 :pointer)
+  (:reserved6 :pointer)
+  (:reserved7 :pointer)
+  (:reserved8 :pointer))
+
+
+(rt:define-gstruct color-stop-t
+    (:gtype-name "hb_color_stop_t")
+  (:offset :float)
+  (:is-foreground :int)
+  (:color :uint32))
+
+
+(rt:define-gfield color-stop-t-offset color-stop-t :offset :float :writable t :documentation
+                  "the offset of the color stop
+")
+
+
+(rt:define-gfield color-stop-t-is-foreground color-stop-t :is-foreground :int :writable t
+                  :documentation "whether the color is the foreground
+")
+
+
+(rt:define-gfield color-stop-t-color color-stop-t :color :uint32 :writable t :documentation
+                  "the color, unpremultiplied
+")
+
+
+(rt:define-gstruct-constructor make-color-stop-t
+                               (:boxed "hb_color_stop_t" "hb_gobject_color_stop_get_type"
+                                color-stop-t)
+                               ((offset :offset :float) (is-foreground :is-foreground :int)
+                                (color :color :uint32))
+                               :documentation
+                               "A new color_stop_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct var-num-t
+    (:union t)
+  (:f :float)
+  (:u32 :uint32)
+  (:i32 :int32)
+  (:u16 :uint16 :count 2)
+  (:i16 :int16 :count 2)
+  (:u8 :uint8 :count 4)
+  (:i8 :int8 :count 4))
+
+
+(rt:define-gfield var-num-t-f var-num-t :f :float :writable t :documentation "")
+
+
+(rt:define-gfield var-num-t-u32 var-num-t :u32 :uint32 :writable t :documentation "")
+
+
+(rt:define-gfield var-num-t-i32 var-num-t :i32 :int32 :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-var-num-t (:record var-num-t)
+                               ((f :f :float) (u32 :u32 :uint32) (i32 :i32 :int32)) :documentation
+                               "A new var_num_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct draw-state-t
+    (:gtype-name "hb_draw_state_t")
+  (:path-open :int)
+  (:path-start-x :float)
+  (:path-start-y :float)
+  (:current-x :float)
+  (:current-y :float)
+  (:reserved1 (:union var-num-t))
+  (:reserved2 (:union var-num-t))
+  (:reserved3 (:union var-num-t))
+  (:reserved4 (:union var-num-t))
+  (:reserved5 (:union var-num-t))
+  (:reserved6 (:union var-num-t))
+  (:reserved7 (:union var-num-t)))
+
+
+(rt:define-gfield draw-state-t-path-open draw-state-t :path-open :int :writable t :documentation
+                  "Whether there is an open path
+")
+
+
+(rt:define-gfield draw-state-t-path-start-x draw-state-t :path-start-x :float :writable t
+                  :documentation "X component of the start of current path
+")
+
+
+(rt:define-gfield draw-state-t-path-start-y draw-state-t :path-start-y :float :writable t
+                  :documentation "Y component of the start of current path
+")
+
+
+(rt:define-gfield draw-state-t-current-x draw-state-t :current-x :float :writable t :documentation
+                  "X component of current point
+")
+
+
+(rt:define-gfield draw-state-t-current-y draw-state-t :current-y :float :writable t :documentation
+                  "Y component of current point
+")
+
+
+(rt:define-gstruct-constructor make-draw-state-t
+                               (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"
+                                draw-state-t)
+                               ((path-open :path-open :int) (path-start-x :path-start-x :float)
+                                (path-start-y :path-start-y :float) (current-x :current-x :float)
+                                (current-y :current-y :float))
+                               :documentation
+                               "A new draw_state_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct feature-t
+    (:gtype-name "hb_feature_t")
+  (:tag :uint32)
+  (:value :uint32)
+  (:start :uint)
+  (:end :uint))
+
+
+(rt:define-gfield feature-t-tag feature-t :tag :uint32 :writable t :documentation
+                  "The #hb_tag_t tag of the feature
+")
+
+
+(rt:define-gfield feature-t-value feature-t :value :uint32 :writable t :documentation
+                  "The value of the feature. 0 disables the feature, non-zero (usually
+1) enables the feature.  For features implemented as lookup type 3 (like
+'salt') the VALUE is a one based index into the alternates.
+")
+
+
+(rt:define-gfield feature-t-start feature-t :start :uint :writable t :documentation
+                  "the cluster to start applying this feature setting (inclusive).
+")
+
+
+(rt:define-gfield feature-t-end feature-t :end :uint :writable t :documentation
+                  "the cluster to end applying this feature setting (exclusive).
+")
+
+
+(rt:define-gstruct-constructor make-feature-t
+                               (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)
+                               ((tag :tag :uint32) (value :value :uint32) (start :start :uint)
+                                (end :end :uint))
+                               :documentation
+                               "A new feature_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct font-extents-t
+    nil
+  (:ascender :int32)
+  (:descender :int32)
+  (:line-gap :int32)
+  (:reserved9 :int32)
+  (:reserved8 :int32)
+  (:reserved7 :int32)
+  (:reserved6 :int32)
+  (:reserved5 :int32)
+  (:reserved4 :int32)
+  (:reserved3 :int32)
+  (:reserved2 :int32)
+  (:reserved1 :int32))
+
+
+(rt:define-gfield font-extents-t-ascender font-extents-t :ascender :int32 :writable t
+                  :documentation "The height of typographic ascenders.
+")
+
+
+(rt:define-gfield font-extents-t-descender font-extents-t :descender :int32 :writable t
+                  :documentation "The depth of typographic descenders.
+")
+
+
+(rt:define-gfield font-extents-t-line-gap font-extents-t :line-gap :int32 :writable t
+                  :documentation "The suggested line-spacing gap.
+")
+
+
+(rt:define-gstruct-constructor make-font-extents-t (:record font-extents-t)
+                               ((ascender :ascender :int32) (descender :descender :int32)
+                                (line-gap :line-gap :int32))
+                               :documentation
+                               "A new font_extents_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct glyph-extents-t
+    nil
+  (:x-bearing :int32)
+  (:y-bearing :int32)
+  (:width :int32)
+  (:height :int32))
+
+
+(rt:define-gfield glyph-extents-t-x-bearing glyph-extents-t :x-bearing :int32 :writable t
+                  :documentation "Distance from the x-origin to the left extremum of the glyph.
+")
+
+
+(rt:define-gfield glyph-extents-t-y-bearing glyph-extents-t :y-bearing :int32 :writable t
+                  :documentation "Distance from the top extremum of the glyph to the y-origin.
+")
+
+
+(rt:define-gfield glyph-extents-t-width glyph-extents-t :width :int32 :writable t :documentation
+                  "Distance from the left extremum of the glyph to the right extremum.
+")
+
+
+(rt:define-gfield glyph-extents-t-height glyph-extents-t :height :int32 :writable t :documentation
+                  "Distance from the top extremum of the glyph to the bottom extremum.
+")
+
+
+(rt:define-gstruct-constructor make-glyph-extents-t (:record glyph-extents-t)
+                               ((x-bearing :x-bearing :int32) (y-bearing :y-bearing :int32)
+                                (width :width :int32) (height :height :int32))
+                               :documentation
+                               "A new glyph_extents_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct var-int-t
+    (:union t)
+  (:u32 :uint32)
+  (:i32 :int32)
+  (:u16 :uint16 :count 2)
+  (:i16 :int16 :count 2)
+  (:u8 :uint8 :count 4)
+  (:i8 :int8 :count 4))
+
+
+(rt:define-gfield var-int-t-u32 var-int-t :u32 :uint32 :writable t :documentation "")
+
+
+(rt:define-gfield var-int-t-i32 var-int-t :i32 :int32 :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-var-int-t (:record var-int-t)
+                               ((u32 :u32 :uint32) (i32 :i32 :int32)) :documentation
+                               "A new var_int_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct glyph-info-t
+    (:gtype-name "hb_glyph_info_t")
+  (:codepoint :uint32)
+  (:mask :uint32)
+  (:cluster :uint32)
+  (:var1 (:union var-int-t))
+  (:var2 (:union var-int-t)))
+
+
+(rt:define-gfield glyph-info-t-codepoint glyph-info-t :codepoint :uint32 :writable t :documentation
+                  "either a Unicode code point (before shaping) or a glyph index
+            (after shaping).
+")
+
+
+(rt:define-gfield glyph-info-t-cluster glyph-info-t :cluster :uint32 :writable t :documentation
+                  "the index of the character in the original text that corresponds
+          to this #hb_glyph_info_t, or whatever the client passes to
+          hb_buffer_add(). More than one #hb_glyph_info_t can have the same
+          CLUSTER value, if they resulted from the same character (e.g. one
+          to many glyph substitution), and when more than one character gets
+          merged in the same glyph (e.g. many to one glyph substitution) the
+          #hb_glyph_info_t will have the smallest cluster value of them.
+          By default some characters are merged into the same cluster
+          (e.g. combining marks have the same cluster as their bases)
+          even if they are separate glyphs, hb_buffer_set_cluster_level()
+          allow selecting more fine-grained cluster handling.
+")
+
+
+(rt:define-gstruct-constructor make-glyph-info-t
+                               (:boxed "hb_glyph_info_t" "hb_gobject_glyph_info_get_type"
+                                glyph-info-t)
+                               ((codepoint :codepoint :uint32) (cluster :cluster :uint32))
+                               :documentation
+                               "A new glyph_info_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct glyph-position-t
+    (:gtype-name "hb_glyph_position_t")
+  (:x-advance :int32)
+  (:y-advance :int32)
+  (:x-offset :int32)
+  (:y-offset :int32)
+  (:var (:union var-int-t)))
+
+
+(rt:define-gfield glyph-position-t-x-advance glyph-position-t :x-advance :int32 :writable t
+                  :documentation "how much the line advances after drawing this glyph when setting
+            text in horizontal direction.
+")
+
+
+(rt:define-gfield glyph-position-t-y-advance glyph-position-t :y-advance :int32 :writable t
+                  :documentation "how much the line advances after drawing this glyph when setting
+            text in vertical direction.
+")
+
+
+(rt:define-gfield glyph-position-t-x-offset glyph-position-t :x-offset :int32 :writable t
+                  :documentation "how much the glyph moves on the X-axis before drawing it, this
+           should not affect how much the line advances.
+")
+
+
+(rt:define-gfield glyph-position-t-y-offset glyph-position-t :y-offset :int32 :writable t
+                  :documentation "how much the glyph moves on the Y-axis before drawing it, this
+           should not affect how much the line advances.
+")
+
+
+(rt:define-gstruct-constructor make-glyph-position-t
+                               (:boxed "hb_glyph_position_t" "hb_gobject_glyph_position_get_type"
+                                glyph-position-t)
+                               ((x-advance :x-advance :int32) (y-advance :y-advance :int32)
+                                (x-offset :x-offset :int32) (y-offset :y-offset :int32))
+                               :documentation
+                               "A new glyph_position_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-color-layer-t
+    nil
+  (:glyph :uint32)
+  (:color-index :uint))
+
+
+(rt:define-gfield ot-color-layer-t-glyph ot-color-layer-t :glyph :uint32 :writable t :documentation
+                  "the glyph ID of the layer
+")
+
+
+(rt:define-gfield ot-color-layer-t-color-index ot-color-layer-t :color-index :uint :writable t
+                  :documentation "the palette color index of the layer
+")
+
+
+(rt:define-gstruct-constructor make-ot-color-layer-t (:record ot-color-layer-t)
+                               ((glyph :glyph :uint32) (color-index :color-index :uint))
+                               :documentation
+                               "A new ot_color_layer_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-math-glyph-part-t
+    (:gtype-name "hb_ot_math_glyph_part_t")
+  (:glyph :uint32)
+  (:start-connector-length :int32)
+  (:end-connector-length :int32)
+  (:full-advance :int32)
+  (:flags :uint))
+
+
+(rt:define-gfield ot-math-glyph-part-t-glyph ot-math-glyph-part-t :glyph :uint32 :writable t
+                  :documentation "The glyph index of the variant part
+")
+
+
+(rt:define-gfield ot-math-glyph-part-t-start-connector-length ot-math-glyph-part-t
+                  :start-connector-length :int32 :writable t :documentation
+                  "The length of the connector on the starting side of the variant part
+")
+
+
+(rt:define-gfield ot-math-glyph-part-t-end-connector-length ot-math-glyph-part-t
+                  :end-connector-length :int32 :writable t :documentation
+                  "The length of the connector on the ending side of the variant part
+")
+
+
+(rt:define-gfield ot-math-glyph-part-t-full-advance ot-math-glyph-part-t :full-advance :int32
+                  :writable t :documentation "The total advance of the part
+")
+
+
+(rt:define-gfield ot-math-glyph-part-t-flags ot-math-glyph-part-t :flags
+                  (:flags ot-math-glyph-part-flags-t) :writable t :documentation
+                  "#hb_ot_math_glyph_part_flags_t flags for the part
+")
+
+
+(rt:define-gstruct-constructor make-ot-math-glyph-part-t
+                               (:boxed "hb_ot_math_glyph_part_t"
+                                "hb_gobject_ot_math_glyph_part_get_type" ot-math-glyph-part-t)
+                               ((glyph :glyph :uint32)
+                                (start-connector-length :start-connector-length :int32)
+                                (end-connector-length :end-connector-length :int32)
+                                (full-advance :full-advance :int32)
+                                (flags :flags (:flags ot-math-glyph-part-flags-t)))
+                               :documentation
+                               "A new ot_math_glyph_part_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-math-glyph-variant-t
+    (:gtype-name "hb_ot_math_glyph_variant_t")
+  (:glyph :uint32)
+  (:advance :int32))
+
+
+(rt:define-gfield ot-math-glyph-variant-t-glyph ot-math-glyph-variant-t :glyph :uint32 :writable t
+                  :documentation "The glyph index of the variant
+")
+
+
+(rt:define-gfield ot-math-glyph-variant-t-advance ot-math-glyph-variant-t :advance :int32 :writable
+                  t :documentation "The advance width of the variant
+")
+
+
+(rt:define-gstruct-constructor make-ot-math-glyph-variant-t
+                               (:boxed "hb_ot_math_glyph_variant_t"
+                                "hb_gobject_ot_math_glyph_variant_get_type"
+                                ot-math-glyph-variant-t)
+                               ((glyph :glyph :uint32) (advance :advance :int32)) :documentation
+                               "A new ot_math_glyph_variant_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-math-kern-entry-t
+    nil
+  (:max-correction-height :int32)
+  (:kern-value :int32))
+
+
+(rt:define-gfield ot-math-kern-entry-t-max-correction-height ot-math-kern-entry-t
+                  :max-correction-height :int32 :writable t :documentation
+                  "The maximum height at which this entry should be used
+")
+
+
+(rt:define-gfield ot-math-kern-entry-t-kern-value ot-math-kern-entry-t :kern-value :int32 :writable
+                  t :documentation "The kern value of the entry
+")
+
+
+(rt:define-gstruct-constructor make-ot-math-kern-entry-t (:record ot-math-kern-entry-t)
+                               ((max-correction-height :max-correction-height :int32)
+                                (kern-value :kern-value :int32))
+                               :documentation
+                               "A new ot_math_kern_entry_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-var-axis-info-t
+    (:gtype-name "hb_ot_var_axis_info_t")
+  (:axis-index :uint)
+  (:tag :uint32)
+  (:name-id :uint)
+  (:flags :uint)
+  (:min-value :float)
+  (:default-value :float)
+  (:max-value :float)
+  (:reserved :uint))
+
+
+(rt:define-gfield ot-var-axis-info-t-axis-index ot-var-axis-info-t :axis-index :uint :writable t
+                  :documentation "Index of the axis in the variation-axis array
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-tag ot-var-axis-info-t :tag :uint32 :writable t :documentation
+                  "The #hb_tag_t tag identifying the design variation of the axis
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-name-id ot-var-axis-info-t :name-id :uint :writable t
+                  :documentation "The `name` table Name ID that provides display names for the axis
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-flags ot-var-axis-info-t :flags (:flags ot-var-axis-flags-t)
+                  :writable t :documentation "The #hb_ot_var_axis_flags_t flags for the axis
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-min-value ot-var-axis-info-t :min-value :float :writable t
+                  :documentation "The minimum value on the variation axis that the font covers
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-default-value ot-var-axis-info-t :default-value :float
+                  :writable t :documentation
+                  "The position on the variation axis corresponding to the font's defaults
+")
+
+
+(rt:define-gfield ot-var-axis-info-t-max-value ot-var-axis-info-t :max-value :float :writable t
+                  :documentation "The maximum value on the variation axis that the font covers
+")
+
+
+(rt:define-gstruct-constructor make-ot-var-axis-info-t
+                               (:boxed "hb_ot_var_axis_info_t"
+                                "hb_gobject_ot_var_axis_info_get_type" ot-var-axis-info-t)
+                               ((axis-index :axis-index :uint) (tag :tag :uint32)
+                                (name-id :name-id :uint)
+                                (flags :flags (:flags ot-var-axis-flags-t))
+                                (min-value :min-value :float) (default-value :default-value :float)
+                                (max-value :max-value :float))
+                               :documentation
+                               "A new ot_var_axis_info_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct ot-var-axis-t
+    nil
+  (:tag :uint32)
+  (:name-id :uint)
+  (:min-value :float)
+  (:default-value :float)
+  (:max-value :float))
+
+
+(rt:define-gfield ot-var-axis-t-tag ot-var-axis-t :tag :uint32 :writable t :documentation "axis tag
+")
+
+
+(rt:define-gfield ot-var-axis-t-name-id ot-var-axis-t :name-id :uint :writable t :documentation
+                  "axis name identifier
+")
+
+
+(rt:define-gfield ot-var-axis-t-min-value ot-var-axis-t :min-value :float :writable t
+                  :documentation "minimum value of the axis
+")
+
+
+(rt:define-gfield ot-var-axis-t-default-value ot-var-axis-t :default-value :float :writable t
+                  :documentation "default value of the axis
+")
+
+
+(rt:define-gfield ot-var-axis-t-max-value ot-var-axis-t :max-value :float :writable t
+                  :documentation "maximum value of the axis
+")
+
+
+(rt:define-gstruct-constructor make-ot-var-axis-t (:record ot-var-axis-t)
+                               ((tag :tag :uint32) (name-id :name-id :uint)
+                                (min-value :min-value :float) (default-value :default-value :float)
+                                (max-value :max-value :float))
+                               :documentation
+                               "A new ot_var_axis_t with the given fields; others are zero.")
+
+
+(rt:define-gstruct user-data-key-t
+    (:gtype-name "hb_user_data_key_t")
+  (:unused :char))
+
+
+(rt:define-gstruct variation-t
+    nil
+  (:tag :uint32)
+  (:value :float))
+
+
+(rt:define-gfield variation-t-tag variation-t :tag :uint32 :writable t :documentation
+                  "The #hb_tag_t tag of the variation-axis name
+")
+
+
+(rt:define-gfield variation-t-value variation-t :value :float :writable t :documentation
+                  "The value of the variation axis
+")
+
+
+(rt:define-gstruct-constructor make-variation-t (:record variation-t)
+                               ((tag :tag :uint32) (value :value :float)) :documentation
+                               "A new variation_t with the given fields; others are zero.")
+
 ;;; Properties
 
 ;;; Callback types
@@ -1374,7 +1992,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                        (draw-data :pointer)
-                       (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                       (st
+                        (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                        (user-data :pointer :user-data t))))
 
 
@@ -1382,7 +2001,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                        (draw-data :pointer)
-                       (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                       (st
+                        (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                        (control1-x :float) (control1-y :float) (control2-x :float)
                        (control2-y :float) (to-x :float) (to-y :float)
                        (user-data :pointer :user-data t))))
@@ -1406,7 +2026,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                        (draw-data :pointer)
-                       (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                       (st
+                        (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                        (to-x :float) (to-y :float) (user-data :pointer :user-data t))))
 
 
@@ -1414,7 +2035,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                        (draw-data :pointer)
-                       (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                       (st
+                        (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                        (to-x :float) (to-y :float) (user-data :pointer :user-data t))))
 
 
@@ -1422,7 +2044,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                        (draw-data :pointer)
-                       (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                       (st
+                        (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                        (control-x :float) (control-y :float) (to-x :float) (to-y :float)
                        (user-data :pointer :user-data t))))
 
@@ -1546,7 +2169,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                        (paint-data :pointer)
-                       (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                       (color-line
+                        (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                        (x0 :float) (y0 :float) (x1 :float) (y1 :float) (x2 :float) (y2 :float)
                        (user-data :pointer :user-data t))))
 
@@ -1615,7 +2239,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                        (paint-data :pointer)
-                       (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                       (color-line
+                        (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                        (x0 :float) (y0 :float) (r0 :float) (x1 :float) (y1 :float) (r1 :float)
                        (user-data :pointer :user-data t))))
 
@@ -1631,7 +2256,8 @@ C: hb_user_data_key_t"))
                      (:args
                       ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                        (paint-data :pointer)
-                       (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                       (color-line
+                        (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                        (x0 :float) (y0 :float) (start-angle :float) (end-angle :float)
                        (user-data :pointer :user-data t))))
 
@@ -1702,6 +2328,21 @@ C: hb_user_data_key_t"))
                      "Fetches the name identifier of the specified feature type in the face's `name` table.
 
 C: hb_aat_layout_feature_type_get_name_id
+Since: 2.2.0")
+
+
+(rt:define-gfunction
+ (aat-layout-feature-type-get-selector-infos "hb_aat_layout_feature_type_get_selector_infos") :args
+ ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
+  (feature-type (:enum aat-layout-feature-type-t)) (start-offset :uint)
+  (selector-count :uint :length-of selectors :direction :out)
+  (selectors (:array (:record aat-layout-feature-selector-info-t) :caller-allocates t) :direction
+   :out)
+  (default-index :uint :direction :out :transfer :full))
+ :return :uint :version "2.2.0" :documentation
+ "Fetches a list of the selectors available for the specified feature in the given face.
+
+C: hb_aat_layout_feature_type_get_selector_infos
 Since: 2.2.0")
 
 
@@ -2063,6 +2704,35 @@ Since: 0.9.2")
 
 C: hb_buffer_get_flags
 Since: 0.9.7")
+
+
+(rt:define-gfunction (buffer-get-glyph-infos "hb_buffer_get_glyph_infos") :args
+                     ((buffer (:boxed "hb_buffer_t" "hb_gobject_buffer_get_type"))
+                      (length :uint :length-of :return :direction :out))
+                     :return
+                     (:array
+                      (:boxed "hb_glyph_info_t" "hb_gobject_glyph_info_get_type" glyph-info-t))
+                     :version "0.9.2" :documentation
+                     "Returns BUFFER glyph information array.  Returned pointer
+is valid as long as BUFFER contents are not modified.
+
+C: hb_buffer_get_glyph_infos
+Since: 0.9.2")
+
+
+(rt:define-gfunction (buffer-get-glyph-positions "hb_buffer_get_glyph_positions") :args
+                     ((buffer (:boxed "hb_buffer_t" "hb_gobject_buffer_get_type"))
+                      (length :uint :length-of :return :direction :out))
+                     :return
+                     (:array
+                      (:boxed "hb_glyph_position_t" "hb_gobject_glyph_position_get_type"
+                       glyph-position-t))
+                     :version "0.9.2" :documentation
+                     "Returns BUFFER glyph position array.  Returned pointer
+is valid as long as BUFFER contents are not modified.
+
+C: hb_buffer_get_glyph_positions
+Since: 0.9.2")
 
 
 (rt:define-gfunction (buffer-get-invisible-glyph "hb_buffer_get_invisible_glyph") :args
@@ -2518,8 +3188,25 @@ C: hb_color_get_red
 Since: 2.1.0")
 
 
+(rt:define-gfunction (color-line-get-color-stops "hb_color_line_get_color_stops") :args
+                     ((color-line
+                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
+                      (start :uint) (count :uint :length-of color-stops :direction :out)
+                      (color-stops
+                       (:array
+                        (:boxed "hb_color_stop_t" "hb_gobject_color_stop_get_type" color-stop-t)
+                        :caller-allocates t)
+                       :direction :out))
+                     :return :uint :version "7.0.0" :documentation
+                     "Fetches a list of color stops from the given color line object.
+
+C: hb_color_line_get_color_stops
+Since: 7.0.0")
+
+
 (rt:define-gfunction (color-line-get-extend "hb_color_line_get_extend") :args
-                     ((color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type")))
+                     ((color-line
+                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t)))
                      :return (:enum paint-extend-t) :version "7.0.0" :documentation
                      "Fetches the extend mode of the color line object.
 
@@ -2546,8 +3233,8 @@ Since: 0.9.2")
 (rt:define-gfunction (draw-circle "hb_draw_circle") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type")) (cx :float)
-                      (cy :float) (r :float) (stroke-width :float))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
+                      (cx :float) (cy :float) (r :float) (stroke-width :float))
                      :version "14.2.0" :documentation
                      "Emits a circle approximated by four cubic Bezier curves.  If
 STROKE-WIDTH is a finite positive value, the circle is
@@ -2562,7 +3249,8 @@ Since: 14.2.0")
 (rt:define-gfunction (draw-close-path "hb_draw_close_path") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type")))
+                      (st
+                       (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t)))
                      :version "4.0.0" :documentation "Perform a \"close-path\" draw operation.
 
 C: hb_draw_close_path
@@ -2572,7 +3260,7 @@ Since: 4.0.0")
 (rt:define-gfunction (draw-cubic-to "hb_draw_cubic_to") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                       (control1-x :float) (control1-y :float) (control2-x :float)
                       (control2-y :float) (to-x :float) (to-y :float))
                      :version "4.0.0" :documentation "Perform a \"cubic-to\" draw operation.
@@ -2725,8 +3413,8 @@ Since: 14.5.0")
 (rt:define-gfunction (draw-line "hb_draw_line") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type")) (x0 :float)
-                      (y0 :float) (w0 :float) (x1 :float) (y1 :float) (w1 :float)
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
+                      (x0 :float) (y0 :float) (w0 :float) (x1 :float) (y1 :float) (w1 :float)
                       (cap (:enum draw-line-cap-t)))
                      :version "14.2.0" :documentation
                      "Emits a tapered line segment as a filled trapezoid.  W0 and
@@ -2742,7 +3430,7 @@ Since: 14.2.0")
 (rt:define-gfunction (draw-line-to "hb_draw_line_to") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                       (to-x :float) (to-y :float))
                      :version "4.0.0" :documentation "Perform a \"line-to\" draw operation.
 
@@ -2753,7 +3441,7 @@ Since: 4.0.0")
 (rt:define-gfunction (draw-move-to "hb_draw_move_to") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                       (to-x :float) (to-y :float))
                      :version "4.0.0" :documentation "Perform a \"move-to\" draw operation.
 
@@ -2764,7 +3452,7 @@ Since: 4.0.0")
 (rt:define-gfunction (draw-quadratic-to "hb_draw_quadratic_to") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type"))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
                       (control-x :float) (control-y :float) (to-x :float) (to-y :float))
                      :version "4.0.0" :documentation "Perform a \"quadratic-to\" draw operation.
 
@@ -2775,8 +3463,8 @@ Since: 4.0.0")
 (rt:define-gfunction (draw-rectangle "hb_draw_rectangle") :args
                      ((dfuncs (:boxed "hb_draw_funcs_t" "hb_gobject_draw_funcs_get_type"))
                       (draw-data :pointer)
-                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type")) (x :float)
-                      (y :float) (w :float) (h :float) (stroke-width :float))
+                      (st (:boxed "hb_draw_state_t" "hb_gobject_draw_state_get_type" draw-state-t))
+                      (x :float) (y :float) (w :float) (h :float) (stroke-width :float))
                      :version "14.2.0" :documentation
                      "Emits an axis-aligned rectangle.  If STROKE-WIDTH is a finite
 positive value, the rectangle is rendered as an outlined ring
@@ -3037,8 +3725,19 @@ C: hb_face_set_upem
 Since: 0.9.2")
 
 
+(rt:define-gfunction (feature-from-string "hb_feature_from_string") :args
+                     ((str (:array :uint8)) (len :int :length-of str)
+                      (feature (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)
+                       :direction :out :caller-allocates t))
+                     :return :int :version "0.9.5" :documentation
+                     "Parses a string into a #hb_feature_t.
+
+C: hb_feature_from_string
+Since: 0.9.5")
+
+
 (rt:define-gfunction (feature-to-string "hb_feature_to_string") :args
-                     ((feature (:boxed "hb_feature_t" "hb_gobject_feature_get_type"))
+                     ((feature (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t))
                       (buf (:array :string) :direction :out :transfer :full)
                       (size :uint :length-of buf :direction :out))
                      :version "0.9.5" :documentation
@@ -3207,6 +3906,18 @@ C: hb_font_get_empty
 Since: 0.9.2")
 
 
+(rt:define-gfunction (font-get-extents-for-direction "hb_font_get_extents_for_direction") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (direction (:enum direction-t))
+                      (extents (:record font-extents-t) :direction :out :caller-allocates t))
+                     :version "1.1.3" :documentation
+                     "Fetches the extents for a font in a text segment of the
+specified direction.
+
+C: hb_font_get_extents_for_direction
+Since: 1.1.3")
+
+
 (rt:define-gfunction (font-get-face "hb_font_get_face") :args
                      ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))) :return
                      (:boxed "hb_face_t" "hb_gobject_face_get_type") :version "0.9.2"
@@ -3275,6 +3986,31 @@ in the specified glyph ID in the specified font, with respect
 to the origin in a text segment in the specified direction.
 
 C: hb_font_get_glyph_contour_point_for_origin
+Since: 0.9.2")
+
+
+(rt:define-gfunction (font-get-glyph-extents "hb_font_get_glyph_extents") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
+                      (extents (:record glyph-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "0.9.2" :documentation
+                     "Fetches the #hb_glyph_extents_t data for a glyph ID
+in the specified font.
+
+C: hb_font_get_glyph_extents
+Since: 0.9.2")
+
+
+(rt:define-gfunction (font-get-glyph-extents-for-origin "hb_font_get_glyph_extents_for_origin")
+                     :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
+                      (direction (:enum direction-t))
+                      (extents (:record glyph-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "0.9.2" :documentation
+                     "Fetches the #hb_glyph_extents_t data for a glyph ID
+in the specified font, with respect to the origin in
+a text segment in the specified direction.
+
+C: hb_font_get_glyph_extents_for_origin
 Since: 0.9.2")
 
 
@@ -3458,6 +4194,17 @@ C: hb_font_get_glyph_v_origins
 Since: 11.3.0")
 
 
+(rt:define-gfunction (font-get-h-extents "hb_font_get_h_extents") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (extents (:record font-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "1.1.3" :documentation
+                     "Fetches the extents for a specified font, for horizontal
+text segments.
+
+C: hb_font_get_h_extents
+Since: 1.1.3")
+
+
 (rt:define-gfunction (font-get-nominal-glyph "hb_font_get_nominal_glyph") :args
                      ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (unicode :uint32)
                       (glyph :uint32 :direction :out :transfer :full))
@@ -3552,6 +4299,17 @@ Since: 7.0.0")
 
 C: hb_font_get_synthetic_slant
 Since: 3.3.0")
+
+
+(rt:define-gfunction (font-get-v-extents "hb_font_get_v_extents") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (extents (:record font-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "1.1.3" :documentation
+                     "Fetches the extents for a specified font, for vertical
+text segments.
+
+C: hb_font_get_v_extents
+Since: 1.1.3")
 
 
 (rt:define-gfunction (font-get-var-coords-design "hb_font_get_var_coords_design") :args
@@ -3821,6 +4579,17 @@ C: hb_font_set_variation
 Since: 7.1.0")
 
 
+(rt:define-gfunction (font-set-variations "hb_font_set_variations") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (variations (:array (:record variation-t)))
+                      (variations-length :uint :length-of variations))
+                     :version "1.4.2" :documentation
+                     "Applies a list of font-variation settings to a font.
+
+C: hb_font_set_variations
+Since: 1.4.2")
+
+
 (rt:define-gfunction (free "hb_free") :args ((ptr :pointer)) :version "11.0.0" :documentation
                      "Frees the memory pointed to by PTR, using the allocator set at
 compile-time. Typically just free().
@@ -3943,8 +4712,9 @@ Since: 0.9.38")
 
 
 (rt:define-gfunction (glyph-info-get-glyph-flags "hb_glyph_info_get_glyph_flags") :args
-                     ((info (:boxed "hb_glyph_info_t" "hb_gobject_glyph_info_get_type"))) :return
-                     (:flags glyph-flags-t) :version "1.5.0" :documentation
+                     ((info
+                       (:boxed "hb_glyph_info_t" "hb_gobject_glyph_info_get_type" glyph-info-t)))
+                     :return (:flags glyph-flags-t) :version "1.5.0" :documentation
                      "Returns glyph flags encoded within a #hb_glyph_info_t.
 
 C: hb_glyph_info_get_glyph_flags
@@ -4153,6 +4923,19 @@ Since: 12.1.0")
 
 C: hb_ot_color_get_svg_document_glyph_range
 Since: 13.0.0")
+
+
+(rt:define-gfunction (ot-color-glyph-get-layers "hb_ot_color_glyph_get_layers") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (glyph :uint32)
+                      (start-offset :uint) (layer-count :uint :length-of layers :direction :out)
+                      (layers (:array (:record ot-color-layer-t) :caller-allocates t) :direction
+                       :out))
+                     :return :uint :version "2.1.0" :documentation
+                     "Fetches a list of all color layers for the specified glyph index in the specified
+face. The list returned will begin at the offset provided.
+
+C: hb_ot_color_glyph_get_layers
+Since: 2.1.0")
 
 
 (rt:define-gfunction
@@ -4438,6 +5221,31 @@ Since: 4.0.0")
 it if the font does not have it.
 
 C: hb_ot_layout_get_baseline_with_fallback2
+Since: 8.0.0")
+
+
+(rt:define-gfunction (ot-layout-get-font-extents "hb_ot_layout_get_font_extents") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (direction (:enum direction-t)) (script-tag :uint32) (language-tag :uint32)
+                      (extents (:record font-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "8.0.0" :documentation
+                     "Fetches script/language-specific font extents.  These values are
+looked up in the `BASE` table's `MinMax` records.
+
+C: hb_ot_layout_get_font_extents
+Since: 8.0.0")
+
+
+(rt:define-gfunction (ot-layout-get-font-extents2 "hb_ot_layout_get_font_extents2") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (direction (:enum direction-t)) (script (:enum script-t))
+                      (language (:record language-t))
+                      (extents (:record font-extents-t) :direction :out :caller-allocates t))
+                     :return :int :version "8.0.0" :documentation
+                     "Fetches script/language-specific font extents.  These values are
+looked up in the `BASE` table's `MinMax` records.
+
+C: hb_ot_layout_get_font_extents2
 Since: 8.0.0")
 
 
@@ -4763,6 +5571,27 @@ C: hb_ot_math_get_constant
 Since: 1.3.3")
 
 
+(rt:define-gfunction (ot-math-get-glyph-assembly "hb_ot_math_get_glyph_assembly") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
+                      (direction (:enum direction-t)) (start-offset :uint)
+                      (parts-count :uint :length-of parts :direction :out)
+                      (parts
+                       (:array
+                        (:boxed "hb_ot_math_glyph_part_t" "hb_gobject_ot_math_glyph_part_get_type"
+                         ot-math-glyph-part-t)
+                        :caller-allocates t)
+                       :direction :out)
+                      (italics-correction :int32 :direction :out :transfer :full))
+                     :return :uint :version "1.3.3" :documentation
+                     "Fetches the GlyphAssembly for the specified font, glyph index, and direction.
+Returned are a list of #hb_ot_math_glyph_part_t glyph parts that can be
+used to draw the glyph and an italics-correction value (if one is defined
+in the font).
+
+C: hb_ot_math_get_glyph_assembly
+Since: 1.3.3")
+
+
 (rt:define-gfunction
  (ot-math-get-glyph-italics-correction "hb_ot_math_get_glyph_italics_correction") :args
  ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)) :return :int32 :version
@@ -4784,6 +5613,21 @@ C: hb_ot_math_get_glyph_kerning
 Since: 1.3.3")
 
 
+(rt:define-gfunction (ot-math-get-glyph-kernings "hb_ot_math_get_glyph_kernings") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
+                      (kern (:enum ot-math-kern-t)) (start-offset :uint)
+                      (entries-count :uint :length-of kern-entries :direction :out)
+                      (kern-entries (:array (:record ot-math-kern-entry-t) :caller-allocates t)
+                       :direction :out))
+                     :return :uint :version "3.4.0" :documentation
+                     "Fetches the raw MathKern (cut-in) data for the specified font, glyph index,
+and KERN. The corresponding list of kern values and correction heights is
+returned as a list of #hb_ot_math_kern_entry_t structs.
+
+C: hb_ot_math_get_glyph_kernings
+Since: 3.4.0")
+
+
 (rt:define-gfunction
  (ot-math-get-glyph-top-accent-attachment "hb_ot_math_get_glyph_top_accent_attachment") :args
  ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)) :return :int32 :version
@@ -4791,6 +5635,25 @@ Since: 1.3.3")
 glyph index.
 
 C: hb_ot_math_get_glyph_top_accent_attachment
+Since: 1.3.3")
+
+
+(rt:define-gfunction (ot-math-get-glyph-variants "hb_ot_math_get_glyph_variants") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type")) (glyph :uint32)
+                      (direction (:enum direction-t)) (start-offset :uint)
+                      (variants-count :uint :length-of variants :direction :out)
+                      (variants
+                       (:array
+                        (:boxed "hb_ot_math_glyph_variant_t"
+                         "hb_gobject_ot_math_glyph_variant_get_type" ot-math-glyph-variant-t)
+                        :caller-allocates t)
+                       :direction :out))
+                     :return :uint :version "1.3.3" :documentation
+                     "Fetches the MathGlyphConstruction for the specified font, glyph index, and
+direction. The corresponding list of size variants is returned as a list of
+#hb_ot_math_glyph_variant_t structs.
+
+C: hb_ot_math_get_glyph_variants
 Since: 1.3.3")
 
 
@@ -5000,6 +5863,47 @@ Since: 0.6.0
 Deprecated.")
 
 
+(rt:define-gfunction (ot-var-find-axis "hb_ot_var_find_axis") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (axis-tag :uint32)
+                      (axis-index :uint)
+                      (axis-info (:record ot-var-axis-t) :direction :out :caller-allocates t))
+                     :return :int :version "1.4.2" :documentation
+                     "Fetches the variation-axis information corresponding to the specified axis tag
+in the specified face.
+
+C: hb_ot_var_find_axis
+Since: 1.4.2
+Deprecated.")
+
+
+(rt:define-gfunction (ot-var-find-axis-info "hb_ot_var_find_axis_info") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (axis-tag :uint32)
+                      (axis-info
+                       (:boxed "hb_ot_var_axis_info_t" "hb_gobject_ot_var_axis_info_get_type"
+                        ot-var-axis-info-t)
+                       :direction :out :caller-allocates t))
+                     :return :int :version "2.2.0" :documentation
+                     "Fetches the variation-axis information corresponding to the specified axis tag
+in the specified face.
+
+C: hb_ot_var_find_axis_info
+Since: 2.2.0")
+
+
+(rt:define-gfunction (ot-var-get-axes "hb_ot_var_get_axes") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
+                      (axes-count :uint :length-of axes-array :direction :out)
+                      (axes-array (:array (:record ot-var-axis-t) :caller-allocates t) :direction
+                       :out))
+                     :return :uint :version "1.4.2" :documentation
+                     "Fetches a list of all variation axes in the specified face. The list returned will begin
+at the offset provided.
+
+C: hb_ot_var_get_axes
+Since: 1.4.2
+Deprecated.")
+
+
 (rt:define-gfunction (ot-var-get-axis-count "hb_ot_var_get_axis_count") :args
                      ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))) :return :uint
                      :version "1.4.2" :documentation
@@ -5007,6 +5911,23 @@ Deprecated.")
 
 C: hb_ot_var_get_axis_count
 Since: 1.4.2")
+
+
+(rt:define-gfunction (ot-var-get-axis-infos "hb_ot_var_get_axis_infos") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type")) (start-offset :uint)
+                      (axes-count :uint :length-of axes-array :direction :out)
+                      (axes-array
+                       (:array
+                        (:boxed "hb_ot_var_axis_info_t" "hb_gobject_ot_var_axis_info_get_type"
+                         ot-var-axis-info-t)
+                        :caller-allocates t)
+                       :direction :out))
+                     :return :uint :version "2.2.0" :documentation
+                     "Fetches a list of all variation axes in the specified face. The list returned will begin
+at the offset provided.
+
+C: hb_ot_var_get_axis_infos
+Since: 2.2.0")
 
 
 (rt:define-gfunction (ot-var-get-named-instance-count "hb_ot_var_get_named_instance_count") :args
@@ -5414,7 +6335,8 @@ Since: 7.0.0")
 (rt:define-gfunction (paint-linear-gradient "hb_paint_linear_gradient") :args
                      ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                       (paint-data :pointer)
-                      (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                      (color-line
+                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                       (x0 :float) (y0 :float) (x1 :float) (y1 :float) (x2 :float) (y2 :float))
                      :version "7.0.0" :documentation "Perform a \"linear-gradient\" paint operation.
 
@@ -5558,7 +6480,8 @@ Since: 7.0.0")
 (rt:define-gfunction (paint-radial-gradient "hb_paint_radial_gradient") :args
                      ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                       (paint-data :pointer)
-                      (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                      (color-line
+                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                       (x0 :float) (y0 :float) (r0 :float) (x1 :float) (y1 :float) (r1 :float))
                      :version "7.0.0" :documentation "Perform a \"radial-gradient\" paint operation.
 
@@ -5599,7 +6522,8 @@ Since: 14.5.0")
 (rt:define-gfunction (paint-sweep-gradient "hb_paint_sweep_gradient") :args
                      ((funcs (:boxed "hb_paint_funcs_t" "hb_gobject_paint_funcs_get_type"))
                       (paint-data :pointer)
-                      (color-line (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type"))
+                      (color-line
+                       (:boxed "hb_color_line_t" "hb_gobject_color_line_get_type" color-line-t))
                       (x0 :float) (y0 :float) (start-angle :float) (end-angle :float))
                      :version "7.0.0" :documentation "Perform a \"sweep-gradient\" paint operation.
 
@@ -5936,11 +6860,127 @@ C: hb_set_union
 Since: 0.9.2")
 
 
+(rt:define-gfunction (shape "hb_shape") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (buffer (:boxed "hb_buffer_t" "hb_gobject_buffer_get_type"))
+                      (features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-features :uint :length-of features))
+                     :version "0.9.2" :documentation
+                     "Shapes BUFFER using FONT turning its Unicode characters content to
+positioned glyphs. If FEATURES is not `NULL`, it will be used to control the
+features applied during shaping. If two FEATURES have the same tag but
+overlapping ranges the value of the feature with the higher index takes
+precedence.
+
+C: hb_shape
+Since: 0.9.2")
+
+
+(rt:define-gfunction (shape-full "hb_shape_full") :args
+                     ((font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (buffer (:boxed "hb_buffer_t" "hb_gobject_buffer_get_type"))
+                      (features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-features :uint :length-of features) (shaper-list :strv :optional t))
+                     :return :int :version "0.9.2" :documentation
+                     "See hb_shape() for details. If SHAPER-LIST is not `NULL`, the specified
+shapers will be used in the given order, otherwise the default shapers list
+will be used.
+
+C: hb_shape_full
+Since: 0.9.2")
+
+
 (rt:define-gfunction (shape-list-shapers "hb_shape_list_shapers") :return :strv :version "0.9.2"
                      :documentation "Retrieves the list of shapers supported by HarfBuzz.
 
 C: hb_shape_list_shapers
 Since: 0.9.2")
+
+
+(rt:define-gfunction (shape-plan-create "hb_shape_plan_create") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
+                      (props
+                       (:boxed "hb_segment_properties_t" "hb_gobject_segment_properties_get_type"))
+                      (user-features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-user-features :uint :length-of user-features) (shaper-list :strv))
+                     :return (:boxed "hb_shape_plan_t" "hb_gobject_shape_plan_get_type")
+                     :return-transfer :full :version "0.9.7" :documentation
+                     "Constructs a shaping plan for a combination of FACE, USER-FEATURES, PROPS,
+and SHAPER-LIST.
+
+C: hb_shape_plan_create
+Since: 0.9.7")
+
+
+(rt:define-gfunction (shape-plan-create2 "hb_shape_plan_create2") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
+                      (props
+                       (:boxed "hb_segment_properties_t" "hb_gobject_segment_properties_get_type"))
+                      (user-features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-user-features :uint :length-of user-features) (coords (:array :int))
+                      (num-coords :uint :length-of coords) (shaper-list :strv))
+                     :return (:boxed "hb_shape_plan_t" "hb_gobject_shape_plan_get_type")
+                     :return-transfer :full :version "1.4.0" :documentation
+                     "The variable-font version of #hb_shape_plan_create.
+Constructs a shaping plan for a combination of FACE, USER-FEATURES, PROPS,
+and SHAPER-LIST, plus the variation-space coordinates COORDS.
+
+C: hb_shape_plan_create2
+Since: 1.4.0")
+
+
+(rt:define-gfunction (shape-plan-create-cached "hb_shape_plan_create_cached") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
+                      (props
+                       (:boxed "hb_segment_properties_t" "hb_gobject_segment_properties_get_type"))
+                      (user-features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-user-features :uint :length-of user-features) (shaper-list :strv))
+                     :return (:boxed "hb_shape_plan_t" "hb_gobject_shape_plan_get_type")
+                     :return-transfer :full :version "0.9.7" :documentation
+                     "Creates a cached shaping plan suitable for reuse, for a combination
+of FACE, USER-FEATURES, PROPS, and SHAPER-LIST.
+
+C: hb_shape_plan_create_cached
+Since: 0.9.7")
+
+
+(rt:define-gfunction (shape-plan-create-cached2 "hb_shape_plan_create_cached2") :args
+                     ((face (:boxed "hb_face_t" "hb_gobject_face_get_type"))
+                      (props
+                       (:boxed "hb_segment_properties_t" "hb_gobject_segment_properties_get_type"))
+                      (user-features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-user-features :uint :length-of user-features) (coords (:array :int))
+                      (num-coords :uint :length-of coords) (shaper-list :strv))
+                     :return (:boxed "hb_shape_plan_t" "hb_gobject_shape_plan_get_type")
+                     :return-transfer :full :version "1.4.0" :documentation
+                     "The variable-font version of #hb_shape_plan_create_cached.
+Creates a cached shaping plan suitable for reuse, for a combination
+of FACE, USER-FEATURES, PROPS, and SHAPER-LIST, plus the
+variation-space coordinates COORDS.
+
+C: hb_shape_plan_create_cached2
+Since: 1.4.0")
+
+
+(rt:define-gfunction (shape-plan-execute "hb_shape_plan_execute") :args
+                     ((shape-plan (:boxed "hb_shape_plan_t" "hb_gobject_shape_plan_get_type"))
+                      (font (:boxed "hb_font_t" "hb_gobject_font_get_type"))
+                      (buffer (:boxed "hb_buffer_t" "hb_gobject_buffer_get_type"))
+                      (features
+                       (:array (:boxed "hb_feature_t" "hb_gobject_feature_get_type" feature-t)))
+                      (num-features :uint :length-of features))
+                     :return :int :version "0.9.7" :documentation
+                     "Executes the given shaping plan on the specified buffer, using
+the given FONT and FEATURES.
+
+C: hb_shape_plan_execute
+Since: 0.9.7")
 
 
 (rt:define-gfunction (shape-plan-get-empty "hb_shape_plan_get_empty") :return
@@ -6215,6 +7255,16 @@ point UNICODE belongs.
 
 C: hb_unicode_script
 Since: 0.9.2")
+
+
+(rt:define-gfunction (variation-from-string "hb_variation_from_string") :args
+                     ((str (:array :uint8)) (len :int :length-of str)
+                      (variation (:record variation-t) :direction :out :caller-allocates t))
+                     :return :int :version "1.4.2" :documentation
+                     "Parses a string into a #hb_variation_t.
+
+C: hb_variation_from_string
+Since: 1.4.2")
 
 
 (rt:define-gfunction (variation-to-string "hb_variation_to_string") :args

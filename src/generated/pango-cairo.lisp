@@ -29,6 +29,8 @@ See: https://docs.gtk.org/PangoCairo/iface.FontMap.html"))
 
 ;;; Boxed types
 
+;;; Struct layouts
+
 ;;; Properties
 
 ;;; Callback types
@@ -135,7 +137,9 @@ Since: 1.14")
 (rt:define-gfunction (glyph-string-path "pango_cairo_glyph_string_path") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
                       (font (:object pango:font))
-                      (glyphs (:boxed "PangoGlyphString" "pango_glyph_string_get_type")))
+                      (glyphs
+                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type"
+                        pango:glyph-string)))
                      :version "1.10" :documentation
                      "Adds the glyphs in GLYPHS to the current path in the specified
 cairo context.
@@ -147,7 +151,8 @@ Since: 1.10")
 
 (rt:define-gfunction (layout-line-path "pango_cairo_layout_line_path") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (line (:boxed "PangoLayoutLine" "pango_layout_line_get_type")))
+                      (line
+                       (:boxed "PangoLayoutLine" "pango_layout_line_get_type" pango:layout-line)))
                      :version "1.10" :documentation
                      "Adds the text in `PangoLayoutLine` to the current path in the
 specified cairo context.
@@ -196,7 +201,8 @@ Since: 1.14")
 
 (rt:define-gfunction (show-glyph-item "pango_cairo_show_glyph_item") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type")) (text :string)
-                      (glyph-item (:boxed "PangoGlyphItem" "pango_glyph_item_get_type")))
+                      (glyph-item
+                       (:boxed "PangoGlyphItem" "pango_glyph_item_get_type" pango:glyph-item)))
                      :version "1.22" :documentation
                      "Draws the glyphs in GLYPH-ITEM in the specified cairo context,
 
@@ -208,7 +214,9 @@ Since: 1.22")
 (rt:define-gfunction (show-glyph-string "pango_cairo_show_glyph_string") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
                       (font (:object pango:font))
-                      (glyphs (:boxed "PangoGlyphString" "pango_glyph_string_get_type")))
+                      (glyphs
+                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type"
+                        pango:glyph-string)))
                      :version "1.10" :documentation
                      "Draws the glyphs in GLYPHS in the specified cairo context.
 
@@ -230,7 +238,8 @@ Since: 1.10")
 
 (rt:define-gfunction (show-layout-line "pango_cairo_show_layout_line") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (line (:boxed "PangoLayoutLine" "pango_layout_line_get_type")))
+                      (line
+                       (:boxed "PangoLayoutLine" "pango_layout_line_get_type" pango:layout-line)))
                      :version "1.10" :documentation
                      "Draws a `PangoLayoutLine` in the specified cairo context.
 

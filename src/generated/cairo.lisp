@@ -377,6 +377,108 @@ C: cairo_glyph_t"))
                    (:gtype-name "CairoTextCluster" :documentation "
 C: cairo_text_cluster_t"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct rectangle
+    (:gtype-name "CairoRectangle")
+  (:x :double)
+  (:y :double)
+  (:width :double)
+  (:height :double))
+
+
+(rt:define-gfield rectangle-x rectangle :x :double :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-y rectangle :y :double :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-width rectangle :width :double :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-height rectangle :height :double :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-rectangle
+                               (:boxed "CairoRectangle" "cairo_gobject_rectangle_get_type"
+                                rectangle)
+                               ((x :x :double) (y :y :double) (width :width :double)
+                                (height :height :double))
+                               :documentation
+                               "A new Rectangle with the given fields; others are zero.")
+
+
+(rt:define-gstruct rectangle-int
+    (:gtype-name "CairoRectangleInt")
+  (:x :int)
+  (:y :int)
+  (:width :int)
+  (:height :int))
+
+
+(rt:define-gfield rectangle-int-x rectangle-int :x :int :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-int-y rectangle-int :y :int :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-int-width rectangle-int :width :int :writable t :documentation "")
+
+
+(rt:define-gfield rectangle-int-height rectangle-int :height :int :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-rectangle-int
+                               (:boxed "CairoRectangleInt" "cairo_gobject_rectangle_int_get_type"
+                                rectangle-int)
+                               ((x :x :int) (y :y :int) (width :width :int) (height :height :int))
+                               :documentation
+                               "A new RectangleInt with the given fields; others are zero.")
+
+
+(rt:define-gstruct glyph
+    (:gtype-name "CairoGlyph")
+  (:index :ulong)
+  (:x :double)
+  (:y :double))
+
+
+(rt:define-gfield glyph-index glyph :index :ulong :writable t :documentation "")
+
+
+(rt:define-gfield glyph-x glyph :x :double :writable t :documentation "")
+
+
+(rt:define-gfield glyph-y glyph :y :double :writable t :documentation "")
+
+
+(rt:define-gstruct-constructor make-glyph
+                               (:boxed "CairoGlyph" "cairo_gobject_glyph_get_type" glyph)
+                               ((index :index :ulong) (x :x :double) (y :y :double)) :documentation
+                               "A new Glyph with the given fields; others are zero.")
+
+
+(rt:define-gstruct text-cluster
+    (:gtype-name "CairoTextCluster")
+  (:num-bytes :int)
+  (:num-glyphs :int))
+
+
+(rt:define-gfield text-cluster-num-bytes text-cluster :num-bytes :int :writable t :documentation "")
+
+
+(rt:define-gfield text-cluster-num-glyphs text-cluster :num-glyphs :int :writable t :documentation
+                  "")
+
+
+(rt:define-gstruct-constructor make-text-cluster
+                               (:boxed "CairoTextCluster" "cairo_gobject_text_cluster_get_type"
+                                text-cluster)
+                               ((num-bytes :num-bytes :int) (num-glyphs :num-glyphs :int))
+                               :documentation
+                               "A new TextCluster with the given fields; others are zero.")
+
 ;;; Properties
 
 ;;; Callback types

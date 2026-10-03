@@ -207,8 +207,20 @@
          :virtual-methods (parse-callables el "virtual-method" :virtual-method)
          :properties (mapcar #'parse-property (kids el "property"))
          :signals (parse-callables el "glib:signal" :signal)
-         :fields (mapcar #'parse-field (kids el "field"))
+         :fields (parse-fields el)
          (item-args el)))
+
+(defun parse-fields (el)
+  "Fields in declaration order. An anonymous <union> or <record> nested in a
+record becomes a field whose type is that inline GIR-CLASS, so struct
+layouts come out right."
+  (loop for child in (kids el "field" "union" "record")
+        collect (if (string= (plump:tag-name child) "field")
+                    (parse-field child)
+                    (make-gir-field :name (or (attr child "name") "anonymous")
+                                    :type (parse-class child)
+                                    :readable nil
+                                    :private t))))
 
 ;;; Namespace
 

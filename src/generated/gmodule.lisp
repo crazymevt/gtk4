@@ -51,6 +51,8 @@ See: https://docs.gtk.org/gmodule/const.MODULE_IMPL_WIN32.html")
 
 ;;; Boxed types
 
+;;; Struct layouts
+
 ;;; Properties
 
 ;;; Callback types
