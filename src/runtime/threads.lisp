@@ -2,12 +2,16 @@
 
 (in-package #:gtk4.runtime)
 
+(defun call-with-gtk-float-traps (thunk)
+  (sb-int:with-float-traps-masked (:invalid :divide-by-zero :overflow :underflow :inexact)
+    (funcall thunk)))
+
 (defmacro with-gtk-float-traps (&body body)
   "Run BODY with the floating-point traps masked that GTK, Cairo and graphics
 drivers routinely trip. SBCL enables them by default; leaving them on turns
-harmless C arithmetic into Lisp errors or crashes."
-  `(sb-int:with-float-traps-masked (:invalid :divide-by-zero :overflow :underflow :inexact)
-     ,@body))
+harmless C arithmetic into Lisp errors or crashes. Expands into a function
+call, which keeps the thousands of generated wrappers small."
+  `(call-with-gtk-float-traps (lambda () ,@body)))
 
 (defun main-thread-p ()
   "True when called on the process's initial thread. macOS only lets this

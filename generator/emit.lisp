@@ -22,54 +22,11 @@
     (and base fragment (concatenate 'string base fragment))))
 
 (defun clean-doc (text)
-  "First paragraph of a GIR doc string with gi-docgen markup simplified:
-[method@Gtk.Widget.show] => Gtk.Widget.show, %TRUE => true, @param => PARAM."
-  (when text
-    (let* ((end (search (format nil "~%~%") text))
-           (para (string-trim '(#\Space #\Newline) (subseq text 0 end))))
-      (with-output-to-string (out)
-        (loop with i = 0
-              while (< i (length para))
-              do (let ((c (char para i)))
-                   (cond
-                     ;; [kind@Target] -> Target
-                     ((and (char= c #\[) (let ((at (position #\@ para :start i))
-                                               (close (position #\] para :start i)))
-                                           (and at close (< at close)
-                                                (not (find #\Space para :start i :end close)))))
-                      (let ((at (position #\@ para :start i))
-                            (close (position #\] para :start i)))
-                        (write-string (subseq para (1+ at) close) out)
-                        (setf i (1+ close))))
-                     ;; %TRUE %FALSE %NULL
-                     ((and (char= c #\%) (< (1+ i) (length para)) (upper-case-p (char para (1+ i))))
-                      (let ((end (or (position-if-not (lambda (ch) (or (alphanumericp ch) (char= ch #\_)))
-                                                      para :start (1+ i))
-                                     (length para))))
-                        (write-string (let ((w (subseq para (1+ i) end)))
-                                        (cond ((string= w "TRUE") "true")
-                                              ((string= w "FALSE") "false")
-                                              ((string= w "NULL") "NIL")
-                                              (t w)))
-                                      out)
-                        (setf i end)))
-                     ;; @param -> PARAM
-                     ((and (char= c #\@) (< (1+ i) (length para)) (alpha-char-p (char para (1+ i))))
-                      (let ((end (or (position-if-not (lambda (ch) (or (alphanumericp ch) (char= ch #\_)))
-                                                      para :start (1+ i))
-                                     (length para))))
-                        (write-string (string-upcase (snake-to-kebab (subseq para (1+ i) end))) out)
-                        (setf i end)))
-                     (t (write-char c out) (incf i)))))))))
+  "The first paragraph of a GIR doc string, rewritten with Lisp names."
+  (convert-doc-text (first-paragraph text)))
 
 (defun docstring (doc &key c-name url version deprecated)
-  (with-output-to-string (out)
-    (let ((text (clean-doc doc)))
-      (when text (write-string text out) (terpri out)))
-    (when c-name (format out "~%C: ~a" c-name))
-    (when url (format out "~%See: ~a" url))
-    (when version (format out "~%Since: ~a" version))
-    (when deprecated (format out "~%Deprecated."))))
+  (join-paragraphs (list (clean-doc doc) (reference-lines c-name url version deprecated))))
 
 (defun callable-fragment (plan)
   (let ((owner (plan-owner plan))
@@ -230,12 +187,12 @@ same-namespace class or interface it inherits from."
          `(:return-transfer ,(plan-return-transfer plan)))
      ,@(when (plan-throws plan) '(:throws t))
      ,@(when (plan-version plan) `(:version ,(plan-version plan)))
-     :documentation ,(docstring (plan-doc plan)
-                                :c-name (plan-c-name plan)
-                                :url (or (gethash (plan-source plan) *override-urls*)
-                                          (doc-url nsname (callable-fragment plan)))
-                                :version (plan-version plan)
-                                :deprecated (plan-deprecated plan))))
+     ,@(let ((url (plan-url plan nsname))) (when url `(:url ,url)))
+     :documentation ,(plan-docstring plan nsname (plan-url plan nsname))))
+
+(defun plan-url (plan nsname)
+  (or (gethash (plan-source plan) *override-urls*)
+      (doc-url nsname (callable-fragment plan))))
 
 (defun namespace-callables (ns)
   "(CALLABLE . OWNER) for every function, constructor and method in NS."
@@ -250,7 +207,14 @@ same-namespace class or interface it inherits from."
 
 ;;; Writing one namespace
 
-(defun emit-namespace (ctx ns stream)
+(defparameter *functions-per-file* 400
+  "Generated functions per file. Splitting large namespaces bounds the memory
+SBCL needs to compile each file (GTK alone has over 3,700 functions).")
+
+(defun emit-namespace (ctx ns stream &key function-stream-maker)
+  "Write NS's types, layouts and properties to STREAM. Functions go to the
+streams FUNCTION-STREAM-MAKER returns, called with the chunk index and a
+function that writes the chunk."
   (let* ((nsname (gir-namespace-name ns))
          (*package* (find-package (namespace-package-name nsname))))
     (write-header stream (gir-namespace-source ns))
@@ -263,6 +227,8 @@ same-namespace class or interface it inherits from."
             (:kind ,(if (eq (gir-enum-kind e) :bitfield) :flags :enum)
              ,@(when (gir-enum-get-type e)
                  `(:gtype-name ,(gir-enum-glib-type-name e) :get-type ,(gir-enum-get-type e)))
+             :c-name ,(gir-enum-c-type e)
+             ,@(let ((url (doc-url nsname (type-fragment e)))) (when url `(:url ,url)))
              :documentation ,(docstring (gir-item-doc e) :c-name (gir-enum-c-type e)
                                                          :url (doc-url nsname (type-fragment e))))
           ,@(loop for m in (gir-enum-members e)
@@ -287,6 +253,8 @@ same-namespace class or interface it inherits from."
             ,(superclasses ctx c nsname)
           (:gtype-name ,(gir-class-glib-type-name c)
            :get-type ,(gir-class-get-type c)
+           :c-name ,(gir-class-c-type c)
+           ,@(let ((url (doc-url nsname (type-fragment c)))) (when url `(:url ,url)))
            :documentation ,(docstring (gir-item-doc c) :c-name (gir-class-c-type c)
                                                        :url (doc-url nsname (type-fragment c)))))
        stream))
@@ -301,6 +269,8 @@ same-namespace class or interface it inherits from."
           (write-form
            `(gtk4.runtime:define-grecord ,(type-symbol q)
                 (:gtype-name ,(gir-class-glib-type-name c)
+                 :c-name ,(gir-class-c-type c)
+                 ,@(let ((url (doc-url nsname (type-fragment c)))) (when url `(:url ,url)))
                  :documentation ,(docstring (gir-item-doc c) :c-name (gir-class-c-type c)
                                                              :url (doc-url nsname (type-fragment c)))))
            stream))))
@@ -323,7 +293,9 @@ same-namespace class or interface it inherits from."
               ,@(when (getf a :writable) '(:writable t))
               ,@(when (getf a :bits) `(:bits ,(getf a :bits)))
               ,@(when (getf a :inline) '(:inline t))
-              :documentation ,(docstring (gir-item-doc (getf a :field))))
+              :documentation ,(docstring (gir-item-doc (getf a :field))
+                                         :url (and (layout-qualified l)
+                                                   (doc-url nsname (type-fragment (layout-item l))))))
            stream))
         (when (layout-constructor l)
           (write-form
@@ -370,17 +342,85 @@ same-namespace class or interface it inherits from."
                    ,@(unless (eq ret :void) `(:return ,ret))
                    ,@(unless (eq transfer :none) `(:return-transfer ,transfer))))
              stream)))))
-    ;; Functions
-    (format stream "~%;;; Functions, constructors and methods~%")
-    (let ((bound 0))
+    ;; Functions, in chunks
+    (let ((plans '()))
       (loop for (callable . owner) in (namespace-callables ns)
             do (multiple-value-bind (plan reason) (plan-callable ctx ns callable owner)
                  (if plan
-                     (progn (incf bound) (write-form (plan-form plan nsname) stream))
+                     (progn (setf (gethash callable *plans*) plan)
+                            (push plan plans))
                      (note-skip ctx ns (or (gir-callable-c-identifier callable)
                                            (gir-item-name callable))
                                 reason))))
-      (setf (gethash nsname (context-bound ctx)) bound))))
+      (setf plans (nreverse plans))
+      (setf (gethash nsname (context-bound ctx)) (length plans))
+      (loop for chunk from 1
+            while plans
+            do (let ((these (subseq plans 0 (min *functions-per-file* (length plans)))))
+                 (setf plans (nthcdr (length these) plans))
+                 (funcall function-stream-maker chunk
+                          (lambda (out)
+                            (let ((*package* (find-package (namespace-package-name nsname))))
+                              (write-header out (gir-namespace-source ns))
+                              (format out "~%(in-package #:~(~a~))~%" (package-name *package*))
+                              (format out "~%;;; Functions, constructors and methods (part ~d)~%" chunk)
+                              (dolist (plan these) (write-form (plan-form plan nsname) out)))))))
+      ns)))
+
+(defun namespace-file-base (ns)
+  (string-downcase (namespace-package-name (gir-namespace-name ns))))
+
+(defun write-namespace-files (ctx ns directory)
+  "Write NS's generated files into DIRECTORY; return their names, in load order."
+  (let* ((base (namespace-file-base ns))
+         (files (list base)))
+    (with-open-file (out (merge-pathnames (format nil "~a.lisp" base) directory)
+                         :direction :output :if-exists :supersede)
+      (emit-namespace ctx ns out
+                      :function-stream-maker
+                      (lambda (chunk writer)
+                        (let ((name (format nil "~a-functions-~d" base chunk)))
+                          (push name files)
+                          (with-open-file (fout (merge-pathnames (format nil "~a.lisp" name) directory)
+                                                :direction :output :if-exists :supersede)
+                            (funcall writer fout))))))
+    (nreverse files)))
+
+;;; ASDF systems for the generated files, written between markers in gtk4.asd
+
+(defparameter *asd-begin* ";;; BEGIN GENERATED SYSTEMS (written by gtk4-generator; do not edit)")
+(defparameter *asd-end* ";;; END GENERATED SYSTEMS")
+
+(defun system-name (ns)
+  (format nil "gtk4/~a" (namespace-file-base ns)))
+
+(defun generated-systems-text (ctx files-by-namespace)
+  (with-output-to-string (out)
+    (format out "~a~%~%(defsystem \"gtk4/packages\"~%  :depends-on (\"gtk4/runtime\")~%  :pathname \"src/generated/\"~%  :components ((:file \"packages\")))~%"
+            *asd-begin*)
+    (dolist (ns (context-targets ctx))
+      (let ((deps (or (loop for (iname iversion) in (gir-namespace-includes ns)
+                            for dep = (find-if (lambda (n) (and (string= (gir-namespace-name n) iname)
+                                                                (string= (gir-namespace-version n) iversion)))
+                                               (context-targets ctx))
+                            when dep collect (system-name dep))
+                      (list "gtk4/packages"))))
+        (format out "~%(defsystem ~s~%  :depends-on (~{~s~^ ~})~%  :pathname \"src/generated/\"~%  :serial t~%  :components (~{(:file ~s)~^~%               ~}))~%"
+                (system-name ns) deps (cdr (assoc ns files-by-namespace)))))
+    (format out "~%~a~%" *asd-end*)))
+
+(defun update-asd (ctx files-by-namespace)
+  "Replace the generated-systems region of gtk4.asd."
+  (let* ((path (asdf:system-relative-pathname "gtk4-generator" "gtk4.asd"))
+         (text (uiop:read-file-string path))
+         (start (search *asd-begin* text))
+         (end (search *asd-end* text)))
+    (unless (and start end)
+      (error "gtk4.asd has no generated-systems markers"))
+    (with-open-file (out path :direction :output :if-exists :supersede)
+      (write-string (subseq text 0 start) out)
+      (write-string (string-right-trim '(#\Newline) (generated-systems-text ctx files-by-namespace)) out)
+      (write-string (subseq text (+ end (length *asd-end*))) out))))
 
 ;;; The packages file
 
@@ -446,19 +486,21 @@ Lisp API replaces it by design.")
 ;;; Entry point
 
 (defun generate (&key (targets *target-namespaces*)
-                      (output-directory (asdf:system-relative-pathname "gtk4" "src/generated/")))
+                      (output-directory (asdf:system-relative-pathname "gtk4" "src/generated/"))
+                      site-directory)
   "Generate binding sources for TARGETS into OUTPUT-DIRECTORY: packages.lisp,
 one file per namespace, and COVERAGE.md. Run in a fresh image."
   (let* ((repository (load-targets :targets targets))
          (ctx (make-context repository targets)))
     (name-namespaces ctx)
+    (build-doc-index ctx)
     (ensure-directories-exist output-directory)
-    (dolist (ns (context-targets ctx))
-      (with-open-file (out (merge-pathnames (format nil "~(~a~).lisp"
-                                                    (namespace-package-name (gir-namespace-name ns)))
-                                            output-directory)
-                           :direction :output :if-exists :supersede)
-        (emit-namespace ctx ns out)))
+    ;; Remove files from earlier runs, which may have had more chunks.
+    (dolist (old (directory (merge-pathnames "*.lisp" output-directory)))
+      (delete-file old))
+    (let ((files (loop for ns in (context-targets ctx)
+                       collect (cons ns (write-namespace-files ctx ns output-directory)))))
+      (update-asd ctx files))
     (with-open-file (out (merge-pathnames "packages.lisp" output-directory)
                          :direction :output :if-exists :supersede)
       (emit-packages ctx out))
@@ -466,4 +508,7 @@ one file per namespace, and COVERAGE.md. Run in a fresh image."
                          :direction :output :if-exists :supersede)
       (emit-coverage ctx out))
     (emit-coverage ctx *standard-output*)
+    (when site-directory
+      (generate-site ctx site-directory)
+      (format t "~&Reference site written to ~a~%" site-directory))
     ctx))

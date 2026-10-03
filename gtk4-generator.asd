@@ -16,5 +16,7 @@
                (:file "naming")
                (:file "plan")
                (:file "layout")
+               (:file "docs")
                (:file "emit")
+               (:file "site")
                (:file "report")))

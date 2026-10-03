@@ -16,6 +16,41 @@
 
 (in-package #:gtk4.runtime)
 
+;;; Documentation registry: C names and upstream URLs, recorded as each
+;;; definition loads, for REPL lookup in both directions.
+
+(defvar *c-names* (make-hash-table :test 'equal)
+  "C identifier -> the Lisp symbol bound to it.")
+
+(defun register-documentation (symbol c-name url)
+  (when c-name
+    (setf (get symbol 'c-name) c-name
+          (gethash c-name *c-names*) symbol))
+  (when url
+    (setf (get symbol 'documentation-url) url))
+  symbol)
+
+(defun c-name (symbol)
+  "The C identifier SYMBOL's binding wraps, e.g. \"gtk_widget_show\"."
+  (get symbol 'c-name))
+
+(defun lisp-name (c-name)
+  "The Lisp symbol bound to the C identifier C-NAME, e.g. GTK:WIDGET-SHOW."
+  (values (gethash c-name *c-names*)))
+
+(defun documentation-url (symbol)
+  "The upstream documentation page for SYMBOL's binding."
+  (get symbol 'documentation-url))
+
+(defun browse (thing)
+  "Open the upstream documentation for THING (a symbol, or a C name) in a browser."
+  (let* ((symbol (if (stringp thing) (lisp-name thing) thing))
+         (url (and symbol (documentation-url symbol))))
+    (unless url (error "gtk4: no documentation link for ~s" thing))
+    (uiop:launch-program (list #+darwin "open" #+windows "explorer" #-(or darwin windows) "xdg-open"
+                               url))
+    url))
+
 ;;; Lazily resolved C functions
 
 (define-condition unavailable-function (error)
@@ -91,9 +126,11 @@ whose bits are set. Unknown values are returned as integers."
               when (and (/= value 0) (= value (logand value integer))) collect key)
         (or (gethash integer (enum-info-by-value info)) integer))))
 
-(defmacro define-genum (name (&key (kind :enum) gtype-name get-type documentation) &body members)
+(defmacro define-genum (name (&key (kind :enum) gtype-name get-type c-name url documentation)
+                        &body members)
   `(progn
      (register-genum ',name ,kind ',members :gtype-name ,gtype-name :get-type ,get-type)
+     (register-documentation ',name ,c-name ,url)
      ,@(when documentation `((setf (documentation ',name 'type) ,documentation)))
      ',name))
 
@@ -102,16 +139,19 @@ whose bits are set. Unknown values are returned as integers."
 
 ;;; Classes and records
 
-(defmacro define-gclass (name superclasses (&key gtype-name get-type documentation))
-  `(defclass ,name ,superclasses ()
-     (:metaclass gobject-class)
-     ,@(when gtype-name `((:gtype-name ,gtype-name)))
-     ,@(when get-type `((:get-type ,get-type)))
-     ,@(when documentation `((:documentation ,documentation)))))
+(defmacro define-gclass (name superclasses (&key gtype-name get-type c-name url documentation))
+  `(progn
+     (defclass ,name ,superclasses ()
+       (:metaclass gobject-class)
+       ,@(when gtype-name `((:gtype-name ,gtype-name)))
+       ,@(when get-type `((:get-type ,get-type)))
+       ,@(when documentation `((:documentation ,documentation))))
+     (register-documentation ',name ,c-name ,url)))
 
-(defmacro define-grecord (name (&key gtype-name documentation))
+(defmacro define-grecord (name (&key gtype-name c-name url documentation))
   "A boxed type: values arrive as BOXED proxies of class NAME."
   `(progn
+     (register-documentation ',name ,c-name ,url)
      (defclass ,name (boxed) ()
        ,@(when documentation `((:documentation ,documentation))))
      ,@(when gtype-name
@@ -724,7 +764,7 @@ carries the handle. The Lisp function receives the other arguments in order."
     (t 0)))
 
 (defmacro define-gfunction ((name c-name) &key args (return :void) (return-transfer :none)
-                                                throws version documentation)
+                                                throws version url documentation)
   "Define NAME as a Lisp function calling the C function C-NAME.
 ARGS is a list of (VAR SPEC &key direction transfer optional user-data-of
 destroy-of length-of):
@@ -872,6 +912,7 @@ destroy-of length-of):
                                  `(unwind-protect ,body (when ,h (free-handle ,h)))
                                  body))))
           `(progn
+             (register-documentation ',name ,c-name ,url)
              (defun ,name (,@(mapcar #'first required)
                            ,@(when optional (cons '&optional (mapcar #'first optional))))
                ,@(when documentation (list documentation))

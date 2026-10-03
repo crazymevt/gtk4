@@ -5,7 +5,9 @@
   :author "Jessie Hughart"
   :license "MIT"
   :version "0.0.1"
-  :depends-on ("gtk4/gtk"))
+  :depends-on ("gtk4/gtk")
+  :pathname "src/gtk4/"
+  :components ((:file "package")))
 
 (defsystem "gtk4/runtime"
   :description "Hand-written core: library loading, float traps, main thread, GObject runtime."
@@ -25,7 +27,10 @@
                (:file "signals")
                (:file "define")))
 
-;;; Generated bindings (src/generated/, written by gtk4-generator)
+;;; Generated bindings: one system per GIR namespace, each split into files
+;;; of a few hundred functions to bound compile-time memory.
+
+;;; BEGIN GENERATED SYSTEMS (written by gtk4-generator; do not edit)
 
 (defsystem "gtk4/packages"
   :depends-on ("gtk4/runtime")
@@ -35,64 +40,111 @@
 (defsystem "gtk4/glib"
   :depends-on ("gtk4/packages")
   :pathname "src/generated/"
-  :components ((:file "glib")))
+  :serial t
+  :components ((:file "glib")
+               (:file "glib-functions-1")
+               (:file "glib-functions-2")
+               (:file "glib-functions-3")
+               (:file "glib-functions-4")))
 
 (defsystem "gtk4/gobject"
   :depends-on ("gtk4/glib")
   :pathname "src/generated/"
-  :components ((:file "gobject")))
+  :serial t
+  :components ((:file "gobject")
+               (:file "gobject-functions-1")))
 
 (defsystem "gtk4/gmodule"
   :depends-on ("gtk4/glib")
   :pathname "src/generated/"
-  :components ((:file "gmodule")))
+  :serial t
+  :components ((:file "gmodule")
+               (:file "gmodule-functions-1")))
 
 (defsystem "gtk4/gio"
-  :depends-on ("gtk4/gobject" "gtk4/gmodule")
+  :depends-on ("gtk4/glib" "gtk4/gmodule" "gtk4/gobject")
   :pathname "src/generated/"
-  :components ((:file "gio")))
+  :serial t
+  :components ((:file "gio")
+               (:file "gio-functions-1")
+               (:file "gio-functions-2")
+               (:file "gio-functions-3")
+               (:file "gio-functions-4")
+               (:file "gio-functions-5")))
 
 (defsystem "gtk4/cairo"
   :depends-on ("gtk4/gobject")
   :pathname "src/generated/"
-  :components ((:file "cairo")))
+  :serial t
+  :components ((:file "cairo")
+               (:file "cairo-functions-1")))
 
 (defsystem "gtk4/harfbuzz"
   :depends-on ("gtk4/gobject")
   :pathname "src/generated/"
-  :components ((:file "harfbuzz")))
+  :serial t
+  :components ((:file "harfbuzz")
+               (:file "harfbuzz-functions-1")
+               (:file "harfbuzz-functions-2")))
 
 (defsystem "gtk4/pango"
-  :depends-on ("gtk4/gio" "gtk4/harfbuzz" "gtk4/cairo")
+  :depends-on ("gtk4/gobject" "gtk4/gio" "gtk4/harfbuzz" "gtk4/cairo")
   :pathname "src/generated/"
-  :components ((:file "pango")))
+  :serial t
+  :components ((:file "pango")
+               (:file "pango-functions-1")
+               (:file "pango-functions-2")))
 
 (defsystem "gtk4/pango-cairo"
-  :depends-on ("gtk4/pango" "gtk4/cairo")
+  :depends-on ("gtk4/gobject" "gtk4/pango" "gtk4/cairo")
   :pathname "src/generated/"
-  :components ((:file "pango-cairo")))
+  :serial t
+  :components ((:file "pango-cairo")
+               (:file "pango-cairo-functions-1")))
 
 (defsystem "gtk4/graphene"
   :depends-on ("gtk4/gobject")
   :pathname "src/generated/"
-  :components ((:file "graphene")))
+  :serial t
+  :components ((:file "graphene")
+               (:file "graphene-functions-1")))
 
 (defsystem "gtk4/gdk-pixbuf"
-  :depends-on ("gtk4/gio" "gtk4/gmodule")
+  :depends-on ("gtk4/gmodule" "gtk4/gio")
   :pathname "src/generated/"
-  :components ((:file "gdk-pixbuf")))
+  :serial t
+  :components ((:file "gdk-pixbuf")
+               (:file "gdk-pixbuf-functions-1")))
 
 (defsystem "gtk4/gdk"
   :depends-on ("gtk4/gdk-pixbuf" "gtk4/gio" "gtk4/pango" "gtk4/pango-cairo" "gtk4/cairo")
   :pathname "src/generated/"
-  :components ((:file "gdk")))
+  :serial t
+  :components ((:file "gdk")
+               (:file "gdk-functions-1")
+               (:file "gdk-functions-2")))
 
 (defsystem "gtk4/gsk"
   :depends-on ("gtk4/gdk" "gtk4/graphene")
   :pathname "src/generated/"
-  :components ((:file "gsk")))
+  :serial t
+  :components ((:file "gsk")
+               (:file "gsk-functions-1")))
 
 (defsystem "gtk4/gtk"
   :depends-on ("gtk4/gdk" "gtk4/gsk")
   :pathname "src/generated/"
-  :components ((:file "gtk")))
+  :serial t
+  :components ((:file "gtk")
+               (:file "gtk-functions-1")
+               (:file "gtk-functions-2")
+               (:file "gtk-functions-3")
+               (:file "gtk-functions-4")
+               (:file "gtk-functions-5")
+               (:file "gtk-functions-6")
+               (:file "gtk-functions-7")
+               (:file "gtk-functions-8")
+               (:file "gtk-functions-9")
+               (:file "gtk-functions-10")))
+
+;;; END GENERATED SYSTEMS
