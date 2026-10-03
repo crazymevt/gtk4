@@ -6,15 +6,26 @@
   :test #'equal
   :documentation "Oldest GTK release these bindings support.")
 
-(defvar *library-directories*
+(defun default-library-directories ()
+  "GTK4_LISP_LIBRARY_PATH's directories, then lib/ beside the executable and
+in a macOS bundle's Frameworks/ (for deployed programs), then the usual
+places for the platform."
   (append
    (let ((env (uiop:getenv "GTK4_LISP_LIBRARY_PATH")))
      (when (and env (plusp (length env)))
        (mapcar #'uiop:ensure-directory-pathname
                (uiop:split-string env :separator (string (uiop:inter-directory-separator))))))
-   #+darwin '(#p"/opt/homebrew/lib/" #p"/usr/local/lib/" #p"/opt/local/lib/"))
-  "Extra directories searched for the GTK shared libraries, before the system defaults.
-Initialized from the GTK4_LISP_LIBRARY_PATH environment variable.")
+   (let ((exe (and sb-ext:*runtime-pathname*
+                   (uiop:pathname-directory-pathname sb-ext:*runtime-pathname*))))
+     (when exe
+       (list (merge-pathnames "lib/" exe)
+             (merge-pathnames "../Frameworks/" exe))))
+   #+darwin '(#p"/opt/homebrew/lib/" #p"/usr/local/lib/" #p"/opt/local/lib/")))
+
+(defvar *library-directories* (default-library-directories)
+  "Extra directories searched for the GTK shared libraries, before the system
+defaults. Initialized from GTK4_LISP_LIBRARY_PATH, and recomputed when a saved
+executable starts.")
 
 (defmacro define-gtk-library (name &key darwin linux windows)
   `(cffi:define-foreign-library ,name

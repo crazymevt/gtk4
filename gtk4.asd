@@ -13,7 +13,8 @@
                (:file "models")
                (:file "async")
                (:file "build")
-               (:file "css")))
+               (:file "css")
+               (:file "deploy")))
 
 (defsystem "gtk4/runtime"
   :description "Hand-written core: library loading, float traps, main thread, GObject runtime."
@@ -33,7 +34,8 @@
                (:file "signals")
                (:file "define")
                (:file "subclass")
-               (:file "properties")))
+               (:file "properties")
+               (:file "image")))
 
 ;;; Generated bindings: one system per GIR namespace, each split into files
 ;;; of a few hundred functions to bound compile-time memory.

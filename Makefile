@@ -2,7 +2,7 @@ SBCL ?= sbcl
 LISP = $(SBCL) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test stress summary generate docs full-stack hello example demo
+.PHONY: test stress summary generate docs full-stack hello example demo executable
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -44,3 +44,10 @@ example:
 demo:
 	$(LISP) --eval '(ql:quickload :gtk4-demo :silent t)' \
 	        --eval '(gtk4-demo:main :quit-after $(QUIT_AFTER))'
+
+# A standalone executable of an example: make executable NAME=clock, then ./build/clock
+executable:
+	mkdir -p build
+	$(LISP) --eval '(ql:quickload :gtk4 :silent t)' \
+	        --load examples/$(NAME).lisp \
+	        --eval '(gtk4:save-executable "build/$(NAME)" (lambda () (gtk4-examples.$(NAME):main :quit-after $(QUIT_AFTER))))'
