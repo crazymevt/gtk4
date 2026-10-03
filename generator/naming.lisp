@@ -26,7 +26,8 @@ snake_case names (HarfBuzz's \"buffer_t\") become \"buffer-t\"."
                    while pos
                    do (setf s (concatenate 'string (subseq s 0 pos) to
                                            (subseq s (+ pos (length from)))))))
-    (with-output-to-string (out)
+    (tidy-hyphens
+     (with-output-to-string (out)
       (loop for i from 0 below (length s)
             for c = (char s i)
             for prev = (and (> i 0) (char s (1- i)))
@@ -35,7 +36,18 @@ snake_case names (HarfBuzz's \"buffer_t\") become \"buffer-t\"."
                           (or (lower-case-p prev) (digit-char-p prev)
                               (and (upper-case-p prev) next (lower-case-p next))))
                  (write-char #\- out))
-               (write-char (char-downcase c) out)))))
+               (write-char (char-downcase c) out))))))
+
+(defun tidy-hyphens (s)
+  "Collapse runs of hyphens and trim them from the ends: \"-value--data--union\"
+=> \"value-data-union\" (from GObject's private _Value__data__union)."
+  (let ((out (with-output-to-string (o)
+               (loop for c across s
+                     for prev = nil then last
+                     for last = c
+                     unless (and (char= c #\-) (eql prev #\-))
+                       do (write-char c o)))))
+    (string-trim "-" out)))
 
 (defun snake-to-kebab (name)
   (substitute #\- #\_ (string-downcase name)))

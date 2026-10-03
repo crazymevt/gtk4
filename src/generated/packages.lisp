@@ -1872,7 +1872,6 @@
    #:+value-collect-format-max-length+
    #:+value-interned-string+
    #:+value-nocopy-contents+
-   #:-value--data--union
    #:array
    #:base-finalize-func
    #:base-init-func
@@ -2250,6 +2249,7 @@
    #:value-array-remove
    #:value-array-sort
    #:value-copy
+   #:value-data-union
    #:value-dup-object
    #:value-dup-string
    #:value-dup-variant
