@@ -81,7 +81,8 @@
         (true (< (ldb (byte 8 16) right) 10))))))
 
 (define-test png-round-trip :parent cairo
-  (let* ((path (format nil "/tmp/gtk4-cairo-test-~d.png" (random 1000000)))
+  (let* ((path (namestring (uiop:merge-pathnames* (format nil "gtk4-cairo-test-~d.png" (random 1000000))
+                                                  (uiop:temporary-directory))))
          (surface (cairo:image-surface-create :rgb24 8 8))
          (cr (cairo:create surface)))
     (cairo:set-source-rgb cr 0 1 0)
