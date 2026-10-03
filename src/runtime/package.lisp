@@ -75,6 +75,10 @@
    #:define-gclass
    #:define-grecord
    #:define-gproperty
+   #:define-gstruct
+   #:define-gfield
+   #:define-gstruct-constructor
+   #:record
    #:unavailable-function
    #:enum-value
    #:enum-keyword))

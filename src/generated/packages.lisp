@@ -4,7 +4,7 @@
 (defpackage #:glib
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
-  (:shadow #:array #:close #:cond #:error #:file-error #:hash-table #:hash-table-size #:list #:open #:remove #:sequence #:string #:string-equal #:time)
+  (:shadow #:array #:close #:cond #:error #:file-error #:hash-table #:hash-table-size #:list #:make-array #:make-string #:open #:remove #:sequence #:string #:string-equal #:time)
   (:import-from #:gtk4.runtime #:call-in-main-thread #:glib-error #:glib-error-code #:glib-error-domain #:glib-error-message #:in-main-thread #:main-thread-p #:with-gtk-float-traps)
   (:export
    #:+alloc-and-free+
@@ -155,6 +155,8 @@
    #:allocator
    #:allocator-free
    #:array
+   #:array-data
+   #:array-len
    #:ascii-digit-value
    #:ascii-dtostr
    #:ascii-formatd
@@ -309,8 +311,10 @@
    #:build-pathv
    #:byte-array
    #:byte-array-append
+   #:byte-array-data
    #:byte-array-free
    #:byte-array-free-to-bytes
+   #:byte-array-len
    #:byte-array-new
    #:byte-array-new-take
    #:byte-array-prepend
@@ -374,6 +378,7 @@
    #:completion-complete-utf8
    #:completion-free
    #:completion-func
+   #:completion-prefix
    #:completion-strncmp-func
    #:compute-checksum-for-bytes
    #:compute-checksum-for-data
@@ -435,6 +440,8 @@
    #:date-is-first-of-month
    #:date-is-last-of-month
    #:date-is-leap-year
+   #:date-julian
+   #:date-julian-days
    #:date-month
    #:date-new
    #:date-new-dmy
@@ -519,6 +526,8 @@
    #:date-year
    #:dcgettext
    #:debug-key
+   #:debug-key-key
+   #:debug-key-value
    #:destroy-notify
    #:dgettext
    #:dir
@@ -535,6 +544,7 @@
    #:double-equal
    #:double-hash
    #:double-ieee754
+   #:double-ieee754-v-double
    #:dpgettext
    #:dpgettext2
    #:duplicate-func
@@ -545,13 +555,16 @@
    #:equal-func-full
    #:error
    #:error-clear-func
+   #:error-code
    #:error-copy
    #:error-copy-func
+   #:error-domain
    #:error-domain-register
    #:error-domain-register-static
    #:error-free
    #:error-init-func
    #:error-matches
+   #:error-message
    #:error-new-literal
    #:error-type
    #:file-error
@@ -572,6 +585,7 @@
    #:filename-to-utf8
    #:find-program-in-path
    #:float-ieee754
+   #:float-ieee754-v-float
    #:fopen
    #:format-size
    #:format-size-flags
@@ -666,19 +680,25 @@
    #:hook-finalize-func
    #:hook-find-func
    #:hook-flag-mask
+   #:hook-flags
    #:hook-free
    #:hook-func
+   #:hook-hook-id
    #:hook-insert-before
    #:hook-insert-sorted
    #:hook-list
    #:hook-list-clear
+   #:hook-list-hook-size
    #:hook-list-init
    #:hook-list-invoke
    #:hook-list-invoke-check
+   #:hook-list-is-setup
    #:hook-list-marshal
    #:hook-list-marshal-check
+   #:hook-list-seq-id
    #:hook-marshaller
    #:hook-prepend
+   #:hook-ref-count
    #:hook-unref
    #:hostname-is-ascii-encoded
    #:hostname-is-ip-address
@@ -801,6 +821,8 @@
    #:locale-to-utf8
    #:log-default-handler
    #:log-field
+   #:log-field-key
+   #:log-field-length
    #:log-func
    #:log-get-always-fatal
    #:log-get-debug-enabled
@@ -867,6 +889,30 @@
    #:main-loop-run
    #:main-loop-unref
    #:main-thread-p
+   #:make-array
+   #:make-byte-array
+   #:make-date
+   #:make-debug-key
+   #:make-double-ieee754
+   #:make-error
+   #:make-float-ieee754
+   #:make-hook
+   #:make-hook-list
+   #:make-log-field
+   #:make-once
+   #:make-option-entry
+   #:make-poll-fd
+   #:make-ptr-array
+   #:make-queue
+   #:make-scanner
+   #:make-scanner-config
+   #:make-string
+   #:make-test-config
+   #:make-test-log-msg
+   #:make-thread-pool
+   #:make-time-val
+   #:make-token-value
+   #:make-tuples
    #:malloc
    #:malloc-n
    #:malloc0
@@ -997,6 +1043,12 @@
    #:option-context-set-translate-func
    #:option-context-set-translation-domain
    #:option-entry
+   #:option-entry-arg
+   #:option-entry-arg-description
+   #:option-entry-description
+   #:option-entry-flags
+   #:option-entry-long-name
+   #:option-entry-short-name
    #:option-error
    #:option-error-func
    #:option-error-quark
@@ -1045,6 +1097,9 @@
    #:pointer-bit-unlock-and-set
    #:poll
    #:poll-fd
+   #:poll-fd-events
+   #:poll-fd-fd
+   #:poll-fd-revents
    #:poll-func
    #:prefix-error-literal
    #:print-func
@@ -1054,6 +1109,7 @@
    #:private-set
    #:propagate-error
    #:ptr-array
+   #:ptr-array-len
    #:qsort-with-data
    #:quark
    #:quark-from-static-string
@@ -1071,6 +1127,7 @@
    #:queue-init
    #:queue-insert-sorted
    #:queue-is-empty
+   #:queue-length
    #:queue-peek-head
    #:queue-peek-nth
    #:queue-peek-tail
@@ -1185,6 +1242,32 @@
    #:s-list-push-allocator
    #:scanner
    #:scanner-config
+   #:scanner-config-case-sensitive
+   #:scanner-config-char-2-token
+   #:scanner-config-cpair-comment-single
+   #:scanner-config-cset-identifier-first
+   #:scanner-config-cset-identifier-nth
+   #:scanner-config-cset-skip-characters
+   #:scanner-config-identifier-2-string
+   #:scanner-config-int-2-float
+   #:scanner-config-numbers-2-int
+   #:scanner-config-scan-binary
+   #:scanner-config-scan-comment-multi
+   #:scanner-config-scan-float
+   #:scanner-config-scan-hex
+   #:scanner-config-scan-hex-dollar
+   #:scanner-config-scan-identifier
+   #:scanner-config-scan-identifier-1char
+   #:scanner-config-scan-identifier-null
+   #:scanner-config-scan-octal
+   #:scanner-config-scan-string-dq
+   #:scanner-config-scan-string-sq
+   #:scanner-config-scan-symbols
+   #:scanner-config-scope-0-fallback
+   #:scanner-config-skip-comment-multi
+   #:scanner-config-skip-comment-single
+   #:scanner-config-store-int64
+   #:scanner-config-symbol-2-token
    #:scanner-cur-line
    #:scanner-cur-position
    #:scanner-cur-token
@@ -1192,16 +1275,25 @@
    #:scanner-eof
    #:scanner-get-next-token
    #:scanner-input-file
+   #:scanner-input-name
    #:scanner-input-text
+   #:scanner-line
    #:scanner-lookup-symbol
+   #:scanner-max-parse-errors
    #:scanner-msg-func
+   #:scanner-next-line
+   #:scanner-next-position
+   #:scanner-next-token
+   #:scanner-parse-errors
    #:scanner-peek-next-token
+   #:scanner-position
    #:scanner-scope-add-symbol
    #:scanner-scope-foreach-symbol
    #:scanner-scope-lookup-symbol
    #:scanner-scope-remove-symbol
    #:scanner-set-scope
    #:scanner-sync-file-offset
+   #:scanner-token
    #:scanner-unexp-token
    #:seek-type
    #:sequence
@@ -1359,6 +1451,7 @@
    #:strescape
    #:strfreev
    #:string
+   #:string-allocated-len
    #:string-append
    #:string-append-c
    #:string-append-len
@@ -1386,6 +1479,7 @@
    #:string-insert-c
    #:string-insert-len
    #:string-insert-unichar
+   #:string-len
    #:string-new
    #:string-new-len
    #:string-new-take
@@ -1398,6 +1492,7 @@
    #:string-replace
    #:string-set-size
    #:string-sized-new
+   #:string-str
    #:string-truncate
    #:string-up
    #:strip-context
@@ -1439,6 +1534,12 @@
    #:test-case
    #:test-case-free
    #:test-config
+   #:test-config-test-initialized
+   #:test-config-test-perf
+   #:test-config-test-quick
+   #:test-config-test-quiet
+   #:test-config-test-undefined
+   #:test-config-test-verbose
    #:test-data-func
    #:test-disable-crash-reporting
    #:test-expect-message
@@ -1456,6 +1557,10 @@
    #:test-log-fatal-func
    #:test-log-msg
    #:test-log-msg-free
+   #:test-log-msg-log-type
+   #:test-log-msg-n-nums
+   #:test-log-msg-n-strings
+   #:test-log-msg-strings
    #:test-log-type
    #:test-log-type-name
    #:test-queue-destroy
@@ -1497,6 +1602,7 @@
    #:thread-join
    #:thread-new
    #:thread-pool
+   #:thread-pool-exclusive
    #:thread-pool-free
    #:thread-pool-get-max-idle-time
    #:thread-pool-get-max-threads
@@ -1523,6 +1629,8 @@
    #:time-val-add
    #:time-val-from-iso8601
    #:time-val-to-iso8601
+   #:time-val-tv-sec
+   #:time-val-tv-usec
    #:time-zone
    #:time-zone-adjust-time
    #:time-zone-find-interval
@@ -1552,6 +1660,17 @@
    #:timer-stop
    #:token-type
    #:token-value
+   #:token-value-v-binary
+   #:token-value-v-char
+   #:token-value-v-comment
+   #:token-value-v-error
+   #:token-value-v-float
+   #:token-value-v-hex
+   #:token-value-v-identifier
+   #:token-value-v-int
+   #:token-value-v-int64
+   #:token-value-v-octal
+   #:token-value-v-string
    #:translate-func
    #:trash-stack
    #:trash-stack-height
@@ -1602,6 +1721,7 @@
    #:tuples
    #:tuples-destroy
    #:tuples-index
+   #:tuples-len
    #:ucs4-to-utf16
    #:ucs4-to-utf8
    #:unichar-break-type
@@ -1946,8 +2066,10 @@
    #:class-init-func
    #:clear-signal-handler
    #:closure
+   #:closure-in-marshal
    #:closure-invalidate
    #:closure-invoke
+   #:closure-is-invalid
    #:closure-marshal
    #:closure-new-object
    #:closure-new-simple
@@ -1964,6 +2086,9 @@
    #:disconnect
    #:emit
    #:enum-class
+   #:enum-class-maximum
+   #:enum-class-minimum
+   #:enum-class-n-values
    #:enum-complete-type-info
    #:enum-get-value
    #:enum-get-value-by-name
@@ -1971,8 +2096,13 @@
    #:enum-register-static
    #:enum-to-string
    #:enum-value
+   #:enum-value-value
+   #:enum-value-value-name
+   #:enum-value-value-nick
    #:error
    #:flags-class
+   #:flags-class-mask
+   #:flags-class-n-values
    #:flags-complete-type-info
    #:flags-get-first-value
    #:flags-get-value-by-name
@@ -1980,6 +2110,9 @@
    #:flags-register-static
    #:flags-to-string
    #:flags-value
+   #:flags-value-value
+   #:flags-value-value-name
+   #:flags-value-value-nick
    #:gobject-class
    #:gtype-get-type
    #:handler-connected-p
@@ -1996,6 +2129,20 @@
    #:key-file
    #:main-context
    #:main-loop
+   #:make-closure
+   #:make-enum-class
+   #:make-enum-value
+   #:make-flags-class
+   #:make-flags-value
+   #:make-param-spec-type-info
+   #:make-signal-invocation-hint
+   #:make-signal-query
+   #:make-type-c-value
+   #:make-type-fundamental-info
+   #:make-type-info
+   #:make-type-query
+   #:make-value-array
+   #:make-value-data-union
    #:mapped-file
    #:markup-parse-context
    #:match-info
@@ -2077,6 +2224,9 @@
    #:param-spec-steal-qdata
    #:param-spec-string
    #:param-spec-type-info
+   #:param-spec-type-info-instance-size
+   #:param-spec-type-info-n-preallocs
+   #:param-spec-type-info-value-type
    #:param-spec-u-char
    #:param-spec-u-int
    #:param-spec-u-int64
@@ -2096,6 +2246,7 @@
    #:param-value-validate
    #:param-values-cmp
    #:parameter
+   #:parameter-name
    #:pattern-spec
    #:pointer-type-register-static
    #:poll-fd
@@ -2138,6 +2289,9 @@
    #:signal-handlers-unblock-matched
    #:signal-has-handler-pending
    #:signal-invocation-hint
+   #:signal-invocation-hint-detail
+   #:signal-invocation-hint-run-type
+   #:signal-invocation-hint-signal-id
    #:signal-is-valid-name
    #:signal-list-ids
    #:signal-lookup
@@ -2147,6 +2301,12 @@
    #:signal-override-class-handler
    #:signal-parse-name
    #:signal-query
+   #:signal-query-itype
+   #:signal-query-n-params
+   #:signal-query-return-type
+   #:signal-query-signal-flags
+   #:signal-query-signal-id
+   #:signal-query-signal-name
    #:signal-remove-emission-hook
    #:signal-stop-emission
    #:signal-stop-emission-by-name
@@ -2168,6 +2328,10 @@
    #:type-add-interface-dynamic
    #:type-add-interface-static
    #:type-c-value
+   #:type-c-value-v-double
+   #:type-c-value-v-int
+   #:type-c-value-v-int64
+   #:type-c-value-v-long
    #:type-check-class-is-a
    #:type-check-instance
    #:type-check-instance-is-a
@@ -2200,12 +2364,16 @@
    #:type-fundamental
    #:type-fundamental-flags
    #:type-fundamental-info
+   #:type-fundamental-info-type-flags
    #:type-fundamental-next
    #:type-get-instance-count
    #:type-get-plugin
    #:type-get-qdata
    #:type-get-type-registration-serial
    #:type-info
+   #:type-info-class-size
+   #:type-info-instance-size
+   #:type-info-n-preallocs
    #:type-init
    #:type-init-with-debug-flags
    #:type-instance
@@ -2242,6 +2410,10 @@
    #:type-plugin-use
    #:type-qname
    #:type-query
+   #:type-query-class-size
+   #:type-query-instance-size
+   #:type-query-type
+   #:type-query-type-name
    #:type-register-dynamic
    #:type-register-fundamental
    #:type-register-static
@@ -2254,6 +2426,8 @@
    #:type-value-l-copy-func
    #:type-value-peek-pointer-func
    #:type-value-table
+   #:type-value-table-collect-format
+   #:type-value-table-lcopy-format
    #:unblock-handler
    #:uri
    #:va-closure-marshal
@@ -2263,12 +2437,21 @@
    #:value-array-copy
    #:value-array-get-nth
    #:value-array-insert
+   #:value-array-n-values
    #:value-array-new
    #:value-array-prepend
    #:value-array-remove
    #:value-array-sort
    #:value-copy
    #:value-data-union
+   #:value-data-union-v-double
+   #:value-data-union-v-float
+   #:value-data-union-v-int
+   #:value-data-union-v-int64
+   #:value-data-union-v-long
+   #:value-data-union-v-uint
+   #:value-data-union-v-uint64
+   #:value-data-union-v-ulong
    #:value-dup-object
    #:value-dup-string
    #:value-dup-variant
@@ -2499,6 +2682,9 @@
    #:action-change-state
    #:action-enabled
    #:action-entry
+   #:action-entry-name
+   #:action-entry-parameter-type
+   #:action-entry-state
    #:action-get-enabled
    #:action-get-name
    #:action-get-parameter-type
@@ -2858,11 +3044,17 @@
    #:dbus-address-get-stream-finish
    #:dbus-address-get-stream-sync
    #:dbus-annotation-info
+   #:dbus-annotation-info-key
    #:dbus-annotation-info-lookup
    #:dbus-annotation-info-ref
+   #:dbus-annotation-info-ref-count
    #:dbus-annotation-info-unref
+   #:dbus-annotation-info-value
    #:dbus-arg-info
+   #:dbus-arg-info-name
    #:dbus-arg-info-ref
+   #:dbus-arg-info-ref-count
+   #:dbus-arg-info-signature
    #:dbus-arg-info-unref
    #:dbus-auth-observer
    #:dbus-auth-observer-allow-mechanism
@@ -2930,6 +3122,8 @@
    #:dbus-error
    #:dbus-error-encode-gerror
    #:dbus-error-entry
+   #:dbus-error-entry-dbus-error-name
+   #:dbus-error-entry-error-code
    #:dbus-error-get-remote-error
    #:dbus-error-is-remote-error
    #:dbus-error-new-for-dbus-error
@@ -2955,7 +3149,9 @@
    #:dbus-interface-info-lookup-method
    #:dbus-interface-info-lookup-property
    #:dbus-interface-info-lookup-signal
+   #:dbus-interface-info-name
    #:dbus-interface-info-ref
+   #:dbus-interface-info-ref-count
    #:dbus-interface-info-unref
    #:dbus-interface-method-call-func
    #:dbus-interface-set-object
@@ -3045,7 +3241,9 @@
    #:dbus-message-to-gerror
    #:dbus-message-type
    #:dbus-method-info
+   #:dbus-method-info-name
    #:dbus-method-info-ref
+   #:dbus-method-info-ref-count
    #:dbus-method-info-unref
    #:dbus-method-invocation
    #:dbus-method-invocation-get-connection
@@ -3066,7 +3264,9 @@
    #:dbus-node-info-generate-xml
    #:dbus-node-info-lookup-interface
    #:dbus-node-info-new-for-xml
+   #:dbus-node-info-path
    #:dbus-node-info-ref
+   #:dbus-node-info-ref-count
    #:dbus-node-info-unref
    #:dbus-object
    #:dbus-object-get-interface
@@ -3132,7 +3332,10 @@
    #:dbus-object-skeleton-set-object-path
    #:dbus-property-info
    #:dbus-property-info-flags
+   #:dbus-property-info-name
    #:dbus-property-info-ref
+   #:dbus-property-info-ref-count
+   #:dbus-property-info-signature
    #:dbus-property-info-unref
    #:dbus-proxy
    #:dbus-proxy-call
@@ -3191,7 +3394,9 @@
    #:dbus-signal-callback
    #:dbus-signal-flags
    #:dbus-signal-info
+   #:dbus-signal-info-name
    #:dbus-signal-info-ref
+   #:dbus-signal-info-ref-count
    #:dbus-signal-info-unref
    #:dbus-subtree-dispatch-func
    #:dbus-subtree-enumerate-func
@@ -3325,9 +3530,12 @@
    #:file-attribute-info-list-add
    #:file-attribute-info-list-dup
    #:file-attribute-info-list-lookup
+   #:file-attribute-info-list-n-infos
    #:file-attribute-info-list-new
    #:file-attribute-info-list-ref
    #:file-attribute-info-list-unref
+   #:file-attribute-info-name
+   #:file-attribute-info-type
    #:file-attribute-matcher
    #:file-attribute-matcher-enumerate-namespace
    #:file-attribute-matcher-enumerate-next
@@ -3712,6 +3920,11 @@
    #:initable-init
    #:initable-newv
    #:input-message
+   #:input-message-address
+   #:input-message-bytes-received
+   #:input-message-flags
+   #:input-message-num-control-messages
+   #:input-message-num-vectors
    #:input-stream
    #:input-stream-class
    #:input-stream-clear-pending
@@ -3735,6 +3948,7 @@
    #:input-stream-skip-async
    #:input-stream-skip-finish
    #:input-vector
+   #:input-vector-size
    #:io-error-enum
    #:io-error-from-errno
    #:io-error-from-file-error
@@ -3820,6 +4034,20 @@
    #:loadable-icon-load
    #:loadable-icon-load-async
    #:loadable-icon-load-finish
+   #:make-dbus-annotation-info
+   #:make-dbus-arg-info
+   #:make-dbus-error-entry
+   #:make-dbus-interface-info
+   #:make-dbus-method-info
+   #:make-dbus-node-info
+   #:make-dbus-property-info
+   #:make-dbus-signal-info
+   #:make-file-attribute-info
+   #:make-file-attribute-info-list
+   #:make-input-message
+   #:make-input-vector
+   #:make-output-message
+   #:make-output-vector
    #:memory-input-stream
    #:memory-input-stream-add-bytes
    #:memory-input-stream-add-data
@@ -4031,6 +4259,10 @@
    #:osx-app-info-class
    #:osx-app-info-get-filename
    #:output-message
+   #:output-message-address
+   #:output-message-bytes-sent
+   #:output-message-num-control-messages
+   #:output-message-num-vectors
    #:output-stream
    #:output-stream-class
    #:output-stream-clear-pending
@@ -4065,6 +4297,7 @@
    #:output-stream-writev-async
    #:output-stream-writev-finish
    #:output-vector
+   #:output-vector-size
    #:password-save
    #:permission
    #:permission-acquire
@@ -4981,11 +5214,18 @@
    #:font-weight
    #:format
    #:glyph
+   #:glyph-index
+   #:glyph-x
+   #:glyph-y
    #:hint-metrics
    #:hint-style
    #:image-surface-create
    #:line-cap
    #:line-join
+   #:make-glyph
+   #:make-rectangle
+   #:make-rectangle-int
+   #:make-text-cluster
    #:matrix
    #:operator
    #:path
@@ -4993,7 +5233,15 @@
    #:pattern
    #:pattern-type
    #:rectangle
+   #:rectangle-height
    #:rectangle-int
+   #:rectangle-int-height
+   #:rectangle-int-width
+   #:rectangle-int-x
+   #:rectangle-int-y
+   #:rectangle-width
+   #:rectangle-x
+   #:rectangle-y
    #:region
    #:region-overlap
    #:scaled-font
@@ -5002,7 +5250,9 @@
    #:surface
    #:surface-type
    #:text-cluster
-   #:text-cluster-flags))
+   #:text-cluster-flags
+   #:text-cluster-num-bytes
+   #:text-cluster-num-glyphs))
 
 (defpackage #:harfbuzz
   (:use #:cl)
@@ -5032,6 +5282,9 @@
    #:+version-minor+
    #:+version-string+
    #:aat-layout-feature-selector-info-t
+   #:aat-layout-feature-selector-info-t-disable
+   #:aat-layout-feature-selector-info-t-enable
+   #:aat-layout-feature-selector-info-t-name-id
    #:aat-layout-feature-selector-t
    #:aat-layout-feature-type-get-name-id
    #:aat-layout-feature-type-get-selector-infos
@@ -5133,6 +5386,9 @@
    #:color-line-get-extend-func-t
    #:color-line-t
    #:color-stop-t
+   #:color-stop-t-color
+   #:color-stop-t-is-foreground
+   #:color-stop-t-offset
    #:color-t
    #:destroy-func-t
    #:direction-from-string
@@ -5172,6 +5428,11 @@
    #:draw-set-budget
    #:draw-set-budget-func-t
    #:draw-state-t
+   #:draw-state-t-current-x
+   #:draw-state-t-current-y
+   #:draw-state-t-path-open
+   #:draw-state-t-path-start-x
+   #:draw-state-t-path-start-y
    #:face-builder-add-table
    #:face-builder-create
    #:face-builder-sort-tables
@@ -5203,6 +5464,10 @@
    #:face-t
    #:feature-from-string
    #:feature-t
+   #:feature-t-end
+   #:feature-t-start
+   #:feature-t-tag
+   #:feature-t-value
    #:feature-to-string
    #:font-add-glyph-origin-for-direction
    #:font-changed
@@ -5213,6 +5478,9 @@
    #:font-draw-glyph-or-fail
    #:font-draw-glyph-or-fail-func-t
    #:font-extents-t
+   #:font-extents-t-ascender
+   #:font-extents-t-descender
+   #:font-extents-t-line-gap
    #:font-funcs-create
    #:font-funcs-get-empty
    #:font-funcs-is-immutable
@@ -5356,15 +5624,42 @@
    #:glib-script-from-script
    #:glib-script-to-script
    #:glyph-extents-t
+   #:glyph-extents-t-height
+   #:glyph-extents-t-width
+   #:glyph-extents-t-x-bearing
+   #:glyph-extents-t-y-bearing
    #:glyph-flags-t
    #:glyph-info-get-glyph-flags
    #:glyph-info-t
+   #:glyph-info-t-cluster
+   #:glyph-info-t-codepoint
    #:glyph-position-t
+   #:glyph-position-t-x-advance
+   #:glyph-position-t-x-offset
+   #:glyph-position-t-y-advance
+   #:glyph-position-t-y-offset
    #:language-from-string
    #:language-get-default
    #:language-matches
    #:language-t
    #:language-to-string
+   #:make-aat-layout-feature-selector-info-t
+   #:make-color-stop-t
+   #:make-draw-state-t
+   #:make-feature-t
+   #:make-font-extents-t
+   #:make-glyph-extents-t
+   #:make-glyph-info-t
+   #:make-glyph-position-t
+   #:make-ot-color-layer-t
+   #:make-ot-math-glyph-part-t
+   #:make-ot-math-glyph-variant-t
+   #:make-ot-math-kern-entry-t
+   #:make-ot-var-axis-info-t
+   #:make-ot-var-axis-t
+   #:make-var-int-t
+   #:make-var-num-t
+   #:make-variation-t
    #:malloc
    #:map-allocation-successful
    #:map-clear
@@ -5400,6 +5695,8 @@
    #:ot-color-has-png
    #:ot-color-has-svg
    #:ot-color-layer-t
+   #:ot-color-layer-t-color-index
+   #:ot-color-layer-t-glyph
    #:ot-color-palette-color-get-name-id
    #:ot-color-palette-flags-t
    #:ot-color-palette-get-colors
@@ -5467,10 +5764,19 @@
    #:ot-math-get-min-connector-overlap
    #:ot-math-glyph-part-flags-t
    #:ot-math-glyph-part-t
+   #:ot-math-glyph-part-t-end-connector-length
+   #:ot-math-glyph-part-t-flags
+   #:ot-math-glyph-part-t-full-advance
+   #:ot-math-glyph-part-t-glyph
+   #:ot-math-glyph-part-t-start-connector-length
    #:ot-math-glyph-variant-t
+   #:ot-math-glyph-variant-t-advance
+   #:ot-math-glyph-variant-t-glyph
    #:ot-math-has-data
    #:ot-math-is-glyph-extended-shape
    #:ot-math-kern-entry-t
+   #:ot-math-kern-entry-t-kern-value
+   #:ot-math-kern-entry-t-max-correction-height
    #:ot-math-kern-t
    #:ot-meta-get-entry-tags
    #:ot-meta-reference-entry
@@ -5501,7 +5807,19 @@
    #:ot-tags-to-script-and-language
    #:ot-var-axis-flags-t
    #:ot-var-axis-info-t
+   #:ot-var-axis-info-t-axis-index
+   #:ot-var-axis-info-t-default-value
+   #:ot-var-axis-info-t-flags
+   #:ot-var-axis-info-t-max-value
+   #:ot-var-axis-info-t-min-value
+   #:ot-var-axis-info-t-name-id
+   #:ot-var-axis-info-t-tag
    #:ot-var-axis-t
+   #:ot-var-axis-t-default-value
+   #:ot-var-axis-t-max-value
+   #:ot-var-axis-t-min-value
+   #:ot-var-axis-t-name-id
+   #:ot-var-axis-t-tag
    #:ot-var-find-axis
    #:ot-var-find-axis-info
    #:ot-var-get-axes
@@ -5685,9 +6003,16 @@
    #:unicode-script-func-t
    #:user-data-key-t
    #:var-int-t
+   #:var-int-t-i32
+   #:var-int-t-u32
    #:var-num-t
+   #:var-num-t-f
+   #:var-num-t-i32
+   #:var-num-t-u32
    #:variation-from-string
    #:variation-t
+   #:variation-t-tag
+   #:variation-t-value
    #:variation-to-string))
 
 (defpackage #:pango
@@ -5711,21 +6036,29 @@
    #:+version-string+
    #:alignment
    #:analysis
+   #:analysis-flags
+   #:analysis-font
+   #:analysis-gravity
+   #:analysis-level
+   #:analysis-script
    #:attr-allow-breaks-new
    #:attr-background-alpha-new
    #:attr-background-new
    #:attr-baseline-shift-new
    #:attr-break
    #:attr-class
+   #:attr-class-type
    #:attr-color
    #:attr-data-copy-func
    #:attr-fallback-new
    #:attr-family-new
    #:attr-filter-func
    #:attr-float
+   #:attr-float-value
    #:attr-font-desc
    #:attr-font-desc-new
    #:attr-font-features
+   #:attr-font-features-features
    #:attr-font-features-new
    #:attr-font-scale-new
    #:attr-foreground-alpha-new
@@ -5734,6 +6067,7 @@
    #:attr-gravity-new
    #:attr-insert-hyphens-new
    #:attr-int
+   #:attr-int-value
    #:attr-iterator
    #:attr-iterator-copy
    #:attr-iterator-destroy
@@ -5773,12 +6107,15 @@
    #:attr-shape-new-with-data
    #:attr-show-new
    #:attr-size
+   #:attr-size-absolute
    #:attr-size-new
    #:attr-size-new-absolute
+   #:attr-size-size
    #:attr-stretch-new
    #:attr-strikethrough-color-new
    #:attr-strikethrough-new
    #:attr-string
+   #:attr-string-value
    #:attr-style-new
    #:attr-text-transform-new
    #:attr-type
@@ -5802,17 +6139,22 @@
    #:attribute-as-string
    #:attribute-copy
    #:attribute-destroy
+   #:attribute-end-index
    #:attribute-equal
    #:attribute-init
+   #:attribute-start-index
    #:baseline-shift
    #:bidi-type
    #:bidi-type-for-unichar
    #:break
    #:color
+   #:color-blue
    #:color-copy
    #:color-free
+   #:color-green
    #:color-parse
    #:color-parse-with-alpha
+   #:color-red
    #:color-to-string
    #:context
    #:context-changed
@@ -5974,21 +6316,36 @@
    #:get-mirror-char
    #:glyph
    #:glyph-geometry
+   #:glyph-geometry-width
+   #:glyph-geometry-x-offset
+   #:glyph-geometry-y-offset
    #:glyph-info
+   #:glyph-info-geometry
+   #:glyph-info-glyph
    #:glyph-item
    #:glyph-item-apply-attrs
    #:glyph-item-copy
+   #:glyph-item-end-x-offset
    #:glyph-item-free
    #:glyph-item-get-logical-widths
    #:glyph-item-iter
    #:glyph-item-iter-copy
+   #:glyph-item-iter-end-char
+   #:glyph-item-iter-end-glyph
+   #:glyph-item-iter-end-index
    #:glyph-item-iter-free
    #:glyph-item-iter-init-end
    #:glyph-item-iter-init-start
    #:glyph-item-iter-next-cluster
    #:glyph-item-iter-prev-cluster
+   #:glyph-item-iter-start-char
+   #:glyph-item-iter-start-glyph
+   #:glyph-item-iter-start-index
+   #:glyph-item-iter-text
    #:glyph-item-letter-space
    #:glyph-item-split
+   #:glyph-item-start-x-offset
+   #:glyph-item-y-offset
    #:glyph-string
    #:glyph-string-copy
    #:glyph-string-extents
@@ -5998,11 +6355,15 @@
    #:glyph-string-get-width
    #:glyph-string-index-to-x
    #:glyph-string-index-to-x-full
+   #:glyph-string-log-clusters
    #:glyph-string-new
+   #:glyph-string-num-glyphs
    #:glyph-string-set-size
    #:glyph-string-x-to-index
    #:glyph-unit
    #:glyph-vis-attr
+   #:glyph-vis-attr-is-cluster-start
+   #:glyph-vis-attr-is-color
    #:gravity
    #:gravity-get-for-matrix
    #:gravity-get-for-script
@@ -6011,11 +6372,15 @@
    #:gravity-to-rotation
    #:is-zero-width
    #:item
+   #:item-analysis
    #:item-apply-attrs
    #:item-copy
    #:item-free
    #:item-get-char-offset
+   #:item-length
    #:item-new
+   #:item-num-chars
+   #:item-offset
    #:item-split
    #:itemize
    #:itemize-with-base-dir
@@ -6108,7 +6473,11 @@
    #:layout-line-get-x-ranges
    #:layout-line-index-to-x
    #:layout-line-is-paragraph-start
+   #:layout-line-layout
+   #:layout-line-length
    #:layout-line-ref
+   #:layout-line-resolved-dir
+   #:layout-line-start-index
    #:layout-line-unref
    #:layout-line-x-to-index
    #:layout-move-cursor-visually
@@ -6137,7 +6506,41 @@
    #:layout-write-to-file
    #:layout-xy-to-index
    #:log-attr
+   #:log-attr-backspace-deletes-character
+   #:log-attr-break-inserts-hyphen
+   #:log-attr-break-removes-preceding
+   #:log-attr-is-char-break
+   #:log-attr-is-cursor-position
+   #:log-attr-is-expandable-space
+   #:log-attr-is-line-break
+   #:log-attr-is-mandatory-break
+   #:log-attr-is-sentence-boundary
+   #:log-attr-is-sentence-end
+   #:log-attr-is-sentence-start
+   #:log-attr-is-white
+   #:log-attr-is-word-boundary
+   #:log-attr-is-word-end
+   #:log-attr-is-word-start
+   #:log-attr-reserved
    #:log2vis-get-embedding-levels
+   #:make-analysis
+   #:make-attr-class
+   #:make-attr-float
+   #:make-attr-int
+   #:make-attr-size
+   #:make-attribute
+   #:make-color
+   #:make-glyph-geometry
+   #:make-glyph-info
+   #:make-glyph-item
+   #:make-glyph-item-iter
+   #:make-glyph-string
+   #:make-glyph-vis-attr
+   #:make-item
+   #:make-layout-line
+   #:make-log-attr
+   #:make-matrix
+   #:make-rectangle
    #:markup-parser-finish
    #:markup-parser-new
    #:matrix
@@ -6154,6 +6557,12 @@
    #:matrix-transform-point
    #:matrix-transform-rectangle
    #:matrix-translate
+   #:matrix-x0
+   #:matrix-xx
+   #:matrix-xy
+   #:matrix-y0
+   #:matrix-yx
+   #:matrix-yy
    #:overline
    #:parse-enum
    #:parse-markup
@@ -6164,6 +6573,10 @@
    #:quantize-line-geometry
    #:read-line
    #:rectangle
+   #:rectangle-height
+   #:rectangle-width
+   #:rectangle-x
+   #:rectangle-y
    #:render-component
    #:render-part
    #:renderer
@@ -6353,6 +6766,10 @@
    #:frustum-init-from-matrix
    #:frustum-intersects-box
    #:frustum-intersects-sphere
+   #:make-point
+   #:make-point3-d
+   #:make-rect
+   #:make-size
    #:matrix
    #:matrix-alloc
    #:matrix-decompose
@@ -6447,6 +6864,8 @@
    #:point-interpolate
    #:point-near
    #:point-to-vec2
+   #:point-x
+   #:point-y
    #:point-zero
    #:point3-d
    #:point3-d-alloc
@@ -6465,6 +6884,9 @@
    #:point3-d-normalize-viewport
    #:point3-d-scale
    #:point3-d-to-vec3
+   #:point3-d-x
+   #:point3-d-y
+   #:point3-d-z
    #:point3-d-zero
    #:quad
    #:quad-alloc
@@ -6548,6 +6970,7 @@
    #:rect-normalize-r
    #:rect-offset
    #:rect-offset-r
+   #:rect-origin
    #:rect-round
    #:rect-round-extents
    #:rect-round-to-pixel
@@ -6560,10 +6983,12 @@
    #:size-alloc
    #:size-equal
    #:size-free
+   #:size-height
    #:size-init
    #:size-init-from-size
    #:size-interpolate
    #:size-scale
+   #:size-width
    #:size-zero
    #:sphere
    #:sphere-alloc
@@ -6704,6 +7129,8 @@
    #:+pixbuf-version+
    #:colorspace
    #:interp-type
+   #:make-pixbuf-format
+   #:make-pixbuf-module-pattern
    #:pixbuf
    #:pixbuf-add-alpha
    #:pixbuf-alpha-mode
@@ -6742,6 +7169,9 @@
    #:pixbuf-flip
    #:pixbuf-format
    #:pixbuf-format-copy
+   #:pixbuf-format-description
+   #:pixbuf-format-disabled
+   #:pixbuf-format-domain
    #:pixbuf-format-flags
    #:pixbuf-format-free
    #:pixbuf-format-get-description
@@ -6753,6 +7183,8 @@
    #:pixbuf-format-is-save-option-supported
    #:pixbuf-format-is-scalable
    #:pixbuf-format-is-writable
+   #:pixbuf-format-license
+   #:pixbuf-format-name
    #:pixbuf-format-set-disabled
    #:pixbuf-get-bits-per-sample
    #:pixbuf-get-byte-length
@@ -6792,7 +7224,12 @@
    #:pixbuf-module-load-animation-func
    #:pixbuf-module-load-func
    #:pixbuf-module-load-xpm-data-func
+   #:pixbuf-module-module-name
+   #:pixbuf-module-module-path
    #:pixbuf-module-pattern
+   #:pixbuf-module-pattern-mask
+   #:pixbuf-module-pattern-prefix
+   #:pixbuf-module-pattern-relevance
    #:pixbuf-module-prepared-func
    #:pixbuf-module-save-callback-func
    #:pixbuf-module-save-func
@@ -9488,6 +9925,9 @@
    #:key-event-matches
    #:key-match
    #:keymap-key
+   #:keymap-key-group
+   #:keymap-key-keycode
+   #:keymap-key-level
    #:keyval-convert-case
    #:keyval-from-name
    #:keyval-get-aliases
@@ -9497,6 +9937,10 @@
    #:keyval-to-lower
    #:keyval-to-unicode
    #:keyval-to-upper
+   #:make-keymap-key
+   #:make-rectangle
+   #:make-rgba
+   #:make-time-coord
    #:memory-format
    #:memory-texture
    #:memory-texture-builder
@@ -9616,17 +10060,25 @@
    #:rectangle
    #:rectangle-contains-point
    #:rectangle-equal
+   #:rectangle-height
    #:rectangle-intersect
    #:rectangle-union
+   #:rectangle-width
+   #:rectangle-x
+   #:rectangle-y
    #:rgba
+   #:rgba-alpha
+   #:rgba-blue
    #:rgba-copy
    #:rgba-equal
    #:rgba-free
+   #:rgba-green
    #:rgba-hash
    #:rgba-is-clear
    #:rgba-is-opaque
    #:rgba-parse
    #:rgba-print
+   #:rgba-red
    #:rgba-to-string
    #:scroll-direction
    #:scroll-event
@@ -9724,6 +10176,8 @@
    #:texture-save-to-tiff-bytes
    #:texture-width
    #:time-coord
+   #:time-coord-flags
+   #:time-coord-time
    #:titlebar-gesture
    #:toplevel
    #:toplevel-begin-move
@@ -9843,6 +10297,8 @@
    #:color-node-get-snap
    #:color-node-new
    #:color-stop
+   #:color-stop-color
+   #:color-stop-offset
    #:component-transfer
    #:component-transfer-copy
    #:component-transfer-equal
@@ -9949,6 +10405,10 @@
    #:linear-gradient-node-get-snap
    #:linear-gradient-node-get-start
    #:linear-gradient-node-new
+   #:make-color-stop
+   #:make-parse-location
+   #:make-rounded-rect
+   #:make-shadow
    #:mask-mode
    #:mask-node
    #:mask-node-get-mask
@@ -9972,6 +10432,11 @@
    #:outset-shadow-node-new
    #:parse-error-func
    #:parse-location
+   #:parse-location-bytes
+   #:parse-location-chars
+   #:parse-location-line-bytes
+   #:parse-location-line-chars
+   #:parse-location-lines
    #:paste-node
    #:paste-node-get-depth
    #:paste-node-get-snap
@@ -10120,6 +10585,7 @@
    #:rounded-clip-node-get-snap
    #:rounded-clip-node-new
    #:rounded-rect
+   #:rounded-rect-bounds
    #:rounded-rect-contains-point
    #:rounded-rect-contains-rect
    #:rounded-rect-init
@@ -10146,11 +10612,15 @@
    #:shader-args-builder-to-args
    #:shader-args-builder-unref
    #:shadow
+   #:shadow-color
+   #:shadow-dx
+   #:shadow-dy
    #:shadow-node
    #:shadow-node-get-child
    #:shadow-node-get-n-shadows
    #:shadow-node-get-shadow
    #:shadow-node-new
+   #:shadow-radius
    #:side
    #:snap-direction
    #:stroke
@@ -10443,6 +10913,8 @@
    #:accessible-text-granularity
    #:accessible-text-interface
    #:accessible-text-range
+   #:accessible-text-range-length
+   #:accessible-text-range-start
    #:accessible-text-update-caret-position
    #:accessible-text-update-contents
    #:accessible-text-update-selection-bound
@@ -10744,10 +11216,14 @@
    #:bool-filter-set-expression
    #:bool-filter-set-invert
    #:border
+   #:border-bottom
    #:border-copy
    #:border-free
+   #:border-left
    #:border-new
+   #:border-right
    #:border-style
+   #:border-top
    #:box
    #:box-append
    #:box-baseline-child
@@ -11500,6 +11976,11 @@
    #:content-fit
    #:corner-type
    #:css-location
+   #:css-location-bytes
+   #:css-location-chars
+   #:css-location-line-bytes
+   #:css-location-line-chars
+   #:css-location-lines
    #:css-parser-error
    #:css-parser-error-quark
    #:css-parser-warning
@@ -13118,6 +13599,16 @@
    #:lock-button-tooltip-lock
    #:lock-button-tooltip-not-authorized
    #:lock-button-tooltip-unlock
+   #:make-accessible-text-range
+   #:make-border
+   #:make-css-location
+   #:make-pad-action-entry
+   #:make-page-range
+   #:make-recent-data
+   #:make-requested-size
+   #:make-requisition
+   #:make-svg-location
+   #:make-tree-iter
    #:map-list-model
    #:map-list-model-class
    #:map-list-model-get-model
@@ -13443,6 +13934,11 @@
    #:overlay-set-measure-overlay
    #:pack-type
    #:pad-action-entry
+   #:pad-action-entry-action-name
+   #:pad-action-entry-index
+   #:pad-action-entry-label
+   #:pad-action-entry-mode
+   #:pad-action-entry-type
    #:pad-action-type
    #:pad-controller
    #:pad-controller-action-group
@@ -13453,6 +13949,8 @@
    #:pad-controller-set-action-entries
    #:page-orientation
    #:page-range
+   #:page-range-end
+   #:page-range-start
    #:page-set
    #:page-setup
    #:page-setup-copy
@@ -14006,6 +14504,12 @@
    #:range-set-value
    #:range-show-fill-level
    #:recent-data
+   #:recent-data-app-exec
+   #:recent-data-app-name
+   #:recent-data-description
+   #:recent-data-display-name
+   #:recent-data-is-private
+   #:recent-data-mime-type
    #:recent-info
    #:recent-info-create-app-info
    #:recent-info-exists
@@ -14062,10 +14566,14 @@
    #:render-line
    #:render-option
    #:requested-size
+   #:requested-size-minimum-size
+   #:requested-size-natural-size
    #:requisition
    #:requisition-copy
    #:requisition-free
+   #:requisition-height
    #:requisition-new
+   #:requisition-width
    #:response-type
    #:revealer
    #:revealer-child
@@ -14770,6 +15278,9 @@
    #:svg-load-from-bytes
    #:svg-load-from-resource
    #:svg-location
+   #:svg-location-bytes
+   #:svg-location-line-chars
+   #:svg-location-lines
    #:svg-new
    #:svg-new-from-bytes
    #:svg-new-from-resource
@@ -15331,6 +15842,7 @@
    #:tree-iter-compare-func
    #:tree-iter-copy
    #:tree-iter-free
+   #:tree-iter-stamp
    #:tree-list-model
    #:tree-list-model-autoexpand
    #:tree-list-model-class

@@ -196,6 +196,181 @@ C: graphene_vec3_t"))
 
 C: graphene_vec4_t"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct simd4-f
+    nil
+  (:x :float)
+  (:y :float)
+  (:z :float)
+  (:w :float))
+
+
+(rt:define-gstruct vec3
+    (:gtype-name "GrapheneVec3")
+  (:value (:struct simd4-f)))
+
+
+(rt:define-gstruct box
+    (:gtype-name "GrapheneBox")
+  (:min (:struct vec3))
+  (:max (:struct vec3)))
+
+
+(rt:define-gstruct euler
+    (:gtype-name "GrapheneEuler")
+  (:angles (:struct vec3))
+  (:order :int))
+
+
+(rt:define-gstruct plane
+    (:gtype-name "GraphenePlane")
+  (:normal (:struct vec3))
+  (:constant :float))
+
+
+(rt:define-gstruct frustum
+    (:gtype-name "GrapheneFrustum")
+  (:planes (:struct plane) :count 6))
+
+
+(rt:define-gstruct simd4-x4-f
+    nil
+  (:x (:struct simd4-f))
+  (:y (:struct simd4-f))
+  (:z (:struct simd4-f))
+  (:w (:struct simd4-f)))
+
+
+(rt:define-gstruct matrix
+    (:gtype-name "GrapheneMatrix")
+  (:value (:struct simd4-x4-f)))
+
+
+(rt:define-gstruct point
+    (:gtype-name "GraphenePoint")
+  (:x :float)
+  (:y :float))
+
+
+(rt:define-gfield point-x point :x :float :writable t :documentation "the X coordinate of the point
+")
+
+
+(rt:define-gfield point-y point :y :float :writable t :documentation "the Y coordinate of the point
+")
+
+
+(rt:define-gstruct-constructor make-point (:boxed "GraphenePoint" "graphene_point_get_type" point)
+                               ((x :x :float) (y :y :float)) :documentation
+                               "A new Point with the given fields; others are zero.")
+
+
+(rt:define-gstruct point3-d
+    (:gtype-name "GraphenePoint3D")
+  (:x :float)
+  (:y :float)
+  (:z :float))
+
+
+(rt:define-gfield point3-d-x point3-d :x :float :writable t :documentation "the X coordinate
+")
+
+
+(rt:define-gfield point3-d-y point3-d :y :float :writable t :documentation "the Y coordinate
+")
+
+
+(rt:define-gfield point3-d-z point3-d :z :float :writable t :documentation "the Z coordinate
+")
+
+
+(rt:define-gstruct-constructor make-point3-d
+                               (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                               ((x :x :float) (y :y :float) (z :z :float)) :documentation
+                               "A new Point3D with the given fields; others are zero.")
+
+
+(rt:define-gstruct quad
+    (:gtype-name "GrapheneQuad")
+  (:points (:struct point) :count 4))
+
+
+(rt:define-gstruct quaternion
+    (:gtype-name "GrapheneQuaternion")
+  (:x :float)
+  (:y :float)
+  (:z :float)
+  (:w :float))
+
+
+(rt:define-gstruct ray
+    (:gtype-name "GrapheneRay")
+  (:origin (:struct vec3))
+  (:direction (:struct vec3)))
+
+
+(rt:define-gstruct size
+    (:gtype-name "GrapheneSize")
+  (:width :float)
+  (:height :float))
+
+
+(rt:define-gfield size-width size :width :float :writable t :documentation "the width
+")
+
+
+(rt:define-gfield size-height size :height :float :writable t :documentation "the height
+")
+
+
+(rt:define-gstruct-constructor make-size (:boxed "GrapheneSize" "graphene_size_get_type" size)
+                               ((width :width :float) (height :height :float)) :documentation
+                               "A new Size with the given fields; others are zero.")
+
+
+(rt:define-gstruct rect
+    (:gtype-name "GrapheneRect")
+  (:origin (:struct point))
+  (:size (:struct size)))
+
+
+(rt:define-gfield rect-origin rect :origin (:boxed "GraphenePoint" "graphene_point_get_type" point)
+                  :writable t :inline t :documentation
+                  "the coordinates of the origin of the rectangle
+")
+
+
+(rt:define-gstruct-constructor make-rect (:boxed "GrapheneRect" "graphene_rect_get_type" rect)
+                               ((origin :origin
+                                 (:boxed "GraphenePoint" "graphene_point_get_type" point) :inline
+                                 t))
+                               :documentation "A new Rect with the given fields; others are zero.")
+
+
+(rt:define-gstruct sphere
+    (:gtype-name "GrapheneSphere")
+  (:center (:struct vec3))
+  (:radius :float))
+
+
+(rt:define-gstruct triangle
+    (:gtype-name "GrapheneTriangle")
+  (:a (:struct vec3))
+  (:b (:struct vec3))
+  (:c (:struct vec3)))
+
+
+(rt:define-gstruct vec2
+    (:gtype-name "GrapheneVec2")
+  (:value (:struct simd4-f)))
+
+
+(rt:define-gstruct vec4
+    (:gtype-name "GrapheneVec4")
+  (:value (:struct simd4-f)))
+
 ;;; Properties
 
 ;;; Callback types
@@ -204,31 +379,32 @@ C: graphene_vec4_t"))
 
 
 (rt:define-gfunction (box-alloc "graphene_box_alloc") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :return-transfer :full :version
-                     "1.2" :documentation "Allocates a new #graphene_box_t.
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :return-transfer :full
+                     :version "1.2" :documentation "Allocates a new #graphene_box_t.
 
 C: graphene_box_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (box-empty "graphene_box_empty") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
-                     "A degenerate #graphene_box_t that can only be expanded.
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation "A degenerate #graphene_box_t that can only be expanded.
 
 C: graphene_box_empty
 Since: 1.2")
 
 
 (rt:define-gfunction (box-infinite "graphene_box_infinite") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
-                     "A degenerate #graphene_box_t that cannot be expanded.
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation "A degenerate #graphene_box_t that cannot be expanded.
 
 C: graphene_box_infinite
 Since: 1.2")
 
 
 (rt:define-gfunction (box-minus-one "graphene_box_minus_one") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation
                      "A #graphene_box_t with the minimum vertex set at (-1, -1, -1) and the
 maximum vertex set at (0, 0, 0).
 
@@ -237,7 +413,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-one "graphene_box_one") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation
                      "A #graphene_box_t with the minimum vertex set at (0, 0, 0) and the
 maximum vertex set at (1, 1, 1).
 
@@ -246,7 +423,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-one-minus-one "graphene_box_one_minus_one") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation
                      "A #graphene_box_t with the minimum vertex set at (-1, -1, -1) and the
 maximum vertex set at (1, 1, 1).
 
@@ -255,7 +433,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-zero "graphene_box_zero") :return
-                     (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2" :documentation
+                     (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation
                      "A #graphene_box_t with both the minimum and maximum vertices set at (0, 0, 0).
 
 C: graphene_box_zero
@@ -263,8 +442,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-contains-box "graphene_box_contains_box") :args
-                     ((a (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (b (:boxed "GrapheneBox" "graphene_box_get_type")))
+                     ((a (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the #graphene_box_t A contains the given
 #graphene_box_t B.
@@ -274,8 +453,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-contains-point "graphene_box_contains_point") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether BOX contains the given POINT.
 
@@ -284,8 +463,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-equal "graphene_box_equal") :args
-                     ((a (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (b (:boxed "GrapheneBox" "graphene_box_get_type")))
+                     ((a (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given boxes are equal.
 
@@ -293,43 +472,153 @@ C: graphene_box_equal
 Since: 1.2")
 
 
+(rt:define-gfunction (box-expand "graphene_box_expand") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Expands the dimensions of BOX to include the coordinates at POINT.
+
+C: graphene_box_expand
+Since: 1.2")
+
+
+(rt:define-gfunction (box-expand-scalar "graphene_box_expand_scalar") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box)) (scalar :float)
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Expands the dimensions of BOX by the given SCALAR value.
+
+C: graphene_box_expand_scalar
+Since: 1.2")
+
+
+(rt:define-gfunction (box-expand-vec3 "graphene_box_expand_vec3") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (vec (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Expands the dimensions of BOX to include the coordinates of the
+given vector.
+
+C: graphene_box_expand_vec3
+Since: 1.2")
+
+
 (rt:define-gfunction (box-free "graphene_box_free") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))) :version "1.2"
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))) :version "1.2"
                      :documentation "Frees the resources allocated by graphene_box_alloc().
 
 C: graphene_box_free
 Since: 1.2")
 
 
+(rt:define-gfunction (box-get-bounding-sphere "graphene_box_get_bounding_sphere") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (sphere (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the bounding #graphene_sphere_t capable of containing the given
+#graphene_box_t.
+
+C: graphene_box_get_bounding_sphere
+Since: 1.2")
+
+
+(rt:define-gfunction (box-get-center "graphene_box_get_center") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the coordinates of the center of a #graphene_box_t.
+
+C: graphene_box_get_center
+Since: 1.2")
+
+
 (rt:define-gfunction (box-get-depth "graphene_box_get_depth") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))) :return :float :version
-                     "1.2" :documentation "Retrieves the size of the BOX on the Z axis.
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))) :return :float
+                     :version "1.2" :documentation "Retrieves the size of the BOX on the Z axis.
 
 C: graphene_box_get_depth
 Since: 1.2")
 
 
 (rt:define-gfunction (box-get-height "graphene_box_get_height") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))) :return :float :version
-                     "1.2" :documentation "Retrieves the size of the BOX on the Y axis.
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))) :return :float
+                     :version "1.2" :documentation "Retrieves the size of the BOX on the Y axis.
 
 C: graphene_box_get_height
 Since: 1.2")
 
 
+(rt:define-gfunction (box-get-max "graphene_box_get_max") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (max (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                           :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the coordinates of the maximum point of the given
+#graphene_box_t.
+
+C: graphene_box_get_max
+Since: 1.2")
+
+
+(rt:define-gfunction (box-get-min "graphene_box_get_min") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (min (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                           :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the coordinates of the minimum point of the given
+#graphene_box_t.
+
+C: graphene_box_get_min
+Since: 1.2")
+
+
+(rt:define-gfunction (box-get-size "graphene_box_get_size") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (size (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the size of the box on all three axes, and stores
+it into the given SIZE vector.
+
+C: graphene_box_get_size
+Since: 1.2")
+
+
+(rt:define-gfunction (box-get-vertices "graphene_box_get_vertices") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (vertices
+                       (:array (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :fixed-size 8
+                        :caller-allocates t)
+                       :direction :out))
+                     :version "1.2" :documentation
+                     "Computes the vertices of the given #graphene_box_t.
+
+C: graphene_box_get_vertices
+Since: 1.2")
+
+
 (rt:define-gfunction (box-get-width "graphene_box_get_width") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))) :return :float :version
-                     "1.2" :documentation "Retrieves the size of the BOX on the X axis.
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))) :return :float
+                     :version "1.2" :documentation "Retrieves the size of the BOX on the X axis.
 
 C: graphene_box_get_width
 Since: 1.2")
 
 
 (rt:define-gfunction (box-init "graphene_box_init") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (min (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t)
-                      (max (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t))
-                     :return (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2"
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (min (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                           :optional t)
+                      (max (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                           :optional t))
+                     :return (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
                      :documentation "Initializes the given #graphene_box_t with two vertices.
 
 C: graphene_box_init
@@ -337,9 +626,9 @@ Since: 1.2")
 
 
 (rt:define-gfunction (box-init-from-box "graphene_box_init_from_box") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (src (:boxed "GrapheneBox" "graphene_box_get_type")))
-                     :return (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2"
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (src (:boxed "GrapheneBox" "graphene_box_get_type" box)))
+                     :return (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
                      :documentation "Initializes the given #graphene_box_t with the vertices of
 another #graphene_box_t.
 
@@ -347,11 +636,24 @@ C: graphene_box_init_from_box
 Since: 1.2")
 
 
+(rt:define-gfunction (box-init-from-points "graphene_box_init_from_points") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (n-points :uint :length-of points)
+                      (points
+                       (:array (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))))
+                     :return (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation "Initializes the given #graphene_box_t with the given array
+of vertices.
+
+C: graphene_box_init_from_points
+Since: 1.2")
+
+
 (rt:define-gfunction (box-init-from-vec3 "graphene_box_init_from_vec3") :args
-                     ((box (:boxed "GrapheneBox" "graphene_box_get_type"))
-                      (min (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t)
-                      (max (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t))
-                     :return (:boxed "GrapheneBox" "graphene_box_get_type") :version "1.2"
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (min (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t)
+                      (max (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t))
+                     :return (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
                      :documentation "Initializes the given #graphene_box_t with two vertices
 stored inside #graphene_vec3_t.
 
@@ -359,17 +661,52 @@ C: graphene_box_init_from_vec3
 Since: 1.2")
 
 
+(rt:define-gfunction (box-init-from-vectors "graphene_box_init_from_vectors") :args
+                     ((box (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (n-vectors :uint :length-of vectors)
+                      (vectors (:array (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))))
+                     :return (:boxed "GrapheneBox" "graphene_box_get_type" box) :version "1.2"
+                     :documentation "Initializes the given #graphene_box_t with the given array
+of vertices.
+
+C: graphene_box_init_from_vectors
+Since: 1.2")
+
+
+(rt:define-gfunction (box-intersection "graphene_box_intersection") :args
+                     ((a (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :version "1.2" :documentation
+                     "Intersects the two given #graphene_box_t.
+
+C: graphene_box_intersection
+Since: 1.2")
+
+
+(rt:define-gfunction (box-union "graphene_box_union") :args
+                     ((a (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation "Unions the two given #graphene_box_t.
+
+C: graphene_box_union
+Since: 1.2")
+
+
 (rt:define-gfunction (euler-alloc "graphene_euler_alloc") :return
-                     (:boxed "GrapheneEuler" "graphene_euler_get_type") :return-transfer :full
-                     :version "1.2" :documentation "Allocates a new #graphene_euler_t.
+                     (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :return-transfer
+                     :full :version "1.2" :documentation "Allocates a new #graphene_euler_t.
 
 C: graphene_euler_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (euler-equal "graphene_euler_equal") :args
-                     ((a (:boxed "GrapheneEuler" "graphene_euler_get_type"))
-                      (b (:boxed "GrapheneEuler" "graphene_euler_get_type")))
+                     ((a (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (b (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)))
                      :return :boolean :version "1.2" :documentation
                      "Checks if two #graphene_euler_t are equal.
 
@@ -378,7 +715,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-free "graphene_euler_free") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :version "1.2"
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :version "1.2"
                      :documentation "Frees the resources allocated by graphene_euler_alloc().
 
 C: graphene_euler_free
@@ -386,7 +723,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-get-alpha "graphene_euler_get_alpha") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.10" :documentation
                      "Retrieves the first component of the Euler angle vector,
 depending on the order of rotation.
@@ -396,7 +733,7 @@ Since: 1.10")
 
 
 (rt:define-gfunction (euler-get-beta "graphene_euler_get_beta") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.10" :documentation
                      "Retrieves the second component of the Euler angle vector,
 depending on the order of rotation.
@@ -406,7 +743,7 @@ Since: 1.10")
 
 
 (rt:define-gfunction (euler-get-gamma "graphene_euler_get_gamma") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.10" :documentation
                      "Retrieves the third component of the Euler angle vector,
 depending on the order of rotation.
@@ -416,7 +753,7 @@ Since: 1.10")
 
 
 (rt:define-gfunction (euler-get-order "graphene_euler_get_order") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return
                      (:enum euler-order) :version "1.2" :documentation
                      "Retrieves the order used to apply the rotations described in the
 #graphene_euler_t structure, when converting to and from other
@@ -427,7 +764,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-get-x "graphene_euler_get_x") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.2" :documentation
                      "Retrieves the rotation angle on the X axis, in degrees.
 
@@ -436,7 +773,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-get-y "graphene_euler_get_y") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.2" :documentation
                      "Retrieves the rotation angle on the Y axis, in degrees.
 
@@ -445,7 +782,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-get-z "graphene_euler_get_z") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))) :return :float
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))) :return :float
                      :version "1.2" :documentation
                      "Retrieves the rotation angle on the Z axis, in degrees.
 
@@ -454,20 +791,21 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-init "graphene_euler_init") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type")) (x :float) (y :float)
-                      (z :float))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation "Initializes a #graphene_euler_t using the given angles.
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)) (x :float)
+                      (y :float) (z :float))
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation "Initializes a #graphene_euler_t using the given angles.
 
 C: graphene_euler_init
 Since: 1.2")
 
 
 (rt:define-gfunction (euler-init-from-euler "graphene_euler_init_from_euler") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))
-                      (src (:boxed "GrapheneEuler" "graphene_euler_get_type") :optional t))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation "Initializes a #graphene_euler_t using the angles and order of
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (src (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :optional t))
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation
+                     "Initializes a #graphene_euler_t using the angles and order of
 another #graphene_euler_t.
 
 C: graphene_euler_init_from_euler
@@ -475,11 +813,11 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-init-from-matrix "graphene_euler_init_from_matrix") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))
-                      (m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
                       (order (:enum euler-order)))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation
                      "Initializes a #graphene_euler_t using the given rotation matrix.
 
 C: graphene_euler_init_from_matrix
@@ -487,11 +825,11 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-init-from-quaternion "graphene_euler_init_from_quaternion") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))
-                      (q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
                       (order (:enum euler-order)))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation
                      "Initializes a #graphene_euler_t using the given normalized quaternion.
 
 C: graphene_euler_init_from_quaternion
@@ -499,10 +837,10 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-init-from-radians "graphene_euler_init_from_radians") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type")) (x :float) (y :float)
-                      (z :float) (order (:enum euler-order)))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.10"
-                     :documentation "Initializes a #graphene_euler_t using the given angles
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)) (x :float)
+                      (y :float) (z :float) (order (:enum euler-order)))
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.10" :documentation "Initializes a #graphene_euler_t using the given angles
 and order of rotation.
 
 C: graphene_euler_init_from_radians
@@ -510,11 +848,12 @@ Since: 1.10")
 
 
 (rt:define-gfunction (euler-init-from-vec3 "graphene_euler_init_from_vec3") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type"))
-                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
                       (order (:enum euler-order)))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation "Initializes a #graphene_euler_t using the angles contained in a
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation
+                     "Initializes a #graphene_euler_t using the angles contained in a
 #graphene_vec3_t.
 
 C: graphene_euler_init_from_vec3
@@ -522,27 +861,74 @@ Since: 1.2")
 
 
 (rt:define-gfunction (euler-init-with-order "graphene_euler_init_with_order") :args
-                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type")) (x :float) (y :float)
-                      (z :float) (order (:enum euler-order)))
-                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type") :version "1.2"
-                     :documentation
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)) (x :float)
+                      (y :float) (z :float) (order (:enum euler-order)))
+                     :return (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :version
+                     "1.2" :documentation
                      "Initializes a #graphene_euler_t with the given angles and ORDER.
 
 C: graphene_euler_init_with_order
 Since: 1.2")
 
 
+(rt:define-gfunction (euler-reorder "graphene_euler_reorder") :args
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (order (:enum euler-order))
+                      (res (:boxed "GrapheneEuler" "graphene_euler_get_type" euler) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation "Reorders a #graphene_euler_t using ORDER.
+
+C: graphene_euler_reorder
+Since: 1.2")
+
+
+(rt:define-gfunction (euler-to-matrix "graphene_euler_to_matrix") :args
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Converts a #graphene_euler_t into a transformation matrix expressing
+the extrinsic composition of rotations described by the Euler angles.
+
+C: graphene_euler_to_matrix
+Since: 1.2")
+
+
+(rt:define-gfunction (euler-to-quaternion "graphene_euler_to_quaternion") :args
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Converts a #graphene_euler_t into a #graphene_quaternion_t.
+
+C: graphene_euler_to_quaternion
+Since: 1.10")
+
+
+(rt:define-gfunction (euler-to-vec3 "graphene_euler_to_vec3") :args
+                     ((e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the angles of a #graphene_euler_t and initializes a
+#graphene_vec3_t with them.
+
+C: graphene_euler_to_vec3
+Since: 1.2")
+
+
 (rt:define-gfunction (frustum-alloc "graphene_frustum_alloc") :return
-                     (:boxed "GrapheneFrustum" "graphene_frustum_get_type") :return-transfer :full
-                     :version "1.2" :documentation "Allocates a new #graphene_frustum_t structure.
+                     (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)
+                     :return-transfer :full :version "1.2" :documentation
+                     "Allocates a new #graphene_frustum_t structure.
 
 C: graphene_frustum_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (frustum-contains-point "graphene_frustum_contains_point") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether a point is inside the volume defined by the given
 #graphene_frustum_t.
@@ -552,8 +938,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (frustum-equal "graphene_frustum_equal") :args
-                     ((a (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (b (:boxed "GrapheneFrustum" "graphene_frustum_get_type")))
+                     ((a (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (b (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)))
                      :return :boolean :version "1.6" :documentation
                      "Checks whether the two given #graphene_frustum_t are equal.
 
@@ -562,23 +948,38 @@ Since: 1.6")
 
 
 (rt:define-gfunction (frustum-free "graphene_frustum_free") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))) :version "1.2"
-                     :documentation "Frees the resources allocated by graphene_frustum_alloc().
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))) :version
+                     "1.2" :documentation
+                     "Frees the resources allocated by graphene_frustum_alloc().
 
 C: graphene_frustum_free
 Since: 1.2")
 
 
+(rt:define-gfunction (frustum-get-planes "graphene_frustum_get_planes") :args
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (planes
+                       (:array (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :fixed-size
+                        6 :caller-allocates t)
+                       :direction :out))
+                     :version "1.2" :documentation
+                     "Retrieves the planes that define the given #graphene_frustum_t.
+
+C: graphene_frustum_get_planes
+Since: 1.2")
+
+
 (rt:define-gfunction (frustum-init "graphene_frustum_init") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (p0 (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (p1 (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (p2 (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (p3 (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (p4 (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (p5 (:boxed "GraphenePlane" "graphene_plane_get_type")))
-                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type") :version "1.2"
-                     :documentation "Initializes the given #graphene_frustum_t using the provided
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (p0 (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (p1 (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (p2 (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (p3 (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (p4 (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (p5 (:boxed "GraphenePlane" "graphene_plane_get_type" plane)))
+                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)
+                     :version "1.2" :documentation
+                     "Initializes the given #graphene_frustum_t using the provided
 clipping planes.
 
 C: graphene_frustum_init
@@ -586,10 +987,11 @@ Since: 1.2")
 
 
 (rt:define-gfunction (frustum-init-from-frustum "graphene_frustum_init_from_frustum") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (src (:boxed "GrapheneFrustum" "graphene_frustum_get_type")))
-                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type") :version "1.2"
-                     :documentation "Initializes the given #graphene_frustum_t using the clipping
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (src (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)))
+                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)
+                     :version "1.2" :documentation
+                     "Initializes the given #graphene_frustum_t using the clipping
 planes of another #graphene_frustum_t.
 
 C: graphene_frustum_init_from_frustum
@@ -597,18 +999,19 @@ Since: 1.2")
 
 
 (rt:define-gfunction (frustum-init-from-matrix "graphene_frustum_init_from_matrix") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
-                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type") :version "1.2"
-                     :documentation "Initializes a #graphene_frustum_t using the given MATRIX.
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)))
+                     :return (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum)
+                     :version "1.2" :documentation
+                     "Initializes a #graphene_frustum_t using the given MATRIX.
 
 C: graphene_frustum_init_from_matrix
 Since: 1.2")
 
 
 (rt:define-gfunction (frustum-intersects-box "graphene_frustum_intersects_box") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (box (:boxed "GrapheneBox" "graphene_box_get_type")))
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (box (:boxed "GrapheneBox" "graphene_box_get_type" box)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the given BOX intersects a plane of
 a #graphene_frustum_t.
@@ -618,8 +1021,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (frustum-intersects-sphere "graphene_frustum_intersects_sphere") :args
-                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type"))
-                      (sphere (:boxed "GrapheneSphere" "graphene_sphere_get_type")))
+                     ((f (:boxed "GrapheneFrustum" "graphene_frustum_get_type" frustum))
+                      (sphere (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the given SPHERE intersects a plane of
 a #graphene_frustum_t.
@@ -629,24 +1032,44 @@ Since: 1.2")
 
 
 (rt:define-gfunction (matrix-alloc "graphene_matrix_alloc") :return
-                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :return-transfer :full
-                     :version "1.0" :documentation "Allocates a new #graphene_matrix_t.
+                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :return-transfer
+                     :full :version "1.0" :documentation "Allocates a new #graphene_matrix_t.
 
 C: graphene_matrix_alloc
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-decompose "graphene_matrix_decompose") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (translate (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction
+                       :out :caller-allocates t)
+                      (scale (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t)
+                      (rotate
+                       (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t)
+                      (shear (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t)
+                      (perspective (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation
+                     "Decomposes a transformation matrix into its component transformations.
+
+C: graphene_matrix_decompose")
+
+
 (rt:define-gfunction (matrix-determinant "graphene_matrix_determinant") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.0" :documentation "Computes the determinant of the given matrix.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.0" :documentation
+                     "Computes the determinant of the given matrix.
 
 C: graphene_matrix_determinant
 Since: 1.0")
 
 
 (rt:define-gfunction (matrix-equal "graphene_matrix_equal") :args
-                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
+                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)))
                      :return :boolean :version "1.10" :documentation
                      "Checks whether the two given #graphene_matrix_t matrices are equal.
 
@@ -655,8 +1078,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (matrix-equal-fast "graphene_matrix_equal_fast") :args
-                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
+                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)))
                      :return :boolean :version "1.10" :documentation
                      "Checks whether the two given #graphene_matrix_t matrices are
 byte-by-byte equal.
@@ -666,15 +1089,27 @@ Since: 1.10")
 
 
 (rt:define-gfunction (matrix-free "graphene_matrix_free") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :version "1.0"
-                     :documentation "Frees the resources allocated by graphene_matrix_alloc().
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :version
+                     "1.0" :documentation "Frees the resources allocated by graphene_matrix_alloc().
 
 C: graphene_matrix_free
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-get-row "graphene_matrix_get_row") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (index- :uint)
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the given row vector at INDEX- inside a matrix.
+
+C: graphene_matrix_get_row
+Since: 1.0")
+
+
 (rt:define-gfunction (matrix-get-value "graphene_matrix_get_value") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (row :uint)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (row :uint)
                       (col :uint))
                      :return :float :version "1.0" :documentation
                      "Retrieves the value at the given ROW and COL index.
@@ -684,16 +1119,17 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-get-x-scale "graphene_matrix_get_x_scale") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.0" :documentation "Retrieves the scaling factor on the X axis in M.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.0" :documentation
+                     "Retrieves the scaling factor on the X axis in M.
 
 C: graphene_matrix_get_x_scale
 Since: 1.0")
 
 
 (rt:define-gfunction (matrix-get-x-translation "graphene_matrix_get_x_translation") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.10" :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.10" :documentation
                      "Retrieves the translation component on the X axis from M.
 
 C: graphene_matrix_get_x_translation
@@ -701,16 +1137,17 @@ Since: 1.10")
 
 
 (rt:define-gfunction (matrix-get-y-scale "graphene_matrix_get_y_scale") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.0" :documentation "Retrieves the scaling factor on the Y axis in M.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.0" :documentation
+                     "Retrieves the scaling factor on the Y axis in M.
 
 C: graphene_matrix_get_y_scale
 Since: 1.0")
 
 
 (rt:define-gfunction (matrix-get-y-translation "graphene_matrix_get_y_translation") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.10" :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.10" :documentation
                      "Retrieves the translation component on the Y axis from M.
 
 C: graphene_matrix_get_y_translation
@@ -718,16 +1155,17 @@ Since: 1.10")
 
 
 (rt:define-gfunction (matrix-get-z-scale "graphene_matrix_get_z_scale") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.0" :documentation "Retrieves the scaling factor on the Z axis in M.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.0" :documentation
+                     "Retrieves the scaling factor on the Z axis in M.
 
 C: graphene_matrix_get_z_scale
 Since: 1.0")
 
 
 (rt:define-gfunction (matrix-get-z-translation "graphene_matrix_get_z_translation") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :float
-                     :version "1.10" :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :float :version "1.10" :documentation
                      "Retrieves the translation component on the Z axis from M.
 
 C: graphene_matrix_get_z_translation
@@ -735,10 +1173,11 @@ Since: 1.10")
 
 
 (rt:define-gfunction (matrix-init-from-2d "graphene_matrix_init_from_2d") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (xx :double)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (xx :double)
                       (yx :double) (xy :double) (yy :double) (x-0 :double) (y-0 :double))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t from the values of an affine
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
+                     "Initializes a #graphene_matrix_t from the values of an affine
 transformation matrix.
 
 C: graphene_matrix_init_from_2d
@@ -746,10 +1185,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-from-float "graphene_matrix_init_from_float") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
                       (v (:array :float :fixed-size 16)))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
                      "Initializes a #graphene_matrix_t with the given array of floating
 point values.
 
@@ -758,10 +1197,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-from-matrix "graphene_matrix_init_from_matrix") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (src (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t using the values of the
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (src (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation "Initializes a #graphene_matrix_t using the values of the
 given matrix.
 
 C: graphene_matrix_init_from_matrix
@@ -769,13 +1208,13 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-from-vec4 "graphene_matrix_init_from_vec4") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (v0 (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (v3 (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t with the given four row
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (v0 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v3 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation "Initializes a #graphene_matrix_t with the given four row
 vectors.
 
 C: graphene_matrix_init_from_vec4
@@ -783,10 +1222,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-frustum "graphene_matrix_init_frustum") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (left :float)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (left :float)
                       (right :float) (bottom :float) (top :float) (z-near :float) (z-far :float))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.2"
-                     :documentation
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.2" :documentation
                      "Initializes a #graphene_matrix_t compatible with #graphene_frustum_t.
 
 C: graphene_matrix_init_frustum
@@ -794,8 +1233,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (matrix-init-identity "graphene_matrix_init_identity") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return
-                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version "1.0"
                      :documentation "Initializes a #graphene_matrix_t with the identity matrix.
 
 C: graphene_matrix_init_identity
@@ -803,12 +1242,12 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-look-at "graphene_matrix_init_look_at") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (eye (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (center (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (up (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (eye (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (center (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (up (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
                      "Initializes a #graphene_matrix_t so that it positions the \"camera\"
 at the given EYE coordinates towards an object at the CENTER
 coordinates. The top of the camera is aligned to the direction
@@ -819,10 +1258,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-ortho "graphene_matrix_init_ortho") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (left :float)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (left :float)
                       (right :float) (top :float) (bottom :float) (z-near :float) (z-far :float))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
                      "Initializes a #graphene_matrix_t with an orthographic projection.
 
 C: graphene_matrix_init_ortho
@@ -830,20 +1269,21 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-perspective "graphene_matrix_init_perspective") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (fovy :float)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (fovy :float)
                       (aspect :float) (z-near :float) (z-far :float))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t with a perspective projection.
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
+                     "Initializes a #graphene_matrix_t with a perspective projection.
 
 C: graphene_matrix_init_perspective
 Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-rotate "graphene_matrix_init_rotate") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (angle :float)
-                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes M to represent a rotation of ANGLE degrees on
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (angle :float) (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation "Initializes M to represent a rotation of ANGLE degrees on
 the axis represented by the AXIS vector.
 
 C: graphene_matrix_init_rotate
@@ -851,10 +1291,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-scale "graphene_matrix_init_scale") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (x :float)
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)) (x :float)
                       (y :float) (z :float))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
                      "Initializes a #graphene_matrix_t with the given scaling factors.
 
 C: graphene_matrix_init_scale
@@ -862,10 +1302,11 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-skew "graphene_matrix_init_skew") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (x-skew :float)
-                      (y-skew :float))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t with a skew transformation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (x-skew :float) (y-skew :float))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
+                     "Initializes a #graphene_matrix_t with a skew transformation
 with the given factors.
 
 C: graphene_matrix_init_skew
@@ -873,19 +1314,44 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-init-translate "graphene_matrix_init_translate") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
-                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_matrix_t with a translation to the
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
+                     :return (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :version
+                     "1.0" :documentation
+                     "Initializes a #graphene_matrix_t with a translation to the
 given coordinates.
 
 C: graphene_matrix_init_translate
 Since: 1.0")
 
 
-(rt:define-gfunction (matrix-is-2d "graphene_matrix_is_2d") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :boolean
+(rt:define-gfunction (matrix-interpolate "graphene_matrix_interpolate") :args
+                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (factor :double)
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
                      :version "1.0" :documentation
+                     "Linearly interpolates the two given #graphene_matrix_t by
+interpolating the decomposed transformations separately.
+
+C: graphene_matrix_interpolate
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-inverse "graphene_matrix_inverse") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :version "1.0" :documentation "Inverts the given matrix.
+
+C: graphene_matrix_inverse
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-is-2d "graphene_matrix_is_2d") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :boolean :version "1.0" :documentation
                      "Checks whether the given #graphene_matrix_t is compatible with an
 a 2D affine transformation matrix.
 
@@ -894,8 +1360,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-is-backface-visible "graphene_matrix_is_backface_visible") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :boolean
-                     :version "1.0" :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :boolean :version "1.0" :documentation
                      "Checks whether a #graphene_matrix_t has a visible back face.
 
 C: graphene_matrix_is_backface_visible
@@ -903,8 +1369,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-is-identity "graphene_matrix_is_identity") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :boolean
-                     :version "1.0" :documentation
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :boolean :version "1.0" :documentation
                      "Checks whether the given #graphene_matrix_t is the identity matrix.
 
 C: graphene_matrix_is_identity
@@ -912,16 +1378,28 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-is-singular "graphene_matrix_is_singular") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :return :boolean
-                     :version "1.0" :documentation "Checks whether a matrix is singular.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :return
+                     :boolean :version "1.0" :documentation "Checks whether a matrix is singular.
 
 C: graphene_matrix_is_singular
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-multiply "graphene_matrix_multiply") :args
+                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.0" :documentation "Multiplies two #graphene_matrix_t.
+
+C: graphene_matrix_multiply
+Since: 1.0")
+
+
 (rt:define-gfunction (matrix-near "graphene_matrix_near") :args
-                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (epsilon :float))
+                     ((a (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (epsilon :float))
                      :return :boolean :version "1.10" :documentation
                      "Compares the two given #graphene_matrix_t matrices and checks
 whether their values are within the given EPSILON of each
@@ -931,17 +1409,74 @@ C: graphene_matrix_near
 Since: 1.10")
 
 
+(rt:define-gfunction (matrix-normalize "graphene_matrix_normalize") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.0" :documentation "Normalizes the given #graphene_matrix_t.
+
+C: graphene_matrix_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-perspective "graphene_matrix_perspective") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (depth :float)
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.0" :documentation "Applies a perspective of DEPTH to the matrix.
+
+C: graphene_matrix_perspective
+Since: 1.0")
+
+
 (rt:define-gfunction (matrix-print "graphene_matrix_print") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))) :version "1.0"
-                     :documentation "Prints the contents of a matrix to the standard error stream.
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))) :version
+                     "1.0" :documentation
+                     "Prints the contents of a matrix to the standard error stream.
 
 C: graphene_matrix_print
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-project-point "graphene_matrix_project_point") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (res (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Projects a #graphene_point_t using the matrix M.
+
+C: graphene_matrix_project_point
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-project-rect "graphene_matrix_project_rect") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Projects all corners of a #graphene_rect_t using the given matrix.
+
+C: graphene_matrix_project_rect
+Since: 1.2")
+
+
+(rt:define-gfunction (matrix-project-rect-bounds "graphene_matrix_project_rect_bounds") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Projects a #graphene_rect_t using the given matrix.
+
+C: graphene_matrix_project_rect_bounds
+Since: 1.0")
+
+
 (rt:define-gfunction (matrix-rotate "graphene_matrix_rotate") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (angle :float)
-                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (angle :float) (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
                      :version "1.0" :documentation
                      "Adds a rotation transformation to M, using the given ANGLE
 and AXIS vector.
@@ -951,8 +1486,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-rotate-euler "graphene_matrix_rotate_euler") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (e (:boxed "GrapheneEuler" "graphene_euler_get_type")))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)))
                      :version "1.2" :documentation
                      "Adds a rotation transformation to M, using the given
 #graphene_euler_t.
@@ -962,8 +1497,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (matrix-rotate-quaternion "graphene_matrix_rotate_quaternion") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type")))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
                      :version "1.2" :documentation
                      "Adds a rotation transformation to M, using the given
 #graphene_quaternion_t.
@@ -973,7 +1508,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (matrix-rotate-x "graphene_matrix_rotate_x") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (angle :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (angle :float))
                      :version "1.0" :documentation
                      "Adds a rotation transformation around the X axis to M, using
 the given ANGLE.
@@ -983,7 +1519,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-rotate-y "graphene_matrix_rotate_y") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (angle :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (angle :float))
                      :version "1.0" :documentation
                      "Adds a rotation transformation around the Y axis to M, using
 the given ANGLE.
@@ -993,7 +1530,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-rotate-z "graphene_matrix_rotate_z") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (angle :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (angle :float))
                      :version "1.0" :documentation
                      "Adds a rotation transformation around the Z axis to M, using
 the given ANGLE.
@@ -1003,8 +1541,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-scale "graphene_matrix_scale") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (factor-x :float)
-                      (factor-y :float) (factor-z :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (factor-x :float) (factor-y :float) (factor-z :float))
                      :version "1.0" :documentation
                      "Adds a scaling transformation to M, using the three
 given factors.
@@ -1014,7 +1552,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-skew-xy "graphene_matrix_skew_xy") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (factor :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (factor :float))
                      :version "1.0" :documentation
                      "Adds a skew of FACTOR on the X and Y axis to the given matrix.
 
@@ -1023,7 +1562,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-skew-xz "graphene_matrix_skew_xz") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (factor :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (factor :float))
                      :version "1.0" :documentation
                      "Adds a skew of FACTOR on the X and Z axis to the given matrix.
 
@@ -1032,7 +1572,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-skew-yz "graphene_matrix_skew_yz") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")) (factor :float))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (factor :float))
                      :version "1.0" :documentation
                      "Adds a skew of FACTOR on the Y and Z axis to the given matrix.
 
@@ -1041,7 +1582,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-to-2d "graphene_matrix_to_2d") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
                       (xx :double :direction :out :transfer :full)
                       (yx :double :direction :out :transfer :full)
                       (xy :double :direction :out :transfer :full)
@@ -1057,7 +1598,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (matrix-to-float "graphene_matrix_to_float") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
                       (v (:array :float :fixed-size 16 :caller-allocates t) :direction :out))
                      :version "1.0" :documentation
                      "Converts a #graphene_matrix_t to an array of floating point
@@ -1067,9 +1608,118 @@ C: graphene_matrix_to_float
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-transform-bounds "graphene_matrix_transform_bounds") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Transforms each corner of a #graphene_rect_t using the given matrix M.
+
+C: graphene_matrix_transform_bounds
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-transform-box "graphene_matrix_transform_box") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Transforms the vertices of a #graphene_box_t using the given matrix M.
+
+C: graphene_matrix_transform_box
+Since: 1.2")
+
+
+(rt:define-gfunction (matrix-transform-point "graphene_matrix_transform_point") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (res (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Transforms the given #graphene_point_t using the matrix M.
+
+C: graphene_matrix_transform_point
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-transform-point3d "graphene_matrix_transform_point3d") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Transforms the given #graphene_point3d_t using the matrix M.
+
+C: graphene_matrix_transform_point3d
+Since: 1.2")
+
+
+(rt:define-gfunction (matrix-transform-ray "graphene_matrix_transform_ray") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (res (:boxed "GrapheneRay" "graphene_ray_get_type" ray) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Transform a #graphene_ray_t using the given matrix M.
+
+C: graphene_matrix_transform_ray
+Since: 1.4")
+
+
+(rt:define-gfunction (matrix-transform-rect "graphene_matrix_transform_rect") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Transforms each corner of a #graphene_rect_t using the given matrix M.
+
+C: graphene_matrix_transform_rect
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-transform-sphere "graphene_matrix_transform_sphere") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (res (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :direction
+                       :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Transforms a #graphene_sphere_t using the given matrix M. The
+result is the bounding sphere containing the transformed sphere.
+
+C: graphene_matrix_transform_sphere
+Since: 1.2")
+
+
+(rt:define-gfunction (matrix-transform-vec3 "graphene_matrix_transform_vec3") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Transforms the given #graphene_vec3_t using the matrix M.
+
+C: graphene_matrix_transform_vec3
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-transform-vec4 "graphene_matrix_transform_vec4") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Transforms the given #graphene_vec4_t using the matrix M.
+
+C: graphene_matrix_transform_vec4
+Since: 1.0")
+
+
 (rt:define-gfunction (matrix-translate "graphene_matrix_translate") :args
-                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (pos (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (pos (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :version "1.0" :documentation
                      "Adds a translation transformation to M using the coordinates
 of the given #graphene_point3d_t.
@@ -1078,17 +1728,70 @@ C: graphene_matrix_translate
 Since: 1.0")
 
 
+(rt:define-gfunction (matrix-transpose "graphene_matrix_transpose") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (res (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.0" :documentation "Transposes the given matrix.
+
+C: graphene_matrix_transpose
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-unproject-point3d "graphene_matrix_unproject_point3d") :args
+                     ((projection (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (modelview (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Unprojects the given POINT using the PROJECTION matrix and
+a MODELVIEW matrix.
+
+C: graphene_matrix_unproject_point3d
+Since: 1.2")
+
+
+(rt:define-gfunction (matrix-untransform-bounds "graphene_matrix_untransform_bounds") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Undoes the transformation on the corners of a #graphene_rect_t using the
+given matrix, within the given axis aligned rectangular BOUNDS.
+
+C: graphene_matrix_untransform_bounds
+Since: 1.0")
+
+
+(rt:define-gfunction (matrix-untransform-point "graphene_matrix_untransform_point") :args
+                     ((m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :version "1.0" :documentation
+                     "Undoes the transformation of a #graphene_point_t using the
+given matrix, within the given axis aligned rectangular BOUNDS.
+
+C: graphene_matrix_untransform_point
+Since: 1.0")
+
+
 (rt:define-gfunction (plane-alloc "graphene_plane_alloc") :return
-                     (:boxed "GraphenePlane" "graphene_plane_get_type") :return-transfer :full
-                     :version "1.2" :documentation "Allocates a new #graphene_plane_t structure.
+                     (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :return-transfer
+                     :full :version "1.2" :documentation
+                     "Allocates a new #graphene_plane_t structure.
 
 C: graphene_plane_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (plane-distance "graphene_plane_distance") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :float :version "1.2" :documentation
                      "Computes the distance of POINT from a #graphene_plane_t.
 
@@ -1097,8 +1800,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-equal "graphene_plane_equal") :args
-                     ((a (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (b (:boxed "GraphenePlane" "graphene_plane_get_type")))
+                     ((a (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (b (:boxed "GraphenePlane" "graphene_plane_get_type" plane)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given #graphene_plane_t are equal.
 
@@ -1107,7 +1810,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-free "graphene_plane_free") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))) :version "1.2"
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))) :version "1.2"
                      :documentation "Frees the resources allocated by graphene_plane_alloc().
 
 C: graphene_plane_free
@@ -1115,7 +1818,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-get-constant "graphene_plane_get_constant") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))) :return :float
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))) :return :float
                      :version "1.2" :documentation
                      "Retrieves the distance along the normal vector of the
 given #graphene_plane_t from the origin.
@@ -1124,11 +1827,24 @@ C: graphene_plane_get_constant
 Since: 1.2")
 
 
+(rt:define-gfunction (plane-get-normal "graphene_plane_get_normal") :args
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (normal (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the normal vector pointing towards the origin of the
+given #graphene_plane_t.
+
+C: graphene_plane_get_normal
+Since: 1.2")
+
+
 (rt:define-gfunction (plane-init "graphene_plane_init") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (normal (:boxed "GrapheneVec3" "graphene_vec3_get_type")) (constant :float))
-                     :return (:boxed "GraphenePlane" "graphene_plane_get_type") :version "1.2"
-                     :documentation
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (normal (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (constant :float))
+                     :return (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :version
+                     "1.2" :documentation
                      "Initializes the given #graphene_plane_t using the given NORMAL vector
 and CONSTANT values.
 
@@ -1137,10 +1853,10 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-init-from-plane "graphene_plane_init_from_plane") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (src (:boxed "GraphenePlane" "graphene_plane_get_type")))
-                     :return (:boxed "GraphenePlane" "graphene_plane_get_type") :version "1.2"
-                     :documentation "Initializes the given #graphene_plane_t using the normal
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (src (:boxed "GraphenePlane" "graphene_plane_get_type" plane)))
+                     :return (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :version
+                     "1.2" :documentation "Initializes the given #graphene_plane_t using the normal
 vector and constant of another #graphene_plane_t.
 
 C: graphene_plane_init_from_plane
@@ -1148,11 +1864,11 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-init-from-point "graphene_plane_init_from_point") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (normal (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
-                     :return (:boxed "GraphenePlane" "graphene_plane_get_type") :version "1.2"
-                     :documentation
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (normal (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
+                     :return (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :version
+                     "1.2" :documentation
                      "Initializes the given #graphene_plane_t using the given normal vector
 and an arbitrary co-planar point.
 
@@ -1161,12 +1877,12 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-init-from-points "graphene_plane_init_from_points") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (a (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (c (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
-                     :return (:boxed "GraphenePlane" "graphene_plane_get_type") :version "1.2"
-                     :documentation
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (c (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
+                     :return (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :version
+                     "1.2" :documentation
                      "Initializes the given #graphene_plane_t using the 3 provided co-planar
 points.
 
@@ -1175,26 +1891,66 @@ Since: 1.2")
 
 
 (rt:define-gfunction (plane-init-from-vec4 "graphene_plane_init_from_vec4") :args
-                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type"))
-                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
-                     :return (:boxed "GraphenePlane" "graphene_plane_get_type") :version "1.2"
-                     :documentation "Initializes the given #graphene_plane_t using the components of
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
+                     :return (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :version
+                     "1.2" :documentation
+                     "Initializes the given #graphene_plane_t using the components of
 the given #graphene_vec4_t vector.
 
 C: graphene_plane_init_from_vec4
 Since: 1.2")
 
 
+(rt:define-gfunction (plane-negate "graphene_plane_negate") :args
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (res (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Negates the normal vector and constant of a #graphene_plane_t, effectively
+mirroring the plane across the origin.
+
+C: graphene_plane_negate
+Since: 1.2")
+
+
+(rt:define-gfunction (plane-normalize "graphene_plane_normalize") :args
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (res (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Normalizes the vector of the given #graphene_plane_t,
+and adjusts the constant accordingly.
+
+C: graphene_plane_normalize
+Since: 1.2")
+
+
+(rt:define-gfunction (plane-transform "graphene_plane_transform") :args
+                     ((p (:boxed "GraphenePlane" "graphene_plane_get_type" plane))
+                      (matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (normal-matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix))
+                      (res (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Transforms a #graphene_plane_t P using the given MATRIX
+and NORMAL-MATRIX.
+
+C: graphene_plane_transform
+Since: 1.10")
+
+
 (rt:define-gfunction (point-alloc "graphene_point_alloc") :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type") :return-transfer :full
-                     :version "1.0" :documentation "Allocates a new #graphene_point_t structure.
+                     (:boxed "GraphenePoint" "graphene_point_get_type" point) :return-transfer
+                     :full :version "1.0" :documentation
+                     "Allocates a new #graphene_point_t structure.
 
 C: graphene_point_alloc
 Since: 1.0")
 
 
 (rt:define-gfunction (point-zero "graphene_point_zero") :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type") :version "1.0"
+                     (:boxed "GraphenePoint" "graphene_point_get_type" point) :version "1.0"
                      :documentation "Returns a point fixed at (0, 0).
 
 C: graphene_point_zero
@@ -1202,8 +1958,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point-distance "graphene_point_distance") :args
-                     ((a (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (b (:boxed "GraphenePoint" "graphene_point_get_type"))
+                     ((a (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (b (:boxed "GraphenePoint" "graphene_point_get_type" point))
                       (d-x :float :direction :out :transfer :full)
                       (d-y :float :direction :out :transfer :full))
                      :return :float :version "1.0" :documentation
@@ -1214,8 +1970,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point-equal "graphene_point_equal") :args
-                     ((a (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (b (:boxed "GraphenePoint" "graphene_point_get_type")))
+                     ((a (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (b (:boxed "GraphenePoint" "graphene_point_get_type" point)))
                      :return :boolean :version "1.0" :documentation
                      "Checks if the two points A and B point to the same
 coordinates.
@@ -1225,7 +1981,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point-free "graphene_point_free") :args
-                     ((p (:boxed "GraphenePoint" "graphene_point_get_type"))) :version "1.0"
+                     ((p (:boxed "GraphenePoint" "graphene_point_get_type" point))) :version "1.0"
                      :documentation "Frees the resources allocated by graphene_point_alloc().
 
 C: graphene_point_free
@@ -1233,38 +1989,53 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point-init "graphene_point_init") :args
-                     ((p (:boxed "GraphenePoint" "graphene_point_get_type")) (x :float) (y :float))
-                     :return (:boxed "GraphenePoint" "graphene_point_get_type") :version "1.0"
-                     :documentation "Initializes P to the given X and Y coordinates.
+                     ((p (:boxed "GraphenePoint" "graphene_point_get_type" point)) (x :float)
+                      (y :float))
+                     :return (:boxed "GraphenePoint" "graphene_point_get_type" point) :version
+                     "1.0" :documentation "Initializes P to the given X and Y coordinates.
 
 C: graphene_point_init
 Since: 1.0")
 
 
 (rt:define-gfunction (point-init-from-point "graphene_point_init_from_point") :args
-                     ((p (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (src (:boxed "GraphenePoint" "graphene_point_get_type")))
-                     :return (:boxed "GraphenePoint" "graphene_point_get_type") :version "1.0"
-                     :documentation "Initializes P with the same coordinates of SRC.
+                     ((p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (src (:boxed "GraphenePoint" "graphene_point_get_type" point)))
+                     :return (:boxed "GraphenePoint" "graphene_point_get_type" point) :version
+                     "1.0" :documentation "Initializes P with the same coordinates of SRC.
 
 C: graphene_point_init_from_point
 Since: 1.0")
 
 
 (rt:define-gfunction (point-init-from-vec2 "graphene_point_init_from_vec2") :args
-                     ((p (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
-                     :return (:boxed "GraphenePoint" "graphene_point_get_type") :version "1.4"
-                     :documentation
+                     ((p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)))
+                     :return (:boxed "GraphenePoint" "graphene_point_get_type" point) :version
+                     "1.4" :documentation
                      "Initializes P with the coordinates inside the given #graphene_vec2_t.
 
 C: graphene_point_init_from_vec2
 Since: 1.4")
 
 
+(rt:define-gfunction (point-interpolate "graphene_point_interpolate") :args
+                     ((a (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (b (:boxed "GraphenePoint" "graphene_point_get_type" point)) (factor :double)
+                      (res (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Linearly interpolates the coordinates of A and B using the
+given FACTOR.
+
+C: graphene_point_interpolate
+Since: 1.0")
+
+
 (rt:define-gfunction (point-near "graphene_point_near") :args
-                     ((a (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (b (:boxed "GraphenePoint" "graphene_point_get_type")) (epsilon :float))
+                     ((a (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (b (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (epsilon :float))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether the two points A and B are within
 the threshold of EPSILON.
@@ -1273,25 +2044,62 @@ C: graphene_point_near
 Since: 1.0")
 
 
+(rt:define-gfunction (point-to-vec2 "graphene_point_to_vec2") :args
+                     ((p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Stores the coordinates of the given #graphene_point_t into a
+#graphene_vec2_t.
+
+C: graphene_point_to_vec2
+Since: 1.4")
+
+
 (rt:define-gfunction (point3-d-alloc "graphene_point3d_alloc") :return
-                     (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :return-transfer :full
-                     :version "1.0" :documentation "Allocates a #graphene_point3d_t structure.
+                     (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                     :return-transfer :full :version "1.0" :documentation
+                     "Allocates a #graphene_point3d_t structure.
 
 C: graphene_point3d_alloc
 Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-zero "graphene_point3d_zero") :return
-                     (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :version "1.0"
+                     (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :version "1.0"
                      :documentation "Retrieves a constant point with all three coordinates set to 0.
 
 C: graphene_point3d_zero
 Since: 1.0")
 
 
+(rt:define-gfunction (point3-d-cross "graphene_point3d_cross") :args
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Computes the cross product of the two given #graphene_point3d_t.
+
+C: graphene_point3d_cross
+Since: 1.0")
+
+
+(rt:define-gfunction (point3-d-distance "graphene_point3d_distance") :args
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (delta (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :return :float :version "1.4" :documentation
+                     "Computes the distance between the two given #graphene_point3d_t.
+
+C: graphene_point3d_distance
+Since: 1.4")
+
+
 (rt:define-gfunction (point3-d-dot "graphene_point3d_dot") :args
-                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :float :version "1.0" :documentation
                      "Computes the dot product of the two given #graphene_point3d_t.
 
@@ -1300,8 +2108,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-equal "graphene_point3d_equal") :args
-                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether two given points are equal.
 
@@ -1310,28 +2118,31 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-free "graphene_point3d_free") :args
-                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))) :version "1.0"
-                     :documentation "Frees the resources allocated via graphene_point3d_alloc().
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))) :version
+                     "1.0" :documentation
+                     "Frees the resources allocated via graphene_point3d_alloc().
 
 C: graphene_point3d_free
 Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-init "graphene_point3d_init") :args
-                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type")) (x :float)
-                      (y :float) (z :float))
-                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_point3d_t with the given coordinates.
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (x :float) (y :float) (z :float))
+                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_point3d_t with the given coordinates.
 
 C: graphene_point3d_init
 Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-init-from-point "graphene_point3d_init_from_point") :args
-                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (src (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
-                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_point3d_t using the coordinates of
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (src (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
+                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_point3d_t using the coordinates of
 another #graphene_point3d_t.
 
 C: graphene_point3d_init_from_point
@@ -1339,19 +2150,34 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-init-from-vec3 "graphene_point3d_init_from_vec3") :args
-                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
-                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_point3d_t using the components
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                     :return (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_point3d_t using the components
 of a #graphene_vec3_t.
 
 C: graphene_point3d_init_from_vec3
 Since: 1.0")
 
 
-(rt:define-gfunction (point3-d-length "graphene_point3d_length") :args
-                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))) :return :float
+(rt:define-gfunction (point3-d-interpolate "graphene_point3d_interpolate") :args
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (factor :double)
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
                      :version "1.0" :documentation
+                     "Linearly interpolates each component of A and B using the
+provided FACTOR, and places the result in RES.
+
+C: graphene_point3d_interpolate
+Since: 1.0")
+
+
+(rt:define-gfunction (point3-d-length "graphene_point3d_length") :args
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))) :return
+                     :float :version "1.0" :documentation
                      "Computes the length of the vector represented by the
 coordinates of the given #graphene_point3d_t.
 
@@ -1360,8 +2186,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (point3-d-near "graphene_point3d_near") :args
-                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
-                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type")) (epsilon :float))
+                     ((a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (epsilon :float))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether the two points are near each other, within
 an EPSILON factor.
@@ -1370,17 +2197,79 @@ C: graphene_point3d_near
 Since: 1.0")
 
 
+(rt:define-gfunction (point3-d-normalize "graphene_point3d_normalize") :args
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Computes the normalization of the vector represented by the
+coordinates of the given #graphene_point3d_t.
+
+C: graphene_point3d_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (point3-d-normalize-viewport "graphene_point3d_normalize_viewport") :args
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (viewport (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (z-near :float) (z-far :float)
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Normalizes the coordinates of a #graphene_point3d_t using the
+given viewport and clipping planes.
+
+C: graphene_point3d_normalize_viewport
+Since: 1.4")
+
+
+(rt:define-gfunction (point3-d-scale "graphene_point3d_scale") :args
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (factor :float)
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Scales the coordinates of the given #graphene_point3d_t by
+the given FACTOR.
+
+C: graphene_point3d_scale
+Since: 1.0")
+
+
+(rt:define-gfunction (point3-d-to-vec3 "graphene_point3d_to_vec3") :args
+                     ((p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Stores the coordinates of a #graphene_point3d_t into a
+#graphene_vec3_t.
+
+C: graphene_point3d_to_vec3
+Since: 1.0")
+
+
 (rt:define-gfunction (quad-alloc "graphene_quad_alloc") :return
-                     (:boxed "GrapheneQuad" "graphene_quad_get_type") :return-transfer :full
+                     (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_quad_t instance.
 
 C: graphene_quad_alloc
 Since: 1.0")
 
 
+(rt:define-gfunction (quad-bounds "graphene_quad_bounds") :args
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Computes the bounding rectangle of Q and places it into R.
+
+C: graphene_quad_bounds
+Since: 1.0")
+
+
 (rt:define-gfunction (quad-contains "graphene_quad_contains") :args
-                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type"))
-                      (p (:boxed "GraphenePoint" "graphene_point_get_type")))
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point)))
                      :return :boolean :version "1.0" :documentation
                      "Checks if the given #graphene_quad_t contains the given #graphene_point_t.
 
@@ -1389,7 +2278,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quad-free "graphene_quad_free") :args
-                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type"))) :version "1.0"
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))) :version "1.0"
                      :documentation "Frees the resources allocated by graphene_quad_alloc()
 
 C: graphene_quad_free
@@ -1397,31 +2286,44 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quad-get-point "graphene_quad_get_point") :args
-                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type")) (index- :uint)) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type") :version "1.0"
-                     :documentation "Retrieves the point of a #graphene_quad_t at the given index.
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad)) (index- :uint))
+                     :return (:boxed "GraphenePoint" "graphene_point_get_type" point) :version
+                     "1.0" :documentation
+                     "Retrieves the point of a #graphene_quad_t at the given index.
 
 C: graphene_quad_get_point
 Since: 1.0")
 
 
 (rt:define-gfunction (quad-init "graphene_quad_init") :args
-                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type"))
-                      (p1 (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (p2 (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (p3 (:boxed "GraphenePoint" "graphene_point_get_type"))
-                      (p4 (:boxed "GraphenePoint" "graphene_point_get_type")))
-                     :return (:boxed "GrapheneQuad" "graphene_quad_get_type") :version "1.0"
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))
+                      (p1 (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (p2 (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (p3 (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (p4 (:boxed "GraphenePoint" "graphene_point_get_type" point)))
+                     :return (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :version "1.0"
                      :documentation "Initializes a #graphene_quad_t with the given points.
 
 C: graphene_quad_init
 Since: 1.0")
 
 
+(rt:define-gfunction (quad-init-from-points "graphene_quad_init_from_points") :args
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))
+                      (points
+                       (:array (:boxed "GraphenePoint" "graphene_point_get_type" point) :fixed-size
+                        4)))
+                     :return (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :version "1.2"
+                     :documentation "Initializes a #graphene_quad_t using an array of points.
+
+C: graphene_quad_init_from_points
+Since: 1.2")
+
+
 (rt:define-gfunction (quad-init-from-rect "graphene_quad_init_from_rect") :args
-                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type"))
-                      (r (:boxed "GrapheneRect" "graphene_rect_get_type")))
-                     :return (:boxed "GrapheneQuad" "graphene_quad_get_type") :version "1.0"
+                     ((q (:boxed "GrapheneQuad" "graphene_quad_get_type" quad))
+                      (r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)))
+                     :return (:boxed "GrapheneQuad" "graphene_quad_get_type" quad) :version "1.0"
                      :documentation "Initializes a #graphene_quad_t using the four corners of the
 given #graphene_rect_t.
 
@@ -1430,16 +2332,28 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-alloc "graphene_quaternion_alloc") :return
-                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :return-transfer
-                     :full :version "1.0" :documentation "Allocates a new #graphene_quaternion_t.
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :return-transfer :full :version "1.0" :documentation
+                     "Allocates a new #graphene_quaternion_t.
 
 C: graphene_quaternion_alloc
 Since: 1.0")
 
 
+(rt:define-gfunction (quaternion-add "graphene_quaternion_add") :args
+                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.10" :documentation "Adds two #graphene_quaternion_t A and B.
+
+C: graphene_quaternion_add
+Since: 1.10")
+
+
 (rt:define-gfunction (quaternion-dot "graphene_quaternion_dot") :args
-                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type")))
+                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
                      :return :float :version "1.0" :documentation
                      "Computes the dot product of two #graphene_quaternion_t.
 
@@ -1448,8 +2362,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-equal "graphene_quaternion_equal") :args
-                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type")))
+                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether the given quaternions are equal.
 
@@ -1458,8 +2372,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-free "graphene_quaternion_free") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))) :version
-                     "1.0" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
+                     :version "1.0" :documentation
                      "Releases the resources allocated by graphene_quaternion_alloc().
 
 C: graphene_quaternion_free
@@ -1467,10 +2381,11 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init "graphene_quaternion_init") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type")) (x :float)
-                      (y :float) (z :float) (w :float))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (x :float) (y :float) (z :float) (w :float))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
                      "Initializes a #graphene_quaternion_t using the given four values.
 
 C: graphene_quaternion_init
@@ -1479,10 +2394,12 @@ Since: 1.0")
 
 (rt:define-gfunction (quaternion-init-from-angle-vec3 "graphene_quaternion_init_from_angle_vec3")
                      :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (angle :float) (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation "Initializes a #graphene_quaternion_t using an ANGLE on a
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (angle :float) (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_quaternion_t using an ANGLE on a
 specific AXIS.
 
 C: graphene_quaternion_init_from_angle_vec3
@@ -1490,10 +2407,12 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init-from-angles "graphene_quaternion_init_from_angles") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
                       (deg-x :float) (deg-y :float) (deg-z :float))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation "Initializes a #graphene_quaternion_t using the values of
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_quaternion_t using the values of
 the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
 on each axis.
 
@@ -1502,10 +2421,11 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init-from-euler "graphene_quaternion_init_from_euler") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (e (:boxed "GrapheneEuler" "graphene_euler_get_type")))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.2" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (e (:boxed "GrapheneEuler" "graphene_euler_get_type" euler)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.2" :documentation
                      "Initializes a #graphene_quaternion_t using the given #graphene_euler_t.
 
 C: graphene_quaternion_init_from_euler
@@ -1513,10 +2433,11 @@ Since: 1.2")
 
 
 (rt:define-gfunction (quaternion-init-from-matrix "graphene_quaternion_init_from_matrix") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (m (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
                      "Initializes a #graphene_quaternion_t using the rotation components
 of a transformation matrix.
 
@@ -1526,10 +2447,12 @@ Since: 1.0")
 
 (rt:define-gfunction (quaternion-init-from-quaternion "graphene_quaternion_init_from_quaternion")
                      :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (src (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type")))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (src
+                       (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
                      "Initializes a #graphene_quaternion_t with the values from SRC.
 
 C: graphene_quaternion_init_from_quaternion
@@ -1537,10 +2460,12 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init-from-radians "graphene_quaternion_init_from_radians") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
                       (rad-x :float) (rad-y :float) (rad-z :float))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation "Initializes a #graphene_quaternion_t using the values of
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_quaternion_t using the values of
 the [Euler angles](http://en.wikipedia.org/wiki/Euler_angles)
 on each axis.
 
@@ -1549,10 +2474,11 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init-from-vec4 "graphene_quaternion_init_from_vec4") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
-                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
-                     :return (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version
-                     "1.0" :documentation
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
                      "Initializes a #graphene_quaternion_t with the values from SRC.
 
 C: graphene_quaternion_init_from_vec4
@@ -1560,17 +2486,91 @@ Since: 1.0")
 
 
 (rt:define-gfunction (quaternion-init-identity "graphene_quaternion_init_identity") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))) :return
-                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type") :version "1.0"
-                     :documentation "Initializes a #graphene_quaternion_t using the identity
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)))
+                     :return
+                     (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                     :version "1.0" :documentation
+                     "Initializes a #graphene_quaternion_t using the identity
 transformation.
 
 C: graphene_quaternion_init_identity
 Since: 1.0")
 
 
+(rt:define-gfunction (quaternion-invert "graphene_quaternion_invert") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Inverts a #graphene_quaternion_t, and returns the conjugate
+quaternion of Q.
+
+C: graphene_quaternion_invert
+Since: 1.0")
+
+
+(rt:define-gfunction (quaternion-multiply "graphene_quaternion_multiply") :args
+                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.10" :documentation "Multiplies two #graphene_quaternion_t A and B.
+
+C: graphene_quaternion_multiply
+Since: 1.10")
+
+
+(rt:define-gfunction (quaternion-normalize "graphene_quaternion_normalize") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation "Normalizes a #graphene_quaternion_t.
+
+C: graphene_quaternion_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (quaternion-scale "graphene_quaternion_scale") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (factor :float)
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Scales all the elements of a #graphene_quaternion_t Q using
+the given scalar factor.
+
+C: graphene_quaternion_scale
+Since: 1.10")
+
+
+(rt:define-gfunction (quaternion-slerp "graphene_quaternion_slerp") :args
+                     ((a (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (b (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (factor :float)
+                      (res (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion)
+                       :direction :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Interpolates between the two given quaternions using a spherical
+linear interpolation, or [SLERP](http://en.wikipedia.org/wiki/Slerp),
+using the given interpolation FACTOR.
+
+C: graphene_quaternion_slerp
+Since: 1.0")
+
+
+(rt:define-gfunction (quaternion-to-angle-vec3 "graphene_quaternion_to_angle_vec3") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (angle :float :direction :out :transfer :full)
+                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Converts a quaternion into an ANGLE, AXIS pair.
+
+C: graphene_quaternion_to_angle_vec3
+Since: 1.0")
+
+
 (rt:define-gfunction (quaternion-to-angles "graphene_quaternion_to_angles") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
                       (deg-x :float :direction :out :transfer :full)
                       (deg-y :float :direction :out :transfer :full)
                       (deg-z :float :direction :out :transfer :full))
@@ -1583,8 +2583,20 @@ C: graphene_quaternion_to_angles
 Since: 1.2")
 
 
+(rt:define-gfunction (quaternion-to-matrix "graphene_quaternion_to_matrix") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (m (:boxed "GrapheneMatrix" "graphene_matrix_get_type" matrix) :direction
+                       :out :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Converts a quaternion into a transformation matrix expressing
+the rotation defined by the #graphene_quaternion_t.
+
+C: graphene_quaternion_to_matrix
+Since: 1.0")
+
+
 (rt:define-gfunction (quaternion-to-radians "graphene_quaternion_to_radians") :args
-                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type"))
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
                       (rad-x :float :direction :out :transfer :full)
                       (rad-y :float :direction :out :transfer :full)
                       (rad-z :float :direction :out :transfer :full))
@@ -1597,17 +2609,29 @@ C: graphene_quaternion_to_radians
 Since: 1.2")
 
 
+(rt:define-gfunction (quaternion-to-vec4 "graphene_quaternion_to_vec4") :args
+                     ((q (:boxed "GrapheneQuaternion" "graphene_quaternion_get_type" quaternion))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Copies the components of a #graphene_quaternion_t into a
+#graphene_vec4_t.
+
+C: graphene_quaternion_to_vec4
+Since: 1.0")
+
+
 (rt:define-gfunction (ray-alloc "graphene_ray_alloc") :return
-                     (:boxed "GrapheneRay" "graphene_ray_get_type") :return-transfer :full :version
-                     "1.4" :documentation "Allocates a new #graphene_ray_t structure.
+                     (:boxed "GrapheneRay" "graphene_ray_get_type" ray) :return-transfer :full
+                     :version "1.4" :documentation "Allocates a new #graphene_ray_t structure.
 
 C: graphene_ray_alloc
 Since: 1.4")
 
 
 (rt:define-gfunction (ray-equal "graphene_ray_equal") :args
-                     ((a (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (b (:boxed "GrapheneRay" "graphene_ray_get_type")))
+                     ((a (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (b (:boxed "GrapheneRay" "graphene_ray_get_type" ray)))
                      :return :boolean :version "1.4" :documentation
                      "Checks whether the two given #graphene_ray_t are equal.
 
@@ -1616,16 +2640,41 @@ Since: 1.4")
 
 
 (rt:define-gfunction (ray-free "graphene_ray_free") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))) :version "1.4"
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))) :version "1.4"
                      :documentation "Frees the resources allocated by graphene_ray_alloc().
 
 C: graphene_ray_free
 Since: 1.4")
 
 
+(rt:define-gfunction (ray-get-closest-point-to-point "graphene_ray_get_closest_point_to_point")
+                     :args
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Computes the point on the given #graphene_ray_t that is closest to the
+given point P.
+
+C: graphene_ray_get_closest_point_to_point
+Since: 1.4")
+
+
+(rt:define-gfunction (ray-get-direction "graphene_ray_get_direction") :args
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (direction (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction
+                       :out :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Retrieves the direction of the given #graphene_ray_t.
+
+C: graphene_ray_get_direction
+Since: 1.4")
+
+
 (rt:define-gfunction (ray-get-distance-to-plane "graphene_ray_get_distance_to_plane") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (p (:boxed "GraphenePlane" "graphene_plane_get_type")))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (p (:boxed "GraphenePlane" "graphene_plane_get_type" plane)))
                      :return :float :version "1.4" :documentation
                      "Computes the distance of the origin of the given #graphene_ray_t from the
 given plane.
@@ -1635,8 +2684,8 @@ Since: 1.4")
 
 
 (rt:define-gfunction (ray-get-distance-to-point "graphene_ray_get_distance_to_point") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :float :version "1.4" :documentation
                      "Computes the distance of the closest approach between the
 given #graphene_ray_t R and the point P.
@@ -1645,11 +2694,36 @@ C: graphene_ray_get_distance_to_point
 Since: 1.4")
 
 
+(rt:define-gfunction (ray-get-origin "graphene_ray_get_origin") :args
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (origin (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Retrieves the origin of the given #graphene_ray_t.
+
+C: graphene_ray_get_origin
+Since: 1.4")
+
+
+(rt:define-gfunction (ray-get-position-at "graphene_ray_get_position_at") :args
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray)) (t-value :float)
+                      (position (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                                :direction :out :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Retrieves the coordinates of a point at the distance T along the
+given #graphene_ray_t.
+
+C: graphene_ray_get_position_at
+Since: 1.4")
+
+
 (rt:define-gfunction (ray-init "graphene_ray_init") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (origin (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t)
-                      (direction (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t))
-                     :return (:boxed "GrapheneRay" "graphene_ray_get_type") :version "1.4"
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (origin (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :optional t)
+                      (direction (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional
+                       t))
+                     :return (:boxed "GrapheneRay" "graphene_ray_get_type" ray) :version "1.4"
                      :documentation "Initializes the given #graphene_ray_t using the given ORIGIN
 and DIRECTION values.
 
@@ -1658,9 +2732,9 @@ Since: 1.4")
 
 
 (rt:define-gfunction (ray-init-from-ray "graphene_ray_init_from_ray") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (src (:boxed "GrapheneRay" "graphene_ray_get_type")))
-                     :return (:boxed "GrapheneRay" "graphene_ray_get_type") :version "1.4"
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (src (:boxed "GrapheneRay" "graphene_ray_get_type" ray)))
+                     :return (:boxed "GrapheneRay" "graphene_ray_get_type" ray) :version "1.4"
                      :documentation
                      "Initializes the given #graphene_ray_t using the origin and direction
 values of another #graphene_ray_t.
@@ -1670,10 +2744,11 @@ Since: 1.4")
 
 
 (rt:define-gfunction (ray-init-from-vec3 "graphene_ray_init_from_vec3") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (origin (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t)
-                      (direction (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t))
-                     :return (:boxed "GrapheneRay" "graphene_ray_get_type") :version "1.4"
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (origin (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t)
+                      (direction (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional
+                       t))
+                     :return (:boxed "GrapheneRay" "graphene_ray_get_type" ray) :version "1.4"
                      :documentation "Initializes the given #graphene_ray_t using the given vectors.
 
 C: graphene_ray_init_from_vec3
@@ -1681,8 +2756,8 @@ Since: 1.4")
 
 
 (rt:define-gfunction (ray-intersect-box "graphene_ray_intersect_box") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (b (:boxed "GrapheneBox" "graphene_box_get_type"))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box))
                       (t-out :float :direction :out :transfer :full))
                      :return (:enum ray-intersection-kind) :version "1.10" :documentation
                      "Intersects the given #graphene_ray_t R with the given
@@ -1693,8 +2768,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (ray-intersect-sphere "graphene_ray_intersect_sphere") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
                       (t-out :float :direction :out :transfer :full))
                      :return (:enum ray-intersection-kind) :version "1.10" :documentation
                      "Intersects the given #graphene_ray_t R with the given
@@ -1705,8 +2780,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (ray-intersect-triangle "graphene_ray_intersect_triangle") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
                       (t-out :float :direction :out :transfer :full))
                      :return (:enum ray-intersection-kind) :version "1.10" :documentation
                      "Intersects the given #graphene_ray_t R with the given
@@ -1717,8 +2792,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (ray-intersects-box "graphene_ray_intersects_box") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (b (:boxed "GrapheneBox" "graphene_box_get_type")))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (b (:boxed "GrapheneBox" "graphene_box_get_type" box)))
                      :return :boolean :version "1.10" :documentation
                      "Checks whether the given #graphene_ray_t R intersects the
 given #graphene_box_t B.
@@ -1728,8 +2803,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (ray-intersects-sphere "graphene_ray_intersects_sphere") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (s (:boxed "GrapheneSphere" "graphene_sphere_get_type")))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere)))
                      :return :boolean :version "1.10" :documentation
                      "Checks if the given #graphene_ray_t R intersects the
 given #graphene_sphere_t S.
@@ -1739,8 +2814,8 @@ Since: 1.10")
 
 
 (rt:define-gfunction (ray-intersects-triangle "graphene_ray_intersects_triangle") :args
-                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type"))
-                      (t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type")))
+                     ((r (:boxed "GrapheneRay" "graphene_ray_get_type" ray))
+                      (t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)))
                      :return :boolean :version "1.10" :documentation
                      "Checks whether the given #graphene_ray_t R intersects the
 given #graphene_triangle_t B.
@@ -1750,7 +2825,7 @@ Since: 1.10")
 
 
 (rt:define-gfunction (rect-alloc "graphene_rect_alloc") :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type") :return-transfer :full
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_rect_t.
 
 C: graphene_rect_alloc
@@ -1758,8 +2833,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-zero "graphene_rect_zero") :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.4" :documentation
-                     "Returns a degenerate rectangle with origin fixed at (0, 0) and
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.4"
+                     :documentation "Returns a degenerate rectangle with origin fixed at (0, 0) and
 a size of 0, 0.
 
 C: graphene_rect_zero
@@ -1767,8 +2842,8 @@ Since: 1.4")
 
 
 (rt:define-gfunction (rect-contains-point "graphene_rect_contains_point") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (p (:boxed "GraphenePoint" "graphene_point_get_type")))
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether a #graphene_rect_t contains the given coordinates.
 
@@ -1777,8 +2852,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-contains-rect "graphene_rect_contains_rect") :args
-                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (b (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (b (:boxed "GrapheneRect" "graphene_rect_get_type" rect)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether a #graphene_rect_t fully contains the given
 rectangle.
@@ -1788,8 +2863,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-equal "graphene_rect_equal") :args
-                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (b (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (b (:boxed "GrapheneRect" "graphene_rect_get_type" rect)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether the two given rectangle are equal.
 
@@ -1797,8 +2872,20 @@ C: graphene_rect_equal
 Since: 1.0")
 
 
+(rt:define-gfunction (rect-expand "graphene_rect_expand") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Expands a #graphene_rect_t to contain the given #graphene_point_t.
+
+C: graphene_rect_expand
+Since: 1.4")
+
+
 (rt:define-gfunction (rect-free "graphene_rect_free") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :version "1.0"
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :version "1.0"
                      :documentation "Frees the resources allocated by graphene_rect_alloc().
 
 C: graphene_rect_free
@@ -1806,32 +2893,102 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-get-area "graphene_rect_get_area") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :float :version
-                     "1.10" :documentation "Compute the area of given normalized rectangle.
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return :float
+                     :version "1.10" :documentation "Compute the area of given normalized rectangle.
 
 C: graphene_rect_get_area
 Since: 1.10")
 
 
+(rt:define-gfunction (rect-get-bottom-left "graphene_rect_get_bottom_left") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the coordinates of the bottom-left corner of the given rectangle.
+
+C: graphene_rect_get_bottom_left
+Since: 1.0")
+
+
+(rt:define-gfunction (rect-get-bottom-right "graphene_rect_get_bottom_right") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the coordinates of the bottom-right corner of the given rectangle.
+
+C: graphene_rect_get_bottom_right
+Since: 1.0")
+
+
+(rt:define-gfunction (rect-get-center "graphene_rect_get_center") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the coordinates of the center of the given rectangle.
+
+C: graphene_rect_get_center
+Since: 1.0")
+
+
 (rt:define-gfunction (rect-get-height "graphene_rect_get_height") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the normalized height of the given rectangle.
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the normalized height of the given rectangle.
 
 C: graphene_rect_get_height
 Since: 1.0")
 
 
+(rt:define-gfunction (rect-get-top-left "graphene_rect_get_top_left") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the coordinates of the top-left corner of the given rectangle.
+
+C: graphene_rect_get_top_left
+Since: 1.0")
+
+
+(rt:define-gfunction (rect-get-top-right "graphene_rect_get_top_right") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (p (:boxed "GraphenePoint" "graphene_point_get_type" point) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Retrieves the coordinates of the top-right corner of the given rectangle.
+
+C: graphene_rect_get_top_right
+Since: 1.0")
+
+
+(rt:define-gfunction (rect-get-vertices "graphene_rect_get_vertices") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (vertices
+                       (:array (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :fixed-size 4
+                        :caller-allocates t)
+                       :direction :out))
+                     :version "1.4" :documentation
+                     "Computes the four vertices of a #graphene_rect_t.
+
+C: graphene_rect_get_vertices
+Since: 1.4")
+
+
 (rt:define-gfunction (rect-get-width "graphene_rect_get_width") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the normalized width of the given rectangle.
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the normalized width of the given rectangle.
 
 C: graphene_rect_get_width
 Since: 1.0")
 
 
 (rt:define-gfunction (rect-get-x "graphene_rect_get_x") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the normalized X coordinate of the origin of the given
 rectangle.
 
@@ -1840,8 +2997,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-get-y "graphene_rect_get_y") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the normalized Y coordinate of the origin of the given
 rectangle.
 
@@ -1850,9 +3007,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-init "graphene_rect_init") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type")) (x :float) (y :float)
-                      (width :float) (height :float))
-                     :return (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0"
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (x :float)
+                      (y :float) (width :float) (height :float))
+                     :return (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
                      :documentation "Initializes the given #graphene_rect_t with the given values.
 
 C: graphene_rect_init
@@ -1860,9 +3017,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-init-from-rect "graphene_rect_init_from_rect") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (src (:boxed "GrapheneRect" "graphene_rect_get_type")))
-                     :return (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0"
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (src (:boxed "GrapheneRect" "graphene_rect_get_type" rect)))
+                     :return (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
                      :documentation "Initializes R using the given SRC rectangle.
 
 C: graphene_rect_init_from_rect
@@ -1870,9 +3027,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (rect-inset "graphene_rect_inset") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type")) (d-x :float)
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (d-x :float)
                       (d-y :float))
-                     :return (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0"
+                     :return (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
                      :documentation
                      "Changes the given rectangle to be smaller, or larger depending on the
 given inset parameters.
@@ -1881,29 +3038,120 @@ C: graphene_rect_inset
 Since: 1.0")
 
 
+(rt:define-gfunction (rect-inset-r "graphene_rect_inset_r") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (d-x :float)
+                      (d-y :float)
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Changes the given rectangle to be smaller, or larger depending on the
+given inset parameters.
+
+C: graphene_rect_inset_r
+Since: 1.4")
+
+
+(rt:define-gfunction (rect-interpolate "graphene_rect_interpolate") :args
+                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (b (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (factor :double)
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Linearly interpolates the origin and size of the two given
+rectangles.
+
+C: graphene_rect_interpolate
+Since: 1.0")
+
+
+(rt:define-gfunction (rect-intersection "graphene_rect_intersection") :args
+                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (b (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :version "1.0" :documentation
+                     "Computes the intersection of the two given rectangles.
+
+C: graphene_rect_intersection
+Since: 1.0")
+
+
 (rt:define-gfunction (rect-normalize "graphene_rect_normalize") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0" :documentation
-                     "Normalizes the passed rectangle.
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
+                     :documentation "Normalizes the passed rectangle.
 
 C: graphene_rect_normalize
 Since: 1.0")
 
 
+(rt:define-gfunction (rect-normalize-r "graphene_rect_normalize_r") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation "Normalizes the passed rectangle.
+
+C: graphene_rect_normalize_r
+Since: 1.4")
+
+
 (rt:define-gfunction (rect-offset "graphene_rect_offset") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type")) (d-x :float)
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (d-x :float)
                       (d-y :float))
-                     :return (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0"
+                     :return (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
                      :documentation "Offsets the origin by D-X and D-Y.
 
 C: graphene_rect_offset
 Since: 1.0")
 
 
+(rt:define-gfunction (rect-offset-r "graphene_rect_offset_r") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (d-x :float)
+                      (d-y :float)
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Offsets the origin of the given rectangle by D-X and D-Y.
+
+C: graphene_rect_offset_r
+Since: 1.4")
+
+
+(rt:define-gfunction (rect-round "graphene_rect_round") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.4" :documentation
+                     "Rounds the origin and size of the given rectangle to
+their nearest integer values; the rounding is guaranteed
+to be large enough to have an area bigger or equal to the
+original rectangle, but might not fully contain its extents.
+Use graphene_rect_round_extents() in case you need to round
+to a rectangle that covers fully the original one.
+
+C: graphene_rect_round
+Since: 1.4
+Deprecated.")
+
+
+(rt:define-gfunction (rect-round-extents "graphene_rect_round_extents") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Rounds the origin of the given rectangle to its nearest
+integer value and and recompute the size so that the
+rectangle is large enough to contain all the conrners
+of the original rectangle.
+
+C: graphene_rect_round_extents
+Since: 1.10")
+
+
 (rt:define-gfunction (rect-round-to-pixel "graphene_rect_round_to_pixel") :args
-                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type") :version "1.0" :documentation
-                     "Rounds the origin and the size of the given rectangle to
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect))) :return
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :version "1.0"
+                     :documentation "Rounds the origin and the size of the given rectangle to
 their nearest integer values; the rounding is guaranteed
 to be large enough to contain the original rectangle.
 
@@ -1912,8 +3160,32 @@ Since: 1.0
 Deprecated.")
 
 
+(rt:define-gfunction (rect-scale "graphene_rect_scale") :args
+                     ((r (:boxed "GrapheneRect" "graphene_rect_get_type" rect)) (s-h :float)
+                      (s-v :float)
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Scales the size and origin of a rectangle horizontaly by S-H,
+and vertically by S-V. The result RES is normalized.
+
+C: graphene_rect_scale
+Since: 1.10")
+
+
+(rt:define-gfunction (rect-union "graphene_rect_union") :args
+                     ((a (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (b (:boxed "GrapheneRect" "graphene_rect_get_type" rect))
+                      (res (:boxed "GrapheneRect" "graphene_rect_get_type" rect) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Computes the union of the two given rectangles.
+
+C: graphene_rect_union
+Since: 1.0")
+
+
 (rt:define-gfunction (size-alloc "graphene_size_alloc") :return
-                     (:boxed "GrapheneSize" "graphene_size_get_type") :return-transfer :full
+                     (:boxed "GrapheneSize" "graphene_size_get_type" size) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_size_t.
 
 C: graphene_size_alloc
@@ -1921,8 +3193,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (size-zero "graphene_size_zero") :return
-                     (:boxed "GrapheneSize" "graphene_size_get_type") :version "1.0" :documentation
-                     "A constant pointer to a zero #graphene_size_t, useful for
+                     (:boxed "GrapheneSize" "graphene_size_get_type" size) :version "1.0"
+                     :documentation "A constant pointer to a zero #graphene_size_t, useful for
 equality checks and interpolations.
 
 C: graphene_size_zero
@@ -1930,8 +3202,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (size-equal "graphene_size_equal") :args
-                     ((a (:boxed "GrapheneSize" "graphene_size_get_type"))
-                      (b (:boxed "GrapheneSize" "graphene_size_get_type")))
+                     ((a (:boxed "GrapheneSize" "graphene_size_get_type" size))
+                      (b (:boxed "GrapheneSize" "graphene_size_get_type" size)))
                      :return :boolean :version "1.0" :documentation
                      "Checks whether the two give #graphene_size_t are equal.
 
@@ -1940,7 +3212,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (size-free "graphene_size_free") :args
-                     ((s (:boxed "GrapheneSize" "graphene_size_get_type"))) :version "1.0"
+                     ((s (:boxed "GrapheneSize" "graphene_size_get_type" size))) :version "1.0"
                      :documentation "Frees the resources allocated by graphene_size_alloc().
 
 C: graphene_size_free
@@ -1948,9 +3220,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (size-init "graphene_size_init") :args
-                     ((s (:boxed "GrapheneSize" "graphene_size_get_type")) (width :float)
+                     ((s (:boxed "GrapheneSize" "graphene_size_get_type" size)) (width :float)
                       (height :float))
-                     :return (:boxed "GrapheneSize" "graphene_size_get_type") :version "1.0"
+                     :return (:boxed "GrapheneSize" "graphene_size_get_type" size) :version "1.0"
                      :documentation
                      "Initializes a #graphene_size_t using the given WIDTH and HEIGHT.
 
@@ -1959,9 +3231,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (size-init-from-size "graphene_size_init_from_size") :args
-                     ((s (:boxed "GrapheneSize" "graphene_size_get_type"))
-                      (src (:boxed "GrapheneSize" "graphene_size_get_type")))
-                     :return (:boxed "GrapheneSize" "graphene_size_get_type") :version "1.0"
+                     ((s (:boxed "GrapheneSize" "graphene_size_get_type" size))
+                      (src (:boxed "GrapheneSize" "graphene_size_get_type" size)))
+                     :return (:boxed "GrapheneSize" "graphene_size_get_type" size) :version "1.0"
                      :documentation "Initializes a #graphene_size_t using the width and height of
 the given SRC.
 
@@ -1969,17 +3241,41 @@ C: graphene_size_init_from_size
 Since: 1.0")
 
 
+(rt:define-gfunction (size-interpolate "graphene_size_interpolate") :args
+                     ((a (:boxed "GrapheneSize" "graphene_size_get_type" size))
+                      (b (:boxed "GrapheneSize" "graphene_size_get_type" size)) (factor :double)
+                      (res (:boxed "GrapheneSize" "graphene_size_get_type" size) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Linearly interpolates the two given #graphene_size_t using the given
+interpolation FACTOR.
+
+C: graphene_size_interpolate
+Since: 1.0")
+
+
+(rt:define-gfunction (size-scale "graphene_size_scale") :args
+                     ((s (:boxed "GrapheneSize" "graphene_size_get_type" size)) (factor :float)
+                      (res (:boxed "GrapheneSize" "graphene_size_get_type" size) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Scales the components of a #graphene_size_t using the given FACTOR.
+
+C: graphene_size_scale
+Since: 1.0")
+
+
 (rt:define-gfunction (sphere-alloc "graphene_sphere_alloc") :return
-                     (:boxed "GrapheneSphere" "graphene_sphere_get_type") :return-transfer :full
-                     :version "1.2" :documentation "Allocates a new #graphene_sphere_t.
+                     (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :return-transfer
+                     :full :version "1.2" :documentation "Allocates a new #graphene_sphere_t.
 
 C: graphene_sphere_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (sphere-contains-point "graphene_sphere_contains_point") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the given POINT is contained in the volume
 of a #graphene_sphere_t.
@@ -1989,8 +3285,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (sphere-distance "graphene_sphere_distance") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :float :version "1.2" :documentation
                      "Computes the distance of the given POINT from the surface of
 a #graphene_sphere_t.
@@ -2000,8 +3296,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (sphere-equal "graphene_sphere_equal") :args
-                     ((a (:boxed "GrapheneSphere" "graphene_sphere_get_type"))
-                      (b (:boxed "GrapheneSphere" "graphene_sphere_get_type")))
+                     ((a (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (b (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether two #graphene_sphere_t are equal.
 
@@ -2010,52 +3306,122 @@ Since: 1.2")
 
 
 (rt:define-gfunction (sphere-free "graphene_sphere_free") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))) :version "1.2"
-                     :documentation "Frees the resources allocated by graphene_sphere_alloc().
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))) :version
+                     "1.2" :documentation "Frees the resources allocated by graphene_sphere_alloc().
 
 C: graphene_sphere_free
 Since: 1.2")
 
 
+(rt:define-gfunction (sphere-get-bounding-box "graphene_sphere_get_bounding_box") :args
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (box (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the bounding box capable of containing the
+given #graphene_sphere_t.
+
+C: graphene_sphere_get_bounding_box
+Since: 1.2")
+
+
+(rt:define-gfunction (sphere-get-center "graphene_sphere_get_center") :args
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the coordinates of the center of a #graphene_sphere_t.
+
+C: graphene_sphere_get_center
+Since: 1.2")
+
+
 (rt:define-gfunction (sphere-get-radius "graphene_sphere_get_radius") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))) :return :float
-                     :version "1.2" :documentation "Retrieves the radius of a #graphene_sphere_t.
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))) :return
+                     :float :version "1.2" :documentation
+                     "Retrieves the radius of a #graphene_sphere_t.
 
 C: graphene_sphere_get_radius
 Since: 1.2")
 
 
 (rt:define-gfunction (sphere-init "graphene_sphere_init") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))
-                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type"))
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
                       (radius :float))
-                     :return (:boxed "GrapheneSphere" "graphene_sphere_get_type") :version "1.2"
-                     :documentation
+                     :return (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :version
+                     "1.2" :documentation
                      "Initializes the given #graphene_sphere_t with the given CENTER and RADIUS.
 
 C: graphene_sphere_init
 Since: 1.2")
 
 
+(rt:define-gfunction (sphere-init-from-points "graphene_sphere_init_from_points") :args
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (n-points :uint :length-of points)
+                      (points
+                       (:array (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
+                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :optional t))
+                     :return (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :version
+                     "1.2" :documentation
+                     "Initializes the given #graphene_sphere_t using the given array
+of 3D coordinates so that the sphere includes them.
+
+C: graphene_sphere_init_from_points
+Since: 1.2")
+
+
+(rt:define-gfunction (sphere-init-from-vectors "graphene_sphere_init_from_vectors") :args
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (n-vectors :uint :length-of vectors)
+                      (vectors (:array (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                      (center (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :optional t))
+                     :return (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :version
+                     "1.2" :documentation
+                     "Initializes the given #graphene_sphere_t using the given array
+of 3D coordinates so that the sphere includes them.
+
+C: graphene_sphere_init_from_vectors
+Since: 1.2")
+
+
 (rt:define-gfunction (sphere-is-empty "graphene_sphere_is_empty") :args
-                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type"))) :return :boolean
-                     :version "1.2" :documentation "Checks whether the sphere has a zero radius.
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))) :return
+                     :boolean :version "1.2" :documentation
+                     "Checks whether the sphere has a zero radius.
 
 C: graphene_sphere_is_empty
 Since: 1.2")
 
 
+(rt:define-gfunction (sphere-translate "graphene_sphere_translate") :args
+                     ((s (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere))
+                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GrapheneSphere" "graphene_sphere_get_type" sphere) :direction
+                       :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Translates the center of the given #graphene_sphere_t using the POINT
+coordinates as the delta of the translation.
+
+C: graphene_sphere_translate
+Since: 1.2")
+
+
 (rt:define-gfunction (triangle-alloc "graphene_triangle_alloc") :return
-                     (:boxed "GrapheneTriangle" "graphene_triangle_get_type") :return-transfer
-                     :full :version "1.2" :documentation "Allocates a new #graphene_triangle_t.
+                     (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)
+                     :return-transfer :full :version "1.2" :documentation
+                     "Allocates a new #graphene_triangle_t.
 
 C: graphene_triangle_alloc
 Since: 1.2")
 
 
 (rt:define-gfunction (triangle-contains-point "graphene_triangle_contains_point") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
-                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the given triangle T contains the point P.
 
@@ -2064,8 +3430,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (triangle-equal "graphene_triangle_equal") :args
-                     ((a (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
-                      (b (:boxed "GrapheneTriangle" "graphene_triangle_get_type")))
+                     ((a (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (b (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given #graphene_triangle_t are equal.
 
@@ -2074,8 +3440,8 @@ Since: 1.2")
 
 
 (rt:define-gfunction (triangle-free "graphene_triangle_free") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))) :version
-                     "1.2" :documentation
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)))
+                     :version "1.2" :documentation
                      "Frees the resources allocated by graphene_triangle_alloc().
 
 C: graphene_triangle_free
@@ -2083,20 +3449,123 @@ Since: 1.2")
 
 
 (rt:define-gfunction (triangle-get-area "graphene_triangle_get_area") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))) :return
-                     :float :version "1.2" :documentation
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)))
+                     :return :float :version "1.2" :documentation
                      "Computes the area of the given #graphene_triangle_t.
 
 C: graphene_triangle_get_area
 Since: 1.2")
 
 
+(rt:define-gfunction (triangle-get-barycoords "graphene_triangle_get_barycoords") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :version "1.2" :documentation
+                     "Computes the [barycentric coordinates](http://en.wikipedia.org/wiki/Barycentric_coordinate_system)
+of the given point P.
+
+C: graphene_triangle_get_barycoords
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-bounding-box "graphene_triangle_get_bounding_box") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (res (:boxed "GrapheneBox" "graphene_box_get_type" box) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the bounding box of the given #graphene_triangle_t.
+
+C: graphene_triangle_get_bounding_box
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-midpoint "graphene_triangle_get_midpoint") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (res (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d)
+                       :direction :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the coordinates of the midpoint of the given #graphene_triangle_t.
+
+C: graphene_triangle_get_midpoint
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-normal "graphene_triangle_get_normal") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the normal vector of the given #graphene_triangle_t.
+
+C: graphene_triangle_get_normal
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-plane "graphene_triangle_get_plane") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (res (:boxed "GraphenePlane" "graphene_plane_get_type" plane) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Computes the plane based on the vertices of the given #graphene_triangle_t.
+
+C: graphene_triangle_get_plane
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-points "graphene_triangle_get_points") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :direction
+                       :out :caller-allocates t)
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :direction
+                       :out :caller-allocates t)
+                      (c (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :direction
+                       :out :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the three vertices of the given #graphene_triangle_t and returns
+their coordinates as #graphene_point3d_t.
+
+C: graphene_triangle_get_points
+Since: 1.2")
+
+
+(rt:define-gfunction (triangle-get-uv "graphene_triangle_get_uv") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (p (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d))
+                      (uv-a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (uv-b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (uv-c (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :return :boolean :version "1.10" :documentation
+                     "Computes the UV coordinates of the given point P.
+
+C: graphene_triangle_get_uv
+Since: 1.10")
+
+
+(rt:define-gfunction (triangle-get-vertices "graphene_triangle_get_vertices") :args
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t)
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t)
+                      (c (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Retrieves the three vertices of the given #graphene_triangle_t.
+
+C: graphene_triangle_get_vertices
+Since: 1.2")
+
+
 (rt:define-gfunction (triangle-init-from-float "graphene_triangle_init_from_float") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
                       (a (:array :float :fixed-size 3)) (b (:array :float :fixed-size 3))
                       (c (:array :float :fixed-size 3)))
-                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type") :version
-                     "1.10" :documentation
+                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)
+                     :version "1.10" :documentation
                      "Initializes a #graphene_triangle_t using the three given arrays
 of floating point values, each representing the coordinates of
 a point in 3D space.
@@ -2106,12 +3575,15 @@ Since: 1.10")
 
 
 (rt:define-gfunction (triangle-init-from-point3d "graphene_triangle_init_from_point3d") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
-                      (a (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t)
-                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t)
-                      (c (:boxed "GraphenePoint3D" "graphene_point3d_get_type") :optional t))
-                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type") :version
-                     "1.2" :documentation
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (a (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :optional
+                       t)
+                      (b (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :optional
+                       t)
+                      (c (:boxed "GraphenePoint3D" "graphene_point3d_get_type" point3-d) :optional
+                       t))
+                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)
+                     :version "1.2" :documentation
                      "Initializes a #graphene_triangle_t using the three given 3D points.
 
 C: graphene_triangle_init_from_point3d
@@ -2119,12 +3591,12 @@ Since: 1.2")
 
 
 (rt:define-gfunction (triangle-init-from-vec3 "graphene_triangle_init_from_vec3") :args
-                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type"))
-                      (a (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t)
-                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t)
-                      (c (:boxed "GrapheneVec3" "graphene_vec3_get_type") :optional t))
-                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type") :version
-                     "1.2" :documentation
+                     ((t-value (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle))
+                      (a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t)
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t)
+                      (c (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :optional t))
+                     :return (:boxed "GrapheneTriangle" "graphene_triangle_get_type" triangle)
+                     :version "1.2" :documentation
                      "Initializes a #graphene_triangle_t using the three given vectors.
 
 C: graphene_triangle_init_from_vec3
@@ -2132,7 +3604,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (vec2-alloc "graphene_vec2_alloc") :return
-                     (:boxed "GrapheneVec2" "graphene_vec2_get_type") :return-transfer :full
+                     (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_vec2_t structure.
 
 C: graphene_vec2_alloc
@@ -2140,40 +3612,67 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec2-one "graphene_vec2_one") :return
-                     (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0" :documentation
-                     "Retrieves a constant vector with (1, 1) components.
+                     (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
+                     :documentation "Retrieves a constant vector with (1, 1) components.
 
 C: graphene_vec2_one
 Since: 1.0")
 
 
 (rt:define-gfunction (vec2-x-axis "graphene_vec2_x_axis") :return
-                     (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0" :documentation
-                     "Retrieves a constant vector with (1, 0) components.
+                     (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
+                     :documentation "Retrieves a constant vector with (1, 0) components.
 
 C: graphene_vec2_x_axis
 Since: 1.0")
 
 
 (rt:define-gfunction (vec2-y-axis "graphene_vec2_y_axis") :return
-                     (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0" :documentation
-                     "Retrieves a constant vector with (0, 1) components.
+                     (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
+                     :documentation "Retrieves a constant vector with (0, 1) components.
 
 C: graphene_vec2_y_axis
 Since: 1.0")
 
 
 (rt:define-gfunction (vec2-zero "graphene_vec2_zero") :return
-                     (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0" :documentation
-                     "Retrieves a constant vector with (0, 0) components.
+                     (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
+                     :documentation "Retrieves a constant vector with (0, 0) components.
 
 C: graphene_vec2_zero
 Since: 1.0")
 
 
+(rt:define-gfunction (vec2-add "graphene_vec2_add") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Adds each component of the two passed vectors and places
+each result into the components of RES.
+
+C: graphene_vec2_add
+Since: 1.0")
+
+
+(rt:define-gfunction (vec2-divide "graphene_vec2_divide") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Divides each component of the first operand A by the corresponding
+component of the second operand B, and places the results into the
+vector RES.
+
+C: graphene_vec2_divide
+Since: 1.0")
+
+
 (rt:define-gfunction (vec2-dot "graphene_vec2_dot") :args
-                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
-                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)))
                      :return :float :version "1.0" :documentation
                      "Computes the dot product of the two given vectors.
 
@@ -2182,8 +3681,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec2-equal "graphene_vec2_equal") :args
-                     ((v1 (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
-                      (v2 (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
+                     ((v1 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (v2 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given #graphene_vec2_t are equal.
 
@@ -2192,7 +3691,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (vec2-free "graphene_vec2_free") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))) :version "1.0"
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))) :version "1.0"
                      :documentation "Frees the resources allocated by V
 
 C: graphene_vec2_free
@@ -2200,24 +3699,27 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec2-get-x "graphene_vec2_get_x") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the X component of the #graphene_vec2_t.
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the X component of the #graphene_vec2_t.
 
 C: graphene_vec2_get_x
 Since: 1.0")
 
 
 (rt:define-gfunction (vec2-get-y "graphene_vec2_get_y") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the Y component of the #graphene_vec2_t.
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the Y component of the #graphene_vec2_t.
 
 C: graphene_vec2_get_y
 Since: 1.0")
 
 
 (rt:define-gfunction (vec2-init "graphene_vec2_init") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type")) (x :float) (y :float))
-                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)) (x :float)
+                      (y :float))
+                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
                      :documentation "Initializes a #graphene_vec2_t using the given values.
 
 C: graphene_vec2_init
@@ -2225,9 +3727,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec2-init-from-float "graphene_vec2_init_from_float") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
                       (src (:array :float :fixed-size 2)))
-                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0"
+                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
                      :documentation "Initializes V with the contents of the given array.
 
 C: graphene_vec2_init_from_float
@@ -2235,26 +3737,77 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec2-init-from-vec2 "graphene_vec2_init_from_vec2") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
-                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
-                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)))
+                     :return (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :version "1.0"
                      :documentation "Copies the contents of SRC into V.
 
 C: graphene_vec2_init_from_vec2
 Since: 1.0")
 
 
+(rt:define-gfunction (vec2-interpolate "graphene_vec2_interpolate") :args
+                     ((v1 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (v2 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)) (factor :double)
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Linearly interpolates V1 and V2 using the given FACTOR.
+
+C: graphene_vec2_interpolate
+Since: 1.10")
+
+
 (rt:define-gfunction (vec2-length "graphene_vec2_length") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))) :return :float :version
-                     "1.0" :documentation "Computes the length of the given vector.
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))) :return :float
+                     :version "1.0" :documentation "Computes the length of the given vector.
 
 C: graphene_vec2_length
 Since: 1.0")
 
 
+(rt:define-gfunction (vec2-max "graphene_vec2_max") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares the two given vectors and places the maximum
+values of each component into RES.
+
+C: graphene_vec2_max
+Since: 1.0")
+
+
+(rt:define-gfunction (vec2-min "graphene_vec2_min") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares the two given vectors and places the minimum
+values of each component into RES.
+
+C: graphene_vec2_min
+Since: 1.0")
+
+
+(rt:define-gfunction (vec2-multiply "graphene_vec2_multiply") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Multiplies each component of the two passed vectors and places
+each result into the components of RES.
+
+C: graphene_vec2_multiply
+Since: 1.0")
+
+
 (rt:define-gfunction (vec2-near "graphene_vec2_near") :args
-                     ((v1 (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
-                      (v2 (:boxed "GrapheneVec2" "graphene_vec2_get_type")) (epsilon :float))
+                     ((v1 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (v2 (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)) (epsilon :float))
                      :return :boolean :version "1.2" :documentation
                      "Compares the two given #graphene_vec2_t vectors and checks
 whether their values are within the given EPSILON.
@@ -2263,8 +3816,54 @@ C: graphene_vec2_near
 Since: 1.2")
 
 
+(rt:define-gfunction (vec2-negate "graphene_vec2_negate") :args
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation "Negates the given #graphene_vec2_t.
+
+C: graphene_vec2_negate
+Since: 1.2")
+
+
+(rt:define-gfunction (vec2-normalize "graphene_vec2_normalize") :args
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Computes the normalized vector for the given vector V.
+
+C: graphene_vec2_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (vec2-scale "graphene_vec2_scale") :args
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)) (factor :float)
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Multiplies all components of the given vector with the given scalar FACTOR.
+
+C: graphene_vec2_scale
+Since: 1.2")
+
+
+(rt:define-gfunction (vec2-subtract "graphene_vec2_subtract") :args
+                     ((a (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (b (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Subtracts from each component of the first operand A the
+corresponding component of the second operand B and places
+each result into the components of RES.
+
+C: graphene_vec2_subtract
+Since: 1.0")
+
+
 (rt:define-gfunction (vec2-to-float "graphene_vec2_to_float") :args
-                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type"))
+                     ((v (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2))
                       (dest (:array :float :fixed-size 2 :caller-allocates t) :direction :out))
                      :version "1.0" :documentation "Stores the components of V into an array.
 
@@ -2273,7 +3872,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-alloc "graphene_vec3_alloc") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :return-transfer :full
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_vec3_t structure.
 
 C: graphene_vec3_alloc
@@ -2281,8 +3880,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-one "graphene_vec3_one") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0" :documentation
-                     "Provides a constant pointer to a vector with three components,
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
+                     :documentation "Provides a constant pointer to a vector with three components,
 all sets to 1.
 
 C: graphene_vec3_one
@@ -2290,8 +3889,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-x-axis "graphene_vec3_x_axis") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0" :documentation
-                     "Provides a constant pointer to a vector with three components
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
+                     :documentation "Provides a constant pointer to a vector with three components
 with values set to (1, 0, 0).
 
 C: graphene_vec3_x_axis
@@ -2299,8 +3898,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-y-axis "graphene_vec3_y_axis") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0" :documentation
-                     "Provides a constant pointer to a vector with three components
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
+                     :documentation "Provides a constant pointer to a vector with three components
 with values set to (0, 1, 0).
 
 C: graphene_vec3_y_axis
@@ -2308,8 +3907,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-z-axis "graphene_vec3_z_axis") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0" :documentation
-                     "Provides a constant pointer to a vector with three components
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
+                     :documentation "Provides a constant pointer to a vector with three components
 with values set to (0, 0, 1).
 
 C: graphene_vec3_z_axis
@@ -2317,17 +3916,54 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-zero "graphene_vec3_zero") :return
-                     (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0" :documentation
-                     "Provides a constant pointer to a vector with three components,
+                     (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
+                     :documentation "Provides a constant pointer to a vector with three components,
 all sets to 0.
 
 C: graphene_vec3_zero
 Since: 1.0")
 
 
+(rt:define-gfunction (vec3-add "graphene_vec3_add") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Adds each component of the two given vectors.
+
+C: graphene_vec3_add
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-cross "graphene_vec3_cross") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Computes the cross product of the two given vectors.
+
+C: graphene_vec3_cross
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-divide "graphene_vec3_divide") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Divides each component of the first operand A by the corresponding
+component of the second operand B, and places the results into the
+vector RES.
+
+C: graphene_vec3_divide
+Since: 1.0")
+
+
 (rt:define-gfunction (vec3-dot "graphene_vec3_dot") :args
-                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
                      :return :float :version "1.0" :documentation
                      "Computes the dot product of the two given vectors.
 
@@ -2336,8 +3972,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-equal "graphene_vec3_equal") :args
-                     ((v1 (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (v2 (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                     ((v1 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (v2 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given #graphene_vec3_t are equal.
 
@@ -2346,7 +3982,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (vec3-free "graphene_vec3_free") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))) :version "1.0"
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))) :version "1.0"
                      :documentation "Frees the resources allocated by V
 
 C: graphene_vec3_free
@@ -2354,33 +3990,96 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-get-x "graphene_vec3_get_x") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the first component of the given vector V.
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the first component of the given vector V.
 
 C: graphene_vec3_get_x
 Since: 1.0")
 
 
+(rt:define-gfunction (vec3-get-xy "graphene_vec3_get_xy") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Creates a #graphene_vec2_t that contains the first and second
+components of the given #graphene_vec3_t.
+
+C: graphene_vec3_get_xy
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-get-xy0 "graphene_vec3_get_xy0") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Creates a #graphene_vec3_t that contains the first two components of
+the given #graphene_vec3_t, and the third component set to 0.
+
+C: graphene_vec3_get_xy0
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-get-xyz0 "graphene_vec3_get_xyz0") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Converts a #graphene_vec3_t in a #graphene_vec4_t using 0.0
+as the value for the fourth component of the resulting vector.
+
+C: graphene_vec3_get_xyz0
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-get-xyz1 "graphene_vec3_get_xyz1") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Converts a #graphene_vec3_t in a #graphene_vec4_t using 1.0
+as the value for the fourth component of the resulting vector.
+
+C: graphene_vec3_get_xyz1
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-get-xyzw "graphene_vec3_get_xyzw") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (w :float)
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Converts a #graphene_vec3_t in a #graphene_vec4_t using W as
+the value of the fourth component of the resulting vector.
+
+C: graphene_vec3_get_xyzw
+Since: 1.0")
+
+
 (rt:define-gfunction (vec3-get-y "graphene_vec3_get_y") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the second component of the given vector V.
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the second component of the given vector V.
 
 C: graphene_vec3_get_y
 Since: 1.0")
 
 
 (rt:define-gfunction (vec3-get-z "graphene_vec3_get_z") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the third component of the given vector V.
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))) :return :float
+                     :version "1.0" :documentation
+                     "Retrieves the third component of the given vector V.
 
 C: graphene_vec3_get_z
 Since: 1.0")
 
 
 (rt:define-gfunction (vec3-init "graphene_vec3_init") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type")) (x :float) (y :float)
-                      (z :float))
-                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (x :float)
+                      (y :float) (z :float))
+                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
                      :documentation "Initializes a #graphene_vec3_t using the given values.
 
 C: graphene_vec3_init
@@ -2388,9 +4087,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-init-from-float "graphene_vec3_init_from_float") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
                       (src (:array :float :fixed-size 3)))
-                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0"
+                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
                      :documentation "Initializes a #graphene_vec3_t with the values from an array.
 
 C: graphene_vec3_init_from_float
@@ -2398,9 +4097,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec3-init-from-vec3 "graphene_vec3_init_from_vec3") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (src (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
-                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (src (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)))
+                     :return (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :version "1.0"
                      :documentation "Initializes a #graphene_vec3_t with the values of another
 #graphene_vec3_t.
 
@@ -2408,17 +4107,67 @@ C: graphene_vec3_init_from_vec3
 Since: 1.0")
 
 
+(rt:define-gfunction (vec3-interpolate "graphene_vec3_interpolate") :args
+                     ((v1 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (v2 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (factor :double)
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Linearly interpolates V1 and V2 using the given FACTOR.
+
+C: graphene_vec3_interpolate
+Since: 1.10")
+
+
 (rt:define-gfunction (vec3-length "graphene_vec3_length") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))) :return :float :version
-                     "1.0" :documentation "Retrieves the length of the given vector V.
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))) :return :float
+                     :version "1.0" :documentation "Retrieves the length of the given vector V.
 
 C: graphene_vec3_length
 Since: 1.0")
 
 
+(rt:define-gfunction (vec3-max "graphene_vec3_max") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares each component of the two given vectors and creates a
+vector that contains the maximum values.
+
+C: graphene_vec3_max
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-min "graphene_vec3_min") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares each component of the two given vectors and creates a
+vector that contains the minimum values.
+
+C: graphene_vec3_min
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-multiply "graphene_vec3_multiply") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Multiplies each component of the two given vectors.
+
+C: graphene_vec3_multiply
+Since: 1.0")
+
+
 (rt:define-gfunction (vec3-near "graphene_vec3_near") :args
-                     ((v1 (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
-                      (v2 (:boxed "GrapheneVec3" "graphene_vec3_get_type")) (epsilon :float))
+                     ((v1 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (v2 (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (epsilon :float))
                      :return :boolean :version "1.2" :documentation
                      "Compares the two given #graphene_vec3_t vectors and checks
 whether their values are within the given EPSILON.
@@ -2427,8 +4176,53 @@ C: graphene_vec3_near
 Since: 1.2")
 
 
+(rt:define-gfunction (vec3-negate "graphene_vec3_negate") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation "Negates the given #graphene_vec3_t.
+
+C: graphene_vec3_negate
+Since: 1.2")
+
+
+(rt:define-gfunction (vec3-normalize "graphene_vec3_normalize") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Normalizes the given #graphene_vec3_t.
+
+C: graphene_vec3_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (vec3-scale "graphene_vec3_scale") :args
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (factor :float)
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Multiplies all components of the given vector with the given scalar FACTOR.
+
+C: graphene_vec3_scale
+Since: 1.2")
+
+
+(rt:define-gfunction (vec3-subtract "graphene_vec3_subtract") :args
+                     ((a (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (b (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Subtracts from each component of the first operand A the
+corresponding component of the second operand B and places
+each result into the components of RES.
+
+C: graphene_vec3_subtract
+Since: 1.0")
+
+
 (rt:define-gfunction (vec3-to-float "graphene_vec3_to_float") :args
-                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type"))
+                     ((v (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3))
                       (dest (:array :float :fixed-size 3 :caller-allocates t) :direction :out))
                      :version "1.0" :documentation
                      "Copies the components of a #graphene_vec3_t into the given array.
@@ -2438,7 +4232,7 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-alloc "graphene_vec4_alloc") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :return-transfer :full
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :return-transfer :full
                      :version "1.0" :documentation "Allocates a new #graphene_vec4_t structure.
 
 C: graphene_vec4_alloc
@@ -2446,8 +4240,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-one "graphene_vec4_one") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with all its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with all its
 components set to 1.
 
 C: graphene_vec4_one
@@ -2455,8 +4249,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-w-axis "graphene_vec4_w_axis") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with its
 components set to (0, 0, 0, 1).
 
 C: graphene_vec4_w_axis
@@ -2464,8 +4258,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-x-axis "graphene_vec4_x_axis") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with its
 components set to (1, 0, 0, 0).
 
 C: graphene_vec4_x_axis
@@ -2473,8 +4267,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-y-axis "graphene_vec4_y_axis") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with its
 components set to (0, 1, 0, 0).
 
 C: graphene_vec4_y_axis
@@ -2482,8 +4276,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-z-axis "graphene_vec4_z_axis") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with its
 components set to (0, 0, 1, 0).
 
 C: graphene_vec4_z_axis
@@ -2491,17 +4285,42 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-zero "graphene_vec4_zero") :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0" :documentation
-                     "Retrieves a pointer to a #graphene_vec4_t with all its
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
+                     :documentation "Retrieves a pointer to a #graphene_vec4_t with all its
 components set to 0.
 
 C: graphene_vec4_zero
 Since: 1.0")
 
 
+(rt:define-gfunction (vec4-add "graphene_vec4_add") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Adds each component of the two given vectors.
+
+C: graphene_vec4_add
+Since: 1.0")
+
+
+(rt:define-gfunction (vec4-divide "graphene_vec4_divide") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Divides each component of the first operand A by the corresponding
+component of the second operand B, and places the results into the
+vector RES.
+
+C: graphene_vec4_divide
+Since: 1.0")
+
+
 (rt:define-gfunction (vec4-dot "graphene_vec4_dot") :args
-                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
                      :return :float :version "1.0" :documentation
                      "Computes the dot product of the two given vectors.
 
@@ -2510,8 +4329,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-equal "graphene_vec4_equal") :args
-                     ((v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                     ((v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
                      :return :boolean :version "1.2" :documentation
                      "Checks whether the two given #graphene_vec4_t are equal.
 
@@ -2520,7 +4339,7 @@ Since: 1.2")
 
 
 (rt:define-gfunction (vec4-free "graphene_vec4_free") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :version "1.0"
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :version "1.0"
                      :documentation "Frees the resources allocated by V
 
 C: graphene_vec4_free
@@ -2528,8 +4347,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-get-w "graphene_vec4_get_w") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the value of the fourth component of the given #graphene_vec4_t.
 
 C: graphene_vec4_get_w
@@ -2537,17 +4356,41 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-get-x "graphene_vec4_get_x") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the value of the first component of the given #graphene_vec4_t.
 
 C: graphene_vec4_get_x
 Since: 1.0")
 
 
+(rt:define-gfunction (vec4-get-xy "graphene_vec4_get_xy") :args
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Creates a #graphene_vec2_t that contains the first two components
+of the given #graphene_vec4_t.
+
+C: graphene_vec4_get_xy
+Since: 1.0")
+
+
+(rt:define-gfunction (vec4-get-xyz "graphene_vec4_get_xyz") :args
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Creates a #graphene_vec3_t that contains the first three components
+of the given #graphene_vec4_t.
+
+C: graphene_vec4_get_xyz
+Since: 1.0")
+
+
 (rt:define-gfunction (vec4-get-y "graphene_vec4_get_y") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the value of the second component of the given #graphene_vec4_t.
 
 C: graphene_vec4_get_y
@@ -2555,8 +4398,8 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-get-z "graphene_vec4_get_z") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :return :float :version
-                     "1.0" :documentation
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :return :float
+                     :version "1.0" :documentation
                      "Retrieves the value of the third component of the given #graphene_vec4_t.
 
 C: graphene_vec4_get_z
@@ -2564,9 +4407,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-init "graphene_vec4_init") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type")) (x :float) (y :float)
-                      (z :float) (w :float))
-                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)) (x :float)
+                      (y :float) (z :float) (w :float))
+                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
                      :documentation "Initializes a #graphene_vec4_t using the given values.
 
 C: graphene_vec4_init
@@ -2574,9 +4417,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-init-from-float "graphene_vec4_init_from_float") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
                       (src (:array :float :fixed-size 4)))
-                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0"
+                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
                      :documentation
                      "Initializes a #graphene_vec4_t with the values inside the given array.
 
@@ -2585,9 +4428,10 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-init-from-vec2 "graphene_vec4_init_from_vec2") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type")) (z :float) (w :float))
-                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (src (:boxed "GrapheneVec2" "graphene_vec2_get_type" vec2)) (z :float)
+                      (w :float))
+                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
                      :documentation "Initializes a #graphene_vec4_t using the components of a
 #graphene_vec2_t and the values of Z and W.
 
@@ -2596,9 +4440,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-init-from-vec3 "graphene_vec4_init_from_vec3") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (src (:boxed "GrapheneVec3" "graphene_vec3_get_type")) (w :float))
-                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (src (:boxed "GrapheneVec3" "graphene_vec3_get_type" vec3)) (w :float))
+                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
                      :documentation "Initializes a #graphene_vec4_t using the components of a
 #graphene_vec3_t and the value of W.
 
@@ -2607,9 +4451,9 @@ Since: 1.0")
 
 
 (rt:define-gfunction (vec4-init-from-vec4 "graphene_vec4_init_from_vec4") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
-                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type") :version "1.0"
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (src (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)))
+                     :return (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :version "1.0"
                      :documentation "Initializes a #graphene_vec4_t using the components of
 another #graphene_vec4_t.
 
@@ -2617,17 +4461,68 @@ C: graphene_vec4_init_from_vec4
 Since: 1.0")
 
 
+(rt:define-gfunction (vec4-interpolate "graphene_vec4_interpolate") :args
+                     ((v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)) (factor :double)
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.10" :documentation
+                     "Linearly interpolates V1 and V2 using the given FACTOR.
+
+C: graphene_vec4_interpolate
+Since: 1.10")
+
+
 (rt:define-gfunction (vec4-length "graphene_vec4_length") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))) :return :float :version
-                     "1.0" :documentation "Computes the length of the given #graphene_vec4_t.
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))) :return :float
+                     :version "1.0" :documentation
+                     "Computes the length of the given #graphene_vec4_t.
 
 C: graphene_vec4_length
 Since: 1.0")
 
 
+(rt:define-gfunction (vec4-max "graphene_vec4_max") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares each component of the two given vectors and creates a
+vector that contains the maximum values.
+
+C: graphene_vec4_max
+Since: 1.0")
+
+
+(rt:define-gfunction (vec4-min "graphene_vec4_min") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Compares each component of the two given vectors and creates a
+vector that contains the minimum values.
+
+C: graphene_vec4_min
+Since: 1.0")
+
+
+(rt:define-gfunction (vec4-multiply "graphene_vec4_multiply") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Multiplies each component of the two given vectors.
+
+C: graphene_vec4_multiply
+Since: 1.0")
+
+
 (rt:define-gfunction (vec4-near "graphene_vec4_near") :args
-                     ((v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
-                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type")) (epsilon :float))
+                     ((v1 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (v2 (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)) (epsilon :float))
                      :return :boolean :version "1.2" :documentation
                      "Compares the two given #graphene_vec4_t vectors and checks
 whether their values are within the given EPSILON.
@@ -2636,8 +4531,53 @@ C: graphene_vec4_near
 Since: 1.2")
 
 
+(rt:define-gfunction (vec4-negate "graphene_vec4_negate") :args
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation "Negates the given #graphene_vec4_t.
+
+C: graphene_vec4_negate
+Since: 1.2")
+
+
+(rt:define-gfunction (vec4-normalize "graphene_vec4_normalize") :args
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation "Normalizes the given #graphene_vec4_t.
+
+C: graphene_vec4_normalize
+Since: 1.0")
+
+
+(rt:define-gfunction (vec4-scale "graphene_vec4_scale") :args
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4)) (factor :float)
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.2" :documentation
+                     "Multiplies all components of the given vector with the given scalar FACTOR.
+
+C: graphene_vec4_scale
+Since: 1.2")
+
+
+(rt:define-gfunction (vec4-subtract "graphene_vec4_subtract") :args
+                     ((a (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (b (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
+                      (res (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4) :direction :out
+                       :caller-allocates t))
+                     :version "1.0" :documentation
+                     "Subtracts from each component of the first operand A the
+corresponding component of the second operand B and places
+each result into the components of RES.
+
+C: graphene_vec4_subtract
+Since: 1.0")
+
+
 (rt:define-gfunction (vec4-to-float "graphene_vec4_to_float") :args
-                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type"))
+                     ((v (:boxed "GrapheneVec4" "graphene_vec4_get_type" vec4))
                       (dest (:array :float :fixed-size 4 :caller-allocates t) :direction :out))
                      :version "1.0" :documentation
                      "Stores the components of the given #graphene_vec4_t into an array

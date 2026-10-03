@@ -457,6 +457,149 @@ See: https://docs.gtk.org/gsk4/struct.Stroke.html"))
 C: GskTransform
 See: https://docs.gtk.org/gsk4/struct.Transform.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct color-stop
+    nil
+  (:offset :float)
+  (:color (:struct gdk:rgba)))
+
+
+(rt:define-gfield color-stop-offset color-stop :offset :float :writable t :documentation
+                  "the offset of the color stop
+")
+
+
+(rt:define-gfield color-stop-color color-stop :color
+                  (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :writable t :inline t
+                  :documentation "the color at the given offset
+")
+
+
+(rt:define-gstruct-constructor make-color-stop (:record color-stop)
+                               ((offset :offset :float)
+                                (color :color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
+                                 :inline t))
+                               :documentation
+                               "A new ColorStop with the given fields; others are zero.")
+
+
+(rt:define-gstruct parse-location
+    nil
+  (:bytes :size)
+  (:chars :size)
+  (:lines :size)
+  (:line-bytes :size)
+  (:line-chars :size))
+
+
+(rt:define-gfield parse-location-bytes parse-location :bytes :size :writable t :documentation
+                  "the offset of the location in the parse buffer, as bytes
+")
+
+
+(rt:define-gfield parse-location-chars parse-location :chars :size :writable t :documentation
+                  "the offset of the location in the parse buffer, as characters
+")
+
+
+(rt:define-gfield parse-location-lines parse-location :lines :size :writable t :documentation
+                  "the line of the location in the parse buffer
+")
+
+
+(rt:define-gfield parse-location-line-bytes parse-location :line-bytes :size :writable t
+                  :documentation "the position in the line, as bytes
+")
+
+
+(rt:define-gfield parse-location-line-chars parse-location :line-chars :size :writable t
+                  :documentation "the position in the line, as characters
+")
+
+
+(rt:define-gstruct-constructor make-parse-location (:record parse-location)
+                               ((bytes :bytes :size) (chars :chars :size) (lines :lines :size)
+                                (line-bytes :line-bytes :size) (line-chars :line-chars :size))
+                               :documentation
+                               "A new ParseLocation with the given fields; others are zero.")
+
+
+(rt:define-gstruct path-point-anonymous-0-anonymous-0
+    nil
+  (:contour :size)
+  (:idx :size)
+  (:t :float))
+
+
+(rt:define-gstruct path-point-anonymous-0
+    (:union t)
+  (:anonymous (:struct path-point-anonymous-0-anonymous-0))
+  (:padding :pointer :count 8)
+  (:alignment (:struct graphene:vec4)))
+
+
+(rt:define-gstruct path-point
+    (:gtype-name "GskPathPoint")
+  (:anonymous (:union path-point-anonymous-0)))
+
+
+(rt:define-gstruct rounded-rect
+    nil
+  (:bounds (:struct graphene:rect))
+  (:corner (:struct graphene:size) :count 4))
+
+
+(rt:define-gfield rounded-rect-bounds rounded-rect :bounds
+                  (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :writable t
+                  :inline t :documentation "the bounds of the rectangle
+")
+
+
+(rt:define-gstruct-constructor make-rounded-rect (:record rounded-rect)
+                               ((bounds :bounds
+                                 (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                                 :inline t))
+                               :documentation
+                               "A new RoundedRect with the given fields; others are zero.")
+
+
+(rt:define-gstruct shadow
+    nil
+  (:color (:struct gdk:rgba))
+  (:dx :float)
+  (:dy :float)
+  (:radius :float))
+
+
+(rt:define-gfield shadow-color shadow :color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
+                  :writable t :inline t :documentation "the color of the shadow
+")
+
+
+(rt:define-gfield shadow-dx shadow :dx :float :writable t :documentation
+                  "the horizontal offset of the shadow
+")
+
+
+(rt:define-gfield shadow-dy shadow :dy :float :writable t :documentation
+                  "the vertical offset of the shadow
+")
+
+
+(rt:define-gfield shadow-radius shadow :radius :float :writable t :documentation
+                  "the radius of the shadow
+")
+
+
+(rt:define-gstruct-constructor make-shadow (:record shadow)
+                               ((color :color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
+                                 :inline t)
+                                (dx :dx :float) (dy :dy :float) (radius :radius :float))
+                               :documentation
+                               "A new Shadow with the given fields; others are zero.")
+
 ;;; Properties
 
 
@@ -493,16 +636,16 @@ See: https://docs.gtk.org/gsk4/property.GLShader.source.html"))
 (rt:define-gcallback parse-error-func
                      (:args
                       ((start (:record parse-location)) (end (:record parse-location))
-                       (error (:boxed "GError" "g_error_get_type"))
+                       (error (:boxed "GError" "g_error_get_type" glib:error))
                        (user-data :pointer :user-data t))))
 
 
 (rt:define-gcallback path-intersection-func
                      (:args
                       ((path1 (:boxed "GskPath" "gsk_path_get_type"))
-                       (point1 (:boxed "GskPathPoint" "gsk_path_point_get_type"))
+                       (point1 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
                        (path2 (:boxed "GskPath" "gsk_path_get_type"))
-                       (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type"))
+                       (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
                        (kind (:enum path-intersection)) (user-data :pointer :user-data t))
                       :return :boolean))
 
@@ -551,7 +694,7 @@ Since: 4.24")
 
 
 (rt:define-gfunction (value-dup-render-node "gsk_value_dup_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
                      :return-transfer :full :version "4.6" :documentation
                      "Retrieves the render node stored inside a `GValue`,
 and acquires a reference to it.
@@ -562,8 +705,9 @@ Since: 4.6")
 
 
 (rt:define-gfunction (value-get-render-node "gsk_value_get_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return :pointer :version "4.6"
-                     :documentation "Retrieves the render node stored inside a `GValue`.
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return :pointer
+                     :version "4.6" :documentation
+                     "Retrieves the render node stored inside a `GValue`.
 
 C: gsk_value_get_render_node
 See: https://docs.gtk.org/gsk4/func.value_get_render_node.html
@@ -571,8 +715,8 @@ Since: 4.6")
 
 
 (rt:define-gfunction (value-set-render-node "gsk_value_set_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type")) (node :pointer)) :version "4.6"
-                     :documentation "Stores the given render node inside a `GValue`.
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value)) (node :pointer))
+                     :version "4.6" :documentation "Stores the given render node inside a `GValue`.
 
 C: gsk_value_set_render_node
 See: https://docs.gtk.org/gsk4/func.value_set_render_node.html
@@ -580,7 +724,7 @@ Since: 4.6")
 
 
 (rt:define-gfunction (value-take-render-node "gsk_value_take_render_node") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))
                       (node :pointer :transfer :full :optional t))
                      :version "4.6" :documentation "Stores the given render node inside a `GValue`.
 
@@ -646,6 +790,18 @@ C: gsk_blur_node_get_radius
 See: https://docs.gtk.org/gsk4/method.BlurNode.get_radius.html")
 
 
+(rt:define-gfunction (border-node-new "gsk_border_node_new") :args
+                     ((outline (:record rounded-rect)) (border-width (:array :float :fixed-size 4))
+                      (border-color
+                       (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :fixed-size 4)))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that will stroke a border rectangle inside the
+given OUTLINE.
+
+C: gsk_border_node_new
+See: https://docs.gtk.org/gsk4/ctor.BorderNode.new.html")
+
+
 (rt:define-gfunction (border-node-get-border-snap "gsk_border_node_get_border_snap") :args
                      ((node :pointer)) :return :uint :version "4.24" :documentation
                      "Retrieves the snap value for the border
@@ -653,6 +809,14 @@ See: https://docs.gtk.org/gsk4/method.BlurNode.get_radius.html")
 C: gsk_border_node_get_border_snap
 See: https://docs.gtk.org/gsk4/method.BorderNode.get_border_snap.html
 Since: 4.24")
+
+
+(rt:define-gfunction (border-node-get-colors "gsk_border_node_get_colors") :args ((node :pointer))
+                     :return (:array (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :fixed-size 4)
+                     :documentation "Retrieves the colors of the border.
+
+C: gsk_border_node_get_colors
+See: https://docs.gtk.org/gsk4/method.BorderNode.get_colors.html")
 
 
 (rt:define-gfunction (border-node-get-outline "gsk_border_node_get_outline") :args
@@ -681,8 +845,8 @@ See: https://docs.gtk.org/gsk4/method.BorderNode.get_widths.html")
 
 
 (rt:define-gfunction (cairo-node-new "gsk_cairo_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))) :return :pointer
-                     :return-transfer :full :documentation
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
+                     :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will render a cairo surface
 into the area given by BOUNDS.
 
@@ -717,7 +881,8 @@ See: https://docs.gtk.org/gsk4/ctor.CairoRenderer.new.html")
 
 
 (rt:define-gfunction (clip-node-new "gsk_clip_node_new") :args
-                     ((child :pointer) (clip (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                     ((child :pointer)
+                      (clip (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will clip the CHILD to the area
 given by CLIP.
@@ -735,7 +900,7 @@ See: https://docs.gtk.org/gsk4/method.ClipNode.get_child.html")
 
 
 (rt:define-gfunction (clip-node-get-clip "gsk_clip_node_get_clip") :args ((node :pointer)) :return
-                     (:boxed "GrapheneRect" "graphene_rect_get_type") :documentation
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :documentation
                      "Retrieves the clip rectangle for NODE.
 
 C: gsk_clip_node_get_clip
@@ -752,8 +917,10 @@ Since: 4.24")
 
 (rt:define-gfunction (color-matrix-node-new "gsk_color_matrix_node_new") :args
                      ((child :pointer)
-                      (color-matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type"))
-                      (color-offset (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                      (color-matrix
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix))
+                      (color-offset
+                       (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will drawn the CHILD with
 COLOR-MATRIX.
@@ -772,8 +939,8 @@ See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_child.html")
 
 (rt:define-gfunction (color-matrix-node-get-color-matrix "gsk_color_matrix_node_get_color_matrix")
                      :args ((node :pointer)) :return
-                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type") :documentation
-                     "Retrieves the color matrix used by the NODE.
+                     (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)
+                     :documentation "Retrieves the color matrix used by the NODE.
 
 C: gsk_color_matrix_node_get_color_matrix
 See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_color_matrix.html")
@@ -781,7 +948,7 @@ See: https://docs.gtk.org/gsk4/method.ColorMatrixNode.get_color_matrix.html")
 
 (rt:define-gfunction (color-matrix-node-get-color-offset "gsk_color_matrix_node_get_color_offset")
                      :args ((node :pointer)) :return
-                     (:boxed "GrapheneVec4" "graphene_vec4_get_type") :documentation
+                     (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4) :documentation
                      "Retrieves the color offset used by the NODE.
 
 C: gsk_color_matrix_node_get_color_offset
@@ -798,8 +965,8 @@ Since: 4.24")
 
 
 (rt:define-gfunction (color-node-new "gsk_color_node_new") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will render the color specified by RGBA into
 the area given by BOUNDS.
@@ -809,7 +976,7 @@ See: https://docs.gtk.org/gsk4/ctor.ColorNode.new.html")
 
 
 (rt:define-gfunction (color-node-get-color "gsk_color_node_get_color") :args ((node :pointer))
-                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type") :documentation
+                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :documentation
                      "Retrieves the color of the given NODE.
 
 C: gsk_color_node_get_color
@@ -998,6 +1165,18 @@ See: https://docs.gtk.org/gsk4/method.CompositeNode.get_operator.html
 Since: 4.22")
 
 
+(rt:define-gfunction (conic-gradient-node-new "gsk_conic_gradient_node_new") :args
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (rotation :float) (color-stops (:array (:record color-stop)))
+                      (n-color-stops :size :length-of color-stops))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that draws a conic gradient.
+
+C: gsk_conic_gradient_node_new
+See: https://docs.gtk.org/gsk4/ctor.ConicGradientNode.new.html")
+
+
 (rt:define-gfunction (conic-gradient-node-get-angle "gsk_conic_gradient_node_get_angle") :args
                      ((node :pointer)) :return :float :version "4.2" :documentation
                      "Retrieves the angle for the gradient in radians, normalized in [0, 2 * PI].
@@ -1008,11 +1187,21 @@ Since: 4.2")
 
 
 (rt:define-gfunction (conic-gradient-node-get-center "gsk_conic_gradient_node_get_center") :args
-                     ((node :pointer)) :return (:boxed "GraphenePoint" "graphene_point_get_type")
+                     ((node :pointer)) :return
+                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
                      :documentation "Retrieves the center pointer for the gradient.
 
 C: gsk_conic_gradient_node_get_center
 See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_center.html")
+
+
+(rt:define-gfunction
+ (conic-gradient-node-get-color-stops "gsk_conic_gradient_node_get_color_stops") :args
+ ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
+ (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
+
+C: gsk_conic_gradient_node_get_color_stops
+See: https://docs.gtk.org/gsk4/method.ConicGradientNode.get_color_stops.html")
 
 
 (rt:define-gfunction
@@ -1276,7 +1465,8 @@ Deprecated.")
 
 (rt:define-gfunction (gl-shader-get-arg-vec2 "gsk_gl_shader_get_arg_vec2") :args
                      ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int) (out-value (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
+                      (idx :int)
+                      (out-value (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)))
                      :documentation "Gets the value of the uniform IDX in the ARGS block.
 
 C: gsk_gl_shader_get_arg_vec2
@@ -1286,7 +1476,8 @@ Deprecated.")
 
 (rt:define-gfunction (gl-shader-get-arg-vec3 "gsk_gl_shader_get_arg_vec3") :args
                      ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int) (out-value (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                      (idx :int)
+                      (out-value (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
                      :documentation "Gets the value of the uniform IDX in the ARGS block.
 
 C: gsk_gl_shader_get_arg_vec3
@@ -1296,7 +1487,8 @@ Deprecated.")
 
 (rt:define-gfunction (gl-shader-get-arg-vec4 "gsk_gl_shader_get_arg_vec4") :args
                      ((shader (:object gl-shader)) (args (:boxed "GBytes" "g_bytes_get_type"))
-                      (idx :int) (out-value (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                      (idx :int)
+                      (out-value (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
                      :documentation "Gets the value of the uniform IDX in the ARGS block.
 
 C: gsk_gl_shader_get_arg_vec4
@@ -1380,7 +1572,7 @@ Deprecated.")
 
 (rt:define-gfunction (gl-shader-node-new "gsk_gl_shader_node_new") :args
                      ((shader (:object gl-shader))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
                       (args (:boxed "GBytes" "g_bytes_get_type")) (children (:array :pointer))
                       (n-children :uint :length-of children))
                      :return :pointer :return-transfer :full :documentation
@@ -1429,8 +1621,8 @@ Deprecated.")
 
 (rt:define-gfunction (inset-shadow-node-new "gsk_inset_shadow_node_new") :args
                      ((outline (:record rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")) (dx :float) (dy :float)
-                      (spread :float) (blur-radius :float))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
+                      (dy :float) (spread :float) (blur-radius :float))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will render an inset shadow
 into the box given by OUTLINE.
@@ -1448,7 +1640,7 @@ See: https://docs.gtk.org/gsk4/method.InsetShadowNode.get_blur_radius.html")
 
 
 (rt:define-gfunction (inset-shadow-node-get-color "gsk_inset_shadow_node_get_color") :args
-                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type")
+                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
                      :documentation "Retrieves the color of the inset shadow.
 
 C: gsk_inset_shadow_node_get_color
@@ -1525,8 +1717,32 @@ See: https://docs.gtk.org/gsk4/method.IsolationNode.get_isolations.html
 Since: 4.22")
 
 
+(rt:define-gfunction (linear-gradient-node-new "gsk_linear_gradient_node_new") :args
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (start (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (end (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (color-stops (:array (:record color-stop)))
+                      (n-color-stops :size :length-of color-stops))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that will create a linear gradient from the given
+points and color stops, and render that into the area given by BOUNDS.
+
+C: gsk_linear_gradient_node_new
+See: https://docs.gtk.org/gsk4/ctor.LinearGradientNode.new.html")
+
+
+(rt:define-gfunction
+ (linear-gradient-node-get-color-stops "gsk_linear_gradient_node_get_color_stops") :args
+ ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
+ (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
+
+C: gsk_linear_gradient_node_get_color_stops
+See: https://docs.gtk.org/gsk4/method.LinearGradientNode.get_color_stops.html")
+
+
 (rt:define-gfunction (linear-gradient-node-get-end "gsk_linear_gradient_node_get_end") :args
-                     ((node :pointer)) :return (:boxed "GraphenePoint" "graphene_point_get_type")
+                     ((node :pointer)) :return
+                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
                      :documentation "Retrieves the final point of the linear gradient.
 
 C: gsk_linear_gradient_node_get_end
@@ -1552,7 +1768,8 @@ Since: 4.24")
 
 
 (rt:define-gfunction (linear-gradient-node-get-start "gsk_linear_gradient_node_get_start") :args
-                     ((node :pointer)) :return (:boxed "GraphenePoint" "graphene_point_get_type")
+                     ((node :pointer)) :return
+                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
                      :documentation "Retrieves the initial point of the linear gradient.
 
 C: gsk_linear_gradient_node_get_start
@@ -1632,8 +1849,8 @@ See: https://docs.gtk.org/gsk4/method.OpacityNode.get_opacity.html")
 
 (rt:define-gfunction (outset-shadow-node-new "gsk_outset_shadow_node_new") :args
                      ((outline (:record rounded-rect))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type")) (dx :float) (dy :float)
-                      (spread :float) (blur-radius :float))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)) (dx :float)
+                      (dy :float) (spread :float) (blur-radius :float))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will render an outset shadow
 around the box given by OUTLINE.
@@ -1651,7 +1868,7 @@ See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_blur_radius.html")
 
 
 (rt:define-gfunction (outset-shadow-node-get-color "gsk_outset_shadow_node_get_color") :args
-                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type")
+                     ((node :pointer)) :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba)
                      :documentation "Retrieves the color of the outset shadow.
 
 C: gsk_outset_shadow_node_get_color
@@ -1700,7 +1917,8 @@ See: https://docs.gtk.org/gsk4/method.OutsetShadowNode.get_spread.html")
 
 
 (rt:define-gfunction (paste-node-new "gsk_paste_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type")) (depth :size))
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (depth :size))
                      :return :pointer :return-transfer :full :version "4.22" :documentation
                      "Creates a `GskRenderNode` that will paste copied contents.
 
@@ -1760,9 +1978,86 @@ See: https://docs.gtk.org/gsk4/method.Path.foreach_intersection.html
 Since: 4.20")
 
 
+(rt:define-gfunction (path-get-bounds "gsk_path_get_bounds") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.14" :documentation
+                     "Computes the bounds of the given path.
+
+C: gsk_path_get_bounds
+See: https://docs.gtk.org/gsk4/method.Path.get_bounds.html
+Since: 4.14")
+
+
+(rt:define-gfunction (path-get-closest-point "gsk_path_get_closest_point") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (threshold :float)
+                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
+                       :direction :out :caller-allocates t)
+                      (distance :float :direction :out :transfer :full))
+                     :return :boolean :version "4.14" :documentation
+                     "Computes the closest point on the path to the given point.
+
+C: gsk_path_get_closest_point
+See: https://docs.gtk.org/gsk4/method.Path.get_closest_point.html
+Since: 4.14")
+
+
+(rt:define-gfunction (path-get-end-point "gsk_path_get_end_point") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.14" :documentation
+                     "Gets the end point of the path.
+
+C: gsk_path_get_end_point
+See: https://docs.gtk.org/gsk4/method.Path.get_end_point.html
+Since: 4.14")
+
+
+(rt:define-gfunction (path-get-start-point "gsk_path_get_start_point") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.14" :documentation
+                     "Gets the start point of the path.
+
+C: gsk_path_get_start_point
+See: https://docs.gtk.org/gsk4/method.Path.get_start_point.html
+Since: 4.14")
+
+
+(rt:define-gfunction (path-get-stroke-bounds "gsk_path_get_stroke_bounds") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (stroke (:boxed "GskStroke" "gsk_stroke_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.14" :documentation
+                     "Computes the bounds for stroking the given path with the
+given parameters.
+
+C: gsk_path_get_stroke_bounds
+See: https://docs.gtk.org/gsk4/method.Path.get_stroke_bounds.html
+Since: 4.14")
+
+
+(rt:define-gfunction (path-get-tight-bounds "gsk_path_get_tight_bounds") :args
+                     ((self (:boxed "GskPath" "gsk_path_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.22" :documentation
+                     "Computes the tight bounds of the given path.
+
+C: gsk_path_get_tight_bounds
+See: https://docs.gtk.org/gsk4/method.Path.get_tight_bounds.html
+Since: 4.22")
+
+
 (rt:define-gfunction (path-in-fill "gsk_path_in_fill") :args
                      ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type"))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
                       (fill-rule (:enum fill-rule)))
                      :return :boolean :version "4.14" :documentation
                      "Returns whether a point is inside the fill area of a path.
@@ -1793,7 +2088,7 @@ Since: 4.14")
 
 (rt:define-gfunction (path-print "gsk_path_print") :args
                      ((self (:boxed "GskPath" "gsk_path_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :version "4.14" :documentation
                      "Converts the path into a human-readable representation.
 
@@ -1863,7 +2158,8 @@ Since: 4.14")
 
 (rt:define-gfunction (path-builder-add-circle "gsk_path_builder_add_circle") :args
                      ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (center (:boxed "GraphenePoint" "graphene_point_get_type")) (radius :float))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (radius :float))
                      :version "4.14" :documentation "Adds a circle as a new contour.
 
 C: gsk_path_builder_add_circle
@@ -1894,7 +2190,7 @@ Since: 4.14")
 
 (rt:define-gfunction (path-builder-add-rect "gsk_path_builder_add_rect") :args
                      ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :version "4.14" :documentation "Adds a rectangle as a new contour.
 
 C: gsk_path_builder_add_rect
@@ -1926,8 +2222,8 @@ Since: 4.14")
 (rt:define-gfunction (path-builder-add-segment "gsk_path_builder_add_segment") :args
                      ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))
                       (path (:boxed "GskPath" "gsk_path_get_type"))
-                      (start (:boxed "GskPathPoint" "gsk_path_point_get_type"))
-                      (end (:boxed "GskPathPoint" "gsk_path_point_get_type")))
+                      (start (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (end (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
                      :version "4.14" :documentation "Adds a segment of a path to the builder.
 
 C: gsk_path_builder_add_segment
@@ -1984,8 +2280,8 @@ Since: 4.14")
 
 (rt:define-gfunction (path-builder-get-current-point "gsk_path_builder_get_current_point") :args
                      ((self (:boxed "GskPathBuilder" "gsk_path_builder_get_type"))) :return
-                     (:boxed "GraphenePoint" "graphene_point_get_type") :version "4.14"
-                     :documentation "Gets the current point.
+                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point) :version
+                     "4.14" :documentation "Gets the current point.
 
 C: gsk_path_builder_get_current_point
 See: https://docs.gtk.org/gsk4/method.PathBuilder.get_current_point.html
@@ -2215,6 +2511,19 @@ See: https://docs.gtk.org/gsk4/method.PathMeasure.get_path.html
 Since: 4.14")
 
 
+(rt:define-gfunction (path-measure-get-point "gsk_path_measure_get_point") :args
+                     ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))
+                      (distance :float)
+                      (result (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.14" :documentation
+                     "Gets the point at the given distance into the path.
+
+C: gsk_path_measure_get_point
+See: https://docs.gtk.org/gsk4/method.PathMeasure.get_point.html
+Since: 4.14")
+
+
 (rt:define-gfunction (path-measure-get-tolerance "gsk_path_measure_get_tolerance") :args
                      ((self (:boxed "GskPathMeasure" "gsk_path_measure_get_type"))) :return :float
                      :version "4.14" :documentation
@@ -2246,8 +2555,8 @@ Since: 4.14")
 
 
 (rt:define-gfunction (path-point-compare "gsk_path_point_compare") :args
-                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type"))
-                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type")))
+                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
                      :return :int :version "4.14" :documentation
                      "Returns whether POINT1 is before or after POINT2.
 
@@ -2257,9 +2566,9 @@ Since: 4.14")
 
 
 (rt:define-gfunction (path-point-copy "gsk_path_point_copy") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type"))) :return
-                     (:boxed "GskPathPoint" "gsk_path_point_get_type") :return-transfer :full
-                     :version "4.14" :documentation "Copies a path point.
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))) :return
+                     (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point) :return-transfer
+                     :full :version "4.14" :documentation "Copies a path point.
 
 C: gsk_path_point_copy
 See: https://docs.gtk.org/gsk4/method.PathPoint.copy.html
@@ -2267,8 +2576,8 @@ Since: 4.14")
 
 
 (rt:define-gfunction (path-point-equal "gsk_path_point_equal") :args
-                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type"))
-                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type")))
+                     ((point1 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (point2 (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
                      :return :boolean :version "4.14" :documentation
                      "Returns whether the two path points refer to the same
 location on all paths.
@@ -2279,16 +2588,31 @@ Since: 4.14")
 
 
 (rt:define-gfunction (path-point-free "gsk_path_point_free") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type"))) :version "4.14"
-                     :documentation "Frees a path point copied by Gsk.PathPoint.copy.
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point)))
+                     :version "4.14" :documentation
+                     "Frees a path point copied by Gsk.PathPoint.copy.
 
 C: gsk_path_point_free
 See: https://docs.gtk.org/gsk4/method.PathPoint.free.html
 Since: 4.14")
 
 
+(rt:define-gfunction (path-point-get-curvature "gsk_path_point_get_curvature") :args
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (path (:boxed "GskPath" "gsk_path_get_type"))
+                      (direction (:enum path-direction))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
+                       :direction :out :caller-allocates t))
+                     :return :float :version "4.14" :documentation
+                     "Calculates the curvature of the path at the point.
+
+C: gsk_path_point_get_curvature
+See: https://docs.gtk.org/gsk4/method.PathPoint.get_curvature.html
+Since: 4.14")
+
+
 (rt:define-gfunction (path-point-get-distance "gsk_path_point_get_distance") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type"))
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
                       (measure (:boxed "GskPathMeasure" "gsk_path_measure_get_type")))
                      :return :float :version "4.14" :documentation
                      "Returns the distance from the beginning of the path
@@ -2299,8 +2623,20 @@ See: https://docs.gtk.org/gsk4/method.PathPoint.get_distance.html
 Since: 4.14")
 
 
+(rt:define-gfunction (path-point-get-position "gsk_path_point_get_position") :args
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (path (:boxed "GskPath" "gsk_path_get_type"))
+                      (position (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
+                                :direction :out :caller-allocates t))
+                     :version "4.14" :documentation "Gets the position of the point.
+
+C: gsk_path_point_get_position
+See: https://docs.gtk.org/gsk4/method.PathPoint.get_position.html
+Since: 4.14")
+
+
 (rt:define-gfunction (path-point-get-rotation "gsk_path_point_get_rotation") :args
-                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type"))
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
                       (path (:boxed "GskPath" "gsk_path_get_type"))
                       (direction (:enum path-direction)))
                      :return :float :version "4.14" :documentation
@@ -2311,12 +2647,48 @@ See: https://docs.gtk.org/gsk4/method.PathPoint.get_rotation.html
 Since: 4.14")
 
 
+(rt:define-gfunction (path-point-get-tangent "gsk_path_point_get_tangent") :args
+                     ((point (:boxed "GskPathPoint" "gsk_path_point_get_type" path-point))
+                      (path (:boxed "GskPath" "gsk_path_get_type"))
+                      (direction (:enum path-direction))
+                      (tangent (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)
+                       :direction :out :caller-allocates t))
+                     :version "4.14" :documentation "Gets the tangent of the path at the point.
+
+C: gsk_path_point_get_tangent
+See: https://docs.gtk.org/gsk4/method.PathPoint.get_tangent.html
+Since: 4.14")
+
+
+(rt:define-gfunction (radial-gradient-node-new "gsk_radial_gradient_node_new") :args
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (hradius :float) (vradius :float) (start :float) (end :float)
+                      (color-stops (:array (:record color-stop)))
+                      (n-color-stops :size :length-of color-stops))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that draws a radial gradient.
+
+C: gsk_radial_gradient_node_new
+See: https://docs.gtk.org/gsk4/ctor.RadialGradientNode.new.html")
+
+
 (rt:define-gfunction (radial-gradient-node-get-center "gsk_radial_gradient_node_get_center") :args
-                     ((node :pointer)) :return (:boxed "GraphenePoint" "graphene_point_get_type")
+                     ((node :pointer)) :return
+                     (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
                      :documentation "Retrieves the center pointer for the gradient.
 
 C: gsk_radial_gradient_node_get_center
 See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_center.html")
+
+
+(rt:define-gfunction
+ (radial-gradient-node-get-color-stops "gsk_radial_gradient_node_get_color_stops") :args
+ ((node :pointer) (n-stops :size :length-of :return :direction :out)) :return
+ (:array (:record color-stop)) :documentation "Retrieves the color stops in the gradient.
+
+C: gsk_radial_gradient_node_get_color_stops
+See: https://docs.gtk.org/gsk4/method.RadialGradientNode.get_color_stops.html")
 
 
 (rt:define-gfunction (radial-gradient-node-get-end "gsk_radial_gradient_node_get_end") :args
@@ -2389,6 +2761,16 @@ C: gsk_render_node_draw
 See: https://docs.gtk.org/gsk4/method.RenderNode.draw.html")
 
 
+(rt:define-gfunction (render-node-get-bounds "gsk_render_node_get_bounds") :args
+                     ((node :pointer)
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :documentation "Retrieves the boundaries of the NODE.
+
+C: gsk_render_node_get_bounds
+See: https://docs.gtk.org/gsk4/method.RenderNode.get_bounds.html")
+
+
 (rt:define-gfunction (render-node-get-children "gsk_render_node_get_children") :args
                      ((self :pointer) (n-children :size :length-of :return :direction :out))
                      :return (:array :pointer) :version "4.22" :documentation
@@ -2405,6 +2787,19 @@ Since: 4.22")
 
 C: gsk_render_node_get_node_type
 See: https://docs.gtk.org/gsk4/method.RenderNode.get_node_type.html")
+
+
+(rt:define-gfunction (render-node-get-opaque-rect "gsk_render_node_get_opaque_rect") :args
+                     ((self :pointer)
+                      (out-opaque (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :return :boolean :version "4.16" :documentation
+                     "Gets an opaque rectangle inside the node that GTK can determine to
+be fully opaque.
+
+C: gsk_render_node_get_opaque_rect
+See: https://docs.gtk.org/gsk4/method.RenderNode.get_opaque_rect.html
+Since: 4.16")
 
 
 (rt:define-gfunction (render-node-ref "gsk_render_node_ref") :args ((node :pointer)) :return
@@ -2605,7 +3000,8 @@ See: https://docs.gtk.org/gsk4/method.Renderer.render.html")
 
 (rt:define-gfunction (renderer-render-texture "gsk_renderer_render_texture") :args
                      ((renderer (:object renderer)) (root :pointer)
-                      (viewport (:boxed "GrapheneRect" "graphene_rect_get_type") :optional t))
+                      (viewport (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :optional t))
                      :return (:object gdk:texture) :return-transfer :full :documentation
                      "Renders a scene graph, described by a tree of `GskRenderNode` instances,
 to a texture.
@@ -2623,8 +3019,10 @@ See: https://docs.gtk.org/gsk4/method.Renderer.unrealize.html")
 
 
 (rt:define-gfunction (repeat-node-new "gsk_repeat_node_new") :args
-                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type")) (child :pointer)
-                      (child-bounds (:boxed "GrapheneRect" "graphene_rect_get_type") :optional t))
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (child :pointer)
+                      (child-bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :optional t))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will repeat the drawing of CHILD across
 the given BOUNDS.
@@ -2641,8 +3039,9 @@ See: https://docs.gtk.org/gsk4/method.RepeatNode.get_child.html")
 
 
 (rt:define-gfunction (repeat-node-get-child-bounds "gsk_repeat_node_get_child_bounds") :args
-                     ((node :pointer)) :return (:boxed "GrapheneRect" "graphene_rect_get_type")
-                     :documentation "Retrieves the bounding rectangle of the child of NODE.
+                     ((node :pointer)) :return
+                     (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect) :documentation
+                     "Retrieves the bounding rectangle of the child of NODE.
 
 C: gsk_repeat_node_get_child_bounds
 See: https://docs.gtk.org/gsk4/method.RepeatNode.get_child_bounds.html")
@@ -2665,6 +3064,36 @@ Since: 4.24")
 C: gsk_repeat_node_get_snap
 See: https://docs.gtk.org/gsk4/method.RepeatNode.get_snap.html
 Since: 4.24")
+
+
+(rt:define-gfunction (repeating-linear-gradient-node-new "gsk_repeating_linear_gradient_node_new")
+                     :args
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (start (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (end (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (color-stops (:array (:record color-stop)))
+                      (n-color-stops :size :length-of color-stops))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that will create a repeating linear gradient
+from the given points and color stops, and render that into the area
+given by BOUNDS.
+
+C: gsk_repeating_linear_gradient_node_new
+See: https://docs.gtk.org/gsk4/ctor.RepeatingLinearGradientNode.new.html")
+
+
+(rt:define-gfunction (repeating-radial-gradient-node-new "gsk_repeating_radial_gradient_node_new")
+                     :args
+                     ((bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (center (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (hradius :float) (vradius :float) (start :float) (end :float)
+                      (color-stops (:array (:record color-stop)))
+                      (n-color-stops :size :length-of color-stops))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that draws a repeating radial gradient.
+
+C: gsk_repeating_radial_gradient_node_new
+See: https://docs.gtk.org/gsk4/ctor.RepeatingRadialGradientNode.new.html")
 
 
 (rt:define-gfunction (rounded-clip-node-new "gsk_rounded_clip_node_new") :args
@@ -2704,7 +3133,7 @@ Since: 4.24")
 
 (rt:define-gfunction (rounded-rect-contains-point "gsk_rounded_rect_contains_point") :args
                      ((self (:record rounded-rect))
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type")))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
                      :return :boolean :documentation
                      "Checks if the given point is inside the rounded rectangle.
 
@@ -2714,7 +3143,7 @@ See: https://docs.gtk.org/gsk4/method.RoundedRect.contains_point.html")
 
 (rt:define-gfunction (rounded-rect-contains-rect "gsk_rounded_rect_contains_rect") :args
                      ((self (:record rounded-rect))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return :boolean :documentation
                      "Checks if the given rectangle is contained inside the rounded rectangle.
 
@@ -2724,11 +3153,11 @@ See: https://docs.gtk.org/gsk4/method.RoundedRect.contains_rect.html")
 
 (rt:define-gfunction (rounded-rect-init "gsk_rounded_rect_init") :args
                      ((self (:record rounded-rect))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))
-                      (top-left (:boxed "GrapheneSize" "graphene_size_get_type"))
-                      (top-right (:boxed "GrapheneSize" "graphene_size_get_type"))
-                      (bottom-right (:boxed "GrapheneSize" "graphene_size_get_type"))
-                      (bottom-left (:boxed "GrapheneSize" "graphene_size_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (top-left (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
+                      (top-right (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
+                      (bottom-right (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size))
+                      (bottom-left (:boxed "GrapheneSize" "graphene_size_get_type" graphene:size)))
                      :return (:record rounded-rect) :documentation
                      "Initializes a rounded rectangle with the given values.
 
@@ -2747,7 +3176,8 @@ See: https://docs.gtk.org/gsk4/method.RoundedRect.init_copy.html")
 
 (rt:define-gfunction (rounded-rect-init-from-rect "gsk_rounded_rect_init_from_rect") :args
                      ((self (:record rounded-rect))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")) (radius :float))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (radius :float))
                      :return (:record rounded-rect) :documentation
                      "Initializes a rounded rectangle to the given bounds
 and sets the radius of all four corners equally.
@@ -2758,7 +3188,7 @@ See: https://docs.gtk.org/gsk4/method.RoundedRect.init_from_rect.html")
 
 (rt:define-gfunction (rounded-rect-intersects-rect "gsk_rounded_rect_intersects_rect") :args
                      ((self (:record rounded-rect))
-                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return :boolean :documentation "Checks if part a rectangle is contained
 inside the rounded rectangle.
 
@@ -2869,7 +3299,8 @@ Deprecated.")
 
 (rt:define-gfunction (shader-args-builder-set-vec2 "gsk_shader_args_builder_set_vec2") :args
                      ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value (:boxed "GrapheneVec2" "graphene_vec2_get_type")))
+                      (idx :int)
+                      (value (:boxed "GrapheneVec2" "graphene_vec2_get_type" graphene:vec2)))
                      :documentation "Sets the value of the uniform IDX.
 
 C: gsk_shader_args_builder_set_vec2
@@ -2879,7 +3310,8 @@ Deprecated.")
 
 (rt:define-gfunction (shader-args-builder-set-vec3 "gsk_shader_args_builder_set_vec3") :args
                      ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                      (idx :int)
+                      (value (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
                      :documentation "Sets the value of the uniform IDX.
 
 C: gsk_shader_args_builder_set_vec3
@@ -2889,7 +3321,8 @@ Deprecated.")
 
 (rt:define-gfunction (shader-args-builder-set-vec4 "gsk_shader_args_builder_set_vec4") :args
                      ((builder (:boxed "GskShaderArgsBuilder" "gsk_shader_args_builder_get_type"))
-                      (idx :int) (value (:boxed "GrapheneVec4" "graphene_vec4_get_type")))
+                      (idx :int)
+                      (value (:boxed "GrapheneVec4" "graphene_vec4_get_type" graphene:vec4)))
                      :documentation "Sets the value of the uniform IDX.
 
 C: gsk_shader_args_builder_set_vec4
@@ -2916,6 +3349,17 @@ Deprecated.")
 C: gsk_shader_args_builder_unref
 See: https://docs.gtk.org/gsk4/method.ShaderArgsBuilder.unref.html
 Deprecated.")
+
+
+(rt:define-gfunction (shadow-node-new "gsk_shadow_node_new") :args
+                     ((child :pointer) (shadows (:array (:record shadow)))
+                      (n-shadows :size :length-of shadows))
+                     :return :pointer :return-transfer :full :documentation
+                     "Creates a `GskRenderNode` that will draw a CHILD with the given
+SHADOWS below it.
+
+C: gsk_shadow_node_new
+See: https://docs.gtk.org/gsk4/ctor.ShadowNode.new.html")
 
 
 (rt:define-gfunction (shadow-node-get-child "gsk_shadow_node_get_child") :args ((node :pointer))
@@ -3156,9 +3600,11 @@ Since: 4.14")
 
 (rt:define-gfunction (text-node-new "gsk_text_node_new") :args
                      ((font (:object pango:font))
-                      (glyphs (:boxed "PangoGlyphString" "pango_glyph_string_get_type"))
-                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type"))
-                      (offset (:boxed "GraphenePoint" "graphene_point_get_type")))
+                      (glyphs
+                       (:boxed "PangoGlyphString" "pango_glyph_string_get_type"
+                        pango:glyph-string))
+                      (color (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba))
+                      (offset (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a render node that renders the given glyphs.
 
@@ -3167,7 +3613,7 @@ See: https://docs.gtk.org/gsk4/ctor.TextNode.new.html")
 
 
 (rt:define-gfunction (text-node-get-color "gsk_text_node_get_color") :args ((node :pointer))
-                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type") :documentation
+                     :return (:boxed "GdkRGBA" "gdk_rgba_get_type" gdk:rgba) :documentation
                      "Retrieves the color used by the text NODE.
 
 C: gsk_text_node_get_color
@@ -3181,6 +3627,15 @@ C: gsk_text_node_get_font
 See: https://docs.gtk.org/gsk4/method.TextNode.get_font.html")
 
 
+(rt:define-gfunction (text-node-get-glyphs "gsk_text_node_get_glyphs") :args
+                     ((node :pointer) (n-glyphs :uint :length-of :return :direction :out)) :return
+                     (:array (:record pango:glyph-info)) :documentation
+                     "Retrieves the glyph information in the NODE.
+
+C: gsk_text_node_get_glyphs
+See: https://docs.gtk.org/gsk4/method.TextNode.get_glyphs.html")
+
+
 (rt:define-gfunction (text-node-get-num-glyphs "gsk_text_node_get_num_glyphs") :args
                      ((node :pointer)) :return :uint :documentation
                      "Retrieves the number of glyphs in the text node.
@@ -3190,8 +3645,8 @@ See: https://docs.gtk.org/gsk4/method.TextNode.get_num_glyphs.html")
 
 
 (rt:define-gfunction (text-node-get-offset "gsk_text_node_get_offset") :args ((node :pointer))
-                     :return (:boxed "GraphenePoint" "graphene_point_get_type") :documentation
-                     "Retrieves the offset applied to the text.
+                     :return (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
+                     :documentation "Retrieves the offset applied to the text.
 
 C: gsk_text_node_get_offset
 See: https://docs.gtk.org/gsk4/method.TextNode.get_offset.html")
@@ -3208,7 +3663,7 @@ Since: 4.2")
 
 (rt:define-gfunction (texture-node-new "gsk_texture_node_new") :args
                      ((texture (:object gdk:texture))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type")))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)))
                      :return :pointer :return-transfer :full :documentation
                      "Creates a `GskRenderNode` that will render the given
 TEXTURE into the area given by BOUNDS.
@@ -3236,7 +3691,7 @@ See: https://docs.gtk.org/gsk4/method.TextureNode.get_texture.html")
 
 (rt:define-gfunction (texture-scale-node-new "gsk_texture_scale_node_new") :args
                      ((texture (:object gdk:texture))
-                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type"))
+                      (bounds (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
                       (filter (:enum scaling-filter)))
                      :return :pointer :return-transfer :full :version "4.10" :documentation
                      "Creates a node that scales the texture to the size given by the
@@ -3322,7 +3777,8 @@ See: https://docs.gtk.org/gsk4/method.Transform.invert.html")
 
 (rt:define-gfunction (transform-matrix "gsk_transform_matrix") :args
                      ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (matrix (:boxed "GrapheneMatrix" "graphene_matrix_get_type")))
+                      (matrix
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)))
                      :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
                      :full :documentation "Multiplies NEXT with the given MATRIX.
 
@@ -3354,7 +3810,7 @@ See: https://docs.gtk.org/gsk4/method.Transform.perspective.html")
 
 (rt:define-gfunction (transform-print "gsk_transform_print") :args
                      ((self (:boxed "GskTransform" "gsk_transform_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :documentation "Converts the transform into a human-readable representation.
 
 C: gsk_transform_print
@@ -3382,7 +3838,8 @@ See: https://docs.gtk.org/gsk4/method.Transform.rotate.html")
 
 (rt:define-gfunction (transform-rotate-3d "gsk_transform_rotate_3d") :args
                      ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (angle :float) (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type")))
+                      (angle :float)
+                      (axis (:boxed "GrapheneVec3" "graphene_vec3_get_type" graphene:vec3)))
                      :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
                      :full :documentation "Rotates NEXT ANGLE degrees around AXIS.
 
@@ -3464,6 +3921,17 @@ C: gsk_transform_to_affine
 See: https://docs.gtk.org/gsk4/method.Transform.to_affine.html")
 
 
+(rt:define-gfunction (transform-to-matrix "gsk_transform_to_matrix") :args
+                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
+                      (out-matrix
+                       (:boxed "GrapheneMatrix" "graphene_matrix_get_type" graphene:matrix)
+                       :direction :out :caller-allocates t))
+                     :documentation "Computes the 4x4 matrix for the transform.
+
+C: gsk_transform_to_matrix
+See: https://docs.gtk.org/gsk4/method.Transform.to_matrix.html")
+
+
 (rt:define-gfunction (transform-to-string "gsk_transform_to_string") :args
                      ((self (:boxed "GskTransform" "gsk_transform_get_type"))) :return :string
                      :return-transfer :full :documentation
@@ -3493,9 +3961,31 @@ C: gsk_transform_transform
 See: https://docs.gtk.org/gsk4/method.Transform.transform.html")
 
 
+(rt:define-gfunction (transform-transform-bounds "gsk_transform_transform_bounds") :args
+                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
+                      (rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect))
+                      (out-rect (:boxed "GrapheneRect" "graphene_rect_get_type" graphene:rect)
+                       :direction :out :caller-allocates t))
+                     :documentation "Transforms a rectangle using the given transform.
+
+C: gsk_transform_transform_bounds
+See: https://docs.gtk.org/gsk4/method.Transform.transform_bounds.html")
+
+
+(rt:define-gfunction (transform-transform-point "gsk_transform_transform_point") :args
+                     ((self (:boxed "GskTransform" "gsk_transform_get_type"))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point))
+                      (out-point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)
+                       :direction :out :caller-allocates t))
+                     :documentation "Transforms a point using the given transform.
+
+C: gsk_transform_transform_point
+See: https://docs.gtk.org/gsk4/method.Transform.transform_point.html")
+
+
 (rt:define-gfunction (transform-translate "gsk_transform_translate") :args
                      ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (point (:boxed "GraphenePoint" "graphene_point_get_type")))
+                      (point (:boxed "GraphenePoint" "graphene_point_get_type" graphene:point)))
                      :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
                      :full :documentation "Translates NEXT in 2-dimensional space by POINT.
 
@@ -3505,7 +3995,8 @@ See: https://docs.gtk.org/gsk4/method.Transform.translate.html")
 
 (rt:define-gfunction (transform-translate-3d "gsk_transform_translate_3d") :args
                      ((next (:boxed "GskTransform" "gsk_transform_get_type") :transfer :full)
-                      (point (:boxed "GraphenePoint3D" "graphene_point3d_get_type")))
+                      (point
+                       (:boxed "GraphenePoint3D" "graphene_point3d_get_type" graphene:point3-d)))
                      :return (:boxed "GskTransform" "gsk_transform_get_type") :return-transfer
                      :full :documentation "Translates NEXT by POINT.
 

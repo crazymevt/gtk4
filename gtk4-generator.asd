@@ -13,5 +13,6 @@
                (:file "repository")
                (:file "naming")
                (:file "plan")
+               (:file "layout")
                (:file "emit")
                (:file "report")))

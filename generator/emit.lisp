@@ -221,6 +221,7 @@ same-namespace class or interface it inherits from."
                                   ,@(when (getf options :length-of)
                                       `(:length-of ,(getf options :length-of)))
                                   ,@(when (eq (getf options :direction) :out) '(:direction :out))
+                                  ,@(when (getf options :caller-allocates) '(:caller-allocates t))
                                   ,@(unless (member (getf options :transfer) '(nil :none))
                                       `(:transfer ,(getf options :transfer)))
                                   ,@(when (getf options :optional) '(:optional t))))))
@@ -301,6 +302,40 @@ same-namespace class or interface it inherits from."
                 (:gtype-name ,(gir-class-glib-type-name c)
                  :documentation ,(docstring (gir-item-doc c) :c-name (gir-class-c-type c)
                                                              :url (doc-url nsname (type-fragment c)))))
+           stream))))
+    ;; Struct layouts, field accessors, constructors
+    (format stream "~%;;; Struct layouts~%")
+    (dolist (l (namespace-layouts-in-order ctx ns))
+      (write-form
+       `(gtk4.runtime:define-gstruct ,(layout-symbol l)
+            (,@(when (layout-union l) '(:union t))
+             ,@(when (layout-gtype-name l) `(:gtype-name ,(layout-gtype-name l))))
+          ,@(layout-fields l))
+       stream)
+      (let ((struct-spec (if (layout-gtype-name l)
+                             (list :boxed (layout-gtype-name l)
+                                   (gir-class-get-type (layout-item l)) (layout-symbol l))
+                             (list :record (layout-symbol l)))))
+        (dolist (a (remove nil (layout-accessors l) :key (lambda (a) (getf a :name))))
+          (write-form
+           `(gtk4.runtime:define-gfield ,(getf a :name) ,(layout-symbol l) ,(getf a :slot) ,(getf a :spec)
+              ,@(when (getf a :writable) '(:writable t))
+              ,@(when (getf a :bits) `(:bits ,(getf a :bits)))
+              ,@(when (getf a :inline) '(:inline t))
+              :documentation ,(docstring (gir-item-doc (getf a :field))))
+           stream))
+        (when (layout-constructor l)
+          (write-form
+           `(gtk4.runtime:define-gstruct-constructor ,(layout-constructor l) ,struct-spec
+              ,(loop for a in (layout-accessors l)
+                     when (and (getf a :writable) (getf a :name))
+                       collect `(,(intern (string-upcase (safe-variable-name (gir-item-name (getf a :field))))
+                                          (symbol-package (layout-symbol l)))
+                                 ,(getf a :slot) ,(getf a :spec)
+                                 ,@(when (getf a :bits) `(:bits ,(getf a :bits)))
+                                 ,@(when (getf a :inline) '(:inline t))))
+              :documentation ,(format nil "A new ~a with the given fields; others are zero."
+                                      (gir-item-name (layout-item l))))
            stream))))
     ;; Properties
     (format stream "~%;;; Properties~%")

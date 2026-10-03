@@ -16,7 +16,9 @@
   (owners (make-hash-table :test 'equal)) ; package/symbol-name -> description, for collisions
   (skipped (make-hash-table :test 'equal)) ; namespace -> list of (what . reason)
   (bound (make-hash-table :test 'equal))   ; namespace -> count of callables bound
-  (callback-plans (make-hash-table :test 'equal))) ; "Ns.Name" -> (args return transfer) or reason string
+  (callback-plans (make-hash-table :test 'equal)) ; "Ns.Name" -> (args return transfer) or reason string
+  (layouts (make-hash-table :test 'equal))        ; "Ns.Name" -> LAYOUT or reason string
+  (struct-symbols (make-hash-table :test 'eq)))   ; struct symbol -> LAYOUT
 
 (defun target-namespaces-in-order (repository targets)
   "TARGETS as gir-namespaces, ordered so every namespace follows its includes."
@@ -152,7 +154,9 @@ of the hash table *ITEM-SYMBOLS*."
               (if sym
                   (setf (gethash p *item-symbols*) sym)
                   (note-skip ctx ns (format nil "~a:~a" (gir-item-name c) (gir-item-name p))
-                             "property accessor name collision")))))))))
+                             "property accessor name collision"))))))
+      ;; Struct layouts, field accessors and constructors.
+      (plan-namespace-layouts ctx ns package))))
 
 ;;; Classifying types
 
@@ -227,7 +231,8 @@ raw pointers until they get dedicated wrappers.")
                    (list :object sym)
                    :pointer))
               ((and (gir-class-get-type item) (not (gir-class-is-gtype-struct-for item)))
-               (list :boxed (gir-class-glib-type-name item) (gir-class-get-type item)))
+               (list* :boxed (gir-class-glib-type-name item) (gir-class-get-type item)
+                      (when (layout-symbol-p ctx sym) (list sym))))
               (t (list :record sym))))))))
     (t (values nil "unknown type form"))))
 
@@ -297,6 +302,14 @@ raw pointers until they get dedicated wrappers.")
                  (search "**" (or (gir-array-c-type type) "")))
             ;; An array of pointers to structs.
             (list* :array :pointer (array-options length zt fixed)))
+           ((member (spec-kind* spec) '(:boxed :record))
+            ;; Structs stored inline: needs the layout.
+            (cond ((equal (gir-type-name element) "GObject.Value")
+                   (values nil "array of GValue"))
+                  ((let ((sym (if (eq (spec-kind* spec) :boxed) (fourth spec) (second spec))))
+                     (and sym (layout-symbol-p ctx sym)))
+                   (list* :array spec (array-options length zt fixed)))
+                  (t (values nil (format nil "array of ~(~a~) without a layout" (spec-kind* spec))))))
            ((not (member (spec-kind* spec) *array-element-kinds*))
             (values nil (format nil "array of ~(~a~)" (spec-kind* spec))))
            (t (list* :array spec (array-options length zt fixed)))))))))
@@ -313,6 +326,14 @@ raw pointers until they get dedicated wrappers.")
                    unless (eq k :length-index) append (list k v)))
       spec))
 
+(defun caller-allocatable-p (ctx type nsname)
+  "True when an out argument of TYPE can be allocated by the bindings: a
+struct with a known layout, or a GValue."
+  (and (gir-type-p type) (gir-type-name type)
+       (let ((qualified (qualify (gir-type-name type) nsname)))
+         (or (string= qualified "GObject.Value")
+             (layout-p (gethash qualified (context-layouts ctx)))))))
+
 ;;; Planning callables
 
 (defun instance-spec (ctx owner nsname)
@@ -324,7 +345,8 @@ raw pointers until they get dedicated wrappers.")
                :pointer))
           ((member qualified *pointer-records* :test #'string=) :pointer)
           ((gir-class-get-type owner)
-           (list :boxed (gir-class-glib-type-name owner) (gir-class-get-type owner)))
+           (list* :boxed (gir-class-glib-type-name owner) (gir-class-get-type owner)
+                  (when (layout-symbol-p ctx (type-symbol qualified)) (list (type-symbol qualified)))))
           (t (list :record (type-symbol qualified))))))
 
 (defstruct plan
@@ -492,8 +514,9 @@ parameters after the instance parameter."
                 (t
                  (when (eq direction :inout) (fail "inout parameter"))
                  (when (and (eq direction :out) (gir-parameter-caller-allocates p)
-                            (not (gir-array-p (gir-parameter-type p))))
-                   (fail "caller-allocates out parameter"))
+                            (not (gir-array-p (gir-parameter-type p)))
+                            (not (caller-allocatable-p ctx (gir-parameter-type p) nsname)))
+                   (fail "caller-allocates out parameter without a layout"))
                  (multiple-value-bind (spec why)
                      (if (gir-parameter-instance-p p)
                          (instance-spec ctx owner nsname)
@@ -529,11 +552,18 @@ parameters after the instance parameter."
                                             (when (and len (eq (gir-parameter-direction len) :in))
                                               (list :length (cdr (assoc len vars))))
                                             '(:caller-allocates t))))))
-                   (push (list (cdr (assoc p vars))
-                               spec
-                               :direction direction
-                               :transfer (or (gir-parameter-transfer p) :none)
-                               :nullable (gir-parameter-nullable p))
+                   (when (and (eq direction :out) (gir-parameter-caller-allocates p)
+                              (not (gir-array-p (gir-parameter-type p))))
+                     (when (equal (gir-type-name (gir-parameter-type p)) "GObject.Value")
+                       (setf spec :gvalue)))
+                   (push (list* (cdr (assoc p vars))
+                                spec
+                                :direction direction
+                                :transfer (or (gir-parameter-transfer p) :none)
+                                :nullable (gir-parameter-nullable p)
+                                (when (and (eq direction :out) (gir-parameter-caller-allocates p)
+                                           (not (gir-array-p (gir-parameter-type p))))
+                                  '(:caller-allocates t)))
                          args))))))
           (setf args (nreverse args))
           ;; Trailing nullable :in arguments become &optional (hidden ones are skipped).

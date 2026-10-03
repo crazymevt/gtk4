@@ -172,6 +172,120 @@ by a module.
 C: GdkPixbufFormat
 See: https://docs.gtk.org/gdk-pixbuf/struct.PixbufFormat.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct pixbuf-format
+    (:gtype-name "GdkPixbufFormat")
+  (:name :pointer)
+  (:signature :pointer)
+  (:domain :pointer)
+  (:description :pointer)
+  (:mime-types :pointer)
+  (:extensions :pointer)
+  (:flags :uint32)
+  (:disabled :boolean)
+  (:license :pointer))
+
+
+(rt:define-gfield pixbuf-format-name pixbuf-format :name :string :documentation
+                  "the name of the image format
+")
+
+
+(rt:define-gfield pixbuf-format-domain pixbuf-format :domain :string :documentation
+                  "the message domain for the `description`
+")
+
+
+(rt:define-gfield pixbuf-format-description pixbuf-format :description :string :documentation
+                  "a description of the image format
+")
+
+
+(rt:define-gfield pixbuf-format-flags pixbuf-format :flags :uint32 :writable t :documentation
+                  "a combination of `GdkPixbufFormatFlags`
+")
+
+
+(rt:define-gfield pixbuf-format-disabled pixbuf-format :disabled :boolean :writable t
+                  :documentation "a boolean determining whether the loader is disabled`
+")
+
+
+(rt:define-gfield pixbuf-format-license pixbuf-format :license :string :documentation
+                  "a string containing license information, typically set to
+  shorthands like \"GPL\", \"LGPL\", etc.
+")
+
+
+(rt:define-gstruct-constructor make-pixbuf-format
+                               (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"
+                                pixbuf-format)
+                               ((flags :flags :uint32) (disabled :disabled :boolean))
+                               :documentation
+                               "A new PixbufFormat with the given fields; others are zero.")
+
+
+(rt:define-gstruct pixbuf-module
+    nil
+  (:module-name :pointer)
+  (:module-path :pointer)
+  (:module :pointer)
+  (:info :pointer)
+  (:load :pointer)
+  (:load-xpm-data :pointer)
+  (:begin-load :pointer)
+  (:stop-load :pointer)
+  (:load-increment :pointer)
+  (:load-animation :pointer)
+  (:save :pointer)
+  (:save-to-callback :pointer)
+  (:is-save-option-supported :pointer)
+  (:-reserved1 :pointer)
+  (:-reserved2 :pointer)
+  (:-reserved3 :pointer)
+  (:-reserved4 :pointer))
+
+
+(rt:define-gfield pixbuf-module-module-name pixbuf-module :module-name :string :documentation
+                  "the name of the module, usually the same as the
+ usual file extension for images of this type, eg. \"xpm\", \"jpeg\" or \"png\".
+")
+
+
+(rt:define-gfield pixbuf-module-module-path pixbuf-module :module-path :string :documentation
+                  "the path from which the module is loaded.
+")
+
+
+(rt:define-gstruct pixbuf-module-pattern
+    nil
+  (:prefix :pointer)
+  (:mask :pointer)
+  (:relevance :int))
+
+
+(rt:define-gfield pixbuf-module-pattern-prefix pixbuf-module-pattern :prefix :string :documentation
+                  "the prefix for this pattern
+")
+
+
+(rt:define-gfield pixbuf-module-pattern-mask pixbuf-module-pattern :mask :string :documentation
+                  "mask containing bytes which modify how the prefix is matched against
+ test data
+")
+
+
+(rt:define-gfield pixbuf-module-pattern-relevance pixbuf-module-pattern :relevance :int :writable t
+                  :documentation "relevance of this pattern
+")
+
+
+(rt:define-gstruct-constructor make-pixbuf-module-pattern (:record pixbuf-module-pattern)
+                               ((relevance :relevance :int)) :documentation
+                               "A new PixbufModulePattern with the given fields; others are zero.")
+
 ;;; Properties
 
 
@@ -423,8 +537,8 @@ Since: 2.36.8")
 (rt:define-gfunction (pixbuf-get-file-info "gdk_pixbuf_get_file_info") :args
                      ((filename :string) (width :int :direction :out :transfer :full)
                       (height :int :direction :out :transfer :full))
-                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type") :version "2.4"
-                     :documentation
+                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
+                     :version "2.4" :documentation
                      "Parses an image file far enough to determine its format and size.
 
 C: gdk_pixbuf_get_file_info
@@ -449,8 +563,8 @@ Since: 2.32")
                      ((async-result (:object gio:async-result))
                       (width :int :direction :out :transfer :full)
                       (height :int :direction :out :transfer :full))
-                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type") :throws t
-                     :version "2.32" :documentation
+                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
+                     :throws t :version "2.32" :documentation
                      "Finishes an asynchronous pixbuf parsing operation started with
 gdk_pixbuf_get_file_info_async().
 
@@ -460,7 +574,8 @@ Since: 2.32")
 
 
 (rt:define-gfunction (pixbuf-get-formats "gdk_pixbuf_get_formats") :return
-                     (:gslist (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))
+                     (:gslist
+                      (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
                      :return-transfer :container :version "2.2" :documentation
                      "Obtains the available information about the image formats supported
 by GdkPixbuf.
@@ -1022,9 +1137,11 @@ Deprecated.")
 
 
 (rt:define-gfunction (pixbuf-format-copy "gdk_pixbuf_format_copy") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type") :return-transfer :full
-                     :version "2.22" :documentation "Creates a copy of `format`.
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)
+                     :return-transfer :full :version "2.22" :documentation
+                     "Creates a copy of `format`.
 
 C: gdk_pixbuf_format_copy
 See: https://docs.gtk.org/gdk-pixbuf/method.PixbufFormat.copy.html
@@ -1032,8 +1149,9 @@ Since: 2.22")
 
 
 (rt:define-gfunction (pixbuf-format-free "gdk_pixbuf_format_free") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :version
-                     "2.22" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :version "2.22" :documentation
                      "Frees the resources allocated when copying a `GdkPixbufFormat`
 using gdk_pixbuf_format_copy()
 
@@ -1043,8 +1161,9 @@ Since: 2.22")
 
 
 (rt:define-gfunction (pixbuf-format-get-description "gdk_pixbuf_format_get_description") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :string :return-transfer :full :version "2.2" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :string :return-transfer :full :version "2.2" :documentation
                      "Returns a description of the format.
 
 C: gdk_pixbuf_format_get_description
@@ -1053,8 +1172,9 @@ Since: 2.2")
 
 
 (rt:define-gfunction (pixbuf-format-get-extensions "gdk_pixbuf_format_get_extensions") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :strv :return-transfer :full :version "2.2" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :strv :return-transfer :full :version "2.2" :documentation
                      "Returns the filename extensions typically used for files in the
 given format.
 
@@ -1064,8 +1184,9 @@ Since: 2.2")
 
 
 (rt:define-gfunction (pixbuf-format-get-license "gdk_pixbuf_format_get_license") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :string :return-transfer :full :version "2.6" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :string :return-transfer :full :version "2.6" :documentation
                      "Returns information about the license of the image loader for the format.
 
 C: gdk_pixbuf_format_get_license
@@ -1074,8 +1195,9 @@ Since: 2.6")
 
 
 (rt:define-gfunction (pixbuf-format-get-mime-types "gdk_pixbuf_format_get_mime_types") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :strv :return-transfer :full :version "2.2" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :strv :return-transfer :full :version "2.2" :documentation
                      "Returns the mime types supported by the format.
 
 C: gdk_pixbuf_format_get_mime_types
@@ -1084,8 +1206,9 @@ Since: 2.2")
 
 
 (rt:define-gfunction (pixbuf-format-get-name "gdk_pixbuf_format_get_name") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :string :return-transfer :full :version "2.2" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :string :return-transfer :full :version "2.2" :documentation
                      "Returns the name of the format.
 
 C: gdk_pixbuf_format_get_name
@@ -1094,8 +1217,9 @@ Since: 2.2")
 
 
 (rt:define-gfunction (pixbuf-format-is-disabled "gdk_pixbuf_format_is_disabled") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :boolean :version "2.6" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :boolean :version "2.6" :documentation
                      "Returns whether this image format is disabled.
 
 C: gdk_pixbuf_format_is_disabled
@@ -1105,8 +1229,9 @@ Since: 2.6")
 
 (rt:define-gfunction
  (pixbuf-format-is-save-option-supported "gdk_pixbuf_format_is_save_option_supported") :args
- ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type")) (option-key :string)) :return
- :boolean :version "2.36" :documentation
+ ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
+  (option-key :string))
+ :return :boolean :version "2.36" :documentation
  "Returns `TRUE` if the save option specified by OPTION-KEY is supported when
 saving a pixbuf using the module implementing FORMAT.
 
@@ -1116,8 +1241,9 @@ Since: 2.36")
 
 
 (rt:define-gfunction (pixbuf-format-is-scalable "gdk_pixbuf_format_is_scalable") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :boolean :version "2.6" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :boolean :version "2.6" :documentation
                      "Returns whether this image format is scalable.
 
 C: gdk_pixbuf_format_is_scalable
@@ -1126,8 +1252,9 @@ Since: 2.6")
 
 
 (rt:define-gfunction (pixbuf-format-is-writable "gdk_pixbuf_format_is_writable") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))) :return
-                     :boolean :version "2.2" :documentation
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format)))
+                     :return :boolean :version "2.2" :documentation
                      "Returns whether pixbufs can be saved in the given format.
 
 C: gdk_pixbuf_format_is_writable
@@ -1136,7 +1263,8 @@ Since: 2.2")
 
 
 (rt:define-gfunction (pixbuf-format-set-disabled "gdk_pixbuf_format_set_disabled") :args
-                     ((format (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type"))
+                     ((format
+                       (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format))
                       (disabled :boolean))
                      :version "2.6" :documentation "Disables or enables an image format.
 
@@ -1196,8 +1324,8 @@ See: https://docs.gtk.org/gdk-pixbuf/method.PixbufLoader.get_animation.html")
 
 (rt:define-gfunction (pixbuf-loader-get-format "gdk_pixbuf_loader_get_format") :args
                      ((loader (:object pixbuf-loader))) :return
-                     (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type") :version "2.2"
-                     :documentation "Obtains the available information about the format of the
+                     (:boxed "GdkPixbufFormat" "gdk_pixbuf_format_get_type" pixbuf-format) :version
+                     "2.2" :documentation "Obtains the available information about the format of the
 currently loading image file.
 
 C: gdk_pixbuf_loader_get_format

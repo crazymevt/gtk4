@@ -32,7 +32,8 @@
             for pointer = (cffi:make-pointer address)
             do (ecase kind
                  (:toggle (release-toggle-reference address))
-                 (:boxed (%g-boxed-free gtype pointer))))))
+                 (:boxed (%g-boxed-free gtype pointer))
+                 (:free (%g-free pointer))))))
   0)
 
 (defun enqueue-release (kind address &optional gtype)
@@ -152,6 +153,25 @@ so the proxy always owns what it points to."
                        :dont-save t)
       proxy)))
 
+;;; Plain struct proxies
+
+(defclass record ()
+  ((pointer :initarg :pointer :reader %record-pointer))
+  (:documentation "Proxy owning a g_malloc'd copy of a plain C struct (one without a GType)."))
+
+(defmethod print-object ((r record) stream)
+  (print-unreadable-object (r stream :type t)
+    (format stream "~x" (cffi:pointer-address (%record-pointer r)))))
+
+(defun copy-record (pointer class size)
+  "A new CLASS proxy owning a copy of the SIZE-byte struct at POINTER."
+  (let ((copy (cffi:foreign-funcall "g_malloc0" :size (max size 1) :pointer)))
+    (cffi:foreign-funcall "memcpy" :pointer copy :pointer pointer :size size :pointer)
+    (let ((proxy (make-instance class :pointer copy))
+          (address (cffi:pointer-address copy)))
+      (sb-ext:finalize proxy (lambda () (enqueue-release :free address)) :dont-save t)
+      proxy)))
+
 ;;; Pointers
 
 (defun object-pointer (thing)
@@ -160,6 +180,7 @@ so the proxy always owns what it points to."
         ((cffi:pointerp thing) thing)
         ((typep thing 'object) (%object-pointer thing))
         ((typep thing 'boxed) (%boxed-pointer thing))
+        ((typep thing 'record) (%record-pointer thing))
         (t (error "gtk4: ~s is not a GObject, boxed value or pointer" thing))))
 
 ;;; Wrapping C pointers

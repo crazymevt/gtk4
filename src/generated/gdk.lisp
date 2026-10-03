@@ -11607,6 +11607,138 @@ See: https://docs.gtk.org/gdk4/struct.ToplevelLayout.html"))
 C: GdkToplevelSize
 See: https://docs.gtk.org/gdk4/struct.ToplevelSize.html"))
 
+;;; Struct layouts
+
+
+(rt:define-gstruct keymap-key
+    nil
+  (:keycode :uint)
+  (:group :int)
+  (:level :int))
+
+
+(rt:define-gfield keymap-key-keycode keymap-key :keycode :uint :writable t :documentation
+                  "the hardware keycode. This is an identifying number for a
+  physical key.
+")
+
+
+(rt:define-gfield keymap-key-group keymap-key :group :int :writable t :documentation
+                  "indicates movement in a horizontal direction. Usually groups are used
+  for two different languages. In group 0, a key might have two English
+  characters, and in group 1 it might have two Hebrew characters. The Hebrew
+  characters will be printed on the key next to the English characters.
+")
+
+
+(rt:define-gfield keymap-key-level keymap-key :level :int :writable t :documentation
+                  "indicates which symbol on the key will be used, in a vertical direction.
+  So on a standard US keyboard, the key with the number “1” on it also has the
+  exclamation point (\"!\") character on it. The level indicates whether to use
+  the “1” or the “!” symbol. The letter keys are considered to have a lowercase
+  letter at level 0, and an uppercase letter at level 1, though only the
+  uppercase letter is printed.
+")
+
+
+(rt:define-gstruct-constructor make-keymap-key (:record keymap-key)
+                               ((keycode :keycode :uint) (group :group :int) (level :level :int))
+                               :documentation
+                               "A new KeymapKey with the given fields; others are zero.")
+
+
+(rt:define-gstruct rgba
+    (:gtype-name "GdkRGBA")
+  (:red :float)
+  (:green :float)
+  (:blue :float)
+  (:alpha :float))
+
+
+(rt:define-gfield rgba-red rgba :red :float :writable t :documentation
+                  "The intensity of the red channel from 0.0 to 1.0 inclusive
+")
+
+
+(rt:define-gfield rgba-green rgba :green :float :writable t :documentation
+                  "The intensity of the green channel from 0.0 to 1.0 inclusive
+")
+
+
+(rt:define-gfield rgba-blue rgba :blue :float :writable t :documentation
+                  "The intensity of the blue channel from 0.0 to 1.0 inclusive
+")
+
+
+(rt:define-gfield rgba-alpha rgba :alpha :float :writable t :documentation
+                  "The opacity of the color from 0.0 for completely translucent to
+  1.0 for opaque
+")
+
+
+(rt:define-gstruct-constructor make-rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)
+                               ((red :red :float) (green :green :float) (blue :blue :float)
+                                (alpha :alpha :float))
+                               :documentation "A new RGBA with the given fields; others are zero.")
+
+
+(rt:define-gstruct rectangle
+    (:gtype-name "GdkRectangle")
+  (:x :int)
+  (:y :int)
+  (:width :int)
+  (:height :int))
+
+
+(rt:define-gfield rectangle-x rectangle :x :int :writable t :documentation
+                  "the x coordinate of the top left corner
+")
+
+
+(rt:define-gfield rectangle-y rectangle :y :int :writable t :documentation
+                  "the y coordinate of the top left corner
+")
+
+
+(rt:define-gfield rectangle-width rectangle :width :int :writable t :documentation
+                  "the width of the rectangle
+")
+
+
+(rt:define-gfield rectangle-height rectangle :height :int :writable t :documentation
+                  "the height of the rectangle
+")
+
+
+(rt:define-gstruct-constructor make-rectangle
+                               (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)
+                               ((x :x :int) (y :y :int) (width :width :int) (height :height :int))
+                               :documentation
+                               "A new Rectangle with the given fields; others are zero.")
+
+
+(rt:define-gstruct time-coord
+    nil
+  (:time :uint32)
+  (:flags :uint)
+  (:axes :double :count 12))
+
+
+(rt:define-gfield time-coord-time time-coord :time :uint32 :writable t :documentation
+                  "The timestamp for this event
+")
+
+
+(rt:define-gfield time-coord-flags time-coord :flags (:flags axis-flags) :writable t :documentation
+                  "Flags indicating what axes are present, see Gdk.AxisFlags
+")
+
+
+(rt:define-gstruct-constructor make-time-coord (:record time-coord)
+                               ((time :time :uint32) (flags :flags (:flags axis-flags)))
+                               :documentation
+                               "A new TimeCoord with the given fields; others are zero.")
+
 ;;; Properties
 
 
@@ -12453,7 +12585,7 @@ Deprecated.")
 
 (rt:define-gfunction (cairo-rectangle "gdk_cairo_rectangle") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (rectangle (:boxed "GdkRectangle" "gdk_rectangle_get_type")))
+                      (rectangle (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
                      :documentation "Adds the given rectangle to the current path of CR.
 
 C: gdk_cairo_rectangle
@@ -12492,7 +12624,7 @@ Deprecated.")
 
 (rt:define-gfunction (cairo-set-source-rgba "gdk_cairo_set_source_rgba") :args
                      ((cr (:boxed "CairoContext" "cairo_gobject_context_get_type"))
-                      (rgba (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                      (rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)))
                      :documentation "Sets the specified `GdkRGBA` as the source color of CR.
 
 C: gdk_cairo_set_source_rgba
@@ -12511,9 +12643,19 @@ C: gdk_content_deserialize_async
 See: https://docs.gtk.org/gdk4/func.content_deserialize_async.html")
 
 
+(rt:define-gfunction (content-deserialize-finish "gdk_content_deserialize_finish") :args
+                     ((result (:object gio:async-result))
+                      (value :gvalue :direction :out :caller-allocates t))
+                     :return :boolean :throws t :documentation
+                     "Finishes a content deserialization operation.
+
+C: gdk_content_deserialize_finish
+See: https://docs.gtk.org/gdk4/func.content_deserialize_finish.html")
+
+
 (rt:define-gfunction (content-serialize-async "gdk_content_serialize_async") :args
                      ((stream (:object gio:output-stream)) (mime-type :string)
-                      (value (:boxed "GValue" "g_value_get_type")) (io-priority :int)
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)) (io-priority :int)
                       (cancellable (:object gio:cancellable) :optional t)
                       (callback (:callback gio:async-ready-callback :async) :optional t)
                       (user-data :pointer :user-data-of callback))
@@ -12947,7 +13089,7 @@ See: https://docs.gtk.org/gdk4/method.Clipboard.read_value_async.html")
 
 (rt:define-gfunction (clipboard-read-value-finish "gdk_clipboard_read_value_finish") :args
                      ((clipboard (:object clipboard)) (result (:object gio:async-result))) :return
-                     (:boxed "GValue" "g_value_get_type") :throws t :documentation
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :throws t :documentation
                      "Finishes an asynchronous clipboard read.
 
 C: gdk_clipboard_read_value_finish
@@ -12964,7 +13106,8 @@ See: https://docs.gtk.org/gdk4/method.Clipboard.set_content.html")
 
 
 (rt:define-gfunction (clipboard-set "gdk_clipboard_set_value") :args
-                     ((clipboard (:object clipboard)) (value (:boxed "GValue" "g_value_get_type")))
+                     ((clipboard (:object clipboard))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :documentation "Sets the CLIPBOARD to contain the given VALUE.
 
 C: gdk_clipboard_set_value
@@ -13163,7 +13306,7 @@ See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_user_data.html")
 
 (rt:define-gfunction (content-deserializer-get-value "gdk_content_deserializer_get_value") :args
                      ((deserializer (:object content-deserializer))) :return
-                     (:boxed "GValue" "g_value_get_type") :documentation
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
                      "Gets the `GValue` to store the deserialized object in.
 
 C: gdk_content_deserializer_get_value
@@ -13173,7 +13316,7 @@ See: https://docs.gtk.org/gdk4/method.ContentDeserializer.get_value.html")
 (rt:define-gfunction (content-deserializer-return-error "gdk_content_deserializer_return_error")
                      :args
                      ((deserializer (:object content-deserializer))
-                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
                      :documentation "Indicate that the deserialization has ended with an error.
 
 C: gdk_content_deserializer_return_error
@@ -13304,7 +13447,7 @@ See: https://docs.gtk.org/gdk4/method.ContentFormats.match_mime_type.html")
 
 (rt:define-gfunction (content-formats-print "gdk_content_formats_print") :args
                      ((formats (:boxed "GdkContentFormats" "gdk_content_formats_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type")))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
                      :documentation "Prints the given FORMATS into a string for human consumption.
 
 C: gdk_content_formats_print
@@ -13479,7 +13622,7 @@ See: https://docs.gtk.org/gdk4/ctor.ContentProvider.new_for_bytes.html")
 
 
 (rt:define-gfunction (content-provider-new-for-value "gdk_content_provider_new_for_value") :args
-                     ((value (:boxed "GValue" "g_value_get_type"))) :return
+                     ((value (:boxed "GValue" "g_value_get_type" gobject:value))) :return
                      (:object content-provider) :return-transfer :full :documentation
                      "Create a content provider that provides the given VALUE.
 
@@ -13493,6 +13636,16 @@ See: https://docs.gtk.org/gdk4/ctor.ContentProvider.new_for_value.html")
 
 C: gdk_content_provider_content_changed
 See: https://docs.gtk.org/gdk4/method.ContentProvider.content_changed.html")
+
+
+(rt:define-gfunction (content-provider-get-value "gdk_content_provider_get_value") :args
+                     ((provider (:object content-provider))
+                      (value :gvalue :direction :out :caller-allocates t))
+                     :return :boolean :throws t :documentation
+                     "Gets the contents of PROVIDER stored in VALUE.
+
+C: gdk_content_provider_get_value
+See: https://docs.gtk.org/gdk4/method.ContentProvider.get_value.html")
 
 
 (rt:define-gfunction (content-provider-ref-formats "gdk_content_provider_ref_formats") :args
@@ -13599,7 +13752,7 @@ See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_user_data.html")
 
 (rt:define-gfunction (content-serializer-get-value "gdk_content_serializer_get_value") :args
                      ((serializer (:object content-serializer))) :return
-                     (:boxed "GValue" "g_value_get_type") :documentation
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :documentation
                      "Gets the `GValue` to read the object to serialize from.
 
 C: gdk_content_serializer_get_value
@@ -13608,7 +13761,7 @@ See: https://docs.gtk.org/gdk4/method.ContentSerializer.get_value.html")
 
 (rt:define-gfunction (content-serializer-return-error "gdk_content_serializer_return_error") :args
                      ((serializer (:object content-serializer))
-                      (error (:boxed "GError" "g_error_get_type") :transfer :full))
+                      (error (:boxed "GError" "g_error_get_type" glib:error) :transfer :full))
                      :documentation "Indicate that the serialization has ended with an error.
 
 C: gdk_content_serializer_return_error
@@ -14062,7 +14215,7 @@ See: https://docs.gtk.org/gdk4/method.Display.get_primary_clipboard.html")
 
 (rt:define-gfunction (display-get-setting "gdk_display_get_setting") :args
                      ((display (:object display)) (name :string)
-                      (value (:boxed "GValue" "g_value_get_type")))
+                      (value (:boxed "GValue" "g_value_get_type" gobject:value)))
                      :return :boolean :documentation
                      "Retrieves a desktop-wide setting such as double-click time
 for the DISPLAY.
@@ -14842,7 +14995,7 @@ See: https://docs.gtk.org/gdk4/method.Drop.read_value_async.html")
 
 (rt:define-gfunction (drop-read-value-finish "gdk_drop_read_value_finish") :args
                      ((self (:object drop)) (result (:object gio:async-result))) :return
-                     (:boxed "GValue" "g_value_get_type") :throws t :documentation
+                     (:boxed "GValue" "g_value_get_type" gobject:value) :throws t :documentation
                      "Finishes an async drop read.
 
 C: gdk_drop_read_value_finish
@@ -14917,6 +15070,17 @@ See: https://docs.gtk.org/gdk4/method.Event.get_event_sequence.html")
 
 C: gdk_event_get_event_type
 See: https://docs.gtk.org/gdk4/method.Event.get_event_type.html")
+
+
+(rt:define-gfunction (event-get-history "gdk_event_get_history") :args
+                     ((event :pointer) (out-n-coords :uint :length-of :return :direction :out))
+                     :return (:array (:record time-coord)) :return-transfer :container
+                     :documentation
+                     "Retrieves the history of the device that EVENT is for, as a list of
+time and coordinates.
+
+C: gdk_event_get_history
+See: https://docs.gtk.org/gdk4/method.Event.get_history.html")
 
 
 (rt:define-gfunction (event-get-modifier-state "gdk_event_get_modifier_state") :args
@@ -15951,6 +16115,17 @@ C: gdk_monitor_get_display
 See: https://docs.gtk.org/gdk4/method.Monitor.get_display.html")
 
 
+(rt:define-gfunction (monitor-get-geometry "gdk_monitor_get_geometry") :args
+                     ((monitor (:object monitor))
+                      (geometry (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)
+                       :direction :out :caller-allocates t))
+                     :documentation "Retrieves the size and position of the monitor within the
+display coordinate space.
+
+C: gdk_monitor_get_geometry
+See: https://docs.gtk.org/gdk4/method.Monitor.get_geometry.html")
+
+
 (rt:define-gfunction (monitor-get-height-mm "gdk_monitor_get_height_mm") :args
                      ((monitor (:object monitor))) :return :int :documentation
                      "Gets the height in millimeters of the monitor.
@@ -16201,7 +16376,7 @@ See: https://docs.gtk.org/gdk4/method.Popup.present.html")
 
 
 (rt:define-gfunction (popup-layout-new "gdk_popup_layout_new") :args
-                     ((anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
+                     ((anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
                       (rect-anchor (:enum gravity)) (surface-anchor (:enum gravity)))
                      :return (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type") :return-transfer
                      :full :documentation "Create a popup layout description.
@@ -16239,7 +16414,7 @@ See: https://docs.gtk.org/gdk4/method.PopupLayout.get_anchor_hints.html")
 
 (rt:define-gfunction (popup-layout-get-anchor-rect "gdk_popup_layout_get_anchor_rect") :args
                      ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))) :return
-                     (:boxed "GdkRectangle" "gdk_rectangle_get_type") :documentation
+                     (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :documentation
                      "Get the anchor rectangle.
 
 C: gdk_popup_layout_get_anchor_rect
@@ -16307,7 +16482,7 @@ See: https://docs.gtk.org/gdk4/method.PopupLayout.set_anchor_hints.html")
 
 (rt:define-gfunction (popup-layout-set-anchor-rect "gdk_popup_layout_set_anchor_rect") :args
                      ((layout (:boxed "GdkPopupLayout" "gdk_popup_layout_get_type"))
-                      (anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type")))
+                      (anchor-rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
                      :documentation "Set the anchor rectangle.
 
 C: gdk_popup_layout_set_anchor_rect
@@ -16361,17 +16536,17 @@ See: https://docs.gtk.org/gdk4/method.PopupLayout.unref.html")
 
 
 (rt:define-gfunction (rgba-copy "gdk_rgba_copy") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :return
-                     (:boxed "GdkRGBA" "gdk_rgba_get_type") :return-transfer :full :documentation
-                     "Makes a copy of a `GdkRGBA`.
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return
+                     (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba) :return-transfer :full
+                     :documentation "Makes a copy of a `GdkRGBA`.
 
 C: gdk_rgba_copy
 See: https://docs.gtk.org/gdk4/method.RGBA.copy.html")
 
 
 (rt:define-gfunction (rgba-equal "gdk_rgba_equal") :args
-                     ((p1 (:boxed "GdkRGBA" "gdk_rgba_get_type"))
-                      (p2 (:boxed "GdkRGBA" "gdk_rgba_get_type")))
+                     ((p1 (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))
+                      (p2 (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)))
                      :return :boolean :documentation "Compares two `GdkRGBA` colors.
 
 C: gdk_rgba_equal
@@ -16379,15 +16554,16 @@ See: https://docs.gtk.org/gdk4/method.RGBA.equal.html")
 
 
 (rt:define-gfunction (rgba-free "gdk_rgba_free") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :documentation
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :documentation
                      "Frees a `GdkRGBA`.
 
 C: gdk_rgba_free
 See: https://docs.gtk.org/gdk4/method.RGBA.free.html")
 
 
-(rt:define-gfunction (rgba-hash "gdk_rgba_hash") :args ((p (:boxed "GdkRGBA" "gdk_rgba_get_type")))
-                     :return :uint :documentation "A hash function suitable for using for a hash
+(rt:define-gfunction (rgba-hash "gdk_rgba_hash") :args
+                     ((p (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :uint :documentation
+                     "A hash function suitable for using for a hash
 table that stores `GdkRGBA`s.
 
 C: gdk_rgba_hash
@@ -16395,7 +16571,7 @@ See: https://docs.gtk.org/gdk4/method.RGBA.hash.html")
 
 
 (rt:define-gfunction (rgba-is-clear "gdk_rgba_is_clear") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :return :boolean
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :boolean
                      :documentation "Checks if an RGBA value is transparent.
 
 C: gdk_rgba_is_clear
@@ -16403,7 +16579,7 @@ See: https://docs.gtk.org/gdk4/method.RGBA.is_clear.html")
 
 
 (rt:define-gfunction (rgba-is-opaque "gdk_rgba_is_opaque") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :return :boolean
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :boolean
                      :documentation "Checks if an RGBA value is opaque.
 
 C: gdk_rgba_is_opaque
@@ -16411,7 +16587,7 @@ See: https://docs.gtk.org/gdk4/method.RGBA.is_opaque.html")
 
 
 (rt:define-gfunction (rgba-parse "gdk_rgba_parse") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type")) (spec :string)) :return
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba)) (spec :string)) :return
                      :boolean :documentation "Parses a textual representation of a color.
 
 C: gdk_rgba_parse
@@ -16419,10 +16595,11 @@ See: https://docs.gtk.org/gdk4/method.RGBA.parse.html")
 
 
 (rt:define-gfunction (rgba-print "gdk_rgba_print") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))
-                      (string (:boxed "GString" "g_gstring_get_type")))
-                     :return (:boxed "GString" "g_gstring_get_type") :return-transfer :full
-                     :version "4.22" :documentation "Appends a representation of RGBA to STRING.
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))
+                      (string (:boxed "GString" "g_gstring_get_type" glib:string)))
+                     :return (:boxed "GString" "g_gstring_get_type" glib:string) :return-transfer
+                     :full :version "4.22" :documentation
+                     "Appends a representation of RGBA to STRING.
 
 C: gdk_rgba_print
 See: https://docs.gtk.org/gdk4/method.RGBA.print.html
@@ -16430,7 +16607,7 @@ Since: 4.22")
 
 
 (rt:define-gfunction (rgba-to-string "gdk_rgba_to_string") :args
-                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type"))) :return :string
+                     ((rgba (:boxed "GdkRGBA" "gdk_rgba_get_type" rgba))) :return :string
                      :return-transfer :full :documentation
                      "Returns a textual specification of RGBA in the form
 `rgb(r,g,b)` or `rgba(r,g,b,a)`, where “r”, “g”, “b” and
@@ -16444,7 +16621,8 @@ See: https://docs.gtk.org/gdk4/method.RGBA.to_string.html")
 
 
 (rt:define-gfunction (rectangle-contains-point "gdk_rectangle_contains_point") :args
-                     ((rect (:boxed "GdkRectangle" "gdk_rectangle_get_type")) (x :int) (y :int))
+                     ((rect (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)) (x :int)
+                      (y :int))
                      :return :boolean :documentation
                      "Returns true if RECT contains the point described by X and Y.
 
@@ -16453,12 +16631,34 @@ See: https://docs.gtk.org/gdk4/method.Rectangle.contains_point.html")
 
 
 (rt:define-gfunction (rectangle-equal "gdk_rectangle_equal") :args
-                     ((rect1 (:boxed "GdkRectangle" "gdk_rectangle_get_type"))
-                      (rect2 (:boxed "GdkRectangle" "gdk_rectangle_get_type")))
+                     ((rect1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
+                      (rect2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle)))
                      :return :boolean :documentation "Checks if the two given rectangles are equal.
 
 C: gdk_rectangle_equal
 See: https://docs.gtk.org/gdk4/method.Rectangle.equal.html")
+
+
+(rt:define-gfunction (rectangle-intersect "gdk_rectangle_intersect") :args
+                     ((src1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
+                      (src2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
+                      (dest (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :direction
+                       :out :caller-allocates t))
+                     :return :boolean :documentation "Calculates the intersection of two rectangles.
+
+C: gdk_rectangle_intersect
+See: https://docs.gtk.org/gdk4/method.Rectangle.intersect.html")
+
+
+(rt:define-gfunction (rectangle-union "gdk_rectangle_union") :args
+                     ((src1 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
+                      (src2 (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle))
+                      (dest (:boxed "GdkRectangle" "gdk_rectangle_get_type" rectangle) :direction
+                       :out :caller-allocates t))
+                     :documentation "Calculates the union of two rectangles.
+
+C: gdk_rectangle_union
+See: https://docs.gtk.org/gdk4/method.Rectangle.union.html")
 
 
 (rt:define-gfunction (scroll-event-get-deltas "gdk_scroll_event_get_deltas") :args

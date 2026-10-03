@@ -139,7 +139,7 @@ whose bits are set. Unknown values are returned as integers."
   (case (spec-kind spec)
     (:gtype 'gtype)
     ((:string :strv :object :boxed :record :pointer :callback :array :byte-array
-      :glist :gslist :ghash :gptrarray)
+      :glist :gslist :ghash :gptrarray :gvalue)
      :pointer)
     (:enum :int)
     (:flags :uint)
@@ -201,7 +201,8 @@ callback argument) to Lisp."
     (:string `(string-from-foreign ,form ,transfer))
     (:strv `(strv-from-foreign ,form ,transfer))
     (:object `(wrap-object ,form :transfer ,(if (eq transfer :full) :full :none)))
-    (:boxed (destructuring-bind (gtype-name get-type) (rest spec)
+    (:boxed (destructuring-bind (gtype-name get-type &optional struct) (rest spec)
+              (declare (ignore struct))
               `(wrap-boxed ,form (gtype-cell-gtype (load-time-value (make-gtype-cell ,gtype-name ,get-type)))
                            :transfer ,(if (eq transfer :full) :full :none))))
     ((:record :pointer) `(pointer-or-nil ,form))
@@ -237,7 +238,8 @@ the call returns (a callback's return value)."
                     (unless (cffi:null-pointer-p p) (%g-object-ref p))
                     p)
                  `(object-pointer ,form)))
-    (:boxed (destructuring-bind (gtype-name get-type) (rest spec)
+    (:boxed (destructuring-bind (gtype-name get-type &optional struct) (rest spec)
+              (declare (ignore struct))
               (if (eq transfer :full)
                   `(let ((p (object-pointer ,form)))
                      (if (cffi:null-pointer-p p)
@@ -347,6 +349,13 @@ when FREE-ELEMENTS (strings duplicated for the call)."
 (defun array-read-form (spec ptr-form transfer count-form)
   "Code converting the C array PTR-FORM described by SPEC to Lisp."
   (destructuring-bind (element &key zero-terminated &allow-other-keys) (rest spec)
+    (declare (ignorable zero-terminated))
+    (when (struct-spec-name element)
+      (let ((e (gensym "E")))
+        (return-from array-read-form
+          `(struct-array-from-foreign ,ptr-form ,(struct-size-form element) ,count-form
+                                      (lambda (,e) ,(struct-copy-form e element))
+                                      ,(and (member transfer '(:full :container)) t)))))
     (let ((e (gensym "E")))
       `(array-from-foreign ,ptr-form ',(spec-foreign-type element)
                            (lambda (,e) ,(convert-from-foreign e element (if (eq transfer :full) :full :none)))
@@ -358,6 +367,9 @@ when FREE-ELEMENTS (strings duplicated for the call)."
 (defun array-write-form (spec var)
   "Code making a C array from the Lisp sequence VAR."
   (destructuring-bind (element &key zero-terminated fixed-size &allow-other-keys) (rest spec)
+    (when (struct-spec-name element)
+      (return-from array-write-form
+        `(struct-array-to-foreign ,var ,(struct-size-form element) ,zero-terminated ,fixed-size)))
     (let ((e (gensym "E")))
       `(array-to-foreign ,var ',(spec-foreign-type element)
                          (lambda (,e) ,(convert-to-foreign e element :none))
@@ -484,6 +496,137 @@ g_str_hash; duplicated strings are freed with the table."
 (defun hash-table-unref (ht)
   (unless (cffi:null-pointer-p ht)
     (cffi:foreign-funcall "g_hash_table_unref" :pointer ht :void)))
+
+;;; Structs
+;;;
+;;; A struct spec is (:boxed GTYPE-NAME GET-TYPE STRUCT) or (:record STRUCT)
+;;; where STRUCT names a layout made by DEFINE-GSTRUCT. Where such a spec
+;;; is a caller-allocated out argument or an array element, the struct is
+;;; stored inline and copied into a proxy.
+
+(defun struct-spec-name (spec)
+  "The layout name of a struct spec, or NIL if the struct's layout is unknown."
+  (case (spec-kind spec)
+    (:boxed (fourth spec))
+    (:record (second spec))))
+
+(defun struct-type (name)
+  "The CFFI type designator for layout NAME: (:struct NAME) or (:union NAME)."
+  (list (if (eq (get name 'gstruct-kind) :union) :union :struct) name))
+
+(defun struct-size-form (spec)
+  `(cffi:foreign-type-size ',(struct-type (struct-spec-name spec))))
+
+(defmacro define-gstruct (name (&key union gtype-name documentation) &body fields)
+  "Define the C layout NAME from FIELDS, each (SLOT CFFI-TYPE &key count). For
+a struct without a GType, also define a RECORD proxy class named NAME."
+  `(progn
+     (eval-when (:compile-toplevel :load-toplevel :execute)
+       (setf (get ',name 'gstruct-kind) ,(if union :union :struct)))
+     (,(if union 'cffi:defcunion 'cffi:defcstruct) ,name ,@fields)
+     ,@(unless gtype-name
+         `((defclass ,name (record) ()
+             ,@(when documentation `((:documentation ,documentation))))))
+     ',name))
+
+(defun struct-copy-form (pointer-form spec)
+  "Code making an owned proxy from the struct at POINTER-FORM."
+  (if (eq (spec-kind spec) :boxed)
+      `(wrap-boxed ,pointer-form
+                   (gtype-cell-gtype (load-time-value (make-gtype-cell ,(second spec) ,(third spec))))
+                   :transfer :none)
+      `(copy-record ,pointer-form ',(second spec) ,(struct-size-form spec))))
+
+(defun field-read-form (pointer struct slot spec bits &optional inline)
+  (when inline
+    ;; An embedded struct: return an owned copy.
+    (return-from field-read-form
+      (struct-copy-form `(cffi:foreign-slot-pointer ,pointer ',(struct-type struct) ',slot) spec)))
+  (let ((raw `(cffi:foreign-slot-value ,pointer ',(struct-type struct) ',slot)))
+    (when bits
+      (setf raw `(ldb (byte ,(first bits) ,(second bits)) ,raw)))
+    (case (spec-kind spec)
+      (:boolean (if bits `(/= 0 ,raw) raw))
+      ((:enum :flags) `(enum-keyword ',(second spec) ,raw))
+      (t (convert-from-foreign raw spec :none)))))
+
+(defun field-write-form (pointer struct slot spec bits value &optional inline)
+  (when inline
+    (return-from field-write-form
+      `(cffi:foreign-funcall "memcpy"
+                             :pointer (cffi:foreign-slot-pointer ,pointer ',(struct-type struct) ',slot)
+                             :pointer (object-pointer ,value)
+                             :size ,(struct-size-form spec) :pointer)))
+  (let ((place `(cffi:foreign-slot-value ,pointer ',(struct-type struct) ',slot))
+        (v (case (spec-kind spec)
+             (:boolean (if bits `(if ,value 1 0) `(and ,value t)))
+             (:float `(float ,value 1f0))
+             (:double `(float ,value 1d0))
+             ((:enum :flags) `(enum-value ',(second spec) ,value))
+             (t value))))
+    (if bits
+        `(setf ,place (dpb ,v (byte ,(first bits) ,(second bits)) ,place))
+        `(setf ,place ,v))))
+
+(defmacro define-gfield (name struct slot spec &key writable bits inline documentation)
+  "Define NAME reading SLOT of STRUCT (and (SETF NAME) when WRITABLE).
+BITS is (SIZE POSITION) for a bitfield packed into SLOT. INLINE means SLOT
+embeds a struct described by SPEC: reading copies it, writing copies into it."
+  `(progn
+     (defun ,name (object)
+       ,@(when documentation (list documentation))
+       ,(field-read-form '(object-pointer object) struct slot spec bits inline))
+     ,@(when writable
+         `((defun (setf ,name) (value object)
+             ,(field-write-form '(object-pointer object) struct slot spec bits 'value inline)
+             value)))
+     ',name))
+
+(defmacro define-gstruct-constructor (name spec (&rest fields) &key documentation)
+  "Define NAME taking a keyword argument per field, each (VAR SLOT FIELD-SPEC
+&key bits), and returning a new proxy for the struct SPEC."
+  (let ((tmp (gensym "TMP"))
+        (struct (struct-spec-name spec))
+        (supplied (loop for f in fields collect (gensym (format nil "~a-SUPPLIED-P" (first f))))))
+    `(defun ,name (&key ,@(loop for (var) in fields for s in supplied collect `(,var nil ,s)))
+       ,@(when documentation (list documentation))
+       (cffi:with-foreign-object (,tmp ',(struct-type struct))
+         (cffi:foreign-funcall "memset" :pointer ,tmp :int 0 :size ,(struct-size-form spec) :pointer)
+         ,@(loop for (var slot field-spec . options) in fields
+                 for s in supplied
+                 collect `(when ,s
+                            ,(field-write-form tmp struct slot field-spec (getf options :bits) var
+                                               (getf options :inline))))
+         ,(struct-copy-form tmp spec)))))
+
+(defun struct-array-to-foreign (sequence size zero-terminated fixed-size)
+  "A g_malloc'd array of SIZE-byte structs copied from SEQUENCE's proxies."
+  (if (null sequence)
+      (cffi:null-pointer)
+      (let* ((n (length sequence))
+             (slots (or fixed-size n))
+             (p (g-malloc0 (* (+ slots (if zero-terminated 1 0)) size)))
+             (i 0))
+        (map nil (lambda (e)
+                   (when (< i slots)
+                     (cffi:foreign-funcall "memcpy" :pointer (cffi:inc-pointer p (* i size))
+                                           :pointer (object-pointer e) :size size :pointer))
+                   (incf i))
+             sequence)
+        p)))
+
+(defun struct-array-from-foreign (p size count converter free-container)
+  (unless (cffi:null-pointer-p p)
+    (unless count (error "gtk4: struct array without a length"))
+    (prog1 (loop for i below count collect (funcall converter (cffi:inc-pointer p (* i size))))
+      (when free-container (%g-free p)))))
+
+;;; GValue out arguments: read into a Lisp value, then unset.
+
+(defun gvalue-take (gvalue)
+  (unwind-protect
+       (if (zerop (gvalue-type gvalue)) nil (gvalue-get gvalue))
+    (unless (zerop (gvalue-type gvalue)) (%g-value-unset gvalue))))
 
 ;;; Callbacks
 ;;;
@@ -623,6 +766,10 @@ destroy-of length-of):
                        for (var spec) = a
                        when (and (eq (option a :direction :in) :out) (not (option a :length-of)))
                          collect (cond
+                                   ((eq (spec-kind spec) :gvalue)
+                                    `(gvalue-take ,(place var)))
+                                   ((and (option a :caller-allocates) (struct-spec-name spec))
+                                    (struct-copy-form (place var) spec))
                                    ((and (eq (spec-kind spec) :array) (array-option spec :caller-allocates))
                                     (array-read-form spec (place var) :none (count-form var spec)))
                                    ((eq (spec-kind spec) :array)
@@ -659,6 +806,17 @@ destroy-of length-of):
                 for place = (place var)
                 do (setf body
                          (cond
+                           ;; Caller-allocated GValue or struct: zeroed stack memory.
+                           ((and (eq (option a :direction :in) :out)
+                                 (or (eq (spec-kind spec) :gvalue)
+                                     (and (option a :caller-allocates) (struct-spec-name spec))))
+                            (let ((type (if (eq (spec-kind spec) :gvalue)
+                                            ''(:struct gvalue)
+                                            `',(struct-type (struct-spec-name spec)))))
+                              `(cffi:with-foreign-object (,place ,type)
+                                 (cffi:foreign-funcall "memset" :pointer ,place :int 0
+                                                       :size (cffi:foreign-type-size ,type) :pointer)
+                                 ,body)))
                            ;; Caller-allocated out array: we allocate the buffer.
                            ((and (eq (option a :direction :in) :out)
                                  (eq (spec-kind spec) :array)
