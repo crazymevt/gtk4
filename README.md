@@ -3,7 +3,7 @@
 Complete GTK 4 bindings for SBCL, generated ahead of time from GObject
 Introspection data, with an idiomatic CLOS layer on top.
 
-**Status:** 1.0.0, released 2026-10-03. The whole stack, GLib through GTK plus cairo and
+**Status:** 1.0.1, released 2026-10-04. The whole stack, GLib through GTK plus cairo and
 libadwaita, is generated, committed and tested on Linux, macOS and Windows: 98% of
 bindable functions, and 762 virtual functions Lisp classes can override. See
 [CHANGELOG.md](CHANGELOG.md).

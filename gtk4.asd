@@ -4,7 +4,7 @@
   :description "Complete GTK 4 bindings for SBCL, generated from GObject Introspection."
   :author "Jessie Hughart"
   :license "MIT"
-  :version "1.0.0"
+  :version "1.0.1"
   :homepage "https://github.com/crazymevt/gtk4"
   :source-control (:git "https://github.com/crazymevt/gtk4.git")
   :bug-tracker "https://github.com/crazymevt/gtk4/issues"
