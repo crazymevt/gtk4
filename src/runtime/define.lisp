@@ -51,6 +51,40 @@
                                url))
     url))
 
+;;; C functions the Lisp layer covers better, named in their docstrings so
+;;; apropos and describe lead to the friendlier function.
+
+(defparameter *lisp-equivalents*
+  '(("g_object_get_property" . "gobject:property, which returns a Lisp value")
+    ("g_object_set_property" . "(setf gobject:property), which takes a Lisp value")
+    ("g_object_newv" . "make-instance, which takes properties as initargs")
+    ("g_signal_connect_closure" . "gobject:connect, which takes a Lisp function or symbol")
+    ("g_signal_handler_disconnect" . "gobject:disconnect")
+    ("g_signal_handler_block" . "gobject:block-handler")
+    ("g_signal_handler_unblock" . "gobject:unblock-handler")
+    ("g_signal_handler_is_connected" . "gobject:handler-connected-p")
+    ("g_idle_add_full" . "glib:in-main-thread")
+    ("gtk_css_provider_load_from_string" . "gtk:add-css and gtk:css")
+    ("gtk_css_provider_load_from_data" . "gtk:add-css and gtk:css")
+    ("gtk_style_context_add_provider_for_display" . "gtk:add-css")
+    ("g_list_store_new" . "gio:make-list-store, which holds any Lisp values")
+    ("gtk_list_view_new" . "gtk:make-list-view"))
+  "C name -> the Lisp-level function to use instead, as a phrase.")
+
+(defun lisp-equivalent (c-name)
+  (cdr (assoc c-name *lisp-equivalents* :test #'string=)))
+
+(defun add-lisp-equivalent (documentation c-name)
+  "DOCUMENTATION with a line naming C-NAME's Lisp-level equivalent, if it has one."
+  (let ((equivalent (lisp-equivalent c-name)))
+    (cond ((not equivalent) documentation)
+          ((not documentation) (format nil "See also ~a." equivalent))
+          (t (let ((c-line (search (format nil "~%~%C: ") documentation :from-end t)))
+               (if c-line
+                   (format nil "~a~%~%See also ~a.~a" (subseq documentation 0 c-line)
+                           equivalent (subseq documentation c-line))
+                   (format nil "~a~%~%See also ~a." documentation equivalent)))))))
+
 ;;; Lazily resolved C functions
 
 (define-condition unavailable-function (error)
@@ -759,6 +793,16 @@ carries the handle. The Lisp function receives the other arguments in order."
 ;;; Each argument wrapper returns BODY wrapped so that PLACE is bound to the
 ;;; foreign value of the Lisp argument VAR, with any cleanup after BODY.
 
+(defvar *defining-function* nil
+  "While DEFINE-GFUNCTION expands: (NAME C-NAME), for error messages.")
+
+(defun argument-pointer-form (var spec)
+  "Code for the C pointer of argument VAR, naming the function and argument
+if the value is not one."
+  (if *defining-function*
+      `(object-pointer ,var '(,(first *defining-function*) ,var ,spec ,(second *defining-function*)))
+      `(object-pointer ,var)))
+
 (defun wrap-in-argument (var spec transfer place body)
   (ecase (spec-kind spec)
     ((:boolean :int8 :uint8 :int16 :uint16 :int32 :uint32 :int64 :uint64
@@ -781,11 +825,11 @@ carries the handle. The Lisp function receives the other arguments in order."
           (unless (cffi:null-pointer-p ,place) (free-strv ,place)))))
     (:object
      (if (eq transfer :full)
-         `(let ((,place (object-pointer ,var)))
+         `(let ((,place ,(argument-pointer-form var spec)))
             (unless (cffi:null-pointer-p ,place) (%g-object-ref ,place))
             ,body)
-         `(let ((,place (object-pointer ,var))) ,body)))
-    ((:boxed :record :pointer) `(let ((,place (object-pointer ,var))) ,body))
+         `(let ((,place ,(argument-pointer-form var spec))) ,body)))
+    ((:boxed :record :pointer) `(let ((,place ,(argument-pointer-form var spec))) ,body))
     (:byte-array `(let ((,place (byte-array-to-foreign ,var)))
                     (unwind-protect ,body (byte-array-unref ,place))))
     ((:glist :gslist)
@@ -978,9 +1022,11 @@ destroy-of length-of):
   the arguments marked :user-data-of and :destroy-of it are hidden.
 - An (:array ...) argument takes or returns a sequence; the argument marked
   :length-of it is hidden. :length-of :return measures the return value."
-  (let ((cell (gensym "CELL")))
+  (let ((cell (gensym "CELL"))
+        (documentation (add-lisp-equivalent documentation c-name)))
     (multiple-value-bind (required optional body)
-        (gfunction-parts args return return-transfer throws `(fcell-address ,cell))
+        (let ((*defining-function* (list name c-name)))
+          (gfunction-parts args return return-transfer throws `(fcell-address ,cell)))
       `(progn
          (register-documentation ',name ,c-name ,url)
          (defun ,name (,@required ,@(when optional (cons '&optional optional)))

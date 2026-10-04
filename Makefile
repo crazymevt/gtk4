@@ -8,11 +8,11 @@ QUIT_AFTER ?= nil
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
-	        --eval '(uiop:quit (if (parachute:status (parachute:test :gtk4-tests)) 0 1))'
+	        --eval '(uiop:quit (if (eq :passed (parachute:status (parachute:test :gtk4-tests))) 0 1))'
 
 stress:
 	$(LISP) --eval '(ql:quickload :gtk4-tests/stress :silent t)' \
-	        --eval '(uiop:quit (if (parachute:status (parachute:test (quote gtk4-tests::gtk4-stress))) 0 1))'
+	        --eval '(uiop:quit (if (eq :passed (parachute:status (parachute:test (quote gtk4-tests::gtk4-stress)))) 0 1))'
 
 summary:
 	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \

@@ -183,13 +183,28 @@
   (let* ((failure nil)
          (worker (sb-thread:make-thread
                   (lambda ()
-                    (handler-case (rt:in-main-thread (:wait t) (error "from main"))
+                    (handler-case (rt:in-main-thread (:wait t) (gui-thread-failure))
                       (error (e) (setf failure e)))))))
     (loop repeat 500
           while (sb-thread:thread-alive-p worker)
           do (rt:iterate-main-context) (sleep 0.01))
     (sb-thread:join-thread worker)
-    (true (typep failure 'simple-error))))
+    (true (typep failure 'simple-error))
+    ;; Where it really happened, on the GUI thread:
+    (true (search "GUI-THREAD-FAILURE" (or (glib:gui-thread-backtrace failure) "")))))
+
+(defun gui-thread-failure ()
+  (declare (optimize (debug 2)))        ; keep its frame: no tail call
+  (error "from main"))
+
+(define-test argument-errors-name-the-function :parent objects
+  (let ((message (handler-case (gobject:object-set-property (make-instance 'simple-action :name "a")
+                                                            "enabled" t)
+                   (gobject:argument-error (e) (princ-to-string e)))))
+    (true (search "OBJECT-SET-PROPERTY" message))
+    (true (search "GValue" message))
+    (true (search "(setf gobject:property)" message)))
+  (true (search "(setf gobject:property)" (documentation 'gobject:object-set-property 'function))))
 
 (define-test self-referencing-handler-is-collected :parent objects
   ;; A handler closing over its own object must not keep it alive forever.

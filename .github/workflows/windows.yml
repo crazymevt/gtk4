@@ -53,4 +53,4 @@ jobs:
           sbcl --dynamic-space-size 4096 --non-interactive `
             --eval '(push (truename ".") asdf:*central-registry*)' `
             --eval '(ql:quickload :gtk4-tests :silent t)' `
-            --eval '(uiop:quit (if (parachute:status (parachute:test :gtk4-tests)) 0 1))'
+            --eval '(uiop:quit (if (eq :passed (parachute:status (parachute:test :gtk4-tests))) 0 1))'

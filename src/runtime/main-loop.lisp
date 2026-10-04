@@ -34,11 +34,30 @@ it must be the initial thread; on Linux it may be set to another thread.")
 (defun gui-thread-p ()
   (eq sb-thread:*current-thread* *gui-thread*))
 
+(defvar *gui-thread-backtraces* (make-hash-table :test 'eq :weakness :key :synchronized t)
+  "Condition -> the backtrace on the GUI thread where it was signalled, for
+errors CALL-IN-MAIN-THREAD re-signals in the waiting thread.")
+
+(defparameter *gui-thread-backtrace-frames* 60)
+
+(defun gui-thread-backtrace (condition)
+  "The GUI thread's backtrace, as a string, from where CONDITION was signalled,
+if CONDITION is an error that CALL-IN-MAIN-THREAD with :WAIT re-signalled in
+the calling thread; else NIL. The debugger shows the calling thread's stack,
+which ends in the wait; this shows where the error really happened."
+  (values (gethash condition *gui-thread-backtraces*)))
+
+(defun record-gui-thread-backtrace (condition)
+  (setf (gethash condition *gui-thread-backtraces*)
+        (with-output-to-string (s)
+          (ignore-errors (sb-debug:print-backtrace :stream s :count *gui-thread-backtrace-frames*)))))
+
 (defun call-in-main-thread (thunk &key wait)
   "Run THUNK on the GUI thread. Called on that thread, THUNK runs at once;
 from any other thread it is queued as an idle callback, run when the main
 loop next iterates. With WAIT, block until it has run and return its values,
-re-signalling any error in the caller."
+re-signalling any error in the caller; GUI-THREAD-BACKTRACE then gives the
+backtrace where the error happened."
   (cond
     ((gui-thread-p)
      (funcall thunk))
@@ -53,7 +72,9 @@ re-signalling any error in the caller."
         (call-in-main-thread
          (lambda ()
            (unwind-protect
-                (handler-case (setf results (multiple-value-list (funcall thunk)))
+                (handler-case
+                    (handler-bind ((error #'record-gui-thread-backtrace))
+                      (setf results (multiple-value-list (funcall thunk))))
                   (error (e) (setf failure e)))
              (sb-thread:signal-semaphore done))))
         (sb-thread:wait-on-semaphore done)

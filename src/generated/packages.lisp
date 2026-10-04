@@ -5,7 +5,7 @@
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
   (:shadow #:array #:close #:cond #:error #:file-error #:hash-table #:hash-table-size #:list #:make-array #:make-string #:open #:remove #:sequence #:string #:string-equal #:time)
-  (:import-from #:gtk4.runtime #:call-in-main-thread #:glib-error #:glib-error-code #:glib-error-domain #:glib-error-keyword #:glib-error-message #:in-main-thread #:main-thread-p #:with-gtk-float-traps)
+  (:import-from #:gtk4.runtime #:call-in-main-thread #:glib-error #:glib-error-code #:glib-error-domain #:glib-error-keyword #:glib-error-message #:gui-thread-backtrace #:in-main-thread #:main-thread-p #:with-gtk-float-traps)
   (:export
    #:+alloc-and-free+
    #:+alloc-only+
@@ -674,6 +674,7 @@
    #:glib-error-domain
    #:glib-error-keyword
    #:glib-error-message
+   #:gui-thread-backtrace
    #:h-func
    #:hash-func
    #:hash-table
@@ -2165,7 +2166,7 @@
   (:use #:cl)
   (:local-nicknames (#:rt #:gtk4.runtime))
   (:shadow #:array #:error #:hash-table #:string #:type)
-  (:import-from #:gtk4.runtime #:block-handler #:call-next-vfunc #:call-vfunc #:class-gtype #:connect #:define-vfunc #:disconnect #:emit #:find-vfunc #:gobject-class #:handler-connected-p #:initially-unowned #:make-closure #:object #:object-pointer #:property #:remove-vfunc #:unblock-handler)
+  (:import-from #:gtk4.runtime #:argument-error #:block-handler #:call-next-vfunc #:call-vfunc #:class-gtype #:connect #:define-vfunc #:disconnect #:emit #:find-vfunc #:gobject-class #:handler-connected-p #:initially-unowned #:make-closure #:object #:object-pointer #:property #:property-value-error #:remove-vfunc #:unblock-handler)
   (:export
    #:+param-mask+
    #:+param-static-strings+
@@ -2183,6 +2184,7 @@
    #:+value-collect-format-max-length+
    #:+value-interned-string+
    #:+value-nocopy-contents+
+   #:argument-error
    #:array
    #:base-finalize-func
    #:base-init-func
@@ -2446,6 +2448,7 @@
    #:pointer-type-register-static
    #:poll-fd
    #:property
+   #:property-value-error
    #:ptr-array
    #:rand
    #:regex

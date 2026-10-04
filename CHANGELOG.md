@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+**Fixes**
+- Writing a numeric property slot from Lisp (its accessor or `setf slot-value`) now checks the value's type and the spec's `:min` and `:max`, as `g_object_set_property` does, and signals `gobject:property-value-error` when it is out of range. Before, the property followed different rules depending on who set it.
+- Passing a generated function an argument it cannot convert to a pointer signals `gobject:argument-error`, naming the function, the argument and the type it takes, and the Lisp-level function to use where there is one (for `gobject:object-set-property`, `(setf gobject:property)`).
+- `make test` exits 1 when a test fails (it exited 0).
+
+**Additions**
+- `glib:gui-thread-backtrace`: for an error that `glib:in-main-thread` with `:wait t` re-signalled in the calling thread, the GUI thread's backtrace from where it happened.
+- Docstrings of C functions the Lisp layer covers better name the Lisp function ("See also (setf gobject:property)").
+
 ## 1.0.1 (2026-10-04)
 
 **Fixes**

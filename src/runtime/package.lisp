@@ -21,6 +21,7 @@
    #:gui-thread-p
    #:call-in-main-thread
    #:in-main-thread
+   #:gui-thread-backtrace
    #:iterate-main-context
    ;; handles
    #:make-handle
@@ -58,6 +59,13 @@
    #:boxed-gtype
    #:*boxed-classes*
    #:object-pointer
+   #:argument-error
+   #:argument-error-function
+   #:argument-error-argument
+   #:property-value-error
+   #:property-value-error-object
+   #:property-value-error-property
+   #:property-value-error-value
    #:wrap-object
    #:wrap-boxed
    #:proxy-count

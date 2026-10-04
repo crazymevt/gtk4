@@ -80,7 +80,7 @@ A slot with the `:property` option is also a GObject property:
          :property (:int :min 0 :max 59 :nick "Seconds"))
 ```
 
-The value lives in the slot. Writing it from Lisp, through the accessor or `setf slot-value`, emits `notify::seconds` as C code expects. C code reads and writes it through `g_object_get` and `g_object_set`, GtkBuilder sets it from XML, and `g_object_bind_property` binds it.
+The value lives in the slot. Writing it from Lisp, through the accessor or `setf slot-value`, follows the same rules as `g_object_set_property`: a numeric property takes a number of its type within `:min` and `:max`, and anything else signals `gobject:property-value-error`. A valid write emits `notify::seconds` as C code expects. C code reads and writes it through `g_object_get` and `g_object_set`, GtkBuilder sets it from XML, and `g_object_bind_property` binds it.
 
 The option is a type, or a list of a type and keyword options. The types are `:boolean`, `:int`, `:uint`, `:long`, `:ulong`, `:int64`, `:uint64`, `:float`, `:double`, `:string`, `:pointer` and `:gtype`, plus `(:enum gtk:orientation)`, `(:flags gtk:state-flags)`, `(:object gtk:widget)` and `(:boxed "GdkRGBA")`. The options are `:nick`, `:blurb` (defaulting to the slot's documentation), `:min`, `:max`, `:default` (defaulting to a constant initform), and `:flags`. `:flags` is a list of `:readable`, `:writable`, `:construct`, `:construct-only` and `:explicit-notify`, and defaults to readable and writable.
 

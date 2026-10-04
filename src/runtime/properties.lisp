@@ -9,8 +9,9 @@
 ;;;; The value lives in the slot. GObject reads and writes it through the
 ;;;; class's get_property and set_property, so the property works with
 ;;;; GtkBuilder, g_object_bind_property and expressions; writing the slot from
-;;;; Lisp (through its accessor or SETF SLOT-VALUE) emits notify:: as C code
-;;;; expects.
+;;;; Lisp (through its accessor or SETF SLOT-VALUE) checks the value against
+;;;; the spec's type and :min/:max, as GObject does, and emits notify:: as C
+;;;; code expects.
 ;;;;
 ;;;; A slot with :template-child "id" (or T, for an id equal to the slot's
 ;;;; name) reads the object with that id from the class's composite template,
@@ -27,6 +28,7 @@
 (defclass gobject-effective-slot-definition (sb-mop:standard-effective-slot-definition)
   ((property :initform nil :accessor slot-property)
    (property-name :initform nil :accessor slot-property-name)
+   (property-check :initform nil :accessor slot-property-check) ; (LISP-TYPE MIN MAX) or NIL
    (template-child :initform nil :accessor slot-template-child)
    (defining-class :initform nil :accessor slot-defining-class)))
 
@@ -55,6 +57,8 @@
       (setf (slot-property effective) (slot-property special)
             (slot-property-name effective) (and (slot-property special)
                                                 (string-downcase (symbol-name name)))
+            (slot-property-check effective) (and (slot-property special)
+                                                 (property-value-check (slot-property special)))
             (slot-template-child effective)
             (let ((id (slot-template-child special)))
               (if (eq id t) (string-downcase (symbol-name name)) id))
@@ -67,6 +71,59 @@
 
 (defvar *setting-property* nil
   "True while GObject's set_property writes a slot; GObject notifies itself.")
+
+;;; Writing a property slot from Lisp follows the rules GObject applies when
+;;; C code sets the property: a numeric value must be a number of the right
+;;; kind within the spec's :min and :max. (GObject validates through the
+;;; param spec only on its own path, g_object_set_property and friends; a
+;;; Lisp write goes straight to the slot.)
+
+(define-condition property-value-error (error)
+  ((object :initarg :object :reader property-value-error-object)
+   (property :initarg :property :reader property-value-error-property)
+   (value :initarg :value :reader property-value-error-value)
+   (expected :initarg :expected :reader property-value-error-expected))
+  (:report (lambda (c s)
+             (format s "gtk4: ~s is not a valid value for property ~s of ~s: it must be ~a."
+                     (property-value-error-value c) (property-value-error-property c)
+                     (class-name (class-of (property-value-error-object c)))
+                     (property-value-error-expected c)))))
+
+(defparameter *numeric-property-ranges*
+  `((:int integer ,(- (expt 2 31)) ,(1- (expt 2 31)))
+    (:uint integer 0 ,(1- (expt 2 32)))
+    (:long integer ,(- (expt 2 63)) ,(1- (expt 2 63)))
+    (:ulong integer 0 ,(1- (expt 2 64)))
+    (:int64 integer ,(- (expt 2 63)) ,(1- (expt 2 63)))
+    (:uint64 integer 0 ,(1- (expt 2 64)))
+    (:float real ,most-negative-single-float ,most-positive-single-float)
+    (:double real ,most-negative-double-float ,most-positive-double-float))
+  "(TYPE LISP-TYPE MIN MAX) for each numeric property type.")
+
+(defun property-value-check (spec)
+  "(LISP-TYPE MIN MAX) a value of a property with SPEC must satisfy, or NIL
+for a type without a range."
+  (destructuring-bind (type &key min max &allow-other-keys) (normalize-property-spec spec)
+    (let ((range (and (keywordp type) (assoc type *numeric-property-ranges*))))
+      (when range
+        (destructuring-bind (lisp-type lowest highest) (rest range)
+          (list lisp-type (or min lowest) (or max highest)))))))
+
+(defun check-property-value (object slot value)
+  (let ((check (slot-property-check slot)))
+    (when check
+      (destructuring-bind (lisp-type min max) check
+        (unless (and (typep value lisp-type) (<= min value max))
+          (error 'property-value-error
+                 :object object :property (slot-property-name slot) :value value
+                 :expected (format nil "~:[a number~;an integer~] from ~a to ~a"
+                                   (eq lisp-type 'integer) min max)))))))
+
+(defmethod (setf sb-mop:slot-value-using-class) :before
+    (value (class gobject-class) object (slot gobject-effective-slot-definition))
+  ;; GObject's set_property has already validated what it passes.
+  (unless *setting-property*
+    (check-property-value object slot value)))
 
 (defmethod (setf sb-mop:slot-value-using-class) :after
     (value (class gobject-class) object (slot gobject-effective-slot-definition))

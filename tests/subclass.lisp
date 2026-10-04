@@ -78,6 +78,19 @@
     (setf (lisp-only c) :changed)       ; an ordinary slot: no property, no notify
     (is equal '(7 5) notified)))
 
+(define-test lisp-writes-follow-the-property-spec :parent subclass
+  ;; The same rules as g_object_set_property: :min/:max and the value's type.
+  (let ((c (make-instance 'counter)))
+    (setf (counter-count c) 100)
+    (fail (setf (counter-count c) 101) 'gobject:property-value-error)
+    (fail (setf (counter-count c) -1) 'gobject:property-value-error)
+    (fail (setf (counter-count c) 1.5) 'gobject:property-value-error)
+    (fail (setf (slot-value c 'count) 500) 'gobject:property-value-error)
+    (is = 100 (counter-count c))
+    (true (search "from 0 to 100"
+                  (handler-case (setf (counter-count c) 101)
+                    (error (e) (princ-to-string e)))))))
+
 (define-test properties-bind :parent subclass
   (let ((a (make-instance 'counter)) (b (make-instance 'counter)))
     (gobject:object-bind-property a "count" b "count" '(:default))

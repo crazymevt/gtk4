@@ -89,9 +89,10 @@ take them, and exported from the generated package definitions.")
   '(("GObject" "CONNECT" "DISCONNECT" "EMIT" "BLOCK-HANDLER" "UNBLOCK-HANDLER"
      "HANDLER-CONNECTED-P" "PROPERTY" "OBJECT-POINTER" "GOBJECT-CLASS" "CLASS-GTYPE"
      "DEFINE-VFUNC" "CALL-NEXT-VFUNC" "REMOVE-VFUNC" "FIND-VFUNC" "CALL-VFUNC"
-     "MAKE-CLOSURE")
+     "MAKE-CLOSURE" "PROPERTY-VALUE-ERROR" "ARGUMENT-ERROR")
     ("GLib" "GLIB-ERROR" "GLIB-ERROR-DOMAIN" "GLIB-ERROR-CODE" "GLIB-ERROR-MESSAGE" "GLIB-ERROR-KEYWORD"
-     "IN-MAIN-THREAD" "CALL-IN-MAIN-THREAD" "MAIN-THREAD-P" "WITH-GTK-FLOAT-TRAPS"))
+     "IN-MAIN-THREAD" "CALL-IN-MAIN-THREAD" "MAIN-THREAD-P" "WITH-GTK-FLOAT-TRAPS"
+     "GUI-THREAD-BACKTRACE"))
   "Runtime symbols each namespace's package re-exports, so users write
 gobject:connect and glib:in-main-thread rather than naming the runtime.")
 

@@ -203,14 +203,45 @@ so the proxy always owns what it points to."
 
 ;;; Pointers
 
-(defun object-pointer (thing)
-  "The C pointer behind THING: a proxy, a raw foreign pointer, or NIL (NULL)."
+(define-condition argument-error (type-error)
+  ((function :initarg :function :initform nil :reader argument-error-function)
+   (argument :initarg :argument :initform nil :reader argument-error-argument)
+   (spec :initarg :spec :initform nil :reader argument-error-spec)
+   (c-name :initarg :c-name :initform nil :reader argument-error-c-name))
+  (:report (lambda (c s)
+             (let ((datum (type-error-datum c)))
+               (if (argument-error-function c)
+                   (format s "gtk4: ~s, argument ~a, needs ~a (or NIL for NULL), not ~s."
+                           (argument-error-function c) (argument-error-argument c)
+                           (spec-description (argument-error-spec c)) datum)
+                   (format s "gtk4: ~s is not a GObject, boxed value or pointer." datum))
+               (let ((equivalent (and (argument-error-c-name c)
+                                      (lisp-equivalent (argument-error-c-name c)))))
+                 (when equivalent
+                   (format s "~%To work with Lisp values, use ~a." equivalent)))))))
+
+(defun spec-description (spec)
+  "A phrase for what an argument with marshalling SPEC takes."
+  (let ((kind (if (consp spec) (first spec) spec)))
+    (case kind
+      (:object (format nil "a ~a object" (string-downcase (symbol-name (second spec)))))
+      (:boxed (format nil "a ~a (a boxed value)" (second spec)))
+      (:record (format nil "a ~a (a C struct)" (string-downcase (princ-to-string (second spec)))))
+      (t "a foreign pointer"))))
+
+(defun object-pointer (thing &optional argument)
+  "The C pointer behind THING: a proxy, a raw foreign pointer, or NIL (NULL).
+ARGUMENT, (FUNCTION VARIABLE SPEC C-NAME), describes where THING was passed,
+for the error when it is none of these."
   (cond ((null thing) (cffi:null-pointer))
         ((cffi:pointerp thing) thing)
         ((typep thing 'object) (%object-pointer thing))
         ((typep thing 'boxed) (%boxed-pointer thing))
         ((typep thing 'record) (%record-pointer thing))
-        (t (error "gtk4: ~s is not a GObject, boxed value or pointer" thing))))
+        (t (destructuring-bind (&optional function variable spec c-name) argument
+             (error 'argument-error :datum thing :expected-type '(or object boxed record null)
+                                    :function function :argument variable :spec spec
+                                    :c-name c-name)))))
 
 ;;; Wrapping C pointers
 

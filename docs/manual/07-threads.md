@@ -21,6 +21,8 @@ sbcl --load my-app.lisp
   (gtk:label-set-text label "Updated from a worker thread"))
 ```
 
+The debugger then shows the calling thread's stack, which ends in the wait. `(glib:gui-thread-backtrace condition)` returns the GTK thread's backtrace from where the error was signalled, as a string. Cadre shows it on the Debugger page.
+
 ## Using a REPL with GTK on macOS
 
 Editors like SLIME and Sly run your REPL in a separate thread, which macOS does not allow to create windows. Start the editor's server first, then give the first thread to GTK:
