@@ -4,6 +4,12 @@
 
 (define-test deploy :parent gtk4-tests)
 
+(defun environment-message-p (line)
+  "True for stderr lines about the machine rather than the program: a headless
+CI runner has no GPU (libEGL) and no accessibility bus."
+  (or (search "libEGL" line)
+      (search "accessibility bus" line)))
+
 (define-test saved-executable-runs :parent deploy
   (with-gtk
     (let* ((dir (uiop:ensure-directory-pathname
@@ -30,5 +36,8 @@
                                                            :ignore-error-status t)
                (declare (ignore out))
                (is = 0 status)
-               (false (search "error" (string-downcase err)) "stderr: ~a" err)))
+               (false (some (lambda (line) (search "error" (string-downcase line)))
+                            (remove-if #'environment-message-p
+                                       (uiop:split-string err :separator '(#\Newline))))
+                      "stderr: ~a" err)))
         (uiop:delete-directory-tree dir :validate t :if-does-not-exist :ignore)))))
