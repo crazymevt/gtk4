@@ -76,3 +76,12 @@
         (rt:set-gvalue v "cell")
         (gtk:list-store-set-value store iter 0 v))
       (is string= "cell" (gtk:tree-model-get-value store iter 0)))))
+
+(define-test boxed-transfer-full-argument :parent structs
+  ;; gsk_transform_scale takes NEXT (transfer full). C must get a copy, or
+  ;; each call frees what the proxy still points to.
+  (let ((scale (gsk:transform-scale nil 2.0 2.0)))
+    (dotimes (i 50) (gsk:transform-scale scale 3.0 3.0))
+    (sb-ext:gc :full t)
+    (rt:iterate-main-context)
+    (is string= "scale(2)" (gsk:transform-to-string scale))))

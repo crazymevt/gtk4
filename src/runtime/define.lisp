@@ -829,7 +829,21 @@ if the value is not one."
             (unless (cffi:null-pointer-p ,place) (%g-object-ref ,place))
             ,body)
          `(let ((,place ,(argument-pointer-form var spec))) ,body)))
-    ((:boxed :record :pointer) `(let ((,place ,(argument-pointer-form var spec))) ,body))
+    (:boxed
+     ;; With transfer :full C takes the value and frees it, but the proxy
+     ;; frees what it points to when collected: give C a copy.
+     (if (eq transfer :full)
+         (destructuring-bind (gtype-name get-type &optional struct) (rest spec)
+           (declare (ignore struct))
+           `(let ((,place (let ((p ,(argument-pointer-form var spec)))
+                            (if (cffi:null-pointer-p p)
+                                p
+                                (%g-boxed-copy (gtype-cell-gtype
+                                                (load-time-value (make-gtype-cell ,gtype-name ,get-type)))
+                                               p)))))
+              ,body))
+         `(let ((,place ,(argument-pointer-form var spec))) ,body)))
+    ((:record :pointer) `(let ((,place ,(argument-pointer-form var spec))) ,body))
     (:byte-array `(let ((,place (byte-array-to-foreign ,var)))
                     (unwind-protect ,body (byte-array-unref ,place))))
     ((:glist :gslist)
