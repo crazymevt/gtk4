@@ -274,6 +274,48 @@ proxy: a new proxy for the same object reuses it.")
         (let ((proxy (gethash address *proxies*)))
           (when proxy (setf (gethash address *strong-proxies*) proxy))))))
 
+(cffi:defcfun ("g_object_set_data_full" %g-object-set-data-full) :void
+  (object :pointer) (key :string) (data :pointer) (destroy :pointer))
+(cffi:defcfun ("g_object_steal_data" %g-object-steal-data) :pointer
+  (object :pointer) (key :string))
+
+(defvar *lost-reference-hook* nil
+  "Called with the type name and address of an object freed while Lisp still
+held its toggle reference, after that is reported on *error-output*.")
+
+(defvar *lost-references* 0 "How many objects were freed under Lisp's reference.")
+
+;;; Lisp's toggle reference keeps its object alive, so the object is only
+;;; freed after RELEASE-TOGGLE-REFERENCE removes it. If it is freed while
+;;; Lisp still holds it, something dropped a reference it didn't own, and
+;;; removing ours later would touch freed memory. A data entry on each
+;;; object whose destroy notify runs as the object is finalized catches that:
+;;; it says so, with the backtrace of the Lisp call that freed it if there
+;;; is one, and forgets the object so nothing touches it again.
+
+(defparameter *finalize-key* "gtk4-lisp-reference")
+
+(cffi:defcallback object-finalized :void ((data :pointer))
+  (let ((address (cffi:pointer-address data)))
+    (when (gethash address *toggled*)
+      (remhash address *toggled*)
+      (remhash address *strong-proxies*)
+      (let ((proxy (gethash address *proxies*))
+            (type (ignore-errors (gtype-name (instance-gtype data)))))
+        (remhash address *proxies*)
+        (when proxy
+          (sb-ext:cancel-finalization proxy)
+          (setf (slot-value proxy 'pointer) (cffi:null-pointer)))
+        (incf *lost-references*)
+        (ignore-errors
+         (format *error-output* "~&;; gtk4: a ~a at #x~x was freed while Lisp held a reference to it.~%~
+                                 ;; Something released a reference it did not own. Backtrace:~%"
+                 type address)
+         (sb-debug:print-backtrace :count 60 :stream *error-output*)
+         (finish-output *error-output*))
+        (when *lost-reference-hook*
+          (ignore-errors (funcall *lost-reference-hook* type address)))))))
+
 (defun acquire-toggle-reference (pointer transfer)
   "Give Lisp its toggle reference on POINTER, consuming a reference handed
 over with TRANSFER :FULL (or a floating one)."
@@ -286,6 +328,7 @@ over with TRANSFER :FULL (or a floating one)."
         (progn
           (setf (gethash address *toggled*) t)
           (%g-object-add-toggle-ref pointer (cffi:callback toggle-notify) (cffi:null-pointer))
+          (%g-object-set-data-full pointer *finalize-key* pointer (cffi:callback object-finalized))
           (when owned (%g-object-unref pointer))))))
 
 (defun release-toggle-reference (address)
@@ -294,6 +337,7 @@ proxy for the object exists by now, or the reference is already gone."
   (unless (or (gethash address *proxies*) (not (gethash address *toggled*)))
     (remhash address *toggled*)
     (remhash address *strong-proxies*)
+    (%g-object-steal-data (cffi:make-pointer address) *finalize-key*)
     (%g-object-remove-toggle-ref (cffi:make-pointer address)
                                  (cffi:callback toggle-notify) (cffi:null-pointer))))
 

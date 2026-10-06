@@ -158,6 +158,35 @@
     (true (collect-until (lambda () (= *finalized* n)))
           "all ~d objects finalized (~d were)" n *finalized*)))
 
+(define-test over-released-object-is-forgotten :parent objects
+  ;; C code that drops a reference it doesn't own frees the object under
+  ;; Lisp's: that is reported, and the proxy no longer points at it.
+  (let* ((a (make-instance 'simple-action :name "freed"))
+         (pointer (rt:object-pointer a))
+         (address (cffi:pointer-address pointer))
+         (before rt::*lost-references*)
+         (reported nil))
+    (let ((rt::*lost-reference-hook* (lambda (type address) (setf reported (list type address))))
+          (*error-output* (make-broadcast-stream)))
+      (cffi:foreign-funcall "g_object_unref" :pointer pointer :void))
+    (is = (1+ before) rt::*lost-references*)
+    (is equal (list "GSimpleAction" address) reported)
+    (false (gethash address rt::*toggled*))
+    (true (cffi:null-pointer-p (rt:object-pointer a)))
+    ;; Collecting the proxy later touches nothing.
+    (setf a nil)
+    (collect-until (lambda () nil) :timeout 0.2)))
+
+(define-test released-objects-are-not-reported :parent objects
+  (let ((before rt::*lost-references*))
+    (setf *finalized* 0)
+    (in-fresh-thread
+     (lambda ()
+       (dotimes (i 50)
+         (watch-finalization (make-instance 'simple-action :name "r")))))
+    (true (collect-until (lambda () (= *finalized* 50))))
+    (is = before rt::*lost-references*)))
+
 (define-test signal-handles-released :parent objects
   (let ((before (rt:handle-count)))
     (in-fresh-thread
