@@ -34,6 +34,57 @@ it must be the initial thread; on Linux it may be set to another thread.")
 (defun gui-thread-p ()
   (eq sb-thread:*current-thread* *gui-thread*))
 
+;;; Catching GTK calls from other threads
+
+;;; GTK is not thread-safe: a call from another thread races the GUI
+;;; thread and can corrupt GTK's memory with no sign until much later. With
+;;; *CHECK-GUI-THREAD* on, each wrapper of a GUI-only C function checks the
+;;; thread and reports a wrong one, once per C function. The call still
+;;; goes ahead, as it would have without the check.
+
+(defvar *check-gui-thread* nil
+  "When true, calling a GUI-only C function (GTK, GDK, Adwaita) from a thread
+other than *GUI-THREAD* is reported on *ERROR-OUTPUT* with a backtrace, once
+per C function, and passed to *WRONG-THREAD-HOOK*.")
+
+(defvar *wrong-thread-hook* nil
+  "Called with the C function's name and the calling thread's name when
+*CHECK-GUI-THREAD* catches a call from the wrong thread, after it is reported.")
+
+(defvar *wrong-thread-calls* (make-hash-table :test 'equal :synchronized t)
+  "C function name -> how many times it was called from the wrong thread.")
+
+(defun gui-only-function-p (c-name)
+  "True for C functions only the GUI thread may call: GTK, GDK and Adwaita,
+less those that touch no shared state."
+  (flet ((prefix-p (prefix) (eql (mismatch prefix c-name) (length prefix)))
+         (suffix-p (suffix) (let ((m (mismatch suffix c-name :from-end t)))
+                              (or (null m) (zerop m)))))
+    (and (some #'prefix-p '("gtk_" "gdk_" "adw_" "gsk_renderer_"))
+         (notany #'prefix-p '("gdk_keyval_" "gdk_unicode_to_keyval" "gdk_rgba_"
+                              "gdk_rectangle_" "gdk_texture_" "gdk_memory_texture_"
+                              "gtk_get_" "gtk_check_version"))
+         (notany #'suffix-p '("_get_type" "_error_quark")))))
+
+(defun report-wrong-thread-call (c-name)
+  (let* ((thread sb-thread:*current-thread*)
+         (thread-name (or (sb-thread:thread-name thread) (princ-to-string thread)))
+         (first-time (= 1 (incf (gethash c-name *wrong-thread-calls* 0)))))
+    (when first-time
+      (ignore-errors
+       (format *error-output* "~&;; gtk4: ~a called from thread ~s, not the GUI thread.~%~
+                               ;; GTK is not thread-safe; use glib:in-main-thread. Backtrace:~%"
+               c-name thread-name)
+       (sb-debug:print-backtrace :count 40 :stream *error-output*)
+       (finish-output *error-output*))
+      (when *wrong-thread-hook*
+        (ignore-errors (funcall *wrong-thread-hook* c-name thread-name))))))
+
+(declaim (inline check-gui-call))
+(defun check-gui-call (c-name)
+  (when (and *check-gui-thread* (not (eq sb-thread:*current-thread* *gui-thread*)))
+    (report-wrong-thread-call c-name)))
+
 (defvar *gui-thread-backtraces* (make-hash-table :test 'eq :weakness :key :synchronized t)
   "Condition -> the backtrace on the GUI thread where it was signalled, for
 errors CALL-IN-MAIN-THREAD re-signals in the waiting thread.")

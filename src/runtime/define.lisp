@@ -1031,6 +1031,7 @@ destroy-of length-of):
          (register-documentation ',name ,c-name ,url)
          (defun ,name (,@required ,@(when optional (cons '&optional optional)))
            ,@(when documentation (list documentation))
+           ,@(when (gui-only-function-p c-name) `((check-gui-call ,c-name)))
            (let ((,cell (load-time-value (make-fcell ,c-name ,version))))
              (with-gtk-float-traps ,body)))
          ',name))))

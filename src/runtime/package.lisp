@@ -22,6 +22,8 @@
    #:call-in-main-thread
    #:in-main-thread
    #:gui-thread-backtrace
+   #:*check-gui-thread*
+   #:*wrong-thread-hook*
    #:iterate-main-context
    ;; handles
    #:make-handle
