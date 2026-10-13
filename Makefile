@@ -4,7 +4,7 @@ HEAP ?= 4096
 LISP = $(SBCL) --dynamic-space-size $(HEAP) --non-interactive --eval '(push (truename ".") asdf:*central-registry*)'
 QUIT_AFTER ?= nil
 
-.PHONY: test stress summary generate docs full-stack hello example demo executable app
+.PHONY: test stress summary generate docs docset full-stack hello example demo executable app
 
 test:
 	$(LISP) --eval '(ql:quickload :gtk4-tests :silent t)' \
@@ -25,6 +25,13 @@ generate:
 docs:
 	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
 	        --eval '(gtk4.generator:generate :site-directory (merge-pathnames "build/docs/" (truename ".")))' \
+	        | tail -1
+
+# The reference and manual as a docset for the spec browser, in docs/docset/.
+# The binding sources it generates along the way go to build/, not src/generated/.
+docset:
+	$(LISP) --eval '(ql:quickload :gtk4-generator :silent t)' \
+	        --eval '(gtk4.generator:generate :output-directory (merge-pathnames "build/docset-sources/" (truename ".")) :docset-directory (merge-pathnames "docs/docset/" (truename ".")))' \
 	        | tail -1
 
 full-stack:

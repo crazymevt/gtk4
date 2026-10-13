@@ -606,7 +606,7 @@ cannot be overridden, each with its reason."
 
 (defun generate (&key (targets *target-namespaces*)
                       (output-directory (asdf:system-relative-pathname "gtk4" "src/generated/"))
-                      site-directory)
+                      site-directory docset-directory)
   "Generate binding sources for TARGETS into OUTPUT-DIRECTORY: packages.lisp,
 one file per namespace, and COVERAGE.md. Run in a fresh image."
   (let* ((repository (load-targets :targets targets))
@@ -630,6 +630,8 @@ one file per namespace, and COVERAGE.md. Run in a fresh image."
                          :direction :output :if-exists :append)
       (emit-gap-lists ctx out))
     (emit-coverage ctx *standard-output*)
+    (when docset-directory
+      (generate-docset ctx docset-directory))
     (when site-directory
       (generate-site ctx site-directory)
       (format t "~&Reference site written to ~a~%" site-directory))

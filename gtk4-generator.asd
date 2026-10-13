@@ -23,4 +23,5 @@
                (:file "vfuncs")
                (:file "emit")
                (:file "site")
+               (:file "docset")
                (:file "report")))
