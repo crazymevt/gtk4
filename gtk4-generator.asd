@@ -4,7 +4,7 @@
   :description "Reads GObject Introspection XML and emits the gtk4 binding sources."
   :author "Jessie Hughart"
   :license "MIT"
-  :depends-on ("plump" "alexandria" "gtk4/runtime")
+  :depends-on ("plump" "alexandria" "docset" "gtk4/runtime")
   :pathname "generator/"
   :serial t
   :components ((:file "package")

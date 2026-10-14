@@ -2,48 +2,11 @@
 ;;;;
 ;;;; The same material as the reference site (site.lisp), written as Lisp data
 ;;;; instead of HTML: one entry per class, interface, struct, enum, bound
-;;;; function and property, plus the manual's chapters. The format is
-;;;; described in spec-browser's docs/docset-format.md; WRITE-DOCSET below is a
-;;;; copy of spec-browser's, so this generator does not depend on it.
+;;;; function and property, plus the manual's chapters, written with the
+;;;; docset library's WRITE-DOCSET. The format is described in docset's
+;;;; docs/format.md.
 
 (in-package #:gtk4.generator)
-
-;;; Writing a docset
-
-(defun write-docset-data (form stream)
-  (with-standard-io-syntax
-    (let ((*print-case* :downcase) (*print-pretty* nil) (*print-readably* nil))
-      (prin1 form stream))))
-
-(defun write-docset (directory manifest entries)
-  "Write MANIFEST and ENTRIES (each (:entry id . plist)) as a docset in DIRECTORY."
-  (ensure-directories-exist directory)
-  (let ((index '()))
-    (with-open-file (out (merge-pathnames "entries.sexp" directory) :direction :output
-                         :if-exists :supersede :external-format :utf-8)
-      (dolist (entry entries)
-        (let ((plist (cddr entry)))
-          (push (append (list (second entry))
-                        (loop for key in '(:names :kind :kind-name :package :parent :summary)
-                              when (getf plist key) append (list key (getf plist key)))
-                        (list :position (file-position out)))
-                index))
-        (write-docset-data entry out)
-        (terpri out)))
-    (with-open-file (out (merge-pathnames "index.sexp" directory) :direction :output
-                         :if-exists :supersede :external-format :utf-8)
-      (write-string "(" out)
-      (dolist (record (nreverse index))
-        (terpri out)
-        (write-docset-data record out))
-      (format out ")~%"))
-    (with-open-file (out (merge-pathnames "manifest.sexp" directory) :direction :output
-                         :if-exists :supersede :external-format :utf-8)
-      (write-docset-data (append (list :format 1)
-                                 (loop for (k v) on manifest by #'cddr unless (eq k :toc) append (list k v))
-                                 (list :entry-count (length entries) :toc (getf manifest :toc)))
-                         out)
-      (terpri out))))
 
 ;;; Ids, and links from `gtk:widget-show` in converted docs to entries
 
@@ -440,7 +403,7 @@ binding files are written, which records the plans."
           (let ((plan (gethash f *plans*)))
             (when plan (push (callable-docset-entry plan ns nil) entries))))))
     (setf entries (nreverse entries))
-    (write-docset directory
+    (docset:write-docset directory
                   (list :id "gtk4"
                         :title "GTK 4"
                         :subtitle "GTK 4 bindings for SBCL, generated from GObject Introspection"
