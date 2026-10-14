@@ -103,7 +103,7 @@ make test               # run the test suite
 make stress             # run the leak/stress suite (the M1 gate)
 make generate           # regenerate src/generated/ (run after changing the generator)
 make docs               # build the reference site and manual into build/docs/
-make docset             # write the reference as a docset into docs/docset/, for Cadre and spec-browser
+make docset             # write the reference as a docset into docs/docset/, for Cadre and [spec-browser](https://github.com/crazymevt/spec-browser)
 make full-stack         # time a clean compile and a cached load of everything
 make summary            # parse every target .gir file and print what it contains
 make hello              # open the hello-world window
