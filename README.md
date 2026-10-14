@@ -44,12 +44,42 @@ Design document: <https://claude.ai/code/artifact/893d30d2-ba38-4d3e-a255-35532f
 - GTK 4.14 or newer
 - Optionally, libadwaita 1.5 or newer, for the `gtk4-adwaita` system
 - For the generator only: the `.gir` files for GTK and its dependencies
-  (`cairo-1.0.gir` and `freetype2-2.0.gir` come from the `gobject-introspection` package)
+  (`cairo-1.0.gir` and `freetype2-2.0.gir` come from the `gobject-introspection` package),
+  and the [docset library](https://github.com/crazymevt/docset), which writes
+  the reference as a docset. The tests load the generator, so they need both too.
 
 macOS:
 
 ```sh
 brew install sbcl gtk4 libadwaita gobject-introspection
+```
+
+## Installing
+
+The bindings aren't in Quicklisp's dist. Check them out where Quicklisp finds
+local projects, and Quicklisp fetches the rest (cffi, alexandria; plump and
+parachute for the generator and tests):
+
+```sh
+git clone https://github.com/crazymevt/gtk4.git ~/quicklisp/local-projects/gtk4
+```
+
+Or keep the checkout elsewhere and link it in:
+
+```sh
+git clone https://github.com/crazymevt/gtk4.git ~/projects/lisp/gtk4
+ln -s ~/projects/lisp/gtk4 ~/quicklisp/local-projects/gtk4
+```
+
+Then `(ql:quickload :gtk4)` from any Lisp. If Quicklisp doesn't see a new
+checkout, run `(ql:register-local-projects)` once. The first load compiles
+the bindings, which takes a minute or two.
+
+To run the tests or the generator, add the docset library the same way:
+
+```sh
+git clone https://github.com/crazymevt/docset.git ~/projects/lisp/docset
+ln -s ~/projects/lisp/docset ~/quicklisp/local-projects/docset
 ```
 
 ## Layout
@@ -73,6 +103,7 @@ make test               # run the test suite
 make stress             # run the leak/stress suite (the M1 gate)
 make generate           # regenerate src/generated/ (run after changing the generator)
 make docs               # build the reference site and manual into build/docs/
+make docset             # write the reference as a docset into docs/docset/, for Cadre and spec-browser
 make full-stack         # time a clean compile and a cached load of everything
 make summary            # parse every target .gir file and print what it contains
 make hello              # open the hello-world window

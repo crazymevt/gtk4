@@ -42,6 +42,7 @@ jobs:
           Invoke-WebRequest https://beta.quicklisp.org/quicklisp.lisp -OutFile quicklisp.lisp
           sbcl --non-interactive --load quicklisp.lisp --eval "(quicklisp-quickstart:install)"
           Set-Content -Path "$env:USERPROFILE\.sbclrc" -Value '(load (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname)))'
+          git clone --depth 1 https://github.com/crazymevt/docset.git "$env:USERPROFILE\quicklisp\local-projects\docset"
           sbcl --non-interactive --eval "(ql:quickload (list :cffi :alexandria :plump :parachute) :silent t)"
 
       - name: Tests
