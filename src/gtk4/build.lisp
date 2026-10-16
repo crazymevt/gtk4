@@ -15,7 +15,9 @@
 ;;;;   :layout PLIST       properties of the child's layout child, as in a .ui
 ;;;;                       file's <layout>: (:column 1 :row 0) in a gtk:grid
 ;;;; A child is a node, or any form returning a widget. Children are added the
-;;;; way GtkBuilder adds them, so every container works as in a .ui file.
+;;;; way GtkBuilder adds them, so every container works as in a .ui file,
+;;;; except that a gtk:paned keeps the :resize-… and :shrink-… flags its node
+;;;; gives (GtkBuilder resets them as gtk_paned_pack1 and pack2 did).
 
 (in-package #:gtk4)
 
@@ -72,7 +74,13 @@
 (defun add-child (parent child builder &optional child-type layout)
   "Add CHILD to PARENT as GtkBuilder does for <child type=CHILD-TYPE>, then
 set the LAYOUT properties (a plist) on CHILD's layout child."
-  (gobject:call-vfunc parent :add-child builder child child-type)
+  (if (and (typep parent 'gtk:paned) (member child-type '(nil "start" "end") :test #'equal))
+      ;; Not through GtkBuilder, which would reset the child's flags.
+      (if (or (equal child-type "start")
+              (and (null child-type) (null (gtk:paned-get-start-child parent))))
+          (gtk:paned-set-start-child parent child)
+          (gtk:paned-set-end-child parent child))
+      (gobject:call-vfunc parent :add-child builder child child-type))
   (when layout
     (let ((manager (gtk:widget-get-layout-manager parent)))
       (unless manager

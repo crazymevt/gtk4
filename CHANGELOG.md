@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+**Fixes**
+- `gtk:build` keeps the `:resize-start-child`, `:shrink-start-child`, `:resize-end-child` and `:shrink-end-child` a `gtk:paned` node gives. Adding the children the way GtkBuilder does reset them, as `gtk_paned_pack1` and `pack2` did, so both sides could always shrink.
+
 ## 1.0.2 (2026-10-04)
 
 **Fixes**

@@ -94,7 +94,17 @@
         (setf *build-clicks* 0)
         (gobject:emit (gethash :go ids) :clicked)
         (is = 1 *build-clicks*)
-        (gtk:window-destroy window))))
+        (gtk:window-destroy window))
+      ;; A paned keeps the flags its node gives, which GtkBuilder would reset.
+      (let ((paned (gtk:build (gtk:paned :shrink-start-child nil :shrink-end-child nil :resize-end-child nil
+                                (gtk:label :label "start")
+                                (gtk:label :label "end")))))
+        (is string= "start" (gtk:label-get-label (gtk:paned-get-start-child paned)))
+        (is string= "end" (gtk:label-get-label (gtk:paned-get-end-child paned)))
+        (false (gtk:paned-get-shrink-start-child paned))
+        (false (gtk:paned-get-shrink-end-child paned))
+        (true (gtk:paned-get-resize-start-child paned))
+        (false (gtk:paned-get-resize-end-child paned)))))
   (fail (macroexpand-1 '(gtk:build (not-a-class :x 1)))))
 
 (define-test list-views-of-lisp-values :parent lisp-api
