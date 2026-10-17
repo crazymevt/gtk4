@@ -164,7 +164,24 @@
 (defun package-of (nsname)
   (string-upcase (namespace-package-name nsname)))
 
-(defun callable-docset-entry (plan ns parent)
+(defun enum-values-inlines (ctx spec)
+  "Inline the keyword values for an enum or flags SPEC, if known."
+  (when (and (consp spec) (member (first spec) '(:enum :flags)) (symbolp (second spec)))
+    (let* ((qualified (loop for name being the hash-keys of *type-symbols*
+                             using (hash-value symbol)
+                             when (eq symbol (second spec)) return name))
+           (item (and qualified (lookup ctx qualified)))
+           (values (and (gir-enum-p item)
+                        (mapcar (lambda (member) (format nil ":~a" (snake-to-kebab (gir-member-name member))))
+                                (gir-enum-members item)))))
+      (when values
+        (append
+         (list (if (eq (first spec) :flags) "Flags may combine: " "Values: "))
+         (loop for value in values for first = t then nil
+               append (if first (list (list :code value))
+                         (list ", " (list :code value)))))))))
+
+(defun callable-docset-entry (plan ns parent ctx)
   (let* ((nsname (gir-namespace-name ns))
          (ref (lisp-ref (plan-symbol plan) nsname))
          (values (plan-values-description plan nsname)))
@@ -177,6 +194,12 @@
                         (list :syntax :kind (plan-kind plan) :name (list ref)
                                       :args (let ((ll (plan-lambda-list plan))) (and (plusp (length ll)) (list ll))))
                         (append (when values (list (cons :p (markdown-inlines values))))
+                                (loop for arg in (plan-input-args plan)
+                                      for name = (first arg)
+                                      for choices = (enum-values-inlines ctx (second arg))
+                                      when choices collect (cons :p (append (list (list :code (string-downcase (symbol-name name)))
+                                                                                   ": ")
+                                                                             choices)))
                                 (when (plan-throws plan)
                                   (list (list :p "Signals " (code-inline "glib:glib-error") " on failure.")))))
                  (cons "Description" (doc-blocks (plan-doc plan)))
@@ -200,7 +223,7 @@
   (remove-if-not (lambda (c) (gethash c *plans*))
                  (append (gir-class-constructors item) (gir-class-functions item) (gir-class-methods item))))
 
-(defun property-docset-entry (p class ns)
+(defun property-docset-entry (p class ns ctx)
   (let* ((nsname (gir-namespace-name ns))
          (sym (item-symbol p)))
     (entry (docset-id :property (lisp-ref sym nsname))
@@ -211,11 +234,29 @@
                                                (and (gir-property-writable p) "writable")
                                                (and (gir-property-construct-only p) "construct-only")
                                                (list :code (format nil ":~a" (gir-item-name p)))
-                                               "initarg")
-                               (doc-blocks (gir-item-doc p)))))
+                                               (and (gir-property-writable p) "initarg"))
+                               (doc-blocks (gir-item-doc p))
+                               (let ((choices (enum-values-inlines ctx (classify-type ctx (gir-property-type p) nsname))))
+                                 (when choices (list (cons :p choices)))))))
            :parent (docset-id (class-kind class) (type-ref class nsname))
            :upstream (doc-url nsname (format nil "property.~a.~a.html" (gir-item-name class) (gir-item-name p)))
            :summary (docset-summary (gir-item-doc p)))))
+
+(defun class-initarg-properties (ctx item nsname)
+  "Writable GObject properties accepted as MAKE-INSTANCE initargs for ITEM."
+  (let* ((qualified (qualify (gir-item-name item) nsname))
+         (classes (loop for name = qualified then (let ((parent (gir-class-parent class)))
+                                                   (and parent (qualify parent (namespace-of name))))
+                        for class = (and name (lookup ctx name))
+                        while (gir-class-p class)
+                        collect class))
+         (interfaces (mapcar (lambda (name) (lookup ctx name))
+                             (class-implemented ctx qualified))))
+    (remove-if-not
+     #'gir-property-writable
+     (remove-duplicates (loop for class in (append classes (remove nil interfaces))
+                              append (gir-class-properties class))
+                        :from-end t :test #'string= :key #'gir-item-name))))
 
 (defun class-docset-entries (ctx item ns)
   "The entry for class ITEM, then its callables' and properties' entries."
@@ -224,6 +265,7 @@
          (id (docset-id (class-kind item) ref))
          (callables (bound-callables item))
          (properties (remove-if-not #'item-symbol (gir-class-properties item)))
+         (initarg-properties (class-initarg-properties ctx item nsname))
          (layout (gethash (qualify (gir-item-name item) nsname) (context-layouts ctx))))
     (cons
      (entry id
@@ -241,6 +283,30 @@
                              (psym (type-symbol pq)))
                         (list (list :p "Parent: " (if psym (code-inline (lisp-ref psym (namespace-of pq))) pq)))))
                     (doc-blocks (gir-item-doc item))))
+             (when initarg-properties
+               (cons "Initialization"
+                     (list (list :p (cond
+                                      ((eq (gir-class-kind item) :interface)
+                                       "These writable properties are available on concrete implementing classes. This interface itself cannot be instantiated.")
+                                      ((gir-class-abstract item)
+                                       "Concrete subclasses inherit these writable properties as initargs. This abstract class itself cannot be instantiated.")
+                                      (t "MAKE-INSTANCE accepts these writable GObject properties as keyword initargs, including inherited properties.")))
+                           (cons :list
+                                 (loop for p in initarg-properties
+                                       for property-name = (gir-item-name p)
+                                       for sym = (item-symbol p)
+                                       for property-ns = (if sym (namespace-of (symbol-qualified sym)) nsname)
+                                       for qualified-ref = (and sym (lisp-ref sym property-ns))
+                                       for spec = (and (gir-type-p (gir-property-type p))
+                                                       (classify-type ctx (gir-property-type p) property-ns))
+                                       for choices = (enum-values-inlines ctx spec)
+                                       collect (list* :item
+                                                      (list :label (if qualified-ref
+                                                                       (list :ref (docset-id :property qualified-ref)
+                                                                             (format nil ":~a" property-name))
+                                                                       (list :code (format nil ":~a" property-name))))
+                                                      (append (doc-blocks (gir-item-doc p))
+                                                              (when choices (list (cons :p choices))))))))))
              (when (and (layout-p layout) (layout-accessors layout))
                (cons "Fields"
                      (append
@@ -304,8 +370,8 @@
                                     collect (docset-id :property (lisp-ref (item-symbol p) nsname))))
             :upstream (doc-url nsname (type-fragment item))
             :summary (docset-summary (gir-item-doc item)))
-     (append (loop for c in callables collect (callable-docset-entry (gethash c *plans*) ns id))
-             (loop for p in properties collect (property-docset-entry p item ns))))))
+     (append (loop for c in callables collect (callable-docset-entry (gethash c *plans*) ns id ctx))
+             (loop for p in properties collect (property-docset-entry p item ns ctx))))))
 
 (defun enum-docset-entry (item ns)
   (let* ((nsname (gir-namespace-name ns))
@@ -330,6 +396,153 @@
                                                              (markdown-inlines (or (convert-doc-text (first-paragraph (gir-member-doc m))) ""))))))))
            :upstream (doc-url nsname (type-fragment item))
            :summary (docset-summary (gir-item-doc item)))))
+
+;;; The Lisp API: read signatures and docstrings without loading the bindings.
+;;; The generator recreates the namespace packages, so loading gtk4 here would
+;;; replace the very symbols used by its plans.
+
+(defun source-form-text (form package)
+  (let ((*package* package) (*print-case* :downcase) (*print-pretty* nil))
+    (prin1-to-string form)))
+
+(defun lisp-api-references (ctx)
+  "Definition symbol -> its public name, including runtime re-exports."
+  (let ((references (make-hash-table :test 'eq)))
+    (dolist (ns (context-targets ctx))
+      (let* ((nsname (gir-namespace-name ns))
+             (package (find-package (namespace-package-name nsname))))
+        (dolist (name (append (cdr (assoc nsname *lisp-api-exports* :test #'equal))
+                             (cdr (assoc nsname *runtime-exports* :test #'equal))))
+          (let ((symbol (find-symbol (string-upcase name) package)))
+            (when symbol (setf (gethash symbol references) (lisp-ref symbol nsname)))))))
+    (when (lookup ctx "Gtk.Widget")
+      (let* ((package (or (find-package "GTK4") (make-package "GTK4" :use '("CL"))))
+             (declaration (with-open-file (in (asdf:system-relative-pathname "gtk4" "src/gtk4/package.lisp"))
+                            (let ((*read-eval* nil)) (read in))))
+             (options (cddr declaration)))
+        (dolist (name (cdr (assoc :export options)))
+          (let* ((name (string name))
+                 (origin (find-if (lambda (option)
+                                    (and (eq (car option) :import-from)
+                                         (member name (cddr option) :key #'string :test #'equal)))
+                                  options))
+                 (symbol (if origin (find-symbol name (string (second origin)))
+                             (intern name package))))
+            (setf (gethash symbol references) (format nil "gtk4:~(~a~)" name))))))
+    references))
+
+(defun read-lisp-api-definitions (ctx)
+  "Read exported DEFUN/DEFMACRO signatures and docstrings from our sources."
+  (let* ((references (lisp-api-references ctx))
+         (files (append
+                 (loop for name in '("threads" "main-loop" "gerror" "object" "signals" "define" "subclass")
+                       collect (asdf:system-relative-pathname "gtk4" (format nil "src/runtime/~a.lisp" name)))
+                 (when (lookup ctx "Gtk.Widget")
+                   (sort (directory (make-pathname :name :wild :type "lisp"
+                                                   :defaults (asdf:system-relative-pathname "gtk4" "src/gtk4/")))
+                         #'string< :key #'namestring))
+                 (when (lookup ctx "Adw.Application")
+                   (list (asdf:system-relative-pathname "gtk4" "src/adwaita/helpers.lisp")))))
+         (definitions '()))
+    (dolist (file files)
+      (with-open-file (in file)
+        (let ((*package* (find-package :cl-user)) (*read-eval* nil))
+          (loop for form = (read in nil :eof) until (eq form :eof)
+                do (when (consp form)
+                     (cond
+                       ((eq (car form) 'in-package)
+                        (setf *package* (find-package (string (second form)))))
+                       ((and (member (car form) '(defun defmacro))
+                             (symbolp (second form)) (gethash (second form) references))
+                        (push (list :ref (gethash (second form) references)
+                                    :kind (if (eq (car form) 'defmacro) :macro :function)
+                                    :lambda-list (third form) :package *package*
+                                    :doc (when (stringp (fourth form)) (fourth form))
+                                    :body (cdddr form))
+                              definitions))))))))
+    (nreverse definitions)))
+
+(defun lambda-keyword-specs (lambda-list)
+  "Keyword names, variables and defaults, including destructured macro arguments."
+  (labels ((walk (args)
+             (let ((keys nil) (result '()))
+               (dolist (arg args)
+                 (cond ((member arg lambda-list-keywords) (setf keys (eq arg '&key)))
+                       (keys
+                        (let* ((binding (if (consp arg) (first arg) arg))
+                               (variable (if (consp binding) (second binding) binding))
+                               (key (if (consp binding) (first binding)
+                                        (intern (symbol-name variable) :keyword))))
+                          (push (list :key key :variable variable :default (and (consp arg) (second arg))) result)))
+                       ((consp arg) (setf result (append (reverse (walk arg)) result)))))
+               (nreverse result))))
+    (walk lambda-list)))
+
+(defun ecase-keyword-values (variable body)
+  "The finite keyword choices enforced by ECASE on VARIABLE, when present."
+  (labels ((walk (form)
+             (when (consp form)
+               (cond ((eq (car form) 'quote) nil)
+                     ((and (eq (car form) 'ecase) (eq (second form) variable))
+                      (loop for clause in (cddr form)
+                            append (let ((key (car clause))) (if (listp key) key (list key)))))
+                     (t (append (walk (car form)) (walk (cdr form))))))))
+    (let ((values (remove-duplicates (walk body))))
+      (and values (every #'keywordp values) values))))
+
+(defparameter *lisp-keyword-types*
+  '(("adw:run-application" :flags "Gio.ApplicationFlags")
+    ("adw:show-toast" :priority "Adw.ToastPriority")
+    ("gobject:connect" :after :boolean)
+    ("glib:call-in-main-thread" :wait :boolean)
+    ("glib:in-main-thread" :wait :boolean))
+  "Types of helper keyword arguments forwarded to GTK or the runtime.
+Signatures, defaults and locally enforced ECASE choices come from source.")
+
+(defun lisp-keyword-values-inlines (ctx definition spec)
+  (let* ((values (ecase-keyword-values (getf spec :variable) (getf definition :body)))
+         (type (third (find-if (lambda (item)
+                                (and (equal (first item) (getf definition :ref))
+                                     (eq (second item) (getf spec :key))))
+                              *lisp-keyword-types*))))
+    (cond (values
+           (cons "Values: "
+                 (loop for value in values for first = t then nil
+                       append (append (unless first (list ", "))
+                                      (list (list :code (format nil "~(~s~)" value)))))))
+          ((eq type :boolean) (list "Values: " (list :code "nil") " or " (list :code "t")))
+          ((stringp type)
+           (let ((item (lookup ctx type)))
+             (when (gir-enum-p item)
+               (enum-values-inlines ctx (list (if (eq (gir-enum-kind item) :bitfield) :flags :enum)
+                                             (type-symbol type)))))))))
+
+(defun lisp-api-docset-entry (ctx definition)
+  (let* ((ref (getf definition :ref))
+         (package (getf definition :package))
+         (kind (getf definition :kind))
+         (lambda-list (getf definition :lambda-list))
+         (doc (getf definition :doc))
+         (keywords (lambda-keyword-specs lambda-list)))
+    (entry (docset-id kind ref) (list (subseq ref (1+ (position #\: ref))))
+           kind (if (eq kind :macro) "Macro" "Function")
+           (string-upcase (subseq ref 0 (position #\: ref)))
+           (list
+            (list "Syntax" (list :syntax :kind kind :name (list ref)
+                                 :args (when lambda-list
+                                         (list (format nil "~{~a~^ ~}"
+                                                       (mapcar (lambda (arg) (source-form-text arg package)) lambda-list))))))
+            (when keywords
+              (cons "Keyword arguments"
+                    (list (cons :list
+                                (loop for spec in keywords
+                                      for choices = (lisp-keyword-values-inlines ctx definition spec)
+                                      collect (list* :item
+                                                     (list :label (list :code (format nil "~(~s~)" (getf spec :key))))
+                                                     (list :p "Default: " (list :code (source-form-text (getf spec :default) package)) ".")
+                                                     (when choices (list (cons :p choices)))))))))
+            (cons "Description" (doc-blocks doc)))
+           :summary (docset-summary doc))))
 
 (defun manual-docset-entries ()
   (loop for (title name path) in (manual-pages)
@@ -389,8 +602,14 @@
 binding files are written, which records the plans."
   (clrhash *docset-ids*)
   (dolist (ns (context-targets ctx)) (note-namespace-ids ns))
-  (let ((entries (manual-docset-entries))
-        (packages '()))
+  (let* ((definitions (read-lisp-api-definitions ctx))
+         (lisp-entries (progn
+                         (dolist (definition definitions)
+                           (note-docset-id (getf definition :ref)
+                                           (docset-id (getf definition :kind) (getf definition :ref))))
+                         (mapcar (lambda (definition) (lisp-api-docset-entry ctx definition)) definitions)))
+         (entries (manual-docset-entries))
+         (packages '()))
     (dolist (ns (context-targets ctx))
       (let ((nsname (gir-namespace-name ns))
             (*link-base* (cdr (assoc (gir-namespace-name ns) *doc-bases* :test #'string=))))
@@ -401,8 +620,9 @@ binding files are written, which records the plans."
           (push (enum-docset-entry e ns) entries))
         (dolist (f (gir-namespace-functions ns))
           (let ((plan (gethash f *plans*)))
-            (when plan (push (callable-docset-entry plan ns nil) entries))))))
-    (setf entries (nreverse entries))
+            (when plan (push (callable-docset-entry plan ns nil ctx) entries))))))
+    (setf entries (append (nreverse entries) lisp-entries))
+    (dolist (e lisp-entries) (pushnew (getf (cddr e) :package) packages :test #'equal))
     (docset:write-docset directory
                   (list :id "gtk4"
                         :title "GTK 4"
@@ -411,14 +631,21 @@ binding files are written, which records the plans."
                         :system "gtk4"
                         :packages (nreverse packages)
                         :source "https://github.com/crazymevt/gtk4"
-                        :attribution "Reference text from the GObject Introspection data of GLib, GObject, GIO, Pango, cairo, HarfBuzz, Graphene, GdkPixbuf, GDK, GSK, GTK and libadwaita, rewritten with Lisp names. Each entry links to its upstream page."
-                        :license "The upstream documentation is under each project's license (LGPL-2.1-or-later for GTK and GLib)."
+                        :attribution "Reference text from the GObject Introspection data of GLib, GObject, GIO, Pango, cairo, HarfBuzz, Graphene, GdkPixbuf, GDK, GSK, GTK and libadwaita, rewritten with Lisp names. GIR entries link to their upstream pages. Lisp API signatures and docstrings come from the gtk4 Lisp sources."
+                        :license "The upstream documentation is under each project's license (LGPL-2.1-or-later for GTK and GLib); the Lisp API documentation is MIT licensed."
                         :toc (cons (list :title "Manual"
                                          :children (loop for e in entries
                                                          when (eq (getf (cddr e) :kind) :page)
                                                            collect (list :title (first (getf (cddr e) :names))
                                                                          :entry (second e))))
-                                   (mapcar #'namespace-toc (context-targets ctx))))
+                                   (append
+                                    (when lisp-entries
+                                      (list (list :title "Lisp API"
+                                                  :children (loop for e in lisp-entries
+                                                                  collect (list :title (format nil "~(~a~):~a" (getf (cddr e) :package)
+                                                                                                              (first (getf (cddr e) :names)))
+                                                                                :entry (second e))))))
+                                    (mapcar #'namespace-toc (context-targets ctx)))))
                   entries)
     (format t "~&Docset: ~d entries in ~a~%" (length entries) directory)
     directory))

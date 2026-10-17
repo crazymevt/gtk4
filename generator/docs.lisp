@@ -222,13 +222,18 @@ identifiers (\"gtk_widget_show\", \"GtkWidget\", \"GTK_ALIGN_CENTER\").")
         ((and (> (length phrase) 3) (string= "an " (subseq phrase 0 3))) (subseq phrase 3))
         (t phrase)))
 
+(defun plan-input-args (plan)
+  "PLAN's arguments that the Lisp caller supplies, excluding hidden C arguments."
+  (remove-if (lambda (a)
+               (let ((options (cddr a)))
+                 (or (eq (getf options :direction) :out)
+                     (getf options :user-data-of) (getf options :destroy-of)
+                     (getf options :length-of))))
+             (plan-args plan)))
+
 (defun plan-lambda-list (plan)
   "The Lisp lambda list of PLAN's function, as a string."
-  (let* ((visible (remove-if (lambda (a)
-                               (let ((o (cddr a)))
-                                 (or (eq (getf o :direction) :out) (getf o :user-data-of)
-                                     (getf o :destroy-of) (getf o :length-of))))
-                             (plan-args plan)))
+  (let* ((visible (plan-input-args plan))
          (required (remove-if (lambda (a) (getf (cddr a) :optional)) visible))
          (optional (remove-if-not (lambda (a) (getf (cddr a) :optional)) visible)))
     (format nil "~{~(~a~)~^ ~}~@[ &optional~{ ~(~a~)~}~]"

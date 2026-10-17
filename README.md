@@ -116,6 +116,19 @@ make app NAME=clock APP=Clock   # build/Clock.app, carrying its own GTK (macOS)
 make demo               # the demo browser: 25 demos to read and run
 ```
 
+The docset lists writable object initargs, including inherited properties,
+and their enum or flags values. Lisp helper entries include keyword arguments,
+source defaults and known value choices, such as `gtk:make-list-view`'s
+`:selection` options.
+
+Run the docset generator's semantic and link checks in a fresh SBCL process
+(the generator recreates the binding packages):
+
+```sh
+sbcl --non-interactive --eval '(ql:quickload :gtk4-generator/tests :silent t)' \
+     --eval '(asdf:test-system :gtk4-generator)'
+```
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
